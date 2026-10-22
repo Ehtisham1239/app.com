@@ -1,0 +1,152 @@
+[
+  {
+    "name": "usa-online-quran-learning",
+    "url": "/images/learning/usa-online-quran-learning-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Child and parent reviewing a beginner Arabic workbook beside a laptop at home",
+    "variants": [
+      {
+        "url": "/images/learning/usa-online-quran-learning-400.webp",
+        "width": 400,
+        "bytes": 23592
+      },
+      {
+        "url": "/images/learning/usa-online-quran-learning-800.webp",
+        "width": 800,
+        "bytes": 58950
+      },
+      {
+        "url": "/images/learning/usa-online-quran-learning-1200.webp",
+        "width": 1200,
+        "bytes": 99808
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/generated/2026-10/usa-online-quran-learning-1200.webp"
+  },
+  {
+    "name": "australia-online-quran-learning",
+    "url": "/images/learning/australia-online-quran-learning-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Young learner in a green hijab studying an Arabic workbook beside a laptop",
+    "variants": [
+      {
+        "url": "/images/learning/australia-online-quran-learning-400.webp",
+        "width": 400,
+        "bytes": 26254
+      },
+      {
+        "url": "/images/learning/australia-online-quran-learning-800.webp",
+        "width": 800,
+        "bytes": 66374
+      },
+      {
+        "url": "/images/learning/australia-online-quran-learning-1200.webp",
+        "width": 1200,
+        "bytes": 109582
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/generated/2026-10/australia-online-quran-learning-1200.webp"
+  },
+  {
+    "name": "noorani-qaida-child",
+    "url": "/images/learning/noorani-qaida-child-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Child practising beginner Arabic letters in a Qaida workbook with a parent",
+    "variants": [
+      {
+        "url": "/images/learning/noorani-qaida-child-400.webp",
+        "width": 400,
+        "bytes": 22676
+      },
+      {
+        "url": "/images/learning/noorani-qaida-child-800.webp",
+        "width": 800,
+        "bytes": 57240
+      },
+      {
+        "url": "/images/learning/noorani-qaida-child-1200.webp",
+        "width": 1200,
+        "bytes": 95390
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/generated/2026-10/noorani-qaida-child-1200.webp"
+  },
+  {
+    "name": "quran-recitation-hifz",
+    "url": "/images/learning/quran-recitation-hifz-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Student reviewing recitation from an open book on a wooden book stand",
+    "variants": [
+      {
+        "url": "/images/learning/quran-recitation-hifz-400.webp",
+        "width": 400,
+        "bytes": 22844
+      },
+      {
+        "url": "/images/learning/quran-recitation-hifz-800.webp",
+        "width": 800,
+        "bytes": 55930
+      },
+      {
+        "url": "/images/learning/quran-recitation-hifz-1200.webp",
+        "width": 1200,
+        "bytes": 91044
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/generated/2026-10/quran-recitation-hifz-1200.webp"
+  },
+  {
+    "name": "adult-arabic-learning",
+    "url": "/images/learning/adult-arabic-learning-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Adult learner attending an online language lesson with a laptop and notebook",
+    "variants": [
+      {
+        "url": "/images/learning/adult-arabic-learning-400.webp",
+        "width": 400,
+        "bytes": 20966
+      },
+      {
+        "url": "/images/learning/adult-arabic-learning-800.webp",
+        "width": 800,
+        "bytes": 48722
+      },
+      {
+        "url": "/images/learning/adult-arabic-learning-1200.webp",
+        "width": 1200,
+        "bytes": 78368
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/generated/2026-10/adult-arabic-learning-1200.webp"
+  },
+  {
+    "name": "translation-study",
+    "url": "/images/learning/translation-study-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Adult learner comparing open books and taking translation study notes",
+    "variants": [
+      {
+        "url": "/images/learning/translation-study-400.webp",
+        "width": 400,
+        "bytes": 22954
+      },
+      {
+        "url": "/images/learning/translation-study-800.webp",
+        "width": 800,
+        "bytes": 58592
+      },
+      {
+        "url": "/images/learning/translation-study-1200.webp",
+        "width": 1200,
+        "bytes": 98356
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/generated/2026-10/translation-study-1200.webp"
+  }
+]

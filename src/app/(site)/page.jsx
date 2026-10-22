@@ -1,3 +1,4 @@
+import { HomeMotion } from "@/components/site/home-motion";
 import { safeJsonLd } from "@/lib/seo";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -52,7 +53,8 @@ export default async function HomePage() {
   };
 
   return (
-    <>
+    <div data-home-motion>
+      <HomeMotion />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
       <HomeHero hero={settings["site.hero"]} stats={settings["site.stats"]} />
 
@@ -161,6 +163,6 @@ export default async function HomePage() {
         text="Book a 7-day free trial. We will match you with a teacher, agree a time that suits your time zone and send the class link — no card needed."
         whatsappHref={wa}
       />
-    </>
+    </div>
   );
 }

@@ -1,3 +1,4 @@
+import { permitsMutation } from "@/lib/request-origin";
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
@@ -6,7 +7,8 @@ import { SUPABASE_KEY, SUPABASE_URL, SUPABASE_CONFIGURED } from "@/lib/config";
 
 // Called by the admin panel after a save so the public website shows the change straight away
 // instead of after the 5-minute cache. Only signed-in, active admins may trigger it.
-export async function POST() {
+export async function POST(request) {
+  if (!permitsMutation(request)) return NextResponse.json({ error: "Cross-site request rejected." }, { status: 403 });
   if (!SUPABASE_CONFIGURED) return NextResponse.json({ error: "CMS connection is pending." }, { status: 503 });
   const store = await cookies();
   const supabase = createServerClient(SUPABASE_URL, SUPABASE_KEY, {

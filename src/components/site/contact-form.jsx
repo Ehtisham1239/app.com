@@ -57,7 +57,7 @@ export function ContactForm({ consentText, successText }) {
     ) : null;
 
   return (
-    <form onSubmit={submit} noValidate className="surface space-y-5 p-6 shadow-[var(--shadow-lift)] sm:p-8">
+    <form onSubmit={submit} noValidate className="surface min-w-0 space-y-5 p-6 shadow-[var(--shadow-lift)] sm:p-8">
       <div className="absolute -left-[9999px]" aria-hidden="true">
         <input tabIndex={-1} autoComplete="off" value={form.website} onChange={(e) => set("website", e.target.value)} />
       </div>

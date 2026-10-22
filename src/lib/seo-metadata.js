@@ -8,7 +8,7 @@ export function contentMetadata(record, { path, title, description, type = "webs
     description,
     alternates: { canonical },
     robots: { index: !record.seo_noindex, follow: true },
-    openGraph: { type, siteName: BRAND_NAME, locale, title: displayTitle, description, url: canonical, images: record.cover_url ? [record.cover_url] : [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: BRAND_NAME }], ...(type === "article" ? { publishedTime: record.published_at, modifiedTime: record.updated_at } : {}) },
+    openGraph: { type, siteName: BRAND_NAME, locale, title: displayTitle, description, url: canonical, images: record.cover_url ? [{ url: record.cover_url, alt: record.cover_alt || record.title }] : [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: BRAND_NAME }], ...(type === "article" ? { publishedTime: record.published_at, modifiedTime: record.updated_at } : {}) },
     twitter: { card: "summary_large_image", title: displayTitle, description, images: [record.cover_url || `${SITE_URL}/opengraph-image`] },
   };
 }

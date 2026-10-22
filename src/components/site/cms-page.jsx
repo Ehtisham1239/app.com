@@ -1,3 +1,4 @@
+import { ContentImage } from "@/components/site/content-image";
 import { PageHero } from "@/components/site/chrome";
 import { CtaBand } from "@/components/site/sections";
 import { PageSections } from "@/components/site/page-sections";
@@ -52,7 +53,7 @@ export async function CmsPage({ page }) {
             </nav>
           )}
           <div className={isPolicy ? "" : "mx-auto max-w-3xl"}>
-            {page.cover_url && <img src={page.cover_url} alt="" className="mb-10 aspect-[16/7] w-full rounded-[1.5rem] object-cover" />}
+            {page.cover_url && <ContentImage src={page.cover_url} alt={page.cover_alt} className="mb-10 aspect-[16/7] w-full rounded-[1.5rem] object-cover" />}
             <div className="prose-oqc text-[1.04rem] [&_h2]:scroll-mt-28" dangerouslySetInnerHTML={{ __html: html }} />
             {isPolicy && page.updated_at && <p className="mt-10 text-sm text-ink-faint">Page updated {formatDate(page.updated_at)}</p>}
           </div>

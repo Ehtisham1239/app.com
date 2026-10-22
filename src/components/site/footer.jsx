@@ -85,7 +85,7 @@ export function SiteFooter({ settings, menus }) {
               </a>
             ))}
             <Link href="/admin" className="rounded-full px-3 py-1 text-white/40 hover:text-white/70">
-              CMS Portal
+              Portal
             </Link>
           </div>
         </div>

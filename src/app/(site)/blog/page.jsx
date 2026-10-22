@@ -1,3 +1,4 @@
+import { ContentImage } from "@/components/site/content-image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight, Clock3 } from "lucide-react";
@@ -25,7 +26,7 @@ function PostCard({ post, large = false }) {
     >
       <div className={`relative overflow-hidden bg-mushaf-900 ${large ? "aspect-[16/10] md:aspect-auto md:w-1/2" : "aspect-[16/9]"}`}>
         {post.cover_url ? (
-          <img src={post.cover_url} alt="" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+          <ContentImage src={post.cover_url} alt={post.cover_alt} className="size-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
         ) : (
           <div className="pattern-girih flex size-full items-center justify-center">
             <span className="rounded-full bg-mushaf-950/80 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-gold-300 ring-1 ring-gold-400/40">{post.category}</span>

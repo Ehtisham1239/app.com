@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, ChevronDown, Menu, MessageCircle, X } from "lucide-react";
+import { ArrowRight, ChevronDown, Menu, ShieldCheck, X } from "lucide-react";
 import { clsx } from "clsx";
 
 function isActive(pathname, href) {
@@ -11,12 +11,31 @@ function isActive(pathname, href) {
   return pathname === href || pathname.startsWith(href + "/");
 }
 
-export function SiteHeader({ menu, courses, whatsappHref, brandName }) {
+export function SiteHeader({ menu, courses, brandName }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [coursesOpen, setCoursesOpen] = useState(false);
   const closeTimer = useRef(null);
+  const dialogRef = useRef(null);
+  const menuButtonRef = useRef(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const dialog = dialogRef.current;
+    const trigger = menuButtonRef.current;
+    dialog?.querySelector("button")?.focus();
+    const handleKey = (event) => {
+      if (event.key === "Escape") { setOpen(false); return; }
+      if (event.key !== "Tab") return;
+      const items = [...dialog.querySelectorAll("a[href], button:not([disabled])")];
+      const first = items[0], last = items.at(-1);
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => { document.removeEventListener("keydown", handleKey); trigger?.focus(); };
+  }, [open]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -54,7 +73,7 @@ export function SiteHeader({ menu, courses, whatsappHref, brandName }) {
         scrolled ? "border-b border-line bg-white/90 shadow-[0_8px_30px_-18px_rgb(13_58_43/0.35)] backdrop-blur-md" : "border-b border-transparent bg-white/90 backdrop-blur-sm",
       )}
     >
-      <div className="page-wrap flex h-[4.5rem] items-center gap-6">
+      <div className="page-wrap flex h-[4.5rem] items-center gap-3 sm:gap-6">
         <Link href="/" className="group flex shrink-0 items-center gap-3" aria-label={`${brandName} — home`}>
           <img src="/brand/logo.webp" alt={brandName} width={160} height={64} className="h-14 w-auto max-w-[8rem] object-contain sm:max-w-[10rem]" />
         </Link>
@@ -128,18 +147,7 @@ export function SiteHeader({ menu, courses, whatsappHref, brandName }) {
         <div className="ml-auto flex items-center gap-2 xl:ml-2">
           {/* A full document navigation removes the public third-party chat runtime before staff sign-in. */}
           {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-          <a href="/admin" className="btn btn-outline whitespace-nowrap text-xs sm:text-sm">CMS Portal</a>
-          {whatsappHref && (
-            <a
-              href={whatsappHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden size-11 items-center justify-center rounded-full border border-line-strong text-leaf-700 transition-colors hover:border-leaf-600 hover:bg-leaf-50 sm:flex"
-              aria-label="Chat with us on WhatsApp"
-            >
-              <MessageCircle className="size-5" aria-hidden="true" />
-            </a>
-          )}
+          <a href="/admin" className="btn portal-button whitespace-nowrap px-3 text-xs sm:px-5 sm:text-sm"><ShieldCheck className="size-4" aria-hidden="true" />Portal</a>
           <Link href="/free-trial" className="btn btn-primary hidden sm:inline-flex">
             Free trial
             <ArrowRight className="size-4" aria-hidden="true" />
@@ -148,6 +156,7 @@ export function SiteHeader({ menu, courses, whatsappHref, brandName }) {
             type="button"
             className="flex size-11 items-center justify-center rounded-full border border-line-strong text-ink xl:hidden"
             onClick={() => setOpen(true)}
+            ref={menuButtonRef}
             aria-label="Open menu"
             aria-expanded={open}
           >
@@ -165,14 +174,15 @@ export function SiteHeader({ menu, courses, whatsappHref, brandName }) {
         />
         <div
           className={clsx(
-            "absolute inset-y-0 right-0 flex w-[min(22rem,88vw)] flex-col bg-paper shadow-2xl transition-transform duration-300",
+            "absolute inset-y-0 right-0 flex max-h-[100dvh] w-[min(22rem,88vw)] flex-col bg-paper shadow-2xl transition-transform duration-300",
             open ? "translate-x-0" : "translate-x-full",
           )}
+          ref={dialogRef}
           role="dialog"
           aria-modal="true"
           aria-label="Menu"
         >
-          <div className="flex h-[4.5rem] items-center justify-between border-b border-line px-5">
+          <div className="flex h-[4.5rem] shrink-0 items-center justify-between gap-2 border-b border-line px-5">
             <span className="font-display text-lg text-mushaf-900">{brandName}</span>
             <button type="button" className="flex size-10 items-center justify-center rounded-full hover:bg-leaf-50" onClick={() => setOpen(false)} aria-label="Close menu">
               <X className="size-5" aria-hidden="true" />
@@ -202,17 +212,12 @@ export function SiteHeader({ menu, courses, whatsappHref, brandName }) {
               </div>
             ))}
           </nav>
-          <div className="space-y-2 border-t border-line p-5">
+          <div className="shrink-0 space-y-2 border-t border-line p-5">
             <Link href="/locations" className="btn btn-outline w-full">Countries & cities</Link>
             <Link href="/free-trial" className="btn btn-primary w-full">
               Book a 7-day free trial
             </Link>
-            {whatsappHref && (
-              <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="btn btn-outline w-full">
-                <MessageCircle className="size-4" aria-hidden="true" />
-                WhatsApp us
-              </a>
-            )}
+
           </div>
         </div>
       </div>

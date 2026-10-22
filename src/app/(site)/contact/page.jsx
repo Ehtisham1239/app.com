@@ -29,14 +29,14 @@ export default async function ContactPage() {
     <>
       <PageHero eyebrow="Contact" title="We are here to help" intro="Questions about courses, fees or timings? Message us — our admissions team replies quickly, in English, Urdu or Arabic." />
       <section className="page-wrap grid gap-10 py-16 sm:py-20 lg:grid-cols-[0.85fr_1.15fr]">
-        <div className="space-y-3">
+        <div className="min-w-0 space-y-3">
           {cards.map(({ icon: Icon, label, value, href, external, highlight }) => {
             const inner = (
               <>
                 <span className={`flex size-12 shrink-0 items-center justify-center rounded-xl ${highlight ? "bg-gold-500 text-mushaf-950" : "bg-mushaf-900 text-gold-300"}`}>
                   <Icon className="size-5" aria-hidden="true" />
                 </span>
-                <span>
+                <span className="min-w-0 break-words">
                   <span className={`block text-xs font-bold uppercase tracking-[0.16em] ${highlight ? "text-gold-300" : "text-ink-faint"}`}>{label}</span>
                   <span className={`mt-0.5 block text-[1.05rem] font-semibold ${highlight ? "text-white" : "text-mushaf-900"}`}>{value}</span>
                 </span>

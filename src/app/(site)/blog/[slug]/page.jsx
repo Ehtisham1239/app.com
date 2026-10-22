@@ -1,3 +1,4 @@
+import { ContentImage } from "@/components/site/content-image";
 import { safeJsonLd } from "@/lib/seo";
 import { contentMetadata } from "@/lib/seo-metadata";
 import Link from "next/link";
@@ -37,8 +38,11 @@ export default async function PostPage({ params }) {
     "@type": "BlogPosting",
     "@id": `${SITE_URL}/blog/${post.slug}#article`,
     headline: post.title,
+    keywords: post.tags?.join(", "),
+    inLanguage: "en",
     description: post.excerpt,
     dateModified: post.updated_at,
+    ...(post.cover_url ? { image: new URL(post.cover_url, SITE_URL).href } : {}),
     datePublished: post.published_at,
     author: { "@type": "Organization", name: post.author_name },
     publisher: { "@type": "Organization", name: "Online Quran College", logo: { "@type": "ImageObject", url: `${SITE_URL}/icon` } },
@@ -74,7 +78,7 @@ export default async function PostPage({ params }) {
         </header>
         {post.cover_url && (
           <div className="page-wrap max-w-4xl">
-            <img src={post.cover_url} alt="" className="-mt-0 aspect-[16/8] w-full rounded-b-[1.5rem] object-cover" />
+            <ContentImage src={post.cover_url} alt={post.cover_alt} className="-mt-0 aspect-[16/8] w-full rounded-b-[1.5rem] object-cover" />
           </div>
         )}
         <div className="page-wrap max-w-4xl py-14">

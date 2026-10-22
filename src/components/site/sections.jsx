@@ -1,3 +1,4 @@
+import { ContentImage } from "@/components/site/content-image";
 import Link from "next/link";
 import { clsx } from "clsx";
 import { ArrowRight, Check, MessageCircle, Plus, Quote, Star } from "lucide-react";
@@ -40,7 +41,7 @@ export function CourseCard({ course }) {
     >
       <div className="relative h-36 overflow-hidden bg-mushaf-900">
         {course.cover_url ? (
-          <img src={course.cover_url} alt="" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+          <ContentImage src={course.cover_url} alt={course.cover_alt} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
         ) : (
           <>
             <div className="pattern-girih absolute inset-0 opacity-[0.13]" aria-hidden="true" />

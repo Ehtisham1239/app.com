@@ -231,3 +231,34 @@
 .rich-content .ProseMirror { outline: none; min-height: 14rem; }
 @media print { .no-print { display: none !important; } }
 }
+
+/* Lightweight home motion uses compositor properties, with no hidden content dependency. */
+@keyframes home-arrive { from { transform: translateY(12px); opacity: .85; } to { transform: none; opacity: 1; } }
+@keyframes portrait-arrive { from { transform: translateY(16px) scale(.985); } to { transform: none; } }
+@media (prefers-reduced-motion: no-preference) {
+  .home-hero h1 { animation: home-arrive .65s ease-out both; }
+  .home-hero .hero-portrait { animation: portrait-arrive .9s ease-out both; }
+  .home-reveal { animation: home-arrive .65s ease-out both; }
+  [data-home-motion] .surface { transition: transform .2s ease, box-shadow .2s ease; }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  [data-home-motion] a.surface:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+  .portal-button:hover svg { transform: rotate(-8deg); }
+}
+.portal-button { background: #f4fbf7; color: #006847; border: 1.5px solid #006847; box-shadow: 0 2px 8px rgb(0 104 71 / .08); }
+.portal-button:hover { background: #006847; color: white; }
+.portal-button svg { transition: transform .2s ease; flex-shrink: 0; }
+@media (max-width: 639px) {
+  input, select, textarea { font-size: 16px; } /* Avoid focus zoom in iOS Safari. */
+  .btn { white-space: normal; text-align: center; }
+  .page-wrap { padding-inline: 1rem; }
+  .prose-oqc, .prose { overflow-wrap: anywhere; }
+}
+img { max-width: 100%; }
+@supports (padding: env(safe-area-inset-bottom)) {
+  body { padding-bottom: env(safe-area-inset-bottom); }
+}
+
+/* Let form controls shrink within narrow grid columns, including Safari. */
+main .grid > *, main form { min-width: 0; }
+main input:not([type="checkbox"]):not([type="radio"]), main select, main textarea { min-width: 0; max-width: 100%; }

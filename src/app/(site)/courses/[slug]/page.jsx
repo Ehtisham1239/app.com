@@ -1,3 +1,4 @@
+import { ContentImage } from "@/components/site/content-image";
 import { SITE_URL } from "@/lib/config";
 import { safeJsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
 import { contentMetadata } from "@/lib/seo-metadata";
@@ -43,6 +44,7 @@ export default async function CoursePage({ params }) {
     "@type": "Course",
     name: course.title,
     description: course.summary,
+    ...(course.cover_url ? { image: new URL(course.cover_url, SITE_URL).href } : {}),
     "@id": `${SITE_URL}/courses/${course.slug}#course`,
     url: `${SITE_URL}/courses/${course.slug}`,
     provider: { "@type": "EducationalOrganization", "@id": `${SITE_URL}/#organization`, name: settings["site.identity"]?.name ?? "Online Quran College" },
@@ -93,6 +95,7 @@ export default async function CoursePage({ params }) {
 
       <div className="page-wrap grid gap-12 py-16 lg:grid-cols-[1fr_20rem]">
         <div className="min-w-0">
+          {course.cover_url && <ContentImage src={course.cover_url} alt={course.cover_alt} priority className="mb-10 aspect-[3/2] w-full rounded-3xl object-cover" />}
           {course.description_html && <div className="prose-oqc" dangerouslySetInnerHTML={{ __html: cleanHtml(course.description_html) }} />}
 
           <section className="surface mt-10 space-y-3 p-6"><h2 className="text-2xl">Plan lessons around your family</h2><p>Explore local scheduling and fee guidance before requesting a trial.</p><div className="flex flex-wrap gap-3"><Link href="/locations/united-states" className="btn btn-outline">USA families</Link><Link href="/locations/australia" className="btn btn-outline">Australian families</Link><Link href="/learn" className="btn btn-outline">Learning guides</Link></div></section>

@@ -41,7 +41,7 @@ export default async function SiteLayout({ children }) {
       <TopBar announcement={settings["site.announcement"]} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", "@type": "WebSite", "@id": `${SITE_URL}/#website`, name: brandName, url: SITE_URL, inLanguage: "en-GB" }) }} />
       <CampaignAttribution />
-      <SiteHeader menu={header} courses={courseLinks} whatsappHref={wa} brandName={brandName} />
+      <SiteHeader menu={header} courses={courseLinks} brandName={brandName} />
       <main id="main">{children}</main>
       <SiteFooter settings={settings} menus={footerMenus} />
       <WhatsAppFloat href={wa} chatEnabled={chatEnabled} />

@@ -134,7 +134,7 @@ export const getMenus = cache(async () => {
 });
 
 const COURSE_FIELDS =
-  "id, slug, title, arabic_title, summary, age_group, level, duration_text, category, icon, cover_url, is_featured, sort_order";
+  "id, slug, title, arabic_title, summary, age_group, level, duration_text, category, icon, cover_url, cover_alt, is_featured, sort_order";
 
 export const getCourses = cache(async () =>
   safe(() =>
@@ -205,7 +205,7 @@ export const getTeacher = cache(async (slug) =>
   ),
 );
 
-const POST_FIELDS = "id, slug, title, excerpt, cover_url, category, tags, author_name, reading_minutes, published_at, updated_at";
+const POST_FIELDS = "id, slug, title, excerpt, cover_url, cover_alt, category, tags, author_name, reading_minutes, published_at, updated_at";
 
 export const getPosts = cache(async (limit = 50) =>
   safe(() =>
@@ -233,7 +233,7 @@ export const getPage = cache(async (slug) =>
   safe(() =>
     publicDb
       .from("pages")
-      .select("id, slug, title, excerpt, template, body_html, cover_url, seo_title, seo_description, canonical_url, seo_noindex, seo_focus_keyword, updated_at, page_sections(id, type, data, sort_order)")
+      .select("id, slug, title, excerpt, template, body_html, cover_url, cover_alt, seo_title, seo_description, canonical_url, seo_noindex, seo_focus_keyword, updated_at, page_sections(id, type, data, sort_order)")
       .eq("slug", slug)
       .eq("locale", "en")
       .eq("status", "published")
@@ -246,9 +246,9 @@ export const getPage = cache(async (slug) =>
 
 export const getPublishedSlugs = cache(async () => {
   const [courses, posts, pages, teachers] = await Promise.all([
-    safe(() => publicDb.from("courses").select("slug, updated_at, seo_noindex, canonical_url").eq("status", "published").is("deleted_at", null), [], "slugs courses"),
-    safe(() => publicDb.from("blog_posts").select("slug, updated_at, seo_noindex, canonical_url").eq("status", "published").is("deleted_at", null), [], "slugs posts"),
-    safe(() => publicDb.from("pages").select("slug, updated_at, seo_noindex, canonical_url").eq("status", "published").is("deleted_at", null), [], "slugs pages"),
+    safe(() => publicDb.from("courses").select("slug, updated_at, seo_noindex, canonical_url, cover_url").eq("status", "published").is("deleted_at", null), [], "slugs courses"),
+    safe(() => publicDb.from("blog_posts").select("slug, updated_at, seo_noindex, canonical_url, cover_url").eq("status", "published").is("deleted_at", null), [], "slugs posts"),
+    safe(() => publicDb.from("pages").select("slug, updated_at, seo_noindex, canonical_url, cover_url").eq("status", "published").is("deleted_at", null), [], "slugs pages"),
     safe(() => publicDb.from("teachers").select("slug, updated_at").eq("is_public", true).eq("is_active", true).is("deleted_at", null), [], "slugs teachers"),
   ]);
   return { courses, posts, pages, teachers };

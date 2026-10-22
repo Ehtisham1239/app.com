@@ -23,7 +23,7 @@ export function analyzeSeo(record = {}) {
   const html = record.body_html || record.description_html || "";
   const text = textContent(html), words = text ? text.split(/\s+/).length : 0;
   const images = html.match(/<img\b[^>]*>/gi) || [];
-  const missingAlt = images.filter((tag) => !/(?:^|\s)alt\s*=/i.test(tag)).length;
+  const missingAlt = (record.cover_url && !record.cover_alt?.trim() ? 1 : 0) + images.filter((tag) => !/(?:^|\s)alt\s*=/i.test(tag)).length;
   const brokenLinks = (html.match(/<a\b[^>]*>/gi) || []).filter((tag) => {
     const match = tag.match(/\bhref\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/i);
     const href = (match?.[1] ?? match?.[2] ?? match?.[3] ?? "").trim();

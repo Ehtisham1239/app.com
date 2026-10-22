@@ -5,7 +5,7 @@ const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH ||
 const page=await browser.newPage({viewport:{width:1440,height:1000}});
 const errors=[];page.on('pageerror',e=>errors.push(e.message));
 await page.goto(`${base}/`,{waitUntil:'networkidle'});
-await page.getByRole('link',{name:'CMS Portal',exact:true}).first().click();
+await page.getByRole('link',{name:'Portal',exact:true}).first().click();
 await page.waitForURL('**/admin/login');
 await page.getByLabel('Email',{exact:true}).waitFor();
 await page.getByRole('button',{name:'Sign in',exact:true}).waitFor();
