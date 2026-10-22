@@ -86,3 +86,20 @@ lint has zero errors with 19 existing warnings. The local production crawl check
 visible FAQ/schema matching, blog pagination and a stubbed successful-form event. The authenticated
 CMS create/edit and mobile checks passed with an isolated temporary content editor; its synthetic
 record and account were deleted. No owner password was reset and no public dummy enquiry was saved.
+
+## Production handover
+
+Source `3dcae964890d9973a9234364e8eca2060f285281` is live at
+https://project-umber-three-93.vercel.app in READY deployment `dpl_6dHP4ojN5ArS5yzgfbNqvLJFTeVc`.
+Live public verification passed for all 205 sitemap URLs and unique titles, 385 internal destinations,
+four guide aliases, twelve launch articles, 172 FAQ-schema/visible-question checks, pagination and
+mobile planning. The form-event transport was stubbed and submitted no enquiry. The authenticated
+CMS workflow also passed on production; temporary accounts and tasks were cleaned up. Three actual
+initial-launch tasks were marked complete with release evidence; no monthly traffic, research,
+backlink or account-connection task was falsely completed. Owner credentials were preserved.
+
+Search/analytics properties, approved AUD rates, genuine trust material and a Make/Hatchium lead API
+destination remain owner-provided prerequisites. The separately saved cloud setup/start instructions
+and app.hatchium.ai allowlist addition are drafts requiring Environment settings review/save and
+environment publication. The website deployment is already live; this environment publication step
+is separate and is needed for direct provider testing from the cloud machine.

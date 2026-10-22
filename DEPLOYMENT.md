@@ -278,3 +278,14 @@ SMOKE_CANONICAL_ORIGIN=https://project-umber-three-93.vercel.app NODE_USE_ENV_PR
 
 This is a functional crawl and stubbed browser-event check, not a live GA4, Make or chat-delivery test.
 See docs/GMS-PROPOSAL-IMPLEMENTATION.md for the delivery map and account-dependent/recurring work.
+
+GMS launch source `3dcae964890d9973a9234364e8eca2060f285281` reached READY as deployment
+`dpl_6dHP4ojN5ArS5yzgfbNqvLJFTeVc`; deployment metadata matched the source commit. Live verification
+repeated the full public checks: 205 URLs/unique titles, 385 internal destinations, four guide aliases,
+twelve launch articles, 172 FAQ-schema instances matched to visible questions, pagination, mobile
+planning and the stubbed non-PII success event. There were zero browser errors and no public dummy
+enquiries saved. An isolated authenticated content-editor flow also passed against production,
+including task create/update, market reporting, empty baseline fields and mobile layout; its account
+and task were deleted. The three verified one-time launch tasks were marked complete with the source
+commit as evidence. Recurring and account-dependent tasks remain open. There are 23 installed
+migrations and zero seeded baseline records.
