@@ -64,6 +64,36 @@ Verify exactly one row changed. Open `/admin`, sign in, and set a new password w
 Thereafter use CMS Portal → Admin users to create colleagues. Never put admin passwords, access tokens
 or service-role keys in public environment variables, source files or chat.
 
+## Live production deployment
+
+The owner authorized replacing the existing Vercel `project` in team `ehtisham1239s-projects`.
+
+- Public website: https://project-umber-three-93.vercel.app
+- CMS sign-in: https://project-umber-three-93.vercel.app/admin
+- Vercel project: `prj_q3qTOTMNxuDfgmd5XoCaoWVhQBVu`
+- Ready production deployment: `dpl_44XMPLHjikMKFMkcV6umEhwRhC7g`
+- Application source uploaded from Git commit `9acba8a` (tracked files only).
+
+Project creation was not permitted by the supplied token, but updating and deploying this existing
+project succeeded. Its previous GitHub link pointed at a different repository and was disconnected
+with the owner's authorization. Vercel's GitHub integration could not access `Ehtisham1239/app.com`,
+so this deployment was made by uploading tracked source files via the authenticated Vercel API.
+**GitHub pushes do not automatically redeploy this project yet.** Grant the Vercel GitHub App access
+to `Ehtisham1239/app.com`, then reconnect that repository in project settings to enable automatic builds.
+Do not reconnect the old repository. Private credentials, local environment files and build caches
+were excluded from the source upload.
+
+Vercel is configured for Next.js, Node 24, `npm ci`, and `npm run build`. The two public Supabase
+variables and `NEXT_PUBLIC_SITE_URL=https://project-umber-three-93.vercel.app` are saved in the Vercel
+project. The original college custom domain has not been moved or connected to this deployment.
+
+The production homepage, city page, pricing and sitemap returned 200; `/admin` redirected to login.
+The live CMS password sign-in reached the mandatory first-login password-change page without browser
+JavaScript errors. A browser contact-form submission and its campaign attribution were verified in
+the real database, then that synthetic record was deleted. The verification login session was signed out.
+Cloud browser requests were forwarded through Node's session proxy and trusted CA, preserving TLS
+verification; Chromium's separate trust store did not contain the current cloud proxy CA.
+
 ## App hosting
 
 Use Node 24 (Node >=20.9 supported). Copy `.env.example` to `.env.local` for local development;
@@ -113,5 +143,5 @@ Remote form persistence, attribution, public content reads, private-table access
 Function deployment are verified. The platform-only cron and HTTP extension migrations also applied
 successfully on the real Supabase project. Real staff password sign-in, active Super Admin access,
 mandatory first-login password change and authenticated campaign reporting are verified. The test
-session was signed out and its consumed bootstrap token removed. The public website hosting has
-not been redeployed.
+session was signed out and its consumed bootstrap token removed. Public Vercel deployment and live
+CMS sign-in are verified as documented above. Automatic GitHub deployment remains disconnected.
