@@ -192,3 +192,32 @@ same 20 existing warnings. Local and live mobile browser checks confirm Portugal
 Europe/Lisbon scheduling despite an Asia/Karachi browser time zone, country/city retention across
 Continue/Back, and Portugal plus existing UK/US contact choices. No test forms were submitted.
 This change does not apply the other recommendations in the SEO audit.
+
+## Releasing SEO audit fixes
+
+The approved canonical host remains `https://project-umber-three-93.vercel.app`.
+Do not move the college domain or reconnect the old unrelated repository. GitHub pushes alone
+still do not deploy this project. The supported source-upload procedure is now tracked:
+
+```sh
+npm ci
+npm test
+npm run lint
+NODE_USE_ENV_PROXY=1 npm run build
+# Commit and push the reviewed release first; the deployment helper rejects a dirty checkout.
+NODE_USE_ENV_PROXY=1 node --env-file=.env.local scripts/deploy-vercel.mjs
+```
+
+Use the existing secure `VERCEL_TOKEN` binding and public Supabase app settings. The helper
+only targets the existing `project` project in `ehtisham1239s-projects`, records the source commit
+in deployment metadata, and saves the deployment ID under ignored `artifacts/`. Wait for that
+ID to reach READY before verifying the stable production alias. Then run:
+
+```sh
+NODE_USE_ENV_PROXY=1 node scripts/seo-smoke.mjs https://project-umber-three-93.vercel.app
+```
+
+For a local production build, start it on port 3010 and use the same smoke script without a URL.
+Provide the build's `NEXT_PUBLIC_SITE_URL` value to the test process when checking local canonical
+URLs. These checks crawl location HTML and exercise the mobile planner without submitting forms.
+The browser bridge uses Node's inherited proxy and CA trust with TLS verification enabled.

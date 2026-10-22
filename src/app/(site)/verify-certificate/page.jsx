@@ -4,6 +4,7 @@ import { VerifyCertificate } from "@/components/site/verify-certificate";
 
 export const metadata = {
   title: "Verify a Certificate",
+  robots: { index: false, follow: true },
   description: "Check that an Online Quran College certificate is genuine using its certificate number.",
   alternates: { canonical: "/verify-certificate" },
 };

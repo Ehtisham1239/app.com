@@ -7,8 +7,8 @@ export function formatMoney(minor, currency = "USD", { compact = false } = {}) {
     return new Intl.NumberFormat("en-GB", {
       style: "currency",
       currency,
-      minimumFractionDigits: amount % 1 === 0 && !compact ? 0 : 2,
-      maximumFractionDigits: 2,
+      minimumFractionDigits: amount % 1 === 0 && !compact ? 0 : currencyDigits(currency),
+      maximumFractionDigits: currencyDigits(currency),
       notation: compact ? "compact" : "standard",
     }).format(amount);
   } catch {
@@ -129,4 +129,17 @@ export function zonedLabel(date, timeZone) {
   } catch {
     return "";
   }
+}
+
+// The application stores all amounts as hundredths, including whole-unit currencies.
+// This keeps existing invoices and RPCs compatible; do not reinterpret stored values.
+export function currencyDigits(currency) {
+  try { return new Intl.NumberFormat("en", { style: "currency", currency }).resolvedOptions().maximumFractionDigits; } catch { return 2; }
+}
+export function validPriceAmount(value, currency) {
+  const input = String(value ?? "").trim();
+  const digits = currencyDigits(currency);
+  if (!new RegExp(`^\\d+(?:\\.\\d{1,${Math.max(1, digits)}})?$`).test(input)) return false;
+  if (digits === 0 && input.includes(".") && Number(input.split(".")[1]) !== 0) return false;
+  return Number(input) * 100 <= 2147483647;
 }

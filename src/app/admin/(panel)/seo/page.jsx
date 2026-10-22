@@ -11,6 +11,7 @@ import { Card, EmptyState, ErrorState, Loading, PageHeader, StatCard } from "@/c
 const TYPES = [{ key: "pages", table: "pages", label: "Page", permission: "pages:read" }, { key: "blog", table: "blog_posts", label: "Article", permission: "blog:read" }, { key: "courses", table: "courses", label: "Course", permission: "courses:read" }];
 const TOOLS = [
   ["Google Search Console", "Inspect indexing, search queries and sitemap submissions after verifying your site.", `https://search.google.com/search-console?resource_id=${encodeURIComponent(SITE_URL + "/")}`],
+  ["Google Analytics", "Use your own verified property to measure traffic. This site does not send GA4 events or personal form values to Google Analytics.", "https://analytics.google.com/"],
   ["Bing Webmaster Tools", "Submit your sitemap and inspect your site in Bing. Requires your own verified account.", "https://www.bing.com/webmasters/"],
   ["PageSpeed Insights", "Check mobile performance, Core Web Vitals and improvement suggestions.", `https://pagespeed.web.dev/analysis?url=${encodeURIComponent(SITE_URL)}`],
   ["Rich Results Test", "Validate Google's supported structured data on your public pages.", `https://search.google.com/test/rich-results?url=${encodeURIComponent(SITE_URL)}`],

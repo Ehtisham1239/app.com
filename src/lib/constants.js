@@ -199,7 +199,7 @@ export const CERTIFICATE_STATUSES = [
   { value: "revoked", label: "Revoked", tone: "red" },
 ];
 
-export const CURRENCIES = ["USD", "GBP", "CAD", "AUD", "EUR", "NZD", "HKD", "AED", "PKR"];
+export const CURRENCIES = [...new Set(["USD", "GBP", "CAD", "AUD", "EUR", "NZD", "HKD", "AED", "PKR", ...LOCATIONS.map((country) => country.currency)])];
 
 export function labelFor(list, value) {
   return list.find((o) => o.value === value)?.label ?? value ?? "—";

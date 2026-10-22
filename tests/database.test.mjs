@@ -26,7 +26,7 @@ before(async () => {
 });
 after(async () => { await db.close(); });
 test("all location pages seeded, RLS enabled on leads", async () => {
-  assert.equal((await db.query("select count(*)::int as n from public.pages where slug like 'locations-%' and status='published'")).rows[0].n, 163);
+  assert.equal((await db.query("select count(*)::int as n from public.pages where slug like 'locations-%' and status='published'")).rows[0].n, 165);
   const rows = (await db.query("select relrowsecurity from pg_class where relname in ('trial_applications','contact_messages')")).rows;
   assert.equal(rows.length, 2); assert.ok(rows.every((r) => r.relrowsecurity));
 });
@@ -88,4 +88,18 @@ test("CMS editors can persist indexing controls without granting public writes",
   const row = (await db.query("select seo_noindex,canonical_url,seo_focus_keyword from public.pages where slug='locations-united-kingdom-london'")).rows[0];
   assert.equal(row.seo_noindex, true); assert.equal(row.seo_focus_keyword, "Quran London");
   await assert.rejects(db.query("update public.pages set seo_noindex=false where slug='locations-united-kingdom-london'"), /permission denied/);
+});
+
+test("SEO follow-up preserves custom content and is repeatable", async () => {
+  await role();
+  const privacy = (await db.query("select body_html from pages where slug='privacy-policy'")).rows[0].body_html;
+  assert.equal(privacy.split('id="campaign-attribution"').length - 1, 1);
+  const about = (await db.query("select body_html from pages where slug='about'")).rows[0].body_html;
+  assert.equal(about.includes("background check"), false);
+  assert.equal(about.includes("started in 2018"), false);
+  const migration = sql("supabase/migrations/20261022000400_seo_audit_followup.sql");
+  await db.exec("update pages set body_html='<p>Owner reviewed teacher information.</p>' where slug='about'");
+  await db.exec(migration);
+  assert.equal((await db.query("select body_html from pages where slug='privacy-policy'")).rows[0].body_html, privacy);
+  assert.equal((await db.query("select body_html from pages where slug='about'")).rows[0].body_html, '<p>Owner reviewed teacher information.</p>');
 });

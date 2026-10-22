@@ -33,3 +33,14 @@ test("legacy location content slugs resolve to their single public route", () =>
   assert.equal(locationPath(r.country, r.city), "/locations/united-kingdom/london");
   assert.equal(locationFromCmsSlug("about"), null);
 });
+test("location breadcrumbs match the visible hierarchy and use absolute URLs", async () => {
+  const { getLocation, locationBreadcrumbs, locationSearchTitle, LOCATIONS } = await import("../src/lib/locations.js");
+  const { breadcrumbSchema, searchTitle } = await import("../src/lib/seo.js");
+  const country = getLocation("united-kingdom"), city = country.cities.find((c) => c.slug === "london");
+  const items = locationBreadcrumbs(country, city), schema = breadcrumbSchema(items, "https://college.test");
+  assert.deepEqual(schema.itemListElement.map((i) => [i.position, i.name, new URL(i.item).pathname]), [[1,"Countries & cities","/locations"],[2,"United Kingdom","/locations/united-kingdom"],[3,"London","/locations/united-kingdom/london"]]);
+  const titles = LOCATIONS.flatMap((c) => [locationSearchTitle(c), ...c.cities.map((x) => locationSearchTitle(c, x))]);
+  assert.equal(new Set(titles).size, titles.length);
+  assert.equal(searchTitle({ slug: "locations-united-kingdom-london" }), locationSearchTitle(country,city));
+  assert.equal(searchTitle({ slug: "locations-united-kingdom-london", seo_title: "Owner's approved title" }), "Owner's approved title");
+});

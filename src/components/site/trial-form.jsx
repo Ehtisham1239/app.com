@@ -1,4 +1,5 @@
 "use client";
+import { LOCATIONS, locationTimeZone } from "@/lib/locations";
 
 import Link from "next/link";
 import { captureAttribution } from "@/lib/attribution";
@@ -27,7 +28,10 @@ function browserTimeZone() {
 }
 
 // Picks the most specific time zone we know for the chosen country.
-function zoneFor(country, browserTz) {
+function zoneFor(country, browserTz, cityName) {
+  const location = LOCATIONS.find((c) => c.name === country);
+  const city = location?.cities.find((c) => c.name.toLowerCase() === cityName?.trim().toLowerCase());
+  if (city) return locationTimeZone(location, city);
   const entry = COUNTRIES.find(([name]) => name === country);
   if (!entry) return browserTz || "UTC";
   const countryTz = entry[1];
@@ -104,7 +108,7 @@ export function TrialForm({ courses = [], plans = [], consentText, successText, 
   const toggle = (k, v) => setForm((f) => ({ ...f, [k]: f[k].includes(v) ? f[k].filter((x) => x !== v) : [...f[k], v] }));
 
   const isChild = form.age_band && form.age_band !== ADULT;
-  const timezone = useMemo(() => zoneFor(form.country, form.timezone || browserTimeZone()), [form.country, form.timezone]);
+  const timezone = useMemo(() => zoneFor(form.country, form.timezone || browserTimeZone(), form.city), [form.country, form.timezone, form.city]);
 
   function validate(which) {
     const e = {};

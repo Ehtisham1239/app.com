@@ -25,6 +25,6 @@ test("blocked browser storage does not stop form attribution", () => {
 });
 test("all country and city routes are unique with valid currencies and time zones", () => {
   const paths = LOCATIONS.flatMap((c) => [locationPath(c), ...c.cities.map((city) => locationPath(c,city))]);
-  assert.equal(paths.length, 163); assert.equal(new Set(paths).size, paths.length);
+  assert.equal(paths.length, 165); assert.equal(new Set(paths).size, paths.length);
   for(const c of LOCATIONS) { assert.match(c.currency, /^[A-Z]{3}$/); assert.doesNotThrow(() => new Intl.DateTimeFormat("en", { timeZone: c.timezone })); }
 });

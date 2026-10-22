@@ -5,7 +5,7 @@ import { shouldIncludeInSitemap } from "@/lib/seo";
 export const revalidate = 3600;
 export default async function sitemap() {
   const { courses, posts, pages, teachers } = await getPublishedSlugs();
-  const fixed = ["", "/courses", "/pricing", "/free-trial", "/teachers", "/blog", "/faq", "/contact", "/verify-certificate", "/locations"].map((path) => ({ url: `${SITE_URL}${path}`, changeFrequency: path === "" ? "weekly" : "monthly", priority: path === "" ? 1 : 0.7 }));
+  const fixed = ["", "/courses", "/pricing", "/free-trial", "/teachers", "/blog", "/faq", "/contact", "/careers", "/locations"].map((path) => ({ url: `${SITE_URL}${path}`, changeFrequency: path === "" ? "weekly" : "monthly", priority: path === "" ? 1 : 0.7 }));
   const locationPages = new Map(pages.map((p) => [p.slug, p]));
   const locations = LOCATIONS.flatMap((country) => [null, ...country.cities].flatMap((city) => {
     const path = locationPath(country, city), page = locationPages.get(locationCmsSlug(country, city));

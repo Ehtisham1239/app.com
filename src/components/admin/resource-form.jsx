@@ -11,7 +11,7 @@ import { RESOURCES } from "@/lib/admin/resources";
 import { useAccess } from "@/lib/admin/access";
 import { db, fromLocalInput, notifyError, refreshSite, toLocalInput, useLoad } from "@/lib/admin/db";
 import { CONTENT_STATUSES, CURRENCIES } from "@/lib/constants";
-import { fromMinor, slugify, toMinor } from "@/lib/format";
+import { fromMinor, slugify, toMinor, validPriceAmount } from "@/lib/format";
 import { ContentIcon } from "@/components/icon";
 import { RichText } from "@/components/admin/rich-text";
 import { ImageField } from "@/components/admin/media";
@@ -396,6 +396,8 @@ function PricesEditor({ planId, canEdit }) {
   useEffect(() => setRows((prices.data || []).map((p) => ({ ...p, amount: fromMinor(p.amount_minor) }))), [prices.data]);
   const update = (i, k, v) => setRows((r) => r.map((x, j) => (j === i ? { ...x, [k]: v, _dirty: true } : x)));
   const saveRow = async (row) => {
+    if (!validPriceAmount(row.amount, row.currency)) return toast.error("Enter a valid non-negative amount with the currency’s supported decimal places.");
+    if (rows.some((other) => other !== row && other.currency === row.currency)) return toast.error("Each currency can appear only once per package.");
     const payload = { plan_id: planId, currency: row.currency, amount_minor: toMinor(row.amount), is_public: row.is_public !== false };
     const { error } = row.id ? await db().from("pricing_plan_prices").update(payload).eq("id", row.id) : await db().from("pricing_plan_prices").insert(payload);
     if (error) return notifyError(error);

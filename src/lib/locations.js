@@ -11,19 +11,23 @@ export const LOCATIONS = [
       },
       {
         "name": "Los Angeles",
-        "slug": "los-angeles"
+        "slug": "los-angeles",
+        "timezone": "America/Los_Angeles"
       },
       {
         "name": "Chicago",
-        "slug": "chicago"
+        "slug": "chicago",
+        "timezone": "America/Chicago"
       },
       {
         "name": "Houston",
-        "slug": "houston"
+        "slug": "houston",
+        "timezone": "America/Chicago"
       },
       {
         "name": "Dallas",
-        "slug": "dallas"
+        "slug": "dallas",
+        "timezone": "America/Chicago"
       }
     ]
   },
@@ -52,6 +56,14 @@ export const LOCATIONS = [
       {
         "name": "Glasgow",
         "slug": "glasgow"
+      },
+      {
+        "name": "Bradford",
+        "slug": "bradford"
+      },
+      {
+        "name": "Leicester",
+        "slug": "leicester"
       }
     ]
   },
@@ -67,19 +79,23 @@ export const LOCATIONS = [
       },
       {
         "name": "Melbourne",
-        "slug": "melbourne"
+        "slug": "melbourne",
+        "timezone": "Australia/Melbourne"
       },
       {
         "name": "Brisbane",
-        "slug": "brisbane"
+        "slug": "brisbane",
+        "timezone": "Australia/Brisbane"
       },
       {
         "name": "Perth",
-        "slug": "perth"
+        "slug": "perth",
+        "timezone": "Australia/Perth"
       },
       {
         "name": "Adelaide",
-        "slug": "adelaide"
+        "slug": "adelaide",
+        "timezone": "Australia/Adelaide"
       }
     ]
   },
@@ -95,19 +111,23 @@ export const LOCATIONS = [
       },
       {
         "name": "Vancouver",
-        "slug": "vancouver"
+        "slug": "vancouver",
+        "timezone": "America/Vancouver"
       },
       {
         "name": "Montreal",
-        "slug": "montreal"
+        "slug": "montreal",
+        "timezone": "America/Toronto"
       },
       {
         "name": "Calgary",
-        "slug": "calgary"
+        "slug": "calgary",
+        "timezone": "America/Edmonton"
       },
       {
         "name": "Ottawa",
-        "slug": "ottawa"
+        "slug": "ottawa",
+        "timezone": "America/Toronto"
       }
     ]
   },
@@ -864,4 +884,15 @@ export function locationFromCmsSlug(slug) {
     if (city) return { country, city };
   }
   return null;
+}
+
+// Country defaults are fallbacks; named cities can have a different IANA zone.
+export const locationTimeZone = (country, city) => city?.timezone || country.timezone;
+export function locationSearchTitle(country, city) {
+  return `${city ? "Quran classes" : "Online Quran classes"} in ${city?.name || country.name} | OQC`;
+}
+export function locationBreadcrumbs(country, city) {
+  return [{ name: "Countries & cities", path: "/locations" },
+    { name: country.name, path: locationPath(country) },
+    ...(city ? [{ name: city.name, path: locationPath(country, city) }] : [])];
 }

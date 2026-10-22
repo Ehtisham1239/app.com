@@ -27,7 +27,7 @@ export const DEFAULT_SETTINGS = {
     name: "Online Quran College",
     legal_name: "Online Quran College LTD",
     tagline: "Unlock the wisdom of the Quran with our online Quran college. Explore, learn, and grow with us.",
-    established: "2018",
+    established: "",
     description:
       "Live one-to-one online Quran, Tajweed, Hifz, Arabic and Islamic studies classes for children and adults, with male and female teachers and flexible timings.",
   },
@@ -55,8 +55,8 @@ export const DEFAULT_SETTINGS = {
     badges: ["7-day free trial — no card needed", "Female & male teachers", "Classes in any time zone"],
   },
   "site.stats": [
-    { value: "2018", label: "Teaching since" },
-    { value: "600+", label: "Students learning" },
+    { value: "Online", label: "Learn from home" },
+    { value: "All ages", label: "Children & adults" },
     { value: "1-on-1", label: "Live classes" },
     { value: "24/7", label: "Flexible timings" },
   ],

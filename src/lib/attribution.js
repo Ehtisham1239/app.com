@@ -9,6 +9,7 @@ export function captureAttribution() {
   try {
     const saved = JSON.parse(window.sessionStorage.getItem(STORAGE_KEY) || "null");
     if (saved?.at && Date.now() - saved.at < MAX_AGE) { previous = saved.data || {}; at = saved.at; }
+    else if (saved) window.sessionStorage.removeItem?.(STORAGE_KEY);
   } catch { /* Forms still work if storage is unavailable. */ }
   const params = new URLSearchParams(window.location.search);
   const current = Object.fromEntries(ATTRIBUTION_KEYS.filter((key) => params.get(key)).map((key) => [key, params.get(key).slice(0, 120)]));

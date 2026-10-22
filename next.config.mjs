@@ -20,6 +20,8 @@ const nextConfig = {
   async redirects() {
     const courses = ["noorani-qaida", "quran-nazara", "hifz-quran", "arabic-language", "quran-translation", "hadith-translation"];
     return [
+      { source: "/online-quran-classes-uk", destination: "/locations/united-kingdom", permanent: true },
+      ...["london", "birmingham", "manchester", "leeds", "bradford", "leicester"].map((city) => ({ source: `/online-quran-classes-${city}`, destination: `/locations/united-kingdom/${city}`, permanent: true })),
       ...courses.map((slug) => ({ source: `/${slug}`, destination: `/courses/${slug}`, permanent: true })),
       { source: "/terms-conditions", destination: "/terms-and-conditions", permanent: true },
       { source: "/login.html", destination: "/admin/login", permanent: false },

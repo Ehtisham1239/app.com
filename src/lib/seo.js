@@ -1,3 +1,4 @@
+import { locationFromCmsSlug, locationSearchTitle } from "./locations.js";
 export const BRAND_NAME = "Online Quran College";
 export function textContent(html = "") {
   return String(html).replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ").replace(/<[^>]*>/g, " ").replace(/&(nbsp|amp|lt|gt|quot|#39);/g, (_, entity) => ({ nbsp: " ", amp: "&", lt: "<", gt: ">", quot: '"', "#39": "'" })[entity]).replace(/\s+/g, " ").trim();
@@ -11,7 +12,8 @@ export function canonicalUrl(value, path, siteUrl) {
   return new URL(validCanonical(value) && value ? value : path, siteUrl).href;
 }
 export function searchTitle(record) {
-  return record.seo_title || `${record.title || "Untitled"} · ${BRAND_NAME}`;
+  const location = locationFromCmsSlug(record.slug);
+  return record.seo_title || (location ? locationSearchTitle(location.country, location.city) : `${record.title || "Untitled"} · ${BRAND_NAME}`);
 }
 export function searchDescription(record) {
   return record.seo_description || record.excerpt || record.summary || textContent(record.body_html || record.description_html).slice(0, 158);
@@ -55,3 +57,8 @@ export function shouldIncludeInSitemap(record, path, siteUrl) {
   return !record?.seo_noindex && (!record?.canonical_url || canonicalUrl(record.canonical_url, path, siteUrl) === new URL(path, siteUrl).href);
 }
 export function safeJsonLd(value) { return JSON.stringify(value).replace(/</g, "\\u003c"); }
+
+export function breadcrumbSchema(items, siteUrl) {
+  return { "@context": "https://schema.org", "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({ "@type": "ListItem", position: index + 1, name: item.name, item: new URL(item.path, siteUrl).href })) };
+}

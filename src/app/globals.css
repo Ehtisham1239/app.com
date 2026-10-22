@@ -109,8 +109,8 @@
   .btn:disabled { opacity: .55; cursor: not-allowed; }
   .btn-primary { background: var(--color-leaf-700); color: #fff; }
   .btn-primary:hover:not(:disabled) { background: var(--color-leaf-800); }
-  .btn-gold { background: var(--color-leaf-500); color: #fff; }
-  .btn-gold:hover:not(:disabled) { background: var(--color-leaf-600); }
+  .btn-gold { background: var(--color-leaf-700); color: #fff; }
+  .btn-gold:hover:not(:disabled) { background: var(--color-leaf-800); }
   .btn-outline { border: 1.5px solid var(--color-mushaf-900); color: var(--color-mushaf-900); background: #fff; }
   .btn-outline:hover:not(:disabled) { border-color: var(--color-leaf-700); color: var(--color-leaf-700); }
   .btn-outline-light { border: 1.5px solid rgb(255 255 255 / .35); color: #fff; }
