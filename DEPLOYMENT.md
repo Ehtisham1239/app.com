@@ -7,15 +7,21 @@ Brand colours and Inter/Outfit fonts follow that site's published CSS.
 
 ## Current state
 
-The public project key connects successfully. The target project has no `public.settings` table yet.
-No production migrations, Edge Functions or admin accounts have been created by this task.
+The public project key and personal Management API binding both connect successfully. All 17
+migrations were applied to the target project in one transaction, with Supabase migration history
+recorded. The database contains 163 published location pages. The `admin-users` Edge Function is
+ACTIVE with its own caller-session/permission checks. The first real administrator is pending the
+college owner's chosen email address; no staff login has been invented.
 The website can render the uploaded public seed content while the new schema is absent.
-This read-only fallback cannot save forms or sign users in. Live database content takes priority
-once its schema is installed. Restart/redeploy after initial setup to refresh cached pages.
+The fallback is read-only. Live database content now takes priority. Anonymous contact/trial form
+submissions were tested against the remote database and their attribution verified; only those
+synthetic test records were then removed. Public reads of private lead tables and unauthenticated
+staff-management actions were rejected.
 
 ## Install the database
 
-Use authenticated Supabase MCP or Supabase CLI with access to this exact project. Apply the SQL
+The initial schema is already installed; do not run the fresh-project SQL bundle again.
+For future changes, use authenticated Supabase MCP or Supabase CLI with access to this exact project. Apply the SQL
 files in `supabase/migrations/` in filename order. With the CLI authenticated, link this checkout:
 
 ```sh
@@ -96,5 +102,7 @@ by pushing this repository unless the user's hosting integration is configured t
 consent, lead persistence, campaign aggregation, staff permissions and CMS edits. Cron and HTTP extension
 setup are platform-only and are explicitly excluded from this local test; Supabase Auth itself is not
 emulated by it. Browser checks exercise public pages, mobile layout and the protected login redirect.
-Live sign-in, remote form persistence, Edge Function deployment and hosting remain unverified until
-privileged access is provided and the schema/admin setup is completed.
+Remote form persistence, attribution, public content reads, private-table access rejection and Edge
+Function deployment are verified. The platform-only cron and HTTP extension migrations also applied
+successfully on the real Supabase project. Real staff sign-in remains pending creation of the first
+administrator with the owner's chosen email. The public website hosting has not been redeployed.
