@@ -289,3 +289,11 @@ including task create/update, market reporting, empty baseline fields and mobile
 and task were deleted. The three verified one-time launch tasks were marked complete with the source
 commit as evidence. Recurring and account-dependent tasks remain open. There are 23 installed
 migrations and zero seeded baseline records.
+
+## Image and mobile release — 22 October 2026
+
+Production deployment `dpl_J13P1WNgF81dsucS871PeUx9aK6w` is READY on https://project-umber-three-93.vercel.app from source `b1024e904873ea5753fe577d329400831491f023`. Migration `20261022000900_learning_images.sql` is installed (24 migrations total). Six generated images are registered in CMS Media Library and assigned to 6 courses, 15 articles and 169 location/learning pages.
+
+Live checks passed: 18 WebP variants, 165 country/city routes, 10 loaded mobile/desktop cover views and 105 responsive checks across 320–1920px. Maximum observed layout shift in the controlled cover check: 0. Authenticated CMS media selection and alt-description persistence passed with an isolated temporary editor; cleanup confirmed zero temporary users/pages. Automated tests: 35 passed. Build passed; lint has 0 errors and the existing 19 warnings. Chat vendor behavior was stubbed for browser regression tests. Physical iPhone/Safari testing and field Core Web Vitals are not represented by these checks.
+
+Public navigation uses “Portal”; its header WhatsApp links were removed. Original contact records, logo and palette remain. Home motion respects reduced-motion preferences. See [image and mobile implementation notes](docs/IMAGE-SEO-RELEASE.md).
