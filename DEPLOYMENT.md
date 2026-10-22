@@ -179,3 +179,16 @@ scenario was repeated against the real Vercel deployment, including saved noinde
 sitemap exclusion. Synthetic content and staff fixtures were deleted and caches revalidated. The
 legacy city alias returns 308, the protected SEO route redirects unauthenticated visitors to login,
 and the updated Open Graph image returns image/png.
+
+## Country selector coverage fix — 22 October 2026
+
+Trial and contact country selectors now include all 50 supported location markets, including the
+32 previously missing countries. Existing country choices and default time zones are retained;
+`Other` remains last. Source commit: `931be14`. Production deployment:
+`dpl_P3jTBrQC5GSEQRB43ngUMZyti7P8`, served at the production URL above.
+
+Validation: 19 automated tests pass, production build succeeds, and lint has zero errors with the
+same 20 existing warnings. Local and live mobile browser checks confirm Portugal/Lisbon prefill,
+Europe/Lisbon scheduling despite an Asia/Karachi browser time zone, country/city retention across
+Continue/Back, and Portugal plus existing UK/US contact choices. No test forms were submitted.
+This change does not apply the other recommendations in the SEO audit.
