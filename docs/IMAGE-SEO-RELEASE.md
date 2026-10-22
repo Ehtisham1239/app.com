@@ -21,3 +21,5 @@ Home motion uses CSS transforms and brief entry/reveal effects with a small Inte
 Security headers restrict embedding, plugin objects, base URLs and form destinations while preserving the existing chat integration. Staff pages send private/no-store caching headers. Cookie-authenticated cache revalidation rejects cross-site browser requests before checking staff permissions. Existing Supabase RLS and authentication remain authoritative. These changes do not constitute a complete penetration test.
 
 Responsive validation covers public routes and the login screen at 320, 375, 390, 768, 1024, 1440 and 1920px. Touch/iPhone viewport emulation runs in Chromium; it is not a claim of physical iPhone/Safari testing. Real-device testing remains useful for OS-specific behavior.
+
+Course headers use reserved grid columns for the title and Arabic label, preventing a late Arabic font swap from moving the label between rows. The cover browser check fails if observed layout shift reaches 0.1 during its controlled run. This is a lab check, not a field Core Web Vitals result.

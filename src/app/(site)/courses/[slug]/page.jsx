@@ -66,7 +66,7 @@ export default async function CoursePage({ params }) {
             <span className="mx-2">/</span>
             <span className="text-white/85">{course.title}</span>
           </nav>
-          <div className="mt-6 flex flex-wrap items-start justify-between gap-8">
+          <div className="mt-6 grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(12rem,0.5fr)]">
             <div className="max-w-3xl">
               <span className="flex size-16 items-center justify-center rounded-2xl bg-white/10 text-gold-300 ring-1 ring-gold-400/40">
                 <ContentIcon name={course.icon} className="size-8" />
@@ -85,7 +85,7 @@ export default async function CoursePage({ params }) {
               </div>
             </div>
             {course.arabic_title && (
-              <p lang="ar" dir="rtl" className="arabic text-[3rem] leading-none text-gold-300/90 sm:text-[4.2rem]">
+              <p lang="ar" dir="rtl" className="arabic min-w-0 text-[3rem] leading-none text-gold-300/90 sm:text-[4.2rem]">
                 {course.arabic_title}
               </p>
             )}
