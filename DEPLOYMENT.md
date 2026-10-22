@@ -10,8 +10,10 @@ Brand colours and Inter/Outfit fonts follow that site's published CSS.
 The public project key and personal Management API binding both connect successfully. All 17
 migrations were applied to the target project in one transaction, with Supabase migration history
 recorded. The database contains 163 published location pages. The `admin-users` Edge Function is
-ACTIVE with its own caller-session/permission checks. The first real administrator is pending the
-college owner's chosen email address; no staff login has been invented.
+ACTIVE with its own caller-session/permission checks. The owner's selected first Super Admin has
+been created and verified by real password sign-in, staff-role checks and an authenticated campaign
+report request. First sign-in requires a password change. Temporary credentials are stored privately
+outside this repository and are not included in source or logs.
 The website can render the uploaded public seed content while the new schema is absent.
 The fallback is read-only. Live database content now takes priority. Anonymous contact/trial form
 submissions were tested against the remote database and their attribution verified; only those
@@ -40,7 +42,12 @@ Supabase SQL Editor, **only for a fresh project**. It is a single transaction. I
 Supabase CLI migration history; use one migration workflow consistently. If an extension is unavailable,
 resolve that on Supabase rather than running an incomplete schema.
 
-## Create the first CMS administrator
+## Administrator access
+
+The initial administrator already exists. Do not repeat initial setup or reset that account.
+Subsequent colleagues should be added through CMS Portal → Admin users.
+
+### Initial setup reference for a separate fresh project
 
 Use Supabase Dashboard → Authentication → Users → Add user, with the actual college administrator's
 email and a securely chosen temporary password. Do not use a public signup to grant staff roles.
@@ -104,5 +111,7 @@ setup are platform-only and are explicitly excluded from this local test; Supaba
 emulated by it. Browser checks exercise public pages, mobile layout and the protected login redirect.
 Remote form persistence, attribution, public content reads, private-table access rejection and Edge
 Function deployment are verified. The platform-only cron and HTTP extension migrations also applied
-successfully on the real Supabase project. Real staff sign-in remains pending creation of the first
-administrator with the owner's chosen email. The public website hosting has not been redeployed.
+successfully on the real Supabase project. Real staff password sign-in, active Super Admin access,
+mandatory first-login password change and authenticated campaign reporting are verified. The test
+session was signed out and its consumed bootstrap token removed. The public website hosting has
+not been redeployed.
