@@ -126,7 +126,9 @@ export function SiteHeader({ menu, courses, whatsappHref, brandName }) {
         </nav>
 
         <div className="ml-auto flex items-center gap-2 xl:ml-2">
-          <Link href="/admin" className="btn btn-outline whitespace-nowrap text-xs sm:text-sm">CMS Portal</Link>
+          {/* A full document navigation removes the public third-party chat runtime before staff sign-in. */}
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+          <a href="/admin" className="btn btn-outline whitespace-nowrap text-xs sm:text-sm">CMS Portal</a>
           {whatsappHref && (
             <a
               href={whatsappHref}

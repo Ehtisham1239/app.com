@@ -81,6 +81,7 @@ export const DEFAULT_SETTINGS = {
     trial_success: "JazakAllah khair! Your free-trial request is in. Our team will contact you within 24 hours to arrange your class.",
     contact_success: "Thank you — your message has reached our team. We usually reply within one working day.",
   },
+  "site.chat": { enabled: true, widget_key: "BZrCMwoaC3UYn9OpkcSASivkWFYm5A0B" },
   "site.seo": {
     title: "Online Quran College — Live 1-on-1 Online Quran Classes",
     description:

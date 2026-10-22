@@ -232,3 +232,18 @@ alignment, local-time planning and Los Angeles trial prefill. No synthetic enqui
 Measured CTA text contrast was 6.84:1 and the mobile browser reported no JavaScript errors.
 The database follow-up is migration `20261022000400`; 19 migrations are installed in total.
 See SEO-IMPLEMENTATION.md for completed changes and the remaining owner-data prerequisites.
+
+## Hatchium widget integration
+
+The supplied Hatchium embed runs on public website pages after hydration. Website settings →
+Website chat controls its public key and enabled state. The staff portal does not embed it; entering
+CMS through the header performs a document navigation to discard the public third-party runtime.
+WhatsApp remains available on the opposite side. Policy and public widget configuration use
+migrations `20261022000500` and `20261022000600`.
+
+`NODE_USE_ENV_PROXY=1 node scripts/hatchium-smoke.mjs <base-url>` tests the embed contract with a
+stubbed vendor script, single loading, CMS isolation and form usability when downloading the widget
+fails. This is not an actual Hatchium conversation test. No Make webhook or lead API endpoint was
+provided, so automatic forwarding of website forms is not active. See HATCHIUM-INTEGRATION.md for
+the exact remaining destination/account setup and the distinction between Make receipt and final
+chat delivery.

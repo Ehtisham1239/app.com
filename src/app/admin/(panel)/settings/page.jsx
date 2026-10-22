@@ -22,6 +22,7 @@ const SECTIONS = [
   { key: "site.steps", title: "How it works", text: "Three steps on the home page.", list: [t("title", "Title"), area("text", "Text")] },
   { key: "site.social", title: "Social links", text: "Leave a link empty to hide it.", fields: [t("facebook", "Facebook"), t("instagram", "Instagram"), t("x", "X (Twitter)"), t("youtube", "YouTube"), t("tiktok", "TikTok")] },
   { key: "site.forms", title: "Forms", text: "Consent wording and thank-you messages.", fields: [area("consent_text", "Consent text"), t("consent_version", "Consent version", { hint: "Change this date when you change the consent text." }), area("trial_success", "Free-trial thank-you"), area("contact_success", "Contact thank-you")] },
+  { key: "site.chat", title: "Website chat", text: "Hatchium chat widget on public pages. This embed does not forward website forms to Make or a chat API. API secrets must never be entered here.", fields: [{ name: "enabled", label: "Enable website chat", type: "bool" }, t("widget_key", "Hatchium public widget key")] },
   { key: "site.seo", title: "Search engines", text: "Default title and description for Google.", fields: [t("title", "Title"), area("description", "Description"), t("google_verification", "Google Search Console verification code", { hint: "Paste only the content value from the HTML meta tag, not the whole tag." }), t("bing_verification", "Bing Webmaster verification code", { hint: "Paste only the verification code. These codes are public, not account passwords." })] },
 ];
 
