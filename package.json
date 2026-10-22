@@ -1,0 +1,50 @@
+{
+  "name": "online-quran-college",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Online Quran College \u2014 public website and admin panel (Next.js + Supabase).",
+  "type": "module",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "test": "node --test tests/*.test.mjs",
+    "seed:locations": "node scripts/seed-locations.mjs",
+    "test:browser": "node scripts/browser-smoke.mjs",
+    "db:bundle": "node scripts/bundle-database.mjs",
+    "seed:snapshot": "node scripts/export-seed-content.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/figtree": "5.3.0",
+    "@fontsource-variable/inter": "5.3.0",
+    "@fontsource-variable/outfit": "5.3.0",
+    "@fontsource/amiri": "5.3.0",
+    "@fontsource/marcellus": "5.3.0",
+    "@supabase/ssr": "0.12.7",
+    "@supabase/supabase-js": "2.117.3",
+    "@tiptap/pm": "3.31.4",
+    "@tiptap/react": "3.31.4",
+    "@tiptap/starter-kit": "3.31.4",
+    "clsx": "2.1.1",
+    "lucide-react": "1.55.0",
+    "luxon": "3.7.2",
+    "next": "16.3.8",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "sanitize-html": "2.18.0",
+    "sonner": "2.0.8"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.11",
+    "@tailwindcss/postcss": "4.3.3",
+    "@tailwindcss/typography": "0.5.20",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.3.8",
+    "playwright": "1.64.1",
+    "tailwindcss": "4.3.3"
+  }
+}

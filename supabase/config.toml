@@ -1,0 +1,5 @@
+project_id = "app-com"
+
+[functions.admin-users]
+# The handler validates the bearer session and staff permissions itself.
+verify_jwt = false

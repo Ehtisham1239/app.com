@@ -1,0 +1,100 @@
+# app.com website and CMS deployment
+
+Target repository: Ehtisham1239/app.com. Target Supabase project: `lgbwidraztavhhbnbfhr`.
+The uploaded ZIP referenced a different Supabase project. That fallback has been removed.
+The live college site's logo and hero image were downloaded from https://www.onlinequrancollege.com/.
+Brand colours and Inter/Outfit fonts follow that site's published CSS.
+
+## Current state
+
+The public project key connects successfully. The target project has no `public.settings` table yet.
+No production migrations, Edge Functions or admin accounts have been created by this task.
+The website can render the uploaded public seed content while the new schema is absent.
+This read-only fallback cannot save forms or sign users in. Live database content takes priority
+once its schema is installed. Restart/redeploy after initial setup to refresh cached pages.
+
+## Install the database
+
+Use authenticated Supabase MCP or Supabase CLI with access to this exact project. Apply the SQL
+files in `supabase/migrations/` in filename order. With the CLI authenticated, link this checkout:
+
+```sh
+supabase link --project-ref lgbwidraztavhhbnbfhr
+supabase db push
+supabase functions deploy admin-users --project-ref lgbwidraztavhhbnbfhr
+```
+
+Review `supabase db push --dry-run` before applying, particularly if other work has populated the
+project since this inspection. Do not apply `supabase/tests/local_shim.sql` to Supabase.
+The migration set includes the original uploaded database and two additions for campaign reporting
+and editable country/city pages. The original optional cron/HTTP extensions require Supabase support.
+
+Alternatively `node scripts/bundle-database.mjs` produces `artifacts/app-com-database.sql` for the
+Supabase SQL Editor, **only for a fresh project**. It is a single transaction. It does not record
+Supabase CLI migration history; use one migration workflow consistently. If an extension is unavailable,
+resolve that on Supabase rather than running an incomplete schema.
+
+## Create the first CMS administrator
+
+Use Supabase Dashboard → Authentication → Users → Add user, with the actual college administrator's
+email and a securely chosen temporary password. Do not use a public signup to grant staff roles.
+Then run this in the privileged SQL Editor, replacing only the user ID with that new Auth user's UUID:
+
+```sql
+update public.profiles
+set role = 'super_admin', is_active = true, must_change_password = true
+where id = 'REPLACE_WITH_AUTH_USER_UUID'::uuid
+  and not exists (select 1 from public.profiles where role = 'super_admin' and is_active);
+```
+
+Verify exactly one row changed. Open `/admin`, sign in, and set a new password when prompted.
+Thereafter use CMS Portal → Admin users to create colleagues. Never put admin passwords, access tokens
+or service-role keys in public environment variables, source files or chat.
+
+## App hosting
+
+Use Node 24 (Node >=20.9 supported). Copy `.env.example` to `.env.local` for local development;
+set the target project's **public** publishable key, URL, and canonical website URL in hosting settings.
+The public key provided in chat is installed in this current machine's ignored `.env.local` and saved
+as an environment configuration draft; it is not bundled as a hardcoded credential in source.
+
+```sh
+npm ci
+npm test
+npm run lint
+npm run build
+npm start -- --hostname 0.0.0.0
+```
+
+On this managed cloud machine, use `NODE_USE_ENV_PROXY=1` for Node commands that contact Supabase.
+Keep the inherited proxy and CA trust settings. Other hosts normally do not need this variable.
+Set the canonical URL to the final deployed domain before building. The live website is not redeployed
+by pushing this repository unless the user's hosting integration is configured to do that.
+
+## CMS and campaign workflow
+
+- `/admin`: CMS entry point, linked from the public desktop/mobile header and footer.
+- Blog, courses, fees, pages, media, contact forms, trial leads and settings reuse the uploaded CMS.
+- `/admin/campaigns`: counts trial/contact submissions and current enrolled trial statuses by
+  source, medium and campaign, with dates and CSV export. No ad inventory, spend, impressions or
+  ad-network connection has been added.
+- Use campaign URLs such as `/locations/united-kingdom/london?utm_source=google&utm_medium=cpc&utm_campaign=london-quran`.
+  Tags persist in session storage for up to 24 hours from the campaign landing, across public pages
+  in that browser tab. A later tagged campaign replaces the earlier one. No visitor identifier is created.
+  This attribution storage should be described in the college's privacy notice before launch.
+- `/locations`: 50 countries and 113 cities. Country pages use the local currency code and only
+  display an explicitly published matching price. Other currencies show a quote request; no
+  exchange rates or new fee amounts are invented. Multi-time-zone countries ask for the learner's
+  local schedule rather than assuming every city shares the country's reference zone.
+- In CMS → Pages, edit `locations-united-kingdom-london` (and equivalent slugs) to change location
+  content and SEO. View links open the real `/locations/...` route. Country/city pages are online
+  service areas, not claimed physical branches. Slugs in the registry are fixed route identities.
+
+## Validation limits
+
+`npm test` uses real PostgreSQL via PGlite and the uploaded local Auth/storage shim. It tests migrations,
+consent, lead persistence, campaign aggregation, staff permissions and CMS edits. Cron and HTTP extension
+setup are platform-only and are explicitly excluded from this local test; Supabase Auth itself is not
+emulated by it. Browser checks exercise public pages, mobile layout and the protected login redirect.
+Live sign-in, remote form persistence, Edge Function deployment and hosting remain unverified until
+privileged access is provided and the schema/admin setup is completed.

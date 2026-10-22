@@ -1,0 +1,61 @@
+import {
+  Award,
+  BadgeCheck,
+  BadgePercent,
+  BookA,
+  BookMarked,
+  BookOpen,
+  BookOpenText,
+  Brain,
+  CalendarClock,
+  Clock,
+  GraduationCap,
+  HandHeart,
+  Headset,
+  HeartHandshake,
+  Languages,
+  LibraryBig,
+  MessageCircle,
+  MoonStar,
+  NotebookPen,
+  ScrollText,
+  ShieldCheck,
+  Sparkles,
+  Star,
+  Users,
+  Video,
+} from "lucide-react";
+
+// Icons that admins can pick for courses and website sections (stored by name in the database).
+export const CONTENT_ICONS = {
+  "book-a": BookA,
+  "book-open": BookOpen,
+  "book-open-text": BookOpenText,
+  "book-marked": BookMarked,
+  brain: Brain,
+  languages: Languages,
+  "scroll-text": ScrollText,
+  "library-big": LibraryBig,
+  "badge-percent": BadgePercent,
+  "heart-handshake": HeartHandshake,
+  "calendar-clock": CalendarClock,
+  award: Award,
+  headset: Headset,
+  "graduation-cap": GraduationCap,
+  "notebook-pen": NotebookPen,
+  "moon-star": MoonStar,
+  "shield-check": ShieldCheck,
+  "badge-check": BadgeCheck,
+  "hand-heart": HandHeart,
+  sparkles: Sparkles,
+  star: Star,
+  users: Users,
+  video: Video,
+  clock: Clock,
+  "message-circle": MessageCircle,
+};
+
+export function ContentIcon({ name, className = "size-6", strokeWidth = 1.6, ...props }) {
+  const Cmp = CONTENT_ICONS[name] ?? BookOpen;
+  return <Cmp className={className} strokeWidth={strokeWidth} aria-hidden="true" {...props} />;
+}
