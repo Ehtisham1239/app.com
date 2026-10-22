@@ -71,8 +71,8 @@ The owner authorized replacing the existing Vercel `project` in team `ehtisham12
 - Public website: https://project-umber-three-93.vercel.app
 - CMS sign-in: https://project-umber-three-93.vercel.app/admin
 - Vercel project: `prj_q3qTOTMNxuDfgmd5XoCaoWVhQBVu`
-- Ready production deployment: `dpl_44XMPLHjikMKFMkcV6umEhwRhC7g`
-- Application source uploaded from Git commit `9acba8a` (tracked files only).
+- Ready production deployment: `dpl_FcsjGuh8XfrJz2SwUBFnnR9ynhSX`
+- Application source uploaded from Git commit `c327dda` (tracked files only).
 
 Project creation was not permitted by the supplied token, but updating and deploying this existing
 project succeeded. Its previous GitHub link pointed at a different repository and was disconnected
@@ -173,3 +173,9 @@ The public palette follows the live college reference: primary `#006847`, primar
 secondary emerald `#10b981`, accent amber `#f59e0b`, pale section background `#f4fbf7`, white main
 background and footer `#111827`. Headings use Outfit and body text Inter. The homepage now uses the
 light hero treatment, original college logo/hero image, bold green headings and green action buttons.
+
+The SEO/branding update is deployed to the production URL above. The authenticated SEO browser
+scenario was repeated against the real Vercel deployment, including saved noindex fields and live
+sitemap exclusion. Synthetic content and staff fixtures were deleted and caches revalidated. The
+legacy city alias returns 308, the protected SEO route redirects unauthenticated visitors to login,
+and the updated Open Graph image returns image/png.
