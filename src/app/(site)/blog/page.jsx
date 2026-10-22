@@ -1,16 +1,21 @@
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight, Clock3 } from "lucide-react";
 import { PageHero } from "@/components/site/chrome";
-import { getPosts } from "@/lib/site-data";
+import { getPostPage } from "@/lib/site-data";
 import { formatDate } from "@/lib/format";
 
 export const revalidate = 300;
 
-export const metadata = {
+const blogMetadata = {
   title: "Blog — Guidance for Quran Learners and Parents",
   description: "Practical articles on Tajweed, Hifz, Noorani Qaida and helping children learn the Quran online.",
   alternates: { canonical: "/blog" },
 };
+
+function feedParams(params = {}) { const page = Number(params.page || 1); return { page: Number.isInteger(page) && page > 0 && page < 10000 ? page : 1, category: typeof params.category === "string" ? params.category.slice(0, 100) : "" }; }
+function feedUrl(page, category) { const p = new URLSearchParams(); if (category) p.set("category", category); if (page > 1) p.set("page", String(page)); return `/blog${p.size ? `?${p}` : ""}`; }
+export async function generateMetadata({ searchParams }) { const { page, category } = feedParams(await searchParams); return { ...blogMetadata, title: { absolute: category ? `${category} Quran Learning Articles | OQC` : page > 1 ? `Quran Learning Articles · Page ${page} | OQC` : "Quran Learning Articles & Parent Guides | OQC" }, alternates: { canonical: feedUrl(page, category) }, ...(category ? { robots: { index: false, follow: true } } : {}) }; }
 
 function PostCard({ post, large = false }) {
   return (
@@ -49,12 +54,15 @@ function PostCard({ post, large = false }) {
   );
 }
 
-export default async function BlogPage() {
-  const posts = await getPosts();
+export default async function BlogPage({ searchParams }) {
+  const { page, category } = feedParams(await searchParams);
+  const { posts, hasNext } = await getPostPage(page, category);
+  if (page > 1 && !posts.length) notFound();
   return (
     <>
       <PageHero eyebrow="Blog" title="Guidance for learners and parents" arabic="عِلْم" intro="Short, practical reading on recitation, memorisation and building a Quran routine at home." />
       <section className="page-wrap py-16 sm:py-20">
+        <nav aria-label="Article topics" className="mb-8 flex flex-wrap gap-3">{["", "USA & Australia", "First steps", "Parents & children", "Adult learning", "Recitation & revision"].map(c => <Link key={c} className={`btn btn-sm ${c === category ? "btn-primary" : "btn-outline"}`} href={feedUrl(1,c)}>{c || "All articles"}</Link>)}</nav>
         {posts.length === 0 ? (
           <p className="surface p-10 text-center text-ink-soft">New articles are on their way. Please check back soon.</p>
         ) : (
@@ -64,6 +72,7 @@ export default async function BlogPage() {
             ))}
           </div>
         )}
+        {(page > 1 || hasNext) && <nav aria-label="Article pages" className="mt-10 flex items-center justify-between gap-4">{page > 1 ? <Link className="btn btn-outline" href={feedUrl(page-1,category)}>Previous articles</Link> : <span />}<span className="text-sm">Page {page}</span>{hasNext && <Link className="btn btn-primary" href={feedUrl(page+1,category)}>Next articles</Link>}</nav>}
       </section>
     </>
   );

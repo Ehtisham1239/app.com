@@ -1,3 +1,5 @@
+import { LOCATIONS, locationPath, locationCmsSlug } from "./src/lib/locations.js";
+import { LEARNING_GUIDES } from "./src/lib/learning-guides.js";
 /** @type {import('next').NextConfig} */
 const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
@@ -20,6 +22,10 @@ const nextConfig = {
   async redirects() {
     const courses = ["noorani-qaida", "quran-nazara", "hifz-quran", "arabic-language", "quran-translation", "hadith-translation"];
     return [
+      ...LOCATIONS.flatMap((country) => [null, ...country.cities].map((city) => ({ source: `/${locationCmsSlug(country, city)}`, destination: locationPath(country, city), permanent: true }))),
+      ...LEARNING_GUIDES.map((guide) => ({ source: `/${guide.slug}`, destination: guide.path, permanent: true })),
+      { source: "/online-quran-classes-usa", destination: "/locations/united-states", permanent: true },
+      { source: "/online-quran-classes-australia", destination: "/locations/australia", permanent: true },
       { source: "/online-quran-classes-uk", destination: "/locations/united-kingdom", permanent: true },
       ...["london", "birmingham", "manchester", "leeds", "bradford", "leicester"].map((city) => ({ source: `/online-quran-classes-${city}`, destination: `/locations/united-kingdom/${city}`, permanent: true })),
       ...courses.map((slug) => ({ source: `/${slug}`, destination: `/courses/${slug}`, permanent: true })),

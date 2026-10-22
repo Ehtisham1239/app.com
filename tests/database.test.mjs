@@ -103,3 +103,40 @@ test("SEO follow-up preserves custom content and is repeatable", async () => {
   assert.equal((await db.query("select body_html from pages where slug='privacy-policy'")).rows[0].body_html, privacy);
   assert.equal((await db.query("select body_html from pages where slug='about'")).rows[0].body_html, '<p>Owner reviewed teacher information.</p>');
 });
+test("growth planning is private, editable by content staff and requires completion evidence", async()=>{
+  await role('anon');
+  await assert.rejects(db.query('select * from public.seo_growth_tasks'),/permission denied/);
+  await assert.rejects(db.query('select * from public.seo_growth_metrics'),/permission denied/);
+  await assert.rejects(db.query('select public.market_lead_report(current_date,current_date)'),/permission denied/);
+  await role('authenticated',noRoleId);
+  assert.equal((await db.query('select * from public.seo_growth_tasks')).rows.length,0);
+  await assert.rejects(db.query('select public.market_lead_report(current_date,current_date)'),/permission/);
+  await role('authenticated',editorId);
+  assert.equal((await db.query("select count(*)::int n from public.seo_growth_tasks where task_key like 'keyword-%'")).rows[0].n,60);
+  await assert.rejects(db.query("update public.seo_growth_tasks set status='complete' where task_key='regional'"),/check constraint/);
+  await db.query("update public.seo_growth_tasks set status='complete',evidence_url='Reviewed release and route checks' where task_key='regional'");
+  await assert.rejects(db.query("insert into public.seo_growth_metrics(title,market,source,period_start,period_end,clicks,evidence_url) values('Bad sample','USA','Search Console',current_date,current_date,-1,'https://example.test/source')"),/check constraint/);
+  await db.query("insert into public.seo_growth_metrics(title,market,source,period_start,period_end,clicks,impressions,evidence_url) values('Local test only','USA','Search Console',current_date,current_date,12,200,'https://example.test/source')");
+  await assert.rejects(db.query("insert into public.seo_growth_metrics(title,market,source,period_start,period_end,organic_sessions,evidence_url) values('Wrong source','USA','Search Console',current_date,current_date,12,'https://example.test/source')"),/check constraint/);
+});
+test("market cohort reports use real submissions and distinguish an empty denominator",async()=>{
+  await role('anon');
+  const payload={learner_name:'Market Test',age_band:'adult',email:'market@example.test',phone:'+447700900123',country:'United States',city:'Denver',timezone:'America/Denver',consent:true};
+  await db.query('select public.submit_trial_application($1::jsonb)',[payload]);
+  await role('authenticated',adminId);
+  const rows=(await db.query('select public.market_lead_report(current_date-1,current_date+1) report')).rows[0].report;
+  const us=rows.find(r=>r.market==='USA'),au=rows.find(r=>r.market==='Australia');
+  assert.equal(us.trials,1);assert.equal(us.enrolled,0);assert.equal(us.trial_to_enrolled_percent,0);
+  assert.equal(au.trials,0);assert.equal(au.trial_to_enrolled_percent,null);
+  await assert.rejects(db.query('select public.market_lead_report(current_date,current_date-1)'),/valid range/);
+});
+test("growth launch preserves edits on repeat and publishes distinct guide/article routes",async()=>{
+ await role();
+ assert.equal((await db.query("select count(*)::int n from public.blog_posts where slug in ('choose-online-quran-teacher-usa','quran-lessons-australia-time-zones','noorani-qaida-or-quran-reading','adult-quran-beginner-first-month','prepare-child-first-online-quran-trial','tajweed-practice-with-feedback','hifz-revision-with-school','questions-before-quran-course-enrolment','online-quran-lesson-setup-accessibility','parent-teacher-quran-progress-review','family-quran-learning-multiple-children','quran-translation-and-arabic-difference') and status='published'")).rows[0].n,12);
+ const original=(await db.query("select body_html from pages where slug='locations-australia'")).rows[0].body_html;
+ await db.exec("update blog_posts set title='Owner reviewed title' where slug='quran-translation-and-arabic-difference'");
+ await db.exec(sql('supabase/migrations/20261022000800_growth_launch_content.sql'));
+ assert.equal((await db.query("select title from blog_posts where slug='quran-translation-and-arabic-difference'")).rows[0].title,'Owner reviewed title');
+ assert.equal((await db.query("select body_html from pages where slug='locations-australia'")).rows[0].body_html,original);
+ assert.equal(original.split('oqc-market-guide-australia-v1').length-1,1);
+});

@@ -1,0 +1,5 @@
+import Link from "next/link";
+import { PageHero } from "@/components/site/chrome";
+import { LEARNING_GUIDES } from "@/lib/learning-guides";
+export const metadata = { title: "Quran Learning Guides for Families & Adults", description: "Choose a Quran learning path: first letters, children's lessons, adult beginner study and Tajweed. Find practical guides and relevant courses.", alternates: { canonical: "/learn" } };
+export default function Page(){return <><PageHero eyebrow="Learning centre" title="Find a learning path that fits" intro="Start with your learner’s current reading level and goals, then explore a course and discuss a trial." /><section className="page-wrap grid gap-5 py-16 sm:grid-cols-2">{LEARNING_GUIDES.map(g=><Link className="surface space-y-3 p-7 hover:border-leaf-700" key={g.slug} href={g.path}><p className="text-sm text-leaf-700">{g.audience}</p><h2 className="text-2xl">{g.title}</h2><p>Read the guide and find relevant courses →</p></Link>)}<Link href="/blog" className="btn btn-outline">Explore all practical articles</Link></section></>;}

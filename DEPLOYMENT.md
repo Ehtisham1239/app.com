@@ -247,3 +247,34 @@ fails. This is not an actual Hatchium conversation test. No Make webhook or lead
 provided, so automatic forwarding of website forms is not active. See HATCHIUM-INTEGRATION.md for
 the exact remaining destination/account setup and the distinction between Make receipt and final
 chat delivery.
+
+## GMS proposal implementation release
+
+The proposal’s one-time website/CMS launch work adds two distinct regional guides, four editable
+learning guides, twelve practical articles, crawlable blog pagination, course/market FAQs and a private
+SEO growth workspace. The keyword map contains 60 research hypotheses. Real country-cohort reporting
+uses saved enquiries; manual search/analytics source records start empty. No agency costing, invented
+rates, tutor credentials, testimonials, backlinks or traffic results are published.
+
+Migrations `20261022000700` and `20261022000800` were installed with history. Existing content is
+preserved on repeat. New growth tables use RLS and role-based staff access; task completion requires
+an evidence reference. Search Console and GA4 metrics have separate source rules. Known CMS guide
+and location aliases are permanent routing-config redirects, avoiding duplicate redirect headers
+observed on first-render runtime redirects.
+
+Validation: 31 automated tests pass, production build passes, lint has no errors and 19 existing
+warnings. The local production crawl checked 205 sitemap URLs and unique titles, 385 internal
+destinations, four guide aliases, all twelve launch articles, FAQ visibility/schema consistency and
+blog pagination. A stubbed public form transport verified the non-PII success event without saving
+an enquiry. An isolated real content-editor browser session verified private growth plan/report
+loading, task create/update and evidence-form defaults on desktop/mobile; its task and account were
+deleted. Owner credentials were preserved.
+
+Public release smoke check (after deployment reaches READY):
+
+```sh
+SMOKE_CANONICAL_ORIGIN=https://project-umber-three-93.vercel.app NODE_USE_ENV_PROXY=1 node scripts/growth-smoke.mjs https://project-umber-three-93.vercel.app
+```
+
+This is a functional crawl and stubbed browser-event check, not a live GA4, Make or chat-delivery test.
+See docs/GMS-PROPOSAL-IMPLEMENTATION.md for the delivery map and account-dependent/recurring work.

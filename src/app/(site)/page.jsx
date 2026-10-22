@@ -45,7 +45,7 @@ export default async function HomePage() {
     url: SITE_URL,
     logo: `${SITE_URL}/brand/logo.webp`,
     description: identity.description,
-    foundingDate: identity.established,
+    ...(/^\d{4}$/.test(identity.established || "") ? { foundingDate: identity.established } : {}),
     email: contact.email,
     telephone: contact.phone,
     sameAs: Object.values(settings["site.social"] ?? {}).filter((u) => typeof u === "string" && u.startsWith("http")),
@@ -56,13 +56,14 @@ export default async function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
       <HomeHero hero={settings["site.hero"]} stats={settings["site.stats"]} />
 
+      <section className="page-wrap grid gap-4 pb-8 sm:grid-cols-3" aria-label="Explore learning paths"><Link href="/locations/united-states" className="surface p-6"><h2 className="text-xl">Quran classes in the USA</h2><p className="mt-2 text-sm text-ink-soft">US time zones, courses and USD packages.</p></Link><Link href="/locations/australia" className="surface p-6"><h2 className="text-xl">Quran classes in Australia</h2><p className="mt-2 text-sm text-ink-soft">Plan around your city and request approved AUD fees.</p></Link><Link href="/learn" className="surface p-6"><h2 className="text-xl">Find your learning path</h2><p className="mt-2 text-sm text-ink-soft">Guides for parents, adults and recitation learners.</p></Link></section>
       <section className="page-wrap py-20 sm:py-24" aria-labelledby="courses-heading">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
             align="left"
             eyebrow="Our courses"
             title={<span id="courses-heading">A path for every learner, from first letters to Hifz</span>}
-            intro="Every course is taught live, one-to-one, by a qualified teacher who adapts the pace to the student — whether a four-year-old learning the alphabet or an adult perfecting recitation."
+            intro="Every course is taught live, one-to-one, with a teacher who adapts the pace to the student — whether a child learning the alphabet or an adult perfecting recitation."
           />
           <Link href="/courses" className="btn btn-outline">
             All courses <ArrowRight className="size-4" aria-hidden="true" />
@@ -78,7 +79,7 @@ export default async function HomePage() {
           <SectionHeading
             eyebrow="Why families choose us"
             title="Traditional teaching, made to fit modern family life"
-            intro="Since 2018 we have taught children and adults across the UK, USA, Canada, Australia, New Zealand and beyond — with the same care you would expect from your local masjid."
+            intro="Explore online learning for children and adults, with course choices and class times discussed around your family’s routine."
           />
           <div className="mt-12">
             <Benefits items={settings["site.benefits"]} />

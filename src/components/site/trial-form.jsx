@@ -1,4 +1,6 @@
 "use client";
+import { announceLeadSaved } from "@/lib/conversion-events";
+import { MARKET_TIME_ZONES } from "@/lib/market-timezones";
 import { LOCATIONS, locationTimeZone } from "@/lib/locations";
 
 import Link from "next/link";
@@ -30,7 +32,7 @@ function browserTimeZone() {
 // Picks the most specific time zone we know for the chosen country.
 function zoneFor(country, browserTz, cityName) {
   const location = LOCATIONS.find((c) => c.name === country);
-  const city = location?.cities.find((c) => c.name.toLowerCase() === cityName?.trim().toLowerCase());
+  const city = [...(location?.cities || []), ...(MARKET_TIME_ZONES[country] || [])].find((c) => c.name.toLowerCase() === cityName?.trim().toLowerCase());
   if (city) return locationTimeZone(location, city);
   const entry = COUNTRIES.find(([name]) => name === country);
   if (!entry) return browserTz || "UTC";
@@ -180,6 +182,7 @@ export function TrialForm({ courses = [], plans = [], consentText, successText, 
       setState({ sending: false, error: error.message || "We could not send your request. Please try again or message us on WhatsApp.", reference: null });
       return;
     }
+    announceLeadSaved({ formType: "trial", country: form.country, reference: data?.reference, honeypot: form.website });
     setState({ sending: false, error: "", reference: data?.reference ?? "sent" });
     requestAnimationFrame(() => topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
   }

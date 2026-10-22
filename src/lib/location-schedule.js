@@ -1,3 +1,4 @@
+import { MARKET_TIME_ZONES } from "./market-timezones.js";
 import { DateTime } from "luxon";
 import { locationTimeZone } from "./locations.js";
 
@@ -14,5 +15,5 @@ export function schedulePreview(date, time, zone, comparisonZone = "Asia/Karachi
   };
 }
 export function schedulingLocations(country, city) {
-  return (city ? [city] : country.cities).map((item) => ({ name: item.name, slug: item.slug, timezone: locationTimeZone(country, item) }));
+  return (city ? [city] : [...country.cities, ...(MARKET_TIME_ZONES[country.name] || [])]).map((item) => ({ name: item.name, slug: item.slug, timezone: locationTimeZone(country, item) }));
 }

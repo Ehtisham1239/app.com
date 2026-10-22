@@ -35,7 +35,10 @@ export default async function PostPage({ params }) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
+    "@id": `${SITE_URL}/blog/${post.slug}#article`,
     headline: post.title,
+    description: post.excerpt,
+    dateModified: post.updated_at,
     datePublished: post.published_at,
     author: { "@type": "Organization", name: post.author_name },
     publisher: { "@type": "Organization", name: "Online Quran College", logo: { "@type": "ImageObject", url: `${SITE_URL}/icon` } },

@@ -16,6 +16,6 @@ export async function generateMetadata({ params }) {
   const { country, city } = await resolve(params);
   const page = await getPage(locationCmsSlug(country, city));
   const place = city ? `${city.name}, ${country.name}` : country.name;
-  return contentMetadata({ ...page, seo_title: page?.seo_title || locationSearchTitle(country, city) }, { path: locationPath(country, city), title: page?.title || `Online Quran classes in ${place}`, description: page?.seo_description || `Live one-to-one Quran lessons for children and adults in ${place}. Flexible online classes and fee enquiries in ${country.currency}.` });
+  return contentMetadata({ ...page, seo_title: page?.seo_title || locationSearchTitle(country, city) }, { path: locationPath(country, city), locale: country.slug === "united-states" ? "en_US" : country.slug === "australia" ? "en_AU" : "en_GB", title: page?.title || `Online Quran classes in ${place}`, description: page?.seo_description || `Live one-to-one Quran lessons for children and adults in ${place}. Flexible online classes and fee enquiries in ${country.currency}.` });
 }
 export default async function Page({ params }) { return <LocationPage {...await resolve(params)} />; }

@@ -1,3 +1,4 @@
+import { guideForSlug } from "@/lib/learning-guides";
 import { locationFromCmsSlug, locationPath } from "@/lib/locations";
 import { contentMetadata } from "@/lib/seo-metadata";
 import { notFound, permanentRedirect, redirect } from "next/navigation";
@@ -10,13 +11,15 @@ export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const { pages } = await getPublishedSlugs();
-  return pages.filter((p) => !locationFromCmsSlug(p.slug)).map((p) => ({ slug: p.slug }));
+  return pages.filter((p) => !locationFromCmsSlug(p.slug) && !guideForSlug(p.slug)).map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
+  const guide = guideForSlug(slug);
+  if (guide) return { alternates: { canonical: guide.path } };
   const location = locationFromCmsSlug(slug);
-  if (location) permanentRedirect(locationPath(location.country, location.city));
+  if (location) return { alternates: { canonical: locationPath(location.country, location.city) } };
   const page = await getPage(slug);
   if (!page) return { title: "Page not found" };
   const description = page.seo_description || page.excerpt || truncate(stripHtml(page.body_html ?? ""), 158);
@@ -25,6 +28,8 @@ export async function generateMetadata({ params }) {
 
 export default async function Page({ params }) {
   const { slug } = await params;
+  const guide = guideForSlug(slug);
+  if (guide) permanentRedirect(guide.path);
   const location = locationFromCmsSlug(slug);
   if (location) permanentRedirect(locationPath(location.country, location.city));
   const page = await getPage(slug);

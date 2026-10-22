@@ -39,3 +39,17 @@ test("legacy regional paths resolve directly to relevant routes",async()=>{
   }
   assert.equal(redirects.find(r=>r.source==='/online-quran-classes-uk').destination,'/locations/united-kingdom');
 });
+test("US planner includes Mountain time and Phoenix without adding indexed city duplicates",()=>{
+ const places=schedulingLocations(getLocation('united-states'));
+ assert.equal(places.find(p=>p.name==='Denver').timezone,'America/Denver');
+ assert.equal(places.find(p=>p.name==='Phoenix').timezone,'America/Phoenix');
+ assert.equal(schedulePreview('2026-07-15','18:00','America/Denver').utc,'2026-07-16T00:00:00.000Z');
+ assert.equal(schedulePreview('2026-07-15','18:00','America/Phoenix').utc,'2026-07-16T01:00:00.000Z');
+ assert.equal(getLocation('united-states').cities.some(c=>c.name==='Denver'),false);
+});
+test('known CMS aliases redirect before rendering with one unique mapping per source',async()=>{
+ const{LEARNING_GUIDES}=await import('../src/lib/learning-guides.js');
+ const rules=await config.redirects();assert.equal(new Set(rules.map(r=>r.source)).size,rules.length);
+ for(const g of LEARNING_GUIDES)assert.equal(rules.find(r=>r.source==='/'+g.slug).destination,g.path);
+ assert.equal(rules.find(r=>r.source==='/locations-united-kingdom-london').destination,'/locations/united-kingdom/london');
+});

@@ -29,6 +29,7 @@ export default async function SiteLayout({ children }) {
   const courseLinks = courses.map(({ slug, title, age_group }) => ({ slug, title, age_group }));
   const footerMenus = {
     ...menus,
+    footer_company: (menus.footer_company || []).some((item) => item.href === "/learn") ? menus.footer_company : [...(menus.footer_company || []), { label: "Learning guides", href: "/learn" }],
     footer_courses: menus.footer_courses?.length ? menus.footer_courses : courseLinks.map((c) => ({ label: c.title, href: `/courses/${c.slug}` })),
   };
 

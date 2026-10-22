@@ -257,3 +257,20 @@ export const getPublishedSlugs = cache(async () => {
 export const getRedirect = cache(async (path) =>
   safe(() => publicDb.from("redirects").select("to_path, status_code").eq("from_path", path).maybeSingle(), null, "redirect"),
 );
+
+// Bounded, crawlable blog pagination. A failed service never fabricates analytics or content counts.
+export const getPostPage = cache(async (page = 1, category = "") => {
+  const size = 9, offset = (page - 1) * size;
+  const fallback = () => {
+    const all = seedFallback("posts", []).filter((p) => !category || p.category === category).sort((a, b) => String(b.published_at).localeCompare(String(a.published_at)));
+    return { posts: all.slice(offset, offset + size), hasNext: all.length > offset + size };
+  };
+  if (!publicDb) return fallback();
+  try {
+    let q = publicDb.from("blog_posts").select(POST_FIELDS).eq("status", "published").is("deleted_at", null).order("published_at", { ascending: false }).order("id").range(offset, offset + size);
+    if (category) q = q.eq("category", category);
+    const { data, error } = await q;
+    if (error) { if (error.code === "PGRST205") return fallback(); throw error; }
+    return { posts: (data || []).slice(0, size), hasNext: (data || []).length > size };
+  } catch (error) { console.error("[site-data] blog page:", error.message); return { posts: [], hasNext: false }; }
+});

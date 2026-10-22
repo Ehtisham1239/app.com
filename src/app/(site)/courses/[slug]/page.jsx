@@ -1,4 +1,5 @@
-import { safeJsonLd } from "@/lib/seo";
+import { SITE_URL } from "@/lib/config";
+import { safeJsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
 import { contentMetadata } from "@/lib/seo-metadata";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -31,9 +32,9 @@ export default async function CoursePage({ params }) {
   if (!course) notFound();
   const [courses, faqs, plans, settings] = await Promise.all([getCourses(), getFaqs(), getPlans(), getSettings()]);
   const courseFaqs = faqs.filter((f) => f.course_id === course.id);
-  const generalFaqs = faqs.filter((f) => !f.course_id).slice(0, Math.max(0, 5 - courseFaqs.length));
+  const generalFaqs = faqs.filter((f) => !f.course_id && !f.category.startsWith("Market:")).slice(0, Math.max(0, 5 - courseFaqs.length));
   const others = courses.filter((c) => c.slug !== course.slug).slice(0, 3);
-  const prices = plans.flatMap((p) => p.prices.filter((x) => x.currency === "USD").map((x) => x.amount_minor));
+  const prices = plans.filter((p) => p.course_id === course.id && p.billing_period === "monthly").flatMap((p) => p.prices.filter((x) => x.currency === "USD").map((x) => x.amount_minor));
   const fromPrice = prices.length ? Math.min(...prices) : null;
   const wa = whatsappLink(settings["site.contact"]?.whatsapp, `Assalamu alaikum, I am interested in the ${course.title} course.`);
 
@@ -42,12 +43,16 @@ export default async function CoursePage({ params }) {
     "@type": "Course",
     name: course.title,
     description: course.summary,
-    provider: { "@type": "Organization", name: settings["site.identity"]?.name ?? "Online Quran College" },
-    hasCourseInstance: { "@type": "CourseInstance", courseMode: "online", courseWorkload: "PT30M" },
+    "@id": `${SITE_URL}/courses/${course.slug}#course`,
+    url: `${SITE_URL}/courses/${course.slug}`,
+    provider: { "@type": "EducationalOrganization", "@id": `${SITE_URL}/#organization`, name: settings["site.identity"]?.name ?? "Online Quran College" },
+    hasCourseInstance: { "@type": "CourseInstance", courseMode: "online" },
   };
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema([{ name: "Courses", path: "/courses" }, { name: course.title, path: `/courses/${course.slug}` }], SITE_URL)) }} />
+      {[...courseFaqs, ...generalFaqs].length > 0 && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema([...courseFaqs, ...generalFaqs])) }} />}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
       <section className="relative overflow-hidden bg-mushaf-900 text-white">
         <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.09]" aria-hidden="true" />
@@ -90,9 +95,10 @@ export default async function CoursePage({ params }) {
         <div className="min-w-0">
           {course.description_html && <div className="prose-oqc" dangerouslySetInnerHTML={{ __html: cleanHtml(course.description_html) }} />}
 
+          <section className="surface mt-10 space-y-3 p-6"><h2 className="text-2xl">Plan lessons around your family</h2><p>Explore local scheduling and fee guidance before requesting a trial.</p><div className="flex flex-wrap gap-3"><Link href="/locations/united-states" className="btn btn-outline">USA families</Link><Link href="/locations/australia" className="btn btn-outline">Australian families</Link><Link href="/learn" className="btn btn-outline">Learning guides</Link></div></section>
           {course.outcomes?.length > 0 && (
             <section className="mt-12">
-              <h2 className="text-[1.9rem] text-mushaf-900">What the student will achieve</h2>
+              <h2 className="text-[1.9rem] text-mushaf-900">Learning goals</h2>
               <ul className="mt-6 grid gap-3 sm:grid-cols-2">
                 {course.outcomes.map((o) => (
                   <li key={o} className="flex gap-3 rounded-2xl border border-line bg-white p-4 text-[0.97rem] text-ink">
@@ -146,6 +152,7 @@ export default async function CoursePage({ params }) {
           <div className="surface overflow-hidden">
             <div className="bg-mushaf-950 px-6 py-5 text-white">
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-gold-300">At a glance</p>
+              {fromPrice === null && <p className="mt-2 text-sm text-white/80">Request the approved fee for this course before enrolling.</p>}
               {fromPrice !== null && (
                 <p className="mt-2 text-white/80">
                   From <span className="font-display text-3xl text-white">{formatMoney(fromPrice, "USD")}</span> /month

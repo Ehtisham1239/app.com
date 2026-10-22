@@ -1,3 +1,4 @@
+import { guideForSlug } from "@/lib/learning-guides";
 import { LOCATIONS, locationPath, locationCmsSlug } from "@/lib/locations";
 // Website content managed with the generic list/edit screens in the admin panel.
 // Field types: text, slug, textarea, rich, number, bool, select, relation, tags, datetime, image, icon, status.
@@ -15,6 +16,44 @@ const seo = [
 const publishing = [{ name: "status", label: "Status", type: "status", group: "Publishing" }];
 
 export const RESOURCES = {
+  "growth-tasks": {
+    table: "seo_growth_tasks", module: "pages", label: "SEO growth plan", singular: "growth task",
+    select: "id,title,workstream,market,status,priority,target_path,updated_at", order: ["updated_at",false], search: ["title","notes","target_path"],
+    defaults: {workstream:"content",market:"Both",status:"planned",priority:"medium",target_path:"",notes:"",evidence_url:""},
+    columns: [{key:"title",label:"Task / keyword theme",primary:true,sub:"target_path"},{key:"market",label:"Market"},{key:"workstream",label:"Workstream",type:"cap"},{key:"status",label:"Progress",type:"cap"},{key:"priority",label:"Priority",type:"cap"}],
+    fields: [
+      {name:"title",label:"Task or keyword theme",type:"text",required:true},
+      {name:"workstream",label:"Workstream",type:"select",options:["keyword","content","technical","authority","measurement"].map(value=>({value,label:value}))},
+      {name:"market",label:"Market",type:"select",options:["Both","USA","Australia"].map(value=>({value,label:value}))},
+      {name:"status",label:"Progress",type:"select",options:["planned","in_progress","blocked","complete"].map(value=>({value,label:value.replaceAll("_"," ")}))},
+      {name:"priority",label:"Priority",type:"select",options:["high","medium","low"].map(value=>({value,label:value}))},
+      {name:"target_path",label:"Target page path",type:"text",hint:"One canonical page per search intent. Example: /locations/united-states"},
+      {name:"due_at",label:"Next review / due date",type:"datetime"},
+      {name:"notes",label:"Research, next step & acceptance criteria",type:"textarea",rows:8,hint:"Suggested keywords are hypotheses until validated. Do not invent search volumes or rankings."},
+      {name:"evidence_url",label:"Evidence link or reference",type:"text",hint:"Record the source, observation date and what was verified before marking complete."},
+    ],
+    validate:(f)=>f.status==="complete"&&!String(f.evidence_url||"").trim()?"Add evidence before marking this task complete.":f.target_path&&!f.target_path.startsWith("/")?"Target page must start with /.":null,
+  },
+  "growth-metrics": {
+    table:"seo_growth_metrics",module:"pages",label:"SEO baseline evidence",singular:"baseline record",
+    select:"id,title,market,source,period_start,period_end,clicks,impressions,organic_sessions,updated_at",order:["period_end",false],search:["title","notes"],
+    defaults:{market:"USA",source:"Search Console",notes:"",evidence_url:""},
+    columns:[{key:"title",label:"Manual source record",primary:true,sub:"source"},{key:"market",label:"Market"},{key:"period_end",label:"Period end",type:"date"},{key:"clicks",label:"Clicks"},{key:"impressions",label:"Impressions"},{key:"organic_sessions",label:"Organic sessions"}],
+    fields:[
+      {name:"title",label:"Evidence record title",type:"text",required:true},
+      {name:"market",label:"Country filter used",type:"select",options:["USA","Australia","Both"].map(value=>({value,label:value}))},
+      {name:"source",label:"Data source",type:"select",options:["Search Console","GA4","Manual research"].map(value=>({value,label:value}))},
+      {name:"period_start",label:"Period start (YYYY-MM-DD)",type:"text",required:true},
+      {name:"period_end",label:"Period end (YYYY-MM-DD)",type:"text",required:true},
+      {name:"clicks",label:"Search clicks (blank if unavailable)",type:"number",min:0},
+      {name:"impressions",label:"Search impressions (blank if unavailable)",type:"number",min:0},
+      {name:"organic_sessions",label:"Organic sessions (blank if unavailable)",type:"number",min:0},
+      {name:"evidence_url",label:"Source/export URL (https)",type:"text",required:true},
+      {name:"notes",label:"Property, filters, method & limitations",type:"textarea",rows:6,hint:"Manually entered evidence is not an automated analytics connection. Keep personal information out."},
+    ],
+    validate:(f)=> !/^\d{4}-\d{2}-\d{2}$/.test(f.period_start||"")||!/^\d{4}-\d{2}-\d{2}$/.test(f.period_end||"")||f.period_end<f.period_start?"Use a valid period in YYYY-MM-DD format.":!['clicks','impressions','organic_sessions'].some(k=>f[k]!==undefined&&f[k]!==null&&f[k]!=="")?"Enter at least one actual metric; leave unknown values blank.":!f.evidence_url?.startsWith('https://')?"Use an https evidence URL.":f.source==='Search Console'&&f.organic_sessions!==undefined&&f.organic_sessions!==null&&f.organic_sessions!==""?"Search Console does not provide organic sessions. Use a separate GA4 source record.":f.source==='GA4'&&['clicks','impressions'].some(k=>f[k]!==undefined&&f[k]!==null&&f[k]!=="")?"Use Search Console records for search clicks and impressions.":null,
+  },
+
   courses: {
     table: "courses",
     module: "courses",
@@ -174,6 +213,8 @@ export const RESOURCES = {
     softDelete: true,
     statusField: "status",
     publicPath: (r) => {
+      const guide = guideForSlug(r.slug);
+      if (guide) return guide.path;
       for (const country of LOCATIONS) {
         if (r.slug === locationCmsSlug(country)) return locationPath(country);
         for (const city of country.cities) if (r.slug === locationCmsSlug(country, city)) return locationPath(country, city);
