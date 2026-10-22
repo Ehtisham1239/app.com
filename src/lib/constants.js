@@ -1,3 +1,4 @@
+import { LOCATIONS } from "./locations.js";
 // Shared vocabularies — values match the database CHECK constraints.
 
 export const AGE_BANDS = [
@@ -40,7 +41,7 @@ export const TIME_SLOTS = [
 export const LANGUAGES = ["English", "Urdu", "Arabic", "Hindi", "Pashto", "Punjabi", "Bengali", "French", "Other"];
 
 // Most common countries for OQC families first, then the rest alphabetically.
-export const COUNTRIES = [
+const BASE_COUNTRIES = [
   ["United Kingdom", "Europe/London"],
   ["United States", "America/New_York"],
   ["Canada", "America/Toronto"],
@@ -82,6 +83,14 @@ export const COUNTRIES = [
   ["Brazil", "America/Sao_Paulo"],
   ["Mexico", "America/Mexico_City"],
   ["Other", "UTC"],
+];
+
+// Existing choices retain their time zones; supported location markets are included once.
+export const COUNTRIES = [
+  ...BASE_COUNTRIES.filter(([name]) => name !== "Other"),
+  ...LOCATIONS.filter((country) => !BASE_COUNTRIES.some(([name]) => name === country.name))
+    .map((country) => [country.name, country.timezone]),
+  BASE_COUNTRIES.find(([name]) => name === "Other") || ["Other", "UTC"],
 ];
 
 export const CONTENT_STATUSES = [
