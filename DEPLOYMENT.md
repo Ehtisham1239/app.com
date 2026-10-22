@@ -214,10 +214,21 @@ in deployment metadata, and saves the deployment ID under ignored `artifacts/`. 
 ID to reach READY before verifying the stable production alias. Then run:
 
 ```sh
-NODE_USE_ENV_PROXY=1 node scripts/seo-smoke.mjs https://project-umber-three-93.vercel.app
+NEXT_PUBLIC_SITE_URL=https://project-umber-three-93.vercel.app NODE_USE_ENV_PROXY=1 node scripts/seo-smoke.mjs https://project-umber-three-93.vercel.app
 ```
 
 For a local production build, start it on port 3010 and use the same smoke script without a URL.
 Provide the build's `NEXT_PUBLIC_SITE_URL` value to the test process when checking local canonical
 URLs. These checks crawl location HTML and exercise the mobile planner without submitting forms.
 The browser bridge uses Node's inherited proxy and CA trust with TLS verification enabled.
+
+## Verified SEO audit release
+
+Source commit `29054954371fce2e906174a64fdba6324ac18eba` is deployed as
+`dpl_2TMV3LaE1uZhA2ajpQZvJEymTJGo` (READY). The deployment metadata records the matching source
+commit. Live smoke checks passed for all 165 location pages and seven legacy redirects, including
+canonical links, unique titles, BreadcrumbList, the policy update, certificate noindex/sitemap
+alignment, local-time planning and Los Angeles trial prefill. No synthetic enquiries were submitted.
+Measured CTA text contrast was 6.84:1 and the mobile browser reported no JavaScript errors.
+The database follow-up is migration `20261022000400`; 19 migrations are installed in total.
+See SEO-IMPLEMENTATION.md for completed changes and the remaining owner-data prerequisites.
