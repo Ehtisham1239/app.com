@@ -22,7 +22,7 @@ const SECTIONS = [
   { key: "site.steps", title: "How it works", text: "Three steps on the home page.", list: [t("title", "Title"), area("text", "Text")] },
   { key: "site.social", title: "Social links", text: "Leave a link empty to hide it.", fields: [t("facebook", "Facebook"), t("instagram", "Instagram"), t("x", "X (Twitter)"), t("youtube", "YouTube"), t("tiktok", "TikTok")] },
   { key: "site.forms", title: "Forms", text: "Consent wording and thank-you messages.", fields: [area("consent_text", "Consent text"), t("consent_version", "Consent version", { hint: "Change this date when you change the consent text." }), area("trial_success", "Free-trial thank-you"), area("contact_success", "Contact thank-you")] },
-  { key: "site.seo", title: "Search engines", text: "Default title and description for Google.", fields: [t("title", "Title"), area("description", "Description")] },
+  { key: "site.seo", title: "Search engines", text: "Default title and description for Google.", fields: [t("title", "Title"), area("description", "Description"), t("google_verification", "Google Search Console verification code", { hint: "Paste only the content value from the HTML meta tag, not the whole tag." }), t("bing_verification", "Bing Webmaster verification code", { hint: "Paste only the verification code. These codes are public, not account passwords." })] },
 ];
 
 function Input({ id, f, value, onChange, disabled }) {
@@ -56,6 +56,11 @@ export default function SettingsPage() {
   }, [active, rows.data, section]);
 
   const save = async () => {
+    if (active === "site.seo") {
+      for (const name of ["google_verification", "bing_verification"]) {
+        if (value[name] && !/^[A-Za-z0-9_-]{1,250}$/.test(value[name].trim())) return toast.error("Paste only the verification code, not the full HTML tag.");
+      }
+    }
     setBusy(true);
     const exists = rows.data.some((r) => r.key === active);
     const { error } = exists

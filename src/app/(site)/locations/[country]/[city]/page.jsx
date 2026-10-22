@@ -1,3 +1,4 @@
+import { contentMetadata } from "@/lib/seo-metadata";
 import { notFound } from "next/navigation";
 import { LocationPage } from "@/components/site/location-page";
 import { LOCATIONS, getLocation, locationPath, locationCmsSlug } from "@/lib/locations";
@@ -15,6 +16,6 @@ export async function generateMetadata({ params }) {
   const { country, city } = await resolve(params);
   const page = await getPage(locationCmsSlug(country, city));
   const place = city ? `${city.name}, ${country.name}` : country.name;
-  return { title: page?.seo_title || page?.title || `Online Quran classes in ${place}`, description: page?.seo_description || `Live one-to-one Quran lessons for children and adults in ${place}. Flexible online classes and fee enquiries in ${country.currency}.`, alternates: { canonical: locationPath(country, city) } };
+  return contentMetadata(page || {}, { path: locationPath(country, city), title: page?.title || `Online Quran classes in ${place}`, description: page?.seo_description || `Live one-to-one Quran lessons for children and adults in ${place}. Flexible online classes and fee enquiries in ${country.currency}.` });
 }
 export default async function Page({ params }) { return <LocationPage {...await resolve(params)} />; }

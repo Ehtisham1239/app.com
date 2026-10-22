@@ -3,16 +3,16 @@
 
 /* ------------------------------------------------------------------
    Online Quran College — design tokens
-   Mushaf green + illumination gold on a cool, leaf-tinted paper.
+   Live college branding: primary green, emerald, amber and white.
    ------------------------------------------------------------------ */
 @theme {
-  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: var(--font-marcellus), "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-outfit), "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   --font-arabic: var(--font-amiri), "Noto Naskh Arabic", "Traditional Arabic", serif;
 
-  --color-ink: #14211b;
-  --color-ink-soft: #46574e;
-  --color-ink-faint: #6f8077;
+  --color-ink: #0f172a;
+  --color-ink-soft: #4b5563;
+  --color-ink-faint: #6b7280;
   --color-paper: #f4fbf7;
   --color-surface: #ffffff;
   --color-line: #dbe4dc;
@@ -20,24 +20,24 @@
 
   --color-mushaf-950: #111827;
   --color-mushaf-900: #006847;
-  --color-mushaf-800: #134d37;
-  --color-mushaf-700: #1a6145;
+  --color-mushaf-800: #004f36;
+  --color-mushaf-700: #006847;
 
-  --color-leaf-50: #eef7ef;
-  --color-leaf-100: #dcefdf;
-  --color-leaf-200: #b9dfc0;
+  --color-leaf-50: #eefaf3;
+  --color-leaf-100: #d1fae5;
+  --color-leaf-200: #a7f3d0;
   --color-leaf-500: #10b981;
-  --color-leaf-600: #1f7d3e;
-  --color-leaf-700: #186833;
-  --color-leaf-800: #12512a;
+  --color-leaf-600: #059669;
+  --color-leaf-700: #006847;
+  --color-leaf-800: #004f36;
 
-  --color-gold-50: #fbf6e9;
-  --color-gold-100: #f4e8c8;
-  --color-gold-300: #e2cd96;
-  --color-gold-400: #d5b874;
+  --color-gold-50: #fffbeb;
+  --color-gold-100: #fef3c7;
+  --color-gold-300: #fcd34d;
+  --color-gold-400: #fbbf24;
   --color-gold-500: #f59e0b;
-  --color-gold-600: #a9852f;
-  --color-gold-700: #86671f;
+  --color-gold-600: #d97706;
+  --color-gold-700: #92400e;
 
   --color-rose-600: #b4232f;
   --color-amber-600: #b45309;
@@ -53,7 +53,7 @@
     scroll-behavior: smooth;
   }
   body {
-    background: var(--color-paper);
+    background: #fff;
     color: var(--color-ink);
     font-family: var(--font-sans);
     font-size: 1.0625rem;
@@ -63,8 +63,8 @@
   }
   h1, h2, .font-display {
     font-family: var(--font-display);
-    font-weight: 400;
-    letter-spacing: -0.01em;
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
   h1 { line-height: 1.06; }
   h2 { line-height: 1.12; }
@@ -109,9 +109,9 @@
   .btn:disabled { opacity: .55; cursor: not-allowed; }
   .btn-primary { background: var(--color-leaf-700); color: #fff; }
   .btn-primary:hover:not(:disabled) { background: var(--color-leaf-800); }
-  .btn-gold { background: var(--color-gold-500); color: var(--color-mushaf-950); }
-  .btn-gold:hover:not(:disabled) { background: var(--color-gold-400); }
-  .btn-outline { border: 1.5px solid var(--color-line-strong); color: var(--color-ink); background: #fff; }
+  .btn-gold { background: var(--color-leaf-500); color: #fff; }
+  .btn-gold:hover:not(:disabled) { background: var(--color-leaf-600); }
+  .btn-outline { border: 1.5px solid var(--color-mushaf-900); color: var(--color-mushaf-900); background: #fff; }
   .btn-outline:hover:not(:disabled) { border-color: var(--color-leaf-700); color: var(--color-leaf-700); }
   .btn-outline-light { border: 1.5px solid rgb(255 255 255 / .35); color: #fff; }
   .btn-outline-light:hover:not(:disabled) { border-color: var(--color-gold-400); color: var(--color-gold-300); }
@@ -210,8 +210,8 @@
 .tone-violet { background: #f1eafd; color: #6a3bc2; }
 .tone-teal { background: #e3f5f3; color: #0f6e66; }
 .tone-red { background: #fdeaea; color: #b4232f; }
-.tone-muted { background: #eef1ef; color: #6f8077; }
-.tone-neutral { background: #f1f4f1; color: #46574e; }
+.tone-muted { background: #eef1ef; color: #6b7280; }
+.tone-neutral { background: #f1f4f1; color: #4b5563; }
 .adm-card { background: #fff; border: 1px solid var(--color-line); border-radius: 1rem; }
 .adm-table { width: 100%; min-width: 42rem; border-collapse: separate; border-spacing: 0; font-size: .9rem; }
 .adm-table th { text-align: left; font-weight: 600; font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; color: var(--color-ink-faint); background: #f7faf6; padding: .65rem .9rem; border-bottom: 1px solid var(--color-line); white-space: nowrap; }

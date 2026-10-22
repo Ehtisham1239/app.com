@@ -6,8 +6,11 @@ import { CONTENT_ICONS } from "@/components/icon";
 
 const iconOptions = Object.keys(CONTENT_ICONS).map((k) => ({ value: k, label: k.replace(/-/g, " ") }));
 const seo = [
+  { name: "seo_focus_keyword", label: "Focus phrase (editor guidance)", type: "text", group: "Search engines", hint: "Helps you review the content. It is not a meta-keywords tag or a ranking guarantee." },
   { name: "seo_title", label: "Search title", type: "text", group: "Search engines", hint: "Shown in Google results. Leave empty to use the title." },
   { name: "seo_description", label: "Search description", type: "textarea", rows: 2, group: "Search engines", hint: "About 150 characters." },
+  { name: "canonical_url", label: "Canonical URL (optional)", type: "text", group: "Search engines", hint: "Leave empty to use this page URL. Otherwise use /path or a full https:// URL." },
+  { name: "seo_noindex", label: "Exclude from search results (noindex)", type: "bool", group: "Search engines", hint: "Also removes the page from the sitemap. The page stays public; this is not access control." },
 ];
 const publishing = [{ name: "status", label: "Status", type: "status", group: "Publishing" }];
 

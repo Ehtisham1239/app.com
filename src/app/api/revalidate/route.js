@@ -17,5 +17,7 @@ export async function POST() {
   const { data: staff } = await supabase.rpc("is_staff");
   if (staff !== true) return NextResponse.json({ error: "Not allowed." }, { status: 403 });
   revalidatePath("/", "layout");
+  revalidatePath("/sitemap.xml");
+  revalidatePath("/robots.txt");
   return NextResponse.json({ ok: true });
 }

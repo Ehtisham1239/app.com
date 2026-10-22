@@ -145,3 +145,31 @@ successfully on the real Supabase project. Real staff password sign-in, active S
 mandatory first-login password change and authenticated campaign reporting are verified. The test
 session was signed out and its consumed bootstrap token removed. Public Vercel deployment and live
 CMS sign-in are verified as documented above. Automatic GitHub deployment remains disconnected.
+
+## SEO tools and college branding update
+
+CMS Portal → **SEO tools** audits pages, articles and courses using the current user's content
+permissions. It includes title/snippet previews, content recommendations, duplicate metadata detection,
+search and indexing filters, and CSV export. Editors can set a focus phrase, canonical URL and noindex
+flag in existing content forms. Suggestions are editorial guidance, not ranking scores or guarantees.
+The per-page canonical/noindex controls are used by public HTML metadata and sitemap generation;
+CMS saves revalidate the sitemap and site content. Legacy country/city CMS slugs permanently redirect
+to their single `/locations/...` route. Organization, website, article and course JSON-LD are safely
+encoded. Search Console and Bing verification codes can be entered under Website settings → Search
+engines. Paste only the public verification code, not full HTML tags or account credentials.
+
+The Google Search Console, Bing Webmaster, PageSpeed Insights and Rich Results Test buttons open
+those official tools. They do not connect accounts, submit sitemaps automatically or import ranking
+or traffic data. Those services require the owner's own accounts/verification where applicable.
+
+Migration `20261022000300_seo_controls.sql` adds indexing/focus/canonical fields to the existing content
+tables without changing their RLS permissions. It is installed in the live Supabase project with
+migration history. Validation includes 18 automated tests and a browser scenario with an isolated,
+temporary content-editor account: sign in, change its temporary password, load the audit, save SEO
+fields, verify public noindex metadata/sitemap exclusion, and inspect the responsive branding. Only
+synthetic fixtures were removed; the owner's login and password were preserved.
+
+The public palette follows the live college reference: primary `#006847`, primary hover `#004f36`,
+secondary emerald `#10b981`, accent amber `#f59e0b`, pale section background `#f4fbf7`, white main
+background and footer `#111827`. Headings use Outfit and body text Inter. The homepage now uses the
+light hero treatment, original college logo/hero image, bold green headings and green action buttons.

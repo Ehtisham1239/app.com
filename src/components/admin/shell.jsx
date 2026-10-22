@@ -34,6 +34,7 @@ export const NAV = [
       { href: "/admin/faqs", label: "FAQs", icon: HelpCircle, perm: "faqs:read" },
       { href: "/admin/testimonials", label: "Testimonials", icon: MessageSquareQuote, perm: "testimonials:read" },
       { href: "/admin/menus", label: "Menus", icon: Menu, perm: "menus:read" },
+      { href: "/admin/seo", label: "SEO tools", icon: Search, perm: "pages:read" },
       { href: "/admin/redirects", label: "Redirects", icon: Link2, perm: "redirects:read" },
       { href: "/admin/media", label: "Media", icon: Images, perm: "media:read" },
     ],
@@ -66,7 +67,7 @@ function Sidebar({ onNavigate }) {
   return (
     <nav className="scrollbar-thin flex h-full flex-col overflow-y-auto bg-mushaf-950 px-3 pb-6 text-white" aria-label="Admin">
       <Link href="/admin" onClick={onNavigate} className="flex items-center gap-3 px-2 pb-5 pt-5">
-        <span className="brand-mark block size-10 shrink-0 text-gold-400" aria-hidden="true" />
+        <img src="/brand/logo.webp" alt="" width={48} height={48} className="size-12 shrink-0 rounded-lg bg-white p-1" />
         <span className="leading-tight">
           <span className="block whitespace-nowrap font-display text-[1.02rem] text-white">Online Quran College</span>
           <span className="block text-[0.68rem] font-bold uppercase tracking-[0.2em] text-gold-300">CMS Portal</span>

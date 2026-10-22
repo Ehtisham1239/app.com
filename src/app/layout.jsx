@@ -3,18 +3,18 @@ import { Toaster } from "sonner";
 import { SITE_URL } from "@/lib/config";
 import "./globals.css";
 
-const figtree = localFont({
+const inter = localFont({
   src: [
     { path: "../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2", weight: "300 900", style: "normal" },
     { path: "../../node_modules/@fontsource-variable/inter/files/inter-latin-ext-wght-normal.woff2", weight: "300 900", style: "normal" },
   ],
-  variable: "--font-figtree",
+  variable: "--font-inter",
   display: "swap",
 });
 
-const marcellus = localFont({
+const outfit = localFont({
   src: [{ path: "../../node_modules/@fontsource-variable/outfit/files/outfit-latin-wght-normal.woff2", weight: "100 900", style: "normal" }],
-  variable: "--font-marcellus",
+  variable: "--font-outfit",
   display: "swap",
 });
 
@@ -43,14 +43,14 @@ export const metadata = {
 };
 
 export const viewport = {
-  themeColor: "#0d3a2b",
+  themeColor: "#006847",
   width: "device-width",
   initialScale: 1,
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en-GB" className={`${figtree.variable} ${marcellus.variable} ${amiri.variable}`} suppressHydrationWarning>
+    <html lang="en-GB" data-scroll-behavior="smooth" className={`${inter.variable} ${outfit.variable} ${amiri.variable}`} suppressHydrationWarning>
       <body>
         {children}
         <Toaster position="top-center" richColors closeButton toastOptions={{ style: { fontFamily: "var(--font-sans)" } }} />

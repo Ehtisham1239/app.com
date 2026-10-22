@@ -1,3 +1,5 @@
+import { safeJsonLd } from "@/lib/seo";
+import { contentMetadata } from "@/lib/seo-metadata";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, CalendarClock, CheckCircle2, GraduationCap, MessageCircle, Users } from "lucide-react";
@@ -20,12 +22,7 @@ export async function generateMetadata({ params }) {
   const course = await getCourse(slug);
   if (!course) return { title: "Course not found" };
   const description = course.seo_description || truncate(course.summary || stripHtml(course.description_html), 158);
-  return {
-    title: course.seo_title ? { absolute: course.seo_title } : `${course.title} — Online Course`,
-    description,
-    alternates: { canonical: `/courses/${course.slug}` },
-    openGraph: { title: course.title, description, url: `/courses/${course.slug}`, images: course.cover_url ? [course.cover_url] : undefined },
-  };
+  return contentMetadata(course, { path: `/courses/${course.slug}`, description });
 }
 
 export default async function CoursePage({ params }) {
@@ -51,7 +48,7 @@ export default async function CoursePage({ params }) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
       <section className="relative overflow-hidden bg-mushaf-900 text-white">
         <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.09]" aria-hidden="true" />
         <div className="page-wrap relative py-14 sm:py-20">

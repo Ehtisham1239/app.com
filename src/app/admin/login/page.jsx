@@ -83,7 +83,7 @@ export default function LoginPage() {
       <section className="relative hidden overflow-hidden bg-mushaf-950 p-12 text-white lg:flex lg:flex-col">
         <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.08]" aria-hidden="true" />
         <div className="relative flex items-center gap-3">
-          <span className="brand-mark block size-12 text-gold-400" aria-hidden="true" />
+          <img src="/brand/logo.webp" alt="Online Quran College" width={64} height={64} className="size-16 rounded-lg bg-white p-1" />
           <span>
             <span className="block font-display text-xl">Online Quran College</span>
             <span className="block text-[0.7rem] font-bold uppercase tracking-[0.22em] text-gold-300">CMS Portal</span>
@@ -100,7 +100,7 @@ export default function LoginPage() {
       </section>
       <section className="flex items-center justify-center p-6 sm:p-12">
         <div className="w-full max-w-sm">
-          <span className="brand-mark mb-6 block size-14 text-leaf-700 lg:hidden" aria-hidden="true" />
+          <img src="/brand/logo.webp" alt="Online Quran College" width={80} height={80} className="mb-6 size-20 lg:hidden" />
           <h2 className="font-sans text-[1.8rem] font-bold tracking-tight text-mushaf-900">Welcome back</h2>
           <p className="mb-8 mt-1 text-ink-soft">Sign in to the CMS Portal.</p>
           <Suspense fallback={null}>

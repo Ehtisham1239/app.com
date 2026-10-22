@@ -1,3 +1,5 @@
+import { locationFromCmsSlug, locationPath } from "@/lib/locations";
+import { contentMetadata } from "@/lib/seo-metadata";
 import { notFound, permanentRedirect, redirect } from "next/navigation";
 import { CmsPage } from "@/components/site/cms-page";
 import { getPage, getPublishedSlugs, getRedirect } from "@/lib/site-data";
@@ -8,24 +10,23 @@ export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const { pages } = await getPublishedSlugs();
-  return pages.map((p) => ({ slug: p.slug }));
+  return pages.filter((p) => !locationFromCmsSlug(p.slug)).map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
+  const location = locationFromCmsSlug(slug);
+  if (location) permanentRedirect(locationPath(location.country, location.city));
   const page = await getPage(slug);
   if (!page) return { title: "Page not found" };
   const description = page.seo_description || page.excerpt || truncate(stripHtml(page.body_html ?? ""), 158);
-  return {
-    title: page.seo_title ? { absolute: page.seo_title } : page.title,
-    description,
-    alternates: { canonical: page.canonical_url || `/${page.slug}` },
-    openGraph: { title: page.title, description, url: `/${page.slug}`, images: page.cover_url ? [page.cover_url] : undefined },
-  };
+  return contentMetadata(page, { path: `/${page.slug}`, description });
 }
 
 export default async function Page({ params }) {
   const { slug } = await params;
+  const location = locationFromCmsSlug(slug);
+  if (location) permanentRedirect(locationPath(location.country, location.city));
   const page = await getPage(slug);
   if (!page) {
     const r = await getRedirect(`/${slug}`);

@@ -1,5 +1,7 @@
 "use client";
 
+import { validCanonical } from "@/lib/seo";
+import { SeoPreview } from "@/components/admin/seo-preview";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
@@ -181,11 +183,15 @@ export function ResourceForm({ rkey, id }) {
         return;
       }
     }
+    if (cfg.fields.some((f) => f.name === "canonical_url") && !validCanonical(form.canonical_url)) return toast.error("Enter a valid canonical URL or leave it empty.");
     const problem = cfg.validate?.(form);
     if (problem) return toast.error(problem);
     if (form.status === "scheduled" && !form.scheduled_at) return toast.error("Choose when to publish.");
     const payload = {};
-    for (const f of cfg.fields) payload[f.name] = form[f.name] === "" && f.type !== "text" ? null : form[f.name];
+    for (const f of cfg.fields) {
+      if (form[f.name] === undefined) continue;
+      payload[f.name] = form[f.name] === "" && f.type !== "text" ? null : form[f.name];
+    }
     if (cfg.statusField) payload.scheduled_at = form.status === "scheduled" ? form.scheduled_at : null;
     if (cfg.defaults.locale) payload.locale = form.locale || cfg.defaults.locale;
     setSaving(true);
@@ -279,6 +285,7 @@ export function ResourceForm({ rkey, id }) {
           {isNew && cfg.children?.length > 0 && <p className="text-sm text-ink-faint">Save first to add {cfg.children.includes("modules") ? "the course outline" : cfg.children.includes("prices") ? "prices" : "courses"}.</p>}
         </div>
         <aside className="space-y-6">
+          {cfg.fields.some((f) => f.name === "seo_title") && <SeoPreview record={form} path={cfg.publicPath?.(form) || "/"} />}
           {statusField && (
             <Card title="Publishing">
               <fieldset disabled={!canEdit} className="space-y-4">

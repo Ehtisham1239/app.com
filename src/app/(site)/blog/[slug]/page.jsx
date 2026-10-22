@@ -1,3 +1,5 @@
+import { safeJsonLd } from "@/lib/seo";
+import { contentMetadata } from "@/lib/seo-metadata";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Clock3 } from "lucide-react";
@@ -20,12 +22,7 @@ export async function generateMetadata({ params }) {
   const post = await getPost(slug);
   if (!post) return { title: "Article not found" };
   const description = post.seo_description || post.excerpt || truncate(stripHtml(post.body_html), 158);
-  return {
-    title: post.seo_title ? { absolute: post.seo_title } : post.title,
-    description,
-    alternates: { canonical: `/blog/${post.slug}` },
-    openGraph: { type: "article", title: post.title, description, url: `/blog/${post.slug}`, publishedTime: post.published_at, images: post.cover_url ? [post.cover_url] : undefined },
-  };
+  return contentMetadata(post, { path: `/blog/${post.slug}`, description, type: "article" });
 }
 
 export default async function PostPage({ params }) {
@@ -47,7 +44,7 @@ export default async function PostPage({ params }) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
       <article>
         <header className="relative overflow-hidden bg-mushaf-900 text-white">
           <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.08]" aria-hidden="true" />

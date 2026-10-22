@@ -1,25 +1,19 @@
-import { LOCATIONS, locationPath } from "@/lib/locations";
+import { LOCATIONS, locationPath, locationCmsSlug } from "@/lib/locations";
 import { getPublishedSlugs } from "@/lib/site-data";
 import { SITE_URL } from "@/lib/config";
-
+import { shouldIncludeInSitemap } from "@/lib/seo";
 export const revalidate = 3600;
-
 export default async function sitemap() {
   const { courses, posts, pages, teachers } = await getPublishedSlugs();
-  const now = new Date();
-  const fixed = ["", "/courses", "/pricing", "/free-trial", "/teachers", "/blog", "/faq", "/contact", "/verify-certificate"].map((p) => ({
-    url: `${SITE_URL}${p}`,
-    lastModified: now,
-    changeFrequency: p === "" ? "weekly" : "monthly",
-    priority: p === "" ? 1 : p === "/free-trial" || p === "/courses" ? 0.9 : 0.7,
+  const fixed = ["", "/courses", "/pricing", "/free-trial", "/teachers", "/blog", "/faq", "/contact", "/verify-certificate", "/locations"].map((path) => ({ url: `${SITE_URL}${path}`, changeFrequency: path === "" ? "weekly" : "monthly", priority: path === "" ? 1 : 0.7 }));
+  const locationPages = new Map(pages.map((p) => [p.slug, p]));
+  const locations = LOCATIONS.flatMap((country) => [null, ...country.cities].flatMap((city) => {
+    const path = locationPath(country, city), page = locationPages.get(locationCmsSlug(country, city));
+    return shouldIncludeInSitemap(page, path, SITE_URL) ? [{ url: `${SITE_URL}${path}`, ...(page?.updated_at ? { lastModified: page.updated_at } : {}), changeFrequency: "monthly", priority: city ? 0.6 : 0.7 }] : [];
   }));
-  return [
-    ...fixed,
-    { url: `${SITE_URL}/locations`, priority: 0.7 },
-    ...LOCATIONS.flatMap((c) => [c, ...c.cities].map((item) => ({ url: `${SITE_URL}${locationPath(c, item === c ? null : item)}`, changeFrequency: "monthly", priority: item === c ? 0.7 : 0.6 }))),
-    ...courses.map((c) => ({ url: `${SITE_URL}/courses/${c.slug}`, lastModified: c.updated_at, priority: 0.8 })),
-    ...pages.filter((p) => !p.slug.startsWith("locations-")).map((p) => ({ url: `${SITE_URL}/${p.slug}`, lastModified: p.updated_at, priority: 0.5 })),
-    ...posts.map((p) => ({ url: `${SITE_URL}/blog/${p.slug}`, lastModified: p.updated_at, priority: 0.6 })),
-    ...teachers.map((t) => ({ url: `${SITE_URL}/teachers/${t.slug}`, lastModified: t.updated_at, priority: 0.5 })),
-  ];
+  const content = (rows, prefix, priority) => rows.flatMap((row) => {
+    const path = `${prefix}/${row.slug}`;
+    return shouldIncludeInSitemap(row, path, SITE_URL) ? [{ url: `${SITE_URL}${path}`, lastModified: row.updated_at, priority }] : [];
+  });
+  return [...fixed, ...locations, ...content(courses, "/courses", 0.8), ...content(pages.filter((p) => !p.slug.startsWith("locations-")), "", 0.5), ...content(posts, "/blog", 0.6), ...content(teachers, "/teachers", 0.5)];
 }

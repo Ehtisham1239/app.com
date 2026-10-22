@@ -51,7 +51,7 @@ export function SiteHeader({ menu, courses, whatsappHref, brandName }) {
     <header
       className={clsx(
         "sticky top-0 z-40 transition-[background-color,box-shadow,border-color] duration-200",
-        scrolled ? "border-b border-line bg-white/90 shadow-[0_8px_30px_-18px_rgb(13_58_43/0.35)] backdrop-blur-md" : "border-b border-transparent bg-paper/80 backdrop-blur-sm",
+        scrolled ? "border-b border-line bg-white/90 shadow-[0_8px_30px_-18px_rgb(13_58_43/0.35)] backdrop-blur-md" : "border-b border-transparent bg-white/90 backdrop-blur-sm",
       )}
     >
       <div className="page-wrap flex h-[4.5rem] items-center gap-6">
@@ -138,7 +138,7 @@ export function SiteHeader({ menu, courses, whatsappHref, brandName }) {
               <MessageCircle className="size-5" aria-hidden="true" />
             </a>
           )}
-          <Link href="/free-trial" className="btn btn-gold hidden sm:inline-flex">
+          <Link href="/free-trial" className="btn btn-primary hidden sm:inline-flex">
             Free trial
             <ArrowRight className="size-4" aria-hidden="true" />
           </Link>
@@ -202,7 +202,7 @@ export function SiteHeader({ menu, courses, whatsappHref, brandName }) {
           </nav>
           <div className="space-y-2 border-t border-line p-5">
             <Link href="/locations" className="btn btn-outline w-full">Countries & cities</Link>
-            <Link href="/free-trial" className="btn btn-gold w-full">
+            <Link href="/free-trial" className="btn btn-primary w-full">
               Book a 7-day free trial
             </Link>
             {whatsappHref && (

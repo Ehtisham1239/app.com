@@ -147,7 +147,7 @@ export const getCourse = cache(async (slug) => {
   const course = await safe(() =>
     publicDb
       .from("courses")
-      .select(`${COURSE_FIELDS}, description_html, outcomes, seo_title, seo_description, course_modules(id, title, objectives, topics, sort_order)`)
+      .select(`${COURSE_FIELDS}, description_html, outcomes, seo_title, seo_description, seo_noindex, seo_focus_keyword, canonical_url, course_modules(id, title, objectives, topics, sort_order)`)
       .eq("slug", slug)
       .eq("status", "published")
       .is("deleted_at", null)
@@ -204,7 +204,7 @@ export const getTeacher = cache(async (slug) =>
   ),
 );
 
-const POST_FIELDS = "id, slug, title, excerpt, cover_url, category, tags, author_name, reading_minutes, published_at";
+const POST_FIELDS = "id, slug, title, excerpt, cover_url, category, tags, author_name, reading_minutes, published_at, updated_at";
 
 export const getPosts = cache(async (limit = 50) =>
   safe(() =>
@@ -218,7 +218,7 @@ export const getPost = cache(async (slug) =>
   safe(() =>
     publicDb
       .from("blog_posts")
-      .select(`${POST_FIELDS}, body_html, seo_title, seo_description`)
+      .select(`${POST_FIELDS}, body_html, seo_title, seo_description, seo_noindex, seo_focus_keyword, canonical_url`)
       .eq("slug", slug)
       .eq("status", "published")
       .is("deleted_at", null)
@@ -232,7 +232,7 @@ export const getPage = cache(async (slug) =>
   safe(() =>
     publicDb
       .from("pages")
-      .select("id, slug, title, excerpt, template, body_html, cover_url, seo_title, seo_description, canonical_url, updated_at, page_sections(id, type, data, sort_order)")
+      .select("id, slug, title, excerpt, template, body_html, cover_url, seo_title, seo_description, canonical_url, seo_noindex, seo_focus_keyword, updated_at, page_sections(id, type, data, sort_order)")
       .eq("slug", slug)
       .eq("locale", "en")
       .eq("status", "published")
@@ -245,9 +245,9 @@ export const getPage = cache(async (slug) =>
 
 export const getPublishedSlugs = cache(async () => {
   const [courses, posts, pages, teachers] = await Promise.all([
-    safe(() => publicDb.from("courses").select("slug, updated_at").eq("status", "published").is("deleted_at", null), [], "slugs courses"),
-    safe(() => publicDb.from("blog_posts").select("slug, updated_at").eq("status", "published").is("deleted_at", null), [], "slugs posts"),
-    safe(() => publicDb.from("pages").select("slug, updated_at").eq("status", "published").is("deleted_at", null), [], "slugs pages"),
+    safe(() => publicDb.from("courses").select("slug, updated_at, seo_noindex, canonical_url").eq("status", "published").is("deleted_at", null), [], "slugs courses"),
+    safe(() => publicDb.from("blog_posts").select("slug, updated_at, seo_noindex, canonical_url").eq("status", "published").is("deleted_at", null), [], "slugs posts"),
+    safe(() => publicDb.from("pages").select("slug, updated_at, seo_noindex, canonical_url").eq("status", "published").is("deleted_at", null), [], "slugs pages"),
     safe(() => publicDb.from("teachers").select("slug, updated_at").eq("is_public", true).eq("is_active", true).is("deleted_at", null), [], "slugs teachers"),
   ]);
   return { courses, posts, pages, teachers };

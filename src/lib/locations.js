@@ -856,3 +856,12 @@ export const LOCATIONS = [
 export const getLocation = (slug) => LOCATIONS.find((country) => country.slug === slug);
 export const locationPath = (country, city) => `/locations/${country.slug}${city ? `/${city.slug}` : ""}`;
 export const locationCmsSlug = (country, city) => `locations-${country.slug}${city ? `-${city.slug}` : ""}`;
+
+export function locationFromCmsSlug(slug) {
+  for (const country of LOCATIONS) {
+    if (slug === locationCmsSlug(country)) return { country, city: null };
+    const city = country.cities.find((c) => slug === locationCmsSlug(country, c));
+    if (city) return { country, city };
+  }
+  return null;
+}

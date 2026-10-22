@@ -1,3 +1,5 @@
+import { safeJsonLd } from "@/lib/seo";
+import { SITE_URL } from "@/lib/config";
 import { CampaignAttribution } from "@/components/site/campaign-attribution";
 import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
@@ -6,6 +8,13 @@ import { getCourses, getMenus, getSettings } from "@/lib/site-data";
 import { whatsappLink } from "@/lib/format";
 
 export const revalidate = 300;
+
+export async function generateMetadata() {
+  const settings = await getSettings();
+  const seo = settings["site.seo"] || {};
+  const code = (value) => typeof value === "string" && /^[A-Za-z0-9_-]{1,250}$/.test(value.trim()) ? value.trim() : undefined;
+  return { verification: { google: code(seo.google_verification), other: code(seo.bing_verification) ? { "msvalidate.01": code(seo.bing_verification) } : undefined } };
+}
 
 export default async function SiteLayout({ children }) {
   const [settings, menus, courses] = await Promise.all([getSettings(), getMenus(), getCourses()]);
@@ -26,6 +35,7 @@ export default async function SiteLayout({ children }) {
         Skip to content
       </a>
       <TopBar announcement={settings["site.announcement"]} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", "@type": "WebSite", "@id": `${SITE_URL}/#website`, name: brandName, url: SITE_URL, inLanguage: "en-GB" }) }} />
       <CampaignAttribution />
       <SiteHeader menu={header} courses={courseLinks} whatsappHref={wa} brandName={brandName} />
       <main id="main">{children}</main>

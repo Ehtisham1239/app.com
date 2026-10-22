@@ -80,3 +80,12 @@ test("location seed is repeatable and preserves CMS edits", async () => {
   await db.exec(sql("supabase/migrations/20261022000200_location_content.sql"));
   assert.equal((await db.query("select title from public.pages where slug='locations-united-kingdom-london'")).rows[0].title, "London Quran lessons — edited");
 });
+
+test("CMS editors can persist indexing controls without granting public writes", async () => {
+  await role("authenticated", editorId);
+  await db.query("update public.pages set seo_noindex=true,canonical_url='/locations/united-kingdom/london',seo_focus_keyword='Quran London' where slug='locations-united-kingdom-london'");
+  await role("anon");
+  const row = (await db.query("select seo_noindex,canonical_url,seo_focus_keyword from public.pages where slug='locations-united-kingdom-london'")).rows[0];
+  assert.equal(row.seo_noindex, true); assert.equal(row.seo_focus_keyword, "Quran London");
+  await assert.rejects(db.query("update public.pages set seo_noindex=false where slug='locations-united-kingdom-london'"), /permission denied/);
+});

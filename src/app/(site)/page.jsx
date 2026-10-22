@@ -1,3 +1,4 @@
+import { safeJsonLd } from "@/lib/seo";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { HomeHero } from "@/components/site/hero";
@@ -38,10 +39,11 @@ export default async function HomePage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
+    "@id": `${SITE_URL}/#organization`,
     name: identity.name,
     legalName: identity.legal_name,
     url: SITE_URL,
-    logo: `${SITE_URL}/icon`,
+    logo: `${SITE_URL}/brand/logo.webp`,
     description: identity.description,
     foundingDate: identity.established,
     email: contact.email,
@@ -51,7 +53,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
       <HomeHero hero={settings["site.hero"]} stats={settings["site.stats"]} />
 
       <section className="page-wrap py-20 sm:py-24" aria-labelledby="courses-heading">
