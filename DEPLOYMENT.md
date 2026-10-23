@@ -315,3 +315,12 @@ All 50 country mappings and six simulated Vercel-country redirects pass in the l
 - Local validation: 38 tests passed; lint 0 errors / 19 existing warnings; production build passed. 105 responsive checks passed. Image checks passed for 21 assets, 165 country/city pages and 10 representative viewport cases (observed layout shift 0 in that controlled run).
 - Live validation: 12 homepage/About/contact/trial viewport checks passed; images decode, descriptive alt text, canonical/social metadata, matching homepage FAQ data and local-image sitemap entries verified. Left shortcut absent; vendor-stub chat loading, CMS isolation and form availability on vendor failure passed. Actual vendor message delivery was not tested; no forms or messages submitted.
 - Evidence: `/workspace/reports/oqc-visuals-2026-10-23/`. Browser checks use Chromium with verified Node HTTPS transport for this environment's CA setup, not physical device coverage. No ranking guarantee or measured field-speed claim.
+
+## Public usability and homepage motion — 23 October 2026
+
+- Production READY deployment: `dpl_7Xb65E3VjxcMB2U2K68Rfpebnpda`; application source `31271d8337997c1433d291557af902ab44477aeb`.
+- Stable website: `https://project-umber-three-93.vercel.app`; `/?view=global` opens the general homepage.
+- Simplified homepage, conditional tutor/review sections, section shortcuts, staggered reveals and finite hero effects; brand palette, published routes and CMS records preserved.
+- Improved mobile/keyboard menus, country/city search, contact validation, trial-step focus and confirmation feedback. No database migration or animation dependency added.
+- Validation: 38 automated tests passed; lint 0 errors / 19 existing warnings; production build passed. 105 responsive checks and deferred homepage-form confirmation passed locally. Final local and live usability smoke flows passed for mobile and desktop menus, directory search, contact/trial confirmation, animation/reduced-motion behaviour and content without JavaScript.
+- Form RPCs and chat vendor were stubbed in browser checks: no real leads or messages were submitted. Chromium viewport checks do not represent physical-device testing. Reports saved under `/workspace/reports/oqc-usability-2026-10-23/`.
