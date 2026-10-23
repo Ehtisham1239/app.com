@@ -4,7 +4,7 @@ import { ArrowRight, MessageCircle } from "lucide-react";
 export function TopBar({ announcement }) {
   if (!announcement?.enabled || !announcement?.text) return null;
   return (
-    <div className="relative z-50 bg-mushaf-900 text-[0.85rem] text-white">
+    <div className="site-announcement relative z-50 bg-mushaf-900 text-[0.85rem] text-white">
       <div className="page-wrap flex min-h-9 items-center justify-center gap-3 py-1.5 text-center">
         <span className="hidden size-1.5 rotate-45 bg-gold-400 sm:inline-block" aria-hidden="true" />
         <span className="text-white/85">{announcement.text}</span>
@@ -33,7 +33,6 @@ export function WhatsAppFloat({ href, chatEnabled = false }) {
         <span className="absolute inset-0 animate-ping rounded-full bg-white/30 [animation-duration:2.4s]" aria-hidden="true" />
         <MessageCircle className="relative size-5" aria-hidden="true" />
       </span>
-      <span className="hidden sm:inline">Chat on WhatsApp</span>
     </a>
   );
 }

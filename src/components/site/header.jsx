@@ -69,13 +69,13 @@ export function SiteHeader({ menu, courses, brandName }) {
     <>
     <header
       className={clsx(
-        "sticky top-0 z-40 transition-[background-color,box-shadow,border-color] duration-200",
+        "site-header sticky top-0 z-40 transition-[background-color,box-shadow,border-color] duration-200",
         scrolled ? "border-b border-line bg-white/90 shadow-[0_8px_30px_-18px_rgb(13_58_43/0.35)] backdrop-blur-md" : "border-b border-transparent bg-white/90 backdrop-blur-sm",
       )}
     >
       <div className="page-wrap flex h-[4.5rem] items-center gap-3 sm:gap-6">
         <Link href="/" className="group flex shrink-0 items-center gap-3" aria-label={`${brandName} — home`}>
-          <img src="/brand/logo.webp" alt={brandName} width={160} height={64} className="h-14 w-auto max-w-[8rem] object-contain sm:max-w-[10rem]" />
+          <img src="/brand/logo-160.webp" alt={brandName} width={160} height={64} className="h-14 w-auto max-w-[8rem] object-contain sm:max-w-[10rem]" />
         </Link>
 
         <nav className="ml-auto hidden items-center gap-1 xl:flex" aria-label="Main">
@@ -147,14 +147,14 @@ export function SiteHeader({ menu, courses, brandName }) {
         <div className="ml-auto flex items-center gap-2 xl:ml-2">
           {/* A full document navigation removes the public third-party chat runtime before staff sign-in. */}
           {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-          <a href="/admin" className="btn portal-button whitespace-nowrap px-3 text-xs sm:px-5 sm:text-sm"><ShieldCheck className="size-4" aria-hidden="true" />Portal</a>
+          <a href="/admin" className="btn portal-button header-portal whitespace-nowrap px-3 text-xs sm:px-5 sm:text-sm"><ShieldCheck className="size-4" aria-hidden="true" />Portal</a>
           <Link href="/free-trial" className="btn btn-primary hidden sm:inline-flex">
             Free trial
             <ArrowRight className="size-4" aria-hidden="true" />
           </Link>
           <button
             type="button"
-            className="flex size-11 items-center justify-center rounded-full border border-line-strong text-ink xl:hidden"
+            className="mobile-menu-trigger flex size-11 items-center justify-center rounded-full border border-line-strong text-ink xl:hidden"
             onClick={() => setOpen(true)}
             ref={menuButtonRef}
             aria-label="Open menu"
@@ -213,6 +213,9 @@ export function SiteHeader({ menu, courses, brandName }) {
             ))}
           </nav>
           <div className="shrink-0 space-y-2 border-t border-line p-5">
+            {/* Full document navigation keeps public chat isolated from staff sign-in. */}
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+            <a href="/admin" className="btn portal-button w-full sm:hidden"><ShieldCheck className="size-4" aria-hidden="true" />Portal</a>
             <Link href="/locations" className="btn btn-outline w-full">Countries & cities</Link>
             <Link href="/free-trial" className="btn btn-primary w-full">
               Book a 7-day free trial
