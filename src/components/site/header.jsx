@@ -19,6 +19,15 @@ export function SiteHeader({ menu, courses, brandName }) {
   const closeTimer = useRef(null);
   const dialogRef = useRef(null);
   const menuButtonRef = useRef(null);
+  const coursesRef = useRef(null);
+  const coursesButtonRef = useRef(null);
+
+  useEffect(() => {
+    if (!coursesOpen) return;
+    const dismiss = (event) => { if (!coursesRef.current?.contains(event.target)) setCoursesOpen(false); };
+    document.addEventListener("pointerdown", dismiss);
+    return () => document.removeEventListener("pointerdown", dismiss);
+  }, [coursesOpen]);
 
   useEffect(() => {
     if (!open) return;
@@ -28,7 +37,7 @@ export function SiteHeader({ menu, courses, brandName }) {
     const handleKey = (event) => {
       if (event.key === "Escape") { setOpen(false); return; }
       if (event.key !== "Tab") return;
-      const items = [...dialog.querySelectorAll("a[href], button:not([disabled])")];
+      const items = [...dialog.querySelectorAll("a[href], button:not([disabled]), summary")].filter(item => item.getClientRects().length);
       const first = items[0], last = items.at(-1);
       if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
       else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
@@ -50,11 +59,21 @@ export function SiteHeader({ menu, courses, brandName }) {
   }, [pathname]);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    const previousOverflow = document.body.style.overflow;
+    if (open) document.body.style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
     };
   }, [open]);
+
+  useEffect(() => () => clearTimeout(closeTimer.current), []);
+
+  useEffect(() => {
+    const desktop = window.matchMedia("(min-width: 1280px)");
+    const onResize = () => { if (desktop.matches) setOpen(false); };
+    desktop.addEventListener("change", onResize);
+    return () => desktop.removeEventListener("change", onResize);
+  }, []);
 
   const openCourses = () => {
     clearTimeout(closeTimer.current);
@@ -81,26 +100,27 @@ export function SiteHeader({ menu, courses, brandName }) {
         <nav className="ml-auto hidden items-center gap-1 xl:flex" aria-label="Main">
           {menu.map((item) =>
             item.href === "/courses" && courses.length > 0 ? (
-              <div key={item.href} className="relative" onMouseEnter={openCourses} onMouseLeave={closeCoursesSoon}>
+              <div key={item.href} ref={coursesRef} className="relative" onMouseEnter={openCourses} onMouseLeave={closeCoursesSoon}
+                onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setCoursesOpen(false); }}
+                onKeyDown={(event) => { if (event.key === "Escape") { event.preventDefault(); clearTimeout(closeTimer.current); setCoursesOpen(false); coursesButtonRef.current?.focus(); } }}>
                 <button
                   type="button"
+                  ref={coursesButtonRef}
                   className={clsx(
                     "flex items-center gap-1 rounded-full px-3.5 py-2 text-[0.95rem] font-medium transition-colors",
                     isActive(pathname, item.href) ? "text-leaf-700" : "text-ink-soft hover:text-ink",
                   )}
                   aria-expanded={coursesOpen}
-                  aria-haspopup="true"
+                  aria-controls="desktop-course-links"
                   onClick={() => setCoursesOpen((v) => !v)}
-                  onFocus={openCourses}
                 >
                   {item.label}
                   <ChevronDown className={clsx("size-4 transition-transform", coursesOpen && "rotate-180")} aria-hidden="true" />
                 </button>
                 <div
-                  className={clsx(
-                    "absolute left-1/2 top-full w-[34rem] -translate-x-1/2 pt-3 transition-all duration-150",
-                    coursesOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-1 opacity-0",
-                  )}
+                  id="desktop-course-links"
+                  hidden={!coursesOpen}
+                  className="absolute left-1/2 top-full w-[34rem] -translate-x-1/2 pt-3"
                 >
                   <div className="surface overflow-hidden p-2 shadow-[var(--shadow-float)]">
                     <div className="grid grid-cols-2 gap-1">
@@ -109,7 +129,6 @@ export function SiteHeader({ menu, courses, brandName }) {
                           key={c.slug}
                           href={`/courses/${c.slug}`}
                           className="rounded-xl px-3.5 py-3 transition-colors hover:bg-leaf-50"
-                          onBlur={closeCoursesSoon}
                           onFocus={openCourses}
                         >
                           <span className="block text-[0.95rem] font-semibold text-ink">{c.title}</span>
@@ -159,6 +178,7 @@ export function SiteHeader({ menu, courses, brandName }) {
             ref={menuButtonRef}
             aria-label="Open menu"
             aria-expanded={open}
+            aria-controls="mobile-navigation"
           >
             <Menu className="size-5" aria-hidden="true" />
           </button>
@@ -178,6 +198,7 @@ export function SiteHeader({ menu, courses, brandName }) {
             open ? "translate-x-0" : "translate-x-full",
           )}
           ref={dialogRef}
+          id="mobile-navigation"
           role="dialog"
           aria-modal="true"
           aria-label="Menu"
@@ -193,6 +214,10 @@ export function SiteHeader({ menu, courses, brandName }) {
               <div key={item.href}>
                 <Link
                   href={item.href}
+                  onClick={() => setOpen(false)}
+                  target={item.opens_new_tab ? "_blank" : undefined}
+                  rel={item.opens_new_tab ? "noopener noreferrer" : undefined}
+                  aria-current={isActive(pathname, item.href) ? "page" : undefined}
                   className={clsx(
                     "flex items-center justify-between rounded-xl px-4 py-3 text-[1.02rem] font-medium",
                     isActive(pathname, item.href) ? "bg-leaf-50 text-leaf-700" : "text-ink hover:bg-leaf-50",
@@ -201,13 +226,14 @@ export function SiteHeader({ menu, courses, brandName }) {
                   {item.label}
                 </Link>
                 {item.href === "/courses" && courses.length > 0 && (
-                  <div className="mb-2 ml-4 border-l-2 border-gold-300 pl-3">
+                  <details className="mb-2 ml-4 border-l-2 border-gold-300 pl-3">
+                    <summary className="cursor-pointer rounded-lg px-3 py-3 text-sm font-semibold text-leaf-700">View individual courses</summary>
                     {courses.map((c) => (
-                      <Link key={c.slug} href={`/courses/${c.slug}`} className="block rounded-lg px-3 py-2 text-[0.92rem] text-ink-soft hover:text-leaf-700">
+                      <Link key={c.slug} href={`/courses/${c.slug}`} onClick={() => setOpen(false)} className="block rounded-lg px-3 py-3 text-[0.92rem] text-ink-soft hover:text-leaf-700">
                         {c.title}
                       </Link>
                     ))}
-                  </div>
+                  </details>
                 )}
               </div>
             ))}
@@ -216,8 +242,7 @@ export function SiteHeader({ menu, courses, brandName }) {
             {/* Full document navigation keeps public chat isolated from staff sign-in. */}
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
             <a href="/admin" className="btn portal-button w-full sm:hidden"><ShieldCheck className="size-4" aria-hidden="true" />Portal</a>
-            <Link href="/locations" className="btn btn-outline w-full">Countries & cities</Link>
-            <Link href="/free-trial" className="btn btn-primary w-full">
+            <Link href="/free-trial" onClick={() => setOpen(false)} className="btn btn-primary w-full">
               Book a 7-day free trial
             </Link>
 

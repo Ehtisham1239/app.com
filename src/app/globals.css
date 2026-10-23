@@ -233,15 +233,26 @@
 }
 
 /* Lightweight home motion uses compositor properties, with no hidden content dependency. */
-@keyframes home-arrive { from { transform: translateY(12px); opacity: .85; } to { transform: none; opacity: 1; } }
+@keyframes home-arrive { from { transform: translateY(24px); opacity: .35; } to { transform: none; opacity: 1; } }
 @keyframes portrait-arrive { from { transform: translateY(16px) scale(.985); } to { transform: none; } }
+@keyframes glow-drift { from { transform: translate(-20px, 15px) scale(.88); opacity: .25; } to { transform: translate(0, 0) scale(1); opacity: .65; } }
+.hero-glow { position: absolute; pointer-events: none; width: 24rem; height: 24rem; border-radius: 50%; opacity: .65; background: radial-gradient(circle, rgb(16 185 129 / .13), transparent 68%); }
+.hero-glow-one { right: -5rem; top: -8rem; }
+.hero-glow-two { left: -10rem; bottom: -10rem; }
+main section[id], main [id^="c-"], main [id^="t-"] { scroll-margin-top: 7rem; }
 @media (prefers-reduced-motion: no-preference) {
   .home-hero .hero-portrait { animation: portrait-arrive .9s ease-out both; }
-  .home-reveal { animation: home-arrive .65s ease-out both; }
+  .home-hero .hero-glow { animation: glow-drift 4.5s ease-out backwards; }
+  .home-hero .hero-actions { animation: home-arrive .7s ease-out backwards; }
+  .home-reveal { animation: home-arrive .65s cubic-bezier(.2,.65,.3,1) var(--reveal-delay, 0ms) backwards; }
   [data-home-motion] .surface { transition: transform .2s ease, box-shadow .2s ease; }
+  [data-home-motion] a.surface img { transition: transform .5s ease; }
+  [data-home-motion] .btn svg { transition: transform .2s ease; }
 }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   [data-home-motion] a.surface:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+  [data-home-motion] a.surface:hover img { transform: scale(1.035); }
+  [data-home-motion] .btn:hover svg { transform: translateX(3px); }
   .portal-button:hover svg { transform: rotate(-8deg); }
 }
 .portal-button { background: #f4fbf7; color: #006847; border: 1.5px solid #006847; box-shadow: 0 2px 8px rgb(0 104 71 / .08); }

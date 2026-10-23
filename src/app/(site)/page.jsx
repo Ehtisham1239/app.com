@@ -59,6 +59,9 @@ export default async function HomePage() {
       <HomeMotion />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
       <HomeHero hero={settings["site.hero"]} stats={settings["site.stats"]} />
+      <nav aria-label="On this page" className="page-wrap flex flex-wrap justify-center gap-2 py-5">
+        {[["#courses", "Courses"], ["#how-it-works", "How it works"], ...(homePlans.length ? [["#fees", "Fees"]] : []), ...(faqs.length ? [["#questions", "Questions"]] : [])].map(([href, label]) => <a key={href} href={href} className="home-jump rounded-full border border-leaf-100 bg-white px-5 py-3 text-sm font-semibold text-leaf-700 hover:bg-leaf-50">{label}</a>)}
+      </nav>
 
 
       <section id="about" className="bg-[#f4fbf7] py-16 sm:py-24">
@@ -77,7 +80,7 @@ export default async function HomePage() {
           { href: "/learn", image: "adult-arabic-learning", alt: "Adult learner taking notes during an online lesson", title: "Find your learning path", text: "Guides for parents, adults and recitation learners." },
         ].map(item => <Link key={item.href} href={item.href} className="surface overflow-hidden"><ContentImage src={`/images/learning/${item.image}-1200.webp`} alt={item.alt} sizes="(max-width: 639px) 100vw, (max-width: 1024px) 33vw, 380px" className="aspect-[3/2] w-full object-cover" /><div className="p-6"><h2 className="text-xl">{item.title}</h2><p className="mt-2 text-sm text-ink-soft">{item.text}</p></div></Link>)}
       </section>
-      <section className="bg-[#f4fbf7] py-20 sm:py-24" aria-labelledby="courses-heading">
+      <section id="courses" className="bg-[#f4fbf7] py-20 sm:py-24" aria-labelledby="courses-heading">
         <div className="page-wrap"><div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
             align="left"
@@ -94,7 +97,7 @@ export default async function HomePage() {
         </div></div>
       </section>
 
-      <section className="bg-white py-16 sm:py-24"><div className="page-wrap grid items-center gap-10 lg:grid-cols-2"><ContentImage src="/images/learning/noorani-qaida-child-1200.webp" alt="Child practising Arabic letters with a parent beside a laptop" className="aspect-[3/2] w-full rounded-[2rem] object-cover" sizes="(max-width: 1024px) 100vw, 560px" /><div><h2 className="text-3xl text-leaf-700">Personal teaching, at your learner’s pace</h2><ul className="mt-6 space-y-4 text-ink-soft"><li>Live one-to-one lessons for children and adults.</li><li>A course path from first Arabic letters to recitation and memorisation.</li><li>Class times discussed around your family’s local routine.</li><li>Speak with a coordinator before confirming your course and fees.</li></ul><Link className="btn btn-primary mt-6" href="/free-trial">Book a free trial</Link></div></div></section>
+
       <section className="border-y border-line bg-[#f4fbf7] py-20 sm:py-24">
         <div className="page-wrap">
           <SectionHeading
@@ -108,7 +111,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-white py-20 sm:py-24">
+      <section id="how-it-works" className="relative overflow-hidden bg-white py-20 sm:py-24">
         <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.07]" aria-hidden="true" />
         <div className="page-wrap relative">
           <SectionHeading eyebrow="Quick onboarding" title="How We Work" />
@@ -124,7 +127,7 @@ export default async function HomePage() {
       </section>
 
       {homePlans.length > 0 && (
-        <section className="page-wrap py-20 sm:py-24" aria-labelledby="fees-heading">
+        <section id="fees" className="page-wrap py-20 sm:py-24" aria-labelledby="fees-heading">
           <SectionHeading
             eyebrow="Fees"
             title={<span id="fees-heading">Simple monthly packages</span>}
@@ -141,11 +144,10 @@ export default async function HomePage() {
         </section>
       )}
 
-      {(
+      {teachers.length > 0 && (
         <section className="border-t border-line bg-white/60 py-20 sm:py-24">
           <div className="page-wrap">
             <SectionHeading eyebrow="Our faculty" title="Meet Our Tutors" intro="Discuss teacher availability and your learner’s needs with the coordinator." />
-            {teachers.length === 0 && <p className="mt-8 text-center text-ink-soft">Ask the college about available tutors, teaching experience and a suitable trial lesson. <Link className="font-semibold text-leaf-700 underline" href="/contact">Speak with the coordinator</Link>.</p>}
             <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {teachers.slice(0, 4).map((t) => (
                 <TeacherCard key={t.id} teacher={t} />
@@ -157,20 +159,20 @@ export default async function HomePage() {
 
 
       <section id="contact" className="bg-white py-16 sm:py-24"><div className="page-wrap max-w-3xl"><SectionHeading eyebrow="Contact the college" title="Send A Message" intro="Have questions about a course or class schedule? Our coordinators can help." /><div className="mt-8"><HomeContact consentText={settings["site.forms"]?.consent_text} successText={settings["site.forms"]?.contact_success} /></div></div></section>
-      {(
+      {testimonials.length > 0 && (
         <section className="page-wrap py-20 sm:py-24">
           <SectionHeading eyebrow="Testimonials" title="Our Success Stories" />
           <div className="mt-12">
-            {testimonials.length ? <Testimonials items={testimonials.slice(0, 6)} /> : <p className="text-center text-ink-soft">Family feedback will appear here when available. Ask the coordinator how lessons and progress reviews work before booking.</p>}
+            <Testimonials items={testimonials.slice(0, 6)} />
           </div>
         </section>
       )}
 
       {faqs.length > 0 && (
-        <section className="border-t border-line py-20 sm:py-24">
+        <section id="questions" className="border-t border-line py-20 sm:py-24">
           <div className="page-wrap grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
-              <SectionHeading align="left" eyebrow="Questions" title="Answers before you begin" intro="Everything parents usually ask us before the first class. Can't find yours? We reply on WhatsApp quickly." />
+              <SectionHeading align="left" eyebrow="Questions" title="Answers before you begin" intro="Find answers about lessons, teachers and getting started. For help with your own situation, send the college a message." />
               <Link href="/faq" className="btn btn-outline mt-8">
                 All questions <ArrowRight className="size-4" aria-hidden="true" />
               </Link>

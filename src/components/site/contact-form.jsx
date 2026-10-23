@@ -3,7 +3,7 @@ import { announceLeadSaved } from "@/lib/conversion-events";
 
 import Link from "next/link";
 import { captureAttribution } from "@/lib/attribution";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CheckCircle2, Loader2, Send } from "lucide-react";
 import { getPublicBrowserClient } from "@/lib/supabase/public";
 import { COUNTRIES } from "@/lib/constants";
@@ -11,9 +11,16 @@ import { COUNTRIES } from "@/lib/constants";
 const SUBJECTS = ["Course enquiry", "Fees and payment", "Class timings", "Teacher request", "Existing student support", "Partnership", "Other"];
 
 export function ContactForm({ consentText, successText }) {
+  const formRef = useRef(null);
+  const successRef = useRef(null);
   const [form, setForm] = useState({ name: "", email: "", phone: "", country: "", subject: SUBJECTS[0], message: "", consent: false, website: "" });
   const [errors, setErrors] = useState({});
   const [state, setState] = useState({ sending: false, error: "", done: null });
+  useEffect(() => {
+    const first = Object.keys(errors)[0];
+    if (first) formRef.current?.querySelector(`#c-${first}`)?.focus();
+  }, [errors]);
+  useEffect(() => { if (state.done) successRef.current?.focus(); }, [state.done]);
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
 
   async function submit(e) {
@@ -40,8 +47,8 @@ export function ContactForm({ consentText, successText }) {
     return (
       <div className="surface p-8 text-center sm:p-10" role="status">
         <CheckCircle2 className="mx-auto size-14 text-leaf-600" aria-hidden="true" />
-        <h2 className="mt-4 text-[1.8rem] text-mushaf-900">Message sent</h2>
-        <p className="mx-auto mt-2 max-w-md text-ink-soft">{successText}</p>
+        <h2 ref={successRef} tabIndex={-1} className="mt-4 text-[1.8rem] text-mushaf-900">Message sent</h2>
+        <p className="mx-auto mt-2 max-w-md text-ink-soft">{successText || "Thank you. Our coordinator will reply using the contact details you provided."}</p>
         {state.done !== "MSG-RECEIVED" && state.done !== "sent" && (
           <p className="mt-4 inline-flex rounded-full bg-gold-50 px-4 py-1.5 font-mono text-sm font-semibold text-gold-700 ring-1 ring-gold-100">Reference: {state.done}</p>
         )}
@@ -51,13 +58,14 @@ export function ContactForm({ consentText, successText }) {
 
   const err = (k) =>
     errors[k] ? (
-      <p className="mt-1.5 text-[0.82rem] font-medium text-rose-600" role="alert">
+      <p id={`c-${k}-error`} className="mt-1.5 text-[0.82rem] font-medium text-rose-600" role="alert">
         {errors[k]}
       </p>
     ) : null;
 
   return (
-    <form onSubmit={submit} noValidate className="surface min-w-0 space-y-5 p-6 shadow-[var(--shadow-lift)] sm:p-8">
+    <form ref={formRef} onSubmit={submit} noValidate aria-busy={state.sending} className="surface min-w-0 space-y-5 p-6 shadow-[var(--shadow-lift)] sm:p-8">
+      <p className="text-sm text-ink-soft">Your name, email and message are required. Phone and country are optional.</p>
       <div className="absolute -left-[9999px]" aria-hidden="true">
         <input tabIndex={-1} autoComplete="off" value={form.website} onChange={(e) => set("website", e.target.value)} />
       </div>
@@ -66,14 +74,14 @@ export function ContactForm({ consentText, successText }) {
           <label htmlFor="c-name" className="field-label">
             Your name
           </label>
-          <input id="c-name" className="input" value={form.name} onChange={(e) => set("name", e.target.value)} autoComplete="name" aria-invalid={Boolean(errors.name)} />
+          <input id="c-name" className="input" value={form.name} onChange={(e) => set("name", e.target.value)} autoComplete="name" required maxLength={120} aria-describedby={errors.name ? "c-name-error" : undefined} aria-invalid={Boolean(errors.name)} />
           {err("name")}
         </div>
         <div>
           <label htmlFor="c-email" className="field-label">
             Email
           </label>
-          <input id="c-email" type="email" className="input" value={form.email} onChange={(e) => set("email", e.target.value)} autoComplete="email" aria-invalid={Boolean(errors.email)} />
+          <input id="c-email" type="email" className="input" value={form.email} onChange={(e) => set("email", e.target.value)} autoComplete="email" required maxLength={254} aria-describedby={errors.email ? "c-email-error" : undefined} aria-invalid={Boolean(errors.email)} />
           {err("email")}
         </div>
       </div>
@@ -110,13 +118,13 @@ export function ContactForm({ consentText, successText }) {
         <label htmlFor="c-message" className="field-label">
           Message
         </label>
-        <textarea id="c-message" className="textarea" rows={5} value={form.message} onChange={(e) => set("message", e.target.value)} maxLength={5000} aria-invalid={Boolean(errors.message)} />
+        <textarea id="c-message" className="textarea" rows={5} value={form.message} onChange={(e) => set("message", e.target.value)} required maxLength={5000} aria-describedby={errors.message ? "c-message-error" : undefined} aria-invalid={Boolean(errors.message)} />
         {err("message")}
       </div>
       <label className="flex gap-3 text-[0.9rem] leading-relaxed text-ink">
-        <input type="checkbox" className="check mt-0.5 shrink-0" checked={form.consent} onChange={(e) => set("consent", e.target.checked)} />
+        <input id="c-consent" type="checkbox" className="check mt-0.5 shrink-0" checked={form.consent} onChange={(e) => set("consent", e.target.checked)} required aria-invalid={Boolean(errors.consent)} aria-describedby={errors.consent ? "c-consent-error" : undefined} />
         <span>
-          {consentText}{" "}
+          {consentText || "I agree that the college may contact me about this enquiry."}{" "}
           <Link href="/privacy-policy" className="font-semibold text-leaf-700 underline underline-offset-2" target="_blank">
             Privacy policy
           </Link>

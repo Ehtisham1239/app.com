@@ -6,7 +6,7 @@ import { LOCATIONS, locationTimeZone } from "@/lib/locations";
 import Link from "next/link";
 import { captureAttribution } from "@/lib/attribution";
 import { useSearchParams } from "next/navigation";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { clsx } from "clsx";
 import { ArrowLeft, ArrowRight, Check, CheckCircle2, Loader2, MessageCircle } from "lucide-react";
 import { getPublicBrowserClient } from "@/lib/supabase/public";
@@ -62,10 +62,10 @@ function Chip({ active, onClick, children }) {
   );
 }
 
-function FieldError({ children }) {
+function FieldError({ children, id }) {
   if (!children) return null;
   return (
-    <p className="mt-1.5 text-[0.82rem] font-medium text-rose-600" role="alert">
+    <p id={id} className="mt-1.5 text-[0.82rem] font-medium text-rose-600" role="alert">
       {children}
     </p>
   );
@@ -74,9 +74,21 @@ function FieldError({ children }) {
 export function TrialForm({ courses = [], plans = [], consentText, successText, whatsappHref }) {
   const params = useSearchParams();
   const topRef = useRef(null);
+  const stepHeadingRef = useRef(null);
+  const successRef = useRef(null);
+  const previousStep = useRef(0);
   const [step, setStep] = useState(0);
   const [errors, setErrors] = useState({});
   const [state, setState] = useState({ sending: false, error: "", reference: null });
+  useEffect(() => {
+    if (previousStep.current !== step) { stepHeadingRef.current?.focus({ preventScroll: true }); previousStep.current = step; }
+  }, [step]);
+  useEffect(() => {
+    const fields = { learner_name: "#t-name", age_band: "#t-age-group button", guardian_name: "#t-guardian", country: "#t-country", email: "#t-email", phone: "#t-phone", consent: "#t-consent" };
+    const first = Object.keys(errors)[0];
+    if (first) topRef.current?.querySelector(fields[first])?.focus();
+  }, [errors]);
+  useEffect(() => { if (state.reference) successRef.current?.focus(); }, [state.reference]);
   const [form, setForm] = useState(() => {
     // Pre-fill from links such as /free-trial?course=<id>&plan=<id>, and guess the country from the time zone.
     const tz = browserTimeZone();
@@ -135,7 +147,7 @@ export function TrialForm({ courses = [], plans = [], consentText, successText, 
   function goTo(next) {
     setStep(next);
     setState((s) => ({ ...s, error: "" }));
-    requestAnimationFrame(() => topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
+    requestAnimationFrame(() => topRef.current?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" }));
   }
 
   function next() {
@@ -184,7 +196,7 @@ export function TrialForm({ courses = [], plans = [], consentText, successText, 
     }
     announceLeadSaved({ formType: "trial", country: form.country, reference: data?.reference, honeypot: form.website });
     setState({ sending: false, error: "", reference: data?.reference ?? "sent" });
-    requestAnimationFrame(() => topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
+    requestAnimationFrame(() => topRef.current?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" }));
   }
 
   if (state.reference) {
@@ -195,7 +207,7 @@ export function TrialForm({ courses = [], plans = [], consentText, successText, 
           <span className="mx-auto flex size-16 items-center justify-center rounded-full bg-white text-leaf-600 shadow-sm ring-1 ring-leaf-100">
             <CheckCircle2 className="size-9" aria-hidden="true" />
           </span>
-          <h2 className="mt-5 text-[2rem] text-mushaf-900">Request received</h2>
+          <h2 ref={successRef} tabIndex={-1} className="mt-5 text-[2rem] text-mushaf-900">Request received</h2>
           <p className="mx-auto mt-3 max-w-md text-[1.02rem] leading-relaxed text-ink-soft">{successText}</p>
           {showRef && (
             <p className="mt-5 inline-flex rounded-full bg-white px-4 py-1.5 font-mono text-sm font-semibold text-gold-700 ring-1 ring-gold-100">Reference: {state.reference}</p>
@@ -229,7 +241,7 @@ export function TrialForm({ courses = [], plans = [], consentText, successText, 
   const inputCls = (k) => clsx(k === "select" ? "select" : "input");
 
   return (
-    <form ref={topRef} onSubmit={submit} noValidate className="surface scroll-mt-28 overflow-hidden shadow-[var(--shadow-lift)]">
+    <form ref={topRef} onSubmit={submit} noValidate aria-busy={state.sending} className="surface scroll-mt-28 overflow-hidden shadow-[var(--shadow-lift)]">
       <div className="absolute -left-[9999px]" aria-hidden="true">
         <label>
           Website
@@ -263,7 +275,7 @@ export function TrialForm({ courses = [], plans = [], consentText, successText, 
           <p className="text-xs font-bold uppercase tracking-[0.18em] text-gold-700">
             Step {step + 1} of {STEPS.length}
           </p>
-          <h2 className="mt-1 text-[1.7rem] text-mushaf-900">{STEPS[step].hint}</h2>
+          <h2 ref={stepHeadingRef} tabIndex={-1} className="mt-1 text-[1.7rem] text-mushaf-900">{STEPS[step].hint}</h2>
         </div>
 
         {step === 0 && (
@@ -272,11 +284,11 @@ export function TrialForm({ courses = [], plans = [], consentText, successText, 
               <label htmlFor="t-name" className="field-label">
                 Learner’s full name
               </label>
-              <input id="t-name" className="input" value={form.learner_name} onChange={(e) => set("learner_name", e.target.value)} autoComplete="name" maxLength={120} aria-invalid={Boolean(errors.learner_name)} />
-              <FieldError>{errors.learner_name}</FieldError>
+              <input id="t-name" className="input" value={form.learner_name} onChange={(e) => set("learner_name", e.target.value)} autoComplete="name" maxLength={120} aria-invalid={Boolean(errors.learner_name)} aria-describedby={errors.learner_name ? "t-learner_name-error" : undefined} aria-required="true" />
+              <FieldError id="t-learner_name-error">{errors.learner_name}</FieldError>
             </div>
 
-            <fieldset>
+            <fieldset id="t-age-group" aria-describedby={errors.age_band ? "t-age_band-error" : undefined}>
               <legend className="field-label">Age group</legend>
               <div className="flex flex-wrap gap-2">
                 {AGE_BANDS.map((a) => (
@@ -285,7 +297,7 @@ export function TrialForm({ courses = [], plans = [], consentText, successText, 
                   </Chip>
                 ))}
               </div>
-              <FieldError>{errors.age_band}</FieldError>
+              <FieldError id="t-age_band-error">{errors.age_band}</FieldError>
             </fieldset>
 
             {isChild && (
@@ -293,8 +305,8 @@ export function TrialForm({ courses = [], plans = [], consentText, successText, 
                 <label htmlFor="t-guardian" className="field-label">
                   Parent or guardian’s name
                 </label>
-                <input id="t-guardian" className="input" value={form.guardian_name} onChange={(e) => set("guardian_name", e.target.value)} maxLength={120} aria-invalid={Boolean(errors.guardian_name)} />
-                <FieldError>{errors.guardian_name}</FieldError>
+                <input id="t-guardian" className="input" value={form.guardian_name} onChange={(e) => set("guardian_name", e.target.value)} maxLength={120} aria-invalid={Boolean(errors.guardian_name)} aria-describedby={errors.guardian_name ? "t-guardian_name-error" : undefined} aria-required="true" />
+                <FieldError id="t-guardian_name-error">{errors.guardian_name}</FieldError>
               </div>
             )}
 
@@ -351,13 +363,13 @@ export function TrialForm({ courses = [], plans = [], consentText, successText, 
                 <label htmlFor="t-country" className="field-label">
                   Country
                 </label>
-                <select id="t-country" className={inputCls("select")} value={form.country} onChange={(e) => set("country", e.target.value)} aria-invalid={Boolean(errors.country)}>
+                <select id="t-country" className={inputCls("select")} value={form.country} onChange={(e) => set("country", e.target.value)} aria-invalid={Boolean(errors.country)} aria-describedby={errors.country ? "t-country-error" : undefined} aria-required="true">
                   <option value="">Choose…</option>
                   {COUNTRIES.map(([n]) => (
                     <option key={n}>{n}</option>
                   ))}
                 </select>
-                <FieldError>{errors.country}</FieldError>
+                <FieldError id="t-country-error">{errors.country}</FieldError>
               </div>
               <div>
                 <label htmlFor="t-city" className="field-label">
@@ -441,15 +453,15 @@ export function TrialForm({ courses = [], plans = [], consentText, successText, 
                 <label htmlFor="t-email" className="field-label">
                   Email
                 </label>
-                <input id="t-email" type="email" className="input" value={form.email} onChange={(e) => set("email", e.target.value)} autoComplete="email" maxLength={254} aria-invalid={Boolean(errors.email)} />
-                <FieldError>{errors.email}</FieldError>
+                <input id="t-email" type="email" className="input" value={form.email} onChange={(e) => set("email", e.target.value)} autoComplete="email" maxLength={254} aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? "t-email-error" : undefined} aria-required="true" />
+                <FieldError id="t-email-error">{errors.email}</FieldError>
               </div>
               <div>
                 <label htmlFor="t-phone" className="field-label">
                   Phone / WhatsApp
                 </label>
-                <input id="t-phone" type="tel" className="input" placeholder="+44 7700 900123" value={form.phone} onChange={(e) => set("phone", e.target.value)} autoComplete="tel" maxLength={24} aria-invalid={Boolean(errors.phone)} />
-                <FieldError>{errors.phone}</FieldError>
+                <input id="t-phone" type="tel" className="input" placeholder="+44 7700 900123" value={form.phone} onChange={(e) => set("phone", e.target.value)} autoComplete="tel" maxLength={24} aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? "t-phone-error" : undefined} aria-required="true" />
+                <FieldError id="t-phone-error">{errors.phone}</FieldError>
                 <label className="mt-2 flex items-center gap-2 text-[0.88rem] text-ink-soft">
                   <input type="checkbox" className="check" checked={form.phone_is_whatsapp} onChange={(e) => set("phone_is_whatsapp", e.target.checked)} />
                   This number is on WhatsApp
@@ -472,7 +484,7 @@ export function TrialForm({ courses = [], plans = [], consentText, successText, 
             </div>
             <div className="space-y-3 rounded-xl bg-paper/70 p-4">
               <label className="flex gap-3 text-[0.9rem] leading-relaxed text-ink">
-                <input type="checkbox" className="check mt-0.5 shrink-0" checked={form.consent} onChange={(e) => set("consent", e.target.checked)} aria-invalid={Boolean(errors.consent)} />
+                <input id="t-consent" type="checkbox" className="check mt-0.5 shrink-0" checked={form.consent} onChange={(e) => set("consent", e.target.checked)} aria-invalid={Boolean(errors.consent)} aria-describedby={errors.consent ? "t-consent-error" : undefined} aria-required="true" />
                 <span>
                   {consentText}{" "}
                   <Link href="/privacy-policy" className="font-semibold text-leaf-700 underline underline-offset-2" target="_blank">
@@ -480,7 +492,7 @@ export function TrialForm({ courses = [], plans = [], consentText, successText, 
                   </Link>
                 </span>
               </label>
-              <FieldError>{errors.consent}</FieldError>
+              <FieldError id="t-consent-error">{errors.consent}</FieldError>
               <label className="flex gap-3 text-[0.88rem] leading-relaxed text-ink-soft">
                 <input type="checkbox" className="check mt-0.5 shrink-0" checked={form.marketing_opt_in} onChange={(e) => set("marketing_opt_in", e.target.checked)} />
                 <span>Send me occasional news about courses and offers (optional).</span>

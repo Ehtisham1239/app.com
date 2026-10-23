@@ -35,7 +35,7 @@ export function SiteFooter({ settings, menus }) {
       <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.07]" aria-hidden="true" />
       <div className="page-wrap relative grid gap-12 py-16 md:grid-cols-12">
         <div className="md:col-span-4">
-          <img src="/brand/logo.webp" alt={identity.name ?? "Online Quran College"} width={180} height={72} className="h-20 w-auto rounded-lg bg-white p-2" />
+          <img src="/brand/logo-160.webp" alt={identity.name ?? "Online Quran College"} width={160} height={160} loading="lazy" decoding="async" className="h-20 w-auto rounded-lg bg-white p-2" />
           <p className="mt-6 max-w-sm text-[0.95rem] leading-relaxed text-white/70">{identity.tagline}</p>
           <div className="mt-6 space-y-2.5 text-[0.95rem]">
             {contact.email && (
@@ -84,9 +84,11 @@ export function SiteFooter({ settings, menus }) {
                 <ArrowUpRight className="size-3.5" aria-hidden="true" />
               </a>
             ))}
-            <Link href="/admin" className="rounded-full px-3 py-1 text-white/40 hover:text-white/70">
+            {/* Full document navigation clears the public chat runtime before staff sign-in. */}
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+            <a href="/admin" className="inline-flex min-h-11 items-center rounded-full px-3 py-1 text-white/75 hover:text-white">
               Portal
-            </Link>
+            </a>
           </div>
         </div>
       </div>
