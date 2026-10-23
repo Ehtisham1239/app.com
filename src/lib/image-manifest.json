@@ -1,28 +1,46 @@
 [
   {
-    "name": "usa-online-quran-learning",
-    "url": "/images/learning/usa-online-quran-learning-1200.webp",
+    "name": "adult-arabic-learning",
+    "url": "/images/learning/adult-arabic-learning-1200.webp",
     "width": 1200,
     "height": 800,
-    "alt": "Child and parent reviewing a beginner Arabic workbook beside a laptop at home",
+    "alt": "Adult learner attending an online language lesson with a laptop and notebook",
     "variants": [
       {
-        "url": "/images/learning/usa-online-quran-learning-400.webp",
+        "url": "/images/learning/adult-arabic-learning-400.webp",
         "width": 400,
-        "bytes": 23592
+        "bytes": 20966
       },
       {
-        "url": "/images/learning/usa-online-quran-learning-800.webp",
+        "url": "/images/learning/adult-arabic-learning-800.webp",
         "width": 800,
-        "bytes": 58950
+        "bytes": 48722
       },
       {
-        "url": "/images/learning/usa-online-quran-learning-1200.webp",
+        "url": "/images/learning/adult-arabic-learning-1200.webp",
         "width": 1200,
-        "bytes": 99808
+        "bytes": 78368
       }
     ],
-    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/generated/2026-10/usa-online-quran-learning-1200.webp"
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/generated/2026-10/adult-arabic-learning-1200.webp",
+    "kind": "photo",
+    "avif": [
+      {
+        "url": "/images/learning/adult-arabic-learning-400.avif",
+        "width": 400,
+        "bytes": 10661
+      },
+      {
+        "url": "/images/learning/adult-arabic-learning-800.avif",
+        "width": 800,
+        "bytes": 25516
+      },
+      {
+        "url": "/images/learning/adult-arabic-learning-1200.avif",
+        "width": 1200,
+        "bytes": 43282
+      }
+    ]
   },
   {
     "name": "australia-online-quran-learning",
@@ -47,107 +65,799 @@
         "bytes": 109582
       }
     ],
-    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/generated/2026-10/australia-online-quran-learning-1200.webp"
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/generated/2026-10/australia-online-quran-learning-1200.webp",
+    "kind": "photo",
+    "avif": [
+      {
+        "url": "/images/learning/australia-online-quran-learning-400.avif",
+        "width": 400,
+        "bytes": 13233
+      },
+      {
+        "url": "/images/learning/australia-online-quran-learning-800.avif",
+        "width": 800,
+        "bytes": 32758
+      },
+      {
+        "url": "/images/learning/australia-online-quran-learning-1200.avif",
+        "width": 1200,
+        "bytes": 59030
+      }
+    ]
   },
   {
-    "name": "noorani-qaida-child",
-    "url": "/images/learning/noorani-qaida-child-1200.webp",
+    "name": "blog-accessible-setup",
+    "url": "/images/learning/blog-accessible-setup-1200.webp",
     "width": 1200,
     "height": 800,
-    "alt": "Child practising beginner Arabic letters in a Qaida workbook with a parent",
+    "alt": "Organised online learning desk with raised laptop, separate keyboard, headphones and task lamp",
+    "kind": "photo",
     "variants": [
       {
-        "url": "/images/learning/noorani-qaida-child-400.webp",
+        "url": "/images/learning/blog-accessible-setup-400.webp",
         "width": 400,
-        "bytes": 22676
+        "bytes": 18446
       },
       {
-        "url": "/images/learning/noorani-qaida-child-800.webp",
+        "url": "/images/learning/blog-accessible-setup-800.webp",
         "width": 800,
-        "bytes": 57240
+        "bytes": 46706
       },
       {
-        "url": "/images/learning/noorani-qaida-child-1200.webp",
+        "url": "/images/learning/blog-accessible-setup-1200.webp",
         "width": 1200,
-        "bytes": 95390
+        "bytes": 76738
       }
     ],
-    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/generated/2026-10/noorani-qaida-child-1200.webp"
+    "avif": [
+      {
+        "url": "/images/learning/blog-accessible-setup-400.avif",
+        "width": 400,
+        "bytes": 9830
+      },
+      {
+        "url": "/images/learning/blog-accessible-setup-800.avif",
+        "width": 800,
+        "bytes": 24440
+      },
+      {
+        "url": "/images/learning/blog-accessible-setup-1200.avif",
+        "width": 1200,
+        "bytes": 41209
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/blog-accessible-setup-1200.webp"
   },
   {
-    "name": "quran-recitation-hifz",
-    "url": "/images/learning/quran-recitation-hifz-1200.webp",
+    "name": "blog-adult-beginner",
+    "url": "/images/learning/blog-adult-beginner-1200.webp",
     "width": 1200,
     "height": 800,
-    "alt": "Student reviewing recitation from an open book on a wooden book stand",
+    "alt": "Adult beginner in a sage hijab studying a workbook during an online lesson at home",
+    "kind": "photo",
     "variants": [
       {
-        "url": "/images/learning/quran-recitation-hifz-400.webp",
+        "url": "/images/learning/blog-adult-beginner-400.webp",
         "width": 400,
-        "bytes": 22844
+        "bytes": 13036
       },
       {
-        "url": "/images/learning/quran-recitation-hifz-800.webp",
+        "url": "/images/learning/blog-adult-beginner-800.webp",
         "width": 800,
-        "bytes": 55930
+        "bytes": 31018
       },
       {
-        "url": "/images/learning/quran-recitation-hifz-1200.webp",
+        "url": "/images/learning/blog-adult-beginner-1200.webp",
         "width": 1200,
-        "bytes": 91044
+        "bytes": 51336
       }
     ],
-    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/generated/2026-10/quran-recitation-hifz-1200.webp"
+    "avif": [
+      {
+        "url": "/images/learning/blog-adult-beginner-400.avif",
+        "width": 400,
+        "bytes": 7184
+      },
+      {
+        "url": "/images/learning/blog-adult-beginner-800.avif",
+        "width": 800,
+        "bytes": 17288
+      },
+      {
+        "url": "/images/learning/blog-adult-beginner-1200.avif",
+        "width": 1200,
+        "bytes": 29359
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/blog-adult-beginner-1200.webp"
   },
   {
-    "name": "adult-arabic-learning",
-    "url": "/images/learning/adult-arabic-learning-1200.webp",
+    "name": "blog-australia-schedule",
+    "url": "/images/learning/blog-australia-schedule-1200.webp",
     "width": 1200,
     "height": 800,
-    "alt": "Adult learner attending an online language lesson with a laptop and notebook",
+    "alt": "Sunlit study desk with a clock, weekly planner and laptop for scheduling online lessons",
+    "kind": "photo",
     "variants": [
       {
-        "url": "/images/learning/adult-arabic-learning-400.webp",
+        "url": "/images/learning/blog-australia-schedule-400.webp",
         "width": 400,
-        "bytes": 20966
+        "bytes": 19004
       },
       {
-        "url": "/images/learning/adult-arabic-learning-800.webp",
+        "url": "/images/learning/blog-australia-schedule-800.webp",
         "width": 800,
-        "bytes": 48722
+        "bytes": 47092
       },
       {
-        "url": "/images/learning/adult-arabic-learning-1200.webp",
+        "url": "/images/learning/blog-australia-schedule-1200.webp",
         "width": 1200,
-        "bytes": 78368
+        "bytes": 79722
       }
     ],
-    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/generated/2026-10/adult-arabic-learning-1200.webp"
+    "avif": [
+      {
+        "url": "/images/learning/blog-australia-schedule-400.avif",
+        "width": 400,
+        "bytes": 10507
+      },
+      {
+        "url": "/images/learning/blog-australia-schedule-800.avif",
+        "width": 800,
+        "bytes": 26513
+      },
+      {
+        "url": "/images/learning/blog-australia-schedule-1200.avif",
+        "width": 1200,
+        "bytes": 45552
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/blog-australia-schedule-1200.webp"
   },
   {
-    "name": "translation-study",
-    "url": "/images/learning/translation-study-1200.webp",
+    "name": "blog-enrolment-questions",
+    "url": "/images/learning/blog-enrolment-questions-1200.webp",
     "width": 1200,
     "height": 800,
-    "alt": "Adult learner comparing open books and taking translation study notes",
+    "alt": "Parent preparing an enrolment checklist beside a laptop, calendar and notebook",
+    "kind": "photo",
     "variants": [
       {
-        "url": "/images/learning/translation-study-400.webp",
+        "url": "/images/learning/blog-enrolment-questions-400.webp",
         "width": 400,
-        "bytes": 22954
+        "bytes": 19072
       },
       {
-        "url": "/images/learning/translation-study-800.webp",
+        "url": "/images/learning/blog-enrolment-questions-800.webp",
         "width": 800,
-        "bytes": 58592
+        "bytes": 49958
       },
       {
-        "url": "/images/learning/translation-study-1200.webp",
+        "url": "/images/learning/blog-enrolment-questions-1200.webp",
         "width": 1200,
-        "bytes": 98356
+        "bytes": 87314
       }
     ],
-    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/generated/2026-10/translation-study-1200.webp"
+    "avif": [
+      {
+        "url": "/images/learning/blog-enrolment-questions-400.avif",
+        "width": 400,
+        "bytes": 10173
+      },
+      {
+        "url": "/images/learning/blog-enrolment-questions-800.avif",
+        "width": 800,
+        "bytes": 27664
+      },
+      {
+        "url": "/images/learning/blog-enrolment-questions-1200.avif",
+        "width": 1200,
+        "bytes": 48466
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/blog-enrolment-questions-1200.webp"
+  },
+  {
+    "name": "blog-family-siblings",
+    "url": "/images/learning/blog-family-siblings-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Two siblings using separate study spaces with a parent helping the younger learner",
+    "kind": "photo",
+    "variants": [
+      {
+        "url": "/images/learning/blog-family-siblings-400.webp",
+        "width": 400,
+        "bytes": 17522
+      },
+      {
+        "url": "/images/learning/blog-family-siblings-800.webp",
+        "width": 800,
+        "bytes": 43322
+      },
+      {
+        "url": "/images/learning/blog-family-siblings-1200.webp",
+        "width": 1200,
+        "bytes": 71992
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/learning/blog-family-siblings-400.avif",
+        "width": 400,
+        "bytes": 9929
+      },
+      {
+        "url": "/images/learning/blog-family-siblings-800.avif",
+        "width": 800,
+        "bytes": 24846
+      },
+      {
+        "url": "/images/learning/blog-family-siblings-1200.avif",
+        "width": 1200,
+        "bytes": 41935
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/blog-family-siblings-1200.webp"
+  },
+  {
+    "name": "blog-feedback-practice",
+    "url": "/images/learning/blog-feedback-practice-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Teenage learner listening to feedback on headphones and taking notes beside a laptop",
+    "kind": "photo",
+    "variants": [
+      {
+        "url": "/images/learning/blog-feedback-practice-400.webp",
+        "width": 400,
+        "bytes": 17066
+      },
+      {
+        "url": "/images/learning/blog-feedback-practice-800.webp",
+        "width": 800,
+        "bytes": 41388
+      },
+      {
+        "url": "/images/learning/blog-feedback-practice-1200.webp",
+        "width": 1200,
+        "bytes": 69042
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/learning/blog-feedback-practice-400.avif",
+        "width": 400,
+        "bytes": 9256
+      },
+      {
+        "url": "/images/learning/blog-feedback-practice-800.avif",
+        "width": 800,
+        "bytes": 23053
+      },
+      {
+        "url": "/images/learning/blog-feedback-practice-1200.avif",
+        "width": 1200,
+        "bytes": 39572
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/blog-feedback-practice-1200.webp"
+  },
+  {
+    "name": "blog-first-trial",
+    "url": "/images/learning/blog-first-trial-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Mother and child greeting an online teacher on a laptop at the start of a lesson",
+    "kind": "photo",
+    "variants": [
+      {
+        "url": "/images/learning/blog-first-trial-400.webp",
+        "width": 400,
+        "bytes": 17674
+      },
+      {
+        "url": "/images/learning/blog-first-trial-800.webp",
+        "width": 800,
+        "bytes": 42904
+      },
+      {
+        "url": "/images/learning/blog-first-trial-1200.webp",
+        "width": 1200,
+        "bytes": 71478
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/learning/blog-first-trial-400.avif",
+        "width": 400,
+        "bytes": 9340
+      },
+      {
+        "url": "/images/learning/blog-first-trial-800.avif",
+        "width": 800,
+        "bytes": 23577
+      },
+      {
+        "url": "/images/learning/blog-first-trial-1200.avif",
+        "width": 1200,
+        "bytes": 40473
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/blog-first-trial-1200.webp"
+  },
+  {
+    "name": "blog-kids-learning",
+    "url": "/images/learning/blog-kids-learning-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Father helping his daughter adjust her headset before an online lesson",
+    "kind": "photo",
+    "variants": [
+      {
+        "url": "/images/learning/blog-kids-learning-400.webp",
+        "width": 400,
+        "bytes": 15378
+      },
+      {
+        "url": "/images/learning/blog-kids-learning-800.webp",
+        "width": 800,
+        "bytes": 36886
+      },
+      {
+        "url": "/images/learning/blog-kids-learning-1200.webp",
+        "width": 1200,
+        "bytes": 60496
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/learning/blog-kids-learning-400.avif",
+        "width": 400,
+        "bytes": 8807
+      },
+      {
+        "url": "/images/learning/blog-kids-learning-800.avif",
+        "width": 800,
+        "bytes": 22061
+      },
+      {
+        "url": "/images/learning/blog-kids-learning-1200.avif",
+        "width": 1200,
+        "bytes": 37617
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/blog-kids-learning-1200.webp"
+  },
+  {
+    "name": "blog-memory-techniques",
+    "url": "/images/learning/blog-memory-techniques-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Revision notebook, flashcards, timer and closed book arranged for a memorisation routine",
+    "kind": "photo",
+    "variants": [
+      {
+        "url": "/images/learning/blog-memory-techniques-400.webp",
+        "width": 400,
+        "bytes": 19674
+      },
+      {
+        "url": "/images/learning/blog-memory-techniques-800.webp",
+        "width": 800,
+        "bytes": 66584
+      },
+      {
+        "url": "/images/learning/blog-memory-techniques-1200.webp",
+        "width": 1200,
+        "bytes": 134386
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/learning/blog-memory-techniques-400.avif",
+        "width": 400,
+        "bytes": 10508
+      },
+      {
+        "url": "/images/learning/blog-memory-techniques-800.avif",
+        "width": 800,
+        "bytes": 34468
+      },
+      {
+        "url": "/images/learning/blog-memory-techniques-1200.avif",
+        "width": 1200,
+        "bytes": 67444
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/blog-memory-techniques-1200.webp"
+  },
+  {
+    "name": "blog-parent-progress",
+    "url": "/images/learning/blog-parent-progress-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Mother discussing a lesson on a laptop while taking progress notes beside her child",
+    "kind": "photo",
+    "variants": [
+      {
+        "url": "/images/learning/blog-parent-progress-400.webp",
+        "width": 400,
+        "bytes": 18676
+      },
+      {
+        "url": "/images/learning/blog-parent-progress-800.webp",
+        "width": 800,
+        "bytes": 47124
+      },
+      {
+        "url": "/images/learning/blog-parent-progress-1200.webp",
+        "width": 1200,
+        "bytes": 79414
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/learning/blog-parent-progress-400.avif",
+        "width": 400,
+        "bytes": 10341
+      },
+      {
+        "url": "/images/learning/blog-parent-progress-800.avif",
+        "width": 800,
+        "bytes": 26914
+      },
+      {
+        "url": "/images/learning/blog-parent-progress-1200.avif",
+        "width": 1200,
+        "bytes": 45411
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/blog-parent-progress-1200.webp"
+  },
+  {
+    "name": "blog-qaida-reading",
+    "url": "/images/learning/blog-qaida-reading-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Child following beginner letters in a workbook beside a closed book on a wooden stand",
+    "kind": "photo",
+    "variants": [
+      {
+        "url": "/images/learning/blog-qaida-reading-400.webp",
+        "width": 400,
+        "bytes": 16164
+      },
+      {
+        "url": "/images/learning/blog-qaida-reading-800.webp",
+        "width": 800,
+        "bytes": 43338
+      },
+      {
+        "url": "/images/learning/blog-qaida-reading-1200.webp",
+        "width": 1200,
+        "bytes": 77022
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/learning/blog-qaida-reading-400.avif",
+        "width": 400,
+        "bytes": 8827
+      },
+      {
+        "url": "/images/learning/blog-qaida-reading-800.avif",
+        "width": 800,
+        "bytes": 23698
+      },
+      {
+        "url": "/images/learning/blog-qaida-reading-1200.avif",
+        "width": 1200,
+        "bytes": 41173
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/blog-qaida-reading-1200.webp"
+  },
+  {
+    "name": "blog-school-hifz",
+    "url": "/images/learning/blog-school-hifz-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "School backpack, revision planner and book stand arranged for balancing study and memorisation",
+    "kind": "photo",
+    "variants": [
+      {
+        "url": "/images/learning/blog-school-hifz-400.webp",
+        "width": 400,
+        "bytes": 22530
+      },
+      {
+        "url": "/images/learning/blog-school-hifz-800.webp",
+        "width": 800,
+        "bytes": 58662
+      },
+      {
+        "url": "/images/learning/blog-school-hifz-1200.webp",
+        "width": 1200,
+        "bytes": 99640
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/learning/blog-school-hifz-400.avif",
+        "width": 400,
+        "bytes": 11555
+      },
+      {
+        "url": "/images/learning/blog-school-hifz-800.avif",
+        "width": 800,
+        "bytes": 29576
+      },
+      {
+        "url": "/images/learning/blog-school-hifz-1200.avif",
+        "width": 1200,
+        "bytes": 50634
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/blog-school-hifz-1200.webp"
+  },
+  {
+    "name": "blog-tajweed-recitation",
+    "url": "/images/learning/blog-tajweed-recitation-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Adult learner practising recitation beside a desktop microphone and an open book",
+    "kind": "photo",
+    "variants": [
+      {
+        "url": "/images/learning/blog-tajweed-recitation-400.webp",
+        "width": 400,
+        "bytes": 15744
+      },
+      {
+        "url": "/images/learning/blog-tajweed-recitation-800.webp",
+        "width": 800,
+        "bytes": 38506
+      },
+      {
+        "url": "/images/learning/blog-tajweed-recitation-1200.webp",
+        "width": 1200,
+        "bytes": 65836
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/learning/blog-tajweed-recitation-400.avif",
+        "width": 400,
+        "bytes": 9028
+      },
+      {
+        "url": "/images/learning/blog-tajweed-recitation-800.avif",
+        "width": 800,
+        "bytes": 22437
+      },
+      {
+        "url": "/images/learning/blog-tajweed-recitation-1200.avif",
+        "width": 1200,
+        "bytes": 38450
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/blog-tajweed-recitation-1200.webp"
+  },
+  {
+    "name": "blog-translation-arabic",
+    "url": "/images/learning/blog-translation-arabic-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Two reference books and a notebook arranged for comparing translation and language study",
+    "kind": "photo",
+    "variants": [
+      {
+        "url": "/images/learning/blog-translation-arabic-400.webp",
+        "width": 400,
+        "bytes": 21398
+      },
+      {
+        "url": "/images/learning/blog-translation-arabic-800.webp",
+        "width": 800,
+        "bytes": 54308
+      },
+      {
+        "url": "/images/learning/blog-translation-arabic-1200.webp",
+        "width": 1200,
+        "bytes": 91498
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/learning/blog-translation-arabic-400.avif",
+        "width": 400,
+        "bytes": 11284
+      },
+      {
+        "url": "/images/learning/blog-translation-arabic-800.avif",
+        "width": 800,
+        "bytes": 28497
+      },
+      {
+        "url": "/images/learning/blog-translation-arabic-1200.avif",
+        "width": 1200,
+        "bytes": 48027
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/blog-translation-arabic-1200.webp"
+  },
+  {
+    "name": "blog-usa-teacher",
+    "url": "/images/learning/blog-usa-teacher-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Parent reviewing online lesson options with a laptop and a checklist at a home desk",
+    "kind": "photo",
+    "variants": [
+      {
+        "url": "/images/learning/blog-usa-teacher-400.webp",
+        "width": 400,
+        "bytes": 19496
+      },
+      {
+        "url": "/images/learning/blog-usa-teacher-800.webp",
+        "width": 800,
+        "bytes": 48582
+      },
+      {
+        "url": "/images/learning/blog-usa-teacher-1200.webp",
+        "width": 1200,
+        "bytes": 84082
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/learning/blog-usa-teacher-400.avif",
+        "width": 400,
+        "bytes": 10422
+      },
+      {
+        "url": "/images/learning/blog-usa-teacher-800.avif",
+        "width": 800,
+        "bytes": 26183
+      },
+      {
+        "url": "/images/learning/blog-usa-teacher-1200.avif",
+        "width": 1200,
+        "bytes": 45800
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/blog-usa-teacher-1200.webp"
+  },
+  {
+    "name": "contact-coordinator",
+    "url": "/images/learning/contact-coordinator-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Illustrative admissions coordinator wearing a headset at an organised desk with a laptop",
+    "kind": "photo",
+    "variants": [
+      {
+        "url": "/images/learning/contact-coordinator-400.webp",
+        "width": 400,
+        "bytes": 12284
+      },
+      {
+        "url": "/images/learning/contact-coordinator-800.webp",
+        "width": 800,
+        "bytes": 29236
+      },
+      {
+        "url": "/images/learning/contact-coordinator-1200.webp",
+        "width": 1200,
+        "bytes": 48750
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/learning/contact-coordinator-400.avif",
+        "width": 400,
+        "bytes": 7393
+      },
+      {
+        "url": "/images/learning/contact-coordinator-800.avif",
+        "width": 800,
+        "bytes": 17253
+      },
+      {
+        "url": "/images/learning/contact-coordinator-1200.avif",
+        "width": 1200,
+        "bytes": 28233
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/contact-coordinator-1200.webp"
+  },
+  {
+    "name": "course-hifz-memory",
+    "url": "/images/learning/course-hifz-memory-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Teenage learner listening on headphones while reviewing an open book on a wooden stand",
+    "kind": "photo",
+    "variants": [
+      {
+        "url": "/images/learning/course-hifz-memory-400.webp",
+        "width": 400,
+        "bytes": 21870
+      },
+      {
+        "url": "/images/learning/course-hifz-memory-800.webp",
+        "width": 800,
+        "bytes": 58788
+      },
+      {
+        "url": "/images/learning/course-hifz-memory-1200.webp",
+        "width": 1200,
+        "bytes": 100720
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/learning/course-hifz-memory-400.avif",
+        "width": 400,
+        "bytes": 11455
+      },
+      {
+        "url": "/images/learning/course-hifz-memory-800.avif",
+        "width": 800,
+        "bytes": 30709
+      },
+      {
+        "url": "/images/learning/course-hifz-memory-1200.avif",
+        "width": 1200,
+        "bytes": 54850
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/course-hifz-memory-1200.webp"
+  },
+  {
+    "name": "course-islamic-studies",
+    "url": "/images/learning/course-islamic-studies-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Mother and two children discussing picture cards about kindness, sharing and caring for plants",
+    "kind": "photo",
+    "variants": [
+      {
+        "url": "/images/learning/course-islamic-studies-400.webp",
+        "width": 400,
+        "bytes": 20562
+      },
+      {
+        "url": "/images/learning/course-islamic-studies-800.webp",
+        "width": 800,
+        "bytes": 52002
+      },
+      {
+        "url": "/images/learning/course-islamic-studies-1200.webp",
+        "width": 1200,
+        "bytes": 89000
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/learning/course-islamic-studies-400.avif",
+        "width": 400,
+        "bytes": 11254
+      },
+      {
+        "url": "/images/learning/course-islamic-studies-800.avif",
+        "width": 800,
+        "bytes": 28683
+      },
+      {
+        "url": "/images/learning/course-islamic-studies-1200.avif",
+        "width": 1200,
+        "bytes": 49869
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/course-islamic-studies-1200.webp"
   },
   {
     "name": "family-online-quran-study",
@@ -172,6 +882,4787 @@
         "bytes": 64958
       }
     ],
-    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/generated/2026-10/family-online-quran-study-1200.webp"
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/generated/2026-10/family-online-quran-study-1200.webp",
+    "kind": "photo",
+    "avif": [
+      {
+        "url": "/images/learning/family-online-quran-study-400.avif",
+        "width": 400,
+        "bytes": 8981
+      },
+      {
+        "url": "/images/learning/family-online-quran-study-800.avif",
+        "width": 800,
+        "bytes": 21800
+      },
+      {
+        "url": "/images/learning/family-online-quran-study-1200.avif",
+        "width": 1200,
+        "bytes": 36403
+      }
+    ]
+  },
+  {
+    "name": "guide-adults",
+    "url": "/images/learning/guide-adults-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Mature learner wearing reading glasses studying a beginner workbook beside a laptop",
+    "kind": "photo",
+    "variants": [
+      {
+        "url": "/images/learning/guide-adults-400.webp",
+        "width": 400,
+        "bytes": 19382
+      },
+      {
+        "url": "/images/learning/guide-adults-800.webp",
+        "width": 800,
+        "bytes": 48682
+      },
+      {
+        "url": "/images/learning/guide-adults-1200.webp",
+        "width": 1200,
+        "bytes": 84330
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/learning/guide-adults-400.avif",
+        "width": 400,
+        "bytes": 10173
+      },
+      {
+        "url": "/images/learning/guide-adults-800.avif",
+        "width": 800,
+        "bytes": 25767
+      },
+      {
+        "url": "/images/learning/guide-adults-1200.avif",
+        "width": 1200,
+        "bytes": 45989
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/guide-adults-1200.webp"
+  },
+  {
+    "name": "guide-islamic-values",
+    "url": "/images/learning/guide-islamic-values-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Mother and children caring for a small plant together as an everyday lesson in kindness",
+    "kind": "photo",
+    "variants": [
+      {
+        "url": "/images/learning/guide-islamic-values-400.webp",
+        "width": 400,
+        "bytes": 22754
+      },
+      {
+        "url": "/images/learning/guide-islamic-values-800.webp",
+        "width": 800,
+        "bytes": 58880
+      },
+      {
+        "url": "/images/learning/guide-islamic-values-1200.webp",
+        "width": 1200,
+        "bytes": 98812
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/learning/guide-islamic-values-400.avif",
+        "width": 400,
+        "bytes": 12398
+      },
+      {
+        "url": "/images/learning/guide-islamic-values-800.avif",
+        "width": 800,
+        "bytes": 32307
+      },
+      {
+        "url": "/images/learning/guide-islamic-values-1200.avif",
+        "width": 1200,
+        "bytes": 55520
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/guide-islamic-values-1200.webp"
+  },
+  {
+    "name": "guide-kids",
+    "url": "/images/learning/guide-kids-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Young girl arranging beginner alphabet pieces beside a workbook with her mother nearby",
+    "kind": "photo",
+    "variants": [
+      {
+        "url": "/images/learning/guide-kids-400.webp",
+        "width": 400,
+        "bytes": 16638
+      },
+      {
+        "url": "/images/learning/guide-kids-800.webp",
+        "width": 800,
+        "bytes": 38260
+      },
+      {
+        "url": "/images/learning/guide-kids-1200.webp",
+        "width": 1200,
+        "bytes": 62540
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/learning/guide-kids-400.avif",
+        "width": 400,
+        "bytes": 9375
+      },
+      {
+        "url": "/images/learning/guide-kids-800.avif",
+        "width": 800,
+        "bytes": 22754
+      },
+      {
+        "url": "/images/learning/guide-kids-1200.avif",
+        "width": 1200,
+        "bytes": 37574
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/guide-kids-1200.webp"
+  },
+  {
+    "name": "guide-tajweed",
+    "url": "/images/learning/guide-tajweed-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Adult learner listening carefully during a recitation lesson with a book stand and microphone",
+    "kind": "photo",
+    "variants": [
+      {
+        "url": "/images/learning/guide-tajweed-400.webp",
+        "width": 400,
+        "bytes": 19126
+      },
+      {
+        "url": "/images/learning/guide-tajweed-800.webp",
+        "width": 800,
+        "bytes": 47066
+      },
+      {
+        "url": "/images/learning/guide-tajweed-1200.webp",
+        "width": 1200,
+        "bytes": 77518
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/learning/guide-tajweed-400.avif",
+        "width": 400,
+        "bytes": 10381
+      },
+      {
+        "url": "/images/learning/guide-tajweed-800.avif",
+        "width": 800,
+        "bytes": 25866
+      },
+      {
+        "url": "/images/learning/guide-tajweed-1200.avif",
+        "width": 1200,
+        "bytes": 43738
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/guide-tajweed-1200.webp"
+  },
+  {
+    "name": "home-college-welcome",
+    "url": "/images/learning/home-college-welcome-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Family arranging a calm home study space with a workbook, lamp and laptop",
+    "kind": "photo",
+    "variants": [
+      {
+        "url": "/images/learning/home-college-welcome-400.webp",
+        "width": 400,
+        "bytes": 19116
+      },
+      {
+        "url": "/images/learning/home-college-welcome-800.webp",
+        "width": 800,
+        "bytes": 47012
+      },
+      {
+        "url": "/images/learning/home-college-welcome-1200.webp",
+        "width": 1200,
+        "bytes": 78416
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/learning/home-college-welcome-400.avif",
+        "width": 400,
+        "bytes": 10563
+      },
+      {
+        "url": "/images/learning/home-college-welcome-800.avif",
+        "width": 800,
+        "bytes": 27144
+      },
+      {
+        "url": "/images/learning/home-college-welcome-1200.avif",
+        "width": 1200,
+        "bytes": 45642
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/home-college-welcome-1200.webp"
+  },
+  {
+    "name": "home-learning-paths",
+    "url": "/images/learning/home-learning-paths-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Alphabet blocks, a closed book on a stand and a notebook representing different learning stages",
+    "kind": "photo",
+    "variants": [
+      {
+        "url": "/images/learning/home-learning-paths-400.webp",
+        "width": 400,
+        "bytes": 19878
+      },
+      {
+        "url": "/images/learning/home-learning-paths-800.webp",
+        "width": 800,
+        "bytes": 52628
+      },
+      {
+        "url": "/images/learning/home-learning-paths-1200.webp",
+        "width": 1200,
+        "bytes": 91582
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/learning/home-learning-paths-400.avif",
+        "width": 400,
+        "bytes": 10461
+      },
+      {
+        "url": "/images/learning/home-learning-paths-800.avif",
+        "width": 800,
+        "bytes": 27340
+      },
+      {
+        "url": "/images/learning/home-learning-paths-1200.avif",
+        "width": 1200,
+        "bytes": 46258
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/home-learning-paths-1200.webp"
+  },
+  {
+    "name": "noorani-qaida-child",
+    "url": "/images/learning/noorani-qaida-child-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Child practising beginner Arabic letters in a Qaida workbook with a parent",
+    "variants": [
+      {
+        "url": "/images/learning/noorani-qaida-child-400.webp",
+        "width": 400,
+        "bytes": 22676
+      },
+      {
+        "url": "/images/learning/noorani-qaida-child-800.webp",
+        "width": 800,
+        "bytes": 57240
+      },
+      {
+        "url": "/images/learning/noorani-qaida-child-1200.webp",
+        "width": 1200,
+        "bytes": 95390
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/generated/2026-10/noorani-qaida-child-1200.webp",
+    "kind": "photo",
+    "avif": [
+      {
+        "url": "/images/learning/noorani-qaida-child-400.avif",
+        "width": 400,
+        "bytes": 11570
+      },
+      {
+        "url": "/images/learning/noorani-qaida-child-800.avif",
+        "width": 800,
+        "bytes": 29471
+      },
+      {
+        "url": "/images/learning/noorani-qaida-child-1200.avif",
+        "width": 1200,
+        "bytes": 52728
+      }
+    ]
+  },
+  {
+    "name": "quran-recitation-hifz",
+    "url": "/images/learning/quran-recitation-hifz-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Student reviewing recitation from an open book on a wooden book stand",
+    "variants": [
+      {
+        "url": "/images/learning/quran-recitation-hifz-400.webp",
+        "width": 400,
+        "bytes": 22844
+      },
+      {
+        "url": "/images/learning/quran-recitation-hifz-800.webp",
+        "width": 800,
+        "bytes": 55930
+      },
+      {
+        "url": "/images/learning/quran-recitation-hifz-1200.webp",
+        "width": 1200,
+        "bytes": 91044
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/generated/2026-10/quran-recitation-hifz-1200.webp",
+    "kind": "photo",
+    "avif": [
+      {
+        "url": "/images/learning/quran-recitation-hifz-400.avif",
+        "width": 400,
+        "bytes": 11384
+      },
+      {
+        "url": "/images/learning/quran-recitation-hifz-800.avif",
+        "width": 800,
+        "bytes": 28051
+      },
+      {
+        "url": "/images/learning/quran-recitation-hifz-1200.avif",
+        "width": 1200,
+        "bytes": 48975
+      }
+    ]
+  },
+  {
+    "name": "translation-study",
+    "url": "/images/learning/translation-study-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Adult learner comparing open books and taking translation study notes",
+    "variants": [
+      {
+        "url": "/images/learning/translation-study-400.webp",
+        "width": 400,
+        "bytes": 22954
+      },
+      {
+        "url": "/images/learning/translation-study-800.webp",
+        "width": 800,
+        "bytes": 58592
+      },
+      {
+        "url": "/images/learning/translation-study-1200.webp",
+        "width": 1200,
+        "bytes": 98356
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/generated/2026-10/translation-study-1200.webp",
+    "kind": "photo",
+    "avif": [
+      {
+        "url": "/images/learning/translation-study-400.avif",
+        "width": 400,
+        "bytes": 11628
+      },
+      {
+        "url": "/images/learning/translation-study-800.avif",
+        "width": 800,
+        "bytes": 29485
+      },
+      {
+        "url": "/images/learning/translation-study-1200.avif",
+        "width": 1200,
+        "bytes": 53172
+      }
+    ]
+  },
+  {
+    "name": "trial-welcome",
+    "url": "/images/learning/trial-welcome-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Young boy smiling at a laptop during his first lesson with his mother seated nearby",
+    "kind": "photo",
+    "variants": [
+      {
+        "url": "/images/learning/trial-welcome-400.webp",
+        "width": 400,
+        "bytes": 16860
+      },
+      {
+        "url": "/images/learning/trial-welcome-800.webp",
+        "width": 800,
+        "bytes": 40442
+      },
+      {
+        "url": "/images/learning/trial-welcome-1200.webp",
+        "width": 1200,
+        "bytes": 66626
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/learning/trial-welcome-400.avif",
+        "width": 400,
+        "bytes": 9341
+      },
+      {
+        "url": "/images/learning/trial-welcome-800.avif",
+        "width": 800,
+        "bytes": 22303
+      },
+      {
+        "url": "/images/learning/trial-welcome-1200.avif",
+        "width": 1200,
+        "bytes": 38322
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/trial-welcome-1200.webp"
+  },
+  {
+    "name": "usa-online-quran-learning",
+    "url": "/images/learning/usa-online-quran-learning-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Child and parent reviewing a beginner Arabic workbook beside a laptop at home",
+    "variants": [
+      {
+        "url": "/images/learning/usa-online-quran-learning-400.webp",
+        "width": 400,
+        "bytes": 23592
+      },
+      {
+        "url": "/images/learning/usa-online-quran-learning-800.webp",
+        "width": 800,
+        "bytes": 58950
+      },
+      {
+        "url": "/images/learning/usa-online-quran-learning-1200.webp",
+        "width": 1200,
+        "bytes": 99808
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/generated/2026-10/usa-online-quran-learning-1200.webp",
+    "kind": "photo",
+    "avif": [
+      {
+        "url": "/images/learning/usa-online-quran-learning-400.avif",
+        "width": 400,
+        "bytes": 12155
+      },
+      {
+        "url": "/images/learning/usa-online-quran-learning-800.avif",
+        "width": 800,
+        "bytes": 31166
+      },
+      {
+        "url": "/images/learning/usa-online-quran-learning-1200.avif",
+        "width": 1200,
+        "bytes": 55262
+      }
+    ]
+  },
+  {
+    "name": "map-united-states",
+    "url": "/images/learning/map-united-states-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in United States, with USD fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-united-states-400.webp",
+        "width": 400,
+        "bytes": 5638
+      },
+      {
+        "url": "/images/learning/map-united-states-800.webp",
+        "width": 800,
+        "bytes": 15320
+      },
+      {
+        "url": "/images/learning/map-united-states-1200.webp",
+        "width": 1200,
+        "bytes": 25602
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-united-states-1200.webp"
+  },
+  {
+    "name": "map-united-states-new-york",
+    "url": "/images/learning/map-united-states-new-york-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in New York, United States, with USD fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-united-states-new-york-400.webp",
+        "width": 400,
+        "bytes": 5280
+      },
+      {
+        "url": "/images/learning/map-united-states-new-york-800.webp",
+        "width": 800,
+        "bytes": 14304
+      },
+      {
+        "url": "/images/learning/map-united-states-new-york-1200.webp",
+        "width": 1200,
+        "bytes": 24208
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-united-states-new-york-1200.webp"
+  },
+  {
+    "name": "map-united-states-los-angeles",
+    "url": "/images/learning/map-united-states-los-angeles-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Los Angeles, United States, with USD fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-united-states-los-angeles-400.webp",
+        "width": 400,
+        "bytes": 5514
+      },
+      {
+        "url": "/images/learning/map-united-states-los-angeles-800.webp",
+        "width": 800,
+        "bytes": 14774
+      },
+      {
+        "url": "/images/learning/map-united-states-los-angeles-1200.webp",
+        "width": 1200,
+        "bytes": 24944
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-united-states-los-angeles-1200.webp"
+  },
+  {
+    "name": "map-united-states-chicago",
+    "url": "/images/learning/map-united-states-chicago-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Chicago, United States, with USD fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-united-states-chicago-400.webp",
+        "width": 400,
+        "bytes": 5272
+      },
+      {
+        "url": "/images/learning/map-united-states-chicago-800.webp",
+        "width": 800,
+        "bytes": 14364
+      },
+      {
+        "url": "/images/learning/map-united-states-chicago-1200.webp",
+        "width": 1200,
+        "bytes": 24126
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-united-states-chicago-1200.webp"
+  },
+  {
+    "name": "map-united-states-houston",
+    "url": "/images/learning/map-united-states-houston-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Houston, United States, with USD fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-united-states-houston-400.webp",
+        "width": 400,
+        "bytes": 5226
+      },
+      {
+        "url": "/images/learning/map-united-states-houston-800.webp",
+        "width": 800,
+        "bytes": 14210
+      },
+      {
+        "url": "/images/learning/map-united-states-houston-1200.webp",
+        "width": 1200,
+        "bytes": 23842
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-united-states-houston-1200.webp"
+  },
+  {
+    "name": "map-united-states-dallas",
+    "url": "/images/learning/map-united-states-dallas-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Dallas, United States, with USD fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-united-states-dallas-400.webp",
+        "width": 400,
+        "bytes": 5100
+      },
+      {
+        "url": "/images/learning/map-united-states-dallas-800.webp",
+        "width": 800,
+        "bytes": 13940
+      },
+      {
+        "url": "/images/learning/map-united-states-dallas-1200.webp",
+        "width": 1200,
+        "bytes": 23502
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-united-states-dallas-1200.webp"
+  },
+  {
+    "name": "map-united-kingdom",
+    "url": "/images/learning/map-united-kingdom-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in United Kingdom, with GBP fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-united-kingdom-400.webp",
+        "width": 400,
+        "bytes": 6048
+      },
+      {
+        "url": "/images/learning/map-united-kingdom-800.webp",
+        "width": 800,
+        "bytes": 16530
+      },
+      {
+        "url": "/images/learning/map-united-kingdom-1200.webp",
+        "width": 1200,
+        "bytes": 27854
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-united-kingdom-1200.webp"
+  },
+  {
+    "name": "map-united-kingdom-london",
+    "url": "/images/learning/map-united-kingdom-london-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in London, United Kingdom, with GBP fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-united-kingdom-london-400.webp",
+        "width": 400,
+        "bytes": 5302
+      },
+      {
+        "url": "/images/learning/map-united-kingdom-london-800.webp",
+        "width": 800,
+        "bytes": 14788
+      },
+      {
+        "url": "/images/learning/map-united-kingdom-london-1200.webp",
+        "width": 1200,
+        "bytes": 25420
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-united-kingdom-london-1200.webp"
+  },
+  {
+    "name": "map-united-kingdom-birmingham",
+    "url": "/images/learning/map-united-kingdom-birmingham-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Birmingham, United Kingdom, with GBP fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-united-kingdom-birmingham-400.webp",
+        "width": 400,
+        "bytes": 5574
+      },
+      {
+        "url": "/images/learning/map-united-kingdom-birmingham-800.webp",
+        "width": 800,
+        "bytes": 15682
+      },
+      {
+        "url": "/images/learning/map-united-kingdom-birmingham-1200.webp",
+        "width": 1200,
+        "bytes": 26326
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-united-kingdom-birmingham-1200.webp"
+  },
+  {
+    "name": "map-united-kingdom-manchester",
+    "url": "/images/learning/map-united-kingdom-manchester-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Manchester, United Kingdom, with GBP fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-united-kingdom-manchester-400.webp",
+        "width": 400,
+        "bytes": 5544
+      },
+      {
+        "url": "/images/learning/map-united-kingdom-manchester-800.webp",
+        "width": 800,
+        "bytes": 15662
+      },
+      {
+        "url": "/images/learning/map-united-kingdom-manchester-1200.webp",
+        "width": 1200,
+        "bytes": 26470
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-united-kingdom-manchester-1200.webp"
+  },
+  {
+    "name": "map-united-kingdom-leeds",
+    "url": "/images/learning/map-united-kingdom-leeds-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Leeds, United Kingdom, with GBP fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-united-kingdom-leeds-400.webp",
+        "width": 400,
+        "bytes": 5224
+      },
+      {
+        "url": "/images/learning/map-united-kingdom-leeds-800.webp",
+        "width": 800,
+        "bytes": 14752
+      },
+      {
+        "url": "/images/learning/map-united-kingdom-leeds-1200.webp",
+        "width": 1200,
+        "bytes": 25260
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-united-kingdom-leeds-1200.webp"
+  },
+  {
+    "name": "map-united-kingdom-glasgow",
+    "url": "/images/learning/map-united-kingdom-glasgow-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Glasgow, United Kingdom, with GBP fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-united-kingdom-glasgow-400.webp",
+        "width": 400,
+        "bytes": 5418
+      },
+      {
+        "url": "/images/learning/map-united-kingdom-glasgow-800.webp",
+        "width": 800,
+        "bytes": 15250
+      },
+      {
+        "url": "/images/learning/map-united-kingdom-glasgow-1200.webp",
+        "width": 1200,
+        "bytes": 26018
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-united-kingdom-glasgow-1200.webp"
+  },
+  {
+    "name": "map-united-kingdom-bradford",
+    "url": "/images/learning/map-united-kingdom-bradford-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Bradford, United Kingdom, with GBP fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-united-kingdom-bradford-400.webp",
+        "width": 400,
+        "bytes": 5432
+      },
+      {
+        "url": "/images/learning/map-united-kingdom-bradford-800.webp",
+        "width": 800,
+        "bytes": 15192
+      },
+      {
+        "url": "/images/learning/map-united-kingdom-bradford-1200.webp",
+        "width": 1200,
+        "bytes": 25994
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-united-kingdom-bradford-1200.webp"
+  },
+  {
+    "name": "map-united-kingdom-leicester",
+    "url": "/images/learning/map-united-kingdom-leicester-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Leicester, United Kingdom, with GBP fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-united-kingdom-leicester-400.webp",
+        "width": 400,
+        "bytes": 5424
+      },
+      {
+        "url": "/images/learning/map-united-kingdom-leicester-800.webp",
+        "width": 800,
+        "bytes": 15208
+      },
+      {
+        "url": "/images/learning/map-united-kingdom-leicester-1200.webp",
+        "width": 1200,
+        "bytes": 25998
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-united-kingdom-leicester-1200.webp"
+  },
+  {
+    "name": "map-australia",
+    "url": "/images/learning/map-australia-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Australia, with AUD fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-australia-400.webp",
+        "width": 400,
+        "bytes": 5596
+      },
+      {
+        "url": "/images/learning/map-australia-800.webp",
+        "width": 800,
+        "bytes": 15220
+      },
+      {
+        "url": "/images/learning/map-australia-1200.webp",
+        "width": 1200,
+        "bytes": 25178
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-australia-1200.webp"
+  },
+  {
+    "name": "map-australia-sydney",
+    "url": "/images/learning/map-australia-sydney-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Sydney, Australia, with AUD fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-australia-sydney-400.webp",
+        "width": 400,
+        "bytes": 5370
+      },
+      {
+        "url": "/images/learning/map-australia-sydney-800.webp",
+        "width": 800,
+        "bytes": 14690
+      },
+      {
+        "url": "/images/learning/map-australia-sydney-1200.webp",
+        "width": 1200,
+        "bytes": 24318
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-australia-sydney-1200.webp"
+  },
+  {
+    "name": "map-australia-melbourne",
+    "url": "/images/learning/map-australia-melbourne-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Melbourne, Australia, with AUD fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-australia-melbourne-400.webp",
+        "width": 400,
+        "bytes": 5524
+      },
+      {
+        "url": "/images/learning/map-australia-melbourne-800.webp",
+        "width": 800,
+        "bytes": 14994
+      },
+      {
+        "url": "/images/learning/map-australia-melbourne-1200.webp",
+        "width": 1200,
+        "bytes": 24798
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-australia-melbourne-1200.webp"
+  },
+  {
+    "name": "map-australia-brisbane",
+    "url": "/images/learning/map-australia-brisbane-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Brisbane, Australia, with AUD fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-australia-brisbane-400.webp",
+        "width": 400,
+        "bytes": 5416
+      },
+      {
+        "url": "/images/learning/map-australia-brisbane-800.webp",
+        "width": 800,
+        "bytes": 14836
+      },
+      {
+        "url": "/images/learning/map-australia-brisbane-1200.webp",
+        "width": 1200,
+        "bytes": 24566
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-australia-brisbane-1200.webp"
+  },
+  {
+    "name": "map-australia-perth",
+    "url": "/images/learning/map-australia-perth-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Perth, Australia, with AUD fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-australia-perth-400.webp",
+        "width": 400,
+        "bytes": 5196
+      },
+      {
+        "url": "/images/learning/map-australia-perth-800.webp",
+        "width": 800,
+        "bytes": 14214
+      },
+      {
+        "url": "/images/learning/map-australia-perth-1200.webp",
+        "width": 1200,
+        "bytes": 23634
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-australia-perth-1200.webp"
+  },
+  {
+    "name": "map-australia-adelaide",
+    "url": "/images/learning/map-australia-adelaide-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Adelaide, Australia, with AUD fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-australia-adelaide-400.webp",
+        "width": 400,
+        "bytes": 5430
+      },
+      {
+        "url": "/images/learning/map-australia-adelaide-800.webp",
+        "width": 800,
+        "bytes": 14834
+      },
+      {
+        "url": "/images/learning/map-australia-adelaide-1200.webp",
+        "width": 1200,
+        "bytes": 24648
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-australia-adelaide-1200.webp"
+  },
+  {
+    "name": "map-canada",
+    "url": "/images/learning/map-canada-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Canada, with CAD fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-canada-400.webp",
+        "width": 400,
+        "bytes": 7296
+      },
+      {
+        "url": "/images/learning/map-canada-800.webp",
+        "width": 800,
+        "bytes": 20060
+      },
+      {
+        "url": "/images/learning/map-canada-1200.webp",
+        "width": 1200,
+        "bytes": 34438
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-canada-1200.webp"
+  },
+  {
+    "name": "map-canada-toronto",
+    "url": "/images/learning/map-canada-toronto-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Toronto, Canada, with CAD fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-canada-toronto-400.webp",
+        "width": 400,
+        "bytes": 7044
+      },
+      {
+        "url": "/images/learning/map-canada-toronto-800.webp",
+        "width": 800,
+        "bytes": 19564
+      },
+      {
+        "url": "/images/learning/map-canada-toronto-1200.webp",
+        "width": 1200,
+        "bytes": 33722
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-canada-toronto-1200.webp"
+  },
+  {
+    "name": "map-canada-vancouver",
+    "url": "/images/learning/map-canada-vancouver-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Vancouver, Canada, with CAD fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-canada-vancouver-400.webp",
+        "width": 400,
+        "bytes": 7286
+      },
+      {
+        "url": "/images/learning/map-canada-vancouver-800.webp",
+        "width": 800,
+        "bytes": 20072
+      },
+      {
+        "url": "/images/learning/map-canada-vancouver-1200.webp",
+        "width": 1200,
+        "bytes": 34490
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-canada-vancouver-1200.webp"
+  },
+  {
+    "name": "map-canada-montreal",
+    "url": "/images/learning/map-canada-montreal-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Montreal, Canada, with CAD fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-canada-montreal-400.webp",
+        "width": 400,
+        "bytes": 7198
+      },
+      {
+        "url": "/images/learning/map-canada-montreal-800.webp",
+        "width": 800,
+        "bytes": 19756
+      },
+      {
+        "url": "/images/learning/map-canada-montreal-1200.webp",
+        "width": 1200,
+        "bytes": 34128
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-canada-montreal-1200.webp"
+  },
+  {
+    "name": "map-canada-calgary",
+    "url": "/images/learning/map-canada-calgary-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Calgary, Canada, with CAD fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-canada-calgary-400.webp",
+        "width": 400,
+        "bytes": 7190
+      },
+      {
+        "url": "/images/learning/map-canada-calgary-800.webp",
+        "width": 800,
+        "bytes": 19902
+      },
+      {
+        "url": "/images/learning/map-canada-calgary-1200.webp",
+        "width": 1200,
+        "bytes": 34298
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-canada-calgary-1200.webp"
+  },
+  {
+    "name": "map-canada-ottawa",
+    "url": "/images/learning/map-canada-ottawa-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Ottawa, Canada, with CAD fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-canada-ottawa-400.webp",
+        "width": 400,
+        "bytes": 7132
+      },
+      {
+        "url": "/images/learning/map-canada-ottawa-800.webp",
+        "width": 800,
+        "bytes": 19656
+      },
+      {
+        "url": "/images/learning/map-canada-ottawa-1200.webp",
+        "width": 1200,
+        "bytes": 34034
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-canada-ottawa-1200.webp"
+  },
+  {
+    "name": "map-france",
+    "url": "/images/learning/map-france-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in France, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-france-400.webp",
+        "width": 400,
+        "bytes": 5504
+      },
+      {
+        "url": "/images/learning/map-france-800.webp",
+        "width": 800,
+        "bytes": 15066
+      },
+      {
+        "url": "/images/learning/map-france-1200.webp",
+        "width": 1200,
+        "bytes": 24674
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-france-1200.webp"
+  },
+  {
+    "name": "map-france-paris",
+    "url": "/images/learning/map-france-paris-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Paris, France, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-france-paris-400.webp",
+        "width": 400,
+        "bytes": 5182
+      },
+      {
+        "url": "/images/learning/map-france-paris-800.webp",
+        "width": 800,
+        "bytes": 14266
+      },
+      {
+        "url": "/images/learning/map-france-paris-1200.webp",
+        "width": 1200,
+        "bytes": 23702
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-france-paris-1200.webp"
+  },
+  {
+    "name": "map-france-lyon",
+    "url": "/images/learning/map-france-lyon-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Lyon, France, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-france-lyon-400.webp",
+        "width": 400,
+        "bytes": 5176
+      },
+      {
+        "url": "/images/learning/map-france-lyon-800.webp",
+        "width": 800,
+        "bytes": 14144
+      },
+      {
+        "url": "/images/learning/map-france-lyon-1200.webp",
+        "width": 1200,
+        "bytes": 23520
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-france-lyon-1200.webp"
+  },
+  {
+    "name": "map-france-marseille",
+    "url": "/images/learning/map-france-marseille-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Marseille, France, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-france-marseille-400.webp",
+        "width": 400,
+        "bytes": 5362
+      },
+      {
+        "url": "/images/learning/map-france-marseille-800.webp",
+        "width": 800,
+        "bytes": 14724
+      },
+      {
+        "url": "/images/learning/map-france-marseille-1200.webp",
+        "width": 1200,
+        "bytes": 24330
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-france-marseille-1200.webp"
+  },
+  {
+    "name": "map-france-toulouse",
+    "url": "/images/learning/map-france-toulouse-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Toulouse, France, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-france-toulouse-400.webp",
+        "width": 400,
+        "bytes": 5386
+      },
+      {
+        "url": "/images/learning/map-france-toulouse-800.webp",
+        "width": 800,
+        "bytes": 14730
+      },
+      {
+        "url": "/images/learning/map-france-toulouse-1200.webp",
+        "width": 1200,
+        "bytes": 24338
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-france-toulouse-1200.webp"
+  },
+  {
+    "name": "map-germany",
+    "url": "/images/learning/map-germany-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Germany, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-germany-400.webp",
+        "width": 400,
+        "bytes": 5684
+      },
+      {
+        "url": "/images/learning/map-germany-800.webp",
+        "width": 800,
+        "bytes": 15378
+      },
+      {
+        "url": "/images/learning/map-germany-1200.webp",
+        "width": 1200,
+        "bytes": 25228
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-germany-1200.webp"
+  },
+  {
+    "name": "map-germany-berlin",
+    "url": "/images/learning/map-germany-berlin-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Berlin, Germany, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-germany-berlin-400.webp",
+        "width": 400,
+        "bytes": 5208
+      },
+      {
+        "url": "/images/learning/map-germany-berlin-800.webp",
+        "width": 800,
+        "bytes": 14278
+      },
+      {
+        "url": "/images/learning/map-germany-berlin-1200.webp",
+        "width": 1200,
+        "bytes": 23752
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-germany-berlin-1200.webp"
+  },
+  {
+    "name": "map-germany-hamburg",
+    "url": "/images/learning/map-germany-hamburg-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Hamburg, Germany, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-germany-hamburg-400.webp",
+        "width": 400,
+        "bytes": 5354
+      },
+      {
+        "url": "/images/learning/map-germany-hamburg-800.webp",
+        "width": 800,
+        "bytes": 14678
+      },
+      {
+        "url": "/images/learning/map-germany-hamburg-1200.webp",
+        "width": 1200,
+        "bytes": 24324
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-germany-hamburg-1200.webp"
+  },
+  {
+    "name": "map-germany-munich",
+    "url": "/images/learning/map-germany-munich-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Munich, Germany, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-germany-munich-400.webp",
+        "width": 400,
+        "bytes": 5270
+      },
+      {
+        "url": "/images/learning/map-germany-munich-800.webp",
+        "width": 800,
+        "bytes": 14424
+      },
+      {
+        "url": "/images/learning/map-germany-munich-1200.webp",
+        "width": 1200,
+        "bytes": 24022
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-germany-munich-1200.webp"
+  },
+  {
+    "name": "map-germany-frankfurt",
+    "url": "/images/learning/map-germany-frankfurt-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Frankfurt, Germany, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-germany-frankfurt-400.webp",
+        "width": 400,
+        "bytes": 5410
+      },
+      {
+        "url": "/images/learning/map-germany-frankfurt-800.webp",
+        "width": 800,
+        "bytes": 14782
+      },
+      {
+        "url": "/images/learning/map-germany-frankfurt-1200.webp",
+        "width": 1200,
+        "bytes": 24392
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-germany-frankfurt-1200.webp"
+  },
+  {
+    "name": "map-ireland",
+    "url": "/images/learning/map-ireland-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Ireland, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-ireland-400.webp",
+        "width": 400,
+        "bytes": 5660
+      },
+      {
+        "url": "/images/learning/map-ireland-800.webp",
+        "width": 800,
+        "bytes": 15560
+      },
+      {
+        "url": "/images/learning/map-ireland-1200.webp",
+        "width": 1200,
+        "bytes": 26012
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-ireland-1200.webp"
+  },
+  {
+    "name": "map-ireland-dublin",
+    "url": "/images/learning/map-ireland-dublin-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Dublin, Ireland, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-ireland-dublin-400.webp",
+        "width": 400,
+        "bytes": 5586
+      },
+      {
+        "url": "/images/learning/map-ireland-dublin-800.webp",
+        "width": 800,
+        "bytes": 15172
+      },
+      {
+        "url": "/images/learning/map-ireland-dublin-1200.webp",
+        "width": 1200,
+        "bytes": 25584
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-ireland-dublin-1200.webp"
+  },
+  {
+    "name": "map-ireland-cork",
+    "url": "/images/learning/map-ireland-cork-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Cork, Ireland, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-ireland-cork-400.webp",
+        "width": 400,
+        "bytes": 5484
+      },
+      {
+        "url": "/images/learning/map-ireland-cork-800.webp",
+        "width": 800,
+        "bytes": 15072
+      },
+      {
+        "url": "/images/learning/map-ireland-cork-1200.webp",
+        "width": 1200,
+        "bytes": 25332
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-ireland-cork-1200.webp"
+  },
+  {
+    "name": "map-netherlands",
+    "url": "/images/learning/map-netherlands-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Netherlands, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-netherlands-400.webp",
+        "width": 400,
+        "bytes": 6068
+      },
+      {
+        "url": "/images/learning/map-netherlands-800.webp",
+        "width": 800,
+        "bytes": 15816
+      },
+      {
+        "url": "/images/learning/map-netherlands-1200.webp",
+        "width": 1200,
+        "bytes": 25972
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-netherlands-1200.webp"
+  },
+  {
+    "name": "map-netherlands-amsterdam",
+    "url": "/images/learning/map-netherlands-amsterdam-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Amsterdam, Netherlands, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-netherlands-amsterdam-400.webp",
+        "width": 400,
+        "bytes": 5926
+      },
+      {
+        "url": "/images/learning/map-netherlands-amsterdam-800.webp",
+        "width": 800,
+        "bytes": 15754
+      },
+      {
+        "url": "/images/learning/map-netherlands-amsterdam-1200.webp",
+        "width": 1200,
+        "bytes": 25966
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-netherlands-amsterdam-1200.webp"
+  },
+  {
+    "name": "map-netherlands-rotterdam",
+    "url": "/images/learning/map-netherlands-rotterdam-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Rotterdam, Netherlands, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-netherlands-rotterdam-400.webp",
+        "width": 400,
+        "bytes": 5878
+      },
+      {
+        "url": "/images/learning/map-netherlands-rotterdam-800.webp",
+        "width": 800,
+        "bytes": 15596
+      },
+      {
+        "url": "/images/learning/map-netherlands-rotterdam-1200.webp",
+        "width": 1200,
+        "bytes": 25684
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-netherlands-rotterdam-1200.webp"
+  },
+  {
+    "name": "map-belgium",
+    "url": "/images/learning/map-belgium-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Belgium, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-belgium-400.webp",
+        "width": 400,
+        "bytes": 5692
+      },
+      {
+        "url": "/images/learning/map-belgium-800.webp",
+        "width": 800,
+        "bytes": 14958
+      },
+      {
+        "url": "/images/learning/map-belgium-1200.webp",
+        "width": 1200,
+        "bytes": 24514
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-belgium-1200.webp"
+  },
+  {
+    "name": "map-belgium-brussels",
+    "url": "/images/learning/map-belgium-brussels-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Brussels, Belgium, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-belgium-brussels-400.webp",
+        "width": 400,
+        "bytes": 5624
+      },
+      {
+        "url": "/images/learning/map-belgium-brussels-800.webp",
+        "width": 800,
+        "bytes": 14914
+      },
+      {
+        "url": "/images/learning/map-belgium-brussels-1200.webp",
+        "width": 1200,
+        "bytes": 24416
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-belgium-brussels-1200.webp"
+  },
+  {
+    "name": "map-belgium-antwerp",
+    "url": "/images/learning/map-belgium-antwerp-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Antwerp, Belgium, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-belgium-antwerp-400.webp",
+        "width": 400,
+        "bytes": 5616
+      },
+      {
+        "url": "/images/learning/map-belgium-antwerp-800.webp",
+        "width": 800,
+        "bytes": 14866
+      },
+      {
+        "url": "/images/learning/map-belgium-antwerp-1200.webp",
+        "width": 1200,
+        "bytes": 24558
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-belgium-antwerp-1200.webp"
+  },
+  {
+    "name": "map-spain",
+    "url": "/images/learning/map-spain-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Spain, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-spain-400.webp",
+        "width": 400,
+        "bytes": 5418
+      },
+      {
+        "url": "/images/learning/map-spain-800.webp",
+        "width": 800,
+        "bytes": 14704
+      },
+      {
+        "url": "/images/learning/map-spain-1200.webp",
+        "width": 1200,
+        "bytes": 24198
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-spain-1200.webp"
+  },
+  {
+    "name": "map-spain-madrid",
+    "url": "/images/learning/map-spain-madrid-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Madrid, Spain, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-spain-madrid-400.webp",
+        "width": 400,
+        "bytes": 5420
+      },
+      {
+        "url": "/images/learning/map-spain-madrid-800.webp",
+        "width": 800,
+        "bytes": 14690
+      },
+      {
+        "url": "/images/learning/map-spain-madrid-1200.webp",
+        "width": 1200,
+        "bytes": 24342
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-spain-madrid-1200.webp"
+  },
+  {
+    "name": "map-spain-barcelona",
+    "url": "/images/learning/map-spain-barcelona-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Barcelona, Spain, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-spain-barcelona-400.webp",
+        "width": 400,
+        "bytes": 5530
+      },
+      {
+        "url": "/images/learning/map-spain-barcelona-800.webp",
+        "width": 800,
+        "bytes": 14970
+      },
+      {
+        "url": "/images/learning/map-spain-barcelona-1200.webp",
+        "width": 1200,
+        "bytes": 24756
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-spain-barcelona-1200.webp"
+  },
+  {
+    "name": "map-portugal",
+    "url": "/images/learning/map-portugal-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Portugal, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-portugal-400.webp",
+        "width": 400,
+        "bytes": 5044
+      },
+      {
+        "url": "/images/learning/map-portugal-800.webp",
+        "width": 800,
+        "bytes": 13900
+      },
+      {
+        "url": "/images/learning/map-portugal-1200.webp",
+        "width": 1200,
+        "bytes": 22802
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-portugal-1200.webp"
+  },
+  {
+    "name": "map-portugal-lisbon",
+    "url": "/images/learning/map-portugal-lisbon-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Lisbon, Portugal, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-portugal-lisbon-400.webp",
+        "width": 400,
+        "bytes": 4838
+      },
+      {
+        "url": "/images/learning/map-portugal-lisbon-800.webp",
+        "width": 800,
+        "bytes": 13272
+      },
+      {
+        "url": "/images/learning/map-portugal-lisbon-1200.webp",
+        "width": 1200,
+        "bytes": 22120
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-portugal-lisbon-1200.webp"
+  },
+  {
+    "name": "map-portugal-porto",
+    "url": "/images/learning/map-portugal-porto-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Porto, Portugal, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-portugal-porto-400.webp",
+        "width": 400,
+        "bytes": 4804
+      },
+      {
+        "url": "/images/learning/map-portugal-porto-800.webp",
+        "width": 800,
+        "bytes": 13224
+      },
+      {
+        "url": "/images/learning/map-portugal-porto-1200.webp",
+        "width": 1200,
+        "bytes": 22058
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-portugal-porto-1200.webp"
+  },
+  {
+    "name": "map-italy",
+    "url": "/images/learning/map-italy-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Italy, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-italy-400.webp",
+        "width": 400,
+        "bytes": 5116
+      },
+      {
+        "url": "/images/learning/map-italy-800.webp",
+        "width": 800,
+        "bytes": 14132
+      },
+      {
+        "url": "/images/learning/map-italy-1200.webp",
+        "width": 1200,
+        "bytes": 23324
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-italy-1200.webp"
+  },
+  {
+    "name": "map-italy-rome",
+    "url": "/images/learning/map-italy-rome-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Rome, Italy, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-italy-rome-400.webp",
+        "width": 400,
+        "bytes": 5026
+      },
+      {
+        "url": "/images/learning/map-italy-rome-800.webp",
+        "width": 800,
+        "bytes": 13822
+      },
+      {
+        "url": "/images/learning/map-italy-rome-1200.webp",
+        "width": 1200,
+        "bytes": 23148
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-italy-rome-1200.webp"
+  },
+  {
+    "name": "map-italy-milan",
+    "url": "/images/learning/map-italy-milan-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Milan, Italy, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-italy-milan-400.webp",
+        "width": 400,
+        "bytes": 5022
+      },
+      {
+        "url": "/images/learning/map-italy-milan-800.webp",
+        "width": 800,
+        "bytes": 13818
+      },
+      {
+        "url": "/images/learning/map-italy-milan-1200.webp",
+        "width": 1200,
+        "bytes": 23242
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-italy-milan-1200.webp"
+  },
+  {
+    "name": "map-austria",
+    "url": "/images/learning/map-austria-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Austria, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-austria-400.webp",
+        "width": 400,
+        "bytes": 5236
+      },
+      {
+        "url": "/images/learning/map-austria-800.webp",
+        "width": 800,
+        "bytes": 14240
+      },
+      {
+        "url": "/images/learning/map-austria-1200.webp",
+        "width": 1200,
+        "bytes": 23434
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-austria-1200.webp"
+  },
+  {
+    "name": "map-austria-vienna",
+    "url": "/images/learning/map-austria-vienna-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Vienna, Austria, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-austria-vienna-400.webp",
+        "width": 400,
+        "bytes": 5110
+      },
+      {
+        "url": "/images/learning/map-austria-vienna-800.webp",
+        "width": 800,
+        "bytes": 13886
+      },
+      {
+        "url": "/images/learning/map-austria-vienna-1200.webp",
+        "width": 1200,
+        "bytes": 23002
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-austria-vienna-1200.webp"
+  },
+  {
+    "name": "map-austria-graz",
+    "url": "/images/learning/map-austria-graz-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Graz, Austria, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-austria-graz-400.webp",
+        "width": 400,
+        "bytes": 5014
+      },
+      {
+        "url": "/images/learning/map-austria-graz-800.webp",
+        "width": 800,
+        "bytes": 13552
+      },
+      {
+        "url": "/images/learning/map-austria-graz-1200.webp",
+        "width": 1200,
+        "bytes": 22566
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-austria-graz-1200.webp"
+  },
+  {
+    "name": "map-switzerland",
+    "url": "/images/learning/map-switzerland-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Switzerland, with CHF fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-switzerland-400.webp",
+        "width": 400,
+        "bytes": 5828
+      },
+      {
+        "url": "/images/learning/map-switzerland-800.webp",
+        "width": 800,
+        "bytes": 15586
+      },
+      {
+        "url": "/images/learning/map-switzerland-1200.webp",
+        "width": 1200,
+        "bytes": 25200
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-switzerland-1200.webp"
+  },
+  {
+    "name": "map-switzerland-zurich",
+    "url": "/images/learning/map-switzerland-zurich-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Zurich, Switzerland, with CHF fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-switzerland-zurich-400.webp",
+        "width": 400,
+        "bytes": 5524
+      },
+      {
+        "url": "/images/learning/map-switzerland-zurich-800.webp",
+        "width": 800,
+        "bytes": 14714
+      },
+      {
+        "url": "/images/learning/map-switzerland-zurich-1200.webp",
+        "width": 1200,
+        "bytes": 24072
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-switzerland-zurich-1200.webp"
+  },
+  {
+    "name": "map-switzerland-geneva",
+    "url": "/images/learning/map-switzerland-geneva-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Geneva, Switzerland, with CHF fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-switzerland-geneva-400.webp",
+        "width": 400,
+        "bytes": 5604
+      },
+      {
+        "url": "/images/learning/map-switzerland-geneva-800.webp",
+        "width": 800,
+        "bytes": 14862
+      },
+      {
+        "url": "/images/learning/map-switzerland-geneva-1200.webp",
+        "width": 1200,
+        "bytes": 24388
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-switzerland-geneva-1200.webp"
+  },
+  {
+    "name": "map-sweden",
+    "url": "/images/learning/map-sweden-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Sweden, with SEK fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-sweden-400.webp",
+        "width": 400,
+        "bytes": 4874
+      },
+      {
+        "url": "/images/learning/map-sweden-800.webp",
+        "width": 800,
+        "bytes": 13590
+      },
+      {
+        "url": "/images/learning/map-sweden-1200.webp",
+        "width": 1200,
+        "bytes": 22640
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-sweden-1200.webp"
+  },
+  {
+    "name": "map-sweden-stockholm",
+    "url": "/images/learning/map-sweden-stockholm-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Stockholm, Sweden, with SEK fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-sweden-stockholm-400.webp",
+        "width": 400,
+        "bytes": 4976
+      },
+      {
+        "url": "/images/learning/map-sweden-stockholm-800.webp",
+        "width": 800,
+        "bytes": 13594
+      },
+      {
+        "url": "/images/learning/map-sweden-stockholm-1200.webp",
+        "width": 1200,
+        "bytes": 22730
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-sweden-stockholm-1200.webp"
+  },
+  {
+    "name": "map-sweden-gothenburg",
+    "url": "/images/learning/map-sweden-gothenburg-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Gothenburg, Sweden, with SEK fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-sweden-gothenburg-400.webp",
+        "width": 400,
+        "bytes": 5086
+      },
+      {
+        "url": "/images/learning/map-sweden-gothenburg-800.webp",
+        "width": 800,
+        "bytes": 14026
+      },
+      {
+        "url": "/images/learning/map-sweden-gothenburg-1200.webp",
+        "width": 1200,
+        "bytes": 23248
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-sweden-gothenburg-1200.webp"
+  },
+  {
+    "name": "map-norway",
+    "url": "/images/learning/map-norway-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Norway, with NOK fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-norway-400.webp",
+        "width": 400,
+        "bytes": 4766
+      },
+      {
+        "url": "/images/learning/map-norway-800.webp",
+        "width": 800,
+        "bytes": 13478
+      },
+      {
+        "url": "/images/learning/map-norway-1200.webp",
+        "width": 1200,
+        "bytes": 22674
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-norway-1200.webp"
+  },
+  {
+    "name": "map-norway-oslo",
+    "url": "/images/learning/map-norway-oslo-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Oslo, Norway, with NOK fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-norway-oslo-400.webp",
+        "width": 400,
+        "bytes": 4544
+      },
+      {
+        "url": "/images/learning/map-norway-oslo-800.webp",
+        "width": 800,
+        "bytes": 12848
+      },
+      {
+        "url": "/images/learning/map-norway-oslo-1200.webp",
+        "width": 1200,
+        "bytes": 21830
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-norway-oslo-1200.webp"
+  },
+  {
+    "name": "map-norway-bergen",
+    "url": "/images/learning/map-norway-bergen-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Bergen, Norway, with NOK fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-norway-bergen-400.webp",
+        "width": 400,
+        "bytes": 4728
+      },
+      {
+        "url": "/images/learning/map-norway-bergen-800.webp",
+        "width": 800,
+        "bytes": 13258
+      },
+      {
+        "url": "/images/learning/map-norway-bergen-1200.webp",
+        "width": 1200,
+        "bytes": 22438
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-norway-bergen-1200.webp"
+  },
+  {
+    "name": "map-denmark",
+    "url": "/images/learning/map-denmark-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Denmark, with DKK fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-denmark-400.webp",
+        "width": 400,
+        "bytes": 6900
+      },
+      {
+        "url": "/images/learning/map-denmark-800.webp",
+        "width": 800,
+        "bytes": 18128
+      },
+      {
+        "url": "/images/learning/map-denmark-1200.webp",
+        "width": 1200,
+        "bytes": 29956
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-denmark-1200.webp"
+  },
+  {
+    "name": "map-denmark-copenhagen",
+    "url": "/images/learning/map-denmark-copenhagen-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Copenhagen, Denmark, with DKK fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-denmark-copenhagen-400.webp",
+        "width": 400,
+        "bytes": 7058
+      },
+      {
+        "url": "/images/learning/map-denmark-copenhagen-800.webp",
+        "width": 800,
+        "bytes": 18650
+      },
+      {
+        "url": "/images/learning/map-denmark-copenhagen-1200.webp",
+        "width": 1200,
+        "bytes": 30816
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-denmark-copenhagen-1200.webp"
+  },
+  {
+    "name": "map-denmark-aarhus",
+    "url": "/images/learning/map-denmark-aarhus-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Aarhus, Denmark, with DKK fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-denmark-aarhus-400.webp",
+        "width": 400,
+        "bytes": 6674
+      },
+      {
+        "url": "/images/learning/map-denmark-aarhus-800.webp",
+        "width": 800,
+        "bytes": 17782
+      },
+      {
+        "url": "/images/learning/map-denmark-aarhus-1200.webp",
+        "width": 1200,
+        "bytes": 29594
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-denmark-aarhus-1200.webp"
+  },
+  {
+    "name": "map-finland",
+    "url": "/images/learning/map-finland-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Finland, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-finland-400.webp",
+        "width": 400,
+        "bytes": 4892
+      },
+      {
+        "url": "/images/learning/map-finland-800.webp",
+        "width": 800,
+        "bytes": 13434
+      },
+      {
+        "url": "/images/learning/map-finland-1200.webp",
+        "width": 1200,
+        "bytes": 22196
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-finland-1200.webp"
+  },
+  {
+    "name": "map-finland-helsinki",
+    "url": "/images/learning/map-finland-helsinki-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Helsinki, Finland, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-finland-helsinki-400.webp",
+        "width": 400,
+        "bytes": 4842
+      },
+      {
+        "url": "/images/learning/map-finland-helsinki-800.webp",
+        "width": 800,
+        "bytes": 13298
+      },
+      {
+        "url": "/images/learning/map-finland-helsinki-1200.webp",
+        "width": 1200,
+        "bytes": 22176
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-finland-helsinki-1200.webp"
+  },
+  {
+    "name": "map-finland-tampere",
+    "url": "/images/learning/map-finland-tampere-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Tampere, Finland, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-finland-tampere-400.webp",
+        "width": 400,
+        "bytes": 4916
+      },
+      {
+        "url": "/images/learning/map-finland-tampere-800.webp",
+        "width": 800,
+        "bytes": 13470
+      },
+      {
+        "url": "/images/learning/map-finland-tampere-1200.webp",
+        "width": 1200,
+        "bytes": 22440
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-finland-tampere-1200.webp"
+  },
+  {
+    "name": "map-iceland",
+    "url": "/images/learning/map-iceland-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Iceland, with ISK fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-iceland-400.webp",
+        "width": 400,
+        "bytes": 6716
+      },
+      {
+        "url": "/images/learning/map-iceland-800.webp",
+        "width": 800,
+        "bytes": 17860
+      },
+      {
+        "url": "/images/learning/map-iceland-1200.webp",
+        "width": 1200,
+        "bytes": 29762
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-iceland-1200.webp"
+  },
+  {
+    "name": "map-iceland-reykjavik",
+    "url": "/images/learning/map-iceland-reykjavik-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Reykjavik, Iceland, with ISK fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-iceland-reykjavik-400.webp",
+        "width": 400,
+        "bytes": 6848
+      },
+      {
+        "url": "/images/learning/map-iceland-reykjavik-800.webp",
+        "width": 800,
+        "bytes": 18196
+      },
+      {
+        "url": "/images/learning/map-iceland-reykjavik-1200.webp",
+        "width": 1200,
+        "bytes": 30440
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-iceland-reykjavik-1200.webp"
+  },
+  {
+    "name": "map-iceland-akureyri",
+    "url": "/images/learning/map-iceland-akureyri-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Akureyri, Iceland, with ISK fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-iceland-akureyri-400.webp",
+        "width": 400,
+        "bytes": 6764
+      },
+      {
+        "url": "/images/learning/map-iceland-akureyri-800.webp",
+        "width": 800,
+        "bytes": 17946
+      },
+      {
+        "url": "/images/learning/map-iceland-akureyri-1200.webp",
+        "width": 1200,
+        "bytes": 30130
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-iceland-akureyri-1200.webp"
+  },
+  {
+    "name": "map-poland",
+    "url": "/images/learning/map-poland-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Poland, with PLN fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-poland-400.webp",
+        "width": 400,
+        "bytes": 5260
+      },
+      {
+        "url": "/images/learning/map-poland-800.webp",
+        "width": 800,
+        "bytes": 14294
+      },
+      {
+        "url": "/images/learning/map-poland-1200.webp",
+        "width": 1200,
+        "bytes": 23592
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-poland-1200.webp"
+  },
+  {
+    "name": "map-poland-warsaw",
+    "url": "/images/learning/map-poland-warsaw-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Warsaw, Poland, with PLN fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-poland-warsaw-400.webp",
+        "width": 400,
+        "bytes": 5264
+      },
+      {
+        "url": "/images/learning/map-poland-warsaw-800.webp",
+        "width": 800,
+        "bytes": 14440
+      },
+      {
+        "url": "/images/learning/map-poland-warsaw-1200.webp",
+        "width": 1200,
+        "bytes": 23986
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-poland-warsaw-1200.webp"
+  },
+  {
+    "name": "map-poland-krakow",
+    "url": "/images/learning/map-poland-krakow-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Krakow, Poland, with PLN fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-poland-krakow-400.webp",
+        "width": 400,
+        "bytes": 5246
+      },
+      {
+        "url": "/images/learning/map-poland-krakow-800.webp",
+        "width": 800,
+        "bytes": 14166
+      },
+      {
+        "url": "/images/learning/map-poland-krakow-1200.webp",
+        "width": 1200,
+        "bytes": 23680
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-poland-krakow-1200.webp"
+  },
+  {
+    "name": "map-czechia",
+    "url": "/images/learning/map-czechia-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Czechia, with CZK fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-czechia-400.webp",
+        "width": 400,
+        "bytes": 5350
+      },
+      {
+        "url": "/images/learning/map-czechia-800.webp",
+        "width": 800,
+        "bytes": 14364
+      },
+      {
+        "url": "/images/learning/map-czechia-1200.webp",
+        "width": 1200,
+        "bytes": 23610
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-czechia-1200.webp"
+  },
+  {
+    "name": "map-czechia-prague",
+    "url": "/images/learning/map-czechia-prague-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Prague, Czechia, with CZK fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-czechia-prague-400.webp",
+        "width": 400,
+        "bytes": 5194
+      },
+      {
+        "url": "/images/learning/map-czechia-prague-800.webp",
+        "width": 800,
+        "bytes": 13982
+      },
+      {
+        "url": "/images/learning/map-czechia-prague-1200.webp",
+        "width": 1200,
+        "bytes": 23320
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-czechia-prague-1200.webp"
+  },
+  {
+    "name": "map-czechia-brno",
+    "url": "/images/learning/map-czechia-brno-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Brno, Czechia, with CZK fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-czechia-brno-400.webp",
+        "width": 400,
+        "bytes": 5060
+      },
+      {
+        "url": "/images/learning/map-czechia-brno-800.webp",
+        "width": 800,
+        "bytes": 13614
+      },
+      {
+        "url": "/images/learning/map-czechia-brno-1200.webp",
+        "width": 1200,
+        "bytes": 22604
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-czechia-brno-1200.webp"
+  },
+  {
+    "name": "map-slovakia",
+    "url": "/images/learning/map-slovakia-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Slovakia, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-slovakia-400.webp",
+        "width": 400,
+        "bytes": 5176
+      },
+      {
+        "url": "/images/learning/map-slovakia-800.webp",
+        "width": 800,
+        "bytes": 14140
+      },
+      {
+        "url": "/images/learning/map-slovakia-1200.webp",
+        "width": 1200,
+        "bytes": 23374
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-slovakia-1200.webp"
+  },
+  {
+    "name": "map-slovakia-bratislava",
+    "url": "/images/learning/map-slovakia-bratislava-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Bratislava, Slovakia, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-slovakia-bratislava-400.webp",
+        "width": 400,
+        "bytes": 5204
+      },
+      {
+        "url": "/images/learning/map-slovakia-bratislava-800.webp",
+        "width": 800,
+        "bytes": 14160
+      },
+      {
+        "url": "/images/learning/map-slovakia-bratislava-1200.webp",
+        "width": 1200,
+        "bytes": 23396
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-slovakia-bratislava-1200.webp"
+  },
+  {
+    "name": "map-slovakia-kosice",
+    "url": "/images/learning/map-slovakia-kosice-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Kosice, Slovakia, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-slovakia-kosice-400.webp",
+        "width": 400,
+        "bytes": 5030
+      },
+      {
+        "url": "/images/learning/map-slovakia-kosice-800.webp",
+        "width": 800,
+        "bytes": 13668
+      },
+      {
+        "url": "/images/learning/map-slovakia-kosice-1200.webp",
+        "width": 1200,
+        "bytes": 22784
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-slovakia-kosice-1200.webp"
+  },
+  {
+    "name": "map-hungary",
+    "url": "/images/learning/map-hungary-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Hungary, with HUF fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-hungary-400.webp",
+        "width": 400,
+        "bytes": 5310
+      },
+      {
+        "url": "/images/learning/map-hungary-800.webp",
+        "width": 800,
+        "bytes": 14358
+      },
+      {
+        "url": "/images/learning/map-hungary-1200.webp",
+        "width": 1200,
+        "bytes": 23456
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-hungary-1200.webp"
+  },
+  {
+    "name": "map-hungary-budapest",
+    "url": "/images/learning/map-hungary-budapest-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Budapest, Hungary, with HUF fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-hungary-budapest-400.webp",
+        "width": 400,
+        "bytes": 5288
+      },
+      {
+        "url": "/images/learning/map-hungary-budapest-800.webp",
+        "width": 800,
+        "bytes": 14324
+      },
+      {
+        "url": "/images/learning/map-hungary-budapest-1200.webp",
+        "width": 1200,
+        "bytes": 23720
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-hungary-budapest-1200.webp"
+  },
+  {
+    "name": "map-hungary-debrecen",
+    "url": "/images/learning/map-hungary-debrecen-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Debrecen, Hungary, with HUF fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-hungary-debrecen-400.webp",
+        "width": 400,
+        "bytes": 5232
+      },
+      {
+        "url": "/images/learning/map-hungary-debrecen-800.webp",
+        "width": 800,
+        "bytes": 14228
+      },
+      {
+        "url": "/images/learning/map-hungary-debrecen-1200.webp",
+        "width": 1200,
+        "bytes": 23648
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-hungary-debrecen-1200.webp"
+  },
+  {
+    "name": "map-romania",
+    "url": "/images/learning/map-romania-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Romania, with RON fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-romania-400.webp",
+        "width": 400,
+        "bytes": 5446
+      },
+      {
+        "url": "/images/learning/map-romania-800.webp",
+        "width": 800,
+        "bytes": 14716
+      },
+      {
+        "url": "/images/learning/map-romania-1200.webp",
+        "width": 1200,
+        "bytes": 24232
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-romania-1200.webp"
+  },
+  {
+    "name": "map-romania-bucharest",
+    "url": "/images/learning/map-romania-bucharest-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Bucharest, Romania, with RON fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-romania-bucharest-400.webp",
+        "width": 400,
+        "bytes": 5460
+      },
+      {
+        "url": "/images/learning/map-romania-bucharest-800.webp",
+        "width": 800,
+        "bytes": 14732
+      },
+      {
+        "url": "/images/learning/map-romania-bucharest-1200.webp",
+        "width": 1200,
+        "bytes": 24230
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-romania-bucharest-1200.webp"
+  },
+  {
+    "name": "map-romania-cluj-napoca",
+    "url": "/images/learning/map-romania-cluj-napoca-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Cluj-Napoca, Romania, with RON fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-romania-cluj-napoca-400.webp",
+        "width": 400,
+        "bytes": 5592
+      },
+      {
+        "url": "/images/learning/map-romania-cluj-napoca-800.webp",
+        "width": 800,
+        "bytes": 15002
+      },
+      {
+        "url": "/images/learning/map-romania-cluj-napoca-1200.webp",
+        "width": 1200,
+        "bytes": 24782
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-romania-cluj-napoca-1200.webp"
+  },
+  {
+    "name": "map-bulgaria",
+    "url": "/images/learning/map-bulgaria-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Bulgaria, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-bulgaria-400.webp",
+        "width": 400,
+        "bytes": 5488
+      },
+      {
+        "url": "/images/learning/map-bulgaria-800.webp",
+        "width": 800,
+        "bytes": 14518
+      },
+      {
+        "url": "/images/learning/map-bulgaria-1200.webp",
+        "width": 1200,
+        "bytes": 23934
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-bulgaria-1200.webp"
+  },
+  {
+    "name": "map-bulgaria-sofia",
+    "url": "/images/learning/map-bulgaria-sofia-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Sofia, Bulgaria, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-bulgaria-sofia-400.webp",
+        "width": 400,
+        "bytes": 5294
+      },
+      {
+        "url": "/images/learning/map-bulgaria-sofia-800.webp",
+        "width": 800,
+        "bytes": 13886
+      },
+      {
+        "url": "/images/learning/map-bulgaria-sofia-1200.webp",
+        "width": 1200,
+        "bytes": 23328
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-bulgaria-sofia-1200.webp"
+  },
+  {
+    "name": "map-bulgaria-plovdiv",
+    "url": "/images/learning/map-bulgaria-plovdiv-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Plovdiv, Bulgaria, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-bulgaria-plovdiv-400.webp",
+        "width": 400,
+        "bytes": 5402
+      },
+      {
+        "url": "/images/learning/map-bulgaria-plovdiv-800.webp",
+        "width": 800,
+        "bytes": 14222
+      },
+      {
+        "url": "/images/learning/map-bulgaria-plovdiv-1200.webp",
+        "width": 1200,
+        "bytes": 23490
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-bulgaria-plovdiv-1200.webp"
+  },
+  {
+    "name": "map-greece",
+    "url": "/images/learning/map-greece-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Greece, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-greece-400.webp",
+        "width": 400,
+        "bytes": 6496
+      },
+      {
+        "url": "/images/learning/map-greece-800.webp",
+        "width": 800,
+        "bytes": 17542
+      },
+      {
+        "url": "/images/learning/map-greece-1200.webp",
+        "width": 1200,
+        "bytes": 29174
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-greece-1200.webp"
+  },
+  {
+    "name": "map-greece-athens",
+    "url": "/images/learning/map-greece-athens-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Athens, Greece, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-greece-athens-400.webp",
+        "width": 400,
+        "bytes": 6414
+      },
+      {
+        "url": "/images/learning/map-greece-athens-800.webp",
+        "width": 800,
+        "bytes": 17364
+      },
+      {
+        "url": "/images/learning/map-greece-athens-1200.webp",
+        "width": 1200,
+        "bytes": 28966
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-greece-athens-1200.webp"
+  },
+  {
+    "name": "map-greece-thessaloniki",
+    "url": "/images/learning/map-greece-thessaloniki-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Thessaloniki, Greece, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-greece-thessaloniki-400.webp",
+        "width": 400,
+        "bytes": 6618
+      },
+      {
+        "url": "/images/learning/map-greece-thessaloniki-800.webp",
+        "width": 800,
+        "bytes": 18076
+      },
+      {
+        "url": "/images/learning/map-greece-thessaloniki-1200.webp",
+        "width": 1200,
+        "bytes": 29998
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-greece-thessaloniki-1200.webp"
+  },
+  {
+    "name": "map-croatia",
+    "url": "/images/learning/map-croatia-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Croatia, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-croatia-400.webp",
+        "width": 400,
+        "bytes": 5954
+      },
+      {
+        "url": "/images/learning/map-croatia-800.webp",
+        "width": 800,
+        "bytes": 16056
+      },
+      {
+        "url": "/images/learning/map-croatia-1200.webp",
+        "width": 1200,
+        "bytes": 26398
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-croatia-1200.webp"
+  },
+  {
+    "name": "map-croatia-zagreb",
+    "url": "/images/learning/map-croatia-zagreb-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Zagreb, Croatia, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-croatia-zagreb-400.webp",
+        "width": 400,
+        "bytes": 5882
+      },
+      {
+        "url": "/images/learning/map-croatia-zagreb-800.webp",
+        "width": 800,
+        "bytes": 15890
+      },
+      {
+        "url": "/images/learning/map-croatia-zagreb-1200.webp",
+        "width": 1200,
+        "bytes": 26274
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-croatia-zagreb-1200.webp"
+  },
+  {
+    "name": "map-croatia-split",
+    "url": "/images/learning/map-croatia-split-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Split, Croatia, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-croatia-split-400.webp",
+        "width": 400,
+        "bytes": 5700
+      },
+      {
+        "url": "/images/learning/map-croatia-split-800.webp",
+        "width": 800,
+        "bytes": 15426
+      },
+      {
+        "url": "/images/learning/map-croatia-split-1200.webp",
+        "width": 1200,
+        "bytes": 25538
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-croatia-split-1200.webp"
+  },
+  {
+    "name": "map-slovenia",
+    "url": "/images/learning/map-slovenia-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Slovenia, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-slovenia-400.webp",
+        "width": 400,
+        "bytes": 5610
+      },
+      {
+        "url": "/images/learning/map-slovenia-800.webp",
+        "width": 800,
+        "bytes": 14850
+      },
+      {
+        "url": "/images/learning/map-slovenia-1200.webp",
+        "width": 1200,
+        "bytes": 24356
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-slovenia-1200.webp"
+  },
+  {
+    "name": "map-slovenia-ljubljana",
+    "url": "/images/learning/map-slovenia-ljubljana-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Ljubljana, Slovenia, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-slovenia-ljubljana-400.webp",
+        "width": 400,
+        "bytes": 5556
+      },
+      {
+        "url": "/images/learning/map-slovenia-ljubljana-800.webp",
+        "width": 800,
+        "bytes": 14568
+      },
+      {
+        "url": "/images/learning/map-slovenia-ljubljana-1200.webp",
+        "width": 1200,
+        "bytes": 23936
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-slovenia-ljubljana-1200.webp"
+  },
+  {
+    "name": "map-slovenia-maribor",
+    "url": "/images/learning/map-slovenia-maribor-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Maribor, Slovenia, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-slovenia-maribor-400.webp",
+        "width": 400,
+        "bytes": 5460
+      },
+      {
+        "url": "/images/learning/map-slovenia-maribor-800.webp",
+        "width": 800,
+        "bytes": 14500
+      },
+      {
+        "url": "/images/learning/map-slovenia-maribor-1200.webp",
+        "width": 1200,
+        "bytes": 23772
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-slovenia-maribor-1200.webp"
+  },
+  {
+    "name": "map-estonia",
+    "url": "/images/learning/map-estonia-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Estonia, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-estonia-400.webp",
+        "width": 400,
+        "bytes": 5828
+      },
+      {
+        "url": "/images/learning/map-estonia-800.webp",
+        "width": 800,
+        "bytes": 15596
+      },
+      {
+        "url": "/images/learning/map-estonia-1200.webp",
+        "width": 1200,
+        "bytes": 25668
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-estonia-1200.webp"
+  },
+  {
+    "name": "map-estonia-tallinn",
+    "url": "/images/learning/map-estonia-tallinn-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Tallinn, Estonia, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-estonia-tallinn-400.webp",
+        "width": 400,
+        "bytes": 5650
+      },
+      {
+        "url": "/images/learning/map-estonia-tallinn-800.webp",
+        "width": 800,
+        "bytes": 14978
+      },
+      {
+        "url": "/images/learning/map-estonia-tallinn-1200.webp",
+        "width": 1200,
+        "bytes": 24826
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-estonia-tallinn-1200.webp"
+  },
+  {
+    "name": "map-estonia-tartu",
+    "url": "/images/learning/map-estonia-tartu-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Tartu, Estonia, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-estonia-tartu-400.webp",
+        "width": 400,
+        "bytes": 5688
+      },
+      {
+        "url": "/images/learning/map-estonia-tartu-800.webp",
+        "width": 800,
+        "bytes": 15030
+      },
+      {
+        "url": "/images/learning/map-estonia-tartu-1200.webp",
+        "width": 1200,
+        "bytes": 24814
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-estonia-tartu-1200.webp"
+  },
+  {
+    "name": "map-latvia",
+    "url": "/images/learning/map-latvia-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Latvia, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-latvia-400.webp",
+        "width": 400,
+        "bytes": 5120
+      },
+      {
+        "url": "/images/learning/map-latvia-800.webp",
+        "width": 800,
+        "bytes": 13902
+      },
+      {
+        "url": "/images/learning/map-latvia-1200.webp",
+        "width": 1200,
+        "bytes": 22870
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-latvia-1200.webp"
+  },
+  {
+    "name": "map-latvia-riga",
+    "url": "/images/learning/map-latvia-riga-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Riga, Latvia, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-latvia-riga-400.webp",
+        "width": 400,
+        "bytes": 5080
+      },
+      {
+        "url": "/images/learning/map-latvia-riga-800.webp",
+        "width": 800,
+        "bytes": 13506
+      },
+      {
+        "url": "/images/learning/map-latvia-riga-1200.webp",
+        "width": 1200,
+        "bytes": 22476
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-latvia-riga-1200.webp"
+  },
+  {
+    "name": "map-latvia-liepaja",
+    "url": "/images/learning/map-latvia-liepaja-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Liepaja, Latvia, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-latvia-liepaja-400.webp",
+        "width": 400,
+        "bytes": 5288
+      },
+      {
+        "url": "/images/learning/map-latvia-liepaja-800.webp",
+        "width": 800,
+        "bytes": 13792
+      },
+      {
+        "url": "/images/learning/map-latvia-liepaja-1200.webp",
+        "width": 1200,
+        "bytes": 22812
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-latvia-liepaja-1200.webp"
+  },
+  {
+    "name": "map-lithuania",
+    "url": "/images/learning/map-lithuania-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Lithuania, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-lithuania-400.webp",
+        "width": 400,
+        "bytes": 5428
+      },
+      {
+        "url": "/images/learning/map-lithuania-800.webp",
+        "width": 800,
+        "bytes": 14540
+      },
+      {
+        "url": "/images/learning/map-lithuania-1200.webp",
+        "width": 1200,
+        "bytes": 23924
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-lithuania-1200.webp"
+  },
+  {
+    "name": "map-lithuania-vilnius",
+    "url": "/images/learning/map-lithuania-vilnius-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Vilnius, Lithuania, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-lithuania-vilnius-400.webp",
+        "width": 400,
+        "bytes": 5230
+      },
+      {
+        "url": "/images/learning/map-lithuania-vilnius-800.webp",
+        "width": 800,
+        "bytes": 13964
+      },
+      {
+        "url": "/images/learning/map-lithuania-vilnius-1200.webp",
+        "width": 1200,
+        "bytes": 23394
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-lithuania-vilnius-1200.webp"
+  },
+  {
+    "name": "map-lithuania-kaunas",
+    "url": "/images/learning/map-lithuania-kaunas-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Kaunas, Lithuania, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-lithuania-kaunas-400.webp",
+        "width": 400,
+        "bytes": 5300
+      },
+      {
+        "url": "/images/learning/map-lithuania-kaunas-800.webp",
+        "width": 800,
+        "bytes": 14066
+      },
+      {
+        "url": "/images/learning/map-lithuania-kaunas-1200.webp",
+        "width": 1200,
+        "bytes": 23708
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-lithuania-kaunas-1200.webp"
+  },
+  {
+    "name": "map-luxembourg",
+    "url": "/images/learning/map-luxembourg-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Luxembourg, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-luxembourg-400.webp",
+        "width": 400,
+        "bytes": 5246
+      },
+      {
+        "url": "/images/learning/map-luxembourg-800.webp",
+        "width": 800,
+        "bytes": 14180
+      },
+      {
+        "url": "/images/learning/map-luxembourg-1200.webp",
+        "width": 1200,
+        "bytes": 23108
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-luxembourg-1200.webp"
+  },
+  {
+    "name": "map-luxembourg-luxembourg-city",
+    "url": "/images/learning/map-luxembourg-luxembourg-city-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Luxembourg City, Luxembourg, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-luxembourg-luxembourg-city-400.webp",
+        "width": 400,
+        "bytes": 5474
+      },
+      {
+        "url": "/images/learning/map-luxembourg-luxembourg-city-800.webp",
+        "width": 800,
+        "bytes": 14710
+      },
+      {
+        "url": "/images/learning/map-luxembourg-luxembourg-city-1200.webp",
+        "width": 1200,
+        "bytes": 24106
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-luxembourg-luxembourg-city-1200.webp"
+  },
+  {
+    "name": "map-luxembourg-esch-sur-alzette",
+    "url": "/images/learning/map-luxembourg-esch-sur-alzette-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Esch-sur-Alzette, Luxembourg, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-luxembourg-esch-sur-alzette-400.webp",
+        "width": 400,
+        "bytes": 5416
+      },
+      {
+        "url": "/images/learning/map-luxembourg-esch-sur-alzette-800.webp",
+        "width": 800,
+        "bytes": 14664
+      },
+      {
+        "url": "/images/learning/map-luxembourg-esch-sur-alzette-1200.webp",
+        "width": 1200,
+        "bytes": 23950
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-luxembourg-esch-sur-alzette-1200.webp"
+  },
+  {
+    "name": "map-malta",
+    "url": "/images/learning/map-malta-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Malta, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-malta-400.webp",
+        "width": 400,
+        "bytes": 4830
+      },
+      {
+        "url": "/images/learning/map-malta-800.webp",
+        "width": 800,
+        "bytes": 13112
+      },
+      {
+        "url": "/images/learning/map-malta-1200.webp",
+        "width": 1200,
+        "bytes": 21712
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-malta-1200.webp"
+  },
+  {
+    "name": "map-malta-valletta",
+    "url": "/images/learning/map-malta-valletta-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Valletta, Malta, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-malta-valletta-400.webp",
+        "width": 400,
+        "bytes": 4870
+      },
+      {
+        "url": "/images/learning/map-malta-valletta-800.webp",
+        "width": 800,
+        "bytes": 13234
+      },
+      {
+        "url": "/images/learning/map-malta-valletta-1200.webp",
+        "width": 1200,
+        "bytes": 21940
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-malta-valletta-1200.webp"
+  },
+  {
+    "name": "map-malta-sliema",
+    "url": "/images/learning/map-malta-sliema-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Sliema, Malta, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-malta-sliema-400.webp",
+        "width": 400,
+        "bytes": 4816
+      },
+      {
+        "url": "/images/learning/map-malta-sliema-800.webp",
+        "width": 800,
+        "bytes": 12986
+      },
+      {
+        "url": "/images/learning/map-malta-sliema-1200.webp",
+        "width": 1200,
+        "bytes": 21564
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-malta-sliema-1200.webp"
+  },
+  {
+    "name": "map-cyprus",
+    "url": "/images/learning/map-cyprus-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Cyprus, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-cyprus-400.webp",
+        "width": 400,
+        "bytes": 4956
+      },
+      {
+        "url": "/images/learning/map-cyprus-800.webp",
+        "width": 800,
+        "bytes": 13344
+      },
+      {
+        "url": "/images/learning/map-cyprus-1200.webp",
+        "width": 1200,
+        "bytes": 22190
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-cyprus-1200.webp"
+  },
+  {
+    "name": "map-cyprus-nicosia",
+    "url": "/images/learning/map-cyprus-nicosia-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Nicosia, Cyprus, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-cyprus-nicosia-400.webp",
+        "width": 400,
+        "bytes": 4886
+      },
+      {
+        "url": "/images/learning/map-cyprus-nicosia-800.webp",
+        "width": 800,
+        "bytes": 13168
+      },
+      {
+        "url": "/images/learning/map-cyprus-nicosia-1200.webp",
+        "width": 1200,
+        "bytes": 22160
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-cyprus-nicosia-1200.webp"
+  },
+  {
+    "name": "map-cyprus-limassol",
+    "url": "/images/learning/map-cyprus-limassol-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Limassol, Cyprus, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-cyprus-limassol-400.webp",
+        "width": 400,
+        "bytes": 4926
+      },
+      {
+        "url": "/images/learning/map-cyprus-limassol-800.webp",
+        "width": 800,
+        "bytes": 13256
+      },
+      {
+        "url": "/images/learning/map-cyprus-limassol-1200.webp",
+        "width": 1200,
+        "bytes": 22248
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-cyprus-limassol-1200.webp"
+  },
+  {
+    "name": "map-albania",
+    "url": "/images/learning/map-albania-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Albania, with ALL fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-albania-400.webp",
+        "width": 400,
+        "bytes": 4854
+      },
+      {
+        "url": "/images/learning/map-albania-800.webp",
+        "width": 800,
+        "bytes": 13228
+      },
+      {
+        "url": "/images/learning/map-albania-1200.webp",
+        "width": 1200,
+        "bytes": 21820
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-albania-1200.webp"
+  },
+  {
+    "name": "map-albania-tirana",
+    "url": "/images/learning/map-albania-tirana-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Tirana, Albania, with ALL fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-albania-tirana-400.webp",
+        "width": 400,
+        "bytes": 4674
+      },
+      {
+        "url": "/images/learning/map-albania-tirana-800.webp",
+        "width": 800,
+        "bytes": 12838
+      },
+      {
+        "url": "/images/learning/map-albania-tirana-1200.webp",
+        "width": 1200,
+        "bytes": 21214
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-albania-tirana-1200.webp"
+  },
+  {
+    "name": "map-albania-durres",
+    "url": "/images/learning/map-albania-durres-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Durres, Albania, with ALL fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-albania-durres-400.webp",
+        "width": 400,
+        "bytes": 4688
+      },
+      {
+        "url": "/images/learning/map-albania-durres-800.webp",
+        "width": 800,
+        "bytes": 12930
+      },
+      {
+        "url": "/images/learning/map-albania-durres-1200.webp",
+        "width": 1200,
+        "bytes": 21230
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-albania-durres-1200.webp"
+  },
+  {
+    "name": "map-bosnia-and-herzegovina",
+    "url": "/images/learning/map-bosnia-and-herzegovina-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Bosnia and Herzegovina, with BAM fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-bosnia-and-herzegovina-400.webp",
+        "width": 400,
+        "bytes": 6392
+      },
+      {
+        "url": "/images/learning/map-bosnia-and-herzegovina-800.webp",
+        "width": 800,
+        "bytes": 16780
+      },
+      {
+        "url": "/images/learning/map-bosnia-and-herzegovina-1200.webp",
+        "width": 1200,
+        "bytes": 27152
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-bosnia-and-herzegovina-1200.webp"
+  },
+  {
+    "name": "map-bosnia-and-herzegovina-sarajevo",
+    "url": "/images/learning/map-bosnia-and-herzegovina-sarajevo-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Sarajevo, Bosnia and Herzegovina, with BAM fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-bosnia-and-herzegovina-sarajevo-400.webp",
+        "width": 400,
+        "bytes": 5494
+      },
+      {
+        "url": "/images/learning/map-bosnia-and-herzegovina-sarajevo-800.webp",
+        "width": 800,
+        "bytes": 15000
+      },
+      {
+        "url": "/images/learning/map-bosnia-and-herzegovina-sarajevo-1200.webp",
+        "width": 1200,
+        "bytes": 24954
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-bosnia-and-herzegovina-sarajevo-1200.webp"
+  },
+  {
+    "name": "map-bosnia-and-herzegovina-mostar",
+    "url": "/images/learning/map-bosnia-and-herzegovina-mostar-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Mostar, Bosnia and Herzegovina, with BAM fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-bosnia-and-herzegovina-mostar-400.webp",
+        "width": 400,
+        "bytes": 5380
+      },
+      {
+        "url": "/images/learning/map-bosnia-and-herzegovina-mostar-800.webp",
+        "width": 800,
+        "bytes": 14694
+      },
+      {
+        "url": "/images/learning/map-bosnia-and-herzegovina-mostar-1200.webp",
+        "width": 1200,
+        "bytes": 24642
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-bosnia-and-herzegovina-mostar-1200.webp"
+  },
+  {
+    "name": "map-serbia",
+    "url": "/images/learning/map-serbia-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Serbia, with RSD fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-serbia-400.webp",
+        "width": 400,
+        "bytes": 5338
+      },
+      {
+        "url": "/images/learning/map-serbia-800.webp",
+        "width": 800,
+        "bytes": 14528
+      },
+      {
+        "url": "/images/learning/map-serbia-1200.webp",
+        "width": 1200,
+        "bytes": 23526
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-serbia-1200.webp"
+  },
+  {
+    "name": "map-serbia-belgrade",
+    "url": "/images/learning/map-serbia-belgrade-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Belgrade, Serbia, with RSD fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-serbia-belgrade-400.webp",
+        "width": 400,
+        "bytes": 5420
+      },
+      {
+        "url": "/images/learning/map-serbia-belgrade-800.webp",
+        "width": 800,
+        "bytes": 14566
+      },
+      {
+        "url": "/images/learning/map-serbia-belgrade-1200.webp",
+        "width": 1200,
+        "bytes": 23732
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-serbia-belgrade-1200.webp"
+  },
+  {
+    "name": "map-serbia-novi-sad",
+    "url": "/images/learning/map-serbia-novi-sad-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Novi Sad, Serbia, with RSD fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-serbia-novi-sad-400.webp",
+        "width": 400,
+        "bytes": 5328
+      },
+      {
+        "url": "/images/learning/map-serbia-novi-sad-800.webp",
+        "width": 800,
+        "bytes": 14416
+      },
+      {
+        "url": "/images/learning/map-serbia-novi-sad-1200.webp",
+        "width": 1200,
+        "bytes": 23574
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-serbia-novi-sad-1200.webp"
+  },
+  {
+    "name": "map-montenegro",
+    "url": "/images/learning/map-montenegro-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Montenegro, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-montenegro-400.webp",
+        "width": 400,
+        "bytes": 5478
+      },
+      {
+        "url": "/images/learning/map-montenegro-800.webp",
+        "width": 800,
+        "bytes": 14702
+      },
+      {
+        "url": "/images/learning/map-montenegro-1200.webp",
+        "width": 1200,
+        "bytes": 24278
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-montenegro-1200.webp"
+  },
+  {
+    "name": "map-montenegro-podgorica",
+    "url": "/images/learning/map-montenegro-podgorica-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Podgorica, Montenegro, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-montenegro-podgorica-400.webp",
+        "width": 400,
+        "bytes": 5360
+      },
+      {
+        "url": "/images/learning/map-montenegro-podgorica-800.webp",
+        "width": 800,
+        "bytes": 14398
+      },
+      {
+        "url": "/images/learning/map-montenegro-podgorica-1200.webp",
+        "width": 1200,
+        "bytes": 23788
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-montenegro-podgorica-1200.webp"
+  },
+  {
+    "name": "map-montenegro-budva",
+    "url": "/images/learning/map-montenegro-budva-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Budva, Montenegro, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-montenegro-budva-400.webp",
+        "width": 400,
+        "bytes": 5056
+      },
+      {
+        "url": "/images/learning/map-montenegro-budva-800.webp",
+        "width": 800,
+        "bytes": 13682
+      },
+      {
+        "url": "/images/learning/map-montenegro-budva-1200.webp",
+        "width": 1200,
+        "bytes": 23004
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-montenegro-budva-1200.webp"
+  },
+  {
+    "name": "map-north-macedonia",
+    "url": "/images/learning/map-north-macedonia-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in North Macedonia, with MKD fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-north-macedonia-400.webp",
+        "width": 400,
+        "bytes": 5922
+      },
+      {
+        "url": "/images/learning/map-north-macedonia-800.webp",
+        "width": 800,
+        "bytes": 15474
+      },
+      {
+        "url": "/images/learning/map-north-macedonia-1200.webp",
+        "width": 1200,
+        "bytes": 25420
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-north-macedonia-1200.webp"
+  },
+  {
+    "name": "map-north-macedonia-skopje",
+    "url": "/images/learning/map-north-macedonia-skopje-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Skopje, North Macedonia, with MKD fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-north-macedonia-skopje-400.webp",
+        "width": 400,
+        "bytes": 5422
+      },
+      {
+        "url": "/images/learning/map-north-macedonia-skopje-800.webp",
+        "width": 800,
+        "bytes": 14328
+      },
+      {
+        "url": "/images/learning/map-north-macedonia-skopje-1200.webp",
+        "width": 1200,
+        "bytes": 23866
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-north-macedonia-skopje-1200.webp"
+  },
+  {
+    "name": "map-north-macedonia-tetovo",
+    "url": "/images/learning/map-north-macedonia-tetovo-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Tetovo, North Macedonia, with MKD fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-north-macedonia-tetovo-400.webp",
+        "width": 400,
+        "bytes": 5344
+      },
+      {
+        "url": "/images/learning/map-north-macedonia-tetovo-800.webp",
+        "width": 800,
+        "bytes": 14150
+      },
+      {
+        "url": "/images/learning/map-north-macedonia-tetovo-1200.webp",
+        "width": 1200,
+        "bytes": 23696
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-north-macedonia-tetovo-1200.webp"
+  },
+  {
+    "name": "map-kosovo",
+    "url": "/images/learning/map-kosovo-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Kosovo, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-kosovo-400.webp",
+        "width": 400,
+        "bytes": 5106
+      },
+      {
+        "url": "/images/learning/map-kosovo-800.webp",
+        "width": 800,
+        "bytes": 13878
+      },
+      {
+        "url": "/images/learning/map-kosovo-1200.webp",
+        "width": 1200,
+        "bytes": 22976
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-kosovo-1200.webp"
+  },
+  {
+    "name": "map-kosovo-pristina",
+    "url": "/images/learning/map-kosovo-pristina-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Pristina, Kosovo, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-kosovo-pristina-400.webp",
+        "width": 400,
+        "bytes": 5074
+      },
+      {
+        "url": "/images/learning/map-kosovo-pristina-800.webp",
+        "width": 800,
+        "bytes": 13642
+      },
+      {
+        "url": "/images/learning/map-kosovo-pristina-1200.webp",
+        "width": 1200,
+        "bytes": 22624
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-kosovo-pristina-1200.webp"
+  },
+  {
+    "name": "map-kosovo-prizren",
+    "url": "/images/learning/map-kosovo-prizren-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Prizren, Kosovo, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-kosovo-prizren-400.webp",
+        "width": 400,
+        "bytes": 5026
+      },
+      {
+        "url": "/images/learning/map-kosovo-prizren-800.webp",
+        "width": 800,
+        "bytes": 13538
+      },
+      {
+        "url": "/images/learning/map-kosovo-prizren-1200.webp",
+        "width": 1200,
+        "bytes": 22332
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-kosovo-prizren-1200.webp"
+  },
+  {
+    "name": "map-moldova",
+    "url": "/images/learning/map-moldova-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Moldova, with MDL fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-moldova-400.webp",
+        "width": 400,
+        "bytes": 5172
+      },
+      {
+        "url": "/images/learning/map-moldova-800.webp",
+        "width": 800,
+        "bytes": 14106
+      },
+      {
+        "url": "/images/learning/map-moldova-1200.webp",
+        "width": 1200,
+        "bytes": 23254
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-moldova-1200.webp"
+  },
+  {
+    "name": "map-moldova-chisinau",
+    "url": "/images/learning/map-moldova-chisinau-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Chisinau, Moldova, with MDL fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-moldova-chisinau-400.webp",
+        "width": 400,
+        "bytes": 5066
+      },
+      {
+        "url": "/images/learning/map-moldova-chisinau-800.webp",
+        "width": 800,
+        "bytes": 13852
+      },
+      {
+        "url": "/images/learning/map-moldova-chisinau-1200.webp",
+        "width": 1200,
+        "bytes": 23058
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-moldova-chisinau-1200.webp"
+  },
+  {
+    "name": "map-moldova-balti",
+    "url": "/images/learning/map-moldova-balti-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Balti, Moldova, with MDL fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-moldova-balti-400.webp",
+        "width": 400,
+        "bytes": 4838
+      },
+      {
+        "url": "/images/learning/map-moldova-balti-800.webp",
+        "width": 800,
+        "bytes": 13290
+      },
+      {
+        "url": "/images/learning/map-moldova-balti-1200.webp",
+        "width": 1200,
+        "bytes": 22176
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-moldova-balti-1200.webp"
+  },
+  {
+    "name": "map-ukraine",
+    "url": "/images/learning/map-ukraine-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Ukraine, with UAH fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-ukraine-400.webp",
+        "width": 400,
+        "bytes": 5440
+      },
+      {
+        "url": "/images/learning/map-ukraine-800.webp",
+        "width": 800,
+        "bytes": 14652
+      },
+      {
+        "url": "/images/learning/map-ukraine-1200.webp",
+        "width": 1200,
+        "bytes": 24102
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-ukraine-1200.webp"
+  },
+  {
+    "name": "map-ukraine-kyiv",
+    "url": "/images/learning/map-ukraine-kyiv-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Kyiv, Ukraine, with UAH fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-ukraine-kyiv-400.webp",
+        "width": 400,
+        "bytes": 5366
+      },
+      {
+        "url": "/images/learning/map-ukraine-kyiv-800.webp",
+        "width": 800,
+        "bytes": 13988
+      },
+      {
+        "url": "/images/learning/map-ukraine-kyiv-1200.webp",
+        "width": 1200,
+        "bytes": 23420
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-ukraine-kyiv-1200.webp"
+  },
+  {
+    "name": "map-ukraine-lviv",
+    "url": "/images/learning/map-ukraine-lviv-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Lviv, Ukraine, with UAH fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-ukraine-lviv-400.webp",
+        "width": 400,
+        "bytes": 5196
+      },
+      {
+        "url": "/images/learning/map-ukraine-lviv-800.webp",
+        "width": 800,
+        "bytes": 13820
+      },
+      {
+        "url": "/images/learning/map-ukraine-lviv-1200.webp",
+        "width": 1200,
+        "bytes": 23074
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-ukraine-lviv-1200.webp"
+  },
+  {
+    "name": "map-belarus",
+    "url": "/images/learning/map-belarus-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Belarus, with BYN fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-belarus-400.webp",
+        "width": 400,
+        "bytes": 5500
+      },
+      {
+        "url": "/images/learning/map-belarus-800.webp",
+        "width": 800,
+        "bytes": 14724
+      },
+      {
+        "url": "/images/learning/map-belarus-1200.webp",
+        "width": 1200,
+        "bytes": 23990
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-belarus-1200.webp"
+  },
+  {
+    "name": "map-belarus-minsk",
+    "url": "/images/learning/map-belarus-minsk-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Minsk, Belarus, with BYN fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-belarus-minsk-400.webp",
+        "width": 400,
+        "bytes": 5396
+      },
+      {
+        "url": "/images/learning/map-belarus-minsk-800.webp",
+        "width": 800,
+        "bytes": 14276
+      },
+      {
+        "url": "/images/learning/map-belarus-minsk-1200.webp",
+        "width": 1200,
+        "bytes": 23522
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-belarus-minsk-1200.webp"
+  },
+  {
+    "name": "map-belarus-brest",
+    "url": "/images/learning/map-belarus-brest-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Brest, Belarus, with BYN fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-belarus-brest-400.webp",
+        "width": 400,
+        "bytes": 5306
+      },
+      {
+        "url": "/images/learning/map-belarus-brest-800.webp",
+        "width": 800,
+        "bytes": 14180
+      },
+      {
+        "url": "/images/learning/map-belarus-brest-1200.webp",
+        "width": 1200,
+        "bytes": 23364
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-belarus-brest-1200.webp"
+  },
+  {
+    "name": "map-turkey",
+    "url": "/images/learning/map-turkey-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Turkey, with TRY fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-turkey-400.webp",
+        "width": 400,
+        "bytes": 5296
+      },
+      {
+        "url": "/images/learning/map-turkey-800.webp",
+        "width": 800,
+        "bytes": 14456
+      },
+      {
+        "url": "/images/learning/map-turkey-1200.webp",
+        "width": 1200,
+        "bytes": 23888
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-turkey-1200.webp"
+  },
+  {
+    "name": "map-turkey-istanbul",
+    "url": "/images/learning/map-turkey-istanbul-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Istanbul, Turkey, with TRY fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-turkey-istanbul-400.webp",
+        "width": 400,
+        "bytes": 5252
+      },
+      {
+        "url": "/images/learning/map-turkey-istanbul-800.webp",
+        "width": 800,
+        "bytes": 14330
+      },
+      {
+        "url": "/images/learning/map-turkey-istanbul-1200.webp",
+        "width": 1200,
+        "bytes": 23838
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-turkey-istanbul-1200.webp"
+  },
+  {
+    "name": "map-turkey-ankara",
+    "url": "/images/learning/map-turkey-ankara-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Ankara, Turkey, with TRY fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-turkey-ankara-400.webp",
+        "width": 400,
+        "bytes": 5264
+      },
+      {
+        "url": "/images/learning/map-turkey-ankara-800.webp",
+        "width": 800,
+        "bytes": 14338
+      },
+      {
+        "url": "/images/learning/map-turkey-ankara-1200.webp",
+        "width": 1200,
+        "bytes": 23962
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-turkey-ankara-1200.webp"
+  },
+  {
+    "name": "map-russia",
+    "url": "/images/learning/map-russia-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Russia, with RUB fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-russia-400.webp",
+        "width": 400,
+        "bytes": 6204
+      },
+      {
+        "url": "/images/learning/map-russia-800.webp",
+        "width": 800,
+        "bytes": 16772
+      },
+      {
+        "url": "/images/learning/map-russia-1200.webp",
+        "width": 1200,
+        "bytes": 28206
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-russia-1200.webp"
+  },
+  {
+    "name": "map-russia-moscow",
+    "url": "/images/learning/map-russia-moscow-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Moscow, Russia, with RUB fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-russia-moscow-400.webp",
+        "width": 400,
+        "bytes": 6208
+      },
+      {
+        "url": "/images/learning/map-russia-moscow-800.webp",
+        "width": 800,
+        "bytes": 16904
+      },
+      {
+        "url": "/images/learning/map-russia-moscow-1200.webp",
+        "width": 1200,
+        "bytes": 28468
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-russia-moscow-1200.webp"
+  },
+  {
+    "name": "map-russia-saint-petersburg",
+    "url": "/images/learning/map-russia-saint-petersburg-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Saint Petersburg, Russia, with RUB fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-russia-saint-petersburg-400.webp",
+        "width": 400,
+        "bytes": 6706
+      },
+      {
+        "url": "/images/learning/map-russia-saint-petersburg-800.webp",
+        "width": 800,
+        "bytes": 17988
+      },
+      {
+        "url": "/images/learning/map-russia-saint-petersburg-1200.webp",
+        "width": 1200,
+        "bytes": 30086
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-russia-saint-petersburg-1200.webp"
+  },
+  {
+    "name": "map-andorra",
+    "url": "/images/learning/map-andorra-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Andorra, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-andorra-400.webp",
+        "width": 400,
+        "bytes": 5238
+      },
+      {
+        "url": "/images/learning/map-andorra-800.webp",
+        "width": 800,
+        "bytes": 14170
+      },
+      {
+        "url": "/images/learning/map-andorra-1200.webp",
+        "width": 1200,
+        "bytes": 23238
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-andorra-1200.webp"
+  },
+  {
+    "name": "map-andorra-andorra-la-vella",
+    "url": "/images/learning/map-andorra-andorra-la-vella-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Andorra la Vella, Andorra, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-andorra-andorra-la-vella-400.webp",
+        "width": 400,
+        "bytes": 5576
+      },
+      {
+        "url": "/images/learning/map-andorra-andorra-la-vella-800.webp",
+        "width": 800,
+        "bytes": 14930
+      },
+      {
+        "url": "/images/learning/map-andorra-andorra-la-vella-1200.webp",
+        "width": 1200,
+        "bytes": 24546
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-andorra-andorra-la-vella-1200.webp"
+  },
+  {
+    "name": "map-andorra-escaldes-engordany",
+    "url": "/images/learning/map-andorra-escaldes-engordany-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Escaldes-Engordany, Andorra, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-andorra-escaldes-engordany-400.webp",
+        "width": 400,
+        "bytes": 5928
+      },
+      {
+        "url": "/images/learning/map-andorra-escaldes-engordany-800.webp",
+        "width": 800,
+        "bytes": 15742
+      },
+      {
+        "url": "/images/learning/map-andorra-escaldes-engordany-1200.webp",
+        "width": 1200,
+        "bytes": 25660
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-andorra-escaldes-engordany-1200.webp"
+  },
+  {
+    "name": "map-liechtenstein",
+    "url": "/images/learning/map-liechtenstein-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Liechtenstein, with CHF fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-liechtenstein-400.webp",
+        "width": 400,
+        "bytes": 5012
+      },
+      {
+        "url": "/images/learning/map-liechtenstein-800.webp",
+        "width": 800,
+        "bytes": 13742
+      },
+      {
+        "url": "/images/learning/map-liechtenstein-1200.webp",
+        "width": 1200,
+        "bytes": 22374
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-liechtenstein-1200.webp"
+  },
+  {
+    "name": "map-liechtenstein-vaduz",
+    "url": "/images/learning/map-liechtenstein-vaduz-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Vaduz, Liechtenstein, with CHF fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-liechtenstein-vaduz-400.webp",
+        "width": 400,
+        "bytes": 4522
+      },
+      {
+        "url": "/images/learning/map-liechtenstein-vaduz-800.webp",
+        "width": 800,
+        "bytes": 12634
+      },
+      {
+        "url": "/images/learning/map-liechtenstein-vaduz-1200.webp",
+        "width": 1200,
+        "bytes": 20982
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-liechtenstein-vaduz-1200.webp"
+  },
+  {
+    "name": "map-liechtenstein-schaan",
+    "url": "/images/learning/map-liechtenstein-schaan-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Schaan, Liechtenstein, with CHF fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-liechtenstein-schaan-400.webp",
+        "width": 400,
+        "bytes": 4600
+      },
+      {
+        "url": "/images/learning/map-liechtenstein-schaan-800.webp",
+        "width": 800,
+        "bytes": 12896
+      },
+      {
+        "url": "/images/learning/map-liechtenstein-schaan-1200.webp",
+        "width": 1200,
+        "bytes": 21260
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-liechtenstein-schaan-1200.webp"
+  },
+  {
+    "name": "map-monaco",
+    "url": "/images/learning/map-monaco-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Monaco, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-monaco-400.webp",
+        "width": 400,
+        "bytes": 5020
+      },
+      {
+        "url": "/images/learning/map-monaco-800.webp",
+        "width": 800,
+        "bytes": 13554
+      },
+      {
+        "url": "/images/learning/map-monaco-1200.webp",
+        "width": 1200,
+        "bytes": 22622
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-monaco-1200.webp"
+  },
+  {
+    "name": "map-monaco-monaco",
+    "url": "/images/learning/map-monaco-monaco-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Monaco, Monaco, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-monaco-monaco-400.webp",
+        "width": 400,
+        "bytes": 5026
+      },
+      {
+        "url": "/images/learning/map-monaco-monaco-800.webp",
+        "width": 800,
+        "bytes": 13520
+      },
+      {
+        "url": "/images/learning/map-monaco-monaco-1200.webp",
+        "width": 1200,
+        "bytes": 22676
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-monaco-monaco-1200.webp"
+  },
+  {
+    "name": "map-san-marino",
+    "url": "/images/learning/map-san-marino-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in San Marino, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-san-marino-400.webp",
+        "width": 400,
+        "bytes": 5012
+      },
+      {
+        "url": "/images/learning/map-san-marino-800.webp",
+        "width": 800,
+        "bytes": 13742
+      },
+      {
+        "url": "/images/learning/map-san-marino-1200.webp",
+        "width": 1200,
+        "bytes": 22826
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-san-marino-1200.webp"
+  },
+  {
+    "name": "map-san-marino-san-marino",
+    "url": "/images/learning/map-san-marino-san-marino-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in San Marino, San Marino, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-san-marino-san-marino-400.webp",
+        "width": 400,
+        "bytes": 5096
+      },
+      {
+        "url": "/images/learning/map-san-marino-san-marino-800.webp",
+        "width": 800,
+        "bytes": 13782
+      },
+      {
+        "url": "/images/learning/map-san-marino-san-marino-1200.webp",
+        "width": 1200,
+        "bytes": 23072
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-san-marino-san-marino-1200.webp"
+  },
+  {
+    "name": "map-vatican-city",
+    "url": "/images/learning/map-vatican-city-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Vatican City, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-vatican-city-400.webp",
+        "width": 400,
+        "bytes": 4704
+      },
+      {
+        "url": "/images/learning/map-vatican-city-800.webp",
+        "width": 800,
+        "bytes": 13148
+      },
+      {
+        "url": "/images/learning/map-vatican-city-1200.webp",
+        "width": 1200,
+        "bytes": 21794
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-vatican-city-1200.webp"
+  },
+  {
+    "name": "map-vatican-city-vatican-city",
+    "url": "/images/learning/map-vatican-city-vatican-city-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Branded regional map for online Quran learning in Vatican City, Vatican City, with EUR fee enquiries and local class scheduling",
+    "kind": "map",
+    "variants": [
+      {
+        "url": "/images/learning/map-vatican-city-vatican-city-400.webp",
+        "width": 400,
+        "bytes": 4774
+      },
+      {
+        "url": "/images/learning/map-vatican-city-vatican-city-800.webp",
+        "width": 800,
+        "bytes": 13230
+      },
+      {
+        "url": "/images/learning/map-vatican-city-vatican-city-1200.webp",
+        "width": 1200,
+        "bytes": 21966
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/visuals/2026-10/map-vatican-city-vatican-city-1200.webp"
   }
 ]

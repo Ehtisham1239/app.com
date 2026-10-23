@@ -6,9 +6,9 @@ import { shouldIncludeInSitemap } from "@/lib/seo";
 import imageManifest from "@/lib/image-manifest.json";
 const imageUrl = (src) => new URL(imageManifest.find((image) => image.storage_url === src)?.url || src, SITE_URL).href;
 const fixedImages = {
-  "": "/images/learning/family-online-quran-study-1200.webp",
-  "/contact": "/images/learning/adult-arabic-learning-1200.webp",
-  "/free-trial": "/images/learning/noorani-qaida-child-1200.webp",
+  "": "/images/learning/home-college-welcome-1200.webp",
+  "/contact": "/images/learning/contact-coordinator-1200.webp",
+  "/free-trial": "/images/learning/trial-welcome-1200.webp",
 };
 export const revalidate = 3600;
 export default async function sitemap() {

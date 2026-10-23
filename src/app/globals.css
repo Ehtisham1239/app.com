@@ -111,6 +111,8 @@
   .btn-primary:hover:not(:disabled) { background: var(--color-leaf-800); }
   .btn-gold { background: var(--color-leaf-700); color: #fff; }
   .btn-gold:hover:not(:disabled) { background: var(--color-leaf-800); }
+  .bg-mushaf-900 .btn-gold { background: #fff; color: var(--color-leaf-700); }
+  .bg-mushaf-900 .btn-gold:hover:not(:disabled) { background: var(--color-leaf-100); }
   .btn-outline { border: 1.5px solid var(--color-mushaf-900); color: var(--color-mushaf-900); background: #fff; }
   .btn-outline:hover:not(:disabled) { border-color: var(--color-leaf-700); color: var(--color-leaf-700); }
   .btn-outline-light { border: 1.5px solid rgb(255 255 255 / .35); color: #fff; }
@@ -265,6 +267,11 @@ main section[id], main [id^="c-"], main [id^="t-"] { scroll-margin-top: 7rem; }
   .prose-oqc, .prose { overflow-wrap: anywhere; }
 }
 img { max-width: 100%; }
+.brand-visual { border-radius: inherit; }
+.visual-logo { position: absolute; right: 1rem; bottom: 1rem; width: clamp(2.75rem, 5vw, 4rem); aspect-ratio: 1; padding: .3rem; background: #fff; border: 1px solid #e3eee6; border-radius: .85rem; box-shadow: 0 4px 18px rgb(0 50 30 / .1); pointer-events: none; }
+.visual-logo img { width: 100%; height: 100%; object-fit: contain; transform: none !important; }
+.course-card { box-shadow: 0 5px 25px -18px rgb(0 70 45 / .25); }
+.course-card:focus-visible { outline-offset: 5px; }
 @supports (padding: env(safe-area-inset-bottom)) {
   body { padding-bottom: env(safe-area-inset-bottom); }
 }

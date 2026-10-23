@@ -41,7 +41,7 @@ try {
         sources.push(data.source);
       }
       if (path.startsWith('/?')) {
-        assert.ok(sources.some(s => s.includes('family-online-quran-study')));
+        assert.ok(sources.some(s => s.includes('home-college-welcome')));
         const faq = await page.locator('script[type="application/ld+json"]').evaluateAll(scripts => scripts.map(s => JSON.parse(s.textContent)).find(s => s['@type'] === 'FAQPage'));
         assert.ok(faq.mainEntity.length > 0);
         for (const item of faq.mainEntity) {

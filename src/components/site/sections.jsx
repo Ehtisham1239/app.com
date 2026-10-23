@@ -37,9 +37,9 @@ export function CourseCard({ course }) {
   return (
     <Link
       href={`/courses/${course.slug}`}
-      className="group flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] border border-line bg-white transition-all duration-300 hover:-translate-y-1 hover:border-gold-300 hover:shadow-[var(--shadow-lift)]"
+      className="course-card group flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] border border-line bg-white transition-all duration-300 hover:-translate-y-1 hover:border-gold-300 hover:shadow-[var(--shadow-lift)]"
     >
-      <div className="relative h-36 overflow-hidden bg-mushaf-900">
+      <div className="relative aspect-[16/10] overflow-hidden bg-mushaf-900">
         {course.cover_url ? (
           <ContentImage src={course.cover_url} alt={course.cover_alt} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
         ) : (
@@ -48,20 +48,16 @@ export function CourseCard({ course }) {
             <div className="absolute -bottom-12 -left-10 size-44 rounded-full bg-leaf-600/35 blur-2xl transition-transform duration-500 group-hover:scale-110" aria-hidden="true" />
           </>
         )}
-        <span className="absolute left-5 top-5 flex size-12 items-center justify-center rounded-xl bg-white/10 text-gold-300 ring-1 ring-gold-400/40 backdrop-blur-sm">
+        <span className="absolute bottom-4 left-4 flex size-10 items-center justify-center rounded-xl bg-white text-leaf-700 shadow-sm ring-1 ring-leaf-100">
           <ContentIcon name={course.icon} className="size-6" />
         </span>
         {course.is_featured && (
           <span className="absolute right-4 top-4 rounded-full bg-gold-500 px-2.5 py-0.5 text-[0.68rem] font-bold uppercase tracking-wider text-mushaf-950">Popular</span>
         )}
-        {course.arabic_title && (
-          <p lang="ar" dir="rtl" className="arabic absolute bottom-2 right-5 text-[1.9rem] leading-none text-gold-300/90">
-            {course.arabic_title}
-          </p>
-        )}
       </div>
       <div className="flex flex-1 flex-col p-6">
         <h3 className="text-[1.18rem] font-bold leading-snug text-mushaf-900 transition-colors group-hover:text-leaf-700">{course.title}</h3>
+        {course.arabic_title && <p lang="ar" dir="rtl" className="arabic mt-2 text-xl text-leaf-700">{course.arabic_title}</p>}
         {course.summary && <p className="mt-2 flex-1 text-[0.95rem] leading-relaxed text-ink-soft">{truncate(course.summary, 150)}</p>}
         <div className="mt-5 flex flex-wrap gap-2">
           {course.age_group && <span className="chip">{course.age_group}</span>}
