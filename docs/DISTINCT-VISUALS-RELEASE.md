@@ -18,3 +18,9 @@ The UI uses taller course-card photography, restrained original-logo badges, and
 - `scripts/prepare-editorial-visuals.mjs` reads the generated source inventory in ignored `artifacts/next-visual-sources.json` and makes responsive encodings. Originals are never overwritten.
 
 Supabase migration `20261023000200_distinct_visual_covers.sql` updates only empty covers or this project's previous generated namespaces; editor-uploaded custom covers are preserved. Before-state backup is outside Git under `/workspace/reports/oqc-distinct-visuals-2026-10-23/`. Media masters are stored in the project's public Media Library with descriptive alt text and provenance captions.
+
+## Dependency maintenance during release
+
+The production install reported new advisories. Next.js and its ESLint configuration were upgraded from 16.3.8 to 16.4.3, and sanitize-html from 2.18.0 to 2.18.1. A scoped override moves the typography plugin's pinned postcss-selector-parser from 6.0.10 to patched 7.1.6; the plugin itself remains 0.5.20. The override can be removed when an upstream typography release includes a patched parser. Build and browser typography checks cover this compatibility change.
+
+Deployment uploads individual files to Vercel and submits their SHA-1 content identifiers, avoiding one large base64 media payload. SHA-1 here is Vercel's file-addressing protocol, not a password or integrity-security mechanism.
