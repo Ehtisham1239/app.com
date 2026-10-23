@@ -1,3 +1,5 @@
+import { ContentImage } from "@/components/site/content-image";
+import { contentMetadata } from "@/lib/seo-metadata";
 import { Suspense } from "react";
 import { CalendarCheck2, Clock3, HeartHandshake, ShieldCheck } from "lucide-react";
 import { TrialForm } from "@/components/site/trial-form";
@@ -6,11 +8,11 @@ import { whatsappLink } from "@/lib/format";
 
 export const revalidate = 300;
 
-export const metadata = {
-  title: "Book a 7-Day Free Trial",
-  description: "Book a free trial of live one-to-one online Quran classes. Choose a course, your preferred times and a female or male teacher.",
-  alternates: { canonical: "/free-trial" },
-};
+export const metadata = contentMetadata({
+  seo_title: "Free Online Quran Trial Classes | Online Quran College",
+  cover_url: "/images/learning/noorani-qaida-child-1200.webp",
+  cover_alt: "Child practising beginner Arabic letters with a parent",
+}, { path: "/free-trial", description: "Book a 7-day trial of one-to-one online Quran classes for children or adults. Share your course, local time zone and teacher preferences with our coordinator." });
 
 const PROMISES = [
   { icon: Clock3, title: "Reply within 24 hours", text: "A coordinator contacts you by WhatsApp or email to confirm a time." },
@@ -35,6 +37,7 @@ export default async function FreeTrialPage() {
           <p className="mt-4 max-w-md text-[1.05rem] leading-relaxed text-white/75">
             Tell us a little about the learner and when you are free. We will match a teacher and send the class link.
           </p>
+          <div className="mt-8 hidden lg:block"><ContentImage src="/images/learning/noorani-qaida-child-1200.webp" alt="Child practising beginner Arabic letters with a parent" sizes="500px" className="aspect-[3/2] w-full rounded-[1.5rem] object-cover" /></div>
           <ul className="mt-10 hidden space-y-3 lg:block">
             {PROMISES.map(({ icon: Icon, title, text }) => (
               <li key={title} className="flex gap-4 rounded-2xl border border-line bg-white p-4 text-ink shadow-[0_10px_30px_-20px_rgb(6_38_27/0.5)]">
@@ -59,6 +62,7 @@ export default async function FreeTrialPage() {
               whatsappHref={wa}
             />
           </Suspense>
+          <div className="mt-8 lg:hidden"><ContentImage src="/images/learning/noorani-qaida-child-1200.webp" alt="Child practising beginner Arabic letters with a parent" sizes="100vw" className="aspect-[3/2] w-full rounded-[1.5rem] object-cover" /></div>
           <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:hidden">
             {PROMISES.map(({ icon: Icon, title, text }) => (
               <li key={title} className="flex gap-3 rounded-2xl border border-line bg-white p-4">

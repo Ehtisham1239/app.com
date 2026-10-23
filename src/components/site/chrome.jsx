@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export function TopBar({ announcement }) {
   if (!announcement?.enabled || !announcement?.text) return null;
@@ -16,24 +16,6 @@ export function TopBar({ announcement }) {
         )}
       </div>
     </div>
-  );
-}
-
-export function WhatsAppFloat({ href, chatEnabled = false }) {
-  if (!href) return null;
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`fixed bottom-5 ${chatEnabled ? "left-5" : "right-5"} z-30 flex items-center gap-2 rounded-full bg-leaf-700 py-3 pl-3.5 pr-4 text-sm font-semibold text-white shadow-[var(--shadow-float)] transition-transform hover:-translate-y-0.5 hover:bg-leaf-800`}
-      aria-label="Chat with Online Quran College on WhatsApp"
-    >
-      <span className="relative flex size-6 items-center justify-center">
-        <span className="absolute inset-0 animate-ping rounded-full bg-white/30 [animation-duration:2.4s]" aria-hidden="true" />
-        <MessageCircle className="relative size-5" aria-hidden="true" />
-      </span>
-    </a>
   );
 }
 

@@ -1,7 +1,7 @@
 import { HomeContact } from "@/components/site/home-contact";
 import { ContentImage } from "@/components/site/content-image";
 import { HomeMotion } from "@/components/site/home-motion";
-import { safeJsonLd } from "@/lib/seo";
+import { faqSchema, safeJsonLd } from "@/lib/seo";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { HomeHero } from "@/components/site/hero";
@@ -46,6 +46,7 @@ export default async function HomePage() {
     legalName: identity.legal_name,
     url: SITE_URL,
     logo: `${SITE_URL}/brand/logo.webp`,
+    image: `${SITE_URL}/images/learning/family-online-quran-study-1200.webp`,
     description: identity.description,
     ...(/^\d{4}$/.test(identity.established || "") ? { foundingDate: identity.established } : {}),
     email: contact.email,
@@ -62,11 +63,20 @@ export default async function HomePage() {
 
       <section id="about" className="bg-[#f4fbf7] py-16 sm:py-24">
         <div className="page-wrap grid items-center gap-10 lg:grid-cols-2">
-          <div className="pattern-girih flex min-h-64 flex-col justify-center rounded-[2rem] border border-leaf-100 bg-[#eefaf3] p-8 text-center"><p className="arabic text-4xl text-leaf-700" lang="ar" dir="rtl">اقرأ</p><p className="mt-6 text-xl font-bold text-leaf-700">Islamic mission. Global Quran access.</p><p className="mt-3 text-ink-soft">Traditional learning, connected to your home.</p></div>
+          <figure className="overflow-hidden rounded-[2rem] border border-leaf-100 bg-white">
+            <ContentImage src="/images/learning/family-online-quran-study-1200.webp" alt="Mother helping her son practise an Arabic workbook during an online lesson at home" sizes="(max-width: 1024px) 100vw, 560px" className="aspect-[3/2] w-full object-cover" />
+            <figcaption className="px-6 py-5"><p className="font-bold text-leaf-700">Islamic mission. Global Quran access.</p><p className="mt-1 text-sm text-ink-soft">Traditional learning, connected to your home.</p></figcaption>
+          </figure>
           <div><SectionHeading align="left" eyebrow="About our college" title="Welcome to Online Quran College" intro="Our mission is to make Quran learning accessible from home, connecting traditional Islamic teaching with live online classrooms for children and adults." /><p className="mt-5 text-ink-soft">Begin with Noorani Qaida, develop Quran reading and Tajweed, or explore memorisation, Arabic and translation. Discuss the learner’s starting level, goals and local schedule with our coordinator before choosing a course.</p><Link href="/about" className="btn btn-primary mt-6">About our college <ArrowRight className="size-4" aria-hidden="true" /></Link></div>
         </div>
       </section>
-      <section className="page-wrap grid gap-4 py-8 sm:grid-cols-3" aria-label="Explore learning paths"><Link href="/locations/united-states" className="surface p-6"><h2 className="text-xl">Quran classes in the USA</h2><p className="mt-2 text-sm text-ink-soft">US time zones, courses and USD packages.</p></Link><Link href="/locations/australia" className="surface p-6"><h2 className="text-xl">Quran classes in Australia</h2><p className="mt-2 text-sm text-ink-soft">Plan around your city and request approved AUD fees.</p></Link><Link href="/learn" className="surface p-6"><h2 className="text-xl">Find your learning path</h2><p className="mt-2 text-sm text-ink-soft">Guides for parents, adults and recitation learners.</p></Link></section>
+      <section className="page-wrap grid gap-4 py-8 sm:grid-cols-3" aria-label="Explore learning paths">
+        {[
+          { href: "/locations/united-states", image: "usa-online-quran-learning", alt: "Child and parent reviewing an Arabic workbook beside a laptop", title: "Quran classes in the USA", text: "US time zones, courses and USD packages." },
+          { href: "/locations/australia", image: "australia-online-quran-learning", alt: "Young learner studying an Arabic workbook beside a laptop", title: "Quran classes in Australia", text: "Plan around your city and request approved AUD fees." },
+          { href: "/learn", image: "adult-arabic-learning", alt: "Adult learner taking notes during an online lesson", title: "Find your learning path", text: "Guides for parents, adults and recitation learners." },
+        ].map(item => <Link key={item.href} href={item.href} className="surface overflow-hidden"><ContentImage src={`/images/learning/${item.image}-1200.webp`} alt={item.alt} sizes="(max-width: 639px) 100vw, (max-width: 1024px) 33vw, 380px" className="aspect-[3/2] w-full object-cover" /><div className="p-6"><h2 className="text-xl">{item.title}</h2><p className="mt-2 text-sm text-ink-soft">{item.text}</p></div></Link>)}
+      </section>
       <section className="bg-[#f4fbf7] py-20 sm:py-24" aria-labelledby="courses-heading">
         <div className="page-wrap"><div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
@@ -165,7 +175,7 @@ export default async function HomePage() {
                 All questions <ArrowRight className="size-4" aria-hidden="true" />
               </Link>
             </div>
-            <FaqList faqs={faqs.slice(0, 6)} />
+            <div><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema(faqs.slice(0, 6))) }} /><FaqList faqs={faqs.slice(0, 6)} /></div>
           </div>
         </section>
       )}

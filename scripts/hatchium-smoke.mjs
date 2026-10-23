@@ -16,11 +16,12 @@ try {
     const headers = Object.fromEntries(r.headers); delete headers["content-length"]; delete headers["content-encoding"];
     await route.fulfill({ status: r.status, headers, body: Buffer.from(await r.arrayBuffer()) });
   });
-  await page.goto(base, { waitUntil: "networkidle" });
+  await page.goto(base + "/?view=global", { waitUntil: "networkidle" });
   await page.waitForFunction(() => window.__hatchiumContractCheck?.configuredBeforeLoad === true);
   report.configuredBeforeLoad = true;
   const whatsapp = page.getByRole("link", { name: "Chat with Online Quran College on WhatsApp", exact: true });
-  assert.equal(await whatsapp.evaluate((e) => Math.round(e.getBoundingClientRect().left)), 20);
+  assert.equal(await whatsapp.count(), 0);
+  report.leftShortcutRemoved = true;
   // Footer Link uses client navigation, so the public layout is retained.
   await page.locator('footer a[href="/contact"]').first().click();
   await page.waitForURL(base + "/contact"); await page.waitForLoadState("networkidle");

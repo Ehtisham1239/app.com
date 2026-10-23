@@ -1,3 +1,5 @@
+import { ContentImage } from "@/components/site/content-image";
+import { contentMetadata } from "@/lib/seo-metadata";
 import { Clock3, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { PageHero } from "@/components/site/chrome";
 import { ContactForm } from "@/components/site/contact-form";
@@ -6,11 +8,11 @@ import { whatsappLink } from "@/lib/format";
 
 export const revalidate = 300;
 
-export const metadata = {
-  title: "Contact Us",
-  description: "Contact Online Quran College by WhatsApp, phone or email. We reply quickly about courses, fees and class timings.",
-  alternates: { canonical: "/contact" },
-};
+export const metadata = contentMetadata({
+  seo_title: "Contact Online Quran College | Courses & Class Times",
+  cover_url: "/images/learning/adult-arabic-learning-1200.webp",
+  cover_alt: "Adult learner preparing notes beside a laptop",
+}, { path: "/contact", description: "Contact Online Quran College about online Quran courses, fees and class times. Reach our coordinator by WhatsApp, phone, email or the enquiry form." });
 
 export default async function ContactPage() {
   const settings = await getSettings();
@@ -30,6 +32,7 @@ export default async function ContactPage() {
       <PageHero eyebrow="Contact" title="We are here to help" intro="Questions about courses, fees or timings? Message us — our admissions team replies quickly, in English, Urdu or Arabic." />
       <section className="page-wrap grid gap-10 py-16 sm:py-20 lg:grid-cols-[0.85fr_1.15fr]">
         <div className="min-w-0 space-y-3">
+          <ContentImage src="/images/learning/adult-arabic-learning-1200.webp" alt="Adult learner preparing notes beside a laptop" sizes="(max-width: 1024px) 100vw, 500px" className="mb-6 aspect-[3/2] w-full rounded-[1.5rem] object-cover" />
           {cards.map(({ icon: Icon, label, value, href, external, highlight }) => {
             const inner = (
               <>

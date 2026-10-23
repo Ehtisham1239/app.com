@@ -148,5 +148,30 @@
       }
     ],
     "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/generated/2026-10/translation-study-1200.webp"
+  },
+  {
+    "name": "family-online-quran-study",
+    "url": "/images/learning/family-online-quran-study-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Mother helping her son practise an Arabic workbook during an online lesson at home",
+    "variants": [
+      {
+        "url": "/images/learning/family-online-quran-study-400.webp",
+        "width": 400,
+        "bytes": 16288
+      },
+      {
+        "url": "/images/learning/family-online-quran-study-800.webp",
+        "width": 800,
+        "bytes": 39882
+      },
+      {
+        "url": "/images/learning/family-online-quran-study-1200.webp",
+        "width": 1200,
+        "bytes": 64958
+      }
+    ],
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/generated/2026-10/family-online-quran-study-1200.webp"
   }
 ]

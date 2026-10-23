@@ -53,7 +53,7 @@ export async function CmsPage({ page }) {
             </nav>
           )}
           <div className={isPolicy ? "" : "mx-auto max-w-3xl"}>
-            {page.cover_url && <ContentImage src={page.cover_url} alt={page.cover_alt} className="mb-10 aspect-[16/7] w-full rounded-[1.5rem] object-cover" />}
+            {page.cover_url && <ContentImage src={page.cover_url} alt={page.cover_alt} sizes="(max-width: 768px) 100vw, 768px" className={`mb-10 ${page.slug === "about" ? "aspect-[3/2]" : "aspect-[16/7]"} w-full rounded-[1.5rem] object-cover`} />}
             <div className="prose-oqc text-[1.04rem] [&_h2]:scroll-mt-28" dangerouslySetInnerHTML={{ __html: html }} />
             {isPolicy && page.updated_at && <p className="mt-10 text-sm text-ink-faint">Page updated {formatDate(page.updated_at)}</p>}
           </div>
