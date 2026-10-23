@@ -305,3 +305,13 @@ Production deployment `dpl_EuYkd1tXRMG1oLZsnYGvbzkXZjkZ` is READY from app sourc
 All 38 automated tests pass; build passes; lint has 0 errors and the existing 19 warnings. Live checks pass at 320/360/390/430px plus desktop, 105 responsive route/viewport checks and stubbed home enquiry confirmation. Portal redirects to login correctly via verified HTTPS; the headless browser follow-up is bridged because its native redirect trust store differs from the environment CA.
 
 All 50 country mappings and six simulated Vercel-country redirects pass in the local production server. The live probe returned the general homepage (200); it does not establish a physical-country redirect test. Live UK/USA/Australia pages, explicit global override, crawler access and legacy redirects pass. IP routing uses Vercel-provided country data, defaults safely for missing/unsupported countries, and preserves direct content links and manual choices. Global homepage preview: https://project-umber-three-93.vercel.app/?view=global . See [implementation notes](docs/MOBILE-BRAND-AND-REGION-RELEASE.md).
+
+## Professional imagery and SEO update — 23 October 2026
+
+- Production READY deployment: `dpl_CDh9ThjhfMA3kfW3FNkL5Pk3PY6f`.
+- Application source: `6a3c00a6a8e22c869285cde431cbc1a404e48175`; stable URL: `https://project-umber-three-93.vercel.app` (`/?view=global` opens the general homepage).
+- Added a branded family learning illustration, responsive homepage learning-card visuals, and supporting contact/trial images. Removed the left floating WhatsApp shortcut; preserved Hatchium and contextual contact links.
+- Supabase migration `20261023000100_about_learning_image.sql` applied; new illustration registered in Media Library with its alt text and AI illustration caption. Custom About covers are preserved.
+- Local validation: 38 tests passed; lint 0 errors / 19 existing warnings; production build passed. 105 responsive checks passed. Image checks passed for 21 assets, 165 country/city pages and 10 representative viewport cases (observed layout shift 0 in that controlled run).
+- Live validation: 12 homepage/About/contact/trial viewport checks passed; images decode, descriptive alt text, canonical/social metadata, matching homepage FAQ data and local-image sitemap entries verified. Left shortcut absent; vendor-stub chat loading, CMS isolation and form availability on vendor failure passed. Actual vendor message delivery was not tested; no forms or messages submitted.
+- Evidence: `/workspace/reports/oqc-visuals-2026-10-23/`. Browser checks use Chromium with verified Node HTTPS transport for this environment's CA setup, not physical device coverage. No ranking guarantee or measured field-speed claim.
