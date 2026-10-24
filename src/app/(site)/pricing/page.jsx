@@ -9,7 +9,7 @@ export const revalidate = 300;
 
 export const metadata = {
   title: "Fees & Packages",
-  description: "Simple monthly packages for live one-to-one online Quran classes, with a 7-day free trial and a 15% discount for additional siblings.",
+  description: "Compare monthly packages for live one-to-one Quran classes, with a 7-day free trial on eligible plans. The Weekend plan is excluded from the trial.",
   alternates: { canonical: "/pricing" },
 };
 
@@ -26,14 +26,14 @@ export default async function PricingPage() {
       <PageHero
         eyebrow="Fees"
         title="Clear monthly fees, no hidden costs"
-        intro="Choose how many days a week suit your family. Every package includes a qualified 1-on-1 teacher, 30-minute live classes and a 7-day free trial before you pay anything."
+        intro="Choose how many days a week suit your family. Compare lesson frequency, duration and fees below. A 7-day free trial is available on eligible plans; the Weekend plan is excluded."
       />
       <section className="page-wrap py-16 sm:py-20">
         {packages.length > 0 && <CurrencyPricing plans={packages} />}
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {[
             { icon: BadgePercent, title: "15% sibling discount", text: "Each additional child from the same family receives 15% off their monthly fee." },
-            { icon: ShieldCheck, title: "Free trial first", text: "Try 7 days of classes. You only choose a package once you are happy with the teacher." },
+            { icon: ShieldCheck, title: "Free trial on eligible plans", text: "Try 7 days of classes before choosing an eligible package. The Weekend plan is excluded; confirm your plan with the coordinator." },
             { icon: CreditCard, title: "Easy payment", text: `Pay monthly by card, PayPal or bank transfer${currencies.length ? ` — prices shown in ${currencies.join(", ")}` : ""}.` },
           ].map(({ icon: Icon, title, text }) => (
             <div key={title} className="flex gap-4 rounded-[var(--radius-card)] border border-line bg-white p-5">
@@ -67,7 +67,7 @@ export default async function PricingPage() {
         </section>
       )}
 
-      <CtaBand title="Try 7 days of classes for free" text="Book the free trial now — choose your package only after you have met the teacher." whatsappHref={wa} />
+      <CtaBand title="Try 7 days of classes on an eligible plan" text="The Weekend plan is excluded from the free trial. Confirm the right plan with the coordinator before enrolling." whatsappHref={wa} />
     </>
   );
 }
