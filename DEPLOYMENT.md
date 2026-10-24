@@ -1,8 +1,8 @@
 # app.com website and CMS deployment
 
-## Semrush follow-up — 24 October 2026: pending deployment
+## Semrush follow-up — 24 October 2026: production READY
 
-The Semrush remediation is validated locally but has **not** been deployed in this session because Vercel is not connected. Do not mistake the new GitHub source commit or earlier READY deployments below for publication of these changes. See [the remediation ledger](docs/SEMRUSH-REMEDIATION-2026-10-24.md) for the exact fixes, evidence, unresolved hosting checks and release procedure. Production remains `https://project-umber-three-93.vercel.app`.
+The reviewed remediation source `c57c16ee9d84a1ad043963aadfb2d795d6358d55` is deployed as production deployment `dpl_8gavnNmqPoDfHYDjLXjYE5KkSKRG` (READY; build 79.48 seconds). The stable alias `https://project-umber-three-93.vercel.app` is assigned to this deployment. All 205 public sitemap URLs pass the post-release technical audit, and the live Course/ItemList markup and versioned SVG/cache response are verified. See [the remediation ledger](docs/SEMRUSH-REMEDIATION-2026-10-24.md) for verification details and remaining Semrush/TLS limitations. No production environment, database or domain configuration was changed. A pinned Git-source release succeeded; automatic deployment on future GitHub pushes is still not established.
 
 Target repository: Ehtisham1239/app.com. Target Supabase project: `lgbwidraztavhhbnbfhr`.
 The uploaded ZIP referenced a different Supabase project. That fallback has been removed.

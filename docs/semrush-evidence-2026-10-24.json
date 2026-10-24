@@ -4,9 +4,17 @@
   "productionOrigin": "https://project-umber-three-93.vercel.app",
   "repositoryBaseline": "392ff533223659c5bed3fc92b6f3408e982c00b1",
   "deployment": {
-    "state": "blocked",
-    "reason": "Vercel connection not available in this session; no production deployment or SSL configuration changes performed.",
-    "deployedSourceCommit": null
+    "state": "READY",
+    "target": "production",
+    "projectId": "prj_q3qTOTMNxuDfgmd5XoCaoWVhQBVu",
+    "deploymentId": "dpl_8gavnNmqPoDfHYDjLXjYE5KkSKRG",
+    "deployedSourceCommit": "c57c16ee9d84a1ad043963aadfb2d795d6358d55",
+    "productionOrigin": "https://project-umber-three-93.vercel.app",
+    "deploymentUrl": "https://project-23zbwrzjl-ehtisham1239s-projects.vercel.app",
+    "readyAtUtc": "2026-10-24T15:50:51.025000+00:00",
+    "buildDurationMs": 79480,
+    "previousReadyDeploymentId": "dpl_3sMCv3vJgEFTwF5ceM81XpUuR5PZ",
+    "sourceMethod": "Git source pinned to the reviewed commit; no production environment or domain changes."
   },
   "suppliedOverview": {
     "crawledPages": 100,
@@ -409,11 +417,123 @@
   },
   "productionBuild": "passed from a clean build directory",
   "limitations": [
-    "Not deployed or verified live after fixes.",
-    "Direct-origin certificate/SNI inspection requires hosting access and the affected hostname.",
     "The 15 sampled text/HTML ratios remain below 10%; no padding content or scoring guarantee.",
     "13,959-byte shared icon asset is an additional cached request; HTML reductions are not total-page speed or field CWV.",
     "Authenticated staff operations and production form persistence not exercised in this run.",
-    "Search Console, field Core Web Vitals and Semrush re-audit not available."
-  ]
+    "Search Console, field Core Web Vitals and Semrush re-audit not available.",
+    "Original SSL/SNI issue hostname and a fresh Semrush re-audit are still needed to close those historical warnings; no arbitrary DNS/certificate changes made."
+  ],
+  "postDeployment": {
+    "technicalAudit": {
+      "checkedAt": "2026-10-24T15:52:44.200Z",
+      "base": "https://project-umber-three-93.vercel.app",
+      "canonicalOrigin": "https://project-umber-three-93.vercel.app",
+      "declaredSitemapUrls": 205,
+      "uniqueSitemapUrls": 205,
+      "audited": 205,
+      "cap": 250,
+      "workers": 3,
+      "robotsStatus": 200,
+      "sitemapStatus": 200,
+      "robotsReferencesSitemap": true,
+      "robotsSkipped": [],
+      "errors": [],
+      "findings": 0,
+      "scope": "All declared sitemap URLs plus explicit probes; raw HTML, not Google index status or field CWV. External search and backlink metrics unavailable."
+    },
+    "templateSchemaReview": {
+      "base": "https://project-umber-three-93.vercel.app",
+      "sitemap_urls": 205,
+      "sampled_templates_and_courses": 15,
+      "external_discovery_pages": 15,
+      "unique_external_destinations": 17,
+      "external_checked": 0,
+      "schema_review_count": 0,
+      "limitations": [
+        "Template/course sample for HTML weight; site-wide links only when --crawl-pages supplied",
+        "Local schema checks are not Google's Rich Results Test or Semrush re-audit",
+        "No field Core Web Vitals, account index coverage, direct-origin certificate/SNI or authenticated workflows verified",
+        "HTTPS follows the environment's trusted proxy; no TLS validation was disabled"
+      ]
+    },
+    "robots": [
+      {
+        "agent": "Googlebot",
+        "sitemap_pages_blocked": [],
+        "admin_blocked": true
+      },
+      {
+        "agent": "ChatGPT-User",
+        "sitemap_pages_blocked": [],
+        "admin_blocked": true
+      },
+      {
+        "agent": "OAI-SearchBot",
+        "sitemap_pages_blocked": [],
+        "admin_blocked": true
+      },
+      {
+        "agent": "Google-Extended",
+        "sitemap_pages_blocked": [],
+        "admin_blocked": true
+      },
+      {
+        "agent": "PerplexityBot",
+        "sitemap_pages_blocked": [],
+        "admin_blocked": true
+      },
+      {
+        "agent": "Perplexity-User",
+        "sitemap_pages_blocked": [],
+        "admin_blocked": true
+      },
+      {
+        "agent": "Claude-User",
+        "sitemap_pages_blocked": [],
+        "admin_blocked": true
+      },
+      {
+        "agent": "Claude-SearchBot",
+        "sitemap_pages_blocked": [],
+        "admin_blocked": true
+      }
+    ],
+    "assets": {
+      "iconStatus": 200,
+      "iconMime": "image/svg+xml",
+      "iconCache": "public, max-age=31536000, immutable",
+      "iconBytes": 13959,
+      "courseListStatus": 200,
+      "listedCourses": 6
+    },
+    "browser": {
+      "bulkRouteViewportLayoutCasesCompleted": 14,
+      "bulkRun": "All route/viewport assertions completed; final workflow checks used focused runs after network-idle/early-hydration timing proved unreliable.",
+      "currencyUpdate": "passed in focused Playwright check after page load; all four main cards displayed Ask for the fee in NOK",
+      "currencyEvidence": "currency-NOK.png and focused run stdout",
+      "protectedAdminRedirect": {
+        "status": 307,
+        "destination": "https://project-umber-three-93.vercel.app/admin/login",
+        "method": "Trusted Node HTTPS redirect response, then direct browser login-screen inspection"
+      },
+      "loginScreen": "Email field and Sign in button visible",
+      "loginPageErrors": [],
+      "formsSubmitted": 0,
+      "transport": "Read-only owned-site requests forwarded through Node with trusted TLS/proxy; certificate validation retained",
+      "limitations": "Native browser redirect traversal was not established in this environment; Chromium viewport emulation, chat stubbed; no authenticated staff or persisted form tests"
+    },
+    "runtimeLogScan": {
+      "state": "not_verified",
+      "reason": "Vercel runtime-log request returned 403; no authenticated CLI fallback available."
+    },
+    "hostingDomain": {
+      "name": "project-umber-three-93.vercel.app",
+      "verified": true,
+      "misconfigured": false,
+      "conflicts": [],
+      "certificateInventoryCount": 0,
+      "limitation": "A managed vercel.app certificate need not appear in the custom certificate inventory. A direct-origin SAN/SNI inspection and the original affected Semrush hostname remain unavailable."
+    },
+    "checkedAtUtc": "2026-10-24T16:03:17.551318+00:00"
+  }
 }
