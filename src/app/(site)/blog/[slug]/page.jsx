@@ -4,7 +4,7 @@ import { contentMetadata, publicImageUrl } from "@/lib/seo-metadata";
 import { articleNavigation } from "@/lib/article-navigation";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, Clock3 } from "lucide-react";
+import { ArrowRight, Clock3 } from "@/components/site/icons";
 import { CtaBand } from "@/components/site/sections";
 import { getPost, getPosts, getPublishedSlugs, getSettings } from "@/lib/site-data";
 import { cleanHtml } from "@/lib/sanitize";

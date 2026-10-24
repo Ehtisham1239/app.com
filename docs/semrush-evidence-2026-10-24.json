@@ -1,0 +1,419 @@
+{
+  "date": "2026-10-24",
+  "timezone": "Asia/Karachi",
+  "productionOrigin": "https://project-umber-three-93.vercel.app",
+  "repositoryBaseline": "392ff533223659c5bed3fc92b6f3408e982c00b1",
+  "deployment": {
+    "state": "blocked",
+    "reason": "Vercel connection not available in this session; no production deployment or SSL configuration changes performed.",
+    "deployedSourceCommit": null
+  },
+  "suppliedOverview": {
+    "crawledPages": 100,
+    "siteHealthPercent": 88,
+    "aiSearchHealthPercent": 83,
+    "errors": 7,
+    "warnings": 203,
+    "incorrectCertificateNames": 1,
+    "invalidStructuredDataItems": 6,
+    "sniWarnings": 1,
+    "externalLinkWarnings": 107,
+    "lowTextHtmlPages": 94,
+    "limitation": "Overview only; no affected-URL or field-level issue export."
+  },
+  "liveCrawl": {
+    "sitemapUrls": 205,
+    "sitemapAttempted": 205,
+    "totalPagesAttempted": 206,
+    "http200": 206,
+    "findings": {},
+    "cap": 250,
+    "workers": 3,
+    "rawHtmlOnly": true
+  },
+  "liveExternalLinks": [
+    {
+      "url": "https://creativecommons.org/licenses/by/4.0/",
+      "status": 200,
+      "finalUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "sourcePageCount": 165
+    },
+    {
+      "url": "https://quran.com/73/4",
+      "status": 200,
+      "finalUrl": "https://quran.com/al-muzzammil/4",
+      "sourcePageCount": 1
+    },
+    {
+      "url": "https://sunnah.com/bukhari:5027",
+      "status": 200,
+      "finalUrl": "https://sunnah.com/bukhari:5027",
+      "sourcePageCount": 1
+    },
+    {
+      "url": "https://wa.me/447864710821?text=Assalamu%20alaikum%2C%20I%20am%20interested%20in%20the%20Arabic%20Language%20course.",
+      "status": 200,
+      "finalUrl": "https://api.whatsapp.com/send/?phone=447864710821&text=Assalamu+alaikum%2C+I+am+interested+in+the+Arabic+Language+course.&type=phone_number&app_absent=0",
+      "sourcePageCount": 1
+    },
+    {
+      "url": "https://wa.me/447864710821?text=Assalamu%20alaikum%2C%20I%20am%20interested%20in%20the%20Hadith%20%26%20Islamic%20Studies%20course.",
+      "status": 200,
+      "finalUrl": "https://api.whatsapp.com/send/?phone=447864710821&text=Assalamu+alaikum%2C+I+am+interested+in+the+Hadith+%26+Islamic+Studies+course.&type=phone_number&app_absent=0",
+      "sourcePageCount": 1
+    },
+    {
+      "url": "https://wa.me/447864710821?text=Assalamu%20alaikum%2C%20I%20am%20interested%20in%20the%20Hifz%20ul%20Quran%20course.",
+      "status": 200,
+      "finalUrl": "https://api.whatsapp.com/send/?phone=447864710821&text=Assalamu+alaikum%2C+I+am+interested+in+the+Hifz+ul+Quran+course.&type=phone_number&app_absent=0",
+      "sourcePageCount": 1
+    },
+    {
+      "url": "https://wa.me/447864710821?text=Assalamu%20alaikum%2C%20I%20am%20interested%20in%20the%20Noorani%20Qaida%20course.",
+      "status": 200,
+      "finalUrl": "https://api.whatsapp.com/send/?phone=447864710821&text=Assalamu+alaikum%2C+I+am+interested+in+the+Noorani+Qaida+course.&type=phone_number&app_absent=0",
+      "sourcePageCount": 1
+    },
+    {
+      "url": "https://wa.me/447864710821?text=Assalamu%20alaikum%2C%20I%20am%20interested%20in%20the%20Quran%20Reading%20with%20Tajweed%20(Nazara)%20course.",
+      "status": 200,
+      "finalUrl": "https://api.whatsapp.com/send/?phone=447864710821&text=Assalamu+alaikum%2C+I+am+interested+in+the+Quran+Reading+with+Tajweed+%28Nazara%29+course.&type=phone_number&app_absent=0",
+      "sourcePageCount": 1
+    },
+    {
+      "url": "https://wa.me/447864710821?text=Assalamu%20alaikum%2C%20I%20am%20interested%20in%20the%20Quran%20Translation%20%26%20Tafseer%20course.",
+      "status": 200,
+      "finalUrl": "https://api.whatsapp.com/send/?phone=447864710821&text=Assalamu+alaikum%2C+I+am+interested+in+the+Quran+Translation+%26+Tafseer+course.&type=phone_number&app_absent=0",
+      "sourcePageCount": 1
+    },
+    {
+      "url": "https://wa.me/447864710821?text=Assalamu%20alaikum%2C%20I%20have%20a%20question%20about%20your%20fees.",
+      "status": 200,
+      "finalUrl": "https://api.whatsapp.com/send/?phone=447864710821&text=Assalamu+alaikum%2C+I+have+a+question+about+your+fees.&type=phone_number&app_absent=0",
+      "sourcePageCount": 1
+    },
+    {
+      "url": "https://wa.me/447864710821?text=Assalamu%20alaikum%2C%20I%20have%20a%20question%20that%20is%20not%20in%20your%20FAQ.",
+      "status": 200,
+      "finalUrl": "https://api.whatsapp.com/send/?phone=447864710821&text=Assalamu+alaikum%2C+I+have+a+question+that+is+not+in+your+FAQ.&type=phone_number&app_absent=0",
+      "sourcePageCount": 1
+    },
+    {
+      "url": "https://wa.me/447864710821?text=Assalamu%20alaikum%2C%20I%20have%20a%20question.",
+      "status": 200,
+      "finalUrl": "https://api.whatsapp.com/send/?phone=447864710821&text=Assalamu+alaikum%2C+I+have+a+question.&type=phone_number&app_absent=0",
+      "sourcePageCount": 2
+    },
+    {
+      "url": "https://wa.me/447864710821?text=Assalamu%20alaikum%2C%20I%20read%20your%20article%20and%20would%20like%20to%20book%20a%20free%20trial.",
+      "status": 200,
+      "finalUrl": "https://api.whatsapp.com/send/?phone=447864710821&text=Assalamu+alaikum%2C+I+read+your+article+and+would+like+to+book+a+free+trial.&type=phone_number&app_absent=0",
+      "sourcePageCount": 15
+    },
+    {
+      "url": "https://wa.me/447864710821?text=Assalamu%20alaikum%2C%20I%20would%20like%20to%20know%20about%20your%20teachers.",
+      "status": 200,
+      "finalUrl": "https://api.whatsapp.com/send/?phone=447864710821&text=Assalamu+alaikum%2C+I+would+like+to+know+about+your+teachers.&type=phone_number&app_absent=0",
+      "sourcePageCount": 1
+    },
+    {
+      "url": "https://wa.me/447864710821?text=Assalamu%20alaikum%2C%20I%20would%20like%20to%20know%20more%20about%20your%20Quran%20classes.",
+      "status": 200,
+      "finalUrl": "https://api.whatsapp.com/send/?phone=447864710821&text=Assalamu+alaikum%2C+I+would+like+to+know+more+about+your+Quran+classes.&type=phone_number&app_absent=0",
+      "sourcePageCount": 206
+    },
+    {
+      "url": "https://wa.me/447864710821?text=Assalamu%20alaikum%2C%20which%20course%20would%20suit%20my%20child%3F",
+      "status": 200,
+      "finalUrl": "https://api.whatsapp.com/send/?phone=447864710821&text=Assalamu+alaikum%2C+which+course+would+suit+my+child%3F&type=phone_number&app_absent=0",
+      "sourcePageCount": 1
+    },
+    {
+      "url": "https://www.facebook.com/OnlineQuranCollegeLtdUK",
+      "status": 200,
+      "finalUrl": "https://www.facebook.com/OnlineQuranCollegeLtdUK",
+      "sourcePageCount": 206
+    },
+    {
+      "url": "https://www.geonames.org/",
+      "status": 200,
+      "finalUrl": "https://www.geonames.org/",
+      "sourcePageCount": 165
+    },
+    {
+      "url": "https://www.instagram.com/online_quran_college",
+      "status": 200,
+      "finalUrl": "https://www.instagram.com/online_quran_college",
+      "sourcePageCount": 206
+    },
+    {
+      "url": "https://www.naturalearthdata.com/",
+      "status": 200,
+      "finalUrl": "https://www.naturalearthdata.com/",
+      "sourcePageCount": 165
+    },
+    {
+      "url": "https://x.com/OnlineQuranClg",
+      "status": 200,
+      "finalUrl": "https://x.com/OnlineQuranClg",
+      "sourcePageCount": 206
+    }
+  ],
+  "robots": [
+    {
+      "agent": "Googlebot",
+      "sitemap_pages_blocked": [],
+      "admin_blocked": true
+    },
+    {
+      "agent": "ChatGPT-User",
+      "sitemap_pages_blocked": [],
+      "admin_blocked": true
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "sitemap_pages_blocked": [],
+      "admin_blocked": true
+    },
+    {
+      "agent": "Google-Extended",
+      "sitemap_pages_blocked": [],
+      "admin_blocked": true
+    },
+    {
+      "agent": "PerplexityBot",
+      "sitemap_pages_blocked": [],
+      "admin_blocked": true
+    },
+    {
+      "agent": "Perplexity-User",
+      "sitemap_pages_blocked": [],
+      "admin_blocked": true
+    },
+    {
+      "agent": "Claude-User",
+      "sitemap_pages_blocked": [],
+      "admin_blocked": true
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "sitemap_pages_blocked": [],
+      "admin_blocked": true
+    }
+  ],
+  "localTechnical": {
+    "checkedAt": "2026-10-24T15:37:27.896Z",
+    "base": "http://127.0.0.1:3012",
+    "canonicalOrigin": "https://project-umber-three-93.vercel.app",
+    "declaredSitemapUrls": 205,
+    "uniqueSitemapUrls": 205,
+    "audited": 205,
+    "cap": 250,
+    "workers": 3,
+    "robotsStatus": 200,
+    "sitemapStatus": 200,
+    "robotsReferencesSitemap": true,
+    "robotsSkipped": [],
+    "errors": [],
+    "findings": 0,
+    "scope": "All declared sitemap URLs plus explicit probes; raw HTML, not Google index status or field CWV. External search and backlink metrics unavailable."
+  },
+  "controlledHtmlComparison": [
+    {
+      "path": "/",
+      "beforeBytes": 239168,
+      "afterBytes": 224542,
+      "reductionPercent": 6.12,
+      "beforeRatio": 4.69,
+      "afterRatio": 4.99,
+      "beforeWords": 1542,
+      "afterWords": 1542
+    },
+    {
+      "path": "/courses",
+      "beforeBytes": 91648,
+      "afterBytes": 86950,
+      "reductionPercent": 5.13,
+      "beforeRatio": 3.28,
+      "afterRatio": 4.48,
+      "beforeWords": 257,
+      "afterWords": 401
+    },
+    {
+      "path": "/pricing",
+      "beforeBytes": 96790,
+      "afterBytes": 88192,
+      "reductionPercent": 8.88,
+      "beforeRatio": 4.72,
+      "afterRatio": 5.18,
+      "beforeWords": 582,
+      "afterWords": 582
+    },
+    {
+      "path": "/contact",
+      "beforeBytes": 66454,
+      "afterBytes": 63182,
+      "reductionPercent": 4.92,
+      "beforeRatio": 4.08,
+      "afterRatio": 4.3,
+      "beforeWords": 201,
+      "afterWords": 201
+    },
+    {
+      "path": "/blog/choose-online-quran-teacher-usa",
+      "beforeBytes": 88693,
+      "afterBytes": 86091,
+      "reductionPercent": 2.93,
+      "beforeRatio": 7.03,
+      "afterRatio": 7.25,
+      "beforeWords": 800,
+      "afterWords": 800
+    },
+    {
+      "path": "/locations/united-kingdom/london",
+      "beforeBytes": 156996,
+      "afterBytes": 141802,
+      "reductionPercent": 9.68,
+      "beforeRatio": 4.83,
+      "afterRatio": 5.35,
+      "beforeWords": 1040,
+      "afterWords": 1040
+    },
+    {
+      "path": "/locations/united-states",
+      "beforeBytes": 166369,
+      "afterBytes": 151149,
+      "reductionPercent": 9.15,
+      "beforeRatio": 7.01,
+      "afterRatio": 7.72,
+      "beforeWords": 1694,
+      "afterWords": 1694
+    },
+    {
+      "path": "/free-trial",
+      "beforeBytes": 70151,
+      "afterBytes": 64778,
+      "reductionPercent": 7.66,
+      "beforeRatio": 2.97,
+      "afterRatio": 3.22,
+      "beforeWords": 139,
+      "afterWords": 139
+    },
+    {
+      "path": "/courses/noorani-qaida",
+      "beforeBytes": 120244,
+      "afterBytes": 109263,
+      "reductionPercent": 9.13,
+      "beforeRatio": 4.76,
+      "afterRatio": 5.24,
+      "beforeWords": 702,
+      "afterWords": 702
+    },
+    {
+      "path": "/courses/quran-nazara",
+      "beforeBytes": 119698,
+      "afterBytes": 108756,
+      "reductionPercent": 9.14,
+      "beforeRatio": 4.6,
+      "afterRatio": 5.06,
+      "beforeWords": 650,
+      "afterWords": 650
+    },
+    {
+      "path": "/courses/hifz-quran",
+      "beforeBytes": 117622,
+      "afterBytes": 106628,
+      "reductionPercent": 9.35,
+      "beforeRatio": 4.66,
+      "afterRatio": 5.14,
+      "beforeWords": 644,
+      "afterWords": 644
+    },
+    {
+      "path": "/courses/arabic-language",
+      "beforeBytes": 118424,
+      "afterBytes": 107430,
+      "reductionPercent": 9.28,
+      "beforeRatio": 4.44,
+      "afterRatio": 4.89,
+      "beforeWords": 600,
+      "afterWords": 600
+    },
+    {
+      "path": "/courses/quran-translation",
+      "beforeBytes": 116052,
+      "afterBytes": 105015,
+      "reductionPercent": 9.51,
+      "beforeRatio": 4.39,
+      "afterRatio": 4.85,
+      "beforeWords": 583,
+      "afterWords": 583
+    },
+    {
+      "path": "/courses/hadith-translation",
+      "beforeBytes": 116046,
+      "afterBytes": 105047,
+      "reductionPercent": 9.48,
+      "beforeRatio": 4.32,
+      "afterRatio": 4.78,
+      "beforeWords": 578,
+      "afterWords": 578
+    },
+    {
+      "path": "/courses/tajweed",
+      "beforeBytes": 60409,
+      "afterBytes": 57984,
+      "reductionPercent": 4.01,
+      "beforeRatio": 6.72,
+      "afterRatio": 7.01,
+      "beforeWords": 441,
+      "afterWords": 441
+    }
+  ],
+  "localSchema": {
+    "canonicalCoursePagesReviewed": 6,
+    "incompleteCourseInstanceItemsBefore": 6,
+    "incompleteCourseInstanceItemsAfter": 0,
+    "courseListingItemList": "added",
+    "semrushIssueMapping": "probable correspondence; detailed original issue fields not supplied",
+    "googleRichResultsTest": "not performed"
+  },
+  "browser": {
+    "routeViewportCases": 14,
+    "viewports": [
+      390,
+      1440
+    ],
+    "errors": [],
+    "checks": [
+      "all sampled URLs return 200",
+      "no horizontal overflow",
+      "shared glyphs render",
+      "mobile menu",
+      "currency selection",
+      "course and listing markup",
+      "admin redirects to sign-in",
+      "course title font, color, weight, width and line height preserved"
+    ],
+    "formsSubmitted": 0,
+    "chat": "stubbed",
+    "browser": "Chromium 153; emulation, not physical Safari"
+  },
+  "tests": {
+    "passed": 45,
+    "failed": 0
+  },
+  "lint": {
+    "errors": 0,
+    "preExistingWarnings": 19
+  },
+  "productionBuild": "passed from a clean build directory",
+  "limitations": [
+    "Not deployed or verified live after fixes.",
+    "Direct-origin certificate/SNI inspection requires hosting access and the affected hostname.",
+    "The 15 sampled text/HTML ratios remain below 10%; no padding content or scoring guarantee.",
+    "13,959-byte shared icon asset is an additional cached request; HTML reductions are not total-page speed or field CWV.",
+    "Authenticated staff operations and production form persistence not exercised in this run.",
+    "Search Console, field Core Web Vitals and Semrush re-audit not available."
+  ]
+}

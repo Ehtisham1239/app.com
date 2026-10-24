@@ -1,7 +1,7 @@
 import { ContentImage } from "@/components/site/content-image";
 import { contentMetadata } from "@/lib/seo-metadata";
 import { Suspense } from "react";
-import { CalendarCheck2, Clock3, HeartHandshake, ShieldCheck } from "lucide-react";
+import { CalendarCheck2, Clock3, HeartHandshake, ShieldCheck } from "@/components/site/icons";
 import { TrialForm } from "@/components/site/trial-form";
 import { getCourses, getPlans, getSettings } from "@/lib/site-data";
 import { whatsappLink } from "@/lib/format";

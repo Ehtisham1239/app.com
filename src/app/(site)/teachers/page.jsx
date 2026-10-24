@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, BadgeCheck, HeartHandshake, Languages, ShieldCheck } from "lucide-react";
+import { ArrowRight, BadgeCheck, HeartHandshake, Languages, ShieldCheck } from "@/components/site/icons";
 import { PageHero } from "@/components/site/chrome";
 import { CtaBand, TeacherCard } from "@/components/site/sections";
 import { getSettings, getTeachers } from "@/lib/site-data";

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight } from "@/components/site/icons";
 import { PageHero } from "@/components/site/chrome";
 import { ContentImage } from "@/components/site/content-image";
 import { LEARNING_GUIDES } from "@/lib/learning-guides";

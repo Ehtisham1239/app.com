@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, Globe2, Search } from "lucide-react";
+import { ArrowUpRight, Globe2, Search } from "@/components/site/icons";
 
 const aliases = { 'united-kingdom': 'uk britain england scotland wales', 'united-states': 'usa us america', australia: 'aus' };
 export function LocationDirectory({ countries }) {

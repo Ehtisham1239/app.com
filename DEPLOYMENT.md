@@ -1,5 +1,9 @@
 # app.com website and CMS deployment
 
+## Semrush follow-up — 24 October 2026: pending deployment
+
+The Semrush remediation is validated locally but has **not** been deployed in this session because Vercel is not connected. Do not mistake the new GitHub source commit or earlier READY deployments below for publication of these changes. See [the remediation ledger](docs/SEMRUSH-REMEDIATION-2026-10-24.md) for the exact fixes, evidence, unresolved hosting checks and release procedure. Production remains `https://project-umber-three-93.vercel.app`.
+
 Target repository: Ehtisham1239/app.com. Target Supabase project: `lgbwidraztavhhbnbfhr`.
 The uploaded ZIP referenced a different Supabase project. That fallback has been removed.
 The live college site's logo and hero image were downloaded from https://www.onlinequrancollege.com/.

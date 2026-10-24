@@ -5,7 +5,7 @@ Ehtisham1239/app.com. The website uses the college's live logo, hero image, bran
 
 The existing CMS manages blogs, pages, courses, fees, media, contact messages and trial leads.
 Added: a visible CMS Portal button, campaign-to-form attribution and reporting, local-currency
-pricing selection, and 50 country / 113 city landing pages editable through CMS → Pages.
+pricing selection, and 50 country / 115 city landing pages editable through CMS → Pages.
 
 ```sh
 npm ci

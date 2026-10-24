@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { clsx } from "clsx";
-import { Check } from "lucide-react";
+import { Check } from "@/components/site/icons";
 import { formatMoney } from "@/lib/format";
 
 const PERIOD = { monthly: "/ month", quarterly: "/ quarter", yearly: "/ year", one_time: "one-time" };
@@ -30,7 +30,7 @@ export function PricingCards({ plans, compact = false, currency }) {
               featured ? "ring-2 ring-leaf-700" : "",
             )}
           >
-            <div className="-mx-6 -mt-6 mb-6 flex min-h-14 items-center justify-between gap-2 border-b border-leaf-100 bg-leaf-50 px-6 py-4"><span className="text-xs font-semibold uppercase tracking-wider text-leaf-700">Personal lessons</span>{featured && <span className="rounded-full bg-leaf-700 px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-wider text-white">Featured</span>}</div>
+            <div className="package-caption"><span className="text-xs font-semibold uppercase tracking-wider text-leaf-700">Personal lessons</span>{featured && <span className="rounded-full bg-leaf-700 px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-wider text-white">Featured</span>}</div>
             <h3 className="text-[1.15rem] font-bold text-mushaf-900">{p.name}</h3>
             {p.tagline && <p className="mt-1 text-[0.9rem] leading-snug text-ink-soft">{p.tagline}</p>}
             <p className="mt-5 flex flex-wrap items-baseline gap-x-1.5">

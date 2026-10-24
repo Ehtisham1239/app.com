@@ -90,6 +90,27 @@
 }
 
 @layer components {
+  .site-icon {
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+    vertical-align: middle;
+  }
+  /* Shared server-rendered card styles keep utility strings out of repeated
+     HTML and hydration payloads without changing content or layout. */
+  .course-visual { @apply relative mx-2 mt-2 aspect-[3/2] overflow-hidden rounded-[1.15rem] bg-leaf-50; }
+  .course-body { @apply flex flex-1 flex-col px-6 pb-5 pt-5; }
+  .course-caption { @apply mb-4 flex items-center justify-between gap-3; }
+  .course-icon { @apply flex size-9 shrink-0 items-center justify-center rounded-xl bg-leaf-50 text-leaf-700; }
+  .course-title { @apply text-xl font-bold leading-snug text-mushaf-900; }
+  .course-summary { @apply mt-3 flex-1 text-[0.95rem] leading-relaxed text-ink-soft; }
+  .course-audience { @apply mt-4 text-xs font-medium leading-relaxed text-ink-soft; }
+  .package-caption { @apply -mx-6 -mt-6 mb-6 flex min-h-14 items-center justify-between gap-2 border-b border-leaf-100 bg-leaf-50 px-6 py-4; }
+  .faq-toggle { @apply flex cursor-pointer list-none items-start justify-between gap-6 px-6 py-5 text-left transition-colors hover:bg-paper/70; }
+  .faq-toggle::-webkit-details-marker { display: none; }
+  .faq-answer { @apply -mt-1 whitespace-pre-line px-6 pb-6 text-[0.98rem] leading-relaxed text-ink-soft; }
   .page-wrap {
     width: 100%;
     max-width: 76rem;

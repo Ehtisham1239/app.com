@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
-import { BadgeCheck, Loader2, Search, SearchX } from "lucide-react";
+import { BadgeCheck, Loader2, Search, SearchX } from "@/components/site/icons";
 import { getPublicBrowserClient } from "@/lib/supabase/public";
 import { formatDate } from "@/lib/format";
 

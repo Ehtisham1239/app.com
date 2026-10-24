@@ -1,8 +1,8 @@
 import { ContentImage } from "@/components/site/content-image";
 import Link from "next/link";
 import { clsx } from "clsx";
-import { ArrowRight, MessageCircle, Plus, Quote, Star } from "lucide-react";
-import { ContentIcon } from "@/components/icon";
+import { ArrowRight, MessageCircle, Plus, Quote, Star } from "@/components/site/icons";
+import { ContentIcon } from "@/components/site/content-icon";
 import { initials, truncate } from "@/lib/format";
 
 // ---------------------------------------------------------------------------
@@ -39,7 +39,7 @@ export function CourseCard({ course }) {
       href={`/courses/${course.slug}`}
       className="course-card editorial-card group flex h-full flex-col"
     >
-      <div className="relative mx-2 mt-2 aspect-[3/2] overflow-hidden rounded-[1.15rem] bg-leaf-50">
+      <div className="course-visual">
         {course.cover_url ? (
           <ContentImage src={course.cover_url} alt={course.cover_alt} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
         ) : (
@@ -50,11 +50,11 @@ export function CourseCard({ course }) {
         )}
         {course.level && <span className="card-label absolute left-3 top-3">{course.level}</span>}
       </div>
-      <div className="flex flex-1 flex-col px-6 pb-5 pt-5">
-        <div className="mb-4 flex items-center justify-between gap-3"><span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-leaf-50 text-leaf-700" aria-hidden="true"><ContentIcon name={course.icon} className="size-5" /></span>{course.arabic_title && <p lang="ar" dir="rtl" className="arabic text-xl text-leaf-700">{course.arabic_title}</p>}</div>
-        <h3 className="text-xl font-bold leading-snug text-mushaf-900">{course.title}</h3>
-        {course.summary && <p className="mt-3 flex-1 text-[0.95rem] leading-relaxed text-ink-soft">{truncate(course.summary, 150)}</p>}
-        {course.age_group && <p className="mt-4 text-xs font-medium leading-relaxed text-ink-soft">{course.age_group}</p>}
+      <div className="course-body">
+        <div className="course-caption"><span className="course-icon" aria-hidden="true"><ContentIcon name={course.icon} className="size-5" /></span>{course.arabic_title && <p lang="ar" dir="rtl" className="arabic text-xl text-leaf-700">{course.arabic_title}</p>}</div>
+        <h3 className="course-title">{course.title}</h3>
+        {course.summary && <p className="course-summary">{truncate(course.summary, 150)}</p>}
+        {course.age_group && <p className="course-audience">{course.age_group}</p>}
       </div>
       <span className="card-action mx-6 mb-6">View course <span className="card-arrow"><ArrowRight className="size-4" aria-hidden="true" /></span></span>
     </Link>
@@ -114,13 +114,13 @@ export function FaqList({ faqs, defaultOpen = 0 }) {
     <div className="space-y-3">
       {list.map((f, i) => (
         <details key={f.id ?? i} className="faq-card group rounded-2xl border border-line bg-white open:border-leaf-200 open:bg-leaf-50/40" open={i === defaultOpen}>
-          <summary className="flex cursor-pointer list-none items-start justify-between gap-6 px-6 py-5 text-left transition-colors hover:bg-paper/70 [&::-webkit-details-marker]:hidden">
+          <summary className="faq-toggle">
             <span className="text-[1.02rem] font-semibold leading-snug text-mushaf-900">{f.question}</span>
             <span className="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full bg-leaf-50 text-leaf-700 ring-1 ring-leaf-100 transition-transform duration-200 group-open:rotate-45">
               <Plus className="size-4" aria-hidden="true" />
             </span>
           </summary>
-          <div className="-mt-1 whitespace-pre-line px-6 pb-6 text-[0.98rem] leading-relaxed text-ink-soft">{f.answer}</div>
+          <div className="faq-answer">{f.answer}</div>
         </details>
       ))}
     </div>

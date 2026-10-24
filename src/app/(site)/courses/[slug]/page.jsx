@@ -2,10 +2,11 @@ import { ContentImage } from "@/components/site/content-image";
 import { SITE_URL } from "@/lib/config";
 import { safeJsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
 import { contentMetadata } from "@/lib/seo-metadata";
+import { courseSchema } from "@/lib/course-schema";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, CalendarClock, CheckCircle2, GraduationCap, MessageCircle, Users } from "lucide-react";
-import { ContentIcon } from "@/components/icon";
+import { ArrowRight, CalendarClock, CheckCircle2, GraduationCap, MessageCircle, Users } from "@/components/site/icons";
+import { ContentIcon } from "@/components/site/content-icon";
 import { CourseCard, FaqList } from "@/components/site/sections";
 import { getCourse, getCourses, getFaqs, getPlans, getPublishedSlugs, getSettings } from "@/lib/site-data";
 import { cleanHtml } from "@/lib/sanitize";
@@ -39,23 +40,13 @@ export default async function CoursePage({ params }) {
   const fromPrice = prices.length ? Math.min(...prices) : null;
   const wa = whatsappLink(settings["site.contact"]?.whatsapp, `Assalamu alaikum, I am interested in the ${course.title} course.`);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    name: course.title,
-    description: course.summary,
-    ...(course.cover_url ? { image: new URL(course.cover_url, SITE_URL).href } : {}),
-    "@id": `${SITE_URL}/courses/${course.slug}#course`,
-    url: `${SITE_URL}/courses/${course.slug}`,
-    provider: { "@type": "EducationalOrganization", "@id": `${SITE_URL}/#organization`, name: settings["site.identity"]?.name ?? "Online Quran College" },
-    hasCourseInstance: { "@type": "CourseInstance", courseMode: "online" },
-  };
+  const jsonLd = courseSchema(course, SITE_URL, settings["site.identity"]?.name);
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema([{ name: "Courses", path: "/courses" }, { name: course.title, path: `/courses/${course.slug}` }], SITE_URL)) }} />
       {[...courseFaqs, ...generalFaqs].length > 0 && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema([...courseFaqs, ...generalFaqs])) }} />}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
+      {jsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />}
       <section className="relative overflow-hidden bg-mushaf-900 text-white">
         <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.09]" aria-hidden="true" />
         <div className="page-wrap relative py-14 sm:py-20">

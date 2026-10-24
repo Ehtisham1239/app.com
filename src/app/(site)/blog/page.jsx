@@ -1,7 +1,7 @@
 import { ContentImage } from "@/components/site/content-image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowRight, Clock3 } from "lucide-react";
+import { ArrowRight, Clock3 } from "@/components/site/icons";
 import { PageHero } from "@/components/site/chrome";
 import { getPostPage } from "@/lib/site-data";
 import { formatDate } from "@/lib/format";

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, Award, Languages, Sparkles } from "lucide-react";
+import { ArrowRight, Award, Languages, Sparkles } from "@/components/site/icons";
 import { getPublishedSlugs, getTeacher } from "@/lib/site-data";
 import { truncate } from "@/lib/format";
 

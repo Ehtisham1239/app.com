@@ -1,0 +1,28 @@
+// Generated from the existing CMS icon names and pinned Lucide artwork.
+export const CONTENT_ICON_SYMBOLS = {
+  "book-a": "book-a",
+  "book-open": "book-open",
+  "book-open-text": "book-open-text",
+  "book-marked": "book-bookmark",
+  "brain": "brain",
+  "languages": "languages",
+  "scroll-text": "scroll-text",
+  "library-big": "library-big",
+  "badge-percent": "badge-percent",
+  "heart-handshake": "heart-handshake",
+  "calendar-clock": "calendar-clock",
+  "award": "award",
+  "headset": "headset",
+  "graduation-cap": "graduation-cap",
+  "notebook-pen": "notebook-pen",
+  "moon-star": "moon-star",
+  "shield-check": "shield-check",
+  "badge-check": "badge-check",
+  "hand-heart": "hand-heart",
+  "sparkles": "sparkles",
+  "star": "star",
+  "users": "users",
+  "video": "video",
+  "clock": "clock",
+  "message-circle": "message-circle"
+};

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, ChevronDown, Menu, ShieldCheck, X } from "lucide-react";
+import { ArrowRight, ChevronDown, Menu, ShieldCheck, X } from "@/components/site/icons";
 import { clsx } from "clsx";
 
 function isActive(pathname, href) {

@@ -1,6 +1,6 @@
 import { ContentImage } from "@/components/site/content-image";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Heart, Compass, Users } from "lucide-react";
+import { ArrowRight, BookOpen, Heart, Compass, Users } from "@/components/site/icons";
 import { PageHero } from "@/components/site/chrome";
 import { CtaBand } from "@/components/site/sections";
 import { PageSections } from "@/components/site/page-sections";

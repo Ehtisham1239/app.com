@@ -1,6 +1,6 @@
 import { ContentImage } from "@/components/site/content-image";
 import { contentMetadata } from "@/lib/seo-metadata";
-import { Clock3, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Clock3, Mail, MapPin, MessageCircle, Phone } from "@/components/site/icons";
 import { PageHero } from "@/components/site/chrome";
 import { ContactForm } from "@/components/site/contact-form";
 import { getSettings } from "@/lib/site-data";

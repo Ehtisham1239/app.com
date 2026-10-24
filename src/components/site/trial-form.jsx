@@ -8,7 +8,7 @@ import { captureAttribution } from "@/lib/attribution";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { clsx } from "clsx";
-import { ArrowLeft, ArrowRight, Check, CheckCircle2, Loader2, MessageCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, CheckCircle2, Loader2, MessageCircle } from "@/components/site/icons";
 import { getPublicBrowserClient } from "@/lib/supabase/public";
 import { AGE_BANDS, COUNTRIES, LANGUAGES, LEVELS, TEACHER_PREFS, TIME_SLOTS, WEEKDAYS } from "@/lib/constants";
 

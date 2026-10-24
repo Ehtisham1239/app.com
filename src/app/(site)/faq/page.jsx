@@ -4,7 +4,7 @@ import { getFaqs, getSettings } from "@/lib/site-data";
 import { whatsappLink } from "@/lib/format";
 import { safeJsonLd } from "@/lib/seo";
 import { LOCATIONS } from "@/lib/locations";
-import { HelpCircle } from "lucide-react";
+import { HelpCircle } from "@/components/site/icons";
 
 export const revalidate = 300;
 

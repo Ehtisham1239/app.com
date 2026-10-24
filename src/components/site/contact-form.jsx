@@ -4,7 +4,7 @@ import { announceLeadSaved } from "@/lib/conversion-events";
 import Link from "next/link";
 import { captureAttribution } from "@/lib/attribution";
 import { useEffect, useRef, useState } from "react";
-import { CheckCircle2, Loader2, Send } from "lucide-react";
+import { CheckCircle2, Loader2, Send } from "@/components/site/icons";
 import { getPublicBrowserClient } from "@/lib/supabase/public";
 import { COUNTRIES } from "@/lib/constants";
 

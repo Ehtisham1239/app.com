@@ -4,7 +4,7 @@ import { LocationSchedule } from "./location-schedule";
 import { schedulingLocations } from "@/lib/location-schedule";
 import { breadcrumbSchema, safeJsonLd, faqSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
-import { Clock3, Globe2, Monitor } from "lucide-react";
+import { Clock3, Globe2, Monitor } from "@/components/site/icons";
 import { PageHero } from "@/components/site/chrome";
 import { CoursesGrid, PricingCards, FaqList } from "@/components/site/sections";
 import { getCourses, getFaqs, getPage, getPlans } from "@/lib/site-data";

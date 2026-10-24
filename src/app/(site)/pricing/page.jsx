@@ -1,5 +1,5 @@
 import { CurrencyPricing } from "@/components/site/currency-pricing";
-import { BadgePercent, CreditCard, ShieldCheck } from "lucide-react";
+import { BadgePercent, CreditCard, ShieldCheck } from "@/components/site/icons";
 import { PageHero, SectionHeading } from "@/components/site/chrome";
 import { CtaBand, FaqList } from "@/components/site/sections";
 import { getFaqs, getPlans, getSettings } from "@/lib/site-data";
