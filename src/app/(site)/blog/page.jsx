@@ -22,19 +22,19 @@ function PostCard({ post, large = false }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className={`group flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] border border-line bg-white transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-lift)] ${large ? "md:col-span-2 md:flex-row" : ""}`}
+      className={`editorial-card group flex h-full flex-col ${large ? "md:col-span-2 md:flex-row" : ""}`}
     >
-      <div className={`relative overflow-hidden bg-mushaf-900 ${large ? "aspect-[16/10] md:aspect-auto md:w-1/2" : "aspect-[16/9]"}`}>
+      <div className={`relative m-2 shrink-0 overflow-hidden rounded-[1.15rem] bg-leaf-50 ${large ? "aspect-[3/2] md:aspect-auto md:w-[46%]" : "aspect-[3/2]"}`}>
         {post.cover_url ? (
-          <ContentImage src={post.cover_url} alt={post.cover_alt} className="size-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+          <ContentImage src={post.cover_url} alt={post.cover_alt} sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 400px" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" />
         ) : (
           <div className="pattern-girih flex size-full items-center justify-center">
             <span className="rounded-full bg-mushaf-950/80 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-gold-300 ring-1 ring-gold-400/40">{post.category}</span>
           </div>
         )}
       </div>
-      <div className={`flex flex-1 flex-col p-6 ${large ? "md:p-9" : ""}`}>
-        <p className="flex items-center gap-3 text-[0.8rem] font-semibold uppercase tracking-wider text-gold-700">
+      <div className={`flex min-w-0 flex-1 flex-col px-6 pb-6 pt-4 ${large ? "md:py-7" : ""}`}>
+        <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.7rem] font-semibold uppercase tracking-wider text-leaf-700">
           {post.category}
           {post.reading_minutes ? (
             <span className="flex items-center gap-1 font-medium normal-case tracking-normal text-ink-faint">
@@ -44,12 +44,8 @@ function PostCard({ post, large = false }) {
         </p>
         <h2 className={`mt-3 font-sans font-bold leading-snug text-mushaf-900 ${large ? "text-[1.6rem]" : "text-[1.2rem]"}`}>{post.title}</h2>
         <p className="mt-3 flex-1 text-[0.97rem] leading-relaxed text-ink-soft">{post.excerpt}</p>
-        <p className="mt-5 flex items-center justify-between text-[0.88rem] text-ink-faint">
-          {formatDate(post.published_at)}
-          <span className="inline-flex items-center gap-1 font-semibold text-leaf-700">
-            Read <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-          </span>
-        </p>
+        <p className="mt-4 text-xs text-ink-faint">{formatDate(post.published_at)}</p>
+        <span className="card-action mt-5">Read article <span className="card-arrow"><ArrowRight className="size-4" aria-hidden="true" /></span></span>
       </div>
     </Link>
   );

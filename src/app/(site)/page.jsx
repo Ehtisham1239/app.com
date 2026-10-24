@@ -46,7 +46,7 @@ export default async function HomePage() {
     legalName: identity.legal_name,
     url: SITE_URL,
     logo: `${SITE_URL}/brand/logo.webp`,
-    image: `${SITE_URL}/images/learning/home-college-welcome-1200.webp`,
+    image: `${SITE_URL}/images/learning/home-college-welcome-r2-1200.webp`,
     description: identity.description,
     ...(/^\d{4}$/.test(identity.established || "") ? { foundingDate: identity.established } : {}),
     email: contact.email,
@@ -67,7 +67,7 @@ export default async function HomePage() {
       <section id="about" className="bg-[#f4fbf7] py-16 sm:py-24">
         <div className="page-wrap grid items-center gap-10 lg:grid-cols-2">
           <figure className="overflow-hidden rounded-[2rem] border border-leaf-100 bg-white">
-            <ContentImage src="/images/learning/home-college-welcome-1200.webp" alt="Family arranging a calm home study space with a workbook, lamp and laptop" sizes="(max-width: 1024px) 100vw, 560px" className="aspect-[3/2] w-full object-cover" />
+            <ContentImage src="/images/learning/home-college-welcome-r2-1200.webp" alt="Parents encouraging their daughter during a laptop lesson at a bright home desk" sizes="(max-width: 1024px) 100vw, 560px" className="aspect-[3/2] w-full object-cover" />
             <figcaption className="px-6 py-5"><p className="font-bold text-leaf-700">Islamic mission. Global Quran access.</p><p className="mt-1 text-sm text-ink-soft">Traditional learning, connected to your home.</p></figcaption>
           </figure>
           <div><SectionHeading align="left" eyebrow="About our college" title="Welcome to Online Quran College" intro="Our mission is to make Quran learning accessible from home, connecting traditional Islamic teaching with live online classrooms for children and adults." /><p className="mt-5 text-ink-soft">Begin with Noorani Qaida, develop Quran reading and Tajweed, or explore memorisation, Arabic and translation. Discuss the learner’s starting level, goals and local schedule with our coordinator before choosing a course.</p><Link href="/about" className="btn btn-primary mt-6">About our college <ArrowRight className="size-4" aria-hidden="true" /></Link></div>
@@ -77,8 +77,8 @@ export default async function HomePage() {
         {[
           { href: "/locations/united-states", image: "usa-online-quran-learning", alt: "Child and parent reviewing an Arabic workbook beside a laptop", title: "Quran classes in the USA", text: "US time zones, courses and USD packages." },
           { href: "/locations/australia", image: "australia-online-quran-learning", alt: "Young learner studying an Arabic workbook beside a laptop", title: "Quran classes in Australia", text: "Plan around your city and request approved AUD fees." },
-          { href: "/learn", image: "home-learning-paths", alt: "Alphabet blocks, a closed book and a notebook representing different learning stages", title: "Find your learning path", text: "Guides for parents, adults and recitation learners." },
-        ].map(item => <Link key={item.href} href={item.href} className="surface overflow-hidden"><ContentImage src={`/images/learning/${item.image}-1200.webp`} alt={item.alt} sizes="(max-width: 639px) 100vw, (max-width: 1024px) 33vw, 380px" className="aspect-[3/2] w-full object-cover" /><div className="p-6"><h2 className="text-xl">{item.title}</h2><p className="mt-2 text-sm text-ink-soft">{item.text}</p></div></Link>)}
+          { href: "/learn", image: "home-learning-paths", alt: "Young learner with headphones using a workbook and laptop beside a closed book on a stand", title: "Find your learning path", text: "Guides for parents, adults and recitation learners." },
+        ].map(item => <Link key={item.href} href={item.href} className="surface editorial-card group flex flex-col"><div className="mx-2 mt-2 aspect-[3/2] overflow-hidden rounded-[1.15rem]"><ContentImage src={`/images/learning/${item.image}-1200.webp`} alt={item.alt} sizes="(max-width: 639px) 100vw, (max-width: 1024px) 33vw, 380px" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" /></div><div className="flex flex-1 flex-col p-6"><h2 className="text-xl">{item.title}</h2><p className="mt-3 flex-1 text-sm text-ink-soft">{item.text}</p><span className="card-action mt-5">Explore <span className="card-arrow"><ArrowRight className="size-4" aria-hidden="true" /></span></span></div></Link>)}
       </section>
       <section id="courses" className="bg-[#f4fbf7] py-20 sm:py-24" aria-labelledby="courses-heading">
         <div className="page-wrap"><div className="flex flex-wrap items-end justify-between gap-6">

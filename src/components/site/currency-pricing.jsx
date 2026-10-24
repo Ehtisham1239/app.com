@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { PricingCards } from "@/components/site/sections";
+import { PricingCards } from "@/components/site/pricing-cards";
 import { LOCATIONS } from "@/lib/locations";
 export function CurrencyPricing({ plans }) {
   const [currency, setCurrency] = useState("USD");

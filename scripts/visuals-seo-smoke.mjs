@@ -37,7 +37,7 @@ try {
         await pic.evaluate(img => img.decode());
         const data = await pic.evaluate(img => ({ source: new URL(img.currentSrc).pathname, width: img.naturalWidth, alt: img.alt, lazy: img.loading }));
         assert.ok(data.width > 0 && data.alt.length > 20, path);
-        assert.equal(data.lazy, 'lazy', 'Supporting images should not compete with the hero');
+        assert.equal(data.lazy, path === '/about' ? 'eager' : 'lazy', 'Primary covers load eagerly; supporting images load lazily');
         sources.push(data.source);
       }
       if (path.startsWith('/?')) {
@@ -58,7 +58,7 @@ try {
     await page.close();
   }
   const xml = await (await fetch(base + '/sitemap.xml')).text();
-  assert.match(xml, /<image:loc>[^<]+\/images\/learning\/family-online-quran-study-1200.webp<\/image:loc>/);
+  assert.match(xml, /<image:loc>[^<]+\/images\/learning\/family-online-quran-study-r2-1200.webp<\/image:loc>/);
   assert.doesNotMatch(xml, /<image:loc>[^<]+supabase\.co[^<]+\/generated\//);
   report.imageSitemap = true;
 } finally { await browser.close(); }

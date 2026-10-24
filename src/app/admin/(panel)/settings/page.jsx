@@ -6,7 +6,7 @@ import { Loader2, Plus, Save, Trash2 } from "lucide-react";
 import { clsx } from "clsx";
 import { useAccess } from "@/lib/admin/access";
 import { db, notifyError, refreshSite, useLoad } from "@/lib/admin/db";
-import { DEFAULT_SETTINGS } from "@/lib/site-data";
+import { DEFAULT_SETTINGS } from "@/lib/default-settings";
 import { CONTENT_ICONS, ContentIcon } from "@/components/icon";
 import { Card, ErrorState, Field, Loading, PageHeader, TagInput, Toggle } from "@/components/admin/ui";
 

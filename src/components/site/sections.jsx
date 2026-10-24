@@ -1,9 +1,9 @@
 import { ContentImage } from "@/components/site/content-image";
 import Link from "next/link";
 import { clsx } from "clsx";
-import { ArrowRight, Check, MessageCircle, Plus, Quote, Star } from "lucide-react";
+import { ArrowRight, MessageCircle, Plus, Quote, Star } from "lucide-react";
 import { ContentIcon } from "@/components/icon";
-import { formatMoney, initials, truncate } from "@/lib/format";
+import { initials, truncate } from "@/lib/format";
 
 // ---------------------------------------------------------------------------
 // Benefits ("Why families choose us")
@@ -37,9 +37,9 @@ export function CourseCard({ course }) {
   return (
     <Link
       href={`/courses/${course.slug}`}
-      className="course-card group flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] border border-line bg-white transition-all duration-300 hover:-translate-y-1 hover:border-gold-300 hover:shadow-[var(--shadow-lift)]"
+      className="course-card editorial-card group flex h-full flex-col"
     >
-      <div className="relative aspect-[16/10] overflow-hidden bg-mushaf-900">
+      <div className="relative mx-2 mt-2 aspect-[3/2] overflow-hidden rounded-[1.15rem] bg-leaf-50">
         {course.cover_url ? (
           <ContentImage src={course.cover_url} alt={course.cover_alt} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
         ) : (
@@ -48,25 +48,15 @@ export function CourseCard({ course }) {
             <div className="absolute -bottom-12 -left-10 size-44 rounded-full bg-leaf-600/35 blur-2xl transition-transform duration-500 group-hover:scale-110" aria-hidden="true" />
           </>
         )}
-        <span className="absolute bottom-4 left-4 flex size-10 items-center justify-center rounded-xl bg-white text-leaf-700 shadow-sm ring-1 ring-leaf-100">
-          <ContentIcon name={course.icon} className="size-6" />
-        </span>
-        {course.is_featured && (
-          <span className="absolute right-4 top-4 rounded-full bg-gold-500 px-2.5 py-0.5 text-[0.68rem] font-bold uppercase tracking-wider text-mushaf-950">Popular</span>
-        )}
+        {course.level && <span className="card-label absolute left-3 top-3">{course.level}</span>}
       </div>
-      <div className="flex flex-1 flex-col p-6">
-        <h3 className="text-[1.18rem] font-bold leading-snug text-mushaf-900 transition-colors group-hover:text-leaf-700">{course.title}</h3>
-        {course.arabic_title && <p lang="ar" dir="rtl" className="arabic mt-2 text-xl text-leaf-700">{course.arabic_title}</p>}
-        {course.summary && <p className="mt-2 flex-1 text-[0.95rem] leading-relaxed text-ink-soft">{truncate(course.summary, 150)}</p>}
-        <div className="mt-5 flex flex-wrap gap-2">
-          {course.age_group && <span className="chip">{course.age_group}</span>}
-          {course.level && <span className="chip chip-gold">{course.level}</span>}
-        </div>
-        <span className="mt-5 inline-flex items-center gap-1.5 text-[0.93rem] font-semibold text-leaf-700">
-          View course <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-        </span>
+      <div className="flex flex-1 flex-col px-6 pb-5 pt-5">
+        <div className="mb-4 flex items-center justify-between gap-3"><span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-leaf-50 text-leaf-700" aria-hidden="true"><ContentIcon name={course.icon} className="size-5" /></span>{course.arabic_title && <p lang="ar" dir="rtl" className="arabic text-xl text-leaf-700">{course.arabic_title}</p>}</div>
+        <h3 className="text-xl font-bold leading-snug text-mushaf-900">{course.title}</h3>
+        {course.summary && <p className="mt-3 flex-1 text-[0.95rem] leading-relaxed text-ink-soft">{truncate(course.summary, 150)}</p>}
+        {course.age_group && <p className="mt-4 text-xs font-medium leading-relaxed text-ink-soft">{course.age_group}</p>}
       </div>
+      <span className="card-action mx-6 mb-6">View course <span className="card-arrow"><ArrowRight className="size-4" aria-hidden="true" /></span></span>
     </Link>
   );
 }
@@ -121,12 +111,12 @@ export function FaqList({ faqs, defaultOpen = 0 }) {
   const list = Array.isArray(faqs) ? faqs : [];
   if (!list.length) return null;
   return (
-    <div className="divide-y divide-line overflow-hidden rounded-[var(--radius-card)] border border-line bg-white">
+    <div className="space-y-3">
       {list.map((f, i) => (
-        <details key={f.id ?? i} className="group" open={i === defaultOpen}>
+        <details key={f.id ?? i} className="faq-card group rounded-2xl border border-line bg-white open:border-leaf-200 open:bg-leaf-50/40" open={i === defaultOpen}>
           <summary className="flex cursor-pointer list-none items-start justify-between gap-6 px-6 py-5 text-left transition-colors hover:bg-paper/70 [&::-webkit-details-marker]:hidden">
             <span className="text-[1.02rem] font-semibold leading-snug text-mushaf-900">{f.question}</span>
-            <span className="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full bg-gold-50 text-gold-700 ring-1 ring-gold-100 transition-transform duration-200 group-open:rotate-45">
+            <span className="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full bg-leaf-50 text-leaf-700 ring-1 ring-leaf-100 transition-transform duration-200 group-open:rotate-45">
               <Plus className="size-4" aria-hidden="true" />
             </span>
           </summary>
@@ -140,78 +130,7 @@ export function FaqList({ faqs, defaultOpen = 0 }) {
 // ---------------------------------------------------------------------------
 // Fees / packages
 // ---------------------------------------------------------------------------
-const PERIOD = { monthly: "/ month", quarterly: "/ quarter", yearly: "/ year", one_time: "one-time" };
-
-function mainPrice(prices, currency) {
-  const list = Array.isArray(prices) ? prices : [];
-  if (currency) return list.find((p) => p.currency === currency) ?? null;
-  return list.find((p) => p.currency === "USD") ?? list[0] ?? null;
-}
-
-export function PricingCards({ plans, compact = false, currency }) {
-  const list = Array.isArray(plans) ? plans : [];
-  if (!list.length) return null;
-  const cols = list.length >= 4 ? "lg:grid-cols-4" : list.length === 3 ? "lg:grid-cols-3" : "lg:mx-auto lg:max-w-4xl lg:grid-cols-2";
-  return (
-    <div className={clsx("grid gap-5 pt-3 sm:grid-cols-2", cols)}>
-      {list.map((p) => {
-        const price = mainPrice(p.prices, currency);
-        const others = currency ? [] : (p.prices ?? []).filter((x) => x !== price);
-        const features = (Array.isArray(p.features) ? p.features : []).slice(0, compact ? 4 : 12);
-        const featured = Boolean(p.is_featured);
-        return (
-          <div
-            key={p.id}
-            className={clsx(
-              "relative flex flex-col rounded-[var(--radius-card)] border bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-lift)]",
-              featured ? "border-gold-400 shadow-[var(--shadow-lift)] ring-1 ring-gold-300" : "border-line",
-            )}
-          >
-            {featured && (
-              <span className="absolute -top-3 left-6 rounded-full bg-gold-500 px-3 py-1 text-[0.7rem] font-bold uppercase tracking-wider text-mushaf-950">Most popular</span>
-            )}
-            <h3 className="text-[1.15rem] font-bold text-mushaf-900">{p.name}</h3>
-            {p.tagline && <p className="mt-1 text-[0.9rem] leading-snug text-ink-soft">{p.tagline}</p>}
-            <p className="mt-5 flex flex-wrap items-baseline gap-x-1.5">
-              {price ? (
-                <>
-                  <span className="font-display text-[2.6rem] leading-none text-mushaf-900">{formatMoney(price.amount_minor, price.currency)}</span>
-                  <span className="text-[0.9rem] text-ink-faint">{PERIOD[p.billing_period] ?? ""}</span>
-                </>
-              ) : (
-                <span className="font-display text-[1.6rem] text-mushaf-900">{currency ? `Ask for the fee in ${currency}` : "Ask for the fee"}</span>
-              )}
-            </p>
-            {others.length > 0 && <p className="mt-1.5 text-[0.8rem] text-ink-faint">or {others.map((o) => formatMoney(o.amount_minor, o.currency)).join(" · ")}</p>}
-            <p className="mt-4 flex flex-wrap gap-2">
-              {p.classes_per_week ? (
-                <span className="chip">
-                  {p.classes_per_week} {p.classes_per_week === 1 ? "day" : "days"} a week
-                </span>
-              ) : null}
-              {p.duration_min ? <span className="chip chip-gold">{p.duration_min}-minute classes</span> : null}
-            </p>
-            {features.length > 0 ? (
-              <ul className="mt-5 flex-1 space-y-2.5 text-[0.93rem] text-ink">
-                {features.map((f) => (
-                  <li key={f} className="flex gap-2.5">
-                    <Check className="mt-0.5 size-4 shrink-0 text-leaf-600" strokeWidth={3} aria-hidden="true" />
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <div className="flex-1" />
-            )}
-            <Link href={`/free-trial?plan=${p.id}`} className={clsx("btn mt-6 w-full", featured ? "btn-gold" : "btn-primary")}>
-              Start with a free trial
-            </Link>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
+export { PricingCards } from "./pricing-cards";
 
 // ---------------------------------------------------------------------------
 // How it works
