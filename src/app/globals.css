@@ -311,7 +311,7 @@ img { max-width: 100%; }
 main .grid > *, main form { min-width: 0; }
 main input:not([type="checkbox"]):not([type="radio"]), main select, main textarea { min-width: 0; max-width: 100%; }
 
-/* Mobile reference: quiet header, portrait first, centred typography. */
+/* Mobile header and centred introduction. */
 @media (max-width: 639px) {
   .site-announcement, .header-portal { display: none; }
   .site-header { background: #fff; border-bottom: 1px solid #f0f5f2; backdrop-filter: none; }
@@ -319,7 +319,7 @@ main input:not([type="checkbox"]):not([type="radio"]), main select, main textare
   .site-header img { height: 64px; width: 64px; max-width: 64px; }
   .mobile-menu-trigger { width: 40px; height: 40px; border: 0; border-radius: 9px; background: #effaf4; color: #006847; }
   .mobile-menu-trigger svg { width: 24px; height: 24px; }
-  .home-hero { margin-top: 38px; background: linear-gradient(115deg, #f8fcfa, #effbf5 80%, #fff); }
+  .home-hero { margin-top: 0; background: linear-gradient(115deg, #f8fcfa, #effbf5 80%, #fff); }
   .home-hero .hero-layout { padding: 38px 16px 36px; gap: 32px; }
   .home-hero .hero-portrait { grid-row: 1; width: 64vw; max-width: 300px; border-width: 9px; border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; }
   .home-hero .hero-copy { grid-row: 2; min-width: 0; text-align: center; }
@@ -327,4 +327,10 @@ main input:not([type="checkbox"]):not([type="radio"]), main select, main textare
   .home-hero h1 { margin: 12px auto 0; font-size: clamp(22px, 6.1vw, 31px); line-height: 1.2; font-weight: 800; text-transform: capitalize; color: #006847; text-wrap: wrap; }
   .home-hero .hero-intro { margin: 16px auto 0; font-size: 14px; line-height: 1.75; color: #535b61; }
   .home-hero .hero-actions, .home-hero .hero-badges { justify-content: center; }
+}
+
+/* The first mobile view introduces the college; enquiry fields appear only on request. */
+@media (max-width: 1023px) {
+  .home-hero .hero-copy { grid-row: 1; }
+  .home-hero .hero-portrait { grid-row: 2; width: 100%; max-width: 600px; border-radius: 1.75rem; }
 }

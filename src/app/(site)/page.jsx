@@ -9,6 +9,7 @@ import { SectionHeading } from "@/components/site/chrome";
 import { Benefits, CoursesGrid, CtaBand, FaqList, PricingCards, Steps, TeacherCard, Testimonials } from "@/components/site/sections";
 import { getCourses, getFaqs, getPlans, getPosts, getSettings, getTeachers, getTestimonials } from "@/lib/site-data";
 import { SITE_URL } from "@/lib/config";
+import { truncate } from "@/lib/format";
 
 export const revalidate = 300;
 
@@ -19,6 +20,7 @@ export async function generateMetadata() {
     title: { absolute: seo.title ?? "Online Quran College" },
     description: seo.description || "Live one-to-one online Quran classes for children and adults. Explore Noorani Qaida, Tajweed, Hifz and Arabic with Online Quran College.",
     alternates: { canonical: "/" },
+    twitter: { card: "summary_large_image", title: seo.title || "Online Quran College", description: seo.description || "Live online Quran lessons for children and adults, with flexible class times.", images: ["/images/islamic/quran-study-v1-1200.webp"] },
     openGraph: { title: seo.title || "Online Quran College", description: seo.description || "Live online Quran lessons for children and adults, with flexible class times.", url: "/", images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Online Quran College — live online Quran classes" }] },
   };
 }
@@ -33,26 +35,10 @@ export default async function HomePage() {
     getTestimonials(),
     getPosts(3),
   ]);
-  const identity = settings["site.identity"] ?? {};
-  const contact = settings["site.contact"] ?? {};
   const standardPlans = plans.filter((p) => /^package/i.test(p.name)).slice(0, 4);
   const homePlans = standardPlans.length >= 3 ? standardPlans : plans.slice(0, 4);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
-    "@id": `${SITE_URL}/#organization`,
-    name: identity.name,
-    legalName: identity.legal_name,
-    url: SITE_URL,
-    logo: `${SITE_URL}/brand/logo.webp`,
-    image: `${SITE_URL}/images/learning/home-college-welcome-r2-1200.webp`,
-    description: identity.description,
-    ...(/^\d{4}$/.test(identity.established || "") ? { foundingDate: identity.established } : {}),
-    email: contact.email,
-    telephone: contact.phone,
-    sameAs: Object.values(settings["site.social"] ?? {}).filter((u) => typeof u === "string" && u.startsWith("http")),
-  };
+  const jsonLd = { "@context": "https://schema.org", "@type": "WebPage", "@id": `${SITE_URL}/#webpage`, url: SITE_URL, name: "Online Quran College", isPartOf: { "@id": `${SITE_URL}/#website` }, about: { "@id": `${SITE_URL}/#organization` }, inLanguage: "en-GB" };
 
   return (
     <div data-home-motion>
@@ -70,7 +56,7 @@ export default async function HomePage() {
             <ContentImage src="/images/learning/home-college-welcome-r2-1200.webp" alt="Parents encouraging their daughter during a laptop lesson at a bright home desk" sizes="(max-width: 1024px) 100vw, 560px" className="aspect-[3/2] w-full object-cover" />
             <figcaption className="px-6 py-5"><p className="font-bold text-leaf-700">Islamic mission. Global Quran access.</p><p className="mt-1 text-sm text-ink-soft">Traditional learning, connected to your home.</p></figcaption>
           </figure>
-          <div><SectionHeading align="left" eyebrow="About our college" title="Welcome to Online Quran College" intro="Our mission is to make Quran learning accessible from home, connecting traditional Islamic teaching with live online classrooms for children and adults." /><p className="mt-5 text-ink-soft">Begin with Noorani Qaida, develop Quran reading and Tajweed, or explore memorisation, Arabic and translation. Discuss the learner’s starting level, goals and local schedule with our coordinator before choosing a course.</p><Link href="/about" className="btn btn-primary mt-6">About our college <ArrowRight className="size-4" aria-hidden="true" /></Link></div>
+          <div><SectionHeading align="left" eyebrow="About our college" title="Welcome to Online Quran College" intro="Learn the Quran from home through personal, live lessons." /><p className="mt-5 text-ink-soft">From the first Arabic letters to confident recitation, choose a course around your learner’s level and goals.</p><Link href="/about" className="btn btn-primary mt-6">About our college <ArrowRight className="size-4" aria-hidden="true" /></Link></div>
         </div>
       </section>
       <section className="page-wrap grid gap-4 py-8 sm:grid-cols-3" aria-label="Explore learning paths">
@@ -86,7 +72,7 @@ export default async function HomePage() {
             align="left"
             eyebrow="Our courses"
             title={<span id="courses-heading">Our Popular Courses</span>}
-            intro="Every course is taught live, one-to-one, with a teacher who adapts the pace to the student — whether a child learning the alphabet or an adult perfecting recitation."
+            intro="Personal lessons, paced around your learner’s starting level."
           />
           <Link href="/courses" className="btn btn-outline">
             All courses <ArrowRight className="size-4" aria-hidden="true" />
@@ -106,7 +92,7 @@ export default async function HomePage() {
             intro="Explore online learning for children and adults, with course choices and class times discussed around your family’s routine."
           />
           <div className="mt-12">
-            <Benefits items={settings["site.benefits"]} />
+            <Benefits items={settings["site.benefits"]?.slice(0, 3)} />
           </div>
         </div>
       </section>
@@ -177,13 +163,13 @@ export default async function HomePage() {
                 All questions <ArrowRight className="size-4" aria-hidden="true" />
               </Link>
             </div>
-            <div><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema(faqs.slice(0, 6))) }} /><FaqList faqs={faqs.slice(0, 6)} /></div>
+            <div><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema(faqs.slice(0, 3))) }} /><FaqList faqs={faqs.slice(0, 3)} /></div>
           </div>
         </section>
       )}
 
 
-      {posts.length > 0 && <section id="blog" className="bg-[#f4fbf7] py-16 sm:py-24"><div className="page-wrap"><SectionHeading eyebrow="Our blog" title="Latest Articles & Resources" intro="Practical guides for Quran learning, recitation and family study routines." /><div className="mt-10 grid gap-6 md:grid-cols-3">{posts.map(post => <Link key={post.slug} href={`/blog/${post.slug}`} className="surface overflow-hidden">{post.cover_url && <ContentImage src={post.cover_url} alt={post.cover_alt} sizes="(max-width: 768px) 100vw, 380px" className="aspect-[3/2] w-full object-cover" />}<div className="p-6"><p className="text-xs font-semibold uppercase tracking-wider text-leaf-700">{post.category}</p><h3 className="mt-2 text-xl text-leaf-700">{post.title}</h3><p className="mt-3 text-sm text-ink-soft">{post.excerpt}</p></div></Link>)}</div><div className="mt-8 text-center"><Link href="/blog" className="btn btn-outline">All articles</Link></div></div></section>}
+      {posts.length > 0 && <section id="blog" className="bg-[#f4fbf7] py-16 sm:py-24"><div className="page-wrap"><SectionHeading eyebrow="Our blog" title="Latest Articles & Resources" intro="Practical guides for Quran learning, recitation and family study routines." /><div className="mt-10 grid gap-6 md:grid-cols-3">{posts.map(post => <Link key={post.slug} href={`/blog/${post.slug}`} className="surface overflow-hidden">{post.cover_url && <ContentImage src={post.cover_url} alt={post.cover_alt} sizes="(max-width: 768px) 100vw, 380px" className="aspect-[3/2] w-full object-cover" />}<div className="p-6"><p className="text-xs font-semibold uppercase tracking-wider text-leaf-700">{post.category}</p><h3 className="mt-2 text-xl text-leaf-700">{post.title}</h3><p className="mt-3 text-sm text-ink-soft">{truncate(post.excerpt || "", 100)}</p></div></Link>)}</div><div className="mt-8 text-center"><Link href="/blog" className="btn btn-outline">All articles</Link></div></div></section>}
       <CtaBand
         title="Begin your family’s Quran journey this week"
         text="Book a 7-day free trial. We will match you with a teacher, agree a time that suits your time zone and send the class link — no card needed."

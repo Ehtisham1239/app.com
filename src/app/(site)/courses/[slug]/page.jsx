@@ -1,12 +1,12 @@
 import { ContentImage } from "@/components/site/content-image";
 import { SITE_URL } from "@/lib/config";
 import { safeJsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
-import { contentMetadata } from "@/lib/seo-metadata";
+import { contentMetadata, publicImageUrl } from "@/lib/seo-metadata";
 import { courseSchema } from "@/lib/course-schema";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, CalendarClock, CheckCircle2, GraduationCap, MessageCircle, Users } from "@/components/site/icons";
-import { ContentIcon } from "@/components/site/content-icon";
+import { PageHero } from "@/components/site/chrome";
 import { CourseCard, FaqList } from "@/components/site/sections";
 import { getCourse, getCourses, getFaqs, getPlans, getPublishedSlugs, getSettings } from "@/lib/site-data";
 import { cleanHtml } from "@/lib/sanitize";
@@ -40,53 +40,20 @@ export default async function CoursePage({ params }) {
   const fromPrice = prices.length ? Math.min(...prices) : null;
   const wa = whatsappLink(settings["site.contact"]?.whatsapp, `Assalamu alaikum, I am interested in the ${course.title} course.`);
 
-  const jsonLd = courseSchema(course, SITE_URL, settings["site.identity"]?.name);
+  const jsonLd = courseSchema({ ...course, cover_url: publicImageUrl(course.cover_url) }, SITE_URL, settings["site.identity"]?.name);
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema([{ name: "Courses", path: "/courses" }, { name: course.title, path: `/courses/${course.slug}` }], SITE_URL)) }} />
       {[...courseFaqs, ...generalFaqs].length > 0 && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema([...courseFaqs, ...generalFaqs])) }} />}
       {jsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />}
-      <section className="relative overflow-hidden bg-mushaf-900 text-white">
-        <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.09]" aria-hidden="true" />
-        <div className="page-wrap relative py-14 sm:py-20">
-          <nav aria-label="Breadcrumb" className="text-sm text-white/60">
-            <Link href="/courses" className="hover:text-white">
-              Courses
-            </Link>
-            <span className="mx-2">/</span>
-            <span className="text-white/85">{course.title}</span>
-          </nav>
-          <div className="mt-6 grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(12rem,0.5fr)]">
-            <div className="max-w-3xl">
-              <span className="flex size-16 items-center justify-center rounded-2xl bg-white/10 text-gold-300 ring-1 ring-gold-400/40">
-                <ContentIcon name={course.icon} className="size-8" />
-              </span>
-              <h1 className="mt-6 text-[2.5rem] text-white sm:text-[3.4rem]">{course.title}</h1>
-              <p className="mt-5 text-[1.1rem] leading-relaxed text-white/75">{course.summary}</p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link href={`/free-trial?course=${course.id}`} className="btn btn-gold btn-lg">
-                  Book a free trial <ArrowRight className="size-5" aria-hidden="true" />
-                </Link>
-                {wa && (
-                  <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-outline-light btn-lg">
-                    <MessageCircle className="size-5" aria-hidden="true" /> Ask a question
-                  </a>
-                )}
-              </div>
-            </div>
-            {course.arabic_title && (
-              <p lang="ar" dir="rtl" className="arabic min-w-0 text-[3rem] leading-none text-gold-300/90 sm:text-[4.2rem]">
-                {course.arabic_title}
-              </p>
-            )}
-          </div>
-        </div>
-      </section>
+      <PageHero path={`/courses/${course.slug}`} eyebrow="Live one-to-one course" title={course.title} intro={truncate(course.summary || "", 180)} arabic={course.arabic_title} visual={course.cover_url ? <ContentImage src={course.cover_url} alt={course.cover_alt} priority sizes="(max-width: 1024px) 100vw, 600px" className="aspect-[3/2] w-full object-cover" /> : undefined}>
+        <nav aria-label="Breadcrumb" className="mt-5 text-sm text-white/75"><Link href="/courses" className="underline">Courses</Link> / <span aria-current="page">{course.title}</span></nav>
+        <div className="mt-6 flex flex-wrap gap-3"><Link href={`/free-trial?course=${course.id}`} className="btn btn-gold">Book a free trial <ArrowRight className="size-5" aria-hidden="true" /></Link>{wa && <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-outline-light"><MessageCircle className="size-5" aria-hidden="true" /> Ask a question</a>}</div>
+      </PageHero>
 
       <div className="page-wrap grid gap-12 py-16 lg:grid-cols-[1fr_20rem]">
         <div className="min-w-0">
-          {course.cover_url && <ContentImage src={course.cover_url} alt={course.cover_alt} priority className="mb-10 aspect-[3/2] w-full rounded-3xl object-cover" />}
           {course.description_html && <div className="prose-oqc" dangerouslySetInnerHTML={{ __html: cleanHtml(course.description_html) }} />}
 
           <section className="surface mt-10 space-y-3 p-6"><h2 className="text-2xl">Plan lessons around your family</h2><p>Explore local scheduling and fee guidance before requesting a trial.</p><div className="flex flex-wrap gap-3"><Link href="/locations/united-states" className="btn btn-outline">USA families</Link><Link href="/locations/australia" className="btn btn-outline">Australian families</Link><Link href="/learn" className="btn btn-outline">Learning guides</Link></div></section>

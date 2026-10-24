@@ -53,7 +53,7 @@ export function CourseCard({ course }) {
       <div className="course-body">
         <div className="course-caption"><span className="course-icon" aria-hidden="true"><ContentIcon name={course.icon} className="size-5" /></span>{course.arabic_title && <p lang="ar" dir="rtl" className="arabic text-xl text-leaf-700">{course.arabic_title}</p>}</div>
         <h3 className="course-title">{course.title}</h3>
-        {course.summary && <p className="course-summary">{truncate(course.summary, 150)}</p>}
+        {course.summary && <p className="course-summary">{truncate(course.summary, 100)}</p>}
         {course.age_group && <p className="course-audience">{course.age_group}</p>}
       </div>
       <span className="card-action mx-6 mb-6">View course <span className="card-arrow"><ArrowRight className="size-4" aria-hidden="true" /></span></span>

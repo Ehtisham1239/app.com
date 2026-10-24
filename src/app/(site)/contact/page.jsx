@@ -1,4 +1,3 @@
-import { ContentImage } from "@/components/site/content-image";
 import { contentMetadata } from "@/lib/seo-metadata";
 import { Clock3, Mail, MapPin, MessageCircle, Phone } from "@/components/site/icons";
 import { PageHero } from "@/components/site/chrome";
@@ -10,8 +9,8 @@ export const revalidate = 300;
 
 export const metadata = contentMetadata({
   seo_title: "Contact Online Quran College | Courses & Class Times",
-  cover_url: "/images/learning/contact-coordinator-r2-1200.webp",
-  cover_alt: "Illustrative admissions coordinator wearing a headset at an organised desk with a laptop",
+  cover_url: "/images/islamic/mosque-courtyard-v1-1200.webp",
+  cover_alt: "An illustrated mosque courtyard with arches and a reflecting pool",
 }, { path: "/contact", description: "Contact Online Quran College about online Quran courses, fees and class times. Reach our coordinator by WhatsApp, phone, email or the enquiry form." });
 
 export default async function ContactPage() {
@@ -29,10 +28,9 @@ export default async function ContactPage() {
 
   return (
     <>
-      <PageHero eyebrow="Contact" title="We are here to help" intro="Questions about courses, fees or timings? Message us — our admissions team replies quickly, in English, Urdu or Arabic." />
+      <PageHero path="/contact" eyebrow="Contact" title="We are here to help" intro="Questions about courses, fees or timings? Message us — our admissions team replies quickly, in English, Urdu or Arabic." />
       <section className="page-wrap grid gap-10 py-16 sm:py-20 lg:grid-cols-[0.85fr_1.15fr]">
         <div className="min-w-0 space-y-3">
-          <ContentImage src="/images/learning/contact-coordinator-r2-1200.webp" alt="Illustrative admissions coordinator wearing a headset at an organised desk with a laptop" sizes="(max-width: 1024px) 100vw, 500px" className="mb-6 aspect-[3/2] w-full rounded-[1.5rem] object-cover" />
           {cards.map(({ icon: Icon, label, value, href, external, highlight }) => {
             const inner = (
               <>

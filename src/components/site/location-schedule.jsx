@@ -12,7 +12,7 @@ export function LocationSchedule({ countryName, currency, places }) {
   const query = new URLSearchParams({ country: countryName, currency, ...(place ? { city: place.name } : {}) });
   return <section className="surface space-y-5 p-6 sm:p-8" aria-labelledby="schedule-title">
     <h2 id="schedule-title" className="text-2xl">Plan a lesson in your local time</h2>
-    <p className="text-ink-soft">Choose a city, date and preferred time to compare it with the college coordination time in Asia/Karachi. This is a planning guide; our team confirms teacher availability and the final schedule.</p>
+    <p className="text-ink-soft">Compare your local time with Asia/Karachi. The coordinator confirms teacher availability.</p>
     <div className="grid gap-5 sm:grid-cols-3"><div><label className="field-label" htmlFor="schedule-city">City for time zone</label><select className="select" id="schedule-city" value={citySlug} onChange={(e) => setCitySlug(e.target.value)}>{places.map((p) => <option key={p.slug} value={p.slug}>{p.name}</option>)}</select></div>
       <div><label className="field-label" htmlFor="schedule-date">Preferred lesson date</label><input id="schedule-date" className="input" type="date" value={date} onChange={(e) => setDate(e.target.value)} /></div>
       <div><label className="field-label" htmlFor="schedule-time">Preferred local time</label><input id="schedule-time" className="input" type="time" value={time} onChange={(e) => setTime(e.target.value)} /></div></div>

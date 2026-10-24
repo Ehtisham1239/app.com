@@ -1,0 +1,269 @@
+{
+  "date": "2026-10-24",
+  "sourceBase": "a39a329daa3f162d91c594b23d9bc8cf9b536b97",
+  "state": "locally verified; production deployment recorded after release",
+  "quality": {
+    "checkedAt": "2026-10-24T16:22:05.112Z",
+    "base": "http://localhost:3012",
+    "pages": 205,
+    "declared": 205,
+    "topImagesChecked": 195,
+    "failures": [],
+    "robots": "static text/plain, public pages allowed, staff/API paths excluded",
+    "scope": "Public response/metadata/JSON-LD/hero-image checks; not a ranking or rich-result guarantee"
+  },
+  "technical": {
+    "checkedAt": "2026-10-24T16:22:04.231Z",
+    "base": "http://localhost:3012",
+    "canonicalOrigin": "https://project-umber-three-93.vercel.app",
+    "declaredSitemapUrls": 205,
+    "uniqueSitemapUrls": 205,
+    "audited": 205,
+    "cap": 250,
+    "workers": 3,
+    "robotsStatus": 200,
+    "sitemapStatus": 200,
+    "robotsReferencesSitemap": true,
+    "robotsSkipped": [],
+    "errors": [],
+    "findings": 0,
+    "scope": "All declared sitemap URLs plus explicit probes; raw HTML, not Google index status or field CWV. External search and backlink metrics unavailable."
+  },
+  "browser": {
+    "base": "http://localhost:3012",
+    "cases": [
+      {
+        "device": "iPhone portrait",
+        "homeFirst": true,
+        "noAutomaticForm": true,
+        "explicitFormActivation": true,
+        "reloadHomeFirst": true,
+        "trialIntroductionFirst": true
+      },
+      {
+        "device": "Android portrait",
+        "homeFirst": true,
+        "noAutomaticForm": true,
+        "explicitFormActivation": true,
+        "reloadHomeFirst": true,
+        "trialIntroductionFirst": true
+      },
+      {
+        "device": "iPhone landscape",
+        "homeFirst": true,
+        "noAutomaticForm": true,
+        "explicitFormActivation": true,
+        "reloadHomeFirst": true,
+        "trialIntroductionFirst": true
+      },
+      {
+        "device": "Tablet",
+        "homeFirst": true,
+        "noAutomaticForm": true,
+        "explicitFormActivation": true,
+        "reloadHomeFirst": true,
+        "trialIntroductionFirst": true
+      }
+    ],
+    "errors": [],
+    "submittedForms": 0,
+    "transport": "Owned-site read requests only; chat stubbed; no form submitted",
+    "desktopTemplates": 9
+  },
+  "tests": {
+    "passed": 46,
+    "failed": 0
+  },
+  "lint": {
+    "errors": 0,
+    "preexistingWarnings": 19
+  },
+  "images": [
+    {
+      "name": "quran-study",
+      "kind": "illustration",
+      "alt": "A closed Quran on a wooden stand beside an arched window",
+      "url": "/images/islamic/quran-study-v1-1200.webp",
+      "variants": [
+        {
+          "url": "/images/islamic/quran-study-v1-400.webp",
+          "width": 400,
+          "bytes": 25662
+        },
+        {
+          "url": "/images/islamic/quran-study-v1-800.webp",
+          "width": 800,
+          "bytes": 76258
+        },
+        {
+          "url": "/images/islamic/quran-study-v1-1200.webp",
+          "width": 1200,
+          "bytes": 135776
+        }
+      ],
+      "avif": [
+        {
+          "url": "/images/islamic/quran-study-v1-400.avif",
+          "width": 400,
+          "bytes": 12483
+        },
+        {
+          "url": "/images/islamic/quran-study-v1-800.avif",
+          "width": 800,
+          "bytes": 36270
+        },
+        {
+          "url": "/images/islamic/quran-study-v1-1200.avif",
+          "width": 1200,
+          "bytes": 66597
+        }
+      ]
+    },
+    {
+      "name": "mosque-courtyard",
+      "kind": "illustration",
+      "alt": "An illustrated mosque courtyard with arches and a reflecting pool",
+      "url": "/images/islamic/mosque-courtyard-v1-1200.webp",
+      "variants": [
+        {
+          "url": "/images/islamic/mosque-courtyard-v1-400.webp",
+          "width": 400,
+          "bytes": 26752
+        },
+        {
+          "url": "/images/islamic/mosque-courtyard-v1-800.webp",
+          "width": 800,
+          "bytes": 94672
+        },
+        {
+          "url": "/images/islamic/mosque-courtyard-v1-1200.webp",
+          "width": 1200,
+          "bytes": 189948
+        }
+      ],
+      "avif": [
+        {
+          "url": "/images/islamic/mosque-courtyard-v1-400.avif",
+          "width": 400,
+          "bytes": 12741
+        },
+        {
+          "url": "/images/islamic/mosque-courtyard-v1-800.avif",
+          "width": 800,
+          "bytes": 45625
+        },
+        {
+          "url": "/images/islamic/mosque-courtyard-v1-1200.avif",
+          "width": 1200,
+          "bytes": 95273
+        }
+      ]
+    },
+    {
+      "name": "islamic-library",
+      "kind": "illustration",
+      "alt": "Islamic study books and a writing desk in an arched library",
+      "url": "/images/islamic/islamic-library-v1-1200.webp",
+      "variants": [
+        {
+          "url": "/images/islamic/islamic-library-v1-400.webp",
+          "width": 400,
+          "bytes": 22972
+        },
+        {
+          "url": "/images/islamic/islamic-library-v1-800.webp",
+          "width": 800,
+          "bytes": 64838
+        },
+        {
+          "url": "/images/islamic/islamic-library-v1-1200.webp",
+          "width": 1200,
+          "bytes": 120066
+        }
+      ],
+      "avif": [
+        {
+          "url": "/images/islamic/islamic-library-v1-400.avif",
+          "width": 400,
+          "bytes": 10669
+        },
+        {
+          "url": "/images/islamic/islamic-library-v1-800.avif",
+          "width": 800,
+          "bytes": 30507
+        },
+        {
+          "url": "/images/islamic/islamic-library-v1-1200.avif",
+          "width": 1200,
+          "bytes": 56904
+        }
+      ]
+    },
+    {
+      "name": "islamic-geometry",
+      "kind": "illustration",
+      "alt": "An illustrated Islamic geometric arch overlooking a peaceful courtyard",
+      "url": "/images/islamic/islamic-geometry-v1-1200.webp",
+      "variants": [
+        {
+          "url": "/images/islamic/islamic-geometry-v1-400.webp",
+          "width": 400,
+          "bytes": 30216
+        },
+        {
+          "url": "/images/islamic/islamic-geometry-v1-800.webp",
+          "width": 800,
+          "bytes": 96676
+        },
+        {
+          "url": "/images/islamic/islamic-geometry-v1-1200.webp",
+          "width": 1200,
+          "bytes": 179734
+        }
+      ],
+      "avif": [
+        {
+          "url": "/images/islamic/islamic-geometry-v1-400.avif",
+          "width": 400,
+          "bytes": 13918
+        },
+        {
+          "url": "/images/islamic/islamic-geometry-v1-800.avif",
+          "width": 800,
+          "bytes": 46935
+        },
+        {
+          "url": "/images/islamic/islamic-geometry-v1-1200.avif",
+          "width": 1200,
+          "bytes": 90974
+        }
+      ]
+    }
+  ],
+  "controlledHtmlComparison": [
+    {
+      "page": "Home",
+      "beforeBytes": 224542,
+      "afterBytes": 207501,
+      "reductionPercent": 7.59
+    },
+    {
+      "page": "London",
+      "beforeBytes": 141802,
+      "afterBytes": 81377,
+      "reductionPercent": 42.61
+    },
+    {
+      "page": "USA",
+      "beforeBytes": 151149,
+      "afterBytes": 89794,
+      "reductionPercent": 40.59
+    },
+    {
+      "page": "Noorani Qaida",
+      "beforeBytes": 109263,
+      "afterBytes": 112446,
+      "reductionPercent": -2.91
+    }
+  ]
+}

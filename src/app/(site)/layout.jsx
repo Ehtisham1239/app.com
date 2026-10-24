@@ -20,6 +20,8 @@ export default async function SiteLayout({ children }) {
   const [settings, menus, courses] = await Promise.all([getSettings(), getMenus(), getCourses()]);
   const chat = settings["site.chat"] ?? {};
   const chatEnabled = Boolean(chat.enabled && /^[A-Za-z0-9_-]{10,200}$/.test(chat.widget_key || ""));
+  const identity = settings["site.identity"] || {};
+  const contact = settings["site.contact"] || {};
   const brandName = settings["site.identity"]?.name ?? "Online Quran College";
   const header = (menus.header ?? []).map(({ label, href, opens_new_tab }) => ({ label, href, opens_new_tab }));
   if (!header.some((item) => item.href === "/locations")) header.splice(3, 0, { label: "Areas", href: "/locations" });
@@ -36,7 +38,7 @@ export default async function SiteLayout({ children }) {
         Skip to content
       </a>
       <TopBar announcement={settings["site.announcement"]} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", "@type": "WebSite", "@id": `${SITE_URL}/#website`, name: brandName, url: SITE_URL, inLanguage: "en-GB" }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", "@graph": [{ "@type": "WebSite", "@id": `${SITE_URL}/#website`, name: brandName, url: SITE_URL, inLanguage: "en-GB", publisher: { "@id": `${SITE_URL}/#organization` } }, { "@type": "EducationalOrganization", "@id": `${SITE_URL}/#organization`, name: brandName, legalName: identity.legal_name, url: SITE_URL, logo: `${SITE_URL}/brand/logo.webp`, description: identity.description, email: contact.email, telephone: contact.phone, ...(/^\d{4}$/.test(identity.established || "") ? { foundingDate: identity.established } : {}), sameAs: Object.values(settings["site.social"] || {}).filter(u => typeof u === "string" && u.startsWith("http")) }] }) }} />
       <CampaignAttribution />
       <SiteHeader menu={header} courses={courseLinks} brandName={brandName} />
       <main id="main">{children}</main>

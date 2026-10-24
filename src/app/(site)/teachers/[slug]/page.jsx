@@ -1,3 +1,5 @@
+import { PageHero } from "@/components/site/chrome";
+import { contentMetadata } from "@/lib/seo-metadata";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Award, Languages, Sparkles } from "@/components/site/icons";
@@ -16,11 +18,7 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const t = await getTeacher(slug);
   if (!t) return { title: "Teacher not found" };
-  return {
-    title: `${t.display_name} — ${t.headline || "Quran teacher"}`,
-    description: truncate(t.bio || t.headline || "", 158),
-    alternates: { canonical: `/teachers/${t.slug}` },
-  };
+  return contentMetadata({ title: `${t.display_name} — ${t.headline || "Quran teacher"}` }, { path: `/teachers/${t.slug}`, description: truncate(t.bio || t.headline || "", 158) });
 }
 
 export default async function TeacherPage({ params }) {
@@ -29,35 +27,10 @@ export default async function TeacherPage({ params }) {
   if (!t) notFound();
   return (
     <>
-      <section className="relative overflow-hidden bg-mushaf-900 text-white">
-        <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.09]" aria-hidden="true" />
-        <div className="page-wrap relative grid items-center gap-10 py-14 sm:py-20 md:grid-cols-[16rem_1fr]">
-          <div className="aspect-square overflow-hidden rounded-[1.5rem] bg-mushaf-950 ring-4 ring-gold-400/40">
-            {t.photo_url ? (
-              <img src={t.photo_url} alt={t.display_name} className="size-full object-cover" />
-            ) : (
-              <div className="pattern-girih flex size-full items-center justify-center">
-                <span className="brand-mark block size-28 text-gold-500 opacity-80" aria-hidden="true" />
-              </div>
-            )}
-          </div>
-          <div>
-            <Link href="/teachers" className="text-sm text-white/60 hover:text-white">
-              ← All teachers
-            </Link>
-            <h1 className="mt-4 text-[2.5rem] text-white sm:text-[3.2rem]">{t.display_name}</h1>
-            <p className="mt-2 text-[1.15rem] font-medium text-gold-300">{t.headline}</p>
-            <div className="mt-6 flex flex-wrap gap-2 text-sm">
-              {t.years_experience ? <span className="rounded-full bg-white/10 px-3 py-1">{t.years_experience}+ years teaching</span> : null}
-              {t.languages?.map((l) => (
-                <span key={l} className="rounded-full bg-white/10 px-3 py-1">
-                  {l}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero path={`/teachers/${t.slug}`} art="teachers" eyebrow="Meet your teacher" title={t.display_name} intro={t.headline}>
+        <Link href="/teachers" className="mt-5 inline-block text-sm text-white/80 underline">All teachers</Link>
+        <div className="mt-5 flex items-center gap-4">{t.photo_url && <img src={t.photo_url} alt={t.display_name} width={80} height={80} className="size-20 rounded-2xl object-cover" />}<div className="flex flex-wrap gap-2 text-sm">{t.years_experience ? <span>{t.years_experience}+ years teaching</span> : null}{t.languages?.map(l => <span key={l} className="rounded-full bg-white/10 px-3 py-1">{l}</span>)}</div></div>
+      </PageHero>
       <div className="page-wrap grid gap-10 py-16 lg:grid-cols-[1fr_18rem]">
         <div className="prose-oqc">
           {t.bio

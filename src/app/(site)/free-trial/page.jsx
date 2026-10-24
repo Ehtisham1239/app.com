@@ -1,4 +1,5 @@
-import { ContentImage } from "@/components/site/content-image";
+import { PageHero } from "@/components/site/chrome";
+import Link from "next/link";
 import { contentMetadata } from "@/lib/seo-metadata";
 import { Suspense } from "react";
 import { CalendarCheck2, Clock3, HeartHandshake, ShieldCheck } from "@/components/site/icons";
@@ -10,8 +11,8 @@ export const revalidate = 300;
 
 export const metadata = contentMetadata({
   seo_title: "Free Online Quran Trial Classes | Online Quran College",
-  cover_url: "/images/learning/trial-welcome-r2-1200.webp",
-  cover_alt: "Young boy smiling at a laptop during his first lesson with his mother seated nearby",
+  cover_url: "/images/islamic/mosque-courtyard-v1-1200.webp",
+  cover_alt: "An illustrated mosque courtyard with arches and a reflecting pool",
 }, { path: "/free-trial", description: "Book a 7-day trial of one-to-one online Quran classes for children or adults. Share your course, local time zone and teacher preferences with our coordinator." });
 
 const PROMISES = [
@@ -25,59 +26,15 @@ export default async function FreeTrialPage() {
   const [courses, plans, settings] = await Promise.all([getCourses(), getPlans(), getSettings()]);
   const forms = settings["site.forms"] ?? {};
   const wa = whatsappLink(settings["site.contact"]?.whatsapp, "Assalamu alaikum, I have just booked a free trial on your website.");
-  return (
-    <section className="relative overflow-hidden">
-      <div className="absolute inset-x-0 top-0 h-[26rem] bg-mushaf-950" aria-hidden="true">
-        <div className="pattern-girih absolute inset-0 opacity-[0.08]" />
-      </div>
-      <div className="page-wrap relative grid gap-10 pb-20 pt-12 sm:pt-16 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
-        <div className="text-white lg:pt-4">
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-gold-300">Free trial</p>
-          <h1 className="mt-3 text-[2.5rem] text-white sm:text-[3.2rem]">Book your 7-day free trial</h1>
-          <p className="mt-4 max-w-md text-[1.05rem] leading-relaxed text-white/75">
-            Tell us a little about the learner and when you are free. We will match a teacher and send the class link.
-          </p>
-          <div className="mt-8 hidden lg:block"><ContentImage src="/images/learning/trial-welcome-r2-1200.webp" alt="Young boy smiling at a laptop during his first lesson with his mother seated nearby" sizes="500px" className="aspect-[3/2] w-full rounded-[1.5rem] object-cover" /></div>
-          <ul className="mt-10 hidden space-y-3 lg:block">
-            {PROMISES.map(({ icon: Icon, title, text }) => (
-              <li key={title} className="flex gap-4 rounded-2xl border border-line bg-white p-4 text-ink shadow-[0_10px_30px_-20px_rgb(6_38_27/0.5)]">
-                <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-gold-50 text-gold-700 ring-1 ring-gold-100">
-                  <Icon className="size-5" aria-hidden="true" />
-                </span>
-                <div>
-                  <p className="font-semibold text-mushaf-900">{title}</p>
-                  <p className="text-[0.93rem] text-ink-soft">{text}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <Suspense fallback={<div className="surface h-[34rem] animate-pulse" />}>
-            <TrialForm
-              courses={courses.map(({ id, title }) => ({ id, title }))}
-              plans={plans.map(({ id, name, classes_per_week }) => ({ id, name, classes_per_week }))}
-              consentText={forms.consent_text}
-              successText={forms.trial_success}
-              whatsappHref={wa}
-            />
-          </Suspense>
-          <div className="mt-8 lg:hidden"><ContentImage src="/images/learning/trial-welcome-r2-1200.webp" alt="Young boy smiling at a laptop during his first lesson with his mother seated nearby" sizes="100vw" className="aspect-[3/2] w-full rounded-[1.5rem] object-cover" /></div>
-          <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:hidden">
-            {PROMISES.map(({ icon: Icon, title, text }) => (
-              <li key={title} className="flex gap-3 rounded-2xl border border-line bg-white p-4">
-                <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-gold-50 text-gold-700 ring-1 ring-gold-100">
-                  <Icon className="size-5" aria-hidden="true" />
-                </span>
-                <div>
-                  <p className="font-semibold text-mushaf-900">{title}</p>
-                  <p className="text-[0.9rem] text-ink-soft">{text}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+  return <>
+    <PageHero path="/free-trial" eyebrow="Free trial" title="Meet your Quran teacher" intro="Request a 7-day trial. Share the learner’s level and preferred time; our coordinator confirms the details.">
+      <Link href="#trial-form" className="btn btn-gold mt-6">Start your trial request</Link>
+    </PageHero>
+    <section id="trial-form" aria-label="Trial request" className="page-wrap grid scroll-mt-28 items-start gap-8 py-12 lg:grid-cols-[0.65fr_1fr]">
+      <div><h2 className="text-2xl">A simple start</h2><ul className="mt-6 space-y-4">{PROMISES.slice(0, 3).map(({icon: Icon, title, text}) => <li key={title} className="surface flex gap-3 p-5"><Icon className="mt-1 size-5 shrink-0 text-leaf-700" aria-hidden="true" /><div><h3 className="font-semibold">{title}</h3><p className="mt-1 text-sm text-ink-soft">{text}</p></div></li>)}</ul></div>
+      <Suspense fallback={<div className="surface h-[34rem] animate-pulse" aria-label="Loading trial form" />}>
+        <TrialForm courses={courses.map(({ id, title }) => ({ id, title }))} plans={plans.map(({ id, name, classes_per_week }) => ({ id, name, classes_per_week }))} consentText={forms.consent_text} successText={forms.trial_success} whatsappHref={wa} />
+      </Suspense>
     </section>
-  );
+  </>;
 }

@@ -37,6 +37,7 @@ export const metadata = {
   description:
     "Learn Quran online with live one-to-one classes: Noorani Qaida, Tajweed, Hifz, Arabic and Islamic studies for kids and adults. Female & male teachers. 7-day free trial.",
   applicationName: "Online Quran College",
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
   openGraph: { type: "website", siteName: "Online Quran College", locale: "en_GB" },
   twitter: { card: "summary_large_image" },
   formatDetection: { telephone: false },

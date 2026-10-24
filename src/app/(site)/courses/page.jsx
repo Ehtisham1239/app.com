@@ -1,3 +1,4 @@
+import { contentMetadata } from "@/lib/seo-metadata";
 import Link from "next/link";
 import { ArrowRight } from "@/components/site/icons";
 import { PageHero } from "@/components/site/chrome";
@@ -10,12 +11,7 @@ import { safeJsonLd } from "@/lib/seo";
 
 export const revalidate = 300;
 
-export const metadata = {
-  title: "Online Quran Courses",
-  description:
-    "Noorani Qaida, Quran reading with Tajweed, Hifz, Arabic, translation & tafseer and Islamic studies — live one-to-one online classes for children and adults.",
-  alternates: { canonical: "/courses" },
-};
+export const metadata = contentMetadata({ title: "Online Quran Courses", seo_noindex: false }, { path: "/courses", description: "Noorani Qaida, Quran reading with Tajweed, Hifz, Arabic, translation & tafseer and Islamic studies \u2014 live one-to-one online classes for children and adults." });
 
 export default async function CoursesPage() {
   const [courses, settings] = await Promise.all([getCourses(), getSettings()]);
@@ -23,7 +19,7 @@ export default async function CoursesPage() {
   return (
     <>
       {courses.length > 0 && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(courseListSchema(courses, SITE_URL)) }} />}
-      <PageHero
+      <PageHero path="/courses"
         eyebrow="Courses"
         title="Online Quran courses for every age and level"
         arabic="تَعَلَّمِ القُرْآن"

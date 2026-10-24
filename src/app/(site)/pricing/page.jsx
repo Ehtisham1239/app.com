@@ -1,3 +1,4 @@
+import { contentMetadata } from "@/lib/seo-metadata";
 import { CurrencyPricing } from "@/components/site/currency-pricing";
 import { BadgePercent, CreditCard, ShieldCheck } from "@/components/site/icons";
 import { PageHero, SectionHeading } from "@/components/site/chrome";
@@ -7,13 +8,10 @@ import { whatsappLink } from "@/lib/format";
 
 export const revalidate = 300;
 
-export const metadata = {
-  title: "Fees & Packages",
-  description: "Simple monthly packages for live one-to-one online Quran classes, with a 7-day free trial and a 15% discount for additional siblings.",
-  alternates: { canonical: "/pricing" },
-};
+export const metadata = contentMetadata({ title: "Fees & Packages", seo_noindex: false }, { path: "/pricing", description: "Simple monthly packages for live one-to-one online Quran classes, with a 7-day free trial and a 15% discount for additional siblings." });
 
-export default async function PricingPage() {
+export default async function PricingPage({ searchParams }) {
+  const requestedCurrency = (await searchParams)?.currency;
   const [plans, faqs, settings] = await Promise.all([getPlans(), getFaqs(), getSettings()]);
   const packages = plans.filter((p) => /^package/i.test(p.name));
   const other = plans.filter((p) => !/^package/i.test(p.name));
@@ -23,13 +21,13 @@ export default async function PricingPage() {
 
   return (
     <>
-      <PageHero
+      <PageHero path="/pricing"
         eyebrow="Fees"
         title="Clear monthly fees, no hidden costs"
         intro="Choose how many days a week suit your family. Every package includes a qualified 1-on-1 teacher, 30-minute live classes and a 7-day free trial before you pay anything."
       />
       <section className="page-wrap py-16 sm:py-20">
-        {packages.length > 0 && <CurrencyPricing plans={packages} />}
+        {packages.length > 0 && <CurrencyPricing plans={packages} defaultCurrency={requestedCurrency} />}
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {[
             { icon: BadgePercent, title: "15% sibling discount", text: "Each additional child from the same family receives 15% off their monthly fee." },
@@ -52,7 +50,7 @@ export default async function PricingPage() {
           <div className="page-wrap">
             <SectionHeading eyebrow="More options" title="Weekend and flexible plans" intro="For busy weekdays or adults who prefer a lighter pace." />
             <div className="mt-12">
-              <CurrencyPricing plans={other} />
+              <CurrencyPricing plans={other} defaultCurrency={requestedCurrency} />
             </div>
           </div>
         </section>

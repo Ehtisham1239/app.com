@@ -41,7 +41,7 @@ export async function CmsPage({ page }) {
 
   return (
     <>
-      {page.template !== "landing" && <PageHero eyebrow={isPolicy ? "Policy" : isAbout ? "Our college" : undefined} title={page.title} intro={page.excerpt} visual={isAbout && page.cover_url ? <ContentImage src={page.cover_url} alt={page.cover_alt} priority sizes="(max-width: 1024px) 100vw, 600px" className="aspect-[3/2] w-full object-cover" /> : undefined}>{isAbout && <Link className="btn btn-gold mt-7" href="/courses">Explore our courses <ArrowRight className="size-4" aria-hidden="true" /></Link>}</PageHero>}
+      {page.template !== "landing" && <PageHero path={`/${page.slug}`} eyebrow={isPolicy ? "Policy" : isAbout ? "Our college" : undefined} title={page.title} intro={page.excerpt} visual={page.cover_url ? <ContentImage src={page.cover_url} alt={page.cover_alt} priority sizes="(max-width: 1024px) 100vw, 600px" className="aspect-[3/2] w-full object-cover" /> : undefined}>{isAbout && <Link className="btn btn-gold mt-7" href="/courses">Explore our courses <ArrowRight className="size-4" aria-hidden="true" /></Link>}</PageHero>}
       {isAbout && html && <section className="page-wrap py-14 sm:py-20">{aboutLead && <div className="prose-oqc mb-10 max-w-3xl text-lg" dangerouslySetInnerHTML={{ __html: aboutLead }} />}<div className="grid items-start gap-6 md:grid-cols-2">{aboutParts.map((part, index) => { const Icon = aboutIcons[index % aboutIcons.length]; return <article className="editorial-card p-7 sm:p-8" key={index}><span className="mb-5 inline-flex size-12 items-center justify-center rounded-2xl bg-leaf-50 text-leaf-700"><Icon className="size-6" aria-hidden="true" /></span><div className="prose-oqc [&_h2]:mt-0 [&_h2]:text-2xl" dangerouslySetInnerHTML={{ __html: part }} /></article>; })}</div></section>}
       {html && !isAbout && (
         <div className={`page-wrap py-14 sm:py-16 ${isPolicy && toc.length > 2 ? "grid gap-12 lg:grid-cols-[15rem_1fr]" : ""}`}>
@@ -60,7 +60,7 @@ export async function CmsPage({ page }) {
             </nav>
           )}
           <div className={isPolicy ? "" : "mx-auto max-w-3xl"}>
-            {page.cover_url && <ContentImage src={page.cover_url} alt={page.cover_alt} sizes="(max-width: 768px) 100vw, 768px" className={`mb-10 ${page.slug === "about" ? "aspect-[3/2]" : "aspect-[16/7]"} w-full rounded-[1.5rem] object-cover`} />}
+            {page.template === "landing" && page.cover_url && <ContentImage src={page.cover_url} alt={page.cover_alt} sizes="(max-width: 768px) 100vw, 768px" className={`mb-10 ${page.slug === "about" ? "aspect-[3/2]" : "aspect-[16/7]"} w-full rounded-[1.5rem] object-cover`} />}
             <div className="prose-oqc text-[1.04rem] [&_h2]:scroll-mt-28" dangerouslySetInnerHTML={{ __html: html }} />
             {isPolicy && page.updated_at && <p className="mt-10 text-sm text-ink-faint">Page updated {formatDate(page.updated_at)}</p>}
           </div>

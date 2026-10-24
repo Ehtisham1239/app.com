@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /admin
+Disallow: /auth
+Disallow: /api/
+Allow: /
+
+Sitemap: https://project-umber-three-93.vercel.app/sitemap.xml

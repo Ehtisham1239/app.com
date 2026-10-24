@@ -1,3 +1,4 @@
+import { contentMetadata } from "@/lib/seo-metadata";
 import Link from "next/link";
 import { ArrowRight, BadgeCheck, HeartHandshake, Languages, ShieldCheck } from "@/components/site/icons";
 import { PageHero } from "@/components/site/chrome";
@@ -7,11 +8,7 @@ import { whatsappLink } from "@/lib/format";
 
 export const revalidate = 300;
 
-export const metadata = {
-  title: "Our Teachers",
-  description: "Qualified female and male Quran teachers for children and adults — trained in Tajweed, experienced and caring.",
-  alternates: { canonical: "/teachers" },
-};
+export const metadata = contentMetadata({ title: "Our Teachers", seo_noindex: false }, { path: "/teachers", description: "Qualified female and male Quran teachers for children and adults \u2014 trained in Tajweed, experienced and caring." });
 
 const STANDARDS = [
   { icon: BadgeCheck, title: "Qualified and verified", text: "Every teacher is checked for Quran and Tajweed qualifications and passes a teaching assessment before joining." },
@@ -25,7 +22,7 @@ export default async function TeachersPage() {
   const wa = whatsappLink(settings["site.contact"]?.whatsapp, "Assalamu alaikum, I would like to know about your teachers.");
   return (
     <>
-      <PageHero eyebrow="Teachers" title="Taught by people who love the Quran" intro="Patient, qualified teachers who make every class personal — for beginners and for students completing Hifz." />
+      <PageHero path="/teachers" eyebrow="Teachers" title="Taught by people who love the Quran" intro="Patient, qualified teachers who make every class personal — for beginners and for students completing Hifz." />
       <section className="page-wrap py-16 sm:py-20">
         {teachers.length > 0 ? (
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

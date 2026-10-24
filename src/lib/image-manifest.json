@@ -6452,5 +6452,173 @@
       "/images/learning/usa-online-quran-learning-1200.webp",
       "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/generated/2026-10/usa-online-quran-learning-1200.webp"
     ]
+  },
+  {
+    "url": "/images/islamic/quran-study-v1-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "A closed Quran on a wooden stand beside an arched window",
+    "variants": [
+      {
+        "url": "/images/islamic/quran-study-v1-400.webp",
+        "width": 400,
+        "bytes": 25662
+      },
+      {
+        "url": "/images/islamic/quran-study-v1-800.webp",
+        "width": 800,
+        "bytes": 76258
+      },
+      {
+        "url": "/images/islamic/quran-study-v1-1200.webp",
+        "width": 1200,
+        "bytes": 135776
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/islamic/quran-study-v1-400.avif",
+        "width": 400,
+        "bytes": 12483
+      },
+      {
+        "url": "/images/islamic/quran-study-v1-800.avif",
+        "width": 800,
+        "bytes": 36270
+      },
+      {
+        "url": "/images/islamic/quran-study-v1-1200.avif",
+        "width": 1200,
+        "bytes": 66597
+      }
+    ],
+    "name": "quran-study",
+    "kind": "illustration"
+  },
+  {
+    "url": "/images/islamic/mosque-courtyard-v1-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "An illustrated mosque courtyard with arches and a reflecting pool",
+    "variants": [
+      {
+        "url": "/images/islamic/mosque-courtyard-v1-400.webp",
+        "width": 400,
+        "bytes": 26752
+      },
+      {
+        "url": "/images/islamic/mosque-courtyard-v1-800.webp",
+        "width": 800,
+        "bytes": 94672
+      },
+      {
+        "url": "/images/islamic/mosque-courtyard-v1-1200.webp",
+        "width": 1200,
+        "bytes": 189948
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/islamic/mosque-courtyard-v1-400.avif",
+        "width": 400,
+        "bytes": 12741
+      },
+      {
+        "url": "/images/islamic/mosque-courtyard-v1-800.avif",
+        "width": 800,
+        "bytes": 45625
+      },
+      {
+        "url": "/images/islamic/mosque-courtyard-v1-1200.avif",
+        "width": 1200,
+        "bytes": 95273
+      }
+    ],
+    "name": "mosque-courtyard",
+    "kind": "illustration"
+  },
+  {
+    "url": "/images/islamic/islamic-library-v1-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Islamic study books and a writing desk in an arched library",
+    "variants": [
+      {
+        "url": "/images/islamic/islamic-library-v1-400.webp",
+        "width": 400,
+        "bytes": 22972
+      },
+      {
+        "url": "/images/islamic/islamic-library-v1-800.webp",
+        "width": 800,
+        "bytes": 64838
+      },
+      {
+        "url": "/images/islamic/islamic-library-v1-1200.webp",
+        "width": 1200,
+        "bytes": 120066
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/islamic/islamic-library-v1-400.avif",
+        "width": 400,
+        "bytes": 10669
+      },
+      {
+        "url": "/images/islamic/islamic-library-v1-800.avif",
+        "width": 800,
+        "bytes": 30507
+      },
+      {
+        "url": "/images/islamic/islamic-library-v1-1200.avif",
+        "width": 1200,
+        "bytes": 56904
+      }
+    ],
+    "name": "islamic-library",
+    "kind": "illustration"
+  },
+  {
+    "url": "/images/islamic/islamic-geometry-v1-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "An illustrated Islamic geometric arch overlooking a peaceful courtyard",
+    "variants": [
+      {
+        "url": "/images/islamic/islamic-geometry-v1-400.webp",
+        "width": 400,
+        "bytes": 30216
+      },
+      {
+        "url": "/images/islamic/islamic-geometry-v1-800.webp",
+        "width": 800,
+        "bytes": 96676
+      },
+      {
+        "url": "/images/islamic/islamic-geometry-v1-1200.webp",
+        "width": 1200,
+        "bytes": 179734
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/islamic/islamic-geometry-v1-400.avif",
+        "width": 400,
+        "bytes": 13918
+      },
+      {
+        "url": "/images/islamic/islamic-geometry-v1-800.avif",
+        "width": 800,
+        "bytes": 46935
+      },
+      {
+        "url": "/images/islamic/islamic-geometry-v1-1200.avif",
+        "width": 1200,
+        "bytes": 90974
+      }
+    ],
+    "name": "islamic-geometry",
+    "kind": "illustration"
   }
 ]

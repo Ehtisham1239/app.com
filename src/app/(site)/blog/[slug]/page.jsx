@@ -1,3 +1,4 @@
+import { PageHero } from "@/components/site/chrome";
 import { ContentImage } from "@/components/site/content-image";
 import { safeJsonLd, breadcrumbSchema } from "@/lib/seo";
 import { contentMetadata, publicImageUrl } from "@/lib/seo-metadata";
@@ -50,7 +51,7 @@ export default async function PostPage({ params }) {
     datePublished: post.published_at,
     author: { "@type": "Organization", name: post.author_name || "Online Quran College", url: `${SITE_URL}/about` },
     wordCount: stripHtml(html).trim().split(/\s+/).length,
-    publisher: { "@type": "Organization", name: "Online Quran College", logo: { "@type": "ImageObject", url: `${SITE_URL}/icon` } },
+    publisher: { "@type": "EducationalOrganization", "@id": `${SITE_URL}/#organization`, name: "Online Quran College", logo: { "@type": "ImageObject", url: `${SITE_URL}/brand/logo.webp` } },
     mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
   };
 
@@ -59,32 +60,10 @@ export default async function PostPage({ params }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema(breadcrumbs, SITE_URL)) }} />
       <article>
-        <header className="relative overflow-hidden bg-mushaf-900 text-white">
-          <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.08]" aria-hidden="true" />
-          <div className="page-wrap relative max-w-4xl py-14 sm:py-20">
-            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 text-sm text-white/80"><Link href="/">Home</Link><span aria-hidden="true">/</span><Link href="/blog">Articles</Link><span className="sr-only" aria-current="page">{post.title}</span></nav>
-            <p className="mt-6 text-xs font-bold uppercase tracking-[0.2em] text-gold-300">{post.category}</p>
-            <h1 className="mt-3 text-[2.3rem] leading-tight text-white sm:text-[3.1rem]">{post.title}</h1>
-            <p className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-1 text-[0.95rem] text-white/65">
-              <span>{post.author_name}</span>
-              <span aria-hidden="true">·</span>
-              <time dateTime={post.published_at}>{formatDate(post.published_at)}</time>
-              {post.reading_minutes ? (
-                <>
-                  <span aria-hidden="true">·</span>
-                  <span className="inline-flex items-center gap-1">
-                    <Clock3 className="size-4" aria-hidden="true" /> {post.reading_minutes} min read
-                  </span>
-                </>
-              ) : null}
-            </p>
-          </div>
-        </header>
-        {post.cover_url && (
-          <div className="page-wrap max-w-4xl">
-            <ContentImage src={post.cover_url} alt={post.cover_alt} sizes="(max-width: 896px) 100vw, 896px" className="aspect-[3/2] w-full rounded-b-[1.5rem] object-cover" />
-          </div>
-        )}
+        <PageHero path={`/blog/${post.slug}`} eyebrow={post.category} title={post.title} visual={post.cover_url ? <ContentImage src={post.cover_url} alt={post.cover_alt} priority sizes="(max-width: 1024px) 100vw, 600px" className="aspect-[3/2] w-full object-cover" /> : undefined}>
+          <nav aria-label="Breadcrumb" className="mt-5 text-sm text-white/75"><Link href="/">Home</Link> / <Link href="/blog" className="underline">Articles</Link></nav>
+          <p className="mt-5 flex flex-wrap items-center gap-3 text-sm text-white/75"><span>{post.author_name}</span><time dateTime={post.published_at}>{formatDate(post.published_at)}</time>{post.reading_minutes ? <span className="inline-flex items-center gap-1"><Clock3 className="size-4" aria-hidden="true" />{post.reading_minutes} min read</span> : null}</p>
+        </PageHero>
         <div className="page-wrap max-w-4xl py-14">
           {post.excerpt && <p className="mb-8 border-l-4 border-gold-500 pl-5 text-[1.18rem] leading-relaxed text-ink-soft">{post.excerpt}</p>}
           {headings.length > 1 && <nav aria-label="In this article" className="mb-10 rounded-2xl border border-leaf-100 bg-leaf-50 p-5 sm:p-6"><p className="font-semibold text-leaf-700">In this article</p><ol className="mt-3 grid gap-x-6 gap-y-2 sm:grid-cols-2">{headings.map(heading => <li key={heading.id}><a href={`#${heading.id}`} className="block py-1 text-sm leading-relaxed text-leaf-700 underline decoration-leaf-200 underline-offset-4 hover:decoration-leaf-700">{heading.title}</a></li>)}</ol></nav>}

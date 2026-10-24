@@ -1,3 +1,4 @@
+import { contentMetadata } from "@/lib/seo-metadata";
 import Link from "next/link";
 import { ArrowRight } from "@/components/site/icons";
 import { PageHero } from "@/components/site/chrome";
@@ -6,12 +7,12 @@ import { LEARNING_GUIDES } from "@/lib/learning-guides";
 import { getPage } from "@/lib/site-data";
 
 export const revalidate = 300;
-export const metadata = { title: "Quran Learning Guides for Families & Adults", description: "Choose a Quran learning path: first letters, children's lessons, adult beginner study and Tajweed. Find practical guides and relevant courses.", alternates: { canonical: "/learn" } };
+export const metadata = contentMetadata({ title: "Quran Learning Guides for Families & Adults", seo_noindex: false }, { path: "/learn", description: "Choose a Quran learning path: first letters, children's lessons, adult beginner study and Tajweed. Find practical guides and relevant courses." });
 
 export default async function Page() {
   const guides = await Promise.all(LEARNING_GUIDES.map(async guide => ({ ...guide, content: await getPage(guide.slug) })));
   return <>
-    <PageHero eyebrow="Learning centre" title="Find a learning path that fits" intro="Start with your learner’s current reading level and goals, then explore a course and discuss a trial." />
+    <PageHero path="/learn" eyebrow="Learning centre" title="Find a learning path that fits" intro="Start with your learner’s current reading level and goals, then explore a course and discuss a trial." />
     <section className="page-wrap py-16">
       <div className="grid gap-6 sm:grid-cols-2">
         {guides.filter(g => g.content).map(g => <Link className="editorial-card group flex flex-col" key={g.slug} href={g.path}>
