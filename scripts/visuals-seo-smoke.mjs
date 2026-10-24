@@ -37,6 +37,10 @@ try {
         await pic.evaluate(img => img.decode());
         const data = await pic.evaluate(img => ({ source: new URL(img.currentSrc).pathname, width: img.naturalWidth, alt: img.alt, lazy: img.loading }));
         assert.ok(data.width > 0 && data.alt.length > 20, path);
+        if (path === '/contact') {
+          const gap = await pic.evaluate(img => img.parentElement.nextElementSibling.getBoundingClientRect().top - img.getBoundingClientRect().bottom);
+          assert.ok(gap >= 0 && gap < 100, `Contact image left an excessive gap: ${gap}`);
+        }
         assert.equal(data.lazy, path === '/about' ? 'eager' : 'lazy', 'Primary covers load eagerly; supporting images load lazily');
         sources.push(data.source);
       }

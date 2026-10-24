@@ -1,0 +1,19 @@
+{
+  "site": "https://project-umber-three-93.vercel.app",
+  "status": "Existing-page intent mapping implemented through content, headings and internal links; query demand is unverified",
+  "queries": [
+    {"query":"online Quran classes for kids and adults","intent":"commercial","primary_url":"/","supporting_urls":["/courses","/free-trial"]},
+    {"query":"Noorani Qaida online classes","intent":"commercial","primary_url":"/courses/noorani-qaida","supporting_urls":["/blog/noorani-qaida-or-quran-reading"]},
+    {"query":"online Quran reading with Tajweed","intent":"commercial","primary_url":"/courses/quran-nazara","supporting_urls":["/courses/tajweed","/blog/tajweed-practice-with-feedback"]},
+    {"query":"online Hifz classes","intent":"commercial","primary_url":"/courses/hifz-quran","supporting_urls":["/blog/memorization-techniques-for-beginners","/blog/hifz-revision-with-school"]},
+    {"query":"learn Quranic Arabic online","intent":"commercial","primary_url":"/courses/arabic-language","supporting_urls":["/blog/quran-translation-and-arabic-difference"]},
+    {"query":"online Quran translation and Tafseer classes","intent":"commercial","primary_url":"/courses/quran-translation","supporting_urls":["/blog/quran-translation-and-arabic-difference"]},
+    {"query":"online Quran classes for kids UK","intent":"regional commercial","primary_url":"/locations/united-kingdom","supporting_urls":["/learn/quran-for-kids","/blog/help-your-kids-learn-quran-online"]},
+    {"query":"online Quran teacher USA","intent":"regional commercial","primary_url":"/locations/united-states","supporting_urls":["/blog/choose-online-quran-teacher-usa"]},
+    {"query":"online Quran lessons Australia","intent":"regional commercial","primary_url":"/locations/australia","supporting_urls":["/blog/quran-lessons-australia-time-zones"]},
+    {"query":"Quran learning for adult beginners","intent":"informational","primary_url":"/learn/quran-for-adults","supporting_urls":["/blog/adult-quran-beginner-first-month"]},
+    {"query":"online Quran class fees","intent":"commercial","primary_url":"/pricing","supporting_urls":["/blog/questions-before-quran-course-enrolment","/faq"]},
+    {"query":"book free online Quran trial","intent":"transactional","primary_url":"/free-trial","supporting_urls":["/blog/prepare-child-first-online-quran-trial"]}
+  ],
+  "research_limits": "No live SERP sample, search volumes, ranking positions, competitor frequency, backlink metrics or Search Console data were available. Queries are intent hypotheses based on verified offerings, not measured demand."
+}

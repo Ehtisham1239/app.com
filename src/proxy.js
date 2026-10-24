@@ -20,10 +20,11 @@ export async function proxy(request) {
     if (destination || global) {
       response.cookies.set("oqc_region_seen", "1", { httpOnly: true, sameSite: "lax", secure: request.nextUrl.protocol === "https:", path: "/", maxAge: 60 * 60 * 24 * 30 });
     }
+    // A cached mobile homepage must not mask a desktop regional redirect.
+    response.headers.set("Vary", "Cookie, X-Vercel-IP-Country, User-Agent");
     // Keep normal homepage HTML cacheable; only personalised responses are private.
     if (destination || global) {
       response.headers.set("Cache-Control", "private, no-store");
-      response.headers.set("Vary", "Cookie, X-Vercel-IP-Country, User-Agent");
     }
     return response;
   }

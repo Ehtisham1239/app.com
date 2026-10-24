@@ -1,0 +1,26 @@
+# SEO execution record — 24 October 2026
+
+The user requested execution of the uploaded `seo-ranking-competitor-analysis.skill`, continuing the image/card redesign, and explicitly excluded 30/90-day plans. This file records completed work and verifiable limits, not a calendar plan.
+
+The source is `Ehtisham1239/app.com`. The authorised production/canonical origin remains `https://project-umber-three-93.vercel.app`; the original college domain is a branding reference and was not moved. English content serves online learners in the UK, USA, Australia, Canada and Europe. Primary conversions remain trial requests and contact enquiries.
+
+| Area | Implementation and evidence |
+| --- | --- |
+| Crawlability and responses | `growth-smoke.mjs` crawled 205 public sitemap pages with 205 unique titles and checked 389 internal destinations, canonical routing, pagination and legacy redirects. `technical-seo-audit.mjs` separately checks every declared sitemap URL (cap 250, three workers), robots, descriptions, viewport, accidental noindex, JSON syntax, mixed assets and explicit missing-route/utility/campaign probes. Raw HTML checks are not Google index evidence. |
+| Images and mobile | 32 regenerated photographs and 165 logo-free geographic diagrams; versioned responsive AVIF/WebP assets, dimensions and descriptive alt text. 591 WebP variants and 165 regional routes checked. Original header/footer logo remains. |
+| Conversion experience | Redesigned course, article, guide, fees, area, FAQ and About cards; contextual actions and working country/city search. Removed the image wrapper height that caused a large gap above Contact details. Mobile first homepage visits keep the original portrait before the copy, including tablet/landscape layouts. Trial forms open through an intentional action. Desktop first-visit region routing and direct regional links remain. |
+| On-page content | 15 articles revised with specific practice tasks/checklists, appropriate source references and contextual course/guide/regional links. Existing course titles/descriptions already match their offerings and were preserved. `content/seo-intent-map.json` maps 12 seed query groups to principal existing URLs without creating duplicate pages. These are hypotheses, not search-volume research. |
+| Article discovery | Contents navigation, collision-safe heading anchors, topic-based related cards, Article/Breadcrumb JSON-LD and current social/image-sitemap URLs. Article word counts and reading estimates reflect the revised text. |
+| Structured data | JSON syntax and visible FAQ consistency checked; FAQ labels use readable country names. No invented reviews, ratings, local premises or teacher credentials. JSON validation is distinct from a Google Rich Results Test or feature eligibility; no FAQ rich-result promise is made. |
+| Performance | CMS settings defaults separated from the public content snapshot. The observed 381,953-byte uncompressed snapshot-containing browser chunk is no longer included; image catalogue/content snapshot strings are absent from final browser chunks. This is bundle evidence, not field Core Web Vitals. |
+| Security and preservation | 41 tests passed, including the mobile-routing regression test. Lint has zero errors and 19 existing warnings. Dependency audit has zero known vulnerabilities. CMS roles/authentication, approved prices, consent choices and submitted enquiry records were preserved. Content migrations use prior-value guards. |
+
+## Research and account-dependent limits
+
+The uploaded reference requires live search and competitor discovery. No web-search connector is available in this session. An attempted Google search returned HTTP 403 from the managed environment's CONNECT proxy; Google Search documentation access was also unavailable. No alternate proxy or access-wall bypass was attempted. Consequently no competitor ranks, frequency tables, search volumes, keyword difficulty, current brand results or backlink counts have been fabricated. Search Console, Analytics, Google Business Profile and backlink-platform credentials are not connected, so indexing submissions, performance baselines, qualified-enrolment attribution and off-site publication were not performed.
+
+The installed audit skill's supplementary crawler/reference resources could not be read. The source-backed existing crawler and the added read-only technical audit supply the accessible verification. Google rich-result eligibility, current primary search-policy documentation and field CWV remain unverified externally. An online service is not presented as a physical local branch; no invented branch addresses, reviews, directory profiles or link outreach were created. The geographic illustrations indicate online service areas, not physical premises.
+
+## Evidence and release
+
+Evidence is stored under `/workspace/reports/oqc-card-redesign-2026-10-24/` and `/workspace/reports/oqc-seo-execution-2026-10-24/`. Forms and third-party chat are stubbed in browser verification; no real test leads or messages are sent. Chromium device emulation does not establish physical iPhone/Safari coverage. Deployment IDs, source commit and actual live checks are recorded in `DEPLOYMENT.md` after the release is ready. Search indexing and top positions are not guaranteed.

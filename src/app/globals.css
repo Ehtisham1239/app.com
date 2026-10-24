@@ -267,6 +267,10 @@ main section[id], main [id^="c-"], main [id^="t-"] { scroll-margin-top: 7rem; }
   .prose-oqc, .prose { overflow-wrap: anywhere; }
 }
 img { max-width: 100%; }
+@media (max-width: 1023px) and (max-height: 600px) {
+  .home-hero .hero-layout { padding-top: 24px; }
+  .home-hero .hero-portrait { max-width: 220px; }
+}
 .course-card { box-shadow: 0 5px 25px -18px rgb(0 70 45 / .25); }
 .course-card:focus-visible { outline-offset: 5px; }
 .editorial-card { min-width: 0; overflow: hidden; border: 1px solid #dce9e1; border-radius: 1.65rem; background: white; box-shadow: 0 6px 24px -16px rgb(0 70 45 / .18); transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease; }
