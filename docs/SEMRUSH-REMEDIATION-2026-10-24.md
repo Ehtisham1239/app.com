@@ -1,5 +1,7 @@
 # Semrush follow-up — 24 October 2026
 
+This is the earlier remediation release record. The subsequent deployed public-page/mobile update and current production source are documented in [ISLAMIC-REDESIGN-2026-10-24.md](ISLAMIC-REDESIGN-2026-10-24.md).
+
 The six canonical course pages contained partial `CourseInstance` objects without real event dates or schedules. They now publish course information without representing individually arranged lessons as scheduled public events. The course directory now includes `ItemList` markup matching its visible course order. Shared icon paths and repeated card styles have also moved out of individual HTML documents.
 
 **Release state: deployed to production, READY.** Source `c57c16ee9d84a1ad043963aadfb2d795d6358d55` is published as `dpl_8gavnNmqPoDfHYDjLXjYE5KkSKRG`; the existing production alias `https://project-umber-three-93.vercel.app` is assigned to it. The build took 79.48 seconds. No alternate site, domain, database, authentication settings or production records were created or changed.

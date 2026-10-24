@@ -1,6 +1,10 @@
 # app.com website and CMS deployment
 
-## Semrush follow-up — 24 October 2026: production READY
+## Public-page and mobile improvements — 24 October 2026: production READY
+
+Source `ec92c57018a520a83c4e0db4c0d0ad36a5d9b5e7` is deployed as `dpl_7CB6qRsLKBfHnRCv2zkYtDQmRGV7` (READY, build 72.938 seconds) at the existing stable alias `https://project-umber-three-93.vercel.app`. Post-release checks pass for all 205 sitemap pages, unique metadata/page identity/top imagery, 195 distinct top images, 24 new responsive assets, public robots access for eight agents, four mobile device emulations and nine desktop templates. Forms were not submitted and chat was stubbed during browser checks. See [the release record](docs/ISLAMIC-REDESIGN-2026-10-24.md) and [portable evidence](docs/ISLAMIC-REDESIGN-EVIDENCE-2026-10-24.json) for scope and limitations. No environment, database or domain mutation was made. Immediate rollback: `dpl_8gavnNmqPoDfHYDjLXjYE5KkSKRG`.
+
+## Previous Semrush follow-up — 24 October 2026
 
 The reviewed remediation source `c57c16ee9d84a1ad043963aadfb2d795d6358d55` is deployed as production deployment `dpl_8gavnNmqPoDfHYDjLXjYE5KkSKRG` (READY; build 79.48 seconds). The stable alias `https://project-umber-three-93.vercel.app` is assigned to this deployment. All 205 public sitemap URLs pass the post-release technical audit, and the live Course/ItemList markup and versioned SVG/cache response are verified. See [the remediation ledger](docs/SEMRUSH-REMEDIATION-2026-10-24.md) for verification details and remaining Semrush/TLS limitations. No production environment, database or domain configuration was changed. A pinned Git-source release succeeded; automatic deployment on future GitHub pushes is still not established.
 

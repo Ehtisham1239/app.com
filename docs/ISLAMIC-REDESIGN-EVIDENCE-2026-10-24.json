@@ -1,7 +1,7 @@
 {
   "date": "2026-10-24",
   "sourceBase": "a39a329daa3f162d91c594b23d9bc8cf9b536b97",
-  "state": "locally verified; production deployment recorded after release",
+  "state": "production READY; post-release public page, schema, image, robots and browser checks passed",
   "quality": {
     "checkedAt": "2026-10-24T16:22:05.112Z",
     "base": "http://localhost:3012",
@@ -265,5 +265,145 @@
       "afterBytes": 112446,
       "reductionPercent": -2.91
     }
-  ]
+  ],
+  "deployment": {
+    "sourceCommit": "ec92c57018a520a83c4e0db4c0d0ad36a5d9b5e7",
+    "id": "dpl_7CB6qRsLKBfHnRCv2zkYtDQmRGV7",
+    "state": "READY",
+    "target": "production",
+    "url": "https://project-umber-three-93.vercel.app",
+    "deploymentUrl": "https://project-ja8erg6ng-ehtisham1239s-projects.vercel.app",
+    "buildSeconds": 72.938,
+    "rollbackDeployment": "dpl_8gavnNmqPoDfHYDjLXjYE5KkSKRG"
+  },
+  "liveTechnical": {
+    "checkedAt": "2026-10-24T16:30:00.651Z",
+    "base": "https://project-umber-three-93.vercel.app",
+    "canonicalOrigin": "https://project-umber-three-93.vercel.app",
+    "declaredSitemapUrls": 205,
+    "uniqueSitemapUrls": 205,
+    "audited": 205,
+    "cap": 250,
+    "workers": 3,
+    "robotsStatus": 200,
+    "sitemapStatus": 200,
+    "robotsReferencesSitemap": true,
+    "robotsSkipped": [],
+    "errors": [],
+    "findings": 0,
+    "scope": "All declared sitemap URLs plus explicit probes; raw HTML, not Google index status or field CWV. External search and backlink metrics unavailable."
+  },
+  "liveQuality": {
+    "checkedAt": "2026-10-24T16:30:45.894Z",
+    "base": "https://project-umber-three-93.vercel.app",
+    "pages": 205,
+    "declared": 205,
+    "topImagesChecked": 195,
+    "failures": [],
+    "robots": "static text/plain, public pages allowed, staff/API paths excluded",
+    "scope": "Public response/metadata/JSON-LD/hero-image checks; not a ranking or rich-result guarantee"
+  },
+  "liveSchemaSample": {
+    "base": "https://project-umber-three-93.vercel.app",
+    "sitemap_urls": 205,
+    "sampled_templates_and_courses": 15,
+    "external_discovery_pages": 15,
+    "unique_external_destinations": 17,
+    "external_checked": 0,
+    "schema_review_count": 0,
+    "limitations": [
+      "Template/course sample for HTML weight; site-wide links only when --crawl-pages supplied",
+      "Local schema checks are not Google's Rich Results Test or Semrush re-audit",
+      "No field Core Web Vitals, account index coverage, direct-origin certificate/SNI or authenticated workflows verified",
+      "HTTPS follows the environment's trusted proxy; no TLS validation was disabled"
+    ]
+  },
+  "liveRobots": [
+    {
+      "agent": "Googlebot",
+      "sitemap_pages_blocked": [],
+      "admin_blocked": true
+    },
+    {
+      "agent": "ChatGPT-User",
+      "sitemap_pages_blocked": [],
+      "admin_blocked": true
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "sitemap_pages_blocked": [],
+      "admin_blocked": true
+    },
+    {
+      "agent": "Google-Extended",
+      "sitemap_pages_blocked": [],
+      "admin_blocked": true
+    },
+    {
+      "agent": "PerplexityBot",
+      "sitemap_pages_blocked": [],
+      "admin_blocked": true
+    },
+    {
+      "agent": "Perplexity-User",
+      "sitemap_pages_blocked": [],
+      "admin_blocked": true
+    },
+    {
+      "agent": "Claude-User",
+      "sitemap_pages_blocked": [],
+      "admin_blocked": true
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "sitemap_pages_blocked": [],
+      "admin_blocked": true
+    }
+  ],
+  "liveResponsiveAssets": {
+    "checked": 24,
+    "failures": [],
+    "allImmutable": true
+  },
+  "liveBrowser": {
+    "base": "https://project-umber-three-93.vercel.app",
+    "cases": [
+      {
+        "device": "iPhone portrait",
+        "homeFirst": true,
+        "noAutomaticForm": true,
+        "explicitFormActivation": true,
+        "reloadHomeFirst": true,
+        "trialIntroductionFirst": true
+      },
+      {
+        "device": "Android portrait",
+        "homeFirst": true,
+        "noAutomaticForm": true,
+        "explicitFormActivation": true,
+        "reloadHomeFirst": true,
+        "trialIntroductionFirst": true
+      },
+      {
+        "device": "iPhone landscape",
+        "homeFirst": true,
+        "noAutomaticForm": true,
+        "explicitFormActivation": true,
+        "reloadHomeFirst": true,
+        "trialIntroductionFirst": true
+      },
+      {
+        "device": "Tablet",
+        "homeFirst": true,
+        "noAutomaticForm": true,
+        "explicitFormActivation": true,
+        "reloadHomeFirst": true,
+        "trialIntroductionFirst": true
+      }
+    ],
+    "errors": [],
+    "submittedForms": 0,
+    "transport": "Owned-site read requests only; chat stubbed; no form submitted",
+    "desktopTemplates": 9
+  }
 }
