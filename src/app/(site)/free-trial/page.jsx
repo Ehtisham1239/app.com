@@ -12,12 +12,12 @@ export const metadata = contentMetadata({
   seo_title: "Free Online Quran Trial Classes | Online Quran College",
   cover_url: "/images/learning/trial-welcome-r2-1200.webp",
   cover_alt: "Young boy smiling at a laptop during his first lesson with his mother seated nearby",
-}, { path: "/free-trial", description: "Book a 7-day trial of one-to-one online Quran classes for children or adults. Share your course, local time zone and teacher preferences with our coordinator." });
+}, { path: "/free-trial", description: "Request a 7-day free trial of one-to-one Quran classes on eligible plans. The Weekend plan is excluded. Share your course and local time zone." });
 
 const PROMISES = [
   { icon: Clock3, title: "Reply within 24 hours", text: "A coordinator contacts you by WhatsApp or email to confirm a time." },
   { icon: HeartHandshake, title: "Teacher of your choice", text: "Female or male teacher, explained in your language." },
-  { icon: CalendarCheck2, title: "7 days, no card", text: "Attend the trial classes before choosing any package." },
+  { icon: CalendarCheck2, title: "7 days on eligible plans, no card", text: "Attend trial classes before choosing an eligible package. The Weekend plan is excluded." },
   { icon: ShieldCheck, title: "Your details are safe", text: "Used only to arrange your classes — never sold or shared." },
 ];
 
@@ -36,6 +36,9 @@ export default async function FreeTrialPage() {
           <h1 className="mt-3 text-[2.5rem] text-white sm:text-[3.2rem]">Book your 7-day free trial</h1>
           <p className="mt-4 max-w-md text-[1.05rem] leading-relaxed text-white/75">
             Tell us a little about the learner and when you are free. We will match a teacher and send the class link.
+          </p>
+          <p className="mt-3 max-w-md text-sm leading-relaxed text-white/75">
+            The 7-day free trial is available on eligible plans. The Weekend plan is excluded; confirm eligibility with the coordinator.
           </p>
           <div className="mt-8 hidden lg:block"><ContentImage src="/images/learning/trial-welcome-r2-1200.webp" alt="Young boy smiling at a laptop during his first lesson with his mother seated nearby" sizes="500px" className="aspect-[3/2] w-full rounded-[1.5rem] object-cover" /></div>
           <ul className="mt-10 hidden space-y-3 lg:block">
