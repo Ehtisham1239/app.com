@@ -1,9 +1,9 @@
 {
   "date": "2026-10-25",
-  "state": "locally verified; final publication pending",
+  "state": "production READY; post-release public quality, interactions and three navigation flows verified",
   "sourceBase": "0dd3177123873dc7fe15de082e4fc7a433d637fe",
   "tests": {
-    "passed": 48,
+    "passed": 50,
     "failed": 0
   },
   "lint": {
@@ -34,8 +34,8 @@
     "scope": "All declared sitemap URLs plus explicit probes; raw HTML, not Google index status or field CWV. External search and backlink metrics unavailable."
   },
   "quality": {
-    "checkedAt": "2026-10-25T02:20:27.501Z",
-    "base": "http://localhost:3012",
+    "checkedAt": "2026-10-25T03:02:02.841Z",
+    "base": "https://project-umber-three-93.vercel.app",
     "pages": 205,
     "declared": 205,
     "topImagesChecked": 196,
@@ -44,7 +44,7 @@
     "scope": "Public response/metadata/JSON-LD/hero-image checks; not a ranking or rich-result guarantee"
   },
   "browser": {
-    "base": "http://localhost:3012",
+    "base": "https://project-umber-three-93.vercel.app",
     "keywords": [
       "/",
       "/learn/quran-for-kids",
@@ -139,7 +139,7 @@
     "submittedForms": 0
   },
   "navigation": {
-    "base": "http://localhost:3012",
+    "base": "https://project-umber-three-93.vercel.app",
     "cases": [
       {
         "case": "desktop-fresh",
@@ -187,5 +187,80 @@
     "conflicts": [],
     "ipStatus": "required-change",
     "originalAffectedHostnameKnown": false
-  }
+  },
+  "applicationSource": "57ffe60f364a6ae3a8c9e8fa387d1ba0852ee96a",
+  "deployment": {
+    "id": "dpl_4c7z9bMxkEMMDe7ct7xwW79kazJb",
+    "state": "READY",
+    "url": "https://project-umber-three-93.vercel.app",
+    "buildSeconds": 68.584
+  },
+  "fullCrawlPreviousSource": {
+    "source": "f2b8e3d309ee76f4fe14d076beacf7e121d869c6",
+    "pages": 206,
+    "sitemapPages": 205,
+    "statuses": {
+      "200": 206
+    },
+    "findingCounts": {}
+  },
+  "previousSourceLinks": {
+    "base": "https://project-umber-three-93.vercel.app",
+    "sourcePages": 206,
+    "uniqueTargets": 415,
+    "checked": 415,
+    "fragmentsChecked": 344,
+    "contactActions": 2,
+    "invalid": [],
+    "failures": [],
+    "scope": "GET response and existing in-page targets; mail/telephone syntax only; no calls, messages, enquiries or authenticated staff actions"
+  },
+  "releaseAssets": [
+    {
+      "path": "/google5fa9c672751cfb98.html",
+      "status": 200,
+      "type": "text/html; charset=utf-8",
+      "matchesLocal": true
+    },
+    {
+      "path": "/brand/hero.webp",
+      "status": 200,
+      "type": "image/webp",
+      "matchesLocal": true
+    },
+    {
+      "path": "/robots.txt",
+      "status": 200,
+      "type": "text/plain; charset=utf-8"
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "type": "application/xml"
+    }
+  ],
+  "interactions": {
+    "base": "https://project-umber-three-93.vercel.app",
+    "checks": [
+      "home anchor",
+      "mobile menu, course expansion and close",
+      "home enquiry opt-in",
+      "country search, clear and 50 illustrated cards",
+      "both currency selectors and quote-currency booking CTA",
+      "planner request date, time and zone continuity",
+      "FAQ keyboard toggle",
+      "contact validation and stubbed confirmation",
+      "trial anchor, validation, back/next, prefill and stubbed confirmation",
+      "certificate validation, service failure recovery and not-found result",
+      "desktop menu pointer, Enter/Space, Escape and outside dismissal",
+      "article contents links"
+    ],
+    "stubbedSubmissions": 2,
+    "certificateStubs": 2,
+    "unexpectedWrites": 0,
+    "errors": []
+  },
+  "interactionSource": "57ffe60f364a6ae3a8c9e8fa387d1ba0852ee96a",
+  "visualBrowserSource": "f2b8e3d309ee76f4fe14d076beacf7e121d869c6",
+  "navigationSource": "57ffe60f364a6ae3a8c9e8fa387d1ba0852ee96a"
 }

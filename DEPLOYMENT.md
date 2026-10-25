@@ -1,6 +1,14 @@
 # app.com website and CMS deployment
 
-## Public-page and mobile improvements — 24 October 2026: production READY
+## Current public interaction and SEO release — 25 October 2026: production READY
+
+Application source `57ffe60f364a6ae3a8c9e8fa387d1ba0852ee96a` is deployed as `dpl_4c7z9bMxkEMMDe7ct7xwW79kazJb` (READY, build 68.584 seconds) at [the existing stable alias](https://project-umber-three-93.vercel.app). The alias and Git source match. Homepage/country separation, all legacy redirects, the original requested homepage illustration and the newer Google verification file remain preserved.
+
+This release fixes the Courses first-click conflict, carries selected quote currency and valid local lesson preferences into editable trial notes, completes all 50 country directory cards with responsive map images and makes certificate failures retryable. All 205 public pages pass live metadata/schema/page identity/hero checks, with 196 top-image responses. Fresh/returning desktop and mobile Home → Country → Home/reload flows also pass. Twelve live interaction groups pass using two simulated submissions and two simulated certificate responses; zero unexpected writes and zero JavaScript errors. Fifty automated tests, the production build and ESLint (zero errors, 19 existing warnings) pass. Full details and verification boundaries: [agent/action review](docs/ACTIONS-AND-AGENT-REVIEW-2026-10-25.md), [visual/SEO ledger](docs/VISUAL-SEO-FOLLOWUP-2026-10-25.md), [portable evidence](docs/VISUAL-SEO-EVIDENCE-2026-10-25.json).
+
+No database, production environment or domain mutation was made. Real remote form persistence, field CWV, fresh Semrush scores, actual keyword positions and the old report's unidentified certificate/SNI hostname are not verified. Immediate rollback candidate: `dpl_EhaXFqmyP1pS6Y8HJy6R4U6CGgvw`, which retains homepage separation and the original homepage image. Later documentation-only commits do not change this deployed application source. Automatic deployment of future pushes is not established.
+
+## Previous public-page and mobile release — 24 October 2026: production READY
 
 Source `ec92c57018a520a83c4e0db4c0d0ad36a5d9b5e7` is deployed as `dpl_7CB6qRsLKBfHnRCv2zkYtDQmRGV7` (READY, build 72.938 seconds) at the existing stable alias `https://project-umber-three-93.vercel.app`. Post-release checks pass for all 205 sitemap pages, unique metadata/page identity/top imagery, 195 distinct top images, 24 new responsive assets, public robots access for eight agents, four mobile device emulations and nine desktop templates. Forms were not submitted and chat was stubbed during browser checks. See [the release record](docs/ISLAMIC-REDESIGN-2026-10-24.md) and [portable evidence](docs/ISLAMIC-REDESIGN-EVIDENCE-2026-10-24.json) for scope and limitations. No environment, database or domain mutation was made. Immediate rollback: `dpl_8gavnNmqPoDfHYDjLXjYE5KkSKRG`.
 

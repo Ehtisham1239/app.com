@@ -22,7 +22,7 @@ forms and admin sign-in require the actual database and staff account.
 
 Home stays at `/` for all visitors; country and city pages are selected explicitly. See [routing verification](docs/HOMEPAGE-ROUTING-2026-10-25.md).
 
-The public-page and mobile improvements are documented in [the release record](docs/ISLAMIC-REDESIGN-2026-10-24.md).
+The current deployed changes and checks are documented in [the agent/action review](docs/ACTIONS-AND-AGENT-REVIEW-2026-10-25.md) and [the visual/SEO release record](docs/VISUAL-SEO-FOLLOWUP-2026-10-25.md).
 
 See [DEPLOYMENT.md](DEPLOYMENT.md) for the precise live setup steps, admin creation, current blockers
 and validation limits. The provided public key is configured locally in the ignored `.env.local`.
