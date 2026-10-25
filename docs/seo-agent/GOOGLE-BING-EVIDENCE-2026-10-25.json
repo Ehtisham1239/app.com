@@ -1,0 +1,198 @@
+{
+  "recordedAt": "2026-10-25T14:48:29.168632+00:00",
+  "reportingTimezone": "Asia/Karachi",
+  "target": "https://project-umber-three-93.vercel.app",
+  "repository": "Ehtisham1239/app.com",
+  "applicationSource": "88d8a0d939ad9fe6ec7296fddd7e5e7ddc226bc0",
+  "deployment": {
+    "id": "dpl_HWA4ngycSX2bwc8JHGGro2jyxzuk",
+    "status": "READY",
+    "alias": "project-umber-three-93.vercel.app",
+    "sourceAndAliasVerified": true,
+    "buildSeconds": 73
+  },
+  "rollback": {
+    "source": "02c1ceb9bfbb74a4648c21787874967d096b39e2",
+    "deployment": "dpl_RMWaXYkuruiSqdtzKS6u2CxvME7K"
+  },
+  "preRelease": {
+    "automatedTestsPassed": 57,
+    "build": "passed",
+    "lintErrors": 0,
+    "existingReactAdvisories": 19,
+    "knownProductionDependencyVulnerabilities": 0,
+    "localBlogFlows": 2,
+    "localHomeFlows": 3,
+    "visualInspection": "mobile and desktop local and live article screenshots inspected"
+  },
+  "live": {
+    "siteAudit": {
+      "checkedAt": "2026-10-25T14:46:38.446Z",
+      "timezone": "Asia/Karachi",
+      "mode": "READ_ONLY",
+      "base": "https://project-umber-three-93.vercel.app",
+      "canonicalOrigin": "https://project-umber-three-93.vercel.app",
+      "sitemapUrls": 205,
+      "audited": 205,
+      "technicalFindings": 0,
+      "qualityFailures": 0,
+      "keywordPages": 205,
+      "keywordFailures": 0,
+      "topImages": 196,
+      "requestMethods": [
+        "GET"
+      ],
+      "integrationMetrics": {
+        "gsc": "Not Checked: authenticated property/export required",
+        "ga4": "Not Checked: authenticated property/export required",
+        "semrush": "Not Checked: entitlement and fresh audit export required"
+      },
+      "limitations": [
+        "Raw HTML and response checks; not Google index status or Rich Results Test",
+        "No physical-device test, field CWV, actual keyword positions or organic attribution",
+        "Offer wording is observed, not documentary substantiation",
+        "No form submissions, authenticated staff operations or external messages"
+      ]
+    },
+    "searchEngineAudit": {
+      "checkedAt": "2026-10-25T14:46:06.947Z",
+      "base": "https://project-umber-three-93.vercel.app",
+      "sitemapPages": 205,
+      "articles": 15,
+      "categories": 8,
+      "listingPages": 10,
+      "internalTargets": 422,
+      "fragmentReferences": 353,
+      "articleImages": 15,
+      "feedItems": 15,
+      "botChecks": 6,
+      "failures": [],
+      "scope": "Public raw HTML and GET responses across sitemap, links and current blog articles; not Google/Bing indexing, official rich-result validation or field CWV."
+    },
+    "blogBrowser": {
+      "base": "https://project-umber-three-93.vercel.app",
+      "cases": [
+        {
+          "width": 390,
+          "categories": 8,
+          "pagination": true,
+          "imageLoaded": true,
+          "dateVisible": true,
+          "tableOfContents": true,
+          "overflow": false
+        },
+        {
+          "width": 1440,
+          "categories": 8,
+          "pagination": true,
+          "imageLoaded": true,
+          "dateVisible": true,
+          "tableOfContents": true,
+          "overflow": false
+        }
+      ],
+      "errors": [],
+      "writes": 0,
+      "scope": "Chromium desktop/mobile emulation, vendor stubbed; owned-site GETs only; no forms submitted",
+      "noJavaScriptArticle": true
+    },
+    "homeBrowser": {
+      "base": "https://project-umber-three-93.vercel.app",
+      "cases": [
+        {
+          "case": "desktop-fresh",
+          "homeRemainsHome": true,
+          "explicitCountryNavigation": true,
+          "logoReturnsHome": true,
+          "reloadRemainsHome": true,
+          "countryPagesSeparate": true
+        },
+        {
+          "case": "desktop-returning",
+          "homeRemainsHome": true,
+          "explicitCountryNavigation": true,
+          "logoReturnsHome": true,
+          "reloadRemainsHome": true,
+          "countryPagesSeparate": true
+        },
+        {
+          "case": "mobile-fresh",
+          "homeRemainsHome": true,
+          "explicitCountryNavigation": true,
+          "logoReturnsHome": true,
+          "reloadRemainsHome": true,
+          "countryPagesSeparate": true
+        }
+      ],
+      "browserErrors": [],
+      "submittedForms": 0,
+      "scope": "Chromium desktop/mobile emulation; chat stubbed; owned-site GET/HEAD only; no form submissions"
+    },
+    "publicFiles": [
+      {
+        "path": "/google45a9bbd1d6a72727.html",
+        "status": 200,
+        "type": "text/html; charset=utf-8",
+        "matchesLocal": true
+      },
+      {
+        "path": "/google5fa9c672751cfb98.html",
+        "status": 200,
+        "type": "text/html; charset=utf-8",
+        "matchesLocal": true
+      },
+      {
+        "path": "/robots.txt",
+        "status": 200,
+        "type": "text/plain; charset=utf-8"
+      },
+      {
+        "path": "/blog/feed.xml",
+        "status": 200,
+        "type": "application/rss+xml; charset=utf-8"
+      }
+    ],
+    "rssXml": {
+      "parsed": true,
+      "items": 15
+    }
+  },
+  "indexNow": {
+    "checkedAt": "2026-10-25T14:47:01.497Z",
+    "origin": "https://project-umber-three-93.vercel.app",
+    "mode": "SUBMIT",
+    "checkedUrls": 16,
+    "urlList": [
+      "https://project-umber-three-93.vercel.app/blog",
+      "https://project-umber-three-93.vercel.app/blog/quran-translation-and-arabic-difference",
+      "https://project-umber-three-93.vercel.app/blog/parent-teacher-quran-progress-review",
+      "https://project-umber-three-93.vercel.app/blog/family-quran-learning-multiple-children",
+      "https://project-umber-three-93.vercel.app/blog/tajweed-practice-with-feedback",
+      "https://project-umber-three-93.vercel.app/blog/online-quran-lesson-setup-accessibility",
+      "https://project-umber-three-93.vercel.app/blog/help-your-kids-learn-quran-online",
+      "https://project-umber-three-93.vercel.app/blog/importance-of-reciting-quran-with-tajweed",
+      "https://project-umber-three-93.vercel.app/blog/memorization-techniques-for-beginners",
+      "https://project-umber-three-93.vercel.app/blog/choose-online-quran-teacher-usa",
+      "https://project-umber-three-93.vercel.app/blog/quran-lessons-australia-time-zones",
+      "https://project-umber-three-93.vercel.app/blog/noorani-qaida-or-quran-reading",
+      "https://project-umber-three-93.vercel.app/blog/adult-quran-beginner-first-month",
+      "https://project-umber-three-93.vercel.app/blog/prepare-child-first-online-quran-trial",
+      "https://project-umber-three-93.vercel.app/blog/hifz-revision-with-school",
+      "https://project-umber-three-93.vercel.app/blog/questions-before-quran-course-enrolment"
+    ],
+    "status": 202,
+    "received": true,
+    "indexingConfirmed": false,
+    "validationPending": true
+  },
+  "unverified": [
+    "Google Search Console ownership confirmation and sitemap submission",
+    "Google/Bing actual indexed counts, selected canonicals, rankings and performance",
+    "Bing Webmaster Tools property/account verification",
+    "IndexNow key validation after HTTP 202",
+    "Official Rich Results Test result",
+    "Field Core Web Vitals",
+    "Real enquiry persistence and delivery; no forms submitted"
+  ],
+  "scope": "Verified public SEO fixes and deployment, not a guarantee of indexing/rankings or resolution of every potential issue. No campaign, schema, DNS, environment or account-permission change."
+}

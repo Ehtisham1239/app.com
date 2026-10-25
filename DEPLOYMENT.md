@@ -1,6 +1,14 @@
 # app.com website and CMS deployment
 
-## Current Search Console preparation — 25 October 2026: website file READY
+## Current Google/Bing and blog release — 25 October 2026: production READY
+
+Application source `88d8a0d939ad9fe6ec7296fddd7e5e7ddc226bc0` is deployed as `dpl_HWA4ngycSX2bwc8JHGGro2jyxzuk` (READY, 73-second build) at https://project-umber-three-93.vercel.app. Alias and exact source are verified. Blog category discovery, invalid-filter 404s, per-page metadata/identity, article author/date/image markup, general crawler image previews, RSS discovery and homepage social/image-sitemap details are live. The existing content, original hero, country separation, offers, staff routes and both Google verification files are preserved.
+
+57 tests and build pass; lint has zero errors and 19 unchanged React advisories. Production dependency audit reports zero known vulnerabilities. Live verification passes 205 pages/topic placements, 15 blogs, eight topics, 422 internal destinations, 353 fragment references, 196 top-image responses, valid 15-item RSS and Googlebot/bingbot user-agent probes. Two mobile/desktop blog flows and three Home/country/reload flows pass; no forms submitted. Public GET checks do not establish actual search-engine crawling or indexing.
+
+IndexNow support is deployed. A single batch of 16 changed blog/listing URLs received HTTP 202; ownership-key validation is pending, not confirmed indexing. GSC ownership/submission, Bing dashboard verification, official rich-result outcomes, field CWV and rankings remain unverified. [Implementation and limits](docs/seo-agent/GOOGLE-BING-2026-10-25.md); [release evidence](docs/seo-agent/GOOGLE-BING-EVIDENCE-2026-10-25.json). Rollback candidate: `dpl_RMWaXYkuruiSqdtzKS6u2CxvME7K`. Documentation-only follow-ups do not change the deployed application source.
+
+## Previous Search Console preparation — 25 October 2026: website file READY
 
 Source `02c1ceb9bfbb74a4648c21787874967d096b39e2` is deployed as `dpl_RMWaXYkuruiSqdtzKS6u2CxvME7K` (READY, 70.199 seconds) at the existing stable alias. It adds Google's requested `google45a9bbd1d6a72727.html` and preserves the prior verification file. Both files are publicly HTTP 200 with matching local contents; homepage canonical, robots and the 205-URL sitemap pass focused checks. No application component, environment, database or DNS setting changed.
 

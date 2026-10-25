@@ -63,5 +63,16 @@
       "status": "Verified warning: national page under review for November 2026; provincial sources take precedence",
       "reviewed": "2026-10-25"
     }
-  ]
+  ],
+  "public_search_optimization": {
+    "reviewed": "2026-10-25",
+    "application_source": "88d8a0d939ad9fe6ec7296fddd7e5e7ddc226bc0",
+    "release_evidence": "docs/seo-agent/GOOGLE-BING-EVIDENCE-2026-10-25.json",
+    "live_public_pages_checked": 205,
+    "live_articles_checked": 15,
+    "indexnow_status": "16 changed blog/listing URLs received HTTP 202; key validation pending; indexing not confirmed",
+    "bing_webmaster_property_verified": null,
+    "official_rich_results_test": null,
+    "field_cwv": null
+  }
 }
