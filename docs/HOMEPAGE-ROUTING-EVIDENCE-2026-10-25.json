@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-25",
+  "state": "locally verified; production publication pending",
+  "baseCommit": "0fec684bab642f70cfc1ff1c31c18f5e94f41530",
+  "localRouting": {
+    "base": "http://localhost:3012",
+    "homepageChecks": 45,
+    "redirects": 187,
+    "destinations": 178,
+    "missingRoutes": 3,
+    "failures": [],
+    "notes": "Read-only. Header/cookie/UA matrix verifies routing, not physical-country access. No form submissions.",
+    "adminProtected": true
+  },
+  "localBrowser": {
+    "base": "http://localhost:3012",
+    "cases": [
+      {
+        "case": "desktop-fresh",
+        "homeRemainsHome": true,
+        "explicitCountryNavigation": true,
+        "logoReturnsHome": true,
+        "reloadRemainsHome": true,
+        "countryPagesSeparate": true
+      },
+      {
+        "case": "desktop-returning",
+        "homeRemainsHome": true,
+        "explicitCountryNavigation": true,
+        "logoReturnsHome": true,
+        "reloadRemainsHome": true,
+        "countryPagesSeparate": true
+      },
+      {
+        "case": "mobile-fresh",
+        "homeRemainsHome": true,
+        "explicitCountryNavigation": true,
+        "logoReturnsHome": true,
+        "reloadRemainsHome": true,
+        "countryPagesSeparate": true
+      }
+    ],
+    "browserErrors": [],
+    "submittedForms": 0,
+    "scope": "Chromium desktop/mobile emulation; chat stubbed; owned-site GET/HEAD only; no form submissions"
+  },
+  "tests": {
+    "passed": 46,
+    "failed": 0
+  },
+  "lint": {
+    "errors": 0,
+    "existingWarnings": 19
+  },
+  "previousDeployment": "dpl_7CB6qRsLKBfHnRCv2zkYtDQmRGV7"
+}

@@ -1,5 +1,7 @@
 # Mobile reference, college branding and country routing
 
+The earlier automatic country-routing behaviour below is superseded by [the homepage routing correction](HOMEPAGE-ROUTING-2026-10-25.md): `/` now remains the homepage on all devices, with country pages selected explicitly.
+
 The supplied mobile reference sets the public header and hero arrangement: a white logo/menu header, mint arch portrait first, then centred Arabic text, heading and introduction. Portal remains accessible inside the mobile menu. Desktop retains its navigation and two-column hero.
 
 The original college homepage was read on 23 October 2026. Its primary #006847, hover #004f36, emerald #10b981, mint #eefaf3/#f4fbf7 and footer #111827 match the existing tokens. Welcome, courses, benefits, onboarding, tutors, contact, feedback and articles sections follow the original white/mint grouping. Existing additional location, learning, pricing and FAQ sections remain. Unverified pupil counts, qualifications and reviews were not copied. Approved tutor/review content remains controlled by the CMS.

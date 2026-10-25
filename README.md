@@ -20,6 +20,8 @@ Supabase target: `lgbwidraztavhhbnbfhr`. Use only this project's public key. The
 to the unrelated project in the uploaded ZIP. Public seed content is available before schema setup;
 forms and admin sign-in require the actual database and staff account.
 
+Home stays at `/` for all visitors; country and city pages are selected explicitly. See [routing verification](docs/HOMEPAGE-ROUTING-2026-10-25.md).
+
 The public-page and mobile improvements are documented in [the release record](docs/ISLAMIC-REDESIGN-2026-10-24.md).
 
 See [DEPLOYMENT.md](DEPLOYMENT.md) for the precise live setup steps, admin creation, current blockers
