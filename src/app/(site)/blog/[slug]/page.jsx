@@ -1,3 +1,5 @@
+import { contentVisual } from "@/lib/content-visual";
+import { cardTone } from "@/lib/card-presentation";
 import { PageHero } from "@/components/site/chrome";
 import { ContentImage } from "@/components/site/content-image";
 import { safeJsonLd, breadcrumbSchema } from "@/lib/seo";
@@ -60,7 +62,7 @@ export default async function PostPage({ params }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema(breadcrumbs, SITE_URL)) }} />
       <article>
-        <PageHero path={`/blog/${post.slug}`} eyebrow={post.category} title={post.title} visual={post.cover_url ? <ContentImage src={post.cover_url} alt={post.cover_alt} priority sizes="(max-width: 1024px) 100vw, 600px" className="aspect-[3/2] w-full object-cover" /> : undefined}>
+        <PageHero path={`/blog/${post.slug}`} eyebrow={post.category} title={post.title} visual={post.cover_url ? <ContentImage src={contentVisual(post).src} alt={contentVisual(post).alt} priority sizes="(max-width: 1024px) 100vw, 600px" className="aspect-[3/2] w-full object-cover" /> : undefined}>
           <nav aria-label="Breadcrumb" className="mt-5 text-sm text-white/75"><Link href="/">Home</Link> / <Link href="/blog" className="underline">Articles</Link></nav>
           <p className="mt-5 flex flex-wrap items-center gap-3 text-sm text-white/75"><span>{post.author_name}</span><time dateTime={post.published_at}>{formatDate(post.published_at)}</time>{post.reading_minutes ? <span className="inline-flex items-center gap-1"><Clock3 className="size-4" aria-hidden="true" />{post.reading_minutes} min read</span> : null}</p>
         </PageHero>
@@ -85,8 +87,8 @@ export default async function PostPage({ params }) {
             <h2 className="text-[1.8rem] text-mushaf-900">Keep reading</h2>
             <div className="mt-8 grid gap-5 md:grid-cols-3">
               {more.map((p) => (
-                <Link key={p.slug} href={`/blog/${p.slug}`} className="editorial-card group flex flex-col">
-                  {p.cover_url && <div className="mx-2 mt-2 aspect-[3/2] overflow-hidden rounded-[1.15rem]"><ContentImage src={p.cover_url} alt={p.cover_alt} sizes="(max-width: 767px) 100vw, 400px" className="size-full object-cover" /></div>}
+                <Link key={p.slug} data-card-tone={cardTone(p.slug)} href={`/blog/${p.slug}`} className="editorial-card card-tinted group flex flex-col">
+                  {<div className="mx-2 mt-2 aspect-[3/2] overflow-hidden rounded-[1.15rem]"><ContentImage src={contentVisual(p).src} alt={contentVisual(p).alt} sizes="(max-width: 767px) 100vw, 400px" className="size-full object-cover" /></div>}
                   <div className="flex flex-1 flex-col p-6"><p className="text-xs font-bold uppercase tracking-wider text-leaf-700">{p.category}</p>
                   <h3 className="mt-2 text-[1.1rem] font-bold leading-snug text-mushaf-900 group-hover:text-leaf-700">{p.title}</h3>
                   <p className="mt-2 flex-1 text-[0.93rem] text-ink-soft">{truncate(p.excerpt ?? "", 110)}</p><span className="card-action mt-5">Read article <span className="card-arrow"><ArrowRight className="size-4" aria-hidden="true" /></span></span></div>

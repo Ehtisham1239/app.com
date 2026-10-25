@@ -1,0 +1,191 @@
+{
+  "date": "2026-10-25",
+  "state": "locally verified; final publication pending",
+  "sourceBase": "0dd3177123873dc7fe15de082e4fc7a433d637fe",
+  "tests": {
+    "passed": 48,
+    "failed": 0
+  },
+  "lint": {
+    "errors": 0,
+    "existingWarnings": 19
+  },
+  "hero": {
+    "source": "https://www.onlinequrancollege.com/hero.webp",
+    "local": "/brand/hero.webp",
+    "bytes": 36548,
+    "exactMatch": true
+  },
+  "technical": {
+    "checkedAt": "2026-10-25T02:20:26.219Z",
+    "base": "http://localhost:3012",
+    "canonicalOrigin": "https://project-umber-three-93.vercel.app",
+    "declaredSitemapUrls": 205,
+    "uniqueSitemapUrls": 205,
+    "audited": 205,
+    "cap": 250,
+    "workers": 3,
+    "robotsStatus": 200,
+    "sitemapStatus": 200,
+    "robotsReferencesSitemap": true,
+    "robotsSkipped": [],
+    "errors": [],
+    "findings": 0,
+    "scope": "All declared sitemap URLs plus explicit probes; raw HTML, not Google index status or field CWV. External search and backlink metrics unavailable."
+  },
+  "quality": {
+    "checkedAt": "2026-10-25T02:20:27.501Z",
+    "base": "http://localhost:3012",
+    "pages": 205,
+    "declared": 205,
+    "topImagesChecked": 196,
+    "failures": [],
+    "robots": "static text/plain, public pages allowed, staff/API paths excluded",
+    "scope": "Public response/metadata/JSON-LD/hero-image checks; not a ranking or rich-result guarantee"
+  },
+  "browser": {
+    "base": "http://localhost:3012",
+    "keywords": [
+      "/",
+      "/learn/quran-for-kids",
+      "/learn/quran-for-adults",
+      "/courses/noorani-qaida",
+      "/courses/quran-nazara",
+      "/courses/hifz-quran",
+      "/courses/arabic-language",
+      "/courses/quran-translation",
+      "/teachers",
+      "/locations/united-states"
+    ],
+    "layouts": [
+      {
+        "device": "desktop",
+        "path": "/"
+      },
+      {
+        "device": "desktop",
+        "path": "/learn/quran-for-kids"
+      },
+      {
+        "device": "desktop",
+        "path": "/learn/quran-for-adults"
+      },
+      {
+        "device": "desktop",
+        "path": "/courses/noorani-qaida"
+      },
+      {
+        "device": "desktop",
+        "path": "/courses/quran-nazara"
+      },
+      {
+        "device": "desktop",
+        "path": "/courses/hifz-quran"
+      },
+      {
+        "device": "desktop",
+        "path": "/courses/arabic-language"
+      },
+      {
+        "device": "desktop",
+        "path": "/courses/quran-translation"
+      },
+      {
+        "device": "desktop",
+        "path": "/teachers"
+      },
+      {
+        "device": "desktop",
+        "path": "/locations/united-states"
+      },
+      {
+        "device": "desktop",
+        "path": "/courses"
+      },
+      {
+        "device": "desktop",
+        "path": "/pricing"
+      },
+      {
+        "device": "desktop",
+        "path": "/locations/united-kingdom/london"
+      },
+      {
+        "device": "desktop",
+        "path": "/blog"
+      },
+      {
+        "device": "desktop",
+        "path": "/learn"
+      },
+      {
+        "device": "mobile",
+        "path": "/"
+      },
+      {
+        "device": "mobile",
+        "path": "/courses"
+      },
+      {
+        "device": "mobile",
+        "path": "/pricing"
+      },
+      {
+        "device": "mobile",
+        "path": "/locations/united-kingdom/london"
+      }
+    ],
+    "errors": [],
+    "submittedForms": 0
+  },
+  "navigation": {
+    "base": "http://localhost:3012",
+    "cases": [
+      {
+        "case": "desktop-fresh",
+        "homeRemainsHome": true,
+        "explicitCountryNavigation": true,
+        "logoReturnsHome": true,
+        "reloadRemainsHome": true,
+        "countryPagesSeparate": true
+      },
+      {
+        "case": "desktop-returning",
+        "homeRemainsHome": true,
+        "explicitCountryNavigation": true,
+        "logoReturnsHome": true,
+        "reloadRemainsHome": true,
+        "countryPagesSeparate": true
+      },
+      {
+        "case": "mobile-fresh",
+        "homeRemainsHome": true,
+        "explicitCountryNavigation": true,
+        "logoReturnsHome": true,
+        "reloadRemainsHome": true,
+        "countryPagesSeparate": true
+      }
+    ],
+    "browserErrors": [],
+    "submittedForms": 0,
+    "scope": "Chromium desktop/mobile emulation; chat stubbed; owned-site GET/HEAD only; no form submissions"
+  },
+  "routingLive": {
+    "base": "https://project-umber-three-93.vercel.app",
+    "homepageChecks": 45,
+    "redirects": 187,
+    "destinations": 178,
+    "missingRoutes": 3,
+    "failures": [],
+    "notes": "Read-only. Header/cookie/UA matrix verifies routing, not physical-country access. No form submissions.",
+    "adminProtected": true
+  },
+  "rankingEvidence": "Competitor-observed themes only; positions and top-ten ranking export unavailable",
+  "tlsEvidence": {
+    "domainVerified": true,
+    "misconfigured": false,
+    "conflicts": [],
+    "ipStatus": "required-change",
+    "originalAffectedHostnameKnown": false
+  }
+}

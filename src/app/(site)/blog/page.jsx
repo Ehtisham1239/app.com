@@ -1,3 +1,5 @@
+import { contentVisual } from "@/lib/content-visual";
+import { cardTone } from "@/lib/card-presentation";
 import { contentMetadata } from "@/lib/seo-metadata";
 import { ContentImage } from "@/components/site/content-image";
 import { notFound } from "next/navigation";
@@ -20,17 +22,12 @@ export async function generateMetadata({ searchParams }) {
 function PostCard({ post, large = false }) {
   return (
     <Link
+      data-card-tone={cardTone(post.slug)}
       href={`/blog/${post.slug}`}
-      className={`editorial-card group flex h-full flex-col ${large ? "md:col-span-2 md:flex-row" : ""}`}
+      className={`editorial-card card-tinted group flex h-full flex-col ${large ? "md:col-span-2 md:flex-row" : ""}`}
     >
       <div className={`relative m-2 shrink-0 overflow-hidden rounded-[1.15rem] bg-leaf-50 ${large ? "aspect-[3/2] md:aspect-auto md:w-[46%]" : "aspect-[3/2]"}`}>
-        {post.cover_url ? (
-          <ContentImage src={post.cover_url} alt={post.cover_alt} sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 400px" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" />
-        ) : (
-          <div className="pattern-girih flex size-full items-center justify-center">
-            <span className="rounded-full bg-mushaf-950/80 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-gold-300 ring-1 ring-gold-400/40">{post.category}</span>
-          </div>
-        )}
+        <ContentImage src={contentVisual(post).src} alt={contentVisual(post).alt} sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 400px" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" />
       </div>
       <div className={`flex min-w-0 flex-1 flex-col px-6 pb-6 pt-4 ${large ? "md:py-7" : ""}`}>
         <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.7rem] font-semibold uppercase tracking-wider text-leaf-700">

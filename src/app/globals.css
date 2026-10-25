@@ -334,3 +334,12 @@ main input:not([type="checkbox"]):not([type="radio"]), main select, main textare
   .home-hero .hero-copy { grid-row: 1; }
   .home-hero .hero-portrait { grid-row: 2; width: 100%; max-width: 600px; border-radius: 1.75rem; }
 }
+
+/* Soft course/package colours retain dark text and distinct focus outlines. */
+.card-tinted { --card-wash: #ecf8ef; --card-accent: #8bc5a0; background: linear-gradient(145deg, var(--card-wash), #fff 75%); border-color: var(--card-accent); }
+.card-tinted[data-card-tone="1"] { --card-wash: #fff2d9; --card-accent: #e2c17d; }
+.card-tinted[data-card-tone="2"] { --card-wash: #e6f5ff; --card-accent: #9ac8e0; }
+.card-tinted[data-card-tone="3"] { --card-wash: #f2eaff; --card-accent: #c5afe1; }
+.card-tinted[data-card-tone="4"] { --card-wash: #ffeef0; --card-accent: #e4adb9; }
+.card-tinted[data-card-tone="5"] { --card-wash: #e4f8f4; --card-accent: #8dcfc1; }
+.home-hero .hero-portrait { width: 100%; max-width: 440px; }

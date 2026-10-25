@@ -1,3 +1,4 @@
+import { SEARCH_INTENTS } from "@/lib/search-intent";
 import { ContentImage } from "@/components/site/content-image";
 import { SITE_URL } from "@/lib/config";
 import { safeJsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
@@ -40,6 +41,7 @@ export default async function CoursePage({ params }) {
   const fromPrice = prices.length ? Math.min(...prices) : null;
   const wa = whatsappLink(settings["site.contact"]?.whatsapp, `Assalamu alaikum, I am interested in the ${course.title} course.`);
 
+  const intent = SEARCH_INTENTS[`/courses/${course.slug}`];
   const jsonLd = courseSchema({ ...course, cover_url: publicImageUrl(course.cover_url) }, SITE_URL, settings["site.identity"]?.name);
 
   return (
@@ -54,6 +56,7 @@ export default async function CoursePage({ params }) {
 
       <div className="page-wrap grid gap-12 py-16 lg:grid-cols-[1fr_20rem]">
         <div className="min-w-0">
+          {intent && <section className="mb-8 border-l-4 border-gold-400 pl-5"><h2 className="text-2xl">{intent.heading}</h2><p className="mt-3 text-ink-soft">{intent.intro}</p></section>}
           {course.description_html && <div className="prose-oqc" dangerouslySetInnerHTML={{ __html: cleanHtml(course.description_html) }} />}
 
           <section className="surface mt-10 space-y-3 p-6"><h2 className="text-2xl">Plan lessons around your family</h2><p>Explore local scheduling and fee guidance before requesting a trial.</p><div className="flex flex-wrap gap-3"><Link href="/locations/united-states" className="btn btn-outline">USA families</Link><Link href="/locations/australia" className="btn btn-outline">Australian families</Link><Link href="/learn" className="btn btn-outline">Learning guides</Link></div></section>

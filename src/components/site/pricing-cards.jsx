@@ -1,3 +1,4 @@
+import { cardTone } from "@/lib/card-presentation";
 import Link from "next/link";
 import { clsx } from "clsx";
 import { Check } from "@/components/site/icons";
@@ -25,8 +26,9 @@ export function PricingCards({ plans, compact = false, currency }) {
         return (
           <div
             key={p.id}
+            data-card-tone={cardTone(p.name)}
             className={clsx(
-              "pricing-card editorial-card relative flex flex-col p-6",
+              "pricing-card editorial-card card-tinted relative flex flex-col p-6",
               featured ? "ring-2 ring-leaf-700" : "",
             )}
           >

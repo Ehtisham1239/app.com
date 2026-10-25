@@ -1,3 +1,4 @@
+import { cardTone, courseVisual } from "@/lib/card-presentation";
 import { ContentImage } from "@/components/site/content-image";
 import Link from "next/link";
 import { clsx } from "clsx";
@@ -16,7 +17,8 @@ export function Benefits({ items }) {
       {list.map((b, i) => (
         <li
           key={`${b.title}-${i}`}
-          className="group relative overflow-hidden rounded-[var(--radius-card)] border border-line bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-gold-300 hover:shadow-[var(--shadow-lift)]"
+          data-card-tone={cardTone(b.title)}
+          className="card-tinted group relative overflow-hidden rounded-[var(--radius-card)] border border-line bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-gold-300 hover:shadow-[var(--shadow-lift)]"
         >
           <span className="pointer-events-none absolute -right-10 -top-10 size-28 rounded-full bg-gold-50 transition-transform duration-500 group-hover:scale-125" aria-hidden="true" />
           <span className="relative flex size-12 items-center justify-center rounded-xl bg-mushaf-900 text-gold-300 ring-4 ring-gold-50 transition-colors duration-300 group-hover:bg-leaf-700">
@@ -34,20 +36,15 @@ export function Benefits({ items }) {
 // Courses
 // ---------------------------------------------------------------------------
 export function CourseCard({ course }) {
+  const visual = courseVisual(course);
   return (
     <Link
       href={`/courses/${course.slug}`}
-      className="course-card editorial-card group flex h-full flex-col"
+      data-card-tone={cardTone(course.slug)}
+      className="course-card editorial-card card-tinted group flex h-full flex-col"
     >
       <div className="course-visual">
-        {course.cover_url ? (
-          <ContentImage src={course.cover_url} alt={course.cover_alt} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-        ) : (
-          <>
-            <div className="pattern-girih absolute inset-0 opacity-[0.13]" aria-hidden="true" />
-            <div className="absolute -bottom-12 -left-10 size-44 rounded-full bg-leaf-600/35 blur-2xl transition-transform duration-500 group-hover:scale-110" aria-hidden="true" />
-          </>
-        )}
+        <ContentImage src={visual.src} alt={visual.alt} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" />
         {course.level && <span className="card-label absolute left-3 top-3">{course.level}</span>}
       </div>
       <div className="course-body">

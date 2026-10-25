@@ -1,3 +1,4 @@
+import { SEARCH_INTENTS } from "@/lib/search-intent";
 import { contentMetadata } from "@/lib/seo-metadata";
 import Link from "next/link";
 import { ArrowRight, BadgeCheck, HeartHandshake, Languages, ShieldCheck } from "@/components/site/icons";
@@ -22,7 +23,7 @@ export default async function TeachersPage() {
   const wa = whatsappLink(settings["site.contact"]?.whatsapp, "Assalamu alaikum, I would like to know about your teachers.");
   return (
     <>
-      <PageHero path="/teachers" eyebrow="Teachers" title="Taught by people who love the Quran" intro="Patient, qualified teachers who make every class personal — for beginners and for students completing Hifz." />
+      <PageHero path="/teachers" eyebrow="Teachers" title={SEARCH_INTENTS["/teachers"].heading} intro={SEARCH_INTENTS["/teachers"].intro} />
       <section className="page-wrap py-16 sm:py-20">
         {teachers.length > 0 ? (
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

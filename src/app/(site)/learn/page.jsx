@@ -1,3 +1,5 @@
+import { contentVisual } from "@/lib/content-visual";
+import { cardTone } from "@/lib/card-presentation";
 import { contentMetadata } from "@/lib/seo-metadata";
 import Link from "next/link";
 import { ArrowRight } from "@/components/site/icons";
@@ -15,8 +17,8 @@ export default async function Page() {
     <PageHero path="/learn" eyebrow="Learning centre" title="Find a learning path that fits" intro="Start with your learner’s current reading level and goals, then explore a course and discuss a trial." />
     <section className="page-wrap py-16">
       <div className="grid gap-6 sm:grid-cols-2">
-        {guides.filter(g => g.content).map(g => <Link className="editorial-card group flex flex-col" key={g.slug} href={g.path}>
-          {g.content.cover_url && <div className="relative mx-2 mt-2 aspect-[16/9] overflow-hidden rounded-[1.15rem]"><ContentImage src={g.content.cover_url} alt={g.content.cover_alt} sizes="(max-width: 639px) 100vw, 600px" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" /></div>}
+        {guides.filter(g => g.content).map(g => <Link data-card-tone={cardTone(g.slug)} className="editorial-card card-tinted group flex flex-col" key={g.slug} href={g.path}>
+          {<div className="relative mx-2 mt-2 aspect-[16/9] overflow-hidden rounded-[1.15rem]"><ContentImage src={contentVisual(g.content).src} alt={contentVisual(g.content).alt} sizes="(max-width: 639px) 100vw, 600px" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" /></div>}
           <div className="flex flex-1 flex-col p-6"><p className="text-xs font-bold uppercase tracking-wider text-leaf-700">{g.audience}</p><h2 className="mt-3 text-2xl">{g.title}</h2>{g.content.excerpt && <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-soft">{g.content.excerpt}</p>}<span className="card-action mt-6">Read the guide <span className="card-arrow"><ArrowRight className="size-4" aria-hidden="true" /></span></span></div>
         </Link>)}
       </div>

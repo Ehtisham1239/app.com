@@ -1,3 +1,5 @@
+import { contentVisual } from "@/lib/content-visual";
+import { cardTone } from "@/lib/card-presentation";
 import { HomeContact } from "@/components/site/home-contact";
 import { ContentImage } from "@/components/site/content-image";
 import { HomeMotion } from "@/components/site/home-motion";
@@ -20,7 +22,7 @@ export async function generateMetadata() {
     title: { absolute: seo.title ?? "Online Quran College" },
     description: seo.description || "Live one-to-one online Quran classes for children and adults. Explore Noorani Qaida, Tajweed, Hifz and Arabic with Online Quran College.",
     alternates: { canonical: "/" },
-    twitter: { card: "summary_large_image", title: seo.title || "Online Quran College", description: seo.description || "Live online Quran lessons for children and adults, with flexible class times.", images: ["/images/islamic/quran-study-v1-1200.webp"] },
+    twitter: { card: "summary_large_image", title: seo.title || "Online Quran College", description: seo.description || "Live online Quran lessons for children and adults, with flexible class times.", images: ["/opengraph-image"] },
     openGraph: { title: seo.title || "Online Quran College", description: seo.description || "Live online Quran lessons for children and adults, with flexible class times.", url: "/", images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Online Quran College — live online Quran classes" }] },
   };
 }
@@ -64,7 +66,7 @@ export default async function HomePage() {
           { href: "/locations/united-states", image: "usa-online-quran-learning", alt: "Child and parent reviewing an Arabic workbook beside a laptop", title: "Quran classes in the USA", text: "US time zones, courses and USD packages." },
           { href: "/locations/australia", image: "australia-online-quran-learning", alt: "Young learner studying an Arabic workbook beside a laptop", title: "Quran classes in Australia", text: "Plan around your city and request approved AUD fees." },
           { href: "/learn", image: "home-learning-paths", alt: "Young learner with headphones using a workbook and laptop beside a closed book on a stand", title: "Find your learning path", text: "Guides for parents, adults and recitation learners." },
-        ].map(item => <Link key={item.href} href={item.href} className="surface editorial-card group flex flex-col"><div className="mx-2 mt-2 aspect-[3/2] overflow-hidden rounded-[1.15rem]"><ContentImage src={`/images/learning/${item.image}-1200.webp`} alt={item.alt} sizes="(max-width: 639px) 100vw, (max-width: 1024px) 33vw, 380px" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" /></div><div className="flex flex-1 flex-col p-6"><h2 className="text-xl">{item.title}</h2><p className="mt-3 flex-1 text-sm text-ink-soft">{item.text}</p><span className="card-action mt-5">Explore <span className="card-arrow"><ArrowRight className="size-4" aria-hidden="true" /></span></span></div></Link>)}
+        ].map(item => <Link key={item.href} href={item.href} data-card-tone={cardTone(item.href)} className="surface editorial-card card-tinted group flex flex-col"><div className="mx-2 mt-2 aspect-[3/2] overflow-hidden rounded-[1.15rem]"><ContentImage src={`/images/learning/${item.image}-1200.webp`} alt={item.alt} sizes="(max-width: 639px) 100vw, (max-width: 1024px) 33vw, 380px" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" /></div><div className="flex flex-1 flex-col p-6"><h2 className="text-xl">{item.title}</h2><p className="mt-3 flex-1 text-sm text-ink-soft">{item.text}</p><span className="card-action mt-5">Explore <span className="card-arrow"><ArrowRight className="size-4" aria-hidden="true" /></span></span></div></Link>)}
       </section>
       <section id="courses" className="bg-[#f4fbf7] py-20 sm:py-24" aria-labelledby="courses-heading">
         <div className="page-wrap"><div className="flex flex-wrap items-end justify-between gap-6">
@@ -169,7 +171,7 @@ export default async function HomePage() {
       )}
 
 
-      {posts.length > 0 && <section id="blog" className="bg-[#f4fbf7] py-16 sm:py-24"><div className="page-wrap"><SectionHeading eyebrow="Our blog" title="Latest Articles & Resources" intro="Practical guides for Quran learning, recitation and family study routines." /><div className="mt-10 grid gap-6 md:grid-cols-3">{posts.map(post => <Link key={post.slug} href={`/blog/${post.slug}`} className="surface overflow-hidden">{post.cover_url && <ContentImage src={post.cover_url} alt={post.cover_alt} sizes="(max-width: 768px) 100vw, 380px" className="aspect-[3/2] w-full object-cover" />}<div className="p-6"><p className="text-xs font-semibold uppercase tracking-wider text-leaf-700">{post.category}</p><h3 className="mt-2 text-xl text-leaf-700">{post.title}</h3><p className="mt-3 text-sm text-ink-soft">{truncate(post.excerpt || "", 100)}</p></div></Link>)}</div><div className="mt-8 text-center"><Link href="/blog" className="btn btn-outline">All articles</Link></div></div></section>}
+      {posts.length > 0 && <section id="blog" className="bg-[#f4fbf7] py-16 sm:py-24"><div className="page-wrap"><SectionHeading eyebrow="Our blog" title="Latest Articles & Resources" intro="Practical guides for Quran learning, recitation and family study routines." /><div className="mt-10 grid gap-6 md:grid-cols-3">{posts.map(post => <Link key={post.slug} href={`/blog/${post.slug}`} data-card-tone={cardTone(post.slug)} className="surface card-tinted overflow-hidden">{<ContentImage src={contentVisual(post).src} alt={contentVisual(post).alt} sizes="(max-width: 768px) 100vw, 380px" className="aspect-[3/2] w-full object-cover" />}<div className="p-6"><p className="text-xs font-semibold uppercase tracking-wider text-leaf-700">{post.category}</p><h3 className="mt-2 text-xl text-leaf-700">{post.title}</h3><p className="mt-3 text-sm text-ink-soft">{truncate(post.excerpt || "", 100)}</p></div></Link>)}</div><div className="mt-8 text-center"><Link href="/blog" className="btn btn-outline">All articles</Link></div></div></section>}
       <CtaBand
         title="Begin your family’s Quran journey this week"
         text="Book a 7-day free trial. We will match you with a teacher, agree a time that suits your time zone and send the class link — no card needed."

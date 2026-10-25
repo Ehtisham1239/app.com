@@ -2,7 +2,7 @@ import nextVitals from "eslint-config-next/core-web-vitals";
 
 const eslintConfig = [
   ...nextVitals,
-  { ignores: [".next/**", "node_modules/**", "supabase/functions/**"] },
+  { ignores: [".next/**", "artifacts/**", "node_modules/**", "supabase/functions/**"] },
   {
     rules: {
       "@next/next/no-img-element": "off",
