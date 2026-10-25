@@ -1,0 +1,704 @@
+{
+  "version": 1,
+  "reviewed": "2026-10-25",
+  "scope": "USA first, UK, Canada, Australia; 32 hypotheses on existing canonical pages",
+  "locale_limitation": "Public general web results; no controlled Google country/device location, ranking export or volume source",
+  "sources": [
+    {
+      "id": "tarteel-home",
+      "url": "https://www.tarteelequran.com/",
+      "observed": "2026-10-25",
+      "evidence": "Verified public topic/market wording; not rank or demand evidence"
+    },
+    {
+      "id": "tarteel-canada",
+      "url": "https://www.tarteelequran.com/quran-courses/learn-quran-in-canada/",
+      "observed": "2026-10-25",
+      "evidence": "Verified public Canada audience/course topics"
+    },
+    {
+      "id": "tarteel-fees",
+      "url": "https://www.tarteelequran.com/quran-learning-fees/",
+      "observed": "2026-10-25",
+      "evidence": "Observed search-result excerpt names USD/CAD/GBP/AUD; no OQC fees adopted"
+    },
+    {
+      "id": "seema-canada",
+      "url": "https://seemaquranacademy.com/online-quran-classes-canada",
+      "observed": "2026-10-25",
+      "evidence": "Verified public Canadian lesson and time-zone topics"
+    },
+    {
+      "id": "rahber-uk",
+      "url": "https://rahberinstituteuk.com/",
+      "observed": "2026-10-25",
+      "evidence": "Search-result excerpt only; page open timed out"
+    }
+  ],
+  "queries": [
+    {
+      "country": "USA",
+      "priority": 1,
+      "query": "online Quran classes USA",
+      "intent": "commercial",
+      "current_url": "/locations/united-states",
+      "best_fit_url": "/locations/united-states",
+      "currency_context": "USD",
+      "user_need": "Compare course, local clock and enrolment path",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "USA",
+      "priority": 1,
+      "query": "Quran classes for kids USA",
+      "intent": "commercial",
+      "current_url": "/learn/quran-for-kids",
+      "best_fit_url": "/learn/quran-for-kids",
+      "currency_context": "USD",
+      "user_need": "Help a parent describe reading readiness",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "USA",
+      "priority": 1,
+      "query": "online Quran classes for adults USA",
+      "intent": "commercial",
+      "current_url": "/learn/quran-for-adults",
+      "best_fit_url": "/learn/quran-for-adults",
+      "currency_context": "USD",
+      "user_need": "Explain starting level and realistic practice",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "USA",
+      "priority": 1,
+      "query": "Noorani Qaida online USA",
+      "intent": "commercial",
+      "current_url": "/courses/noorani-qaida",
+      "best_fit_url": "/courses/noorani-qaida",
+      "currency_context": "USD",
+      "user_need": "Discuss first-letter reading support",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "USA",
+      "priority": 1,
+      "query": "learn Quran with Tajweed USA",
+      "intent": "informational/commercial",
+      "current_url": "/courses/tajweed",
+      "best_fit_url": "/courses/tajweed",
+      "currency_context": "USD",
+      "user_need": "Explain feedback and connect to Quran Nazara",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "USA",
+      "priority": 1,
+      "query": "online Quran memorisation USA",
+      "intent": "commercial",
+      "current_url": "/courses/hifz-quran",
+      "best_fit_url": "/courses/hifz-quran",
+      "currency_context": "USD",
+      "user_need": "Discuss revision and readiness without completion promises",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "USA",
+      "priority": 1,
+      "query": "Quran class fees USA",
+      "intent": "commercial",
+      "current_url": "/pricing",
+      "best_fit_url": "/pricing",
+      "currency_context": "USD",
+      "user_need": "Confirm approved written currency and package",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "USA",
+      "priority": 1,
+      "query": "female Quran teacher USA",
+      "intent": "commercial",
+      "current_url": "/teachers",
+      "best_fit_url": "/teachers",
+      "currency_context": "USD",
+      "user_need": "Request preference subject to team confirmation",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "UK",
+      "priority": 2,
+      "query": "online Quran classes UK",
+      "intent": "commercial",
+      "current_url": "/locations/united-kingdom",
+      "best_fit_url": "/locations/united-kingdom",
+      "currency_context": "GBP",
+      "user_need": "Compare course, local clock and enrolment path",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home",
+        "rahber-uk"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "UK",
+      "priority": 2,
+      "query": "Quran classes for kids UK",
+      "intent": "commercial",
+      "current_url": "/learn/quran-for-kids",
+      "best_fit_url": "/learn/quran-for-kids",
+      "currency_context": "GBP",
+      "user_need": "Help a parent describe reading readiness",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home",
+        "rahber-uk"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "UK",
+      "priority": 2,
+      "query": "online Quran classes for adults UK",
+      "intent": "commercial",
+      "current_url": "/learn/quran-for-adults",
+      "best_fit_url": "/learn/quran-for-adults",
+      "currency_context": "GBP",
+      "user_need": "Explain starting level and realistic practice",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home",
+        "rahber-uk"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "UK",
+      "priority": 2,
+      "query": "Noorani Qaida online UK",
+      "intent": "commercial",
+      "current_url": "/courses/noorani-qaida",
+      "best_fit_url": "/courses/noorani-qaida",
+      "currency_context": "GBP",
+      "user_need": "Discuss first-letter reading support",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home",
+        "rahber-uk"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "UK",
+      "priority": 2,
+      "query": "learn Quran with Tajweed UK",
+      "intent": "informational/commercial",
+      "current_url": "/courses/tajweed",
+      "best_fit_url": "/courses/tajweed",
+      "currency_context": "GBP",
+      "user_need": "Explain feedback and connect to Quran Nazara",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home",
+        "rahber-uk"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "UK",
+      "priority": 2,
+      "query": "online Quran memorisation UK",
+      "intent": "commercial",
+      "current_url": "/courses/hifz-quran",
+      "best_fit_url": "/courses/hifz-quran",
+      "currency_context": "GBP",
+      "user_need": "Discuss revision and readiness without completion promises",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home",
+        "rahber-uk"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "UK",
+      "priority": 2,
+      "query": "Quran class fees UK",
+      "intent": "commercial",
+      "current_url": "/pricing",
+      "best_fit_url": "/pricing",
+      "currency_context": "GBP",
+      "user_need": "Confirm approved written currency and package",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home",
+        "rahber-uk"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "UK",
+      "priority": 2,
+      "query": "female Quran teacher UK",
+      "intent": "commercial",
+      "current_url": "/teachers",
+      "best_fit_url": "/teachers",
+      "currency_context": "GBP",
+      "user_need": "Request preference subject to team confirmation",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home",
+        "rahber-uk"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "Canada",
+      "priority": 3,
+      "query": "online Quran classes Canada",
+      "intent": "commercial",
+      "current_url": "/locations/canada",
+      "best_fit_url": "/locations/canada",
+      "currency_context": "CAD",
+      "user_need": "Compare course, local clock and enrolment path",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home",
+        "tarteel-canada",
+        "seema-canada"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "Canada",
+      "priority": 3,
+      "query": "Quran classes for kids Canada",
+      "intent": "commercial",
+      "current_url": "/learn/quran-for-kids",
+      "best_fit_url": "/learn/quran-for-kids",
+      "currency_context": "CAD",
+      "user_need": "Help a parent describe reading readiness",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home",
+        "tarteel-canada",
+        "seema-canada"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "Canada",
+      "priority": 3,
+      "query": "online Quran classes for adults Canada",
+      "intent": "commercial",
+      "current_url": "/learn/quran-for-adults",
+      "best_fit_url": "/learn/quran-for-adults",
+      "currency_context": "CAD",
+      "user_need": "Explain starting level and realistic practice",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home",
+        "tarteel-canada",
+        "seema-canada"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "Canada",
+      "priority": 3,
+      "query": "Noorani Qaida online Canada",
+      "intent": "commercial",
+      "current_url": "/courses/noorani-qaida",
+      "best_fit_url": "/courses/noorani-qaida",
+      "currency_context": "CAD",
+      "user_need": "Discuss first-letter reading support",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home",
+        "tarteel-canada",
+        "seema-canada"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "Canada",
+      "priority": 3,
+      "query": "learn Quran with Tajweed Canada",
+      "intent": "informational/commercial",
+      "current_url": "/courses/tajweed",
+      "best_fit_url": "/courses/tajweed",
+      "currency_context": "CAD",
+      "user_need": "Explain feedback and connect to Quran Nazara",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home",
+        "tarteel-canada",
+        "seema-canada"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "Canada",
+      "priority": 3,
+      "query": "online Quran memorisation Canada",
+      "intent": "commercial",
+      "current_url": "/courses/hifz-quran",
+      "best_fit_url": "/courses/hifz-quran",
+      "currency_context": "CAD",
+      "user_need": "Discuss revision and readiness without completion promises",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home",
+        "tarteel-canada",
+        "seema-canada"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "Canada",
+      "priority": 3,
+      "query": "Quran class fees Canada",
+      "intent": "commercial",
+      "current_url": "/pricing",
+      "best_fit_url": "/pricing",
+      "currency_context": "CAD",
+      "user_need": "Confirm approved written currency and package",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home",
+        "tarteel-canada",
+        "seema-canada"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "Canada",
+      "priority": 3,
+      "query": "female Quran teacher Canada",
+      "intent": "commercial",
+      "current_url": "/teachers",
+      "best_fit_url": "/teachers",
+      "currency_context": "CAD",
+      "user_need": "Request preference subject to team confirmation",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home",
+        "tarteel-canada",
+        "seema-canada"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "Australia",
+      "priority": 4,
+      "query": "online Quran classes Australia",
+      "intent": "commercial",
+      "current_url": "/locations/australia",
+      "best_fit_url": "/locations/australia",
+      "currency_context": "AUD",
+      "user_need": "Compare course, local clock and enrolment path",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "Australia",
+      "priority": 4,
+      "query": "Quran classes for kids Australia",
+      "intent": "commercial",
+      "current_url": "/learn/quran-for-kids",
+      "best_fit_url": "/learn/quran-for-kids",
+      "currency_context": "AUD",
+      "user_need": "Help a parent describe reading readiness",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "Australia",
+      "priority": 4,
+      "query": "online Quran classes for adults Australia",
+      "intent": "commercial",
+      "current_url": "/learn/quran-for-adults",
+      "best_fit_url": "/learn/quran-for-adults",
+      "currency_context": "AUD",
+      "user_need": "Explain starting level and realistic practice",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "Australia",
+      "priority": 4,
+      "query": "Noorani Qaida online Australia",
+      "intent": "commercial",
+      "current_url": "/courses/noorani-qaida",
+      "best_fit_url": "/courses/noorani-qaida",
+      "currency_context": "AUD",
+      "user_need": "Discuss first-letter reading support",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "Australia",
+      "priority": 4,
+      "query": "learn Quran with Tajweed Australia",
+      "intent": "informational/commercial",
+      "current_url": "/courses/tajweed",
+      "best_fit_url": "/courses/tajweed",
+      "currency_context": "AUD",
+      "user_need": "Explain feedback and connect to Quran Nazara",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "Australia",
+      "priority": 4,
+      "query": "online Quran memorisation Australia",
+      "intent": "commercial",
+      "current_url": "/courses/hifz-quran",
+      "best_fit_url": "/courses/hifz-quran",
+      "currency_context": "AUD",
+      "user_need": "Discuss revision and readiness without completion promises",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "Australia",
+      "priority": 4,
+      "query": "Quran class fees Australia",
+      "intent": "commercial",
+      "current_url": "/pricing",
+      "best_fit_url": "/pricing",
+      "currency_context": "AUD",
+      "user_need": "Confirm approved written currency and package",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    },
+    {
+      "country": "Australia",
+      "priority": 4,
+      "query": "female Quran teacher Australia",
+      "intent": "commercial",
+      "current_url": "/teachers",
+      "best_fit_url": "/teachers",
+      "currency_context": "AUD",
+      "user_need": "Request preference subject to team confirmation",
+      "evidence_label": "Hypothesis",
+      "observed_at": "2026-10-25",
+      "competitor_sources": [
+        "tarteel-home"
+      ],
+      "search_volume": null,
+      "keyword_difficulty": null,
+      "current_position": null,
+      "confidence": "Topic relevance observed; country-specific demand and ranking not measured",
+      "next_action": "Validate using an authorised country-filtered GSC export or location-controlled demand tool; refine the existing principal page, without a duplicate landing page"
+    }
+  ]
+}

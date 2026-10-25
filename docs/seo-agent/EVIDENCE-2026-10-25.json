@@ -1,0 +1,150 @@
+{
+  "date": "2026-10-25",
+  "timezone": "Asia/Karachi",
+  "status": "locally verified; staged and live verification pending",
+  "sourceBase": "262d95252c9aaca30fccf5a8d741a9b2f29de118",
+  "productionBaselineSource": "57ffe60f364a6ae3a8c9e8fa387d1ba0852ee96a",
+  "productionBaseline": {
+    "utc_timestamp": "2026-10-25T08:32:16.636878+00:00",
+    "pages_attempted": 206,
+    "statuses": {
+      "200": 206
+    },
+    "sitemap_url_count": 205,
+    "sitemap_urls_attempted": 205,
+    "finding_counts": {},
+    "stopped_reason": null
+  },
+  "tests": {
+    "passed": 53,
+    "failed": 0
+  },
+  "lint": {
+    "errors": 0,
+    "existingWarnings": 19
+  },
+  "build": "passed",
+  "localAudit": {
+    "checkedAt": "2026-10-25T08:29:33.868Z",
+    "timezone": "Asia/Karachi",
+    "mode": "READ_ONLY",
+    "base": "http://localhost:3012",
+    "canonicalOrigin": "https://project-umber-three-93.vercel.app",
+    "sitemapUrls": 205,
+    "audited": 205,
+    "technicalFindings": 0,
+    "qualityFailures": 0,
+    "topImages": 196,
+    "requestMethods": [
+      "GET"
+    ],
+    "integrationMetrics": {
+      "gsc": "Not Checked: authenticated property/export required",
+      "ga4": "Not Checked: authenticated property/export required",
+      "semrush": "Not Checked: entitlement and fresh audit export required"
+    },
+    "limitations": [
+      "Raw HTML and response checks; not Google index status or Rich Results Test",
+      "No physical-device test, field CWV, actual keyword positions or organic attribution",
+      "Offer wording is observed, not documentary substantiation",
+      "No form submissions, authenticated staff operations or external messages"
+    ]
+  },
+  "localBrowser": {
+    "base": "http://localhost:3012",
+    "layouts": [
+      {
+        "device": "desktop",
+        "slug": "united-states",
+        "language": "en-US"
+      },
+      {
+        "device": "desktop",
+        "slug": "united-kingdom",
+        "language": "en-GB"
+      },
+      {
+        "device": "desktop",
+        "slug": "canada",
+        "language": "en-CA"
+      },
+      {
+        "device": "desktop",
+        "slug": "australia",
+        "language": "en-AU"
+      },
+      {
+        "device": "mobile",
+        "slug": "united-states",
+        "language": "en-US"
+      },
+      {
+        "device": "mobile",
+        "slug": "united-kingdom",
+        "language": "en-GB"
+      },
+      {
+        "device": "mobile",
+        "slug": "canada",
+        "language": "en-CA"
+      },
+      {
+        "device": "mobile",
+        "slug": "australia",
+        "language": "en-AU"
+      }
+    ],
+    "olderClockDatabase": true,
+    "unexpectedWrites": 0,
+    "browserErrors": [],
+    "transportErrors": []
+  },
+  "integrationRegister": {
+    "GitHub": {
+      "status": "Verified",
+      "repo": "Ehtisham1239/app.com",
+      "head": "262d95252c9aaca30fccf5a8d741a9b2f29de118"
+    },
+    "Vercel": {
+      "status": "Verified",
+      "project": "prj_q3qTOTMNxuDfgmd5XoCaoWVhQBVu",
+      "team": "team_8Xig9mSvNd3XLAzNbQgwPapo",
+      "productionDeployment": "dpl_4c7z9bMxkEMMDe7ct7xwW79kazJb",
+      "state": "READY"
+    },
+    "environment": {
+      "status": "Verified names and targets only; no values copied",
+      "names": [
+        "NEXT_PUBLIC_SUPABASE_URL",
+        "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY",
+        "NEXT_PUBLIC_SITE_URL"
+      ],
+      "targets": [
+        "production",
+        "preview",
+        "development"
+      ]
+    },
+    "Supabase": {
+      "status": "Reported from previous verified project; no new private query or write in this run",
+      "project": "lgbwidraztavhhbnbfhr"
+    },
+    "SearchConsole": {
+      "status": "Not Checked",
+      "required": "Authenticated property or dated authorised export"
+    },
+    "GA4": {
+      "status": "Not Checked",
+      "required": "Authenticated property, event definitions, consent and dated export"
+    },
+    "Semrush": {
+      "status": "Not Checked",
+      "required": "Actual product/API entitlement and fresh issue-level export"
+    },
+    "pluginDiscovery": {
+      "status": "Verified available, not installed or authorised",
+      "provider": "Windsor.ai",
+      "purpose": "Optional GSC/GA4 access path; not marked connected"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "reviewed": "2026-10-25",
+  "target": "https://project-umber-three-93.vercel.app",
+  "repository": "Ehtisham1239/app.com",
+  "offer_source": {
+    "label": "Reported",
+    "source": "Current public pages and repository catalog; final business truth-sheet sign-off not supplied",
+    "approval_established": false,
+    "instructions": "Preserve current trial length, prices and course schedules. Public wording is not documentary substantiation."
+  },
+  "claims": [
+    {
+      "claim": "Active student counts",
+      "status": "Not Checked",
+      "needed": "Dated aggregate operational evidence and approved wording"
+    },
+    {
+      "claim": "Countries with actual enrolled learners",
+      "status": "Not Checked",
+      "needed": "Dated aggregate enrolled-learner geography; directory count is service coverage only"
+    },
+    {
+      "claim": "Teacher credentials and testimonials",
+      "status": "Not Checked",
+      "needed": "Verified credential records and publication consent; never manufacture replacements"
+    }
+  ],
+  "measurement": {
+    "gsc_property": null,
+    "ga4_property": null,
+    "semrush_api_entitlement": null,
+    "baseline_period": null,
+    "comparison_period": null,
+    "organic_clicks": null,
+    "impressions": null,
+    "organic_sessions": null,
+    "qualified_enquiries": null,
+    "attended_trials": null,
+    "paid_enrolments": null,
+    "retention": null,
+    "definition": "Keep CTA clicks, saved forms, staff qualification, trial attendance, paid enrolment and retention separate. CMS all-source counts are not organic attribution."
+  },
+  "clock_sources": [
+    {
+      "url": "https://www.gov.uk/when-do-the-clocks-change",
+      "status": "Verified public guidance",
+      "reviewed": "2026-10-25"
+    },
+    {
+      "url": "https://www2.gov.bc.ca/gov/content/governments/celebrating-british-columbia/daylight-saving-time",
+      "status": "Verified public guidance: Pacific UTC-7; no November 2026 fallback",
+      "reviewed": "2026-10-25"
+    },
+    {
+      "url": "https://www.alberta.ca/albertas-new-time-system-abt",
+      "status": "Verified public guidance: Alberta UTC-6 from November 2026",
+      "reviewed": "2026-10-25"
+    },
+    {
+      "url": "https://www.cnrc.canada.ca/en/certifications-evaluations-standards/canadas-official-time/time-zones-daylight-saving-time",
+      "status": "Verified warning: national page under review for November 2026; provincial sources take precedence",
+      "reviewed": "2026-10-25"
+    }
+  ]
+}

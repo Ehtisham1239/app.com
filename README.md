@@ -27,3 +27,7 @@ The current deployed changes and checks are documented in [the agent/action revi
 See [DEPLOYMENT.md](DEPLOYMENT.md) for the precise live setup steps, admin creation, current blockers
 and validation limits. The provided public key is configured locally in the ignored `.env.local`.
 Never put service-role keys or passwords in public environment variables.
+
+## Reusable SEO agent workflow
+
+Use [the agent instructions](docs/seo-agent/INSTRUCTIONS.md) with this project. Run `npm run seo:agent` for an on-demand read-only audit of the approved production alias, or `npm run seo:agent -- http://localhost:3012 artifacts/seo-agent/local` with an already running local QA server. Reports and the URL inventory go to ignored `artifacts/`; the command never publishes, deploys or submits forms. The four-market research map and knowledge/claim register live in `content/seo-agent/`. These are reusable instructions and an executable audit workflow, not an installed Custom GPT or continuous background service.
