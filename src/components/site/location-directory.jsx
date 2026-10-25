@@ -1,4 +1,5 @@
 "use client";
+import { cardTone } from "@/lib/card-presentation";
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight, Globe2, Search } from "@/components/site/icons";
@@ -15,8 +16,9 @@ export function LocationDirectory({ countries }) {
       <p id="location-results" role="status" className="mt-3 text-sm text-ink-soft">{matches.length} {matches.length === 1 ? 'country' : 'countries'}{term ? ' found' : ' available'}</p>
       {term && <button type="button" className="mt-2 rounded-lg px-3 py-3 text-sm font-semibold text-leaf-700 underline" onClick={() => setQuery('')}>Clear search</button>}
     </div>
-    {!matches.length ? <div className="surface p-8"><h2 className="text-xl">No matching location</h2><p className="mt-3 text-ink-soft">Try a country name or <Link className="font-semibold text-leaf-700 underline" href="/contact">ask us about classes in your time zone</Link>.</p></div> : <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{matches.map(country => <article className="editorial-card flex flex-col p-6" key={country.slug}>
+    {!matches.length ? <div className="surface p-8"><h2 className="text-xl">No matching location</h2><p className="mt-3 text-ink-soft">Try a country name or <Link className="font-semibold text-leaf-700 underline" href="/contact">ask us about classes in your time zone</Link>.</p></div> : <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{matches.map(country => <article data-card-tone={cardTone(country.slug)} className="location-country-card editorial-card card-tinted flex flex-col p-6" key={country.slug}>
       <div className="-mx-6 -mt-6 mb-5 flex items-center justify-between border-b border-leaf-100 bg-leaf-50 px-6 py-5"><span className="flex size-11 items-center justify-center rounded-2xl bg-white text-leaf-700"><Globe2 className="size-6" aria-hidden="true" /></span><span className="text-xs font-bold tracking-wider text-leaf-700">{country.currency} · ONLINE</span></div>
+      {country.image && <Link href={country.path} aria-label={`View ${country.name} classes`} className="mb-5 block overflow-hidden rounded-xl border border-line"><img src={country.image.src} srcSet={country.image.srcSet} alt={country.image.alt} width={400} height={267} sizes="(max-width: 639px) 90vw, (max-width: 1023px) 45vw, 360px" className="aspect-[3/2] w-full object-cover" loading="lazy" decoding="async" /></Link>}
       <h2 className="text-xl"><Link href={country.path} className="hover:text-leaf-700">{country.name}</Link></h2>
       <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-soft">{country.cities.map(city => city.name).join(' · ')}</p>
       {term && country.cities.filter(city => city.name.toLocaleLowerCase().includes(term)).map(city => <Link key={city.path} href={city.path} className="mt-3 block py-2 text-sm font-semibold text-leaf-700 underline">Classes in {city.name}</Link>)}

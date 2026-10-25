@@ -9,7 +9,7 @@ export function LocationSchedule({ countryName, currency, places }) {
   const [time, setTime] = useState("18:00");
   const place = places.find((p) => p.slug === citySlug) || places[0];
   const result = place && date ? schedulePreview(date, time, place.timezone) : null;
-  const query = new URLSearchParams({ country: countryName, currency, ...(place ? { city: place.name } : {}) });
+  const query = new URLSearchParams({ country: countryName, currency, ...(place ? { city: place.name } : {}), ...(result ? { lesson_date: date, lesson_time: time, lesson_timezone: place.timezone } : {}) });
   return <section className="surface space-y-5 p-6 sm:p-8" aria-labelledby="schedule-title">
     <h2 id="schedule-title" className="text-2xl">Plan a lesson in your local time</h2>
     <p className="text-ink-soft">Compare your local time with Asia/Karachi. The coordinator confirms teacher availability.</p>

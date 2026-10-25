@@ -1,3 +1,4 @@
+import { quoteCurrencies } from "@/lib/booking-preferences";
 import { PageHero } from "@/components/site/chrome";
 import Link from "next/link";
 import { contentMetadata } from "@/lib/seo-metadata";
@@ -33,7 +34,7 @@ export default async function FreeTrialPage() {
     <section id="trial-form" aria-label="Trial request" className="page-wrap grid scroll-mt-28 items-start gap-8 py-12 lg:grid-cols-[0.65fr_1fr]">
       <div><h2 className="text-2xl">A simple start</h2><ul className="mt-6 space-y-4">{PROMISES.slice(0, 3).map(({icon: Icon, title, text}) => <li key={title} className="surface flex gap-3 p-5"><Icon className="mt-1 size-5 shrink-0 text-leaf-700" aria-hidden="true" /><div><h3 className="font-semibold">{title}</h3><p className="mt-1 text-sm text-ink-soft">{text}</p></div></li>)}</ul></div>
       <Suspense fallback={<div className="surface h-[34rem] animate-pulse" aria-label="Loading trial form" />}>
-        <TrialForm courses={courses.map(({ id, title }) => ({ id, title }))} plans={plans.map(({ id, name, classes_per_week }) => ({ id, name, classes_per_week }))} consentText={forms.consent_text} successText={forms.trial_success} whatsappHref={wa} />
+        <TrialForm currencies={quoteCurrencies(plans)} courses={courses.map(({ id, title }) => ({ id, title }))} plans={plans.map(({ id, name, classes_per_week }) => ({ id, name, classes_per_week }))} consentText={forms.consent_text} successText={forms.trial_success} whatsappHref={wa} />
       </Suspense>
     </section>
   </>;

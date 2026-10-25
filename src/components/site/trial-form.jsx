@@ -9,6 +9,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { clsx } from "clsx";
 import { ArrowLeft, ArrowRight, Check, CheckCircle2, Loader2, MessageCircle } from "@/components/site/icons";
+import { bookingPreferenceNotes } from "@/lib/booking-preferences";
 import { getPublicBrowserClient } from "@/lib/supabase/public";
 import { AGE_BANDS, COUNTRIES, LANGUAGES, LEVELS, TEACHER_PREFS, TIME_SLOTS, WEEKDAYS } from "@/lib/constants";
 
@@ -71,7 +72,7 @@ function FieldError({ children, id }) {
   );
 }
 
-export function TrialForm({ courses = [], plans = [], consentText, successText, whatsappHref }) {
+export function TrialForm({ courses = [], plans = [], currencies = [], consentText, successText, whatsappHref }) {
   const params = useSearchParams();
   const topRef = useRef(null);
   const stepHeadingRef = useRef(null);
@@ -112,7 +113,7 @@ export function TrialForm({ courses = [], plans = [], consentText, successText, 
       email: "",
       phone: "",
       phone_is_whatsapp: true,
-      notes: "",
+      notes: bookingPreferenceNotes(params, currencies),
       consent: false,
       marketing_opt_in: false,
       website: "",

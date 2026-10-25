@@ -66,7 +66,7 @@ export function PricingCards({ plans, compact = false, currency }) {
             ) : (
               <div className="flex-1" />
             )}
-            <Link href={`/free-trial?plan=${p.id}`} className={clsx("btn mt-6 w-full", featured ? "btn-gold" : "btn-primary")}>
+            <Link href={`/free-trial?${new URLSearchParams({ plan: p.id, ...(currency ? { currency } : {}) })}`} className={clsx("btn mt-6 w-full", featured ? "btn-gold" : "btn-primary")}>
               Start with a free trial
             </Link>
           </div>

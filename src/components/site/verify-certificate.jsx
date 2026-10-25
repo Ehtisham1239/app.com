@@ -13,12 +13,16 @@ export function VerifyCertificate() {
   const [state, setState] = useState({ loading: initial.length >= 4, checked: initial, result: undefined, error: "" });
 
   const lookup = useCallback(async (n) => {
-    const { data, error } = await getPublicBrowserClient().rpc("verify_certificate", { p_number: n });
-    if (error) {
+    try {
+      const { data, error } = await getPublicBrowserClient().rpc("verify_certificate", { p_number: n });
+      if (error) {
+        setState({ loading: false, checked: n, result: undefined, error: "We could not check the certificate right now. Please try again in a moment." });
+        return;
+      }
+      setState({ loading: false, checked: n, result: data ?? null, error: "" });
+    } catch {
       setState({ loading: false, checked: n, result: undefined, error: "We could not check the certificate right now. Please try again in a moment." });
-      return;
     }
-    setState({ loading: false, checked: n, result: data ?? null, error: "" });
   }, []);
 
   const check = (value) => {

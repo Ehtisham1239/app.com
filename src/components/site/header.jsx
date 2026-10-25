@@ -16,7 +16,6 @@ export function SiteHeader({ menu, courses, brandName }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [coursesOpen, setCoursesOpen] = useState(false);
-  const closeTimer = useRef(null);
   const dialogRef = useRef(null);
   const menuButtonRef = useRef(null);
   const coursesRef = useRef(null);
@@ -66,7 +65,6 @@ export function SiteHeader({ menu, courses, brandName }) {
     };
   }, [open]);
 
-  useEffect(() => () => clearTimeout(closeTimer.current), []);
 
   useEffect(() => {
     const desktop = window.matchMedia("(min-width: 1280px)");
@@ -75,14 +73,6 @@ export function SiteHeader({ menu, courses, brandName }) {
     return () => desktop.removeEventListener("change", onResize);
   }, []);
 
-  const openCourses = () => {
-    clearTimeout(closeTimer.current);
-    setCoursesOpen(true);
-  };
-  const closeCoursesSoon = () => {
-    clearTimeout(closeTimer.current);
-    closeTimer.current = setTimeout(() => setCoursesOpen(false), 120);
-  };
 
   return (
     <>
@@ -100,9 +90,9 @@ export function SiteHeader({ menu, courses, brandName }) {
         <nav className="ml-auto hidden items-center gap-1 xl:flex" aria-label="Main">
           {menu.map((item) =>
             item.href === "/courses" && courses.length > 0 ? (
-              <div key={item.href} ref={coursesRef} className="relative" onMouseEnter={openCourses} onMouseLeave={closeCoursesSoon}
+              <div key={item.href} ref={coursesRef} className="relative"
                 onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setCoursesOpen(false); }}
-                onKeyDown={(event) => { if (event.key === "Escape") { event.preventDefault(); clearTimeout(closeTimer.current); setCoursesOpen(false); coursesButtonRef.current?.focus(); } }}>
+                onKeyDown={(event) => { if (event.key === "Escape") { event.preventDefault(); setCoursesOpen(false); coursesButtonRef.current?.focus(); } }}>
                 <button
                   type="button"
                   ref={coursesButtonRef}
@@ -129,7 +119,6 @@ export function SiteHeader({ menu, courses, brandName }) {
                           key={c.slug}
                           href={`/courses/${c.slug}`}
                           className="rounded-xl px-3.5 py-3 transition-colors hover:bg-leaf-50"
-                          onFocus={openCourses}
                         >
                           <span className="block text-[0.95rem] font-semibold text-ink">{c.title}</span>
                           <span className="mt-0.5 block text-[0.8rem] leading-snug text-ink-faint">{c.age_group}</span>
