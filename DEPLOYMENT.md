@@ -1,6 +1,14 @@
 # app.com website and CMS deployment
 
-## Current Google/Bing and blog release — 25 October 2026: production READY
+## Current GA4/GTM integration — 25 October 2026: code READY, activation pending IDs
+
+Application source `eaa95a57f11d2af335f61e9e6a368a5a5a5344da` is deployed as `dpl_E8w56fLzgwDAkVb8ZVdoSicGpcNc` (READY, 75.601-second build) at https://project-umber-three-93.vercel.app. This adds validated public GA4/GTM settings, one selected transport, basic analytics consent, manual public-path views, allowlisted saved-enquiry/click signals and a privacy notice. The adapter is disabled: no owner GA4/GTM ID exists in the reviewed CMS/environment configuration. No real Google data collection, Tag Assistant session, GA4 DebugView result or property connection is claimed.
+
+62 tests and build pass; lint has zero errors and the same 19 existing advisories. Four local production-build cases pass GA4/GTM consent, loader/event deduplication, PII exclusion, advertising denial and revocation at 390/1440px, using inert Google stubs and no form/database writes. Test-only routes were removed before the clean release build. Live public verification passes all 205 sitemap pages/topic placements and 196 image responses; the privacy page truthfully shows analytics disabled and test routes return 404. No database, environment, schema, DNS, campaign or account-permission changes were made. [Setup and limitations](docs/seo-agent/GOOGLE-ANALYTICS-2026-10-25.md); [release evidence](docs/seo-agent/GOOGLE-ANALYTICS-EVIDENCE-2026-10-25.json). Rollback: `dpl_HWA4ngycSX2bwc8JHGGro2jyxzuk`.
+
+The owner-supplied Semrush overview reports 100 crawled pages, 87% health, seven errors and 222 warnings. Its exact affected URLs were unavailable; these counts have not been declared resolved or replaced by the independent 205-page public checks. IDs and the actual GA4/GTM destination setup are the remaining tracking dependencies. Documentation-only follow-ups preserve the deployed application source.
+
+## Previous Google/Bing and blog release — 25 October 2026: production READY
 
 Application source `88d8a0d939ad9fe6ec7296fddd7e5e7ddc226bc0` is deployed as `dpl_HWA4ngycSX2bwc8JHGGro2jyxzuk` (READY, 73-second build) at https://project-umber-three-93.vercel.app. Alias and exact source are verified. Blog category discovery, invalid-filter 404s, per-page metadata/identity, article author/date/image markup, general crawler image previews, RSS discovery and homepage social/image-sitemap details are live. The existing content, original hero, country separation, offers, staff routes and both Google verification files are preserved.
 

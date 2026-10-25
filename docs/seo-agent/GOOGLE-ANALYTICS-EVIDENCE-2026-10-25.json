@@ -1,0 +1,210 @@
+{
+  "recordedAt": "2026-10-25T15:20:43.784239+00:00",
+  "reportingTimezone": "Asia/Karachi",
+  "target": "https://project-umber-three-93.vercel.app",
+  "repository": "Ehtisham1239/app.com",
+  "applicationSource": "eaa95a57f11d2af335f61e9e6a368a5a5a5344da",
+  "deployment": {
+    "id": "dpl_E8w56fLzgwDAkVb8ZVdoSicGpcNc",
+    "state": "READY",
+    "sourceAndAliasVerified": true,
+    "buildSeconds": 75.601
+  },
+  "rollbackDeployment": "dpl_HWA4ngycSX2bwc8JHGGro2jyxzuk",
+  "activation": {
+    "websiteIntegration": "Implemented and deployed",
+    "enabled": false,
+    "ownerGa4IdAvailable": false,
+    "ownerGtmIdAvailable": false,
+    "publicAnalyticsSettingRows": 0,
+    "actualGa4Delivery": null,
+    "tagAssistant": null,
+    "debugView": null,
+    "reason": "Owner GA4/GTM IDs were not present in reviewed code, hosting environment names or public CMS analytics settings; no Google account/property access is connected."
+  },
+  "preRelease": {
+    "automatedTestsPassed": 62,
+    "lintErrors": 0,
+    "preExistingReactWarnings": 19,
+    "cleanProductionBuild": "passed",
+    "fixtureRoutesInRelease": false,
+    "runtimeTestIdsInRelease": false,
+    "googleRequestsDuringTests": "Inert Google script stubs; zero real Google measurement requests",
+    "browser": {
+      "cases": [
+        {
+          "mode": "ga4",
+          "width": 390,
+          "beforeConsentLoads": 0,
+          "loaderCount": 1,
+          "pageViews": 3,
+          "savedLeadEvents": 1,
+          "contactClicks": 1,
+          "piiExcluded": true,
+          "adConsentDenied": true,
+          "revocationReload": true
+        },
+        {
+          "mode": "ga4",
+          "width": 1440,
+          "beforeConsentLoads": 0,
+          "loaderCount": 1,
+          "pageViews": 3,
+          "savedLeadEvents": 1,
+          "contactClicks": 1,
+          "piiExcluded": true,
+          "adConsentDenied": true,
+          "revocationReload": true
+        },
+        {
+          "mode": "gtm",
+          "width": 390,
+          "beforeConsentLoads": 0,
+          "loaderCount": 1,
+          "pageViews": 3,
+          "savedLeadEvents": 1,
+          "contactClicks": 1,
+          "piiExcluded": true,
+          "adConsentDenied": true,
+          "revocationReload": true
+        },
+        {
+          "mode": "gtm",
+          "width": 1440,
+          "beforeConsentLoads": 0,
+          "loaderCount": 1,
+          "pageViews": 3,
+          "savedLeadEvents": 1,
+          "contactClicks": 1,
+          "piiExcluded": true,
+          "adConsentDenied": true,
+          "revocationReload": true
+        }
+      ],
+      "browserErrors": [],
+      "realGoogleRequests": 0,
+      "formSubmissions": 0,
+      "scope": "Local production-build fixtures; Google script stubbed; no real GA4/GTM property receives data"
+    }
+  },
+  "live": {
+    "publicSeo": {
+      "checkedAt": "2026-10-25T15:17:37.795Z",
+      "timezone": "Asia/Karachi",
+      "mode": "READ_ONLY",
+      "base": "https://project-umber-three-93.vercel.app",
+      "canonicalOrigin": "https://project-umber-three-93.vercel.app",
+      "sitemapUrls": 205,
+      "audited": 205,
+      "technicalFindings": 0,
+      "qualityFailures": 0,
+      "keywordPages": 205,
+      "keywordFailures": 0,
+      "topImages": 196,
+      "requestMethods": [
+        "GET"
+      ],
+      "integrationMetrics": {
+        "gsc": "Not Checked: authenticated property/export required",
+        "ga4": "Not Checked: authenticated property/export required",
+        "semrush": "Not Checked: entitlement and fresh audit export required"
+      },
+      "limitations": [
+        "Raw HTML and response checks; not Google index status or Rich Results Test",
+        "No physical-device test, field CWV, actual keyword positions or organic attribution",
+        "Offer wording is observed, not documentary substantiation",
+        "No form submissions, authenticated staff operations or external messages"
+      ]
+    },
+    "homeFlows": {
+      "base": "https://project-umber-three-93.vercel.app",
+      "cases": [
+        {
+          "case": "desktop-fresh",
+          "homeRemainsHome": true,
+          "explicitCountryNavigation": true,
+          "logoReturnsHome": true,
+          "reloadRemainsHome": true,
+          "countryPagesSeparate": true
+        },
+        {
+          "case": "desktop-returning",
+          "homeRemainsHome": true,
+          "explicitCountryNavigation": true,
+          "logoReturnsHome": true,
+          "reloadRemainsHome": true,
+          "countryPagesSeparate": true
+        },
+        {
+          "case": "mobile-fresh",
+          "homeRemainsHome": true,
+          "explicitCountryNavigation": true,
+          "logoReturnsHome": true,
+          "reloadRemainsHome": true,
+          "countryPagesSeparate": true
+        }
+      ],
+      "browserErrors": [],
+      "submittedForms": 0,
+      "scope": "Chromium desktop/mobile emulation; chat stubbed; owned-site GET/HEAD only; no form submissions"
+    },
+    "installationChecks": [
+      {
+        "path": "/",
+        "status": 200,
+        "externalGoogleScript": false
+      },
+      {
+        "path": "/blog",
+        "status": 200,
+        "externalGoogleScript": false
+      },
+      {
+        "path": "/privacy-policy",
+        "status": 200,
+        "externalGoogleScript": false
+      },
+      {
+        "path": "/verify-certificate",
+        "status": 200,
+        "externalGoogleScript": false
+      },
+      {
+        "path": "/admin/login",
+        "status": 200,
+        "externalGoogleScript": false
+      },
+      {
+        "path": "/analytics-qa/ga4",
+        "status": 404,
+        "externalGoogleScript": false
+      }
+    ]
+  },
+  "changesNotMade": [
+    "Production database records/schema/RLS",
+    "Production environment variables",
+    "DNS/hosting security policy",
+    "Google account permissions or terms",
+    "Advertising campaigns or budgets",
+    "Real contact/trial submissions"
+  ],
+  "reportedSemrush": {
+    "evidence": "Owner-pasted overview; exact affected URLs unavailable",
+    "pages": 100,
+    "cap": 100,
+    "siteHealthPercent": 87,
+    "aiSearchHealthPercent": 83,
+    "errors": 7,
+    "warnings": 222,
+    "verifiedResolved": false
+  },
+  "remaining": [
+    "Actual owner GA4/GTM IDs and intended destination verification",
+    "Published GA4 configuration inside GTM when GTM mode is used",
+    "Tag Assistant and GA4 DebugView/Realtime collection verification",
+    "GA4 stream automatic-history/form measurement review to prevent duplicates or unintended collection",
+    "Detailed Semrush issue URLs/properties and fresh crawl covering at least 205 pages",
+    "Independent origin TLS/SNI, field CWV and official rich-result validation"
+  ]
+}

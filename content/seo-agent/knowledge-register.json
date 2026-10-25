@@ -40,7 +40,9 @@
     "paid_enrolments": null,
     "retention": null,
     "definition": "Keep CTA clicks, saved forms, staff qualification, trial attendance, paid enrolment and retention separate. CMS all-source counts are not organic attribution.",
-    "gsc_status": "URL-prefix property added in authenticated Google UI; website file published and checked; ownership confirmation, sitemap submission and API/performance access remain unconfirmed"
+    "gsc_status": "URL-prefix property added in authenticated Google UI; website file published and checked; ownership confirmation, sitemap submission and API/performance access remain unconfirmed",
+    "ga4_tag_status": "Website adapter and admin configuration deployed; disabled because no owner GA4/GTM IDs are configured. Real Google delivery, Tag Assistant and DebugView remain unverified.",
+    "gtm_container_id": null
   },
   "clock_sources": [
     {
@@ -74,5 +76,22 @@
     "bing_webmaster_property_verified": null,
     "official_rich_results_test": null,
     "field_cwv": null
+  },
+  "reported_semrush_overview": {
+    "source": "Owner-pasted overview on 25 October 2026",
+    "verification": "Reported; affected URLs/properties and a fresh audit are unavailable",
+    "relative_update_label": "4h ago",
+    "pages_crawled": 100,
+    "crawl_cap": 100,
+    "site_health_percent": 87,
+    "ai_search_health_percent": 83,
+    "errors": 7,
+    "warnings": 222,
+    "https_percent": 18,
+    "internal_linking_percent": 89,
+    "markup_percent": 97,
+    "core_web_vitals": "Not implemented in supplied overview",
+    "international_seo": "Not implemented in supplied overview",
+    "comparison_limit": "Separate owned-site public checks cover 205 pages; no replacement Semrush score is inferred."
   }
 }

@@ -53,7 +53,7 @@ Four local production-build browser cases exercise real UI/controller code in di
 
 Temporary local-only QA routes were moved out of `src/` and the release was rebuilt cleanly. No fixture route or runtime test ID is in the release source. The reusable browser runner explicitly refuses non-local targets. Existing unit/conversion tests continue to pass.
 
-Final deployment and live checks are recorded in `GOOGLE-ANALYTICS-EVIDENCE-2026-10-25.json` after release. Actual activation, Tag Assistant and GA4 DebugView/Realtime remain pending the owner's real IDs and property/container access; implementation tests are not a collection receipt.
+Deployment `dpl_E8w56fLzgwDAkVb8ZVdoSicGpcNc` is verified READY from application source `eaa95a57f11d2af335f61e9e6a368a5a5a5344da` (75.601-second build), with the stable alias confirmed. Live verification passes all 205 public pages/topic placements and 196 top-image responses. The privacy page shows analytics disabled; public/staff/utility probes expose no installed Google script and the test route returns 404. Three fresh/returning desktop/mobile Home-to-country-to-Home/reload flows pass without form writes or browser errors. A repeated read-only public analytics-settings query remains empty. Complete results are in `GOOGLE-ANALYTICS-EVIDENCE-2026-10-25.json`. Actual activation, Tag Assistant and GA4 DebugView/Realtime remain pending the owner's real IDs and property/container access; implementation tests are not a collection receipt. Documentation-only follow-ups preserve the deployed application source.
 
 ## Semrush overview supplied with this request
 
