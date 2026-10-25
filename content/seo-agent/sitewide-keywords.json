@@ -1,7 +1,7 @@
 {
   "date": "2026-10-25",
   "scope": "205 existing public sitemap pages; visible-topic coverage, not keyword demand/ranking evidence",
-  "status": "locally verified; production verification pending",
+  "status": "production READY; all 205 visible-topic placements verified live",
   "method": "21 curated service/navigation topics; local phrases use actual country/city context; existing article/profile/policy topics use published H1. Preserve custom CMS titles and descriptions.",
   "sourceBase": "ea9374b2ac0e88172e60e9a65b4f9127ac3ad79b",
   "rankingPositions": null,
@@ -1700,5 +1700,7 @@
         "main"
       ]
     }
-  ]
+  ],
+  "applicationSource": "6b2fc688e4f6a6f88e181e7baab545365db94244",
+  "checkedAt": "2026-10-25T10:38:22.792Z"
 }

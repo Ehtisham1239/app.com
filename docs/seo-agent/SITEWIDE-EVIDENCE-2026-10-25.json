@@ -1,6 +1,6 @@
 {
   "date": "2026-10-25",
-  "state": "locally verified; publication pending",
+  "state": "production READY; all 205 topic/technical checks and three live navigation flows verified",
   "sourceBase": "ea9374b2ac0e88172e60e9a65b4f9127ac3ad79b",
   "accessWork": "paused by owner",
   "tests": {
@@ -98,5 +98,86 @@
     "unexpectedWrites": 0,
     "browserErrors": [],
     "transportErrors": []
-  }
+  },
+  "applicationSource": "6b2fc688e4f6a6f88e181e7baab545365db94244",
+  "deployment": {
+    "id": "dpl_EDdNMBhG7H9ynQQKy55qZQSssPAJ",
+    "state": "READY",
+    "url": "https://project-umber-three-93.vercel.app",
+    "source": "6b2fc688e4f6a6f88e181e7baab545365db94244",
+    "buildSeconds": 75.123,
+    "rollback": "dpl_6UFtHaH7jnE6jFDV6zbMB7k9fvRV"
+  },
+  "liveAudit": {
+    "checkedAt": "2026-10-25T10:38:28.666Z",
+    "timezone": "Asia/Karachi",
+    "mode": "READ_ONLY",
+    "base": "https://project-umber-three-93.vercel.app",
+    "canonicalOrigin": "https://project-umber-three-93.vercel.app",
+    "sitemapUrls": 205,
+    "audited": 205,
+    "technicalFindings": 0,
+    "qualityFailures": 0,
+    "keywordPages": 205,
+    "keywordFailures": 0,
+    "topImages": 196,
+    "requestMethods": [
+      "GET"
+    ],
+    "integrationMetrics": {
+      "gsc": "Not Checked: authenticated property/export required",
+      "ga4": "Not Checked: authenticated property/export required",
+      "semrush": "Not Checked: entitlement and fresh audit export required"
+    },
+    "limitations": [
+      "Raw HTML and response checks; not Google index status or Rich Results Test",
+      "No physical-device test, field CWV, actual keyword positions or organic attribution",
+      "Offer wording is observed, not documentary substantiation",
+      "No form submissions, authenticated staff operations or external messages"
+    ]
+  },
+  "liveKeywords": {
+    "checkedAt": "2026-10-25T10:38:22.792Z",
+    "base": "https://project-umber-three-93.vercel.app",
+    "declared": 205,
+    "mapped": 205,
+    "curatedTopics": 21,
+    "failures": [],
+    "stopped": false,
+    "evidence": "Topic relevance and visible placement only. Search volumes, top-ten rankings, difficulty and traffic are unverified. No meta-keywords tag or hidden keyword list added."
+  },
+  "testHarnessNote": "The first combined live run had a navigation-script duplicate variable syntax error. The corrected navigation run separately passed with exit code 0, zero browser errors and no submissions; the independently successful audit also has zero failures. No application code change was needed.",
+  "liveNavigation": {
+    "base": "https://project-umber-three-93.vercel.app",
+    "cases": [
+      {
+        "case": "desktop-fresh",
+        "homeRemainsHome": true,
+        "explicitCountryNavigation": true,
+        "logoReturnsHome": true,
+        "reloadRemainsHome": true,
+        "countryPagesSeparate": true
+      },
+      {
+        "case": "desktop-returning",
+        "homeRemainsHome": true,
+        "explicitCountryNavigation": true,
+        "logoReturnsHome": true,
+        "reloadRemainsHome": true,
+        "countryPagesSeparate": true
+      },
+      {
+        "case": "mobile-fresh",
+        "homeRemainsHome": true,
+        "explicitCountryNavigation": true,
+        "logoReturnsHome": true,
+        "reloadRemainsHome": true,
+        "countryPagesSeparate": true
+      }
+    ],
+    "browserErrors": [],
+    "submittedForms": 0,
+    "scope": "Chromium desktop/mobile emulation; chat stubbed; owned-site GET/HEAD only; no form submissions"
+  },
+  "priorityCountryLinks": "All four links asserted on initial home and reload in each navigation case"
 }

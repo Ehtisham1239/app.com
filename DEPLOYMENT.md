@@ -1,6 +1,12 @@
 # app.com website and CMS deployment
 
-## Current SEO agent workflow and regional planning release — 25 October 2026: production READY
+## Current site-wide topic and keyword release — 25 October 2026: production READY
+
+Application source `6b2fc688e4f6a6f88e181e7baab545365db94244` is deployed as `dpl_EDdNMBhG7H9ynQQKy55qZQSssPAJ` (READY, 75.123 seconds) at [the verified stable alias](https://project-umber-three-93.vercel.app). It expands natural visible service/navigation topics to 21, improves existing regional introductions, strengthens four-market discovery links and adds a reusable visible-topic checker to the read-only audit. It preserves custom CMS metadata/content, offers, original hero, private noindex routes, existing redirects and homepage separation.
+
+53 automated tests, build and lint (zero errors, 19 existing warnings) pass. Live technical and topic checks pass all 205 sitemap pages and 196 top-image responses. Fresh/returning desktop and mobile navigation flows also pass, including four priority-country links on Home and reload, no horizontal overflow and no automatic form. No ranking positions or search volumes are inferred. Access/sign-in work is paused at the owner's instruction. [Release details](docs/seo-agent/SITEWIDE-KEYWORDS-2026-10-25.md), [evidence](docs/seo-agent/SITEWIDE-EVIDENCE-2026-10-25.json) and [the complete page-topic map](content/seo-agent/sitewide-keywords.json) record scope and checks. Rollback candidate: `dpl_6UFtHaH7jnE6jFDV6zbMB7k9fvRV`. Later QA/documentation-only changes do not alter the deployed application code.
+
+## Previous SEO agent workflow and regional planning release — 25 October 2026: production READY
 
 Application source `c5922ecbf050e475406f024b0f974643601d2484` is deployed as `dpl_6UFtHaH7jnE6jFDV6zbMB7k9fvRV` (READY, 74.385-second build) at [the existing stable alias](https://project-umber-three-93.vercel.app). The alias and exact Git source are verified. This release adds the reusable read-only SEO workflow and research/knowledge records, original concise UK/Canada guidance, en-CA Canadian metadata, four extra Canadian planner choices and compatibility with the November 2026 provincial clock rules. It preserves existing offers, source/CMS edits, homepage separation, original hero, private routes and redirects.
 
