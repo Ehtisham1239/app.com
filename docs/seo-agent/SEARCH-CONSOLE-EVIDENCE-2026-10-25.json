@@ -1,0 +1,55 @@
+{
+  "checkedAt": "2026-10-25T11:22:49.225Z",
+  "base": "https://project-umber-three-93.vercel.app",
+  "rows": [
+    {
+      "path": "/google45a9bbd1d6a72727.html",
+      "status": 200,
+      "type": "text/html; charset=utf-8",
+      "matchesLocal": true
+    },
+    {
+      "path": "/google5fa9c672751cfb98.html",
+      "status": 200,
+      "type": "text/html; charset=utf-8",
+      "matchesLocal": true
+    },
+    {
+      "path": "/robots.txt",
+      "status": 200,
+      "type": "text/plain; charset=utf-8"
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "type": "application/xml",
+      "sitemapPages": 205
+    },
+    {
+      "path": "/",
+      "status": 200,
+      "type": "text/html; charset=utf-8",
+      "canonicalCorrect": true
+    }
+  ],
+  "ownershipVerified": null,
+  "sitemapSubmitted": null,
+  "scope": "Unauthenticated public GET and exact local-file comparison. Google ownership/sitemap dashboard confirmation remains pending.",
+  "ownershipStatus": "Pending Google confirmation; final verification click not performed by the agent",
+  "sitemapStatus": "Public sitemap ready; submission not performed by the agent",
+  "applicationSource": "02c1ceb9bfbb74a4648c21787874967d096b39e2",
+  "deployment": {
+    "id": "dpl_RMWaXYkuruiSqdtzKS6u2CxvME7K",
+    "state": "READY",
+    "source": "02c1ceb9bfbb74a4648c21787874967d096b39e2",
+    "buildSeconds": 70.199
+  },
+  "browserEvidence": {
+    "signedInGoogleAccountObserved": true,
+    "urlPrefixPropertyAdded": "https://project-umber-three-93.vercel.app/",
+    "googleRequestedFile": "google45a9bbd1d6a72727.html",
+    "downloadSucceeded": false,
+    "finalOwnershipConfirmationObserved": false,
+    "browserControl": "Unavailable after authentication; safe navigation and manual handoff could not resume"
+  }
+}

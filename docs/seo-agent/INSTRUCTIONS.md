@@ -41,3 +41,5 @@ Monthly reporting requires comparable periods, countries, devices, source proper
 Finish accessible implementation and evidence before requesting missing access. State blocked work precisely. Do not call a reusable instruction file an installed Custom GPT, this on-demand audit a continuously running agent, or a proposed integration a live connection.
 
 The owner paused access/sign-in work on 25 October 2026. Continue source/public-site improvements and existing authorised deployments; do not restart authentication or request new account connections unless the owner asks. `npm run seo:keywords` exports the current page-topic map. Candidate phrases are not proven top-ranking keywords; article, profile and policy intent stays distinct from commercial queries.
+
+Google Search Console setup was explicitly resumed later on 25 October 2026. See `SEARCH-CONSOLE-CONNECTION-2026-10-25.md` for the partially completed state. Its public verification file is live; final ownership and sitemap/API confirmation are not yet observed. Other paused account-access tasks remain paused.

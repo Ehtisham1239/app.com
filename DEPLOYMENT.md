@@ -1,6 +1,12 @@
 # app.com website and CMS deployment
 
-## Current site-wide topic and keyword release — 25 October 2026: production READY
+## Current Search Console preparation — 25 October 2026: website file READY
+
+Source `02c1ceb9bfbb74a4648c21787874967d096b39e2` is deployed as `dpl_RMWaXYkuruiSqdtzKS6u2CxvME7K` (READY, 70.199 seconds) at the existing stable alias. It adds Google's requested `google45a9bbd1d6a72727.html` and preserves the prior verification file. Both files are publicly HTTP 200 with matching local contents; homepage canonical, robots and the 205-URL sitemap pass focused checks. No application component, environment, database or DNS setting changed.
+
+A signed-in Google URL-prefix property was added, but final Google ownership verification and sitemap submission are not confirmed. Browser control could not resume after authentication; no dashboard success is claimed. See [the connection record](docs/seo-agent/SEARCH-CONSOLE-CONNECTION-2026-10-25.md) and [evidence](docs/seo-agent/SEARCH-CONSOLE-EVIDENCE-2026-10-25.json). Keep both verification files in future release/rollback packages. Documentation-only follow-ups preserve this application source.
+
+## Previous site-wide topic and keyword release — 25 October 2026: production READY
 
 Application source `6b2fc688e4f6a6f88e181e7baab545365db94244` is deployed as `dpl_EDdNMBhG7H9ynQQKy55qZQSssPAJ` (READY, 75.123 seconds) at [the verified stable alias](https://project-umber-three-93.vercel.app). It expands natural visible service/navigation topics to 21, improves existing regional introductions, strengthens four-market discovery links and adds a reusable visible-topic checker to the read-only audit. It preserves custom CMS metadata/content, offers, original hero, private noindex routes, existing redirects and homepage separation.
 

@@ -27,7 +27,7 @@
     }
   ],
   "measurement": {
-    "gsc_property": null,
+    "gsc_property": "https://project-umber-three-93.vercel.app/",
     "ga4_property": null,
     "semrush_api_entitlement": null,
     "baseline_period": null,
@@ -39,7 +39,8 @@
     "attended_trials": null,
     "paid_enrolments": null,
     "retention": null,
-    "definition": "Keep CTA clicks, saved forms, staff qualification, trial attendance, paid enrolment and retention separate. CMS all-source counts are not organic attribution."
+    "definition": "Keep CTA clicks, saved forms, staff qualification, trial attendance, paid enrolment and retention separate. CMS all-source counts are not organic attribution.",
+    "gsc_status": "URL-prefix property added in authenticated Google UI; website file published and checked; ownership confirmation, sitemap submission and API/performance access remain unconfirmed"
   },
   "clock_sources": [
     {
