@@ -7,6 +7,7 @@ import { PageSections } from "@/components/site/page-sections";
 import { cleanHtml } from "@/lib/sanitize";
 import { formatDate, slugify, whatsappLink } from "@/lib/format";
 import { getCourses, getFaqs, getPlans, getSettings, getTeachers, getTestimonials } from "@/lib/site-data";
+import { analyticsConfig } from "@/lib/analytics";
 
 // Adds ids to <h2> headings so policies get a table of contents.
 function withHeadingIds(html) {
@@ -62,6 +63,7 @@ export async function CmsPage({ page }) {
           <div className={isPolicy ? "" : "mx-auto max-w-3xl"}>
             {page.template === "landing" && page.cover_url && <ContentImage src={page.cover_url} alt={page.cover_alt} sizes="(max-width: 768px) 100vw, 768px" className={`mb-10 ${page.slug === "about" ? "aspect-[3/2]" : "aspect-[16/7]"} w-full rounded-[1.5rem] object-cover`} />}
             <div className="prose-oqc text-[1.04rem] [&_h2]:scroll-mt-28" dangerouslySetInnerHTML={{ __html: html }} />
+            {page.slug === "privacy-policy" && <section id="optional-analytics" className="prose-oqc mt-10 scroll-mt-28 text-[1.04rem]"><h2>Optional website analytics</h2><p>{analyticsConfig(settings["site.analytics"]).enabled ? "Optional Google analytics is configured on this website. Google tags load only after you choose Allow analytics. You can reject analytics or change your choice using Analytics preferences. Revoking permission reloads the page to stop the loaded Google code." : "Optional Google analytics is currently disabled. No Google Analytics or Google Tag Manager script is loaded by this website integration."}</p><p>If you allow analytics when it is enabled, Google may use analytics cookies to measure visits. Our integration sends public page paths, enquiry type and broad market labels. It does not send names, email addresses, phone numbers, lesson notes, certificate numbers or URL query strings as event parameters. Contact clicks are measured separately from successfully saved enquiries. Advertising storage, advertising user data and advertising personalisation remain denied.</p><p>Your analytics choice is stored in this browser for up to 180 days. This choice controls our Google analytics integration; the separate chat and enquiry features described above keep their own behaviour.</p></section>}
             {isPolicy && page.updated_at && <p className="mt-10 text-sm text-ink-faint">Page updated {formatDate(page.updated_at)}</p>}
           </div>
         </div>

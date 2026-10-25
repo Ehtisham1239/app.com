@@ -1,5 +1,5 @@
-// A first-party success signal only: no network transport, cookies or personal form values.
-// Call after a successful form RPC. A future analytics adapter needs its own approved configuration.
+// First-party success signal: no personal form values. The optional Google adapter
+// consumes this signal only when configured and the visitor has allowed analytics.
 export function announceLeadSaved({ formType, country, reference, honeypot = "" } = {}) {
   if (typeof window === "undefined" || !["trial", "contact"].includes(formType) || honeypot) return false;
   const prefix = formType === "trial" ? "TR-" : "MSG-";

@@ -59,6 +59,7 @@ export const DEFAULT_SETTINGS = {
     contact_success: "Thank you — your message has reached our team. We usually reply within one working day.",
   },
   "site.chat": { enabled: true, widget_key: "BZrCMwoaC3UYn9OpkcSASivkWFYm5A0B" },
+  "site.analytics": { enabled: false, ga4_measurement_id: "", gtm_container_id: "" },
   "site.seo": {
     title: "Online Quran College — Live 1-on-1 Online Quran Classes",
     description:

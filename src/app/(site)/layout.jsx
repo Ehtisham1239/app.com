@@ -6,6 +6,8 @@ import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
 import { TopBar } from "@/components/site/chrome";
 import { getCourses, getMenus, getSettings } from "@/lib/site-data";
+import { WebsiteAnalytics } from "@/components/site/analytics";
+import { analyticsConfig } from "@/lib/analytics";
 
 export const revalidate = 300;
 
@@ -20,6 +22,7 @@ export default async function SiteLayout({ children }) {
   const [settings, menus, courses] = await Promise.all([getSettings(), getMenus(), getCourses()]);
   const chat = settings["site.chat"] ?? {};
   const chatEnabled = Boolean(chat.enabled && /^[A-Za-z0-9_-]{10,200}$/.test(chat.widget_key || ""));
+  const analytics = analyticsConfig(settings["site.analytics"]);
   const identity = settings["site.identity"] || {};
   const contact = settings["site.contact"] || {};
   const brandName = settings["site.identity"]?.name ?? "Online Quran College";
@@ -44,6 +47,7 @@ export default async function SiteLayout({ children }) {
       <main id="main">{children}</main>
       <SiteFooter settings={settings} menus={footerMenus} />
       <HatchiumChat enabled={chatEnabled} widgetKey={chat.widget_key} />
+      {analytics.enabled && <WebsiteAnalytics config={analytics} />}
     </>
   );
 }
