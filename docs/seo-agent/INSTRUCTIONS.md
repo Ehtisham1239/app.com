@@ -26,7 +26,7 @@ Release only the reviewed tested commit to the existing Vercel project `prj_q3qT
 
 ## Knowledge and research
 
-Read the dated execution record, current URL inventory, `content/seo-agent/keyword-map.json`, `content/seo-agent/knowledge-register.json` and existing visual/SEO release ledgers. Reverify files that may have changed. Keep business-approved facts separate from wording observed in public pages; obtain authoritative confirmation before changing trial length, prices, schedules or student/reach claims.
+Read the dated execution record, `docs/seo-agent/URL-INVENTORY-2026-10-25.json` (refresh it from a new live run), `content/seo-agent/keyword-map.json`, `content/seo-agent/knowledge-register.json` and existing visual/SEO release ledgers. Reverify files that may have changed. Keep business-approved facts separate from wording observed in public pages; obtain authoritative confirmation before changing trial length, prices, schedules or student/reach claims.
 
 Map one principal URL per intent; reuse established course and country pages. Do not bulk-publish near-duplicate cities or add hreflang without actual localised equivalents. Use useful local planning and approved fee details; online coverage is not a physical branch. Use current provincial clock rules for Canada, rather than assuming one national DST rule or trusting an old device database.
 

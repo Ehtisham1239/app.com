@@ -1,6 +1,14 @@
 # app.com website and CMS deployment
 
-## Current public interaction and SEO release — 25 October 2026: production READY
+## Current SEO agent workflow and regional planning release — 25 October 2026: production READY
+
+Application source `c5922ecbf050e475406f024b0f974643601d2484` is deployed as `dpl_6UFtHaH7jnE6jFDV6zbMB7k9fvRV` (READY, 74.385-second build) at [the existing stable alias](https://project-umber-three-93.vercel.app). The alias and exact Git source are verified. This release adds the reusable read-only SEO workflow and research/knowledge records, original concise UK/Canada guidance, en-CA Canadian metadata, four extra Canadian planner choices and compatibility with the November 2026 provincial clock rules. It preserves existing offers, source/CMS edits, homepage separation, original hero, private routes and redirects.
+
+53 automated tests, production build, lint (zero errors, 19 existing warnings), all 205 public page checks, 196 top-image responses and eight live regional desktop/mobile layouts pass. A mobile fixture verifies planning without native Vancouver/Edmonton zone data. No enquiry was submitted. Preview `dpl_Gc9QF9xwuuYfb7b44gspC7BT5Go9` built READY, but protected preview fetch and runtime-log inspection were denied with 403; these are unverified, and deployment protection was retained. See [the execution record](docs/seo-agent/EXECUTION-2026-10-25.md), [evidence](docs/seo-agent/EVIDENCE-2026-10-25.json) and [reusable instructions](docs/seo-agent/INSTRUCTIONS.md).
+
+No production environment, schema, DNS or analytics configuration change was made. GSC/GA4/Semrush performance, actual remote form persistence, field CWV and 90-day outcomes remain dependent on access and real measurements. Immediate rollback candidate: `dpl_4c7z9bMxkEMMDe7ct7xwW79kazJb`. Documentation-only follow-ups do not change this deployed application source.
+
+## Previous public interaction and SEO release — 25 October 2026: production READY
 
 Application source `57ffe60f364a6ae3a8c9e8fa387d1ba0852ee96a` is deployed as `dpl_4c7z9bMxkEMMDe7ct7xwW79kazJb` (READY, build 68.584 seconds) at [the existing stable alias](https://project-umber-three-93.vercel.app). The alias and Git source match. Homepage/country separation, all legacy redirects, the original requested homepage illustration and the newer Google verification file remain preserved.
 

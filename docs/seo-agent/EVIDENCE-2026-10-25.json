@@ -1,7 +1,7 @@
 {
   "date": "2026-10-25",
   "timezone": "Asia/Karachi",
-  "status": "locally verified; staged and live verification pending",
+  "status": "production READY; live read-only audit and eight regional browser layouts verified",
   "sourceBase": "262d95252c9aaca30fccf5a8d741a9b2f29de118",
   "productionBaselineSource": "57ffe60f364a6ae3a8c9e8fa387d1ba0852ee96a",
   "productionBaseline": {
@@ -103,13 +103,14 @@
     "GitHub": {
       "status": "Verified",
       "repo": "Ehtisham1239/app.com",
-      "head": "262d95252c9aaca30fccf5a8d741a9b2f29de118"
+      "applicationReleaseSource": "c5922ecbf050e475406f024b0f974643601d2484",
+      "readOnlyBaselineHead": "262d95252c9aaca30fccf5a8d741a9b2f29de118"
     },
     "Vercel": {
       "status": "Verified",
       "project": "prj_q3qTOTMNxuDfgmd5XoCaoWVhQBVu",
       "team": "team_8Xig9mSvNd3XLAzNbQgwPapo",
-      "productionDeployment": "dpl_4c7z9bMxkEMMDe7ct7xwW79kazJb",
+      "productionDeployment": "dpl_6UFtHaH7jnE6jFDV6zbMB7k9fvRV",
       "state": "READY"
     },
     "environment": {
@@ -146,5 +147,159 @@
       "provider": "Windsor.ai",
       "purpose": "Optional GSC/GA4 access path; not marked connected"
     }
+  },
+  "applicationSource": "c5922ecbf050e475406f024b0f974643601d2484",
+  "preview": {
+    "id": "dpl_Gc9QF9xwuuYfb7b44gspC7BT5Go9",
+    "state": "READY",
+    "buildSeconds": 70.061,
+    "applicationInspection": "Not Checked: authenticated fetch denied with 403 at read_protection_bypass; public request redirects to Vercel authentication; no CLI available",
+    "protectionChanged": false
+  },
+  "production": {
+    "id": "dpl_6UFtHaH7jnE6jFDV6zbMB7k9fvRV",
+    "state": "READY",
+    "buildSeconds": 74.385,
+    "alias": "https://project-umber-three-93.vercel.app",
+    "source": "c5922ecbf050e475406f024b0f974643601d2484",
+    "rollback": "dpl_4c7z9bMxkEMMDe7ct7xwW79kazJb"
+  },
+  "liveAudit": {
+    "checkedAt": "2026-10-25T08:38:37.007Z",
+    "timezone": "Asia/Karachi",
+    "mode": "READ_ONLY",
+    "base": "https://project-umber-three-93.vercel.app",
+    "canonicalOrigin": "https://project-umber-three-93.vercel.app",
+    "sitemapUrls": 205,
+    "audited": 205,
+    "technicalFindings": 0,
+    "qualityFailures": 0,
+    "topImages": 196,
+    "requestMethods": [
+      "GET"
+    ],
+    "integrationMetrics": {
+      "gsc": "Not Checked: authenticated property/export required",
+      "ga4": "Not Checked: authenticated property/export required",
+      "semrush": "Not Checked: entitlement and fresh audit export required"
+    },
+    "limitations": [
+      "Raw HTML and response checks; not Google index status or Rich Results Test",
+      "No physical-device test, field CWV, actual keyword positions or organic attribution",
+      "Offer wording is observed, not documentary substantiation",
+      "No form submissions, authenticated staff operations or external messages"
+    ]
+  },
+  "liveBrowser": {
+    "base": "https://project-umber-three-93.vercel.app",
+    "layouts": [
+      {
+        "device": "desktop",
+        "slug": "united-states",
+        "language": "en-US"
+      },
+      {
+        "device": "desktop",
+        "slug": "united-kingdom",
+        "language": "en-GB"
+      },
+      {
+        "device": "desktop",
+        "slug": "canada",
+        "language": "en-CA"
+      },
+      {
+        "device": "desktop",
+        "slug": "australia",
+        "language": "en-AU"
+      },
+      {
+        "device": "mobile",
+        "slug": "united-states",
+        "language": "en-US"
+      },
+      {
+        "device": "mobile",
+        "slug": "united-kingdom",
+        "language": "en-GB"
+      },
+      {
+        "device": "mobile",
+        "slug": "canada",
+        "language": "en-CA"
+      },
+      {
+        "device": "mobile",
+        "slug": "australia",
+        "language": "en-AU"
+      }
+    ],
+    "olderClockDatabase": true,
+    "unexpectedWrites": 0,
+    "browserErrors": [],
+    "transportErrors": []
+  },
+  "offerObservations": [
+    {
+      "path": "/pricing",
+      "status": 200,
+      "evidence": "Reported public wording; business approval is not independently established",
+      "trialDayMentions": [
+        7
+      ],
+      "studentCountClaimSeen": false,
+      "countryReachClaimSeen": false
+    },
+    {
+      "path": "/contact",
+      "status": 200,
+      "evidence": "Reported public wording; business approval is not independently established",
+      "trialDayMentions": [
+        7
+      ],
+      "studentCountClaimSeen": false,
+      "countryReachClaimSeen": false
+    },
+    {
+      "path": "/free-trial",
+      "status": 200,
+      "evidence": "Reported public wording; business approval is not independently established",
+      "trialDayMentions": [
+        7
+      ],
+      "studentCountClaimSeen": false,
+      "countryReachClaimSeen": false
+    },
+    {
+      "path": "/about",
+      "status": 200,
+      "evidence": "Reported public wording; business approval is not independently established",
+      "trialDayMentions": [
+        7
+      ],
+      "studentCountClaimSeen": false,
+      "countryReachClaimSeen": false
+    }
+  ],
+  "releaseProbes": [
+    {
+      "path": "/locations/canada/vancouver",
+      "status": 200,
+      "localeCorrect": true
+    },
+    {
+      "path": "/locations/canada/calgary",
+      "status": 200,
+      "localeCorrect": true
+    },
+    {
+      "path": "/google5fa9c672751cfb98.html",
+      "status": 200,
+      "matchesLocal": true
+    }
+  ],
+  "observability": {
+    "status": "Not Checked",
+    "reason": "Native runtime-log read returned 403 forbidden for the correct project/team; mapped CLI not installed. Browser exceptions and HTTP checks are separately verified."
   }
 }

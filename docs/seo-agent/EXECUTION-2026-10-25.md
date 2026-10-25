@@ -27,6 +27,24 @@ GitHub branch/source and the exact Vercel project/team/READY alias are verified.
 
 ## Release and rollback
 
-A staged preview and post-release checks are recorded after publication. Prior production rollback candidate: `dpl_4c7z9bMxkEMMDe7ct7xwW79kazJb`, application source `57ffe60f364a6ae3a8c9e8fa387d1ba0852ee96a`. This preserves the requested homepage illustration, homepage separation and previous interaction fixes. Releasing or rolling back application source does not require a schema or environment change.
+Application source `c5922ecbf050e475406f024b0f974643601d2484` was built as preview `dpl_Gc9QF9xwuuYfb7b44gspC7BT5Go9` (READY, 70.061 seconds). Protected preview application inspection was blocked: authenticated fetch returned 403 during `read_protection_bypass`, and an ordinary request redirected to Vercel sign-in. No mapped CLI executable was available and no protection setting was changed. Preview runtime QA is not claimed.
+
+The same source is production READY as `dpl_6UFtHaH7jnE6jFDV6zbMB7k9fvRV` (74.385 seconds) at [the verified stable alias](https://project-umber-three-93.vercel.app). Local QA passed before this release, within the owner’s existing deployment authorisation. Post-release `npm run seo:agent` passes all 205 public sitemap pages and 196 top-image responses, with zero technical or quality failures. Eight live regional browser layouts pass, including the mobile old-clock-data simulation, future Vancouver/Calgary/St. John’s/Halifax conversions, currency/date/zone enquiry continuity, correct country metadata, no horizontal overflow and unchanged homepage behaviour. There are zero browser or transport errors and no form submissions or unexpected writes. Canadian city pages also return en-CA/en_CA; the preserved Google verification file matches its local contents.
+
+The live offer scan observes seven-day trial wording consistently on the four scoped templates. It is not business approval or a full claim/credential audit. The [dated URL inventory](URL-INVENTORY-2026-10-25.json) contains the verified 205 paths. Later documentation-only commits preserve this deployed application code.
+
+Runtime-log inspection returned a separate 403 for the correct project/team; the CLI was unavailable. No server-log cleanliness, monitoring integration or drain configuration is claimed. These permissions do not invalidate the independently passed public HTTP and browser checks. Prior production rollback candidate: `dpl_4c7z9bMxkEMMDe7ct7xwW79kazJb`, application source `57ffe60f364a6ae3a8c9e8fa387d1ba0852ee96a`. This preserves the requested homepage illustration, homepage separation and previous interaction fixes. Releasing or rolling back application source does not require a schema or environment change.
 
 Official clock references: [British Columbia](https://www2.gov.bc.ca/gov/content/governments/celebrating-british-columbia/daylight-saving-time), [Alberta](https://www.alberta.ca/albertas-new-time-system-abt), [UK clocks](https://www.gov.uk/when-do-the-clocks-change), [NRC review notice](https://www.cnrc.canada.ca/en/certifications-evaluations-standards/canadas-official-time/time-zones-daylight-saving-time). Source and verification boundaries accompany the machine-readable evidence.
+
+## PDF workflow closure
+
+| Phase | Result |
+| --- | --- |
+| Access and scope | Repository, production source, team/project and environment names verified; analytics account access remains unverified. |
+| Baseline | Fresh 206-page baseline crawl complete; no authenticated performance baseline available. |
+| Prioritise/research | Canadian clock compatibility and locale/configuration fixes implemented; four-market topic map records 32 hypotheses and source limitations. |
+| Draft/implementation approval | Scoped source and original short copy prepared under the owner’s explicit website execution instruction. No trial/price/credential changes inferred. |
+| QA | 53 tests, build, lint with zero errors/19 existing warnings, local audit and eight browser layouts pass. |
+| Release | Preview build READY; protected preview inspection blocked. Production READY and public post-release audit/browser checks pass. Rollback recorded. |
+| Measurement | Blocked on authorised GSC/GA4/Semrush evidence, conversion definitions and elapsed comparable periods. No traffic/rank/enrolment increase invented. |
