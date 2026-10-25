@@ -10,7 +10,7 @@ import { SITE_URL } from "@/lib/config";
 import { PageHero } from "@/components/site/chrome";
 import { FaqList } from "@/components/site/sections";
 import { getCourses, getPage, getPlans } from "@/lib/site-data";
-import { locationPath, locationCmsSlug, locationBreadcrumbs, locationLocale } from "@/lib/locations";
+import { locationPath, locationCmsSlug, locationBreadcrumbs, locationLocale, locationSearchIntro } from "@/lib/locations";
 import { locationImage } from "@/lib/location-image";
 import { cleanHtml } from "@/lib/sanitize";
 import { formatMoney } from "@/lib/format";
@@ -35,7 +35,7 @@ export async function LocationPage({ country, city }) {
   return <div lang={locationLocale(country).replace("_", "-")}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema(faqs)) }} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema(breadcrumbs, SITE_URL)) }} />
-    <PageHero path={locationPath(country, city)} eyebrow={`Learn from ${city?.name || country.name} · ${country.currency}`} title={title} intro={!city && country.slug === "united-states" ? SEARCH_INTENTS["/locations/united-states"].intro : `One-to-one Quran, Tajweed and Arabic lessons from home in ${place}. Plan your local time, choose a course and meet your teacher online.`} visual={<figure className="relative">
+    <PageHero path={locationPath(country, city)} eyebrow={`Learn from ${city?.name || country.name} · ${country.currency}`} title={title} intro={!city && country.slug === "united-states" ? SEARCH_INTENTS["/locations/united-states"].intro : locationSearchIntro(country, city)} visual={<figure className="relative">
       <ContentImage src="/images/islamic/quran-study-v1-1200.webp" alt="A closed Quran on a wooden stand beside an arched window" priority sizes="(max-width: 1024px) 100vw, 600px" className="aspect-[3/2] w-full object-cover" />
       <figcaption className="flex items-center gap-4 bg-white p-4 text-mushaf-900"><div className="w-24 shrink-0 overflow-hidden rounded-lg border border-line sm:w-32"><ContentImage src={image.url} alt={image.alt} sizes="128px" className="aspect-[3/2] w-full object-cover" /></div><div><p className="font-semibold">Online learning for {city?.name || country.name}</p><p className="mt-1 text-xs text-ink-soft">{city ? zones[0] : `${country.cities.length} city guides`} · {country.currency}</p></div></figcaption>
     </figure>}><Link className="btn btn-gold mt-6" href={`/free-trial?${query}`}>Arrange your free trial</Link></PageHero>

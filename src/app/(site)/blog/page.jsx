@@ -53,7 +53,7 @@ export default async function BlogPage({ searchParams }) {
   if (page > 1 && !posts.length) notFound();
   return (
     <>
-      <PageHero path="/blog" eyebrow="Blog" title="Guidance for learners and parents" arabic="عِلْم" intro="Short, practical reading on recitation, memorisation and building a Quran routine at home." />
+      <PageHero path="/blog" eyebrow="Blog" title="Quran learning articles for learners and parents" arabic="عِلْم" intro="Short, practical reading on recitation, memorisation and building a Quran routine at home." />
       <section className="page-wrap py-16 sm:py-20">
         <nav aria-label="Article topics" className="mb-8 flex flex-wrap gap-3">{["", "USA & Australia", "First steps", "Parents & children", "Adult learning", "Recitation & revision"].map(c => <Link key={c} className={`btn btn-sm ${c === category ? "btn-primary" : "btn-outline"}`} href={feedUrl(1,c)}>{c || "All articles"}</Link>)}</nav>
         {posts.length === 0 ? (

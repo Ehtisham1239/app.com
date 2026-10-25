@@ -28,7 +28,7 @@ export default async function FreeTrialPage() {
   const forms = settings["site.forms"] ?? {};
   const wa = whatsappLink(settings["site.contact"]?.whatsapp, "Assalamu alaikum, I have just booked a free trial on your website.");
   return <>
-    <PageHero path="/free-trial" eyebrow="Free trial" title="Meet your Quran teacher" intro="Request a 7-day trial. Share the learner’s level and preferred time; our coordinator confirms the details.">
+    <PageHero path="/free-trial" eyebrow="Free trial" title="Request a free online Quran trial" intro="Request a 7-day trial. Share the learner’s level and preferred time; our coordinator confirms the details.">
       <Link href="#trial-form" className="btn btn-gold mt-6">Start your trial request</Link>
     </PageHero>
     <section id="trial-form" aria-label="Trial request" className="page-wrap grid scroll-mt-28 items-start gap-8 py-12 lg:grid-cols-[0.65fr_1fr]">

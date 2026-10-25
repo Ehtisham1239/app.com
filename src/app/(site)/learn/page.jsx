@@ -14,7 +14,7 @@ export const metadata = contentMetadata({ title: "Quran Learning Guides for Fami
 export default async function Page() {
   const guides = await Promise.all(LEARNING_GUIDES.map(async guide => ({ ...guide, content: await getPage(guide.slug) })));
   return <>
-    <PageHero path="/learn" eyebrow="Learning centre" title="Find a learning path that fits" intro="Start with your learner’s current reading level and goals, then explore a course and discuss a trial." />
+    <PageHero path="/learn" eyebrow="Learning centre" title="Quran learning guides for families and adults" intro="Start with your learner’s current reading level and goals, then explore a course and discuss a trial." />
     <section className="page-wrap py-16">
       <div className="grid gap-6 sm:grid-cols-2">
         {guides.filter(g => g.content).map(g => <Link data-card-tone={cardTone(g.slug)} className="editorial-card card-tinted group flex flex-col" key={g.slug} href={g.path}>

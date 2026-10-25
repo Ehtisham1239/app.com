@@ -59,7 +59,7 @@ export default async function CoursePage({ params }) {
           {intent && <section className="mb-8 border-l-4 border-gold-400 pl-5"><h2 className="text-2xl">{intent.heading}</h2><p className="mt-3 text-ink-soft">{intent.intro}</p></section>}
           {course.description_html && <div className="prose-oqc" dangerouslySetInnerHTML={{ __html: cleanHtml(course.description_html) }} />}
 
-          <section className="surface mt-10 space-y-3 p-6"><h2 className="text-2xl">Plan lessons around your family</h2><p>Explore local scheduling and fee guidance before requesting a trial.</p><div className="flex flex-wrap gap-3"><Link href="/locations/united-states" className="btn btn-outline">USA families</Link><Link href="/locations/australia" className="btn btn-outline">Australian families</Link><Link href="/learn" className="btn btn-outline">Learning guides</Link></div></section>
+          <section className="surface mt-10 space-y-3 p-6"><h2 className="text-2xl">Plan lessons around your family</h2><p>Explore local scheduling and fee guidance before requesting a trial.</p><div className="flex flex-wrap gap-3"><Link href="/locations/united-states" className="btn btn-outline">USA families</Link><Link href="/locations/united-kingdom" className="btn btn-outline">UK families</Link><Link href="/locations/canada" className="btn btn-outline">Canadian families</Link><Link href="/locations/australia" className="btn btn-outline">Australian families</Link><Link href="/learn" className="btn btn-outline">Learning guides</Link></div></section>
           {course.outcomes?.length > 0 && (
             <section className="mt-12">
               <h2 className="text-[1.9rem] text-mushaf-900">Learning goals</h2>

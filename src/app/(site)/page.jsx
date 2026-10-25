@@ -50,6 +50,9 @@ export default async function HomePage() {
       <nav aria-label="On this page" className="page-wrap flex flex-wrap justify-center gap-2 py-5">
         {[["#courses", "Courses"], ["#how-it-works", "How it works"], ...(homePlans.length ? [["#fees", "Fees"]] : []), ...(faqs.length ? [["#questions", "Questions"]] : [])].map(([href, label]) => <a key={href} href={href} className="home-jump rounded-full border border-leaf-100 bg-white px-5 py-3 text-sm font-semibold text-leaf-700 hover:bg-leaf-50">{label}</a>)}
       </nav>
+      <nav aria-label="Priority study locations" className="page-wrap grid grid-cols-2 gap-3 pb-8 lg:grid-cols-4">
+        {[["united-states", "USA"], ["united-kingdom", "UK"], ["canada", "Canada"], ["australia", "Australia"]].map(([slug, label]) => <Link key={slug} href={`/locations/${slug}`} className="surface flex items-center justify-between gap-2 px-4 py-3 text-sm font-semibold text-leaf-700">Quran classes in {label}<ArrowRight className="size-4 shrink-0" aria-hidden="true" /></Link>)}
+      </nav>
 
 
       <section id="about" className="bg-[#f4fbf7] py-16 sm:py-24">

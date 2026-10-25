@@ -8,7 +8,7 @@ import { whatsappLink } from "@/lib/format";
 
 export const revalidate = 300;
 
-export const metadata = contentMetadata({ title: "Fees & Packages", seo_noindex: false }, { path: "/pricing", description: "Simple monthly packages for live one-to-one online Quran classes, with a 7-day free trial and a 15% discount for additional siblings." });
+export const metadata = contentMetadata({ title: "Online Quran Class Fees & Packages", seo_noindex: false }, { path: "/pricing", description: "Simple monthly packages for live one-to-one online Quran classes, with a 7-day free trial and a 15% discount for additional siblings." });
 
 export default async function PricingPage({ searchParams }) {
   const requestedCurrency = (await searchParams)?.currency;
@@ -23,7 +23,7 @@ export default async function PricingPage({ searchParams }) {
     <>
       <PageHero path="/pricing"
         eyebrow="Fees"
-        title="Clear monthly fees, no hidden costs"
+        title="Online Quran class fees and packages"
         intro="Choose how many days a week suit your family. Every package includes a qualified 1-on-1 teacher, 30-minute live classes and a 7-day free trial before you pay anything."
       />
       <section className="page-wrap py-16 sm:py-20">

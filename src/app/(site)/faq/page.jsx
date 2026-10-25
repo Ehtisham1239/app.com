@@ -9,7 +9,7 @@ import { HelpCircle } from "@/components/site/icons";
 
 export const revalidate = 300;
 
-export const metadata = contentMetadata({ title: "Frequently Asked Questions", seo_noindex: false }, { path: "/faq", description: "Answers about free trials, female teachers, class timings, fees, rescheduling and certificates at Online Quran College." });
+export const metadata = contentMetadata({ title: "Questions About Online Quran Classes", seo_noindex: false }, { path: "/faq", description: "Answers about free trials, female teachers, class timings, fees, rescheduling and certificates at Online Quran College." });
 
 export default async function FaqPage() {
   const [faqs, settings] = await Promise.all([getFaqs(), getSettings()]);
@@ -29,7 +29,7 @@ export default async function FaqPage() {
   return (
     <>
       {faqs.length > 0 && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />}
-      <PageHero path="/faq" eyebrow="FAQ" title="Frequently asked questions" intro="Quick answers about trials, teachers, timings and fees." />
+      <PageHero path="/faq" eyebrow="FAQ" title="Questions about online Quran classes" intro="Quick answers about trials, teachers, timings and fees." />
       <section className="page-wrap grid gap-10 py-16 sm:py-20 lg:grid-cols-[14rem_1fr]">
         {entries.length > 1 && (
           <nav className="lg:sticky lg:top-24 lg:self-start" aria-label="FAQ topics">

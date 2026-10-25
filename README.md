@@ -31,3 +31,5 @@ Never put service-role keys or passwords in public environment variables.
 ## Reusable SEO agent workflow
 
 Use [the agent instructions](docs/seo-agent/INSTRUCTIONS.md) with this project; [the execution record](docs/seo-agent/EXECUTION-2026-10-25.md) records the verified production release and access limits. Run `npm run seo:agent` for an on-demand read-only audit of the approved production alias, or `npm run seo:agent -- http://localhost:3012 artifacts/seo-agent/local` with an already running local QA server. Reports and the URL inventory go to ignored `artifacts/`; the command never publishes, deploys or submits forms. The four-market research map and knowledge/claim register live in `content/seo-agent/`. These are reusable instructions and an executable audit workflow, not an installed Custom GPT or continuous background service.
+
+The [site-wide keyword release](docs/seo-agent/SITEWIDE-KEYWORDS-2026-10-25.md) records 21 curated topics and a visible-topic map for all 205 existing public pages. Use `npm run seo:keywords` to refresh placement evidence. Rankings and demand are not inferred from this check.

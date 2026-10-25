@@ -28,7 +28,7 @@ export default async function ContactPage() {
 
   return (
     <>
-      <PageHero path="/contact" eyebrow="Contact" title="We are here to help" intro="Questions about courses, fees or timings? Message us — our admissions team replies quickly, in English, Urdu or Arabic." />
+      <PageHero path="/contact" eyebrow="Contact" title="Contact Online Quran College" intro="Questions about courses, fees or timings? Message us — our admissions team replies quickly, in English, Urdu or Arabic." />
       <section className="page-wrap grid gap-10 py-16 sm:py-20 lg:grid-cols-[0.85fr_1.15fr]">
         <div className="min-w-0 space-y-3">
           {cards.map(({ icon: Icon, label, value, href, external, highlight }) => {

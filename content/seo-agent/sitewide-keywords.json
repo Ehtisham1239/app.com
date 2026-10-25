@@ -1,0 +1,1704 @@
+{
+  "date": "2026-10-25",
+  "scope": "205 existing public sitemap pages; visible-topic coverage, not keyword demand/ranking evidence",
+  "status": "locally verified; production verification pending",
+  "method": "21 curated service/navigation topics; local phrases use actual country/city context; existing article/profile/policy topics use published H1. Preserve custom CMS titles and descriptions.",
+  "sourceBase": "ea9374b2ac0e88172e60e9a65b4f9127ac3ad79b",
+  "rankingPositions": null,
+  "searchVolumes": null,
+  "pages": [
+    {
+      "path": "/",
+      "primaryPhrase": "learn Quran online",
+      "placements": [
+        "main"
+      ]
+    },
+    {
+      "path": "/about",
+      "primaryPhrase": "About Online Quran College",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/blog",
+      "primaryPhrase": "Quran learning articles",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/blog/adult-quran-beginner-first-month",
+      "primaryPhrase": "An adult beginner’s first month of Quran study",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/blog/choose-online-quran-teacher-usa",
+      "primaryPhrase": "Choosing an online Quran teacher from the USA",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/blog/family-quran-learning-multiple-children",
+      "primaryPhrase": "Planning Quran lessons for more than one child",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/blog/help-your-kids-learn-quran-online",
+      "primaryPhrase": "How to Help Your Kids Learn Quran Online Successfully",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/blog/hifz-revision-with-school",
+      "primaryPhrase": "Planning Hifz revision alongside school",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/blog/importance-of-reciting-quran-with-tajweed",
+      "primaryPhrase": "The Importance of Reciting Quran with Tajweed",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/blog/memorization-techniques-for-beginners",
+      "primaryPhrase": "Effective Memorization Techniques for Beginners",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/blog/noorani-qaida-or-quran-reading",
+      "primaryPhrase": "Noorani Qaida or Quran reading: where to start?",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/blog/online-quran-lesson-setup-accessibility",
+      "primaryPhrase": "Setting up an online lesson that is easier to follow",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/blog/parent-teacher-quran-progress-review",
+      "primaryPhrase": "A useful parent–teacher Quran progress conversation",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/blog/prepare-child-first-online-quran-trial",
+      "primaryPhrase": "Preparing a child for a first online Quran trial",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/blog/questions-before-quran-course-enrolment",
+      "primaryPhrase": "Questions to ask before enrolling in a Quran course",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/blog/quran-lessons-australia-time-zones",
+      "primaryPhrase": "Planning Quran lessons across Australian time zones",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/blog/quran-translation-and-arabic-difference",
+      "primaryPhrase": "Quran Translation or Arabic: comparing learning goals",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/blog/tajweed-practice-with-feedback",
+      "primaryPhrase": "Turning Tajweed feedback into useful practice",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/careers",
+      "primaryPhrase": "Teaching & careers enquiries",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/contact",
+      "primaryPhrase": "contact Online Quran College",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/courses",
+      "primaryPhrase": "online Quran courses",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/courses/arabic-language",
+      "primaryPhrase": "learn Quranic Arabic online",
+      "placements": [
+        "title",
+        "main"
+      ]
+    },
+    {
+      "path": "/courses/hadith-translation",
+      "primaryPhrase": "online Hadith translation classes",
+      "placements": [
+        "main"
+      ]
+    },
+    {
+      "path": "/courses/hifz-quran",
+      "primaryPhrase": "online Quran memorization",
+      "placements": [
+        "main"
+      ]
+    },
+    {
+      "path": "/courses/noorani-qaida",
+      "primaryPhrase": "learn Noorani Qaida online",
+      "placements": [
+        "main"
+      ]
+    },
+    {
+      "path": "/courses/quran-nazara",
+      "primaryPhrase": "online Quran reading with Tajweed",
+      "placements": [
+        "title",
+        "main"
+      ]
+    },
+    {
+      "path": "/courses/quran-translation",
+      "primaryPhrase": "online Quran translation and Tafseer",
+      "placements": [
+        "main"
+      ]
+    },
+    {
+      "path": "/courses/tajweed",
+      "primaryPhrase": "learn Tajweed online",
+      "placements": [
+        "main"
+      ]
+    },
+    {
+      "path": "/faq",
+      "primaryPhrase": "questions about online Quran classes",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/free-trial",
+      "primaryPhrase": "free online Quran trial",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/learn",
+      "primaryPhrase": "Quran learning guides",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/learn/islamic-studies-for-kids",
+      "primaryPhrase": "Islamic studies for kids",
+      "placements": [
+        "main"
+      ]
+    },
+    {
+      "path": "/learn/quran-for-adults",
+      "primaryPhrase": "learn Quran online for adults",
+      "placements": [
+        "main"
+      ]
+    },
+    {
+      "path": "/learn/quran-for-kids",
+      "primaryPhrase": "online Quran classes for kids",
+      "placements": [
+        "main"
+      ]
+    },
+    {
+      "path": "/locations",
+      "primaryPhrase": "online Quran classes by country",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/albania",
+      "primaryPhrase": "online Quran classes in Albania",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/albania/durres",
+      "primaryPhrase": "online Quran classes in Durres, Albania",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/albania/tirana",
+      "primaryPhrase": "online Quran classes in Tirana, Albania",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/andorra",
+      "primaryPhrase": "online Quran classes in Andorra",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/andorra/andorra-la-vella",
+      "primaryPhrase": "online Quran classes in Andorra la Vella, Andorra",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/andorra/escaldes-engordany",
+      "primaryPhrase": "online Quran classes in Escaldes-Engordany, Andorra",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/australia",
+      "primaryPhrase": "online Quran classes in Australia",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/australia/adelaide",
+      "primaryPhrase": "online Quran classes in Adelaide, Australia",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/australia/brisbane",
+      "primaryPhrase": "online Quran classes in Brisbane, Australia",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/australia/melbourne",
+      "primaryPhrase": "online Quran classes in Melbourne, Australia",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/australia/perth",
+      "primaryPhrase": "online Quran classes in Perth, Australia",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/australia/sydney",
+      "primaryPhrase": "online Quran classes in Sydney, Australia",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/austria",
+      "primaryPhrase": "online Quran classes in Austria",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/austria/graz",
+      "primaryPhrase": "online Quran classes in Graz, Austria",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/austria/vienna",
+      "primaryPhrase": "online Quran classes in Vienna, Austria",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/belarus",
+      "primaryPhrase": "online Quran classes in Belarus",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/belarus/brest",
+      "primaryPhrase": "online Quran classes in Brest, Belarus",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/belarus/minsk",
+      "primaryPhrase": "online Quran classes in Minsk, Belarus",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/belgium",
+      "primaryPhrase": "online Quran classes in Belgium",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/belgium/antwerp",
+      "primaryPhrase": "online Quran classes in Antwerp, Belgium",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/belgium/brussels",
+      "primaryPhrase": "online Quran classes in Brussels, Belgium",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/bosnia-and-herzegovina",
+      "primaryPhrase": "online Quran classes in Bosnia and Herzegovina",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/bosnia-and-herzegovina/mostar",
+      "primaryPhrase": "online Quran classes in Mostar, Bosnia and Herzegovina",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/bosnia-and-herzegovina/sarajevo",
+      "primaryPhrase": "online Quran classes in Sarajevo, Bosnia and Herzegovina",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/bulgaria",
+      "primaryPhrase": "online Quran classes in Bulgaria",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/bulgaria/plovdiv",
+      "primaryPhrase": "online Quran classes in Plovdiv, Bulgaria",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/bulgaria/sofia",
+      "primaryPhrase": "online Quran classes in Sofia, Bulgaria",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/canada",
+      "primaryPhrase": "online Quran classes in Canada",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/canada/calgary",
+      "primaryPhrase": "online Quran classes in Calgary, Canada",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/canada/montreal",
+      "primaryPhrase": "online Quran classes in Montreal, Canada",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/canada/ottawa",
+      "primaryPhrase": "online Quran classes in Ottawa, Canada",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/canada/toronto",
+      "primaryPhrase": "online Quran classes in Toronto, Canada",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/canada/vancouver",
+      "primaryPhrase": "online Quran classes in Vancouver, Canada",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/croatia",
+      "primaryPhrase": "online Quran classes in Croatia",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/croatia/split",
+      "primaryPhrase": "online Quran classes in Split, Croatia",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/croatia/zagreb",
+      "primaryPhrase": "online Quran classes in Zagreb, Croatia",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/cyprus",
+      "primaryPhrase": "online Quran classes in Cyprus",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/cyprus/limassol",
+      "primaryPhrase": "online Quran classes in Limassol, Cyprus",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/cyprus/nicosia",
+      "primaryPhrase": "online Quran classes in Nicosia, Cyprus",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/czechia",
+      "primaryPhrase": "online Quran classes in Czechia",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/czechia/brno",
+      "primaryPhrase": "online Quran classes in Brno, Czechia",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/czechia/prague",
+      "primaryPhrase": "online Quran classes in Prague, Czechia",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/denmark",
+      "primaryPhrase": "online Quran classes in Denmark",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/denmark/aarhus",
+      "primaryPhrase": "online Quran classes in Aarhus, Denmark",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/denmark/copenhagen",
+      "primaryPhrase": "online Quran classes in Copenhagen, Denmark",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/estonia",
+      "primaryPhrase": "online Quran classes in Estonia",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/estonia/tallinn",
+      "primaryPhrase": "online Quran classes in Tallinn, Estonia",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/estonia/tartu",
+      "primaryPhrase": "online Quran classes in Tartu, Estonia",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/finland",
+      "primaryPhrase": "online Quran classes in Finland",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/finland/helsinki",
+      "primaryPhrase": "online Quran classes in Helsinki, Finland",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/finland/tampere",
+      "primaryPhrase": "online Quran classes in Tampere, Finland",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/france",
+      "primaryPhrase": "online Quran classes in France",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/france/lyon",
+      "primaryPhrase": "online Quran classes in Lyon, France",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/france/marseille",
+      "primaryPhrase": "online Quran classes in Marseille, France",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/france/paris",
+      "primaryPhrase": "online Quran classes in Paris, France",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/france/toulouse",
+      "primaryPhrase": "online Quran classes in Toulouse, France",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/germany",
+      "primaryPhrase": "online Quran classes in Germany",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/germany/berlin",
+      "primaryPhrase": "online Quran classes in Berlin, Germany",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/germany/frankfurt",
+      "primaryPhrase": "online Quran classes in Frankfurt, Germany",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/germany/hamburg",
+      "primaryPhrase": "online Quran classes in Hamburg, Germany",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/germany/munich",
+      "primaryPhrase": "online Quran classes in Munich, Germany",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/greece",
+      "primaryPhrase": "online Quran classes in Greece",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/greece/athens",
+      "primaryPhrase": "online Quran classes in Athens, Greece",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/greece/thessaloniki",
+      "primaryPhrase": "online Quran classes in Thessaloniki, Greece",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/hungary",
+      "primaryPhrase": "online Quran classes in Hungary",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/hungary/budapest",
+      "primaryPhrase": "online Quran classes in Budapest, Hungary",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/hungary/debrecen",
+      "primaryPhrase": "online Quran classes in Debrecen, Hungary",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/iceland",
+      "primaryPhrase": "online Quran classes in Iceland",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/iceland/akureyri",
+      "primaryPhrase": "online Quran classes in Akureyri, Iceland",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/iceland/reykjavik",
+      "primaryPhrase": "online Quran classes in Reykjavik, Iceland",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/ireland",
+      "primaryPhrase": "online Quran classes in Ireland",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/ireland/cork",
+      "primaryPhrase": "online Quran classes in Cork, Ireland",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/ireland/dublin",
+      "primaryPhrase": "online Quran classes in Dublin, Ireland",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/italy",
+      "primaryPhrase": "online Quran classes in Italy",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/italy/milan",
+      "primaryPhrase": "online Quran classes in Milan, Italy",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/italy/rome",
+      "primaryPhrase": "online Quran classes in Rome, Italy",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/kosovo",
+      "primaryPhrase": "online Quran classes in Kosovo",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/kosovo/pristina",
+      "primaryPhrase": "online Quran classes in Pristina, Kosovo",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/kosovo/prizren",
+      "primaryPhrase": "online Quran classes in Prizren, Kosovo",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/latvia",
+      "primaryPhrase": "online Quran classes in Latvia",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/latvia/liepaja",
+      "primaryPhrase": "online Quran classes in Liepaja, Latvia",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/latvia/riga",
+      "primaryPhrase": "online Quran classes in Riga, Latvia",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/liechtenstein",
+      "primaryPhrase": "online Quran classes in Liechtenstein",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/liechtenstein/schaan",
+      "primaryPhrase": "online Quran classes in Schaan, Liechtenstein",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/liechtenstein/vaduz",
+      "primaryPhrase": "online Quran classes in Vaduz, Liechtenstein",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/lithuania",
+      "primaryPhrase": "online Quran classes in Lithuania",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/lithuania/kaunas",
+      "primaryPhrase": "online Quran classes in Kaunas, Lithuania",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/lithuania/vilnius",
+      "primaryPhrase": "online Quran classes in Vilnius, Lithuania",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/luxembourg",
+      "primaryPhrase": "online Quran classes in Luxembourg",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/luxembourg/esch-sur-alzette",
+      "primaryPhrase": "online Quran classes in Esch-sur-Alzette, Luxembourg",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/luxembourg/luxembourg-city",
+      "primaryPhrase": "online Quran classes in Luxembourg City, Luxembourg",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/malta",
+      "primaryPhrase": "online Quran classes in Malta",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/malta/sliema",
+      "primaryPhrase": "online Quran classes in Sliema, Malta",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/malta/valletta",
+      "primaryPhrase": "online Quran classes in Valletta, Malta",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/moldova",
+      "primaryPhrase": "online Quran classes in Moldova",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/moldova/balti",
+      "primaryPhrase": "online Quran classes in Balti, Moldova",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/moldova/chisinau",
+      "primaryPhrase": "online Quran classes in Chisinau, Moldova",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/monaco",
+      "primaryPhrase": "online Quran classes in Monaco",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/monaco/monaco",
+      "primaryPhrase": "online Quran classes in Monaco, Monaco",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/montenegro",
+      "primaryPhrase": "online Quran classes in Montenegro",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/montenegro/budva",
+      "primaryPhrase": "online Quran classes in Budva, Montenegro",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/montenegro/podgorica",
+      "primaryPhrase": "online Quran classes in Podgorica, Montenegro",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/netherlands",
+      "primaryPhrase": "online Quran classes in Netherlands",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/netherlands/amsterdam",
+      "primaryPhrase": "online Quran classes in Amsterdam, Netherlands",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/netherlands/rotterdam",
+      "primaryPhrase": "online Quran classes in Rotterdam, Netherlands",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/north-macedonia",
+      "primaryPhrase": "online Quran classes in North Macedonia",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/north-macedonia/skopje",
+      "primaryPhrase": "online Quran classes in Skopje, North Macedonia",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/north-macedonia/tetovo",
+      "primaryPhrase": "online Quran classes in Tetovo, North Macedonia",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/norway",
+      "primaryPhrase": "online Quran classes in Norway",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/norway/bergen",
+      "primaryPhrase": "online Quran classes in Bergen, Norway",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/norway/oslo",
+      "primaryPhrase": "online Quran classes in Oslo, Norway",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/poland",
+      "primaryPhrase": "online Quran classes in Poland",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/poland/krakow",
+      "primaryPhrase": "online Quran classes in Krakow, Poland",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/poland/warsaw",
+      "primaryPhrase": "online Quran classes in Warsaw, Poland",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/portugal",
+      "primaryPhrase": "online Quran classes in Portugal",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/portugal/lisbon",
+      "primaryPhrase": "online Quran classes in Lisbon, Portugal",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/portugal/porto",
+      "primaryPhrase": "online Quran classes in Porto, Portugal",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/romania",
+      "primaryPhrase": "online Quran classes in Romania",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/romania/bucharest",
+      "primaryPhrase": "online Quran classes in Bucharest, Romania",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/romania/cluj-napoca",
+      "primaryPhrase": "online Quran classes in Cluj-Napoca, Romania",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/russia",
+      "primaryPhrase": "online Quran classes in Russia",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/russia/moscow",
+      "primaryPhrase": "online Quran classes in Moscow, Russia",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/russia/saint-petersburg",
+      "primaryPhrase": "online Quran classes in Saint Petersburg, Russia",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/san-marino",
+      "primaryPhrase": "online Quran classes in San Marino",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/san-marino/san-marino",
+      "primaryPhrase": "online Quran classes in San Marino, San Marino",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/serbia",
+      "primaryPhrase": "online Quran classes in Serbia",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/serbia/belgrade",
+      "primaryPhrase": "online Quran classes in Belgrade, Serbia",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/serbia/novi-sad",
+      "primaryPhrase": "online Quran classes in Novi Sad, Serbia",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/slovakia",
+      "primaryPhrase": "online Quran classes in Slovakia",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/slovakia/bratislava",
+      "primaryPhrase": "online Quran classes in Bratislava, Slovakia",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/slovakia/kosice",
+      "primaryPhrase": "online Quran classes in Kosice, Slovakia",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/slovenia",
+      "primaryPhrase": "online Quran classes in Slovenia",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/slovenia/ljubljana",
+      "primaryPhrase": "online Quran classes in Ljubljana, Slovenia",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/slovenia/maribor",
+      "primaryPhrase": "online Quran classes in Maribor, Slovenia",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/spain",
+      "primaryPhrase": "online Quran classes in Spain",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/spain/barcelona",
+      "primaryPhrase": "online Quran classes in Barcelona, Spain",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/spain/madrid",
+      "primaryPhrase": "online Quran classes in Madrid, Spain",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/sweden",
+      "primaryPhrase": "online Quran classes in Sweden",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/sweden/gothenburg",
+      "primaryPhrase": "online Quran classes in Gothenburg, Sweden",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/sweden/stockholm",
+      "primaryPhrase": "online Quran classes in Stockholm, Sweden",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/switzerland",
+      "primaryPhrase": "online Quran classes in Switzerland",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/switzerland/geneva",
+      "primaryPhrase": "online Quran classes in Geneva, Switzerland",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/switzerland/zurich",
+      "primaryPhrase": "online Quran classes in Zurich, Switzerland",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/turkey",
+      "primaryPhrase": "online Quran classes in Turkey",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/turkey/ankara",
+      "primaryPhrase": "online Quran classes in Ankara, Turkey",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/turkey/istanbul",
+      "primaryPhrase": "online Quran classes in Istanbul, Turkey",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/ukraine",
+      "primaryPhrase": "online Quran classes in Ukraine",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/ukraine/kyiv",
+      "primaryPhrase": "online Quran classes in Kyiv, Ukraine",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/ukraine/lviv",
+      "primaryPhrase": "online Quran classes in Lviv, Ukraine",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/united-kingdom",
+      "primaryPhrase": "online Quran classes in United Kingdom",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/united-kingdom/birmingham",
+      "primaryPhrase": "online Quran classes in Birmingham, United Kingdom",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/united-kingdom/bradford",
+      "primaryPhrase": "online Quran classes in Bradford, United Kingdom",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/united-kingdom/glasgow",
+      "primaryPhrase": "online Quran classes in Glasgow, United Kingdom",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/united-kingdom/leeds",
+      "primaryPhrase": "online Quran classes in Leeds, United Kingdom",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/united-kingdom/leicester",
+      "primaryPhrase": "online Quran classes in Leicester, United Kingdom",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/united-kingdom/london",
+      "primaryPhrase": "online Quran classes in London, United Kingdom",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/united-kingdom/manchester",
+      "primaryPhrase": "online Quran classes in Manchester, United Kingdom",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/united-states",
+      "primaryPhrase": "online Quran classes in the USA",
+      "placements": [
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/united-states/chicago",
+      "primaryPhrase": "online Quran classes in Chicago, United States",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/united-states/dallas",
+      "primaryPhrase": "online Quran classes in Dallas, United States",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/united-states/houston",
+      "primaryPhrase": "online Quran classes in Houston, United States",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/united-states/los-angeles",
+      "primaryPhrase": "online Quran classes in Los Angeles, United States",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/united-states/new-york",
+      "primaryPhrase": "online Quran classes in New York, United States",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/vatican-city",
+      "primaryPhrase": "online Quran classes in Vatican City",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/locations/vatican-city/vatican-city",
+      "primaryPhrase": "online Quran classes in Vatican City, Vatican City",
+      "placements": [
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/pricing",
+      "primaryPhrase": "online Quran class fees",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/privacy-policy",
+      "primaryPhrase": "Privacy Policy",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/refund-policy",
+      "primaryPhrase": "Cancellation & Refund Policy",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    },
+    {
+      "path": "/teachers",
+      "primaryPhrase": "female Quran teacher online",
+      "placements": [
+        "main"
+      ]
+    },
+    {
+      "path": "/terms-and-conditions",
+      "primaryPhrase": "Terms & Conditions",
+      "placements": [
+        "title",
+        "h1",
+        "main"
+      ]
+    }
+  ]
+}

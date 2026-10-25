@@ -1,0 +1,102 @@
+{
+  "date": "2026-10-25",
+  "state": "locally verified; publication pending",
+  "sourceBase": "ea9374b2ac0e88172e60e9a65b4f9127ac3ad79b",
+  "accessWork": "paused by owner",
+  "tests": {
+    "passed": 53,
+    "failed": 0
+  },
+  "lint": {
+    "errors": 0,
+    "existingWarnings": 19
+  },
+  "build": "passed",
+  "localAudit": {
+    "checkedAt": "2026-10-25T10:31:54.471Z",
+    "timezone": "Asia/Karachi",
+    "mode": "READ_ONLY",
+    "base": "http://localhost:3012",
+    "canonicalOrigin": "https://project-umber-three-93.vercel.app",
+    "sitemapUrls": 205,
+    "audited": 205,
+    "technicalFindings": 0,
+    "qualityFailures": 0,
+    "keywordPages": 205,
+    "keywordFailures": 0,
+    "topImages": 196,
+    "requestMethods": [
+      "GET"
+    ],
+    "integrationMetrics": {
+      "gsc": "Not Checked: authenticated property/export required",
+      "ga4": "Not Checked: authenticated property/export required",
+      "semrush": "Not Checked: entitlement and fresh audit export required"
+    },
+    "limitations": [
+      "Raw HTML and response checks; not Google index status or Rich Results Test",
+      "No physical-device test, field CWV, actual keyword positions or organic attribution",
+      "Offer wording is observed, not documentary substantiation",
+      "No form submissions, authenticated staff operations or external messages"
+    ]
+  },
+  "localKeywords": {
+    "checkedAt": "2026-10-25T10:31:54.404Z",
+    "base": "http://localhost:3012",
+    "declared": 205,
+    "mapped": 205,
+    "curatedTopics": 21,
+    "failures": [],
+    "stopped": false,
+    "evidence": "Topic relevance and visible placement only. Search volumes, top-ten rankings, difficulty and traffic are unverified. No meta-keywords tag or hidden keyword list added."
+  },
+  "localBrowser": {
+    "base": "http://localhost:3012",
+    "layouts": [
+      {
+        "device": "desktop",
+        "slug": "united-states",
+        "language": "en-US"
+      },
+      {
+        "device": "desktop",
+        "slug": "united-kingdom",
+        "language": "en-GB"
+      },
+      {
+        "device": "desktop",
+        "slug": "canada",
+        "language": "en-CA"
+      },
+      {
+        "device": "desktop",
+        "slug": "australia",
+        "language": "en-AU"
+      },
+      {
+        "device": "mobile",
+        "slug": "united-states",
+        "language": "en-US"
+      },
+      {
+        "device": "mobile",
+        "slug": "united-kingdom",
+        "language": "en-GB"
+      },
+      {
+        "device": "mobile",
+        "slug": "canada",
+        "language": "en-CA"
+      },
+      {
+        "device": "mobile",
+        "slug": "australia",
+        "language": "en-AU"
+      }
+    ],
+    "olderClockDatabase": true,
+    "unexpectedWrites": 0,
+    "browserErrors": [],
+    "transportErrors": []
+  }
+}

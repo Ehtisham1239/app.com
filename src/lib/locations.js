@@ -897,3 +897,10 @@ export function locationBreadcrumbs(country, city) {
     { name: country.name, path: locationPath(country) },
     ...(city ? [{ name: city.name, path: locationPath(country, city) }] : [])];
 }
+
+export function locationSearchIntro(country, city) {
+  const place = city ? `${city.name}, ${country.name}` : country.name;
+  return city
+    ? `Online Quran classes in ${place} for children and adults. Plan lessons using ${locationTimeZone(country, city)} and confirm the course and ${country.currency} fee with a coordinator.`
+    : `Online Quran classes in ${place}, with live one-to-one lessons from home. Choose your city’s clock, explore courses and confirm the available ${country.currency} fee before enrolling.`;
+}
