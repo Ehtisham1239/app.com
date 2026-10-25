@@ -5,6 +5,7 @@ import { ContentImage } from "@/components/site/content-image";
 import { safeJsonLd, breadcrumbSchema } from "@/lib/seo";
 import { contentMetadata, publicImageUrl } from "@/lib/seo-metadata";
 import { articleNavigation } from "@/lib/article-navigation";
+import { articleDates, articleAuthor, blogPosting } from "@/lib/blog-seo";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Clock3 } from "@/components/site/icons";
@@ -27,7 +28,8 @@ export async function generateMetadata({ params }) {
   const post = await getPost(slug);
   if (!post) return { title: "Article not found" };
   const description = post.seo_description || post.excerpt || truncate(stripHtml(post.body_html), 158);
-  return contentMetadata(post, { path: `/blog/${post.slug}`, description, type: "article" });
+  const visual = contentVisual(post), dates = articleDates(post), author = articleAuthor(post.author_name);
+  return { ...contentMetadata({ ...post, cover_url: visual.src, cover_alt: visual.alt, published_at: dates.published, updated_at: dates.modified }, { path: `/blog/${post.slug}`, description, type: "article" }), authors: [{ name: author.name, ...(author["@type"] === "Organization" ? { url: `${SITE_URL}/about` } : {}) }] };
 }
 
 export default async function PostPage({ params }) {
@@ -38,33 +40,19 @@ export default async function PostPage({ params }) {
   const relevance = p => (p.category === post.category ? 3 : 0) + (p.tags || []).filter(tag => post.tags?.includes(tag)).length;
   const more = posts.filter((p) => p.slug !== post.slug).sort((a,b) => relevance(b)-relevance(a)).slice(0, 3);
   const { html, headings } = articleNavigation(cleanHtml(post.body_html));
+  const visual = contentVisual(post), dates = articleDates(post), author = articleAuthor(post.author_name);
   const breadcrumbs = [{ name: "Home", path: "/" }, { name: "Articles", path: "/blog" }, { name: post.title, path: `/blog/${post.slug}` }];
   const wa = whatsappLink(settings["site.contact"]?.whatsapp, "Assalamu alaikum, I read your article and would like to book a free trial.");
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "@id": `${SITE_URL}/blog/${post.slug}#article`,
-    headline: post.title,
-    keywords: post.tags?.join(", "),
-    inLanguage: "en",
-    description: post.excerpt,
-    dateModified: post.updated_at,
-    ...(post.cover_url ? { image: new URL(publicImageUrl(post.cover_url), SITE_URL).href } : {}),
-    datePublished: post.published_at,
-    author: { "@type": "Organization", name: post.author_name || "Online Quran College", url: `${SITE_URL}/about` },
-    wordCount: stripHtml(html).trim().split(/\s+/).length,
-    publisher: { "@type": "EducationalOrganization", "@id": `${SITE_URL}/#organization`, name: "Online Quran College", logo: { "@type": "ImageObject", url: `${SITE_URL}/brand/logo.webp` } },
-    mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
-  };
+  const jsonLd = blogPosting(post, { siteUrl: SITE_URL, visual: { ...visual, src: publicImageUrl(visual.src) }, html, description: post.seo_description || post.excerpt || truncate(stripHtml(html), 158) });
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema(breadcrumbs, SITE_URL)) }} />
       <article>
-        <PageHero path={`/blog/${post.slug}`} eyebrow={post.category} title={post.title} visual={post.cover_url ? <ContentImage src={contentVisual(post).src} alt={contentVisual(post).alt} priority sizes="(max-width: 1024px) 100vw, 600px" className="aspect-[3/2] w-full object-cover" /> : undefined}>
+        <PageHero path={`/blog/${post.slug}`} eyebrow={post.category} title={post.title} visual={<ContentImage src={visual.src} alt={visual.alt} priority sizes="(max-width: 1024px) 100vw, 600px" className="aspect-[3/2] w-full object-cover" />}>
           <nav aria-label="Breadcrumb" className="mt-5 text-sm text-white/75"><Link href="/">Home</Link> / <Link href="/blog" className="underline">Articles</Link></nav>
-          <p className="mt-5 flex flex-wrap items-center gap-3 text-sm text-white/75"><span>{post.author_name}</span><time dateTime={post.published_at}>{formatDate(post.published_at)}</time>{post.reading_minutes ? <span className="inline-flex items-center gap-1"><Clock3 className="size-4" aria-hidden="true" />{post.reading_minutes} min read</span> : null}</p>
+          <p className="mt-5 flex flex-wrap items-center gap-3 text-sm text-white/75">{author["@type"] === "Organization" ? <Link href="/about" className="underline underline-offset-4">{author.name}</Link> : <span>{author.name}</span>}{dates.published && <span>Published <time dateTime={dates.published}>{formatDate(dates.published, "UTC")}</time></span>}{dates.showModified && <span>Updated <time dateTime={dates.modified}>{formatDate(dates.modified, "UTC")}</time></span>}{post.reading_minutes ? <span className="inline-flex items-center gap-1"><Clock3 className="size-4" aria-hidden="true" />{post.reading_minutes} min read</span> : null}</p>
         </PageHero>
         <div className="page-wrap max-w-4xl py-14">
           {post.excerpt && <p className="mb-8 border-l-4 border-gold-500 pl-5 text-[1.18rem] leading-relaxed text-ink-soft">{post.excerpt}</p>}

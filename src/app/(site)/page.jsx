@@ -21,9 +21,9 @@ export async function generateMetadata() {
   return {
     title: { absolute: seo.title ?? "Online Quran College" },
     description: seo.description || "Live one-to-one online Quran classes for children and adults. Explore Noorani Qaida, Tajweed, Hifz and Arabic with Online Quran College.",
-    alternates: { canonical: "/" },
+    alternates: { canonical: "/", types: { "application/rss+xml": [{ url: "/blog/feed.xml", title: "Online Quran College articles" }] } },
     twitter: { card: "summary_large_image", title: seo.title || "Online Quran College", description: seo.description || "Live online Quran lessons for children and adults, with flexible class times.", images: ["/opengraph-image"] },
-    openGraph: { title: seo.title || "Online Quran College", description: seo.description || "Live online Quran lessons for children and adults, with flexible class times.", url: "/", images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Online Quran College — live online Quran classes" }] },
+    openGraph: { type: "website", siteName: "Online Quran College", locale: "en_GB", title: seo.title || "Online Quran College", description: seo.description || "Live online Quran lessons for children and adults, with flexible class times.", url: "/", images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Online Quran College — live online Quran classes" }] },
   };
 }
 
