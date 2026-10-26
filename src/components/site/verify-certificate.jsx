@@ -3,7 +3,6 @@
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { BadgeCheck, Loader2, Search, SearchX } from "@/components/site/icons";
-import { getPublicBrowserClient } from "@/lib/supabase/public";
 import { formatDate } from "@/lib/format";
 
 export function VerifyCertificate() {
@@ -14,6 +13,7 @@ export function VerifyCertificate() {
 
   const lookup = useCallback(async (n) => {
     try {
+      const { getPublicBrowserClient } = await import("@/lib/supabase/public");
       const { data, error } = await getPublicBrowserClient().rpc("verify_certificate", { p_number: n });
       if (error) {
         setState({ loading: false, checked: n, result: undefined, error: "We could not check the certificate right now. Please try again in a moment." });

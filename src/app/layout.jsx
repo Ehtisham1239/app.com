@@ -6,10 +6,20 @@ import "./globals.css";
 const inter = localFont({
   src: [
     { path: "../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2", weight: "300 900", style: "normal" },
-    { path: "../../node_modules/@fontsource-variable/inter/files/inter-latin-ext-wght-normal.woff2", weight: "300 900", style: "normal" },
   ],
   variable: "--font-inter",
   display: "swap",
+  adjustFontFallback: false,
+});
+
+// Keep extended Latin available for international names without preloading an
+// 85KB subset on every English page. Missing glyphs select this family on demand.
+const interExtended = localFont({
+  src: [{ path: "../../node_modules/@fontsource-variable/inter/files/inter-latin-ext-wght-normal.woff2", weight: "300 900", style: "normal" }],
+  variable: "--font-inter-extended",
+  display: "swap",
+  preload: false,
+  adjustFontFallback: false,
 });
 
 const outfit = localFont({
@@ -52,7 +62,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en-GB" data-scroll-behavior="smooth" className={`${inter.variable} ${outfit.variable} ${amiri.variable}`} suppressHydrationWarning>
+    <html lang="en-GB" data-scroll-behavior="smooth" className={`${inter.variable} ${interExtended.variable} ${outfit.variable} ${amiri.variable}`} suppressHydrationWarning>
       <body>
         {children}
         <Toaster position="top-center" richColors closeButton toastOptions={{ style: { fontFamily: "var(--font-sans)" } }} />

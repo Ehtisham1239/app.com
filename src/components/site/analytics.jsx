@@ -43,9 +43,9 @@ export function WebsiteAnalytics({ config }) {
   return (
     <>
       {consent === null || settingsOpen ? (
-        <section aria-label="Analytics preferences" className="fixed inset-x-3 bottom-3 z-[70] mx-auto max-w-xl rounded-2xl border border-leaf-100 bg-white p-5 text-ink shadow-xl sm:p-6">
+        <section aria-label="Analytics preferences" className="fixed inset-x-3 bottom-[max(.75rem,env(safe-area-inset-bottom))] z-[45] mx-auto max-h-[calc(100svh-2rem)] max-w-xl overflow-y-auto rounded-2xl border border-leaf-100 bg-white p-4 text-ink shadow-xl sm:p-6">
           <h2 className="text-lg font-semibold">Optional website analytics</h2>
-          <p className="mt-2 text-sm leading-relaxed text-ink-soft">Allow Google Analytics to help us understand page visits and enquiries. Your choice does not affect lessons or forms. Advertising consent stays off. <Link href="/privacy-policy#optional-analytics" className="underline underline-offset-4">Privacy details</Link></p>
+          <p className="mt-2 text-sm leading-relaxed text-ink-soft">Optional Google Analytics helps us understand visits and enquiries. Advertising stays off. <Link href="/privacy-policy#optional-analytics" className="underline underline-offset-4">Privacy details</Link></p>
           <div className="mt-4 grid grid-cols-2 gap-3">
             <button type="button" className="btn btn-outline min-h-11 text-sm" onClick={() => choose("denied")}>Reject analytics</button>
             <button type="button" className="btn btn-primary min-h-11 text-sm" onClick={() => choose("granted")}>Allow analytics</button>

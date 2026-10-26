@@ -3,9 +3,9 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { SEARCH_INTENTS } from '../src/lib/search-intent.js';
 import { getLocation } from '../src/lib/locations.js';
 import { textContent } from '../src/lib/seo.js';
+import { auditOrigin } from './lib/audit-origin.mjs';
 
-const base = new URL(process.argv[2] || 'https://www.onlinequrancollege.com');
-if (base.username || base.password || base.pathname !== '/' || base.search || base.hash || (base.origin !== 'https://www.onlinequrancollege.com' && !(base.protocol === 'http:' && ['localhost', '127.0.0.1'].includes(base.hostname)))) throw Error('Use the approved production origin or a local QA server.');
+const base = auditOrigin(process.argv[2]);
 const output = process.argv[3] || 'artifacts/keyword-coverage'; mkdirSync(output, { recursive: true });
 const decode = s => String(s || '').replace(/&quot;/g, '"').replace(/&#x([0-9a-f]+);/gi, (_, x) => String.fromCodePoint(parseInt(x, 16))).replace(/&#(\d+);/g, (_, x) => String.fromCodePoint(Number(x))).replace(/&amp;/g, '&');
 const normal = s => decode(s).toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();

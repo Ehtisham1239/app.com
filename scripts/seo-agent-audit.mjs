@@ -3,11 +3,10 @@ import { spawn } from 'node:child_process';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { auditOrigin } from './lib/audit-origin.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-const base = new URL(process.argv[2] || 'https://www.onlinequrancollege.com');
-if (base.username || base.password || base.pathname !== '/' || base.search || base.hash) throw Error('Supply an origin without credentials, path, query or fragment.');
-if (base.origin !== 'https://www.onlinequrancollege.com' && !(base.protocol === 'http:' && ['localhost', '127.0.0.1'].includes(base.hostname))) throw Error('Target is outside the authorised project or local QA server.');
+const base = auditOrigin(process.argv[2]);
 const output = resolve(root, process.argv[3] || 'artifacts/seo-agent/latest');
 mkdirSync(output, { recursive: true });
 const run = (script, folder) => new Promise((done, fail) => {

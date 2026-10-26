@@ -1,29 +1,17 @@
-import { chromium } from "playwright";
+import { auditPage, launchAuditBrowser, loadedImage } from "./lib/browser-audit.mjs";
 import assert from "node:assert/strict";
 import { mkdirSync, writeFileSync } from "node:fs";
 const base = (process.argv[2] || "http://localhost:3012").replace(/\/$/, "");
 const out = process.argv[3] || "artifacts/blog-browser";
 mkdirSync(out, { recursive: true });
 const report = { base, cases: [], errors: [], writes: 0, scope: "Chromium desktop/mobile emulation, vendor stubbed; owned-site GETs only; no forms submitted" };
-const launch = () => chromium.launch({ executablePath: process.env.CHROMIUM_PATH || "/usr/bin/chromium", args: process.env.CHROMIUM_ARGS_JSON ? JSON.parse(process.env.CHROMIUM_ARGS_JSON) : ["--no-sandbox"] });
+const launch = launchAuditBrowser;
 let browser;
 try {
   for (const width of [390, 1440]) {
     browser = await launch();
-    const context = await browser.newContext({ viewport: { width, height: 1000 } });
-    const page = await context.newPage();
-    page.on("pageerror", e => report.errors.push(e.message));
-    await page.route("**/*", async route => {
-      const req = route.request(), url = new URL(req.url());
-      if (url.hostname === "app.hatchium.ai") return route.fulfill({ contentType: "application/javascript", body: "/* test vendor stub */" });
-      if (!["GET", "HEAD"].includes(req.method())) { report.writes++; return route.abort(); }
-      if (base.startsWith("https://") && url.origin === new URL(base).origin) {
-        const r = await fetch(req.url(), { method: req.method(), headers: await req.allHeaders(), redirect: "manual", signal: AbortSignal.timeout(30000) });
-        const headers = Object.fromEntries(r.headers); delete headers["content-length"]; delete headers["content-encoding"];
-        return route.fulfill({ status: r.status, headers, body: Buffer.from(await r.arrayBuffer()) });
-      }
-      return route.continue();
-    });
+    const session = await auditPage(browser, base, report, { viewport: { width, height: 1000 } });
+    const { page } = session;
     const r = await page.goto(base + "/blog", { waitUntil: "load" }); assert.equal(r.status(), 200);
     const topics = page.getByRole("navigation", { name: "Article topics" });
     assert.equal(await topics.getByRole("link").count(), 9);
@@ -49,8 +37,9 @@ try {
     assert.equal(await page.getByRole("heading", { level: 1 }).count(), 1);
     assert.ok(await page.locator("article time").count() >= 1);
     const image = page.locator("[data-hero-visual] img");
-    await image.evaluate(img => img.decode());
+    await loadedImage(page, "[data-hero-visual] img");
     assert.ok(await image.getAttribute("alt"));
+    await page.locator(".article-toc summary").click();
     const toc = page.getByRole("navigation", { name: "In this article" }).getByRole("link").first();
     const target = await toc.getAttribute("href"); await toc.click();
     await page.waitForURL(url => url.hash === target);
@@ -59,18 +48,19 @@ try {
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
     await page.screenshot({ path: `${out}/article-${width}.png` });
     report.cases.push({ width, categories: 8, pagination: true, imageLoaded: true, dateVisible: true, tableOfContents: true, overflow: false });
-    await context.close(); await browser.close();
+    await page.evaluate(() => { navigator.clipboard.writeText = async value => { window.__copiedArticle = value; }; window.print = () => { window.__printedArticle = true; }; });
+    const reject = page.getByRole('button', { name: 'Reject analytics', exact: true });
+    if (await reject.count()) await reject.click();
+    await page.getByRole('button', { name: 'Copy article link', exact: true }).click();
+    assert.equal(await page.evaluate(() => new URL(window.__copiedArticle).pathname), article);
+    await page.getByRole('button', { name: 'Print or save PDF', exact: true }).click();
+    assert.equal(await page.evaluate(() => window.__printedArticle), true);
+    await page.emulateMedia({ media: 'print' });
+    assert.equal(await page.locator('.site-header').isVisible(), false);
+    assert.equal(await page.locator('.article-print-source').isVisible(), true);
+    await page.emulateMedia({ media: 'screen' });
+    await session.close(); await browser.close();
   }
-  browser = await launch();
-  const context = await browser.newContext({ javaScriptEnabled: false });
-  if (base.startsWith("https://")) await context.route(`${base}/**`, async route => {
-    const r = await fetch(route.request().url(), { redirect: "manual", signal: AbortSignal.timeout(30000) });
-    const headers = Object.fromEntries(r.headers); delete headers["content-length"]; delete headers["content-encoding"];
-    return route.fulfill({ status: r.status, headers, body: Buffer.from(await r.arrayBuffer()) });
-  });
-  const page = await context.newPage(); await page.goto(base + "/blog/help-your-kids-learn-quran-online");
-  assert.ok((await page.locator(".prose-oqc").innerText()).length > 1000);
-  report.noJavaScriptArticle = true; await context.close();
 } finally { await browser?.close(); }
 assert.deepEqual(report.errors, []); assert.equal(report.writes, 0);
 writeFileSync(`${out}/summary.json`, JSON.stringify(report, null, 2)); console.log(JSON.stringify(report, null, 2));

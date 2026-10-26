@@ -10,7 +10,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { clsx } from "clsx";
 import { ArrowLeft, ArrowRight, Check, CheckCircle2, Loader2, MessageCircle } from "@/components/site/icons";
 import { bookingPreferenceNotes } from "@/lib/booking-preferences";
-import { getPublicBrowserClient } from "@/lib/supabase/public";
 import { AGE_BANDS, COUNTRIES, LANGUAGES, LEVELS, TEACHER_PREFS, TIME_SLOTS, WEEKDAYS } from "@/lib/constants";
 
 const STEPS = [
@@ -208,6 +207,7 @@ export function TrialForm({ courses = [], plans = [], currencies = [], consentTe
     };
     let data, error;
     try {
+      const { getPublicBrowserClient } = await import("@/lib/supabase/public");
       ({ data, error } = await getPublicBrowserClient().rpc("submit_trial_application", { payload }));
     } catch (cause) { error = cause; }
     if (error) {

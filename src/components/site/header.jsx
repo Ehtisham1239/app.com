@@ -83,11 +83,11 @@ export function SiteHeader({ menu, courses, brandName }) {
       )}
     >
       <div className="page-wrap flex h-[4.5rem] items-center gap-3 sm:gap-6">
-        <Link href="/" className="group flex shrink-0 items-center gap-3" aria-label={`${brandName} — home`}>
+        <Link href="/" className="header-brand group flex min-w-0 items-center gap-3" aria-label={`${brandName} — home`}>
           <img src="/brand/mark.png" alt="" width={176} height={176} className="size-12 shrink-0 object-contain sm:size-14" />
-          <span className="flex flex-col leading-none" aria-hidden="true">
+          <span className="flex flex-col leading-none">
             <span className="font-display text-[1.02rem] font-semibold uppercase tracking-[0.05em] text-leaf-700 sm:text-[1.2rem]">{(brandName || "Online Quran College").replace(/\s+college(\s+ltd\.?)?$/i, "")}</span>
-            <span className="mt-1 flex items-center gap-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.34em] text-gold-600 sm:text-[0.74rem]"><span className="h-px w-3 bg-gold-500" />College<span className="h-px w-3 bg-gold-500" /></span>
+            {" "}<span className="mt-1 flex items-center gap-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.34em] text-gold-600 sm:text-[0.74rem]"><span className="h-px w-3 bg-gold-500" />College<span className="h-px w-3 bg-gold-500" /></span>
           </span>
         </Link>
 
@@ -198,7 +198,7 @@ export function SiteHeader({ menu, courses, brandName }) {
         >
           <div className="flex h-[4.5rem] shrink-0 items-center justify-between gap-2 border-b border-line px-5">
             <span className="font-display text-lg text-mushaf-900">{brandName}</span>
-            <button type="button" className="flex size-10 items-center justify-center rounded-full hover:bg-leaf-50" onClick={() => setOpen(false)} aria-label="Close menu">
+            <button type="button" className="flex size-11 items-center justify-center rounded-full hover:bg-leaf-50" onClick={() => setOpen(false)} aria-label="Close menu">
               <X className="size-5" aria-hidden="true" />
             </button>
           </div>

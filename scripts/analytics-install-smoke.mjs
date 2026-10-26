@@ -1,30 +1,23 @@
-import { chromium } from 'playwright';
+import { auditPage, launchAuditBrowser } from './lib/browser-audit.mjs';
 import assert from 'node:assert/strict';
 import { mkdirSync, writeFileSync } from 'node:fs';
 
 const base = (process.argv[2] || 'http://127.0.0.1:3017').replace(/\/$/, '');
 const expectedId = process.argv[3] || 'G-57TGPTDNT4';
 const out = process.argv[4] || 'artifacts/analytics-install';
-const origin = new URL(base).origin;
 const report = { base, expectedId, cases: [], browserErrors: [], realGoogleRequests: 0, formSubmissions: 0, googleLibrary: 'stubbed; this verifies installation, not a GA4 reporting receipt' };
 mkdirSync(out, { recursive: true });
 for (const width of [390, 1440]) {
-  const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || undefined, args: JSON.parse(process.env.CHROMIUM_ARGS_JSON || '["--no-sandbox"]') });
+  const browser = await launchAuditBrowser();
   try {
-    const page = await browser.newPage({ viewport: { width, height: 1000 } });
+    const session = await auditPage(browser, base, report, { viewport: { width, height: 1000 } });
+    const { page } = session;
     const loads = [];
-    page.on('pageerror', error => report.browserErrors.push(error.message));
-    await page.route('**/*', async route => {
-      const req = route.request(), url = new URL(req.url());
-      if (url.hostname === 'www.googletagmanager.com') { loads.push(url.href); return route.fulfill({ contentType: 'application/javascript', body: '/* inert Google installation check */' }); }
-      if (url.hostname === 'app.hatchium.ai') return route.fulfill({ contentType: 'application/javascript', body: '/* inert chat installation check */' });
-      if (url.origin !== origin) { if (/google-analytics|doubleclick/.test(url.hostname)) report.realGoogleRequests++; return route.abort(); }
-      if (!['GET', 'HEAD'].includes(req.method())) { report.formSubmissions++; return route.abort(); }
-      if (url.protocol === 'http:') return route.continue();
-      const response = await fetch(req.url(), { method: req.method(), headers: await req.allHeaders(), redirect: 'manual', signal: AbortSignal.timeout(20000) });
-      const headers = Object.fromEntries(response.headers);
-      delete headers['content-length']; delete headers['content-encoding']; delete headers['transfer-encoding'];
-      return route.fulfill({ status: response.status, headers, body: Buffer.from(await response.arrayBuffer()) });
+    page.on('request', req => {
+      const url = new URL(req.url());
+      if (url.hostname === 'www.googletagmanager.com') loads.push(url.href);
+      if (/google-analytics|doubleclick/.test(url.hostname)) report.realGoogleRequests++;
+      if (!['GET', 'HEAD'].includes(req.method())) report.formSubmissions++;
     });
     await page.goto(base + '/contact', { waitUntil: 'load' });
     await page.getByRole('region', { name: 'Analytics preferences', exact: true }).waitFor();
@@ -57,6 +50,7 @@ for (const width of [390, 1440]) {
     await page.getByRole('button', { name: 'Analytics preferences', exact: true }).waitFor();
     assert.equal(await page.locator('#oqc-google-analytics').count(), 0);
     assert.equal(loads.length, 1);
+    await session.close();
     report.cases.push({ width, ownerId: expectedId, beforeConsentLoads: 0, loaderCount: 1, pageViews: 2, rejectionPersists: true, revocationStopsLoader: true });
   } finally { await browser.close(); }
 }
