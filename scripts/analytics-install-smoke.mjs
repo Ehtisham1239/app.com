@@ -4,7 +4,7 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 
 const base = (process.argv[2] || 'http://127.0.0.1:3017').replace(/\/$/, '');
 const expectedId = process.argv[3] || 'G-57TGPTDNT4';
-const expectedGtm = process.env.OQC_EXPECTED_GTM || 'GTM-16203239528';
+const expectedGtm = process.env.OQC_EXPECTED_GTM || 'GTM-W7CMZS53';
 const out = process.argv[4] || 'artifacts/analytics-install';
 const realLibrary = process.argv.includes('--real-google-script');
 const report = { base, expectedId, mode: 'Owner-approved cookieless analytics; GTM owns GA4 when configured', cases: [], browserErrors: [], collectionRequestsBlocked: 0, formSubmissions: 0, googleLibrary: realLibrary ? 'Actual Google loader; collection and other external requests intercepted' : 'Inert vendor stubs; installation checks, not a GA4 reporting receipt or container-cookie audit' };
