@@ -1,7 +1,7 @@
 {
   "date": "2026-10-24",
   "timezone": "Asia/Karachi",
-  "productionOrigin": "https://project-umber-three-93.vercel.app",
+  "productionOrigin": "https://www.onlinequrancollege.com",
   "repositoryBaseline": "392ff533223659c5bed3fc92b6f3408e982c00b1",
   "deployment": {
     "state": "READY",
@@ -9,7 +9,7 @@
     "projectId": "prj_q3qTOTMNxuDfgmd5XoCaoWVhQBVu",
     "deploymentId": "dpl_8gavnNmqPoDfHYDjLXjYE5KkSKRG",
     "deployedSourceCommit": "c57c16ee9d84a1ad043963aadfb2d795d6358d55",
-    "productionOrigin": "https://project-umber-three-93.vercel.app",
+    "productionOrigin": "https://www.onlinequrancollege.com",
     "deploymentUrl": "https://project-23zbwrzjl-ehtisham1239s-projects.vercel.app",
     "readyAtUtc": "2026-10-24T15:50:51.025000+00:00",
     "buildDurationMs": 79480,
@@ -212,7 +212,7 @@
   "localTechnical": {
     "checkedAt": "2026-10-24T15:37:27.896Z",
     "base": "http://127.0.0.1:3012",
-    "canonicalOrigin": "https://project-umber-three-93.vercel.app",
+    "canonicalOrigin": "https://www.onlinequrancollege.com",
     "declaredSitemapUrls": 205,
     "uniqueSitemapUrls": 205,
     "audited": 205,
@@ -426,8 +426,8 @@
   "postDeployment": {
     "technicalAudit": {
       "checkedAt": "2026-10-24T15:52:44.200Z",
-      "base": "https://project-umber-three-93.vercel.app",
-      "canonicalOrigin": "https://project-umber-three-93.vercel.app",
+      "base": "https://www.onlinequrancollege.com",
+      "canonicalOrigin": "https://www.onlinequrancollege.com",
       "declaredSitemapUrls": 205,
       "uniqueSitemapUrls": 205,
       "audited": 205,
@@ -442,7 +442,7 @@
       "scope": "All declared sitemap URLs plus explicit probes; raw HTML, not Google index status or field CWV. External search and backlink metrics unavailable."
     },
     "templateSchemaReview": {
-      "base": "https://project-umber-three-93.vercel.app",
+      "base": "https://www.onlinequrancollege.com",
       "sitemap_urls": 205,
       "sampled_templates_and_courses": 15,
       "external_discovery_pages": 15,
@@ -513,7 +513,7 @@
       "currencyEvidence": "currency-NOK.png and focused run stdout",
       "protectedAdminRedirect": {
         "status": 307,
-        "destination": "https://project-umber-three-93.vercel.app/admin/login",
+        "destination": "https://www.onlinequrancollege.com/admin/login",
         "method": "Trusted Node HTTPS redirect response, then direct browser login-screen inspection"
       },
       "loginScreen": "Email field and Sign in button visible",
@@ -527,7 +527,7 @@
       "reason": "Vercel runtime-log request returned 403; no authenticated CLI fallback available."
     },
     "hostingDomain": {
-      "name": "project-umber-three-93.vercel.app",
+      "name": "www.onlinequrancollege.com",
       "verified": true,
       "misconfigured": false,
       "conflicts": [],

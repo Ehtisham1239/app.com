@@ -2,7 +2,7 @@
 
 The user requested execution of the uploaded `seo-ranking-competitor-analysis.skill`, continuing the image/card redesign, and explicitly excluded 30/90-day plans. This file records completed work and verifiable limits, not a calendar plan.
 
-The source is `Ehtisham1239/app.com`. The authorised production/canonical origin remains `https://project-umber-three-93.vercel.app`; the original college domain is a branding reference and was not moved. English content serves online learners in the UK, USA, Australia, Canada and Europe. Primary conversions remain trial requests and contact enquiries.
+The source is `Ehtisham1239/app.com`. The authorised production/canonical origin remains `https://www.onlinequrancollege.com`; the original college domain is a branding reference and was not moved. English content serves online learners in the UK, USA, Australia, Canada and Europe. Primary conversions remain trial requests and contact enquiries.
 
 | Area | Implementation and evidence |
 | --- | --- |

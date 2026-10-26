@@ -1,13 +1,13 @@
 {
   "recordedAt": "2026-10-25T14:48:29.168632+00:00",
   "reportingTimezone": "Asia/Karachi",
-  "target": "https://project-umber-three-93.vercel.app",
+  "target": "https://www.onlinequrancollege.com",
   "repository": "Ehtisham1239/app.com",
   "applicationSource": "88d8a0d939ad9fe6ec7296fddd7e5e7ddc226bc0",
   "deployment": {
     "id": "dpl_HWA4ngycSX2bwc8JHGGro2jyxzuk",
     "status": "READY",
-    "alias": "project-umber-three-93.vercel.app",
+    "alias": "www.onlinequrancollege.com",
     "sourceAndAliasVerified": true,
     "buildSeconds": 73
   },
@@ -30,8 +30,8 @@
       "checkedAt": "2026-10-25T14:46:38.446Z",
       "timezone": "Asia/Karachi",
       "mode": "READ_ONLY",
-      "base": "https://project-umber-three-93.vercel.app",
-      "canonicalOrigin": "https://project-umber-three-93.vercel.app",
+      "base": "https://www.onlinequrancollege.com",
+      "canonicalOrigin": "https://www.onlinequrancollege.com",
       "sitemapUrls": 205,
       "audited": 205,
       "technicalFindings": 0,
@@ -56,7 +56,7 @@
     },
     "searchEngineAudit": {
       "checkedAt": "2026-10-25T14:46:06.947Z",
-      "base": "https://project-umber-three-93.vercel.app",
+      "base": "https://www.onlinequrancollege.com",
       "sitemapPages": 205,
       "articles": 15,
       "categories": 8,
@@ -70,7 +70,7 @@
       "scope": "Public raw HTML and GET responses across sitemap, links and current blog articles; not Google/Bing indexing, official rich-result validation or field CWV."
     },
     "blogBrowser": {
-      "base": "https://project-umber-three-93.vercel.app",
+      "base": "https://www.onlinequrancollege.com",
       "cases": [
         {
           "width": 390,
@@ -97,7 +97,7 @@
       "noJavaScriptArticle": true
     },
     "homeBrowser": {
-      "base": "https://project-umber-three-93.vercel.app",
+      "base": "https://www.onlinequrancollege.com",
       "cases": [
         {
           "case": "desktop-fresh",
@@ -159,26 +159,26 @@
   },
   "indexNow": {
     "checkedAt": "2026-10-25T14:47:01.497Z",
-    "origin": "https://project-umber-three-93.vercel.app",
+    "origin": "https://www.onlinequrancollege.com",
     "mode": "SUBMIT",
     "checkedUrls": 16,
     "urlList": [
-      "https://project-umber-three-93.vercel.app/blog",
-      "https://project-umber-three-93.vercel.app/blog/quran-translation-and-arabic-difference",
-      "https://project-umber-three-93.vercel.app/blog/parent-teacher-quran-progress-review",
-      "https://project-umber-three-93.vercel.app/blog/family-quran-learning-multiple-children",
-      "https://project-umber-three-93.vercel.app/blog/tajweed-practice-with-feedback",
-      "https://project-umber-three-93.vercel.app/blog/online-quran-lesson-setup-accessibility",
-      "https://project-umber-three-93.vercel.app/blog/help-your-kids-learn-quran-online",
-      "https://project-umber-three-93.vercel.app/blog/importance-of-reciting-quran-with-tajweed",
-      "https://project-umber-three-93.vercel.app/blog/memorization-techniques-for-beginners",
-      "https://project-umber-three-93.vercel.app/blog/choose-online-quran-teacher-usa",
-      "https://project-umber-three-93.vercel.app/blog/quran-lessons-australia-time-zones",
-      "https://project-umber-three-93.vercel.app/blog/noorani-qaida-or-quran-reading",
-      "https://project-umber-three-93.vercel.app/blog/adult-quran-beginner-first-month",
-      "https://project-umber-three-93.vercel.app/blog/prepare-child-first-online-quran-trial",
-      "https://project-umber-three-93.vercel.app/blog/hifz-revision-with-school",
-      "https://project-umber-three-93.vercel.app/blog/questions-before-quran-course-enrolment"
+      "https://www.onlinequrancollege.com/blog",
+      "https://www.onlinequrancollege.com/blog/quran-translation-and-arabic-difference",
+      "https://www.onlinequrancollege.com/blog/parent-teacher-quran-progress-review",
+      "https://www.onlinequrancollege.com/blog/family-quran-learning-multiple-children",
+      "https://www.onlinequrancollege.com/blog/tajweed-practice-with-feedback",
+      "https://www.onlinequrancollege.com/blog/online-quran-lesson-setup-accessibility",
+      "https://www.onlinequrancollege.com/blog/help-your-kids-learn-quran-online",
+      "https://www.onlinequrancollege.com/blog/importance-of-reciting-quran-with-tajweed",
+      "https://www.onlinequrancollege.com/blog/memorization-techniques-for-beginners",
+      "https://www.onlinequrancollege.com/blog/choose-online-quran-teacher-usa",
+      "https://www.onlinequrancollege.com/blog/quran-lessons-australia-time-zones",
+      "https://www.onlinequrancollege.com/blog/noorani-qaida-or-quran-reading",
+      "https://www.onlinequrancollege.com/blog/adult-quran-beginner-first-month",
+      "https://www.onlinequrancollege.com/blog/prepare-child-first-online-quran-trial",
+      "https://www.onlinequrancollege.com/blog/hifz-revision-with-school",
+      "https://www.onlinequrancollege.com/blog/questions-before-quran-course-enrolment"
     ],
     "status": 202,
     "received": true,

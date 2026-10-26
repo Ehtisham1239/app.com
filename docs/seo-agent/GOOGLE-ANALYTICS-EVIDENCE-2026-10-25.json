@@ -1,7 +1,7 @@
 {
   "recordedAt": "2026-10-25T15:20:43.784239+00:00",
   "reportingTimezone": "Asia/Karachi",
-  "target": "https://project-umber-three-93.vercel.app",
+  "target": "https://www.onlinequrancollege.com",
   "repository": "Ehtisham1239/app.com",
   "applicationSource": "eaa95a57f11d2af335f61e9e6a368a5a5a5344da",
   "deployment": {
@@ -92,8 +92,8 @@
       "checkedAt": "2026-10-25T15:17:37.795Z",
       "timezone": "Asia/Karachi",
       "mode": "READ_ONLY",
-      "base": "https://project-umber-three-93.vercel.app",
-      "canonicalOrigin": "https://project-umber-three-93.vercel.app",
+      "base": "https://www.onlinequrancollege.com",
+      "canonicalOrigin": "https://www.onlinequrancollege.com",
       "sitemapUrls": 205,
       "audited": 205,
       "technicalFindings": 0,
@@ -117,7 +117,7 @@
       ]
     },
     "homeFlows": {
-      "base": "https://project-umber-three-93.vercel.app",
+      "base": "https://www.onlinequrancollege.com",
       "cases": [
         {
           "case": "desktop-fresh",

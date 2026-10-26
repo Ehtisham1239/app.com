@@ -19,6 +19,6 @@ The owner supplied Measurement ID `G-57TGPTDNT4` and requested installation and 
 
 ## Release target
 
-The production project remains `prj_q3qTOTMNxuDfgmd5XoCaoWVhQBVu`, account `team_8Xig9mSvNd3XLAzNbQgwPapo`, domain `https://project-umber-three-93.vercel.app`. Explicit team-scoped connector calls returned 404/empty listings; default-account discovery recovered the same exact project, account and production alias. Default-scoped project/deployment reads verified the target. No new project or domain was created.
+The production project remains `prj_q3qTOTMNxuDfgmd5XoCaoWVhQBVu`, account `team_8Xig9mSvNd3XLAzNbQgwPapo`, domain `https://www.onlinequrancollege.com`. Explicit team-scoped connector calls returned 404/empty listings; default-account discovery recovered the same exact project, account and production alias. Default-scoped project/deployment reads verified the target. No new project or domain was created.
 
 The baseline production deployment is `dpl_E8w56fLzgwDAkVb8ZVdoSicGpcNc`, source `eaa95a57f11d2af335f61e9e6a368a5a5a5344da`. Preserve it as a rollback candidate. Final release metadata and post-deployment results are recorded after publishing this source.

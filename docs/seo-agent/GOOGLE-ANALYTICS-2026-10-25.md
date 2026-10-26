@@ -2,7 +2,7 @@
 
 Update, 26 October: the owner supplied `G-57TGPTDNT4`; the public CMS configuration is now enabled and live consent-controlled installation checks have passed. See `GA4-ACTIVATION-2026-10-26.md`. The initial disabled/empty-ID state described below is historical.
 
-Target: https://project-umber-three-93.vercel.app. Repository: Ehtisham1239/app.com. Reporting timezone: Asia/Karachi.
+Target: https://www.onlinequrancollege.com. Repository: Ehtisham1239/app.com. Reporting timezone: Asia/Karachi.
 
 ## Scope and access evidence
 

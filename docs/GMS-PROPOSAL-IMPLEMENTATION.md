@@ -90,7 +90,7 @@ record and account were deleted. No owner password was reset and no public dummy
 ## Production handover
 
 Source `3dcae964890d9973a9234364e8eca2060f285281` is live at
-https://project-umber-three-93.vercel.app in READY deployment `dpl_6dHP4ojN5ArS5yzgfbNqvLJFTeVc`.
+https://www.onlinequrancollege.com in READY deployment `dpl_6dHP4ojN5ArS5yzgfbNqvLJFTeVc`.
 Live public verification passed for all 205 sitemap URLs and unique titles, 385 internal destinations,
 four guide aliases, twelve launch articles, 172 FAQ-schema/visible-question checks, pagination and
 mobile planning. The form-event transport was stubbed and submitted no enquiry. The authenticated

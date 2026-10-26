@@ -3,7 +3,7 @@
 import { readFileSync, mkdirSync, writeFileSync } from "node:fs";
 import assert from "node:assert/strict";
 const config = JSON.parse(readFileSync(new URL("../content/seo-agent/indexnow.json", import.meta.url)));
-assert.equal(config.origin, "https://project-umber-three-93.vercel.app");
+assert.equal(config.origin, "https://www.onlinequrancollege.com");
 assert.equal(config.endpoint, "https://api.indexnow.org/indexnow");
 assert.match(config.keyPath, /^\/indexnow-[a-f0-9]{32}\.txt$/);
 const key = readFileSync(new URL(`../public${config.keyPath}`, import.meta.url), "utf8").trim();

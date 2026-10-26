@@ -19,7 +19,7 @@
   "technical": {
     "checkedAt": "2026-10-25T02:20:26.219Z",
     "base": "http://localhost:3012",
-    "canonicalOrigin": "https://project-umber-three-93.vercel.app",
+    "canonicalOrigin": "https://www.onlinequrancollege.com",
     "declaredSitemapUrls": 205,
     "uniqueSitemapUrls": 205,
     "audited": 205,
@@ -35,7 +35,7 @@
   },
   "quality": {
     "checkedAt": "2026-10-25T03:02:02.841Z",
-    "base": "https://project-umber-three-93.vercel.app",
+    "base": "https://www.onlinequrancollege.com",
     "pages": 205,
     "declared": 205,
     "topImagesChecked": 196,
@@ -44,7 +44,7 @@
     "scope": "Public response/metadata/JSON-LD/hero-image checks; not a ranking or rich-result guarantee"
   },
   "browser": {
-    "base": "https://project-umber-three-93.vercel.app",
+    "base": "https://www.onlinequrancollege.com",
     "keywords": [
       "/",
       "/learn/quran-for-kids",
@@ -139,7 +139,7 @@
     "submittedForms": 0
   },
   "navigation": {
-    "base": "https://project-umber-three-93.vercel.app",
+    "base": "https://www.onlinequrancollege.com",
     "cases": [
       {
         "case": "desktop-fresh",
@@ -171,7 +171,7 @@
     "scope": "Chromium desktop/mobile emulation; chat stubbed; owned-site GET/HEAD only; no form submissions"
   },
   "routingLive": {
-    "base": "https://project-umber-three-93.vercel.app",
+    "base": "https://www.onlinequrancollege.com",
     "homepageChecks": 45,
     "redirects": 187,
     "destinations": 178,
@@ -192,7 +192,7 @@
   "deployment": {
     "id": "dpl_4c7z9bMxkEMMDe7ct7xwW79kazJb",
     "state": "READY",
-    "url": "https://project-umber-three-93.vercel.app",
+    "url": "https://www.onlinequrancollege.com",
     "buildSeconds": 68.584
   },
   "fullCrawlPreviousSource": {
@@ -205,7 +205,7 @@
     "findingCounts": {}
   },
   "previousSourceLinks": {
-    "base": "https://project-umber-three-93.vercel.app",
+    "base": "https://www.onlinequrancollege.com",
     "sourcePages": 206,
     "uniqueTargets": 415,
     "checked": 415,
@@ -240,7 +240,7 @@
     }
   ],
   "interactions": {
-    "base": "https://project-umber-three-93.vercel.app",
+    "base": "https://www.onlinequrancollege.com",
     "checks": [
       "home anchor",
       "mobile menu, course expansion and close",

@@ -15,7 +15,7 @@
   "technical": {
     "checkedAt": "2026-10-24T16:22:04.231Z",
     "base": "http://localhost:3012",
-    "canonicalOrigin": "https://project-umber-three-93.vercel.app",
+    "canonicalOrigin": "https://www.onlinequrancollege.com",
     "declaredSitemapUrls": 205,
     "uniqueSitemapUrls": 205,
     "audited": 205,
@@ -271,15 +271,15 @@
     "id": "dpl_7CB6qRsLKBfHnRCv2zkYtDQmRGV7",
     "state": "READY",
     "target": "production",
-    "url": "https://project-umber-three-93.vercel.app",
+    "url": "https://www.onlinequrancollege.com",
     "deploymentUrl": "https://project-ja8erg6ng-ehtisham1239s-projects.vercel.app",
     "buildSeconds": 72.938,
     "rollbackDeployment": "dpl_8gavnNmqPoDfHYDjLXjYE5KkSKRG"
   },
   "liveTechnical": {
     "checkedAt": "2026-10-24T16:30:00.651Z",
-    "base": "https://project-umber-three-93.vercel.app",
-    "canonicalOrigin": "https://project-umber-three-93.vercel.app",
+    "base": "https://www.onlinequrancollege.com",
+    "canonicalOrigin": "https://www.onlinequrancollege.com",
     "declaredSitemapUrls": 205,
     "uniqueSitemapUrls": 205,
     "audited": 205,
@@ -295,7 +295,7 @@
   },
   "liveQuality": {
     "checkedAt": "2026-10-24T16:30:45.894Z",
-    "base": "https://project-umber-three-93.vercel.app",
+    "base": "https://www.onlinequrancollege.com",
     "pages": 205,
     "declared": 205,
     "topImagesChecked": 195,
@@ -304,7 +304,7 @@
     "scope": "Public response/metadata/JSON-LD/hero-image checks; not a ranking or rich-result guarantee"
   },
   "liveSchemaSample": {
-    "base": "https://project-umber-three-93.vercel.app",
+    "base": "https://www.onlinequrancollege.com",
     "sitemap_urls": 205,
     "sampled_templates_and_courses": 15,
     "external_discovery_pages": 15,
@@ -366,7 +366,7 @@
     "allImmutable": true
   },
   "liveBrowser": {
-    "base": "https://project-umber-three-93.vercel.app",
+    "base": "https://www.onlinequrancollege.com",
     "cases": [
       {
         "device": "iPhone portrait",

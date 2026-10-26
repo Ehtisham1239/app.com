@@ -23,7 +23,7 @@ The existing public certificate RPC was also checked read-only using a synthetic
 
 ## Publication and limits
 
-Application source `57ffe60f364a6ae3a8c9e8fa387d1ba0852ee96a` is READY as production deployment `dpl_4c7z9bMxkEMMDe7ct7xwW79kazJb`, with the stable alias [project-umber-three-93.vercel.app](https://project-umber-three-93.vercel.app) verified against that exact deployment. Build duration is 68.584 seconds.
+Application source `57ffe60f364a6ae3a8c9e8fa387d1ba0852ee96a` is READY as production deployment `dpl_4c7z9bMxkEMMDe7ct7xwW79kazJb`, with the stable alias [www.onlinequrancollege.com](https://www.onlinequrancollege.com) verified against that exact deployment. Build duration is 68.584 seconds.
 
 All twelve interaction check groups also pass against this live source, with two simulated submission confirmations, two simulated certificate responses, zero unexpected writes and zero JavaScript errors. All 205 declared public pages pass metadata, unique title/description, canonical, JSON-LD identity, H1 and hero checks; all 196 top-image responses pass. The original homepage image and Google verification file match local files; robots and sitemap return HTTP 200. These live UI fixtures demonstrate browser wiring and recovery, not real backend persistence. Previous READY application deployment `dpl_EhaXFqmyP1pS6Y8HJy6R4U6CGgvw` is the immediate rollback candidate; it preserves homepage/country separation and the requested original homepage illustration.
 

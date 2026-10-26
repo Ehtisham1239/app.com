@@ -5,9 +5,9 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-const base = new URL(process.argv[2] || 'https://project-umber-three-93.vercel.app');
+const base = new URL(process.argv[2] || 'https://www.onlinequrancollege.com');
 if (base.username || base.password || base.pathname !== '/' || base.search || base.hash) throw Error('Supply an origin without credentials, path, query or fragment.');
-if (base.origin !== 'https://project-umber-three-93.vercel.app' && !(base.protocol === 'http:' && ['localhost', '127.0.0.1'].includes(base.hostname))) throw Error('Target is outside the authorised project or local QA server.');
+if (base.origin !== 'https://www.onlinequrancollege.com' && !(base.protocol === 'http:' && ['localhost', '127.0.0.1'].includes(base.hostname))) throw Error('Target is outside the authorised project or local QA server.');
 const output = resolve(root, process.argv[3] || 'artifacts/seo-agent/latest');
 mkdirSync(output, { recursive: true });
 const run = (script, folder) => new Promise((done, fail) => {

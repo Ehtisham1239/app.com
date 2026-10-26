@@ -6,7 +6,7 @@ const current=await api(`/v9/projects/${project}`);if(current.link) throw Error(
 if(execFileSync('git',['status','--porcelain'],{encoding:'utf8'}).trim()) throw Error('Commit the reviewed release before deploying.');
 const sourceCommit=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
 const env=['NEXT_PUBLIC_SUPABASE_URL','NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY'].map(key=>({key,value:process.env[key],type:'plain',target:['production','preview','development']}));
-env.push({key:'NEXT_PUBLIC_SITE_URL',value:'https://project-umber-three-93.vercel.app',type:'plain',target:['production','preview','development']});
+env.push({key:'NEXT_PUBLIC_SITE_URL',value:'https://www.onlinequrancollege.com',type:'plain',target:['production','preview','development']});
 if(env.some(x=>!x.value))throw Error('Missing public app configuration');
 await api(`/v10/projects/${project}/env?upsert=true`,'POST',env);console.log('Public app configuration saved.');
 const names=execFileSync('git',['ls-files','-z'],{encoding:'utf8'}).split('\0').filter(Boolean);

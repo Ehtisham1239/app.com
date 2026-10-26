@@ -1,6 +1,6 @@
 # Google/Bing and blog release — 25 October 2026
 
-Target: https://project-umber-three-93.vercel.app. Repository: Ehtisham1239/app.com. Reporting timezone: Asia/Karachi.
+Target: https://www.onlinequrancollege.com. Repository: Ehtisham1239/app.com. Reporting timezone: Asia/Karachi.
 
 ## Authority and initial evidence
 

@@ -7,5 +7,5 @@ test('public robots file permits learning pages and excludes staff and API route
  const allowed=path=>rules.filter(r=>path.startsWith(r.path)).sort((a,b)=>b.path.length-a.path.length||Number(b.allow)-Number(a.allow))[0]?.allow??true;
  for(const path of ['/','/courses','/blog','/locations/united-kingdom/london','/free-trial'])assert.equal(allowed(path),true,path);
  for(const path of ['/admin','/admin/login','/auth/callback','/api/private'])assert.equal(allowed(path),false,path);
- assert.match(robots,/^User-agent: \*$/m);assert.match(robots,/^Sitemap: https:\/\/project-umber-three-93\.vercel\.app\/sitemap\.xml$/m);
+ assert.match(robots,/^User-agent: \*$/m);assert.match(robots,/^Sitemap: https:\/\/www\.onlinequrancollege\.com\/sitemap\.xml$/m);
 });

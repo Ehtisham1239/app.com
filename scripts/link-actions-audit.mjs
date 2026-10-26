@@ -1,6 +1,6 @@
 // Read-only inventory of public navigation destinations, fragments and contact-action syntax.
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';import assert from 'node:assert/strict';
-const base=(process.argv[2]||'https://project-umber-three-93.vercel.app').replace(/\/$/,''),input=process.argv[3]||'artifacts/visual-seo/crawl-live/pages.json',out=process.argv[4]||'artifacts/actions/links';mkdirSync(out,{recursive:true});
+const base=(process.argv[2]||'https://www.onlinequrancollege.com').replace(/\/$/,''),input=process.argv[3]||'artifacts/visual-seo/crawl-live/pages.json',out=process.argv[4]||'artifacts/actions/links';mkdirSync(out,{recursive:true});
 const pages=JSON.parse(readFileSync(input)),targets=new Set(),fragments=[],invalid=[],contacts=new Set();
 for(const page of pages)for(const href of page.links||[]){if(!href.trim()||href==='#'||/^(javascript|data|vbscript):/i.test(href)){invalid.push({page:page.url,href});continue;}if(/^(mailto|tel):/.test(href)){contacts.add(href);continue;}let u;try{u=new URL(href,page.url);}catch{invalid.push({page:page.url,href});continue;}if(u.origin!==new URL(base).origin)continue;const fragment=u.hash;u.hash='';targets.add(u.href);if(fragment)fragments.push({url:u.href,id:decodeURIComponent(fragment.slice(1))});}
 assert.ok(targets.size<=1000,'Deliberate destination cap');const urls=[...targets],rows=[],ids=new Map(),failures=[];let index=0;

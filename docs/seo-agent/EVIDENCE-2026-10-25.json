@@ -29,7 +29,7 @@
     "timezone": "Asia/Karachi",
     "mode": "READ_ONLY",
     "base": "http://localhost:3012",
-    "canonicalOrigin": "https://project-umber-three-93.vercel.app",
+    "canonicalOrigin": "https://www.onlinequrancollege.com",
     "sitemapUrls": 205,
     "audited": 205,
     "technicalFindings": 0,
@@ -160,7 +160,7 @@
     "id": "dpl_6UFtHaH7jnE6jFDV6zbMB7k9fvRV",
     "state": "READY",
     "buildSeconds": 74.385,
-    "alias": "https://project-umber-three-93.vercel.app",
+    "alias": "https://www.onlinequrancollege.com",
     "source": "c5922ecbf050e475406f024b0f974643601d2484",
     "rollback": "dpl_4c7z9bMxkEMMDe7ct7xwW79kazJb"
   },
@@ -168,8 +168,8 @@
     "checkedAt": "2026-10-25T08:38:37.007Z",
     "timezone": "Asia/Karachi",
     "mode": "READ_ONLY",
-    "base": "https://project-umber-three-93.vercel.app",
-    "canonicalOrigin": "https://project-umber-three-93.vercel.app",
+    "base": "https://www.onlinequrancollege.com",
+    "canonicalOrigin": "https://www.onlinequrancollege.com",
     "sitemapUrls": 205,
     "audited": 205,
     "technicalFindings": 0,
@@ -191,7 +191,7 @@
     ]
   },
   "liveBrowser": {
-    "base": "https://project-umber-three-93.vercel.app",
+    "base": "https://www.onlinequrancollege.com",
     "layouts": [
       {
         "device": "desktop",

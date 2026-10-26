@@ -35,7 +35,7 @@ Browser device emulation is not a physical iPhone/Safari test. Public rendering 
 
 ## Release
 
-**Production READY.** Reviewed source `ec92c57018a520a83c4e0db4c0d0ad36a5d9b5e7` is deployed as `dpl_7CB6qRsLKBfHnRCv2zkYtDQmRGV7` (build 72.938 seconds), assigned to [the existing production website](https://project-umber-three-93.vercel.app). The existing Vercel project, canonical hostname, environment and database are retained; no database or DNS migration was made.
+**Production READY.** Reviewed source `ec92c57018a520a83c4e0db4c0d0ad36a5d9b5e7` is deployed as `dpl_7CB6qRsLKBfHnRCv2zkYtDQmRGV7` (build 72.938 seconds), assigned to [the existing production website](https://www.onlinequrancollege.com). The existing Vercel project, canonical hostname, environment and database are retained; no database or DNS migration was made.
 
 Post-release checks pass: all 205 sitemap pages with zero technical findings or fetch errors; all 205 page/metadata/schema/hero checks; 195 distinct top-image responses; all 24 new AVIF/WebP files with exact expected byte sizes and immutable caching; 15 template/course schema samples with zero findings; and public access for all 205 pages for eight search/AI agents, with staff access excluded. The complete live browser suite passes all four emulated mobile cases and nine desktop templates, including NOK selection, without submitting any form. Owned-site requests use the environment’s trusted TLS/proxy route; third-party chat is stubbed. The live browser evidence is included in the portable JSON record.
 

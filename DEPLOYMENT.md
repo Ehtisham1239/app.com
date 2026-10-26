@@ -2,7 +2,7 @@
 
 ## Current GA4/GTM integration — 25 October 2026: code READY, activation pending IDs
 
-Application source `eaa95a57f11d2af335f61e9e6a368a5a5a5344da` is deployed as `dpl_E8w56fLzgwDAkVb8ZVdoSicGpcNc` (READY, 75.601-second build) at https://project-umber-three-93.vercel.app. This adds validated public GA4/GTM settings, one selected transport, basic analytics consent, manual public-path views, allowlisted saved-enquiry/click signals and a privacy notice. The adapter is disabled: no owner GA4/GTM ID exists in the reviewed CMS/environment configuration. No real Google data collection, Tag Assistant session, GA4 DebugView result or property connection is claimed.
+Application source `eaa95a57f11d2af335f61e9e6a368a5a5a5344da` is deployed as `dpl_E8w56fLzgwDAkVb8ZVdoSicGpcNc` (READY, 75.601-second build) at https://www.onlinequrancollege.com. This adds validated public GA4/GTM settings, one selected transport, basic analytics consent, manual public-path views, allowlisted saved-enquiry/click signals and a privacy notice. The adapter is disabled: no owner GA4/GTM ID exists in the reviewed CMS/environment configuration. No real Google data collection, Tag Assistant session, GA4 DebugView result or property connection is claimed.
 
 62 tests and build pass; lint has zero errors and the same 19 existing advisories. Four local production-build cases pass GA4/GTM consent, loader/event deduplication, PII exclusion, advertising denial and revocation at 390/1440px, using inert Google stubs and no form/database writes. Test-only routes were removed before the clean release build. Live public verification passes all 205 sitemap pages/topic placements and 196 image responses; the privacy page truthfully shows analytics disabled and test routes return 404. No database, environment, schema, DNS, campaign or account-permission changes were made. [Setup and limitations](docs/seo-agent/GOOGLE-ANALYTICS-2026-10-25.md); [release evidence](docs/seo-agent/GOOGLE-ANALYTICS-EVIDENCE-2026-10-25.json). Rollback: `dpl_HWA4ngycSX2bwc8JHGGro2jyxzuk`.
 
@@ -10,7 +10,7 @@ The owner-supplied Semrush overview reports 100 crawled pages, 87% health, seven
 
 ## Previous Google/Bing and blog release — 25 October 2026: production READY
 
-Application source `88d8a0d939ad9fe6ec7296fddd7e5e7ddc226bc0` is deployed as `dpl_HWA4ngycSX2bwc8JHGGro2jyxzuk` (READY, 73-second build) at https://project-umber-three-93.vercel.app. Alias and exact source are verified. Blog category discovery, invalid-filter 404s, per-page metadata/identity, article author/date/image markup, general crawler image previews, RSS discovery and homepage social/image-sitemap details are live. The existing content, original hero, country separation, offers, staff routes and both Google verification files are preserved.
+Application source `88d8a0d939ad9fe6ec7296fddd7e5e7ddc226bc0` is deployed as `dpl_HWA4ngycSX2bwc8JHGGro2jyxzuk` (READY, 73-second build) at https://www.onlinequrancollege.com. Alias and exact source are verified. Blog category discovery, invalid-filter 404s, per-page metadata/identity, article author/date/image markup, general crawler image previews, RSS discovery and homepage social/image-sitemap details are live. The existing content, original hero, country separation, offers, staff routes and both Google verification files are preserved.
 
 57 tests and build pass; lint has zero errors and 19 unchanged React advisories. Production dependency audit reports zero known vulnerabilities. Live verification passes 205 pages/topic placements, 15 blogs, eight topics, 422 internal destinations, 353 fragment references, 196 top-image responses, valid 15-item RSS and Googlebot/bingbot user-agent probes. Two mobile/desktop blog flows and three Home/country/reload flows pass; no forms submitted. Public GET checks do not establish actual search-engine crawling or indexing.
 
@@ -24,13 +24,13 @@ A signed-in Google URL-prefix property was added, but final Google ownership ver
 
 ## Previous site-wide topic and keyword release — 25 October 2026: production READY
 
-Application source `6b2fc688e4f6a6f88e181e7baab545365db94244` is deployed as `dpl_EDdNMBhG7H9ynQQKy55qZQSssPAJ` (READY, 75.123 seconds) at [the verified stable alias](https://project-umber-three-93.vercel.app). It expands natural visible service/navigation topics to 21, improves existing regional introductions, strengthens four-market discovery links and adds a reusable visible-topic checker to the read-only audit. It preserves custom CMS metadata/content, offers, original hero, private noindex routes, existing redirects and homepage separation.
+Application source `6b2fc688e4f6a6f88e181e7baab545365db94244` is deployed as `dpl_EDdNMBhG7H9ynQQKy55qZQSssPAJ` (READY, 75.123 seconds) at [the verified stable alias](https://www.onlinequrancollege.com). It expands natural visible service/navigation topics to 21, improves existing regional introductions, strengthens four-market discovery links and adds a reusable visible-topic checker to the read-only audit. It preserves custom CMS metadata/content, offers, original hero, private noindex routes, existing redirects and homepage separation.
 
 53 automated tests, build and lint (zero errors, 19 existing warnings) pass. Live technical and topic checks pass all 205 sitemap pages and 196 top-image responses. Fresh/returning desktop and mobile navigation flows also pass, including four priority-country links on Home and reload, no horizontal overflow and no automatic form. No ranking positions or search volumes are inferred. Access/sign-in work is paused at the owner's instruction. [Release details](docs/seo-agent/SITEWIDE-KEYWORDS-2026-10-25.md), [evidence](docs/seo-agent/SITEWIDE-EVIDENCE-2026-10-25.json) and [the complete page-topic map](content/seo-agent/sitewide-keywords.json) record scope and checks. Rollback candidate: `dpl_6UFtHaH7jnE6jFDV6zbMB7k9fvRV`. Later QA/documentation-only changes do not alter the deployed application code.
 
 ## Previous SEO agent workflow and regional planning release — 25 October 2026: production READY
 
-Application source `c5922ecbf050e475406f024b0f974643601d2484` is deployed as `dpl_6UFtHaH7jnE6jFDV6zbMB7k9fvRV` (READY, 74.385-second build) at [the existing stable alias](https://project-umber-three-93.vercel.app). The alias and exact Git source are verified. This release adds the reusable read-only SEO workflow and research/knowledge records, original concise UK/Canada guidance, en-CA Canadian metadata, four extra Canadian planner choices and compatibility with the November 2026 provincial clock rules. It preserves existing offers, source/CMS edits, homepage separation, original hero, private routes and redirects.
+Application source `c5922ecbf050e475406f024b0f974643601d2484` is deployed as `dpl_6UFtHaH7jnE6jFDV6zbMB7k9fvRV` (READY, 74.385-second build) at [the existing stable alias](https://www.onlinequrancollege.com). The alias and exact Git source are verified. This release adds the reusable read-only SEO workflow and research/knowledge records, original concise UK/Canada guidance, en-CA Canadian metadata, four extra Canadian planner choices and compatibility with the November 2026 provincial clock rules. It preserves existing offers, source/CMS edits, homepage separation, original hero, private routes and redirects.
 
 53 automated tests, production build, lint (zero errors, 19 existing warnings), all 205 public page checks, 196 top-image responses and eight live regional desktop/mobile layouts pass. A mobile fixture verifies planning without native Vancouver/Edmonton zone data. No enquiry was submitted. Preview `dpl_Gc9QF9xwuuYfb7b44gspC7BT5Go9` built READY, but protected preview fetch and runtime-log inspection were denied with 403; these are unverified, and deployment protection was retained. See [the execution record](docs/seo-agent/EXECUTION-2026-10-25.md), [evidence](docs/seo-agent/EVIDENCE-2026-10-25.json) and [reusable instructions](docs/seo-agent/INSTRUCTIONS.md).
 
@@ -38,7 +38,7 @@ No production environment, schema, DNS or analytics configuration change was mad
 
 ## Previous public interaction and SEO release — 25 October 2026: production READY
 
-Application source `57ffe60f364a6ae3a8c9e8fa387d1ba0852ee96a` is deployed as `dpl_4c7z9bMxkEMMDe7ct7xwW79kazJb` (READY, build 68.584 seconds) at [the existing stable alias](https://project-umber-three-93.vercel.app). The alias and Git source match. Homepage/country separation, all legacy redirects, the original requested homepage illustration and the newer Google verification file remain preserved.
+Application source `57ffe60f364a6ae3a8c9e8fa387d1ba0852ee96a` is deployed as `dpl_4c7z9bMxkEMMDe7ct7xwW79kazJb` (READY, build 68.584 seconds) at [the existing stable alias](https://www.onlinequrancollege.com). The alias and Git source match. Homepage/country separation, all legacy redirects, the original requested homepage illustration and the newer Google verification file remain preserved.
 
 This release fixes the Courses first-click conflict, carries selected quote currency and valid local lesson preferences into editable trial notes, completes all 50 country directory cards with responsive map images and makes certificate failures retryable. All 205 public pages pass live metadata/schema/page identity/hero checks, with 196 top-image responses. Fresh/returning desktop and mobile Home → Country → Home/reload flows also pass. Twelve live interaction groups pass using two simulated submissions and two simulated certificate responses; zero unexpected writes and zero JavaScript errors. Fifty automated tests, the production build and ESLint (zero errors, 19 existing warnings) pass. Full details and verification boundaries: [agent/action review](docs/ACTIONS-AND-AGENT-REVIEW-2026-10-25.md), [visual/SEO ledger](docs/VISUAL-SEO-FOLLOWUP-2026-10-25.md), [portable evidence](docs/VISUAL-SEO-EVIDENCE-2026-10-25.json).
 
@@ -46,11 +46,11 @@ No database, production environment or domain mutation was made. Real remote for
 
 ## Previous public-page and mobile release — 24 October 2026: production READY
 
-Source `ec92c57018a520a83c4e0db4c0d0ad36a5d9b5e7` is deployed as `dpl_7CB6qRsLKBfHnRCv2zkYtDQmRGV7` (READY, build 72.938 seconds) at the existing stable alias `https://project-umber-three-93.vercel.app`. Post-release checks pass for all 205 sitemap pages, unique metadata/page identity/top imagery, 195 distinct top images, 24 new responsive assets, public robots access for eight agents, four mobile device emulations and nine desktop templates. Forms were not submitted and chat was stubbed during browser checks. See [the release record](docs/ISLAMIC-REDESIGN-2026-10-24.md) and [portable evidence](docs/ISLAMIC-REDESIGN-EVIDENCE-2026-10-24.json) for scope and limitations. No environment, database or domain mutation was made. Immediate rollback: `dpl_8gavnNmqPoDfHYDjLXjYE5KkSKRG`.
+Source `ec92c57018a520a83c4e0db4c0d0ad36a5d9b5e7` is deployed as `dpl_7CB6qRsLKBfHnRCv2zkYtDQmRGV7` (READY, build 72.938 seconds) at the existing stable alias `https://www.onlinequrancollege.com`. Post-release checks pass for all 205 sitemap pages, unique metadata/page identity/top imagery, 195 distinct top images, 24 new responsive assets, public robots access for eight agents, four mobile device emulations and nine desktop templates. Forms were not submitted and chat was stubbed during browser checks. See [the release record](docs/ISLAMIC-REDESIGN-2026-10-24.md) and [portable evidence](docs/ISLAMIC-REDESIGN-EVIDENCE-2026-10-24.json) for scope and limitations. No environment, database or domain mutation was made. Immediate rollback: `dpl_8gavnNmqPoDfHYDjLXjYE5KkSKRG`.
 
 ## Previous Semrush follow-up — 24 October 2026
 
-The reviewed remediation source `c57c16ee9d84a1ad043963aadfb2d795d6358d55` is deployed as production deployment `dpl_8gavnNmqPoDfHYDjLXjYE5KkSKRG` (READY; build 79.48 seconds). The stable alias `https://project-umber-three-93.vercel.app` is assigned to this deployment. All 205 public sitemap URLs pass the post-release technical audit, and the live Course/ItemList markup and versioned SVG/cache response are verified. See [the remediation ledger](docs/SEMRUSH-REMEDIATION-2026-10-24.md) for verification details and remaining Semrush/TLS limitations. No production environment, database or domain configuration was changed. A pinned Git-source release succeeded; automatic deployment on future GitHub pushes is still not established.
+The reviewed remediation source `c57c16ee9d84a1ad043963aadfb2d795d6358d55` is deployed as production deployment `dpl_8gavnNmqPoDfHYDjLXjYE5KkSKRG` (READY; build 79.48 seconds). The stable alias `https://www.onlinequrancollege.com` is assigned to this deployment. All 205 public sitemap URLs pass the post-release technical audit, and the live Course/ItemList markup and versioned SVG/cache response are verified. See [the remediation ledger](docs/SEMRUSH-REMEDIATION-2026-10-24.md) for verification details and remaining Semrush/TLS limitations. No production environment, database or domain configuration was changed. A pinned Git-source release succeeded; automatic deployment on future GitHub pushes is still not established.
 
 Target repository: Ehtisham1239/app.com. Target Supabase project: `lgbwidraztavhhbnbfhr`.
 The uploaded ZIP referenced a different Supabase project. That fallback has been removed.
@@ -120,8 +120,8 @@ or service-role keys in public environment variables, source files or chat.
 
 The owner authorized replacing the existing Vercel `project` in team `ehtisham1239s-projects`.
 
-- Public website: https://project-umber-three-93.vercel.app
-- CMS sign-in: https://project-umber-three-93.vercel.app/admin
+- Public website: https://www.onlinequrancollege.com
+- CMS sign-in: https://www.onlinequrancollege.com/admin
 - Vercel project: `prj_q3qTOTMNxuDfgmd5XoCaoWVhQBVu`
 - Ready production deployment: `dpl_FcsjGuh8XfrJz2SwUBFnnR9ynhSX`
 - Application source uploaded from Git commit `c327dda` (tracked files only).
@@ -136,7 +136,7 @@ Do not reconnect the old repository. Private credentials, local environment file
 were excluded from the source upload.
 
 Vercel is configured for Next.js, Node 24, `npm ci`, and `npm run build`. The two public Supabase
-variables and `NEXT_PUBLIC_SITE_URL=https://project-umber-three-93.vercel.app` are saved in the Vercel
+variables and `NEXT_PUBLIC_SITE_URL=https://www.onlinequrancollege.com` are saved in the Vercel
 project. The original college custom domain has not been moved or connected to this deployment.
 
 The production homepage, city page, pricing and sitemap returned 200; `/admin` redirected to login.
@@ -247,7 +247,7 @@ This change does not apply the other recommendations in the SEO audit.
 
 ## Releasing SEO audit fixes
 
-The approved canonical host remains `https://project-umber-three-93.vercel.app`.
+The approved canonical host remains `https://www.onlinequrancollege.com`.
 Do not move the college domain or reconnect the old unrelated repository. GitHub pushes alone
 still do not deploy this project. The supported source-upload procedure is now tracked:
 
@@ -266,7 +266,7 @@ in deployment metadata, and saves the deployment ID under ignored `artifacts/`. 
 ID to reach READY before verifying the stable production alias. Then run:
 
 ```sh
-NEXT_PUBLIC_SITE_URL=https://project-umber-three-93.vercel.app NODE_USE_ENV_PROXY=1 node scripts/seo-smoke.mjs https://project-umber-three-93.vercel.app
+NEXT_PUBLIC_SITE_URL=https://www.onlinequrancollege.com NODE_USE_ENV_PROXY=1 node scripts/seo-smoke.mjs https://www.onlinequrancollege.com
 ```
 
 For a local production build, start it on port 3010 and use the same smoke script without a URL.
@@ -325,7 +325,7 @@ deleted. Owner credentials were preserved.
 Public release smoke check (after deployment reaches READY):
 
 ```sh
-SMOKE_CANONICAL_ORIGIN=https://project-umber-three-93.vercel.app NODE_USE_ENV_PROXY=1 node scripts/growth-smoke.mjs https://project-umber-three-93.vercel.app
+SMOKE_CANONICAL_ORIGIN=https://www.onlinequrancollege.com NODE_USE_ENV_PROXY=1 node scripts/growth-smoke.mjs https://www.onlinequrancollege.com
 ```
 
 This is a functional crawl and stubbed browser-event check, not a live GA4, Make or chat-delivery test.
@@ -344,7 +344,7 @@ migrations and zero seeded baseline records.
 
 ## Image and mobile release — 22 October 2026
 
-Production deployment `dpl_J13P1WNgF81dsucS871PeUx9aK6w` is READY on https://project-umber-three-93.vercel.app from source `b1024e904873ea5753fe577d329400831491f023`. Migration `20261022000900_learning_images.sql` is installed (24 migrations total). Six generated images are registered in CMS Media Library and assigned to 6 courses, 15 articles and 169 location/learning pages.
+Production deployment `dpl_J13P1WNgF81dsucS871PeUx9aK6w` is READY on https://www.onlinequrancollege.com from source `b1024e904873ea5753fe577d329400831491f023`. Migration `20261022000900_learning_images.sql` is installed (24 migrations total). Six generated images are registered in CMS Media Library and assigned to 6 courses, 15 articles and 169 location/learning pages.
 
 Live checks passed: 18 WebP variants, 165 country/city routes, 10 loaded mobile/desktop cover views and 105 responsive checks across 320–1920px. Maximum observed layout shift in the controlled cover check: 0. Authenticated CMS media selection and alt-description persistence passed with an isolated temporary editor; cleanup confirmed zero temporary users/pages. Automated tests: 35 passed. Build passed; lint has 0 errors and the existing 19 warnings. Chat vendor behavior was stubbed for browser regression tests. Physical iPhone/Safari testing and field Core Web Vitals are not represented by these checks.
 
@@ -356,12 +356,12 @@ Production deployment `dpl_EuYkd1tXRMG1oLZsnYGvbzkXZjkZ` is READY from app sourc
 
 All 38 automated tests pass; build passes; lint has 0 errors and the existing 19 warnings. Live checks pass at 320/360/390/430px plus desktop, 105 responsive route/viewport checks and stubbed home enquiry confirmation. Portal redirects to login correctly via verified HTTPS; the headless browser follow-up is bridged because its native redirect trust store differs from the environment CA.
 
-All 50 country mappings and six simulated Vercel-country redirects pass in the local production server. The live probe returned the general homepage (200); it does not establish a physical-country redirect test. Live UK/USA/Australia pages, explicit global override, crawler access and legacy redirects pass. IP routing uses Vercel-provided country data, defaults safely for missing/unsupported countries, and preserves direct content links and manual choices. Global homepage preview: https://project-umber-three-93.vercel.app/?view=global . See [implementation notes](docs/MOBILE-BRAND-AND-REGION-RELEASE.md).
+All 50 country mappings and six simulated Vercel-country redirects pass in the local production server. The live probe returned the general homepage (200); it does not establish a physical-country redirect test. Live UK/USA/Australia pages, explicit global override, crawler access and legacy redirects pass. IP routing uses Vercel-provided country data, defaults safely for missing/unsupported countries, and preserves direct content links and manual choices. Global homepage preview: https://www.onlinequrancollege.com/?view=global . See [implementation notes](docs/MOBILE-BRAND-AND-REGION-RELEASE.md).
 
 ## Professional imagery and SEO update — 23 October 2026
 
 - Production READY deployment: `dpl_CDh9ThjhfMA3kfW3FNkL5Pk3PY6f`.
-- Application source: `6a3c00a6a8e22c869285cde431cbc1a404e48175`; stable URL: `https://project-umber-three-93.vercel.app` (`/?view=global` opens the general homepage).
+- Application source: `6a3c00a6a8e22c869285cde431cbc1a404e48175`; stable URL: `https://www.onlinequrancollege.com` (`/?view=global` opens the general homepage).
 - Added a branded family learning illustration, responsive homepage learning-card visuals, and supporting contact/trial images. Removed the left floating WhatsApp shortcut; preserved Hatchium and contextual contact links.
 - Supabase migration `20261023000100_about_learning_image.sql` applied; new illustration registered in Media Library with its alt text and AI illustration caption. Custom About covers are preserved.
 - Local validation: 38 tests passed; lint 0 errors / 19 existing warnings; production build passed. 105 responsive checks passed. Image checks passed for 21 assets, 165 country/city pages and 10 representative viewport cases (observed layout shift 0 in that controlled run).
@@ -371,7 +371,7 @@ All 50 country mappings and six simulated Vercel-country redirects pass in the l
 ## Public usability and homepage motion — 23 October 2026
 
 - Production READY deployment: `dpl_7Xb65E3VjxcMB2U2K68Rfpebnpda`; application source `31271d8337997c1433d291557af902ab44477aeb`.
-- Stable website: `https://project-umber-three-93.vercel.app`; `/?view=global` opens the general homepage.
+- Stable website: `https://www.onlinequrancollege.com`; `/?view=global` opens the general homepage.
 - Simplified homepage, conditional tutor/review sections, section shortcuts, staggered reveals and finite hero effects; brand palette, published routes and CMS records preserved.
 - Improved mobile/keyboard menus, country/city search, contact validation, trial-step focus and confirmation feedback. No database migration or animation dependency added.
 - Validation: 38 automated tests passed; lint 0 errors / 19 existing warnings; production build passed. 105 responsive checks and deferred homepage-form confirmation passed locally. Final local and live usability smoke flows passed for mobile and desktop menus, directory search, contact/trial confirmation, animation/reduced-motion behaviour and content without JavaScript.
@@ -380,7 +380,7 @@ All 50 country mappings and six simulated Vercel-country redirects pass in the l
 ## Distinct visuals, interface polish and security patches — 23 October 2026
 
 - Production READY deployment: `dpl_6NJSdrVs5LFsZHAJ2zmLkLJdDULg`; application source `7d933188832fa78765e3afe26d60b7a555565cf5`.
-- Stable website: `https://project-umber-three-93.vercel.app`; use `/?view=global` for the general homepage.
+- Stable website: `https://www.onlinequrancollege.com`; use `/?view=global` for the general homepage.
 - 191 published content records have 191 unique covers. The 197-visual catalogue contains 32 photographic illustrations (25 new) and 165 country/city maps. Uploaded 190 new masters into Supabase Media Library; migration `20261023000200_distinct_visual_covers.sql` applied. Original logo appears in map artwork and separate photo badges. Existing homepage hero remains.
 - Added responsive AVIF photo sources with WebP fallbacks, refreshed course cards, clear buttons on green backgrounds and regional hero layouts. Combined 1200px photographic AVIF payload is about 45% smaller than WebP; this is a file-size comparison, not a field speed result. Alt text, social covers and image sitemap assignments updated.
 - Next.js / eslint-config-next upgraded to 16.4.3, sanitize-html to 2.18.1; scoped typography parser override to 7.1.6. Final npm audit reports zero known vulnerabilities. Deployment now uploads individual files before submitting digest references.

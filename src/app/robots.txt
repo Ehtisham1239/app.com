@@ -4,4 +4,4 @@ Disallow: /auth
 Disallow: /api/
 Allow: /
 
-Sitemap: https://project-umber-three-93.vercel.app/sitemap.xml
+Sitemap: https://www.onlinequrancollege.com/sitemap.xml

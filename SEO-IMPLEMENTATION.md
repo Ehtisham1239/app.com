@@ -55,7 +55,7 @@ users, remove enquiries, delete approved prices or rerun the fresh-database bund
 
 Production deployment `dpl_2TMV3LaE1uZhA2ajpQZvJEymTJGo` reached READY with matching source
 commit `29054954371fce2e906174a64fdba6324ac18eba`. The live release smoke checks passed against
-`https://project-umber-three-93.vercel.app`: 165 location pages, seven permanent redirects,
+`https://www.onlinequrancollege.com`: 165 location pages, seven permanent redirects,
 correct canonicals and structured data, updated policy, utility indexing and the mobile planner/trial
 flow. There were zero browser errors and zero test form submissions. CTA contrast measured 6.84:1.
 These are functional release results, not evidence of ranking changes or real-user CWV.
