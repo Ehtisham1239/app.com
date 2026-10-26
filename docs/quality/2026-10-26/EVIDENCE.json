@@ -1,0 +1,147 @@
+{
+  "date": "2026-10-26",
+  "reporting_timezone": "Asia/Karachi",
+  "base_commit": "e3f7c37209584317dc9cec263e066f72d9d3f72a",
+  "runtime": "Next.js 16.4.3 / React 19.3.0 / Node 24.22.1",
+  "release_status": "local validation; publication evidence appended after deployment",
+  "baseline_crawl": {
+    "attempted": 204,
+    "status_200": 204,
+    "cap": 300,
+    "sitemap_urls_attempted": 0,
+    "robots_skips": 0,
+    "cross_origin_canonical_observations": 204,
+    "reason": "Same-origin crawler did not follow robots sitemap on the different canonical hostname. Separate application audit covered all 205 sitemap routes."
+  },
+  "local_tests": {
+    "automated_pass": 69,
+    "automated_fail": 0,
+    "lint_errors": 0,
+    "lint_existing_warnings": 19,
+    "viewport_cases": 48,
+    "additional_breakpoint_landscape_cases": 15,
+    "technical_urls": 205,
+    "technical_findings": 0,
+    "quality_failures": 0,
+    "top_images": 197,
+    "keyword_placement_urls": 205,
+    "keyword_failures": 0,
+    "google_libraries": "stubbed; no real QA events",
+    "enquiries_submitted": 0,
+    "physical_devices": "not tested"
+  },
+  "resource_measurement": {
+    "method": "Chromium 390px, local production builds with vendor stubs; transfer bytes, not field CWV. Initial baseline predates upstream one-step form, staff-only toaster and SDK/font cleanup. Numbers describe the combined release, not attribution to one contributor.",
+    "pages": [
+      {
+        "page": "home",
+        "before": {
+          "font_transfer_bytes": 275376,
+          "script_transfer_bytes": 259399
+        },
+        "after": {
+          "font_transfer_bytes": 190008,
+          "script_transfer_bytes": 183208
+        }
+      },
+      {
+        "page": "article",
+        "before": {
+          "font_transfer_bytes": 166516,
+          "script_transfer_bytes": 161146
+        },
+        "after": {
+          "font_transfer_bytes": 166516,
+          "script_transfer_bytes": 151709
+        }
+      },
+      {
+        "page": "trial",
+        "before": {
+          "font_transfer_bytes": 166516,
+          "script_transfer_bytes": 257406
+        },
+        "after": {
+          "font_transfer_bytes": 81148,
+          "script_transfer_bytes": 181215
+        }
+      }
+    ]
+  },
+  "lighthouse": {
+    "version": "13.5.0",
+    "browser": "Chromium 153",
+    "sample_routes": [
+      "/",
+      "/blog/help-your-kids-learn-quran-online"
+    ],
+    "accessibility_score": 100,
+    "best_practices_score": 100,
+    "seo_score": 100,
+    "performance_score": null,
+    "limitation": "Trace screenshot capture returned NO_SCREENSHOTS; do not claim an aggregate performance score or field CWV result."
+  },
+  "agentic_baseline": {
+    "score": 69,
+    "scanned_at": "2026-10-26T06:52:50.152Z",
+    "report_url": "https://is-agentic.com/scan/project-umber-three-93.vercel.app",
+    "after_score": "not established; cached snapshot is not a rescan",
+    "limitations": [
+      "Markdown negotiation is not implemented.",
+      "MCP/developer-resource findings are not evidence this education business needs a public API.",
+      "Scanner associated a Vercel registry entry with this tenant; no OQC MCP server is claimed."
+    ]
+  },
+  "database_configuration": {
+    "project": "lgbwidraztavhhbnbfhr",
+    "public_analytics_id": "G-57TGPTDNT4",
+    "policy_verified": "public CMS and upstream source already say 3-day trial",
+    "changed": "five eligible published package trial_days values from 7 to 3",
+    "weekend_trial_days": 0,
+    "existing_applications_changed": false,
+    "verified_by_followup_select": true
+  },
+  "unverified": [
+    "Custom-domain ownership/routing completion",
+    "Authenticated GSC/GA4/Semrush performance and rankings",
+    "GA4 Realtime receipt",
+    "Field Core Web Vitals",
+    "Real remote enquiry delivery and authenticated staff workflows",
+    "Clean Vercel runtime-log scan"
+  ],
+  "preserved_upstream": [
+    "3-day trial",
+    "one-step form",
+    "shortened trial heading",
+    "banner-free GA4 mode",
+    "staff-only toaster",
+    "lazy public SDK loading",
+    "unused assets/dependencies cleanup"
+  ],
+  "analytics_mode": {
+    "banner": false,
+    "transport": "direct GA4",
+    "analytics_storage": "always denied",
+    "advertising_storage": "always denied",
+    "client_storage": "extra hint, not the storage-control mechanism",
+    "collector_qa": "intercepted; no real events sent"
+  },
+  "build_integrity": {
+    "clean_production_output": true,
+    "html_files": 224,
+    "unique_static_assets": 42,
+    "missing_references": 0
+  },
+  "vendor_script_check": {
+    "status": "blocked",
+    "url": "https://www.googletagmanager.com/gtag/js?id=G-57TGPTDNT4",
+    "http_status": 404,
+    "attempts": 2,
+    "request_variants": [
+      "Node default",
+      "browser User-Agent and owned-site Referer"
+    ],
+    "actual_vendor_cookie_behaviour": "not verified",
+    "required": "Owner should verify this exact web-stream Measurement ID and loader availability in Google Analytics/Tag Assistant. The supplied ID was not replaced."
+  }
+}

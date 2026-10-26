@@ -1,7 +1,0 @@
-User-agent: *
-Disallow: /admin
-Disallow: /auth
-Disallow: /api/
-Allow: /
-
-Sitemap: https://www.onlinequrancollege.com/sitemap.xml

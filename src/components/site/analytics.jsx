@@ -4,8 +4,8 @@ import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { ANALYTICS_CONSENT_KEY, clearAnalyticsCookies, createAnalyticsController } from "@/lib/analytics";
 
-// Cookieless GA4: no banner or preference button. Nothing is stored on the
-// visitor's device; older _ga cookies and saved choices from the banner era are removed.
+// Storage-denied GA4: no banner or preference button in the current site mode.
+// Remove older GA cookies/choices; never grant Google analytics or ad storage.
 export function WebsiteAnalytics({ config }) {
   const { enabled, ga4Id } = config;
   const pathname = usePathname();

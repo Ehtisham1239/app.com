@@ -1,6 +1,12 @@
 # app.com website and CMS deployment
 
-## Current GA4 activation and release — 26 October 2026
+## Mobile, article and performance follow-up — 26 October 2026
+
+The new implementation integrates the latest three-day, single-step trial, banner-free GA4, unused-file cleanup and staff-only toaster changes from main. It adds article navigation/resources/print tools, responsive fixes, image cache/legacy redirects, origin-consistent robots and machine-readable site guidance. Production builds clear generated output and reject missing static references. GA4 transport runs with Google analytics/ad storage denied; it does not silently grant storage in the banner-free mode.
+
+Local gates pass 69 tests, 48 primary responsive cases plus 15 breakpoint/landscape cases, blog/analytics journeys, and all 205 sitemap URLs. Release metadata and final live results are recorded in [the current quality report](docs/quality/2026-10-26/REPORT.md) and its evidence file after deployment. Custom-domain ownership/routing, authenticated search/analytics outcomes and field CWV remain separate dependencies. Earlier release entries below are historical.
+
+## Previous GA4 activation and release — earlier on 26 October 2026
 
 Owner GA4 ID `G-57TGPTDNT4` is enabled in the existing public CMS setting and source defaults. The consent-controlled integration, responsive imagery/footer and Weekend-plan trial correction are merged and published. The verified public app address is **https://project-umber-three-93.vercel.app**. The current READY deployment observed on that alias is `dpl_xAGB8jmEFf6HvT8hekyy8EfXcJmo`, source `cd848762647b02348c10adab347e34c6008dee22`; subsequent work by another contributor was preserved.
 

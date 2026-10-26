@@ -14,8 +14,8 @@ await Promise.all(Array.from({length:3},async()=>{while(cursor<urls.length){cons
  const title=decode(body.match(/<title>(.*?)<\/title>/s)?.[1]),description=metas.find(m=>m.name==="description")?.content;
  const canonical=[...body.matchAll(/<link\b[^>]*>/g)].map(m=>attrs(m[0])).find(m=>m.rel==="canonical")?.href;
  const graph=[...body.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].flatMap(m=>{const value=JSON.parse(m[1]);return value["@graph"]||[value];});
- const web=graph.find(x=>x["@type"]==="WebPage"),org=graph.find(x=>x["@type"]==="EducationalOrganization"&&x["@id"]===canonicalOrigin+"/#organization");
- const visual=body.match(/data-hero-visual[^>]*>([\s\S]*?)<\/section>/)?.[1]||"",heroImages=[...visual.matchAll(/<img\b[^>]*>/g)].map(m=>attrs(m[0]));
+ const web=graph.find(x=>x["@type"]==="WebPage"),org=graph.find(x=>[].concat(x["@type"]).includes("EducationalOrganization")&&x["@id"]===canonicalOrigin+"/#organization");
+ const visual=body.match(/data-hero-visual[^>]*>([\s\S]*?)<\/section>/)?.[1]||body.match(/<picture class="hero-immersive-media">([\s\S]*?)<\/picture>/)?.[1]||(path==="/free-trial"?body.match(/<main[^>]*>([\s\S]*?)<\/main>/)?.[1]:"")||"",heroImages=[...visual.matchAll(/<img\b[^>]*>/g)].map(m=>attrs(m[0]));
  const og=metas.find(m=>m.property==="og:title")?.content,ogDesc=metas.find(m=>m.property==="og:description")?.content;
  for(const [condition,reason]of [[status===200,"status"],[Boolean(title&&description),"title/description"],[Boolean(canonical&&new URL(canonical).href===url.href),"canonical"],[(body.match(/<h1[\s>]/g)||[]).length===1,"one H1"],[Boolean(web&&new URL(web.url).href===url.href),"WebPage identity"],[Boolean(org),"shared organisation"],[heroImages.length>0,"top visual"],[heroImages.every(x=>x.alt?.trim()&&+x.width>0&&+x.height>0),"image alt/dimensions"],[Boolean(og&&ogDesc),"social metadata"],[graph.every(x=>x["@type"]!=="Course"||(!x.hasCourseInstance&&x.provider&&x.name&&x.description)),"course fields"]])if(!condition)failures.push({path,reason});
  for(const image of heroImages)if(image.src?.startsWith("/"))images.add(image.src);

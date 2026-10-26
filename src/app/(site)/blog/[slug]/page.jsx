@@ -5,6 +5,8 @@ import { ContentImage } from "@/components/site/content-image";
 import { safeJsonLd, breadcrumbSchema } from "@/lib/seo";
 import { contentMetadata, publicImageUrl } from "@/lib/seo-metadata";
 import { articleNavigation } from "@/lib/article-navigation";
+import { articleResources, relatedArticles } from "@/lib/article-resources";
+import { ArticleTools } from "@/components/site/article-tools";
 import { articleDates, articleAuthor, blogPosting } from "@/lib/blog-seo";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -37,8 +39,8 @@ export default async function PostPage({ params }) {
   const post = await getPost(slug);
   if (!post) notFound();
   const [posts, settings] = await Promise.all([getPosts(50), getSettings()]);
-  const relevance = p => (p.category === post.category ? 3 : 0) + (p.tags || []).filter(tag => post.tags?.includes(tag)).length;
-  const more = posts.filter((p) => p.slug !== post.slug).sort((a,b) => relevance(b)-relevance(a)).slice(0, 3);
+  const more = relatedArticles(post, posts);
+  const resources = articleResources(post);
   const { html, headings } = articleNavigation(cleanHtml(post.body_html));
   const visual = contentVisual(post), dates = articleDates(post), author = articleAuthor(post.author_name);
   const breadcrumbs = [{ name: "Home", path: "/" }, { name: "Articles", path: "/blog" }, { name: post.title, path: `/blog/${post.slug}` }];
@@ -54,10 +56,18 @@ export default async function PostPage({ params }) {
           <nav aria-label="Breadcrumb" className="mt-5 text-sm text-white/75"><Link href="/">Home</Link> / <Link href="/blog" className="underline">Articles</Link></nav>
           <p className="mt-5 flex flex-wrap items-center gap-3 text-sm text-white/75">{author["@type"] === "Organization" ? <Link href="/about" className="underline underline-offset-4">{author.name}</Link> : <span>{author.name}</span>}{dates.published && <span>Published <time dateTime={dates.published}>{formatDate(dates.published, "UTC")}</time></span>}{dates.showModified && <span>Updated <time dateTime={dates.modified}>{formatDate(dates.modified, "UTC")}</time></span>}{post.reading_minutes ? <span className="inline-flex items-center gap-1"><Clock3 className="size-4" aria-hidden="true" />{post.reading_minutes} min read</span> : null}</p>
         </PageHero>
-        <div className="page-wrap max-w-4xl py-14">
-          {post.excerpt && <p className="mb-8 border-l-4 border-gold-500 pl-5 text-[1.18rem] leading-relaxed text-ink-soft">{post.excerpt}</p>}
-          {headings.length > 1 && <nav aria-label="In this article" className="mb-10 rounded-2xl border border-leaf-100 bg-leaf-50 p-5 sm:p-6"><p className="font-semibold text-leaf-700">In this article</p><ol className="mt-3 grid gap-x-6 gap-y-2 sm:grid-cols-2">{headings.map(heading => <li key={heading.id}><a href={`#${heading.id}`} className="block py-1 text-sm leading-relaxed text-leaf-700 underline decoration-leaf-200 underline-offset-4 hover:decoration-leaf-700">{heading.title}</a></li>)}</ol></nav>}
-          <div className="prose-oqc text-[1.06rem] [&_h2]:scroll-mt-28" dangerouslySetInnerHTML={{ __html: html }} />
+        <div className="page-wrap article-layout">
+          <aside className="article-sidebar order-first min-w-0 lg:order-last" aria-label="Article navigation and learning resources">
+            {headings.length > 1 && <details className="article-toc rounded-2xl border border-leaf-100 bg-leaf-50 px-5 py-3"><summary>In this article</summary><nav aria-label="In this article"><ol className="mt-2">{headings.map(heading => <li key={heading.id}><a href={`#${heading.id}`}>{heading.title}</a></li>)}</ol></nav></details>}
+            <div className="mt-5 hidden rounded-2xl border border-line bg-white p-5 lg:block">
+              <h2 className="font-sans text-lg font-semibold">Continue your learning</h2>
+              <p className="mb-4 mt-2 text-sm text-ink-soft">{resources.label}</p>
+              {resources.links.map(link => <Link key={link.href} href={link.href} className="article-resource">{link.label}<ArrowRight className="size-4 shrink-0" aria-hidden="true" /></Link>)}
+            </div>
+          </aside>
+          <div className="article-body min-w-0">
+          {post.excerpt && <p className="mb-8 max-w-[68ch] border-l-4 border-gold-500 pl-5 text-[1.12rem] leading-relaxed text-ink-soft">{post.excerpt}</p>}
+          <div className="prose-oqc text-[1.06rem]" dangerouslySetInnerHTML={{ __html: html }} />
           {post.tags?.length > 0 && (
             <ul className="mt-10 flex flex-wrap gap-2">
               {post.tags.map((t) => (
@@ -67,10 +77,18 @@ export default async function PostPage({ params }) {
               ))}
             </ul>
           )}
+          <section className="mt-8 max-w-[68ch] rounded-2xl border border-line bg-paper p-5 sm:p-6" aria-labelledby="article-next-step">
+            <h2 id="article-next-step" className="text-xl">Put this guide into practice</h2>
+            <p className="mb-4 mt-2 text-sm text-ink-soft">{resources.label}. Use these resources to choose your next step.</p>
+            {resources.links.map(link => <Link key={link.href} href={link.href} className="article-resource">{link.label}<ArrowRight className="size-4 shrink-0" aria-hidden="true" /></Link>)}
+            <ArticleTools url={`${SITE_URL}/blog/${post.slug}`} />
+          </section>
+          <p className="article-print-source hidden">Online Quran College · {SITE_URL}/blog/{post.slug}</p>
+          </div>
         </div>
       </article>
       {more.length > 0 && (
-        <section className="border-t border-line bg-white/60 py-14">
+        <section data-article-related className="border-t border-line bg-white/60 py-14">
           <div className="page-wrap">
             <h2 className="text-[1.8rem] text-mushaf-900">Keep reading</h2>
             <div className="mt-8 grid gap-5 md:grid-cols-3">
@@ -86,7 +104,7 @@ export default async function PostPage({ params }) {
           </div>
         </section>
       )}
-      <CtaBand title="Put it into practice with a teacher" text="Book a free trial class and get personal guidance from a qualified teacher." whatsappHref={wa} />
+      <div data-article-cta><CtaBand title="Put it into practice with a teacher" text="Book a free trial class and get personal guidance from a qualified teacher." whatsappHref={wa} /></div>
     </>
   );
 }

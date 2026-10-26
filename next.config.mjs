@@ -1,5 +1,8 @@
 import { LOCATIONS, locationPath, locationCmsSlug } from "./src/lib/locations.js";
 import { LEARNING_GUIDES } from "./src/lib/learning-guides.js";
+import { readFileSync } from "node:fs";
+import { legacyImageRedirects } from "./src/lib/legacy-image-redirects.js";
+const imageManifest = JSON.parse(readFileSync(new URL("./src/lib/image-manifest.json", import.meta.url), "utf8"));
 /** @type {import('next').NextConfig} */
 const securityHeaders = [
   { key: "Content-Security-Policy", value: "base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'" },
@@ -25,6 +28,8 @@ const nextConfig = {
       { source: "/:path*", headers: securityHeaders },
       { source: "/brand/:path*", headers: [{ key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" }] },
       { source: "/images/learning/:path*", headers: [{ key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" }] },
+      { source: "/images/learning/:asset(.*-(?:r[0-9]+|v[0-9]+)-[0-9]+\\.(?:webp|avif))", headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }] },
+      { source: "/images/hero/:path*", headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }] },
       { source: "/images/islamic/:path*", headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }] },
       { source: "/icons/:path*", headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }] },
       { source: "/admin/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }, { key: "Cache-Control", value: "private, no-store, max-age=0" }] },
@@ -34,6 +39,7 @@ const nextConfig = {
   async redirects() {
     const courses = ["noorani-qaida", "quran-nazara", "hifz-quran", "arabic-language", "quran-translation", "hadith-translation"];
     return [
+      ...legacyImageRedirects(imageManifest),
       { source: "/images/learning/map-:region([a-z-]+)-r2-:width(400|800|1200).webp", destination: "/images/learning/oqc-learning-:region-v3-:width.webp", permanent: true },
       { source: "/images/learning/map-:region([a-z-]+)-:width(400|800|1200).webp", destination: "/images/learning/oqc-learning-:region-v3-:width.webp", permanent: true },
       ...LOCATIONS.flatMap((country) => [null, ...country.cities].map((city) => ({ source: `/${locationCmsSlug(country, city)}`, destination: locationPath(country, city), permanent: true }))),

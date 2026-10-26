@@ -65,7 +65,7 @@ export default async function BlogPage({ searchParams }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(collection) }} />
       <PageHero path={blogUrl(page, category)} eyebrow={category || "Blog"} title={`Quran learning articles for learners and parents${page > 1 ? ` · Page ${page}` : ""}`} arabic="عِلْم" intro="Short, practical reading on recitation, memorisation and building a Quran routine at home." />
       <section className="page-wrap py-16 sm:py-20">
-        <nav aria-label="Article topics" className="mb-8 flex flex-wrap gap-3">{["", ...categories].map(c => <Link key={c} aria-current={c === category ? "page" : undefined} className={`btn btn-sm ${c === category ? "btn-primary" : "btn-outline"}`} href={blogUrl(1,c)}>{c || "All articles"}</Link>)}</nav>
+        <nav aria-label="Article topics" className="article-topics mb-8">{["", ...categories].map(c => <Link key={c} aria-current={c === category ? "page" : undefined} className={`btn btn-sm ${c === category ? "btn-primary" : "btn-outline"}`} href={blogUrl(1,c)}>{c || "All articles"}</Link>)}</nav>
         {posts.length === 0 ? (
           <p className="surface p-10 text-center text-ink-soft">New articles are on their way. Please check back soon.</p>
         ) : (
@@ -75,7 +75,7 @@ export default async function BlogPage({ searchParams }) {
             ))}
           </div>
         )}
-        {(page > 1 || hasNext) && <nav aria-label="Article pages" className="mt-10 flex items-center justify-between gap-4">{page > 1 ? <Link rel="prev" className="btn btn-outline" href={blogUrl(page-1,category)}>Previous articles</Link> : <span />}<span className="text-sm">Page {page}</span>{hasNext && <Link rel="next" className="btn btn-primary" href={blogUrl(page+1,category)}>Next articles</Link>}</nav>}
+        {(page > 1 || hasNext) && <nav aria-label="Article pages" className="mt-10 grid grid-cols-[1fr_auto_1fr] items-center gap-3">{page > 1 ? <Link rel="prev" className="btn btn-outline whitespace-normal text-center" href={blogUrl(page-1,category)}>Previous articles</Link> : <span />}<span aria-current="page" className="text-sm">Page {page}</span>{hasNext ? <Link rel="next" className="btn btn-primary whitespace-normal text-center" href={blogUrl(page+1,category)}>Next articles</Link> : <span />}</nav>}
         <p className="mt-8 text-sm text-ink-soft"><a href="/blog/feed.xml" className="underline underline-offset-4">Subscribe to the article RSS feed</a></p>
       </section>
     </>

@@ -62,7 +62,8 @@ export function clearAnalyticsCookies(win) {
 }
 
 // One transport per page. Banner mode: do not load Google before opt-in.
-// Cookieless mode: load straight away with client_storage "none" (nothing stored).
+// Cookieless mode loads the transport with analytics/ad storage always denied.
+// client_storage is an extra hint, not a substitute for Consent Mode denial.
 export function createAnalyticsController(win, config) {
   let consent = false, initialized = false, lastPage = "", previousPage = "";
   const doc = win.document, origin = win.location.origin;
@@ -80,7 +81,7 @@ export function createAnalyticsController(win, config) {
   function setConsent(granted) {
     consent = granted === true;
     if (config.ga4Id) win[`ga-disable-${config.ga4Id}`] = !consent;
-    command("consent", "update", { ...CONSENT_DENIED, analytics_storage: consent ? "granted" : "denied" });
+    command("consent", "update", { ...CONSENT_DENIED, analytics_storage: consent && !config.cookieless ? "granted" : "denied" });
     if (!allowed() || initialized) return;
     initialized = true;
     const location = publicAnalyticsUrl(win.location.href, origin);

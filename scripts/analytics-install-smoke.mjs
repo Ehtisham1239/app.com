@@ -1,66 +1,47 @@
-import { chromium } from 'playwright';
+import { auditPage, launchAuditBrowser } from './lib/browser-audit.mjs';
 import assert from 'node:assert/strict';
 import { mkdirSync, writeFileSync } from 'node:fs';
 
 const base = (process.argv[2] || 'http://127.0.0.1:3017').replace(/\/$/, '');
 const expectedId = process.argv[3] || 'G-57TGPTDNT4';
 const out = process.argv[4] || 'artifacts/analytics-install';
-const origin = new URL(base).origin;
-const report = { base, expectedId, cases: [], browserErrors: [], realGoogleRequests: 0, formSubmissions: 0, googleLibrary: 'stubbed; this verifies installation, not a GA4 reporting receipt' };
+const realLibrary = process.argv.includes('--real-google-script');
+const report = { base, expectedId, mode: 'GA4 with Google storage denied', cases: [], browserErrors: [], collectionRequestsBlocked: 0, formSubmissions: 0, googleLibrary: realLibrary ? 'Actual public gtag JavaScript; all collection requests intercepted, no data sent to Google collectors' : 'Inert stub; verifies installation/controller, not GA4 reporting or vendor cookie behaviour' };
 mkdirSync(out, { recursive: true });
-for (const width of [390, 1440]) {
-  const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || undefined, args: JSON.parse(process.env.CHROMIUM_ARGS_JSON || '["--no-sandbox"]') });
+for (const width of realLibrary ? [390] : [390, 1440]) {
+  const browser = await launchAuditBrowser();
+  let session;
   try {
-    const page = await browser.newPage({ viewport: { width, height: 1000 } });
-    const loads = [];
-    page.on('pageerror', error => report.browserErrors.push(error.message));
-    await page.route('**/*', async route => {
-      const req = route.request(), url = new URL(req.url());
-      if (url.hostname === 'www.googletagmanager.com') { loads.push(url.href); return route.fulfill({ contentType: 'application/javascript', body: '/* inert Google installation check */' }); }
-      if (url.hostname === 'app.hatchium.ai') return route.fulfill({ contentType: 'application/javascript', body: '/* inert chat installation check */' });
-      if (url.origin !== origin) { if (/google-analytics|doubleclick/.test(url.hostname)) report.realGoogleRequests++; return route.abort(); }
-      if (!['GET', 'HEAD'].includes(req.method())) { report.formSubmissions++; return route.abort(); }
-      if (url.protocol === 'http:') return route.continue();
-      const response = await fetch(req.url(), { method: req.method(), headers: await req.allHeaders(), redirect: 'manual', signal: AbortSignal.timeout(20000) });
-      const headers = Object.fromEntries(response.headers);
-      delete headers['content-length']; delete headers['content-encoding']; delete headers['transfer-encoding'];
-      return route.fulfill({ status: response.status, headers, body: Buffer.from(await response.arrayBuffer()) });
-    });
+    session = await auditPage(browser, base, report, { viewport: { width, height: 1000 }, googleLibrary: realLibrary ? 'real' : 'stub' });
+    const { page } = session, loads = [];
+    await page.addInitScript(() => { localStorage.setItem('oqc-analytics-consent-v1', '{"value":"granted","expires":9999999999999}'); document.cookie = '_ga=GA1.1.123.456; Path=/; SameSite=Lax'; });
+    page.on('request', req => { const url = new URL(req.url()); if (url.hostname === 'www.googletagmanager.com' && url.pathname === '/gtag/js') loads.push(url.href); if (url.origin === new URL(base).origin && !['GET', 'HEAD'].includes(req.method())) report.formSubmissions++; });
     await page.goto(base + '/contact', { waitUntil: 'load' });
-    await page.getByRole('region', { name: 'Analytics preferences', exact: true }).waitFor();
-    assert.equal(loads.length, 0);
-    if (new URL(base).protocol === 'http:') {
-      const heights = await page.getByRole('region', { name: 'Analytics preferences' }).getByRole('button').evaluateAll(buttons => buttons.map(button => button.getBoundingClientRect().height));
-      assert.ok(heights.every(height => height >= 44), 'Consent buttons must remain usable on touch screens');
-    }
-    await page.getByRole('button', { name: 'Reject analytics', exact: true }).click();
-    await page.reload({ waitUntil: 'load' });
-    await page.getByRole('button', { name: 'Analytics preferences', exact: true }).waitFor();
-    assert.equal(loads.length, 0);
-    await page.getByRole('button', { name: 'Analytics preferences', exact: true }).click();
-    await page.getByRole('button', { name: 'Allow analytics', exact: true }).click();
     await page.waitForFunction(id => document.getElementById('oqc-google-analytics')?.src.includes(id), expectedId);
     await page.waitForFunction(() => window.dataLayer.some(item => item[0] === 'event' && item[1] === 'page_view'));
+    assert.equal(await page.getByRole('region', { name: 'Analytics preferences', exact: true }).count(), 0);
     assert.equal(loads.length, 1);
     assert.equal(new URL(loads[0]).searchParams.get('id'), expectedId);
     await page.locator('header a[href="/"]').first().click();
     await page.waitForURL(url => url.pathname === '/');
     await page.waitForFunction(() => window.dataLayer.filter(item => item[0] === 'event' && item[1] === 'page_view').length === 2);
-    const commands = await page.evaluate(() => window.dataLayer.map(item => typeof item.length === 'number' ? Array.from(item) : item));
+    const commands = await page.evaluate(() => window.dataLayer.filter(item => typeof item.length === 'number').map(item => Array.from(item)));
     const configurations = commands.filter(item => item[0] === 'config');
-    assert.equal(configurations.length, 1);
-    assert.equal(configurations[0][1], expectedId);
+    assert.equal(configurations.length, 1); assert.equal(configurations[0][1], expectedId);
     assert.equal(configurations[0][2].send_page_view, false);
+    assert.equal(configurations[0][2].allow_google_signals, false);
+    const consent = commands.filter(item => item[0] === 'consent');
+    assert.ok(consent.length >= 2);
+    for (const item of consent) for (const key of ['analytics_storage', 'ad_storage', 'ad_user_data', 'ad_personalization']) assert.equal(item[2][key], 'denied');
+    const storage = await page.evaluate(() => ({ analyticsCookies: document.cookie.split(';').map(c => c.split('=')[0].trim()).filter(n => /^_ga(?:_|$)/.test(n)), preference: localStorage.getItem('oqc-analytics-consent-v1') }));
+    assert.deepEqual(storage.analyticsCookies, []); assert.equal(storage.preference, null);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
-    await page.getByRole('button', { name: 'Analytics preferences', exact: true }).click();
-    await Promise.all([page.waitForEvent('load'), page.getByRole('button', { name: 'Reject analytics', exact: true }).click()]);
-    await page.getByRole('button', { name: 'Analytics preferences', exact: true }).waitFor();
-    assert.equal(await page.locator('#oqc-google-analytics').count(), 0);
-    assert.equal(loads.length, 1);
-    report.cases.push({ width, ownerId: expectedId, beforeConsentLoads: 0, loaderCount: 1, pageViews: 2, rejectionPersists: true, revocationStopsLoader: true });
-  } finally { await browser.close(); }
+    report.cases.push({ width, ownerId: expectedId, loaderCount: 1, manualPageViews: 2, googleStorageAlwaysDenied: true, legacyCookieRemoved: true, noAnalyticsCookieObserved: true, noBanner: true });
+  } finally { await session?.close(); await browser.close(); }
 }
 assert.deepEqual(report.browserErrors, []);
-assert.equal(report.realGoogleRequests, 0); assert.equal(report.formSubmissions, 0);
+// In the real-library case Google may attempt POST pings, but the bridge replies
+// locally. No enquiries are ever submitted and no collector request leaves QA.
+if (!realLibrary) assert.equal(report.formSubmissions, 0);
 writeFileSync(`${out}/report.json`, JSON.stringify(report, null, 2));
 console.log(JSON.stringify(report));
