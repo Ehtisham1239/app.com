@@ -15,7 +15,7 @@ export function analyticsConfig(value = {}) {
 // signals denied. When a GTM container is set it owns GA4 (the live container
 // already holds the G- tag), so the direct gtag script is not loaded: loading
 // both double-counts, and the standalone G- tag currently answers 404.
-// The container's Google tag must set client_storage "none" to stay cookieless.
+// Cookieless: Google analytics cookies live only in page memory (see shieldAnalyticsCookies).
 export function cookielessAnalyticsConfig(config) {
   const ga4Id = config?.ga4Id || "", gtmId = config?.gtmId || "";
   const mode = gtmId ? "gtm" : ga4Id ? "ga4" : "off";
@@ -64,6 +64,43 @@ export function clearAnalyticsCookies(win) {
   } catch { /* Analytics remains denied even when the browser blocks cookie access. */ }
 }
 
+// GA4 ignores client_storage "none" (it still writes _ga cookies), and it sends
+// nothing when it cannot read its own cookie back. So Google's analytics
+// cookies are kept in page memory only: GA can read them while the page is
+// open, nothing is written to the visitor's device, and each page load gets a
+// fresh random client ID. Other cookies pass through untouched.
+const GOOGLE_COOKIE = /^\s*(?:_ga|_gid|_gat|_gcl)/;
+export function shieldAnalyticsCookies(doc) {
+  if (!doc || doc.__oqcCookieShield) return false;
+  let proto = Object.getPrototypeOf(doc), native = null;
+  while (proto && !native) { native = Object.getOwnPropertyDescriptor(proto, "cookie"); proto = Object.getPrototypeOf(proto); }
+  if (!native?.get || !native?.set) return false;
+  const jar = new Map();
+  try {
+    Object.defineProperty(doc, "cookie", {
+      configurable: true,
+      get() {
+        const stored = native.get.call(doc);
+        const memory = [...jar].map(([name, value]) => `${name}=${value}`).join("; ");
+        return [stored, memory].filter(Boolean).join("; ");
+      },
+      set(value) {
+        const text = String(value);
+        if (!GOOGLE_COOKIE.test(text)) { native.set.call(doc, text); return; }
+        const pair = text.split(";")[0], at = pair.indexOf("=");
+        const name = pair.slice(0, at).trim();
+        if (/max-age=0|expires=thu, 01 jan 1970/i.test(text)) jar.delete(name); else jar.set(name, pair.slice(at + 1));
+      },
+    });
+    Object.defineProperty(doc, "__oqcCookieShield", { value: true });
+    return true;
+  } catch { return false; }
+}
+
+export function pageClientId(random = Math.random, now = Date.now) {
+  return `${Math.floor(random() * 2147483647) + 1}.${Math.floor(now() / 1000)}`;
+}
+
 // One transport per page. Banner mode: do not load Google before opt-in.
 // Cookieless mode (owner decision, 26 Oct 2026 — keep): GA4 loads straight away
 // with client_storage "none", so no cookie or identifier is written, and
@@ -91,15 +128,17 @@ export function createAnalyticsController(win, config) {
     if (!allowed() || initialized) return;
     initialized = true;
     const location = publicAnalyticsUrl(win.location.href, origin);
+    const cookieless = config.cookieless ? { client_storage: "none", client_id: pageClientId() } : {};
+    if (config.cookieless) shieldAnalyticsCookies(doc);
     if (config.mode === "gtm") {
       // The container's Google tag reads these before its config: keep it
       // cookieless with Google signals and ad personalisation off.
-      if (config.cookieless) command("set", { client_storage: "none", allow_google_signals: false, allow_ad_personalization_signals: false });
+      if (config.cookieless) command("set", { ...cookieless, allow_google_signals: false, allow_ad_personalization_signals: false });
       win.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js", page_location: location });
     }
     else {
       command("js", new Date());
-      command("config", config.ga4Id, { send_page_view: false, page_location: location, page_referrer: previousPage, allow_google_signals: false, allow_ad_personalization_signals: false, ...(config.cookieless ? { client_storage: "none" } : {}) });
+      command("config", config.ga4Id, { send_page_view: false, page_location: location, page_referrer: previousPage, allow_google_signals: false, allow_ad_personalization_signals: false, ...cookieless });
     }
     const id = "oqc-google-analytics";
     if (!doc.getElementById(id)) {

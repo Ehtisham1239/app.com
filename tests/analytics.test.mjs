@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { analyticsConfig, analyticsSettingsError, publicAnalyticsUrl, createAnalyticsController, saveAnalyticsConsent, readAnalyticsConsent, cookielessAnalyticsConfig, ANALYTICS_CONSENT_KEY } from "../src/lib/analytics.js";
+import { analyticsConfig, analyticsSettingsError, publicAnalyticsUrl, createAnalyticsController, saveAnalyticsConsent, readAnalyticsConsent, cookielessAnalyticsConfig, shieldAnalyticsCookies, pageClientId, ANALYTICS_CONSENT_KEY } from "../src/lib/analytics.js";
 
 // Test-only IDs. The fake document records script loads; no network requests occur.
 const ga4Id = "G-TEST123456", gtmId = "GTM-TEST123";
@@ -118,4 +118,38 @@ test("with a GTM container set, GTM owns GA4: no direct gtag, same cookieless co
   const consents = win.dataLayer.map(item => Array.from(item ?? [])).filter(item => item[0] === "consent");
     assert.equal(consents.at(-1)[2].analytics_storage, "granted"); assert.equal(consents.at(-1)[2].ad_storage, "denied");
   adapter.destroy();
+});
+
+// GA4 ignores client_storage "none", so its cookies are held in page memory only.
+class FakeDocument { constructor() { this.stored = new Map(); } }
+Object.defineProperty(FakeDocument.prototype, "cookie", {
+  configurable: true,
+  get() { return [...this.stored].map(([k, v]) => `${k}=${v}`).join("; "); },
+  set(text) { const [pair] = String(text).split(";"); const at = pair.indexOf("="); const k = pair.slice(0, at).trim(); if (/max-age=0/i.test(text)) this.stored.delete(k); else this.stored.set(k, pair.slice(at + 1)); },
+});
+
+test("Google Analytics cookies never reach the device but GA can still read them in the page", () => {
+  const doc = new FakeDocument();
+  assert.equal(shieldAnalyticsCookies(doc), true);
+  assert.equal(shieldAnalyticsCookies(doc), false, "installs once");
+  doc.cookie = "_ga=GA1.1.123.456; path=/; domain=.college.test; max-age=63072000";
+  doc.cookie = "_ga_TEST123=GS2.1.s1$o1; path=/";
+  doc.cookie = "site_pref=1; path=/";
+  assert.deepEqual([...doc.stored.keys()], ["site_pref"], "only non-Google cookies are stored");
+  assert.match(doc.cookie, /_ga=GA1\.1\.123\.456/);
+  assert.match(doc.cookie, /site_pref=1/);
+  doc.cookie = "_ga=; Max-Age=0; path=/";
+  assert.doesNotMatch(doc.cookie, /_ga=GA1/);
+});
+
+test("cookieless analytics sends a fresh page-level client id in both transports", () => {
+  assert.match(pageClientId(() => 0.5, () => 1_700_000_000_000), /^\d+\.1700000000$/);
+  for (const ids of [{ ga4_measurement_id: ga4Id }, { ga4_measurement_id: ga4Id, gtm_container_id: gtmId }]) {
+    const { win } = fakeBrowser();
+    const adapter = createAnalyticsController(win, cookielessAnalyticsConfig(analyticsConfig({ enabled: true, ...ids })));
+    adapter.setConsent(true);
+    const settings = win.dataLayer.map(item => Array.from(item)).filter(item => item[0] === "set" || item[0] === "config").map(item => item.at(-1));
+    assert.ok(settings.some(s => s.client_storage === "none" && /^\d+\.\d+$/.test(s.client_id)), JSON.stringify(settings));
+    adapter.destroy();
+  }
 });
