@@ -67,10 +67,11 @@ test("analytics preference expires and a choice still applies when browser stora
   saveAnalyticsConsent(win, "granted"); assert.equal(readAnalyticsConsent(win), "granted");
 });
 
-test("cookieless mode uses direct GA4 with no device storage and never loads GTM", () => {
-  assert.equal(cookielessAnalyticsConfig(analyticsConfig({ enabled: true, gtm_container_id: gtmId })).enabled, false);
-  const config = cookielessAnalyticsConfig(analyticsConfig({ enabled: true, ga4_measurement_id: ga4Id, gtm_container_id: gtmId }));
-  assert.equal(config.mode, "ga4"); assert.equal(config.gtmId, "");
+test("cookieless mode uses direct GA4 with no device storage", () => {
+  const gtmOnly = cookielessAnalyticsConfig(analyticsConfig({ enabled: true, gtm_container_id: gtmId }));
+  assert.equal(gtmOnly.enabled, true); assert.equal(gtmOnly.mode, "gtm");
+  const config = cookielessAnalyticsConfig(analyticsConfig({ enabled: true, ga4_measurement_id: ga4Id }));
+  assert.equal(config.mode, "ga4"); assert.equal(config.withGtm, false);
   const { win, scripts } = fakeBrowser();
   const adapter = createAnalyticsController(win, config);
   adapter.setConsent(true); adapter.pageView("/courses");
@@ -104,5 +105,18 @@ test("web vitals reach GA4 as named events with only the metric and public path"
   assert.equal(events[0][2].value, 1835); assert.equal(events[1][2].value, 42);
   assert.equal(events[0][2].page_path, "/contact");
   assert.ok(!JSON.stringify(events).includes("private@example.test"));
+  adapter.destroy();
+});
+
+test("with both IDs, GA4 loads directly and the GTM container loads beside it under the same consent", () => {
+  const config = cookielessAnalyticsConfig(analyticsConfig({ enabled: true, ga4_measurement_id: ga4Id, gtm_container_id: gtmId }));
+  assert.equal(config.mode, "ga4"); assert.equal(config.withGtm, true);
+  const { win, scripts } = fakeBrowser();
+  const adapter = createAnalyticsController(win, config);
+  adapter.setConsent(true);
+  assert.deepEqual(scripts.map(s => s.id).sort(), ["oqc-google-analytics", "oqc-google-tag-manager"]);
+  assert.ok(scripts.find(s => s.id === "oqc-google-tag-manager").src.endsWith("gtm.js?id=" + gtmId));
+  const consents = win.dataLayer.map(item => Array.from(item)).filter(item => item[0] === "consent");
+  assert.equal(consents.at(-1)[2].analytics_storage, "granted"); assert.equal(consents.at(-1)[2].ad_storage, "denied");
   adapter.destroy();
 });

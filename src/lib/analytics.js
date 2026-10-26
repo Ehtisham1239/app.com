@@ -11,12 +11,15 @@ export function analyticsConfig(value = {}) {
   return { enabled: value.enabled === true && Boolean(gtmId || ga4Id), mode: gtmId ? "gtm" : ga4Id ? "ga4" : "off", ga4Id, gtmId };
 }
 
-// Site-wide mode since 26 Oct 2026: GA4 runs without writing cookies or other
-// device storage, so no consent banner is shown. Only direct GA4 can honour
-// that, so a GTM-only setup stays off (tags inside a container could set cookies).
+// Site-wide mode since 26 Oct 2026: no consent banner. GA4 loads directly with
+// client_storage "none" so it writes no cookie or identifier. Google Tag Manager
+// (owner request, 26 Oct 2026) loads alongside it when a container ID is set;
+// the same consent state applies (analytics granted, all ad signals denied).
+// Do not add a GA4 tag inside the container as well, or every hit counts twice.
 export function cookielessAnalyticsConfig(config) {
-  const ga4Id = config?.ga4Id || "";
-  return { ...config, enabled: Boolean(config?.enabled && ga4Id), mode: ga4Id ? "ga4" : "off", gtmId: "", cookieless: true };
+  const ga4Id = config?.ga4Id || "", gtmId = config?.gtmId || "";
+  const mode = ga4Id ? "ga4" : gtmId ? "gtm" : "off";
+  return { ...config, enabled: Boolean(config?.enabled && mode !== "off"), mode, ga4Id, gtmId, withGtm: Boolean(ga4Id && gtmId), cookieless: true };
 }
 
 export function analyticsSettingsError(value = {}) {
@@ -92,6 +95,12 @@ export function createAnalyticsController(win, config) {
     else {
       command("js", new Date());
       command("config", config.ga4Id, { send_page_view: false, page_location: location, page_referrer: previousPage, allow_google_signals: false, allow_ad_personalization_signals: false, ...(config.cookieless ? { client_storage: "none" } : {}) });
+    }
+    if (config.withGtm && !doc.getElementById("oqc-google-tag-manager")) {
+      win.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js", page_location: location });
+      const gtm = doc.createElement("script"); gtm.id = "oqc-google-tag-manager"; gtm.async = true;
+      gtm.src = `https://www.googletagmanager.com/gtm.js?id=${config.gtmId}`;
+      doc.head.appendChild(gtm);
     }
     const id = "oqc-google-analytics";
     if (!doc.getElementById(id)) {

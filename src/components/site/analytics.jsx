@@ -14,7 +14,7 @@ export function WebsiteAnalytics({ config }) {
   const pathname = usePathname();
   const controller = useRef(null);
   useEffect(() => {
-    if (!enabled || !config.cookieless || config.mode !== "ga4") return;
+    if (!enabled || !config.cookieless || config.mode === "off") return;
     clearAnalyticsCookies(window);
     try { window.localStorage.removeItem(ANALYTICS_CONSENT_KEY); } catch { /* storage blocked */ }
     const adapter = createAnalyticsController(window, config);
@@ -23,7 +23,7 @@ export function WebsiteAnalytics({ config }) {
     adapter.pageView(window.location.href);
     return () => { adapter.destroy(); controller.current = null; };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [enabled, ga4Id]);
+  }, [enabled, ga4Id, config.gtmId]);
   useEffect(() => { controller.current?.pageView(pathname); }, [pathname]);
   // Real-visit Core Web Vitals go to GA4 as LCP / INP / CLS / FCP / TTFB events.
   useReportWebVitals((metric) => { controller.current?.webVital(metric); });

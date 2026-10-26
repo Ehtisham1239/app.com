@@ -336,7 +336,8 @@
 .hero-glow-two { left: -10rem; bottom: -10rem; }
 main section[id], main [id^="c-"], main [id^="t-"] { scroll-margin-top: 7rem; }
 @media (prefers-reduced-motion: no-preference) {
-  .home-hero .hero-portrait { animation: portrait-arrive .9s ease-out both; }
+  /* No entrance animation on the hero image: it is the LCP element and a 0.9 s
+     transform held back its paint by the same amount on mobile. */
   .home-hero .hero-glow { animation: glow-drift 4.5s ease-out backwards; }
   .home-hero .hero-actions { animation: home-arrive .7s ease-out backwards; }
   .home-reveal { animation: home-arrive .65s cubic-bezier(.2,.65,.3,1) var(--reveal-delay, 0ms) backwards; }

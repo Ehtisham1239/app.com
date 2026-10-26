@@ -11,5 +11,6 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 ## Owner decisions — do not change without the owner's written approval
 
 - **Analytics (26 Oct 2026):** no analytics banner or "Analytics preferences" button. GA4 runs cookieless: `client_storage: "none"` with `analytics_storage: "granted"` so hits appear in GA4 reports; `ad_storage`, `ad_user_data` and `ad_personalization` stay denied and Google signals stay off. Do not switch analytics storage to "denied" (reports go empty) and do not bring back the banner. `tests/analytics.test.mjs` pins this.
+- **Google Tag Manager (26 Oct 2026):** allowed. With both IDs set, GA4 still loads directly (cookieless) and the GTM container loads beside it under the same consent state. Do not add a GA4 tag inside the container (double counting) or any tag that sets cookies.
 - **Free trial (26 Oct 2026):** 3 days, Weekend plan excluded.
 - **Brand colours (26 Oct 2026):** logo green (`#0C6C0C` / `#249C0C`), deep green `#0D4A1C`, soft gold accents.
