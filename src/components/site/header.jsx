@@ -236,7 +236,7 @@ export function SiteHeader({ menu, courses, brandName }) {
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
             <a href="/admin" className="btn portal-button w-full sm:hidden"><ShieldCheck className="size-4" aria-hidden="true" />Portal</a>
             <Link href="/free-trial" onClick={() => setOpen(false)} className="btn btn-primary w-full">
-              Book a 7-day free trial
+              Book a 3-day free trial
             </Link>
 
           </div>

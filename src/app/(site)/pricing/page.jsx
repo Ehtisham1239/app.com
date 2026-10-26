@@ -8,7 +8,7 @@ import { whatsappLink } from "@/lib/format";
 
 export const revalidate = 300;
 
-export const metadata = contentMetadata({ title: "Online Quran Class Fees & Packages", seo_noindex: false }, { path: "/pricing", description: "Compare monthly packages for live one-to-one Quran classes, with a 7-day free trial on eligible plans. The Weekend plan is excluded from the trial." });
+export const metadata = contentMetadata({ title: "Online Quran Class Fees & Packages", seo_noindex: false }, { path: "/pricing", description: "Compare monthly packages for live one-to-one Quran classes, with a 3-day free trial on eligible plans. The Weekend plan is excluded from the trial." });
 
 export default async function PricingPage({ searchParams }) {
   const requestedCurrency = (await searchParams)?.currency;
@@ -24,14 +24,14 @@ export default async function PricingPage({ searchParams }) {
       <PageHero path="/pricing"
         eyebrow="Fees"
         title="Online Quran class fees and packages"
-        intro="Choose how many days a week suit your family. Compare lesson frequency, duration and fees below. A 7-day free trial is available on eligible plans; the Weekend plan is excluded."
+        intro="Choose how many days a week suit your family. Compare lesson frequency, duration and fees below. A 3-day free trial is available on eligible plans; the Weekend plan is excluded."
       />
       <section className="page-wrap py-16 sm:py-20">
         {packages.length > 0 && <CurrencyPricing plans={packages} defaultCurrency={requestedCurrency} />}
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {[
             { icon: BadgePercent, title: "15% sibling discount", text: "Each additional child from the same family receives 15% off their monthly fee." },
-            { icon: ShieldCheck, title: "Free trial on eligible plans", text: "Try 7 days of classes before choosing an eligible package. The Weekend plan is excluded; confirm your plan with the coordinator." },
+            { icon: ShieldCheck, title: "Free trial on eligible plans", text: "Try 3 days of classes before choosing an eligible package. The Weekend plan is excluded; confirm your plan with the coordinator." },
             { icon: CreditCard, title: "Easy payment", text: `Pay monthly by card, PayPal or bank transfer${currencies.length ? ` — prices shown in ${currencies.join(", ")}` : ""}.` },
           ].map(({ icon: Icon, title, text }) => (
             <div key={title} className="flex gap-4 rounded-[var(--radius-card)] border border-line bg-white p-5">
@@ -65,7 +65,7 @@ export default async function PricingPage({ searchParams }) {
         </section>
       )}
 
-      <CtaBand title="Try 7 days of classes on an eligible plan" text="The Weekend plan is excluded from the free trial. Confirm the right plan with the coordinator before enrolling." whatsappHref={wa} />
+      <CtaBand title="Try 3 days of classes on an eligible plan" text="The Weekend plan is excluded from the free trial. Confirm the right plan with the coordinator before enrolling." whatsappHref={wa} />
     </>
   );
 }

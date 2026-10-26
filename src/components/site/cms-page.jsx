@@ -70,7 +70,7 @@ export async function CmsPage({ page }) {
       )}
       <PageSections sections={sections} data={{ courses, plans, faqs, teachers, testimonials, whatsappHref: wa }} />
       {!isPolicy && !needs.has("cta") && (
-        <CtaBand title="Learn the Quran with a teacher who cares" text="Book a free 7-day trial and meet your teacher this week." whatsappHref={wa} />
+        <CtaBand title="Learn the Quran with a teacher who cares" text="Book a free 3-day trial and meet your teacher this week." whatsappHref={wa} />
       )}
     </>
   );

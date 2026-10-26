@@ -1,25 +1,28 @@
 import { quoteCurrencies } from "@/lib/booking-preferences";
-import { PageHero } from "@/components/site/chrome";
-import Link from "next/link";
 import { contentMetadata } from "@/lib/seo-metadata";
 import { Suspense } from "react";
 import { CalendarCheck2, Clock3, HeartHandshake, ShieldCheck } from "@/components/site/icons";
-import { TrialForm } from "@/components/site/trial-form";
+import { QuickTrialForm } from "@/components/site/quick-trial-form";
+import { ContentImage } from "@/components/site/content-image";
 import { getCourses, getPlans, getSettings } from "@/lib/site-data";
 import { whatsappLink } from "@/lib/format";
+import { safeJsonLd } from "@/lib/seo";
+import { SITE_URL } from "@/lib/config";
 
 export const revalidate = 300;
 
+const COVER = { src: "/images/islamic/online-lesson-adult-v1-1200.webp", alt: "A woman studies the Quran at home while a female teacher guides her over a live video lesson" };
+
 export const metadata = contentMetadata({
   seo_title: "Free Online Quran Trial Classes | Online Quran College",
-  cover_url: "/images/islamic/mosque-courtyard-v1-1200.webp",
-  cover_alt: "An illustrated mosque courtyard with arches and a reflecting pool",
-}, { path: "/free-trial", description: "Request a 7-day free trial of one-to-one Quran classes on eligible plans. The Weekend plan is excluded. Share your course and local time zone." });
+  cover_url: COVER.src,
+  cover_alt: COVER.alt,
+}, { path: "/free-trial", description: "Book a free 3-day trial of live one-to-one Quran classes on eligible plans. The Weekend plan is excluded. A coordinator replies within 24 hours." });
 
 const PROMISES = [
   { icon: Clock3, title: "Reply within 24 hours", text: "A coordinator contacts you by WhatsApp or email to confirm a time." },
   { icon: HeartHandshake, title: "Teacher of your choice", text: "Female or male teacher, explained in your language." },
-  { icon: CalendarCheck2, title: "7 days on eligible plans, no card", text: "Attend trial classes before choosing an eligible package. The Weekend plan is excluded." },
+  { icon: CalendarCheck2, title: "3 days free on eligible plans", text: "No card needed. The Weekend plan is excluded." },
   { icon: ShieldCheck, title: "Your details are safe", text: "Used only to arrange your classes — never sold or shared." },
 ];
 
@@ -27,15 +30,40 @@ export default async function FreeTrialPage() {
   const [courses, plans, settings] = await Promise.all([getCourses(), getPlans(), getSettings()]);
   const forms = settings["site.forms"] ?? {};
   const wa = whatsappLink(settings["site.contact"]?.whatsapp, "Assalamu alaikum, I have just booked a free trial on your website.");
-  return <>
-    <PageHero path="/free-trial" eyebrow="Free trial" title="Request a free online Quran trial" intro="Request a 7-day trial on an eligible plan. The Weekend plan is excluded. Share the learner’s level and preferred time; our coordinator confirms the details.">
-      <Link href="#trial-form" className="btn btn-gold mt-6">Start your trial request</Link>
-    </PageHero>
-    <section id="trial-form" aria-label="Trial request" className="page-wrap grid scroll-mt-28 items-start gap-8 py-12 lg:grid-cols-[0.65fr_1fr]">
-      <div><h2 className="text-2xl">A simple start</h2><ul className="mt-6 space-y-4">{PROMISES.slice(0, 3).map(({icon: Icon, title, text}) => <li key={title} className="surface flex gap-3 p-5"><Icon className="mt-1 size-5 shrink-0 text-leaf-700" aria-hidden="true" /><div><h3 className="font-semibold">{title}</h3><p className="mt-1 text-sm text-ink-soft">{text}</p></div></li>)}</ul></div>
-      <Suspense fallback={<div className="surface h-[34rem] animate-pulse" aria-label="Loading trial form" />}>
-        <TrialForm currencies={quoteCurrencies(plans)} courses={courses.map(({ id, title }) => ({ id, title }))} plans={plans.map(({ id, name, classes_per_week }) => ({ id, name, classes_per_week }))} consentText={forms.consent_text} successText={forms.trial_success} whatsappHref={wa} />
-      </Suspense>
+  const jsonLd = { "@context": "https://schema.org", "@type": "WebPage", "@id": `${SITE_URL}/free-trial#webpage`, url: `${SITE_URL}/free-trial`, name: "Book a free 3-day online Quran trial", isPartOf: { "@id": `${SITE_URL}/#website` }, about: { "@id": `${SITE_URL}/#organization` }, inLanguage: "en-GB" };
+  return (
+    <section id="trial-form" aria-labelledby="trial-title" className="relative overflow-hidden bg-mushaf-900 pb-12 pt-7 sm:pt-10 lg:pb-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
+      <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.07]" aria-hidden="true" />
+      <div className="page-wrap relative grid items-start gap-7 lg:grid-cols-[1fr_1.1fr] lg:gap-12">
+        <div className="text-white">
+          <p className="text-xs font-bold uppercase tracking-[0.24em] text-gold-300">Free trial</p>
+          <h1 id="trial-title" className="mt-2 text-[clamp(1.9rem,4.6vw,3rem)] leading-[1.1] text-white">Book a free <span className="text-gold-300">3-day</span> Quran trial</h1>
+          <p className="mt-3 max-w-xl text-[1.02rem] leading-relaxed text-white/85">Fill in the short form and a coordinator will arrange your trial classes at a time that suits your family.</p>
+          <div className="mt-6 hidden overflow-hidden rounded-[1.5rem] border border-white/15 lg:block">
+            <ContentImage src={COVER.src} alt={COVER.alt} priority sizes="(max-width: 1024px) 0px, 560px" className="aspect-[16/9] w-full object-cover" />
+          </div>
+          <ul className="mt-6 hidden gap-4 sm:grid sm:grid-cols-2">
+            {PROMISES.map(({ icon: Icon, title, text }) => (
+              <li key={title} className="flex gap-3">
+                <Icon className="mt-0.5 size-5 shrink-0 text-gold-300" aria-hidden="true" />
+                <div><h2 className="text-[0.98rem] font-semibold text-white">{title}</h2><p className="mt-0.5 text-[0.86rem] text-white/75">{text}</p></div>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <Suspense fallback={<div className="surface h-[36rem] animate-pulse" aria-label="Loading trial form" />}>
+          <QuickTrialForm currencies={quoteCurrencies(plans)} courses={courses.map(({ id, title }) => ({ id, title }))} plans={plans.map(({ id, name }) => ({ id, name }))} consentText={forms.consent_text} successText={forms.trial_success} whatsappHref={wa} />
+        </Suspense>
+        <ul className="grid gap-4 text-white sm:hidden">
+          {PROMISES.map(({ icon: Icon, title, text }) => (
+            <li key={title} className="flex gap-3">
+              <Icon className="mt-0.5 size-5 shrink-0 text-gold-300" aria-hidden="true" />
+              <div><h2 className="text-[0.98rem] font-semibold text-white">{title}</h2><p className="mt-0.5 text-[0.86rem] text-white/75">{text}</p></div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
-  </>;
+  );
 }

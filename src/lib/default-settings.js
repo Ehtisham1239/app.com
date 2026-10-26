@@ -27,9 +27,9 @@ export const DEFAULT_SETTINGS = {
     title: "Empowering minds with online Quranic education",
     subtitle:
       "Professional one-to-one classes for children and adults in Noorani Qaida, Tajweed, Hifz, Arabic and Islamic studies — taught live by male and female teachers at times that suit your family.",
-    primary_label: "Book a 7-day free trial",
+    primary_label: "Book a 3-day free trial",
     secondary_label: "Explore courses",
-    badges: ["7-day free trial — no card needed", "Female & male teachers", "Classes in any time zone"],
+    badges: ["3-day free trial — no card needed", "Female & male teachers", "Classes in any time zone"],
   },
   "site.stats": [
     { value: "Online", label: "Learn from home" },
@@ -50,7 +50,7 @@ export const DEFAULT_SETTINGS = {
     { title: "Choose your plan", text: "After the trial, a coordinator agrees timings, teacher preference and a monthly package with you." },
     { title: "Start regular classes", text: "Meet your teacher live online on your chosen days and track progress every month." },
   ],
-  "site.announcement": { enabled: true, text: "7 days of free classes — no credit card required.", link_label: "Book now", link: "/free-trial" },
+  "site.announcement": { enabled: true, text: "3 days of free classes — no credit card required.", link_label: "Book now", link: "/free-trial" },
   "site.forms": {
     consent_version: "2026-10-13",
     consent_text:
@@ -63,6 +63,6 @@ export const DEFAULT_SETTINGS = {
   "site.seo": {
     title: "Online Quran College — Live 1-on-1 Online Quran Classes",
     description:
-      "Learn Quran online with live one-to-one classes: Noorani Qaida, Tajweed, Hifz, Arabic and Islamic studies for kids and adults. Female & male teachers. 7-day free trial.",
+      "Learn Quran online with live one-to-one classes: Noorani Qaida, Tajweed, Hifz, Arabic and Islamic studies for kids and adults. Female & male teachers. 3-day free trial.",
   },
 };
