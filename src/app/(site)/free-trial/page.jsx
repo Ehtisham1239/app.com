@@ -30,7 +30,7 @@ export default async function FreeTrialPage() {
   const [courses, plans, settings] = await Promise.all([getCourses(), getPlans(), getSettings()]);
   const forms = settings["site.forms"] ?? {};
   const wa = whatsappLink(settings["site.contact"]?.whatsapp, "Assalamu alaikum, I have just booked a free trial on your website.");
-  const jsonLd = { "@context": "https://schema.org", "@type": "WebPage", "@id": `${SITE_URL}/free-trial#webpage`, url: `${SITE_URL}/free-trial`, name: "Book a free 3-day online Quran trial", isPartOf: { "@id": `${SITE_URL}/#website` }, about: { "@id": `${SITE_URL}/#organization` }, inLanguage: "en-GB" };
+  const jsonLd = { "@context": "https://schema.org", "@type": "WebPage", "@id": `${SITE_URL}/free-trial#webpage`, url: `${SITE_URL}/free-trial`, name: "Book a free 3-day trial", isPartOf: { "@id": `${SITE_URL}/#website` }, about: { "@id": `${SITE_URL}/#organization` }, inLanguage: "en-GB" };
   return (
     <section id="trial-form" aria-labelledby="trial-title" className="relative overflow-hidden bg-mushaf-900 pb-12 pt-7 sm:pt-10 lg:pb-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
@@ -38,7 +38,7 @@ export default async function FreeTrialPage() {
       <div className="page-wrap relative grid items-start gap-7 lg:grid-cols-[1fr_1.1fr] lg:gap-12">
         <div className="text-white">
           <p className="text-xs font-bold uppercase tracking-[0.24em] text-gold-300">Free trial</p>
-          <h1 id="trial-title" className="mt-2 text-[clamp(1.9rem,4.6vw,3rem)] leading-[1.1] text-white">Book a free <span className="text-gold-300">3-day</span> Quran trial</h1>
+          <h1 id="trial-title" className="mt-2 text-[clamp(1.9rem,4.6vw,3rem)] leading-[1.1] text-white">Book a free <span className="text-gold-300">3-day</span> trial</h1>
           <p className="mt-3 max-w-xl text-[1.02rem] leading-relaxed text-white/85">Fill in the short form and a coordinator will arrange your trial classes at a time that suits your family.</p>
           <div className="mt-6 hidden overflow-hidden rounded-[1.5rem] border border-white/15 lg:block">
             <ContentImage src={COVER.src} alt={COVER.alt} priority sizes="(max-width: 1024px) 0px, 560px" className="aspect-[16/9] w-full object-cover" />
