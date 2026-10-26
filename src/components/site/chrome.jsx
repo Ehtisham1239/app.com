@@ -46,15 +46,15 @@ export function SectionHeading({ eyebrow, title, intro, align = "center", tone =
 export function PageHero({ eyebrow, title, intro, children, arabic, visual, path, art }) {
   const image = heroArt(art || path || title);
   return (
-    <section className="relative overflow-hidden bg-mushaf-900 text-white">
+    <section className="inner-hero relative overflow-hidden bg-mushaf-900 text-white">
       {path && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", "@type": "WebPage", "@id": `${SITE_URL}${path}#webpage`, url: `${SITE_URL}${path}`, name: title, description: intro, isPartOf: { "@id": `${SITE_URL}/#website` }, about: { "@id": `${SITE_URL}/#organization` }, inLanguage: "en-GB" }) }} />}
       <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.09]" aria-hidden="true" />
       <div className="pointer-events-none absolute -right-24 -top-24 size-[26rem] rounded-full bg-leaf-600/25 blur-3xl" aria-hidden="true" />
-      <div className="page-wrap relative grid items-center gap-7 py-10 sm:py-14 lg:grid-cols-[1fr_1.05fr] lg:gap-12">
+      <div className="page-wrap inner-hero-layout relative grid items-center gap-7 py-9 sm:py-14 lg:grid-cols-[1fr_1.05fr] lg:gap-12">
         <div className="min-w-0">
         {eyebrow && <p className="text-xs font-bold uppercase tracking-[0.22em] text-leaf-200">{eyebrow}</p>}
         <div className="mt-3 flex flex-wrap items-end justify-between gap-6">
-          <h1 className="max-w-3xl text-[2.4rem] text-white sm:text-[3.3rem]">{title}</h1>
+          <h1 className="max-w-3xl text-[clamp(2rem,5vw,3.3rem)] text-white">{title}</h1>
           {arabic && (
             <p lang="ar" dir="rtl" className="arabic text-[2.4rem] leading-none text-leaf-200/90 sm:text-[3rem]">
               {arabic}
@@ -64,7 +64,7 @@ export function PageHero({ eyebrow, title, intro, children, arabic, visual, path
         {intro && <p className="mt-5 max-w-2xl text-[1.08rem] leading-relaxed text-white/75">{intro}</p>}
         {children}
         </div>
-        <div data-hero-visual className="overflow-hidden rounded-[1.75rem] border border-white/20 bg-white shadow-[0_20px_60px_-25px_rgb(0_0_0/.4)]">{visual || <ContentImage src={image.src} alt={image.alt} priority sizes="(max-width: 1024px) 100vw, 600px" className="aspect-[3/2] w-full object-cover" />}</div>
+        <div data-hero-visual className="inner-hero-visual min-w-0 overflow-hidden rounded-[1.75rem] border border-white/20 bg-white shadow-[0_20px_60px_-25px_rgb(0_0_0/.4)]">{visual || <ContentImage src={image.src} alt={image.alt} priority sizes="(max-width: 1024px) 100vw, 600px" className="aspect-[3/2] w-full object-cover" />}</div>
       </div>
     </section>
   );

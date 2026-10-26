@@ -9,3 +9,9 @@ out/
 artifacts/
 __pycache__/
 *.pyc
+
+# New learning-scene masters are durable; smaller/AVIF files are built from them.
+/public/images/learning/oqc-*-v3-400.*
+/public/images/learning/oqc-*-v3-800.*
+/public/images/learning/oqc-*-v3-1200.avif
+/public/images/learning/map-*.webp

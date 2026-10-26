@@ -2,17 +2,17 @@
   "name": "online-quran-college",
   "version": "2.0.0",
   "private": true,
-  "description": "Online Quran College \u2014 public website and admin panel (Next.js + Supabase).",
+  "description": "Online Quran College — public website and admin panel (Next.js + Supabase).",
   "type": "module",
   "engines": {
     "node": ">=20.9.0"
   },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "node scripts/prepare-responsive-learning.mjs && next dev",
+    "build": "node scripts/prepare-responsive-learning.mjs && next build",
     "start": "next start",
     "lint": "eslint .",
-    "test": "node --test tests/*.test.mjs",
+    "test": "node scripts/prepare-responsive-learning.mjs && node --test tests/*.test.mjs",
     "seed:locations": "node scripts/seed-locations.mjs",
     "test:browser": "node scripts/browser-smoke.mjs",
     "db:bundle": "node scripts/bundle-database.mjs",
@@ -40,6 +40,7 @@
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "sanitize-html": "2.18.1",
+    "sharp": "0.35.5",
     "sonner": "2.0.8"
   },
   "devDependencies": {

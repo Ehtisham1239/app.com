@@ -90,6 +90,24 @@
 }
 
 @layer components {
+  .site-footer { background: radial-gradient(ellipse at 12% 0%, #087856 0%, transparent 55%), linear-gradient(150deg, #005f43, #003b2c); border-top: 5px solid #a7f3d0; }
+  .footer-link { display: inline-flex; align-items: center; min-height: 44px; padding-block: .35rem; color: rgb(255 255 255 / .85); font-size: .9375rem; line-height: 1.45; overflow-wrap: anywhere; text-decoration-thickness: 1px; text-underline-offset: 5px; }
+  .footer-link:hover { color: #d1fae5; text-decoration-line: underline; }
+  .footer-contact-link { display: flex; align-items: center; gap: .75rem; min-height: 44px; color: rgb(255 255 255 / .9); }
+  .footer-contact-link span { overflow-wrap: anywhere; min-width: 0; }
+  .footer-contact-link:hover { color: #d1fae5; }
+  .inner-hero { background-image: radial-gradient(ellipse at 0% 100%, #087f5b 0%, transparent 65%); }
+  .inner-hero-visual img { display: block; }
+  .site-header nav :where(a, button) { min-height: 44px; }
+  @media (max-width: 639px) {
+    .inner-hero .btn { white-space: normal; max-width: 100%; text-align: center; }
+    .inner-hero-visual { border-radius: 1.25rem; }
+    .inner-hero-layout { gap: 1.75rem; }
+    .inner-hero h1 { overflow-wrap: anywhere; }
+    .footer-column:last-child { grid-column: 1 / -1; border-top: 1px solid rgb(255 255 255 / .15); padding-top: 1.25rem; }
+    .footer-column:last-child ul { display: flex; flex-wrap: wrap; column-gap: 1.5rem; }
+    .footer-invitation .btn { width: 100%; }
+  }
   .site-icon {
     fill: none;
     stroke: currentColor;

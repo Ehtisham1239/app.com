@@ -1,0 +1,1704 @@
+{
+  "version": 3,
+  "artDirection": "Use case: photorealistic-natural. Create ONE landscape 3:2 premium editorial photograph-style website asset for Online Quran College. The scene must look like professional, believable online Quran academy education photography, with modest clothing, anatomically natural hands, realistic faces, real device perspective, soft natural light and authentic material texture. OQC palette: emerald #006847, soft mint #D1FAE5, warm ivory, natural oak, restrained gold details. An adult tutor may be visible naturally on the laptop screen. Quran and reference-book pages are respectfully placed and oblique or softly out of focus so no scripture is legible. Compose safely for mobile crops. No maps, globes, flags, physical branch claims, tourist landmarks, fake certificates, logos, captions, words, watermarks, posters, collage, illustration, CGI or fabricated legible Arabic. Do not imply these are documented actual students or teachers. Keep the visual directly relevant to online Quran learning.",
+  "jobs": [
+    {
+      "assetName": "map-united-states",
+      "type": "regional",
+      "country": "united-states",
+      "city": null,
+      "place": "United States",
+      "fileStem": "oqc-learning-united-states-v3",
+      "scene": "a mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a bright light-oak dining nook with linen curtains and an emerald cushion. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for United States; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-united-states-new-york",
+      "type": "regional",
+      "country": "united-states",
+      "city": "new-york",
+      "place": "New York, United States",
+      "fileStem": "oqc-learning-united-states-new-york-v3",
+      "scene": "a father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a bright light-oak dining nook with linen curtains and an emerald cushion. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for New York, United States; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-united-states-los-angeles",
+      "type": "regional",
+      "country": "united-states",
+      "city": "los-angeles",
+      "place": "Los Angeles, United States",
+      "fileStem": "oqc-learning-united-states-los-angeles-v3",
+      "scene": "an adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a bright light-oak dining nook with linen curtains and an emerald cushion. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Los Angeles, United States; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-united-states-chicago",
+      "type": "regional",
+      "country": "united-states",
+      "city": "chicago",
+      "place": "Chicago, United States",
+      "fileStem": "oqc-learning-united-states-chicago-v3",
+      "scene": "an adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a bright light-oak dining nook with linen curtains and an emerald cushion. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Chicago, United States; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-united-states-houston",
+      "type": "regional",
+      "country": "united-states",
+      "city": "houston",
+      "place": "Houston, United States",
+      "fileStem": "oqc-learning-united-states-houston-v3",
+      "scene": "a parent sitting nearby while a teenage girl follows an online Tajweed lesson in a bright light-oak dining nook with linen curtains and an emerald cushion. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Houston, United States; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A parent sitting nearby while a teenage girl follows an online Tajweed lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-united-states-dallas",
+      "type": "regional",
+      "country": "united-states",
+      "city": "dallas",
+      "place": "Dallas, United States",
+      "fileStem": "oqc-learning-united-states-dallas-v3",
+      "scene": "a mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a bright light-oak dining nook with linen curtains and an emerald cushion. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Dallas, United States; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-united-kingdom",
+      "type": "regional",
+      "country": "united-kingdom",
+      "city": null,
+      "place": "United Kingdom",
+      "fileStem": "oqc-learning-united-kingdom-v3",
+      "scene": "a teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a bright light-oak dining nook with linen curtains and an emerald cushion. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for United Kingdom; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-united-kingdom-london",
+      "type": "regional",
+      "country": "united-kingdom",
+      "city": "london",
+      "place": "London, United Kingdom",
+      "fileStem": "oqc-learning-united-kingdom-london-v3",
+      "scene": "an older adult learner in glasses studying a Quran reading lesson on a large tablet in a bright light-oak dining nook with linen curtains and an emerald cushion. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for London, United Kingdom; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An older adult learner in glasses studying a Quran reading lesson on a large tablet in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-united-kingdom-birmingham",
+      "type": "regional",
+      "country": "united-kingdom",
+      "city": "birmingham",
+      "place": "Birmingham, United Kingdom",
+      "fileStem": "oqc-learning-united-kingdom-birmingham-v3",
+      "scene": "a father and daughter calmly reviewing their online Quran lesson at a small study table in a bright light-oak dining nook with linen curtains and an emerald cushion. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Birmingham, United Kingdom; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father and daughter calmly reviewing their online Quran lesson at a small study table in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-united-kingdom-manchester",
+      "type": "regional",
+      "country": "united-kingdom",
+      "city": "manchester",
+      "place": "Manchester, United Kingdom",
+      "fileStem": "oqc-learning-united-kingdom-manchester-v3",
+      "scene": "a Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a bright light-oak dining nook with linen curtains and an emerald cushion. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Manchester, United Kingdom; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-united-kingdom-leeds",
+      "type": "regional",
+      "country": "united-kingdom",
+      "city": "leeds",
+      "place": "Leeds, United Kingdom",
+      "fileStem": "oqc-learning-united-kingdom-leeds-v3",
+      "scene": "a young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a bright light-oak dining nook with linen curtains and an emerald cushion. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Leeds, United Kingdom; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-united-kingdom-glasgow",
+      "type": "regional",
+      "country": "united-kingdom",
+      "city": "glasgow",
+      "place": "Glasgow, United Kingdom",
+      "fileStem": "oqc-learning-united-kingdom-glasgow-v3",
+      "scene": "a mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a bright light-oak dining nook with linen curtains and an emerald cushion. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Glasgow, United Kingdom; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-united-kingdom-bradford",
+      "type": "regional",
+      "country": "united-kingdom",
+      "city": "bradford",
+      "place": "Bradford, United Kingdom",
+      "fileStem": "oqc-learning-united-kingdom-bradford-v3",
+      "scene": "a mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a quiet cream home study with green bookshelves and soft window light. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Bradford, United Kingdom; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-united-kingdom-leicester",
+      "type": "regional",
+      "country": "united-kingdom",
+      "city": "leicester",
+      "place": "Leicester, United Kingdom",
+      "fileStem": "oqc-learning-united-kingdom-leicester-v3",
+      "scene": "a father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a quiet cream home study with green bookshelves and soft window light. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Leicester, United Kingdom; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-australia",
+      "type": "regional",
+      "country": "australia",
+      "city": null,
+      "place": "Australia",
+      "fileStem": "oqc-learning-australia-v3",
+      "scene": "an adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a quiet cream home study with green bookshelves and soft window light. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Australia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-australia-sydney",
+      "type": "regional",
+      "country": "australia",
+      "city": "sydney",
+      "place": "Sydney, Australia",
+      "fileStem": "oqc-learning-australia-sydney-v3",
+      "scene": "an adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a quiet cream home study with green bookshelves and soft window light. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Sydney, Australia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-australia-melbourne",
+      "type": "regional",
+      "country": "australia",
+      "city": "melbourne",
+      "place": "Melbourne, Australia",
+      "fileStem": "oqc-learning-australia-melbourne-v3",
+      "scene": "a parent sitting nearby while a teenage girl follows an online Tajweed lesson in a quiet cream home study with green bookshelves and soft window light. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Melbourne, Australia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A parent sitting nearby while a teenage girl follows an online Tajweed lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-australia-brisbane",
+      "type": "regional",
+      "country": "australia",
+      "city": "brisbane",
+      "place": "Brisbane, Australia",
+      "fileStem": "oqc-learning-australia-brisbane-v3",
+      "scene": "a mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a quiet cream home study with green bookshelves and soft window light. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Brisbane, Australia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-australia-perth",
+      "type": "regional",
+      "country": "australia",
+      "city": "perth",
+      "place": "Perth, Australia",
+      "fileStem": "oqc-learning-australia-perth-v3",
+      "scene": "a teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a quiet cream home study with green bookshelves and soft window light. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Perth, Australia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-australia-adelaide",
+      "type": "regional",
+      "country": "australia",
+      "city": "adelaide",
+      "place": "Adelaide, Australia",
+      "fileStem": "oqc-learning-australia-adelaide-v3",
+      "scene": "an older adult learner in glasses studying a Quran reading lesson on a large tablet in a quiet cream home study with green bookshelves and soft window light. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Adelaide, Australia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An older adult learner in glasses studying a Quran reading lesson on a large tablet in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-canada",
+      "type": "regional",
+      "country": "canada",
+      "city": null,
+      "place": "Canada",
+      "fileStem": "oqc-learning-canada-v3",
+      "scene": "a father and daughter calmly reviewing their online Quran lesson at a small study table in a quiet cream home study with green bookshelves and soft window light. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Canada; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father and daughter calmly reviewing their online Quran lesson at a small study table in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-canada-toronto",
+      "type": "regional",
+      "country": "canada",
+      "city": "toronto",
+      "place": "Toronto, Canada",
+      "fileStem": "oqc-learning-canada-toronto-v3",
+      "scene": "a Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a quiet cream home study with green bookshelves and soft window light. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Toronto, Canada; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-canada-vancouver",
+      "type": "regional",
+      "country": "canada",
+      "city": "vancouver",
+      "place": "Vancouver, Canada",
+      "fileStem": "oqc-learning-canada-vancouver-v3",
+      "scene": "a young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a quiet cream home study with green bookshelves and soft window light. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Vancouver, Canada; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-canada-montreal",
+      "type": "regional",
+      "country": "canada",
+      "city": "montreal",
+      "place": "Montreal, Canada",
+      "fileStem": "oqc-learning-canada-montreal-v3",
+      "scene": "a mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a quiet cream home study with green bookshelves and soft window light. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Montreal, Canada; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-canada-calgary",
+      "type": "regional",
+      "country": "canada",
+      "city": "calgary",
+      "place": "Calgary, Canada",
+      "fileStem": "oqc-learning-canada-calgary-v3",
+      "scene": "a mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a cosy family living room with a pale mint wall, natural wood and an emerald throw. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Calgary, Canada; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-canada-ottawa",
+      "type": "regional",
+      "country": "canada",
+      "city": "ottawa",
+      "place": "Ottawa, Canada",
+      "fileStem": "oqc-learning-canada-ottawa-v3",
+      "scene": "a father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a cosy family living room with a pale mint wall, natural wood and an emerald throw. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Ottawa, Canada; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-france",
+      "type": "regional",
+      "country": "france",
+      "city": null,
+      "place": "France",
+      "fileStem": "oqc-learning-france-v3",
+      "scene": "an adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a cosy family living room with a pale mint wall, natural wood and an emerald throw. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for France; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-france-paris",
+      "type": "regional",
+      "country": "france",
+      "city": "paris",
+      "place": "Paris, France",
+      "fileStem": "oqc-learning-france-paris-v3",
+      "scene": "an adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a cosy family living room with a pale mint wall, natural wood and an emerald throw. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Paris, France; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-france-lyon",
+      "type": "regional",
+      "country": "france",
+      "city": "lyon",
+      "place": "Lyon, France",
+      "fileStem": "oqc-learning-france-lyon-v3",
+      "scene": "a parent sitting nearby while a teenage girl follows an online Tajweed lesson in a cosy family living room with a pale mint wall, natural wood and an emerald throw. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Lyon, France; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A parent sitting nearby while a teenage girl follows an online Tajweed lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-france-marseille",
+      "type": "regional",
+      "country": "france",
+      "city": "marseille",
+      "place": "Marseille, France",
+      "fileStem": "oqc-learning-france-marseille-v3",
+      "scene": "a mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a cosy family living room with a pale mint wall, natural wood and an emerald throw. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Marseille, France; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-france-toulouse",
+      "type": "regional",
+      "country": "france",
+      "city": "toulouse",
+      "place": "Toulouse, France",
+      "fileStem": "oqc-learning-france-toulouse-v3",
+      "scene": "a teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a cosy family living room with a pale mint wall, natural wood and an emerald throw. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Toulouse, France; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-germany",
+      "type": "regional",
+      "country": "germany",
+      "city": null,
+      "place": "Germany",
+      "fileStem": "oqc-learning-germany-v3",
+      "scene": "an older adult learner in glasses studying a Quran reading lesson on a large tablet in a cosy family living room with a pale mint wall, natural wood and an emerald throw. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Germany; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An older adult learner in glasses studying a Quran reading lesson on a large tablet in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-germany-berlin",
+      "type": "regional",
+      "country": "germany",
+      "city": "berlin",
+      "place": "Berlin, Germany",
+      "fileStem": "oqc-learning-germany-berlin-v3",
+      "scene": "a father and daughter calmly reviewing their online Quran lesson at a small study table in a cosy family living room with a pale mint wall, natural wood and an emerald throw. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Berlin, Germany; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father and daughter calmly reviewing their online Quran lesson at a small study table in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-germany-hamburg",
+      "type": "regional",
+      "country": "germany",
+      "city": "hamburg",
+      "place": "Hamburg, Germany",
+      "fileStem": "oqc-learning-germany-hamburg-v3",
+      "scene": "a Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a cosy family living room with a pale mint wall, natural wood and an emerald throw. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Hamburg, Germany; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-germany-munich",
+      "type": "regional",
+      "country": "germany",
+      "city": "munich",
+      "place": "Munich, Germany",
+      "fileStem": "oqc-learning-germany-munich-v3",
+      "scene": "a young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a cosy family living room with a pale mint wall, natural wood and an emerald throw. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Munich, Germany; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-germany-frankfurt",
+      "type": "regional",
+      "country": "germany",
+      "city": "frankfurt",
+      "place": "Frankfurt, Germany",
+      "fileStem": "oqc-learning-germany-frankfurt-v3",
+      "scene": "a mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a cosy family living room with a pale mint wall, natural wood and an emerald throw. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Frankfurt, Germany; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-ireland",
+      "type": "regional",
+      "country": "ireland",
+      "city": null,
+      "place": "Ireland",
+      "fileStem": "oqc-learning-ireland-v3",
+      "scene": "a mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a clean compact apartment desk with a houseplant and ivory walls. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Ireland; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-ireland-dublin",
+      "type": "regional",
+      "country": "ireland",
+      "city": "dublin",
+      "place": "Dublin, Ireland",
+      "fileStem": "oqc-learning-ireland-dublin-v3",
+      "scene": "a father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a clean compact apartment desk with a houseplant and ivory walls. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Dublin, Ireland; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-ireland-cork",
+      "type": "regional",
+      "country": "ireland",
+      "city": "cork",
+      "place": "Cork, Ireland",
+      "fileStem": "oqc-learning-ireland-cork-v3",
+      "scene": "an adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a clean compact apartment desk with a houseplant and ivory walls. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Cork, Ireland; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-netherlands",
+      "type": "regional",
+      "country": "netherlands",
+      "city": null,
+      "place": "Netherlands",
+      "fileStem": "oqc-learning-netherlands-v3",
+      "scene": "an adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a clean compact apartment desk with a houseplant and ivory walls. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Netherlands; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-netherlands-amsterdam",
+      "type": "regional",
+      "country": "netherlands",
+      "city": "amsterdam",
+      "place": "Amsterdam, Netherlands",
+      "fileStem": "oqc-learning-netherlands-amsterdam-v3",
+      "scene": "a parent sitting nearby while a teenage girl follows an online Tajweed lesson in a clean compact apartment desk with a houseplant and ivory walls. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Amsterdam, Netherlands; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A parent sitting nearby while a teenage girl follows an online Tajweed lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-netherlands-rotterdam",
+      "type": "regional",
+      "country": "netherlands",
+      "city": "rotterdam",
+      "place": "Rotterdam, Netherlands",
+      "fileStem": "oqc-learning-netherlands-rotterdam-v3",
+      "scene": "a mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a clean compact apartment desk with a houseplant and ivory walls. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Rotterdam, Netherlands; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-belgium",
+      "type": "regional",
+      "country": "belgium",
+      "city": null,
+      "place": "Belgium",
+      "fileStem": "oqc-learning-belgium-v3",
+      "scene": "a teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a clean compact apartment desk with a houseplant and ivory walls. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Belgium; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-belgium-brussels",
+      "type": "regional",
+      "country": "belgium",
+      "city": "brussels",
+      "place": "Brussels, Belgium",
+      "fileStem": "oqc-learning-belgium-brussels-v3",
+      "scene": "an older adult learner in glasses studying a Quran reading lesson on a large tablet in a clean compact apartment desk with a houseplant and ivory walls. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Brussels, Belgium; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An older adult learner in glasses studying a Quran reading lesson on a large tablet in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-belgium-antwerp",
+      "type": "regional",
+      "country": "belgium",
+      "city": "antwerp",
+      "place": "Antwerp, Belgium",
+      "fileStem": "oqc-learning-belgium-antwerp-v3",
+      "scene": "a father and daughter calmly reviewing their online Quran lesson at a small study table in a clean compact apartment desk with a houseplant and ivory walls. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Antwerp, Belgium; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father and daughter calmly reviewing their online Quran lesson at a small study table in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-spain",
+      "type": "regional",
+      "country": "spain",
+      "city": null,
+      "place": "Spain",
+      "fileStem": "oqc-learning-spain-v3",
+      "scene": "a Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a clean compact apartment desk with a houseplant and ivory walls. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Spain; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-spain-madrid",
+      "type": "regional",
+      "country": "spain",
+      "city": "madrid",
+      "place": "Madrid, Spain",
+      "fileStem": "oqc-learning-spain-madrid-v3",
+      "scene": "a young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a clean compact apartment desk with a houseplant and ivory walls. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Madrid, Spain; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-spain-barcelona",
+      "type": "regional",
+      "country": "spain",
+      "city": "barcelona",
+      "place": "Barcelona, Spain",
+      "fileStem": "oqc-learning-spain-barcelona-v3",
+      "scene": "a mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a clean compact apartment desk with a houseplant and ivory walls. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Barcelona, Spain; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-portugal",
+      "type": "regional",
+      "country": "portugal",
+      "city": null,
+      "place": "Portugal",
+      "fileStem": "oqc-learning-portugal-v3",
+      "scene": "a mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a modern family home with a wide window and a green upholstered chair. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Portugal; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-portugal-lisbon",
+      "type": "regional",
+      "country": "portugal",
+      "city": "lisbon",
+      "place": "Lisbon, Portugal",
+      "fileStem": "oqc-learning-portugal-lisbon-v3",
+      "scene": "a father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a modern family home with a wide window and a green upholstered chair. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Lisbon, Portugal; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-portugal-porto",
+      "type": "regional",
+      "country": "portugal",
+      "city": "porto",
+      "place": "Porto, Portugal",
+      "fileStem": "oqc-learning-portugal-porto-v3",
+      "scene": "an adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a modern family home with a wide window and a green upholstered chair. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Porto, Portugal; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-italy",
+      "type": "regional",
+      "country": "italy",
+      "city": null,
+      "place": "Italy",
+      "fileStem": "oqc-learning-italy-v3",
+      "scene": "an adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a modern family home with a wide window and a green upholstered chair. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Italy; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-italy-rome",
+      "type": "regional",
+      "country": "italy",
+      "city": "rome",
+      "place": "Rome, Italy",
+      "fileStem": "oqc-learning-italy-rome-v3",
+      "scene": "a parent sitting nearby while a teenage girl follows an online Tajweed lesson in a modern family home with a wide window and a green upholstered chair. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Rome, Italy; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A parent sitting nearby while a teenage girl follows an online Tajweed lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-italy-milan",
+      "type": "regional",
+      "country": "italy",
+      "city": "milan",
+      "place": "Milan, Italy",
+      "fileStem": "oqc-learning-italy-milan-v3",
+      "scene": "a mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a modern family home with a wide window and a green upholstered chair. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Milan, Italy; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-austria",
+      "type": "regional",
+      "country": "austria",
+      "city": null,
+      "place": "Austria",
+      "fileStem": "oqc-learning-austria-v3",
+      "scene": "a teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a modern family home with a wide window and a green upholstered chair. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Austria; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-austria-vienna",
+      "type": "regional",
+      "country": "austria",
+      "city": "vienna",
+      "place": "Vienna, Austria",
+      "fileStem": "oqc-learning-austria-vienna-v3",
+      "scene": "an older adult learner in glasses studying a Quran reading lesson on a large tablet in a modern family home with a wide window and a green upholstered chair. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Vienna, Austria; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An older adult learner in glasses studying a Quran reading lesson on a large tablet in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-austria-graz",
+      "type": "regional",
+      "country": "austria",
+      "city": "graz",
+      "place": "Graz, Austria",
+      "fileStem": "oqc-learning-austria-graz-v3",
+      "scene": "a father and daughter calmly reviewing their online Quran lesson at a small study table in a modern family home with a wide window and a green upholstered chair. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Graz, Austria; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father and daughter calmly reviewing their online Quran lesson at a small study table in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-switzerland",
+      "type": "regional",
+      "country": "switzerland",
+      "city": null,
+      "place": "Switzerland",
+      "fileStem": "oqc-learning-switzerland-v3",
+      "scene": "a Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a modern family home with a wide window and a green upholstered chair. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Switzerland; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-switzerland-zurich",
+      "type": "regional",
+      "country": "switzerland",
+      "city": "zurich",
+      "place": "Zurich, Switzerland",
+      "fileStem": "oqc-learning-switzerland-zurich-v3",
+      "scene": "a young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a modern family home with a wide window and a green upholstered chair. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Zurich, Switzerland; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-switzerland-geneva",
+      "type": "regional",
+      "country": "switzerland",
+      "city": "geneva",
+      "place": "Geneva, Switzerland",
+      "fileStem": "oqc-learning-switzerland-geneva-v3",
+      "scene": "a mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a modern family home with a wide window and a green upholstered chair. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Geneva, Switzerland; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-sweden",
+      "type": "regional",
+      "country": "sweden",
+      "city": null,
+      "place": "Sweden",
+      "fileStem": "oqc-learning-sweden-v3",
+      "scene": "a mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a warm reading corner with a simple oak table and muted mint curtains. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Sweden; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-sweden-stockholm",
+      "type": "regional",
+      "country": "sweden",
+      "city": "stockholm",
+      "place": "Stockholm, Sweden",
+      "fileStem": "oqc-learning-sweden-stockholm-v3",
+      "scene": "a father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a warm reading corner with a simple oak table and muted mint curtains. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Stockholm, Sweden; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-sweden-gothenburg",
+      "type": "regional",
+      "country": "sweden",
+      "city": "gothenburg",
+      "place": "Gothenburg, Sweden",
+      "fileStem": "oqc-learning-sweden-gothenburg-v3",
+      "scene": "an adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a warm reading corner with a simple oak table and muted mint curtains. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Gothenburg, Sweden; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-norway",
+      "type": "regional",
+      "country": "norway",
+      "city": null,
+      "place": "Norway",
+      "fileStem": "oqc-learning-norway-v3",
+      "scene": "an adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a warm reading corner with a simple oak table and muted mint curtains. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Norway; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-norway-oslo",
+      "type": "regional",
+      "country": "norway",
+      "city": "oslo",
+      "place": "Oslo, Norway",
+      "fileStem": "oqc-learning-norway-oslo-v3",
+      "scene": "a parent sitting nearby while a teenage girl follows an online Tajweed lesson in a warm reading corner with a simple oak table and muted mint curtains. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Oslo, Norway; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A parent sitting nearby while a teenage girl follows an online Tajweed lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-norway-bergen",
+      "type": "regional",
+      "country": "norway",
+      "city": "bergen",
+      "place": "Bergen, Norway",
+      "fileStem": "oqc-learning-norway-bergen-v3",
+      "scene": "a mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a warm reading corner with a simple oak table and muted mint curtains. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Bergen, Norway; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-denmark",
+      "type": "regional",
+      "country": "denmark",
+      "city": null,
+      "place": "Denmark",
+      "fileStem": "oqc-learning-denmark-v3",
+      "scene": "a teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a warm reading corner with a simple oak table and muted mint curtains. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Denmark; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-denmark-copenhagen",
+      "type": "regional",
+      "country": "denmark",
+      "city": "copenhagen",
+      "place": "Copenhagen, Denmark",
+      "fileStem": "oqc-learning-denmark-copenhagen-v3",
+      "scene": "an older adult learner in glasses studying a Quran reading lesson on a large tablet in a warm reading corner with a simple oak table and muted mint curtains. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Copenhagen, Denmark; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An older adult learner in glasses studying a Quran reading lesson on a large tablet in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-denmark-aarhus",
+      "type": "regional",
+      "country": "denmark",
+      "city": "aarhus",
+      "place": "Aarhus, Denmark",
+      "fileStem": "oqc-learning-denmark-aarhus-v3",
+      "scene": "a father and daughter calmly reviewing their online Quran lesson at a small study table in a warm reading corner with a simple oak table and muted mint curtains. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Aarhus, Denmark; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father and daughter calmly reviewing their online Quran lesson at a small study table in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-finland",
+      "type": "regional",
+      "country": "finland",
+      "city": null,
+      "place": "Finland",
+      "fileStem": "oqc-learning-finland-v3",
+      "scene": "a Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a warm reading corner with a simple oak table and muted mint curtains. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Finland; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-finland-helsinki",
+      "type": "regional",
+      "country": "finland",
+      "city": "helsinki",
+      "place": "Helsinki, Finland",
+      "fileStem": "oqc-learning-finland-helsinki-v3",
+      "scene": "a young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a warm reading corner with a simple oak table and muted mint curtains. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Helsinki, Finland; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-finland-tampere",
+      "type": "regional",
+      "country": "finland",
+      "city": "tampere",
+      "place": "Tampere, Finland",
+      "fileStem": "oqc-learning-finland-tampere-v3",
+      "scene": "a mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a warm reading corner with a simple oak table and muted mint curtains. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Tampere, Finland; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-iceland",
+      "type": "regional",
+      "country": "iceland",
+      "city": null,
+      "place": "Iceland",
+      "fileStem": "oqc-learning-iceland-v3",
+      "scene": "a mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a peaceful home library with green book bindings, light oak and natural linen. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Iceland; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-iceland-reykjavik",
+      "type": "regional",
+      "country": "iceland",
+      "city": "reykjavik",
+      "place": "Reykjavik, Iceland",
+      "fileStem": "oqc-learning-iceland-reykjavik-v3",
+      "scene": "a father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a peaceful home library with green book bindings, light oak and natural linen. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Reykjavik, Iceland; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-iceland-akureyri",
+      "type": "regional",
+      "country": "iceland",
+      "city": "akureyri",
+      "place": "Akureyri, Iceland",
+      "fileStem": "oqc-learning-iceland-akureyri-v3",
+      "scene": "an adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a peaceful home library with green book bindings, light oak and natural linen. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Akureyri, Iceland; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-poland",
+      "type": "regional",
+      "country": "poland",
+      "city": null,
+      "place": "Poland",
+      "fileStem": "oqc-learning-poland-v3",
+      "scene": "an adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a peaceful home library with green book bindings, light oak and natural linen. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Poland; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-poland-warsaw",
+      "type": "regional",
+      "country": "poland",
+      "city": "warsaw",
+      "place": "Warsaw, Poland",
+      "fileStem": "oqc-learning-poland-warsaw-v3",
+      "scene": "a parent sitting nearby while a teenage girl follows an online Tajweed lesson in a peaceful home library with green book bindings, light oak and natural linen. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Warsaw, Poland; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A parent sitting nearby while a teenage girl follows an online Tajweed lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-poland-krakow",
+      "type": "regional",
+      "country": "poland",
+      "city": "krakow",
+      "place": "Krakow, Poland",
+      "fileStem": "oqc-learning-poland-krakow-v3",
+      "scene": "a mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a peaceful home library with green book bindings, light oak and natural linen. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Krakow, Poland; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-czechia",
+      "type": "regional",
+      "country": "czechia",
+      "city": null,
+      "place": "Czechia",
+      "fileStem": "oqc-learning-czechia-v3",
+      "scene": "a teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a peaceful home library with green book bindings, light oak and natural linen. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Czechia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-czechia-prague",
+      "type": "regional",
+      "country": "czechia",
+      "city": "prague",
+      "place": "Prague, Czechia",
+      "fileStem": "oqc-learning-czechia-prague-v3",
+      "scene": "an older adult learner in glasses studying a Quran reading lesson on a large tablet in a peaceful home library with green book bindings, light oak and natural linen. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Prague, Czechia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An older adult learner in glasses studying a Quran reading lesson on a large tablet in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-czechia-brno",
+      "type": "regional",
+      "country": "czechia",
+      "city": "brno",
+      "place": "Brno, Czechia",
+      "fileStem": "oqc-learning-czechia-brno-v3",
+      "scene": "a father and daughter calmly reviewing their online Quran lesson at a small study table in a peaceful home library with green book bindings, light oak and natural linen. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Brno, Czechia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father and daughter calmly reviewing their online Quran lesson at a small study table in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-slovakia",
+      "type": "regional",
+      "country": "slovakia",
+      "city": null,
+      "place": "Slovakia",
+      "fileStem": "oqc-learning-slovakia-v3",
+      "scene": "a Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a peaceful home library with green book bindings, light oak and natural linen. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Slovakia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-slovakia-bratislava",
+      "type": "regional",
+      "country": "slovakia",
+      "city": "bratislava",
+      "place": "Bratislava, Slovakia",
+      "fileStem": "oqc-learning-slovakia-bratislava-v3",
+      "scene": "a young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a peaceful home library with green book bindings, light oak and natural linen. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Bratislava, Slovakia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-slovakia-kosice",
+      "type": "regional",
+      "country": "slovakia",
+      "city": "kosice",
+      "place": "Kosice, Slovakia",
+      "fileStem": "oqc-learning-slovakia-kosice-v3",
+      "scene": "a mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a peaceful home library with green book bindings, light oak and natural linen. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Kosice, Slovakia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-hungary",
+      "type": "regional",
+      "country": "hungary",
+      "city": null,
+      "place": "Hungary",
+      "fileStem": "oqc-learning-hungary-v3",
+      "scene": "a mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a sunlit home workspace with warm plaster walls and a small emerald desk accessory. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Hungary; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-hungary-budapest",
+      "type": "regional",
+      "country": "hungary",
+      "city": "budapest",
+      "place": "Budapest, Hungary",
+      "fileStem": "oqc-learning-hungary-budapest-v3",
+      "scene": "a father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a sunlit home workspace with warm plaster walls and a small emerald desk accessory. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Budapest, Hungary; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-hungary-debrecen",
+      "type": "regional",
+      "country": "hungary",
+      "city": "debrecen",
+      "place": "Debrecen, Hungary",
+      "fileStem": "oqc-learning-hungary-debrecen-v3",
+      "scene": "an adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a sunlit home workspace with warm plaster walls and a small emerald desk accessory. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Debrecen, Hungary; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-romania",
+      "type": "regional",
+      "country": "romania",
+      "city": null,
+      "place": "Romania",
+      "fileStem": "oqc-learning-romania-v3",
+      "scene": "an adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a sunlit home workspace with warm plaster walls and a small emerald desk accessory. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Romania; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-romania-bucharest",
+      "type": "regional",
+      "country": "romania",
+      "city": "bucharest",
+      "place": "Bucharest, Romania",
+      "fileStem": "oqc-learning-romania-bucharest-v3",
+      "scene": "a parent sitting nearby while a teenage girl follows an online Tajweed lesson in a sunlit home workspace with warm plaster walls and a small emerald desk accessory. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Bucharest, Romania; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A parent sitting nearby while a teenage girl follows an online Tajweed lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-romania-cluj-napoca",
+      "type": "regional",
+      "country": "romania",
+      "city": "cluj-napoca",
+      "place": "Cluj-Napoca, Romania",
+      "fileStem": "oqc-learning-romania-cluj-napoca-v3",
+      "scene": "a mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a sunlit home workspace with warm plaster walls and a small emerald desk accessory. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Cluj-Napoca, Romania; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-bulgaria",
+      "type": "regional",
+      "country": "bulgaria",
+      "city": null,
+      "place": "Bulgaria",
+      "fileStem": "oqc-learning-bulgaria-v3",
+      "scene": "a teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a sunlit home workspace with warm plaster walls and a small emerald desk accessory. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Bulgaria; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-bulgaria-sofia",
+      "type": "regional",
+      "country": "bulgaria",
+      "city": "sofia",
+      "place": "Sofia, Bulgaria",
+      "fileStem": "oqc-learning-bulgaria-sofia-v3",
+      "scene": "an older adult learner in glasses studying a Quran reading lesson on a large tablet in a sunlit home workspace with warm plaster walls and a small emerald desk accessory. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Sofia, Bulgaria; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An older adult learner in glasses studying a Quran reading lesson on a large tablet in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-bulgaria-plovdiv",
+      "type": "regional",
+      "country": "bulgaria",
+      "city": "plovdiv",
+      "place": "Plovdiv, Bulgaria",
+      "fileStem": "oqc-learning-bulgaria-plovdiv-v3",
+      "scene": "a father and daughter calmly reviewing their online Quran lesson at a small study table in a sunlit home workspace with warm plaster walls and a small emerald desk accessory. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Plovdiv, Bulgaria; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father and daughter calmly reviewing their online Quran lesson at a small study table in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-greece",
+      "type": "regional",
+      "country": "greece",
+      "city": null,
+      "place": "Greece",
+      "fileStem": "oqc-learning-greece-v3",
+      "scene": "a Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a sunlit home workspace with warm plaster walls and a small emerald desk accessory. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Greece; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-greece-athens",
+      "type": "regional",
+      "country": "greece",
+      "city": "athens",
+      "place": "Athens, Greece",
+      "fileStem": "oqc-learning-greece-athens-v3",
+      "scene": "a young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a sunlit home workspace with warm plaster walls and a small emerald desk accessory. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Athens, Greece; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-greece-thessaloniki",
+      "type": "regional",
+      "country": "greece",
+      "city": "thessaloniki",
+      "place": "Thessaloniki, Greece",
+      "fileStem": "oqc-learning-greece-thessaloniki-v3",
+      "scene": "a mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a sunlit home workspace with warm plaster walls and a small emerald desk accessory. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Thessaloniki, Greece; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-croatia",
+      "type": "regional",
+      "country": "croatia",
+      "city": null,
+      "place": "Croatia",
+      "fileStem": "oqc-learning-croatia-v3",
+      "scene": "a mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a bright light-oak dining nook with linen curtains and an emerald cushion. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Croatia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-croatia-zagreb",
+      "type": "regional",
+      "country": "croatia",
+      "city": "zagreb",
+      "place": "Zagreb, Croatia",
+      "fileStem": "oqc-learning-croatia-zagreb-v3",
+      "scene": "a father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a bright light-oak dining nook with linen curtains and an emerald cushion. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Zagreb, Croatia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-croatia-split",
+      "type": "regional",
+      "country": "croatia",
+      "city": "split",
+      "place": "Split, Croatia",
+      "fileStem": "oqc-learning-croatia-split-v3",
+      "scene": "an adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a bright light-oak dining nook with linen curtains and an emerald cushion. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Split, Croatia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-slovenia",
+      "type": "regional",
+      "country": "slovenia",
+      "city": null,
+      "place": "Slovenia",
+      "fileStem": "oqc-learning-slovenia-v3",
+      "scene": "an adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a bright light-oak dining nook with linen curtains and an emerald cushion. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Slovenia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-slovenia-ljubljana",
+      "type": "regional",
+      "country": "slovenia",
+      "city": "ljubljana",
+      "place": "Ljubljana, Slovenia",
+      "fileStem": "oqc-learning-slovenia-ljubljana-v3",
+      "scene": "a parent sitting nearby while a teenage girl follows an online Tajweed lesson in a bright light-oak dining nook with linen curtains and an emerald cushion. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Ljubljana, Slovenia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A parent sitting nearby while a teenage girl follows an online Tajweed lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-slovenia-maribor",
+      "type": "regional",
+      "country": "slovenia",
+      "city": "maribor",
+      "place": "Maribor, Slovenia",
+      "fileStem": "oqc-learning-slovenia-maribor-v3",
+      "scene": "a mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a bright light-oak dining nook with linen curtains and an emerald cushion. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Maribor, Slovenia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-estonia",
+      "type": "regional",
+      "country": "estonia",
+      "city": null,
+      "place": "Estonia",
+      "fileStem": "oqc-learning-estonia-v3",
+      "scene": "a teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a bright light-oak dining nook with linen curtains and an emerald cushion. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Estonia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-estonia-tallinn",
+      "type": "regional",
+      "country": "estonia",
+      "city": "tallinn",
+      "place": "Tallinn, Estonia",
+      "fileStem": "oqc-learning-estonia-tallinn-v3",
+      "scene": "an older adult learner in glasses studying a Quran reading lesson on a large tablet in a bright light-oak dining nook with linen curtains and an emerald cushion. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Tallinn, Estonia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An older adult learner in glasses studying a Quran reading lesson on a large tablet in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-estonia-tartu",
+      "type": "regional",
+      "country": "estonia",
+      "city": "tartu",
+      "place": "Tartu, Estonia",
+      "fileStem": "oqc-learning-estonia-tartu-v3",
+      "scene": "a father and daughter calmly reviewing their online Quran lesson at a small study table in a bright light-oak dining nook with linen curtains and an emerald cushion. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Tartu, Estonia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father and daughter calmly reviewing their online Quran lesson at a small study table in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-latvia",
+      "type": "regional",
+      "country": "latvia",
+      "city": null,
+      "place": "Latvia",
+      "fileStem": "oqc-learning-latvia-v3",
+      "scene": "a Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a bright light-oak dining nook with linen curtains and an emerald cushion. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Latvia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-latvia-riga",
+      "type": "regional",
+      "country": "latvia",
+      "city": "riga",
+      "place": "Riga, Latvia",
+      "fileStem": "oqc-learning-latvia-riga-v3",
+      "scene": "a young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a bright light-oak dining nook with linen curtains and an emerald cushion. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Riga, Latvia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-latvia-liepaja",
+      "type": "regional",
+      "country": "latvia",
+      "city": "liepaja",
+      "place": "Liepaja, Latvia",
+      "fileStem": "oqc-learning-latvia-liepaja-v3",
+      "scene": "a mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a bright light-oak dining nook with linen curtains and an emerald cushion. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Liepaja, Latvia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-lithuania",
+      "type": "regional",
+      "country": "lithuania",
+      "city": null,
+      "place": "Lithuania",
+      "fileStem": "oqc-learning-lithuania-v3",
+      "scene": "a mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a quiet cream home study with green bookshelves and soft window light. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Lithuania; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-lithuania-vilnius",
+      "type": "regional",
+      "country": "lithuania",
+      "city": "vilnius",
+      "place": "Vilnius, Lithuania",
+      "fileStem": "oqc-learning-lithuania-vilnius-v3",
+      "scene": "a father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a quiet cream home study with green bookshelves and soft window light. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Vilnius, Lithuania; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-lithuania-kaunas",
+      "type": "regional",
+      "country": "lithuania",
+      "city": "kaunas",
+      "place": "Kaunas, Lithuania",
+      "fileStem": "oqc-learning-lithuania-kaunas-v3",
+      "scene": "an adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a quiet cream home study with green bookshelves and soft window light. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Kaunas, Lithuania; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-luxembourg",
+      "type": "regional",
+      "country": "luxembourg",
+      "city": null,
+      "place": "Luxembourg",
+      "fileStem": "oqc-learning-luxembourg-v3",
+      "scene": "an adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a quiet cream home study with green bookshelves and soft window light. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Luxembourg; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-luxembourg-luxembourg-city",
+      "type": "regional",
+      "country": "luxembourg",
+      "city": "luxembourg-city",
+      "place": "Luxembourg City, Luxembourg",
+      "fileStem": "oqc-learning-luxembourg-luxembourg-city-v3",
+      "scene": "a parent sitting nearby while a teenage girl follows an online Tajweed lesson in a quiet cream home study with green bookshelves and soft window light. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Luxembourg City, Luxembourg; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A parent sitting nearby while a teenage girl follows an online Tajweed lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-luxembourg-esch-sur-alzette",
+      "type": "regional",
+      "country": "luxembourg",
+      "city": "esch-sur-alzette",
+      "place": "Esch-sur-Alzette, Luxembourg",
+      "fileStem": "oqc-learning-luxembourg-esch-sur-alzette-v3",
+      "scene": "a mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a quiet cream home study with green bookshelves and soft window light. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Esch-sur-Alzette, Luxembourg; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-malta",
+      "type": "regional",
+      "country": "malta",
+      "city": null,
+      "place": "Malta",
+      "fileStem": "oqc-learning-malta-v3",
+      "scene": "a teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a quiet cream home study with green bookshelves and soft window light. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Malta; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-malta-valletta",
+      "type": "regional",
+      "country": "malta",
+      "city": "valletta",
+      "place": "Valletta, Malta",
+      "fileStem": "oqc-learning-malta-valletta-v3",
+      "scene": "an older adult learner in glasses studying a Quran reading lesson on a large tablet in a quiet cream home study with green bookshelves and soft window light. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Valletta, Malta; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An older adult learner in glasses studying a Quran reading lesson on a large tablet in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-malta-sliema",
+      "type": "regional",
+      "country": "malta",
+      "city": "sliema",
+      "place": "Sliema, Malta",
+      "fileStem": "oqc-learning-malta-sliema-v3",
+      "scene": "a father and daughter calmly reviewing their online Quran lesson at a small study table in a quiet cream home study with green bookshelves and soft window light. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Sliema, Malta; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father and daughter calmly reviewing their online Quran lesson at a small study table in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-cyprus",
+      "type": "regional",
+      "country": "cyprus",
+      "city": null,
+      "place": "Cyprus",
+      "fileStem": "oqc-learning-cyprus-v3",
+      "scene": "a Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a quiet cream home study with green bookshelves and soft window light. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Cyprus; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-cyprus-nicosia",
+      "type": "regional",
+      "country": "cyprus",
+      "city": "nicosia",
+      "place": "Nicosia, Cyprus",
+      "fileStem": "oqc-learning-cyprus-nicosia-v3",
+      "scene": "a young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a quiet cream home study with green bookshelves and soft window light. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Nicosia, Cyprus; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-cyprus-limassol",
+      "type": "regional",
+      "country": "cyprus",
+      "city": "limassol",
+      "place": "Limassol, Cyprus",
+      "fileStem": "oqc-learning-cyprus-limassol-v3",
+      "scene": "a mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a quiet cream home study with green bookshelves and soft window light. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Limassol, Cyprus; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-albania",
+      "type": "regional",
+      "country": "albania",
+      "city": null,
+      "place": "Albania",
+      "fileStem": "oqc-learning-albania-v3",
+      "scene": "a mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a cosy family living room with a pale mint wall, natural wood and an emerald throw. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Albania; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-albania-tirana",
+      "type": "regional",
+      "country": "albania",
+      "city": "tirana",
+      "place": "Tirana, Albania",
+      "fileStem": "oqc-learning-albania-tirana-v3",
+      "scene": "a father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a cosy family living room with a pale mint wall, natural wood and an emerald throw. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Tirana, Albania; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-albania-durres",
+      "type": "regional",
+      "country": "albania",
+      "city": "durres",
+      "place": "Durres, Albania",
+      "fileStem": "oqc-learning-albania-durres-v3",
+      "scene": "an adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a cosy family living room with a pale mint wall, natural wood and an emerald throw. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Durres, Albania; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-bosnia-and-herzegovina",
+      "type": "regional",
+      "country": "bosnia-and-herzegovina",
+      "city": null,
+      "place": "Bosnia and Herzegovina",
+      "fileStem": "oqc-learning-bosnia-and-herzegovina-v3",
+      "scene": "an adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a cosy family living room with a pale mint wall, natural wood and an emerald throw. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Bosnia and Herzegovina; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-bosnia-and-herzegovina-sarajevo",
+      "type": "regional",
+      "country": "bosnia-and-herzegovina",
+      "city": "sarajevo",
+      "place": "Sarajevo, Bosnia and Herzegovina",
+      "fileStem": "oqc-learning-bosnia-and-herzegovina-sarajevo-v3",
+      "scene": "a parent sitting nearby while a teenage girl follows an online Tajweed lesson in a cosy family living room with a pale mint wall, natural wood and an emerald throw. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Sarajevo, Bosnia and Herzegovina; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A parent sitting nearby while a teenage girl follows an online Tajweed lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-bosnia-and-herzegovina-mostar",
+      "type": "regional",
+      "country": "bosnia-and-herzegovina",
+      "city": "mostar",
+      "place": "Mostar, Bosnia and Herzegovina",
+      "fileStem": "oqc-learning-bosnia-and-herzegovina-mostar-v3",
+      "scene": "a mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a cosy family living room with a pale mint wall, natural wood and an emerald throw. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Mostar, Bosnia and Herzegovina; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-serbia",
+      "type": "regional",
+      "country": "serbia",
+      "city": null,
+      "place": "Serbia",
+      "fileStem": "oqc-learning-serbia-v3",
+      "scene": "a teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a cosy family living room with a pale mint wall, natural wood and an emerald throw. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Serbia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-serbia-belgrade",
+      "type": "regional",
+      "country": "serbia",
+      "city": "belgrade",
+      "place": "Belgrade, Serbia",
+      "fileStem": "oqc-learning-serbia-belgrade-v3",
+      "scene": "an older adult learner in glasses studying a Quran reading lesson on a large tablet in a cosy family living room with a pale mint wall, natural wood and an emerald throw. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Belgrade, Serbia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An older adult learner in glasses studying a Quran reading lesson on a large tablet in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-serbia-novi-sad",
+      "type": "regional",
+      "country": "serbia",
+      "city": "novi-sad",
+      "place": "Novi Sad, Serbia",
+      "fileStem": "oqc-learning-serbia-novi-sad-v3",
+      "scene": "a father and daughter calmly reviewing their online Quran lesson at a small study table in a cosy family living room with a pale mint wall, natural wood and an emerald throw. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Novi Sad, Serbia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father and daughter calmly reviewing their online Quran lesson at a small study table in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-montenegro",
+      "type": "regional",
+      "country": "montenegro",
+      "city": null,
+      "place": "Montenegro",
+      "fileStem": "oqc-learning-montenegro-v3",
+      "scene": "a Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a cosy family living room with a pale mint wall, natural wood and an emerald throw. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Montenegro; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-montenegro-podgorica",
+      "type": "regional",
+      "country": "montenegro",
+      "city": "podgorica",
+      "place": "Podgorica, Montenegro",
+      "fileStem": "oqc-learning-montenegro-podgorica-v3",
+      "scene": "a young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a cosy family living room with a pale mint wall, natural wood and an emerald throw. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Podgorica, Montenegro; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-montenegro-budva",
+      "type": "regional",
+      "country": "montenegro",
+      "city": "budva",
+      "place": "Budva, Montenegro",
+      "fileStem": "oqc-learning-montenegro-budva-v3",
+      "scene": "a mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a cosy family living room with a pale mint wall, natural wood and an emerald throw. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Budva, Montenegro; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-north-macedonia",
+      "type": "regional",
+      "country": "north-macedonia",
+      "city": null,
+      "place": "North Macedonia",
+      "fileStem": "oqc-learning-north-macedonia-v3",
+      "scene": "a mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a clean compact apartment desk with a houseplant and ivory walls. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for North Macedonia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-north-macedonia-skopje",
+      "type": "regional",
+      "country": "north-macedonia",
+      "city": "skopje",
+      "place": "Skopje, North Macedonia",
+      "fileStem": "oqc-learning-north-macedonia-skopje-v3",
+      "scene": "a father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a clean compact apartment desk with a houseplant and ivory walls. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Skopje, North Macedonia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-north-macedonia-tetovo",
+      "type": "regional",
+      "country": "north-macedonia",
+      "city": "tetovo",
+      "place": "Tetovo, North Macedonia",
+      "fileStem": "oqc-learning-north-macedonia-tetovo-v3",
+      "scene": "an adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a clean compact apartment desk with a houseplant and ivory walls. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Tetovo, North Macedonia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-kosovo",
+      "type": "regional",
+      "country": "kosovo",
+      "city": null,
+      "place": "Kosovo",
+      "fileStem": "oqc-learning-kosovo-v3",
+      "scene": "an adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a clean compact apartment desk with a houseplant and ivory walls. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Kosovo; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-kosovo-pristina",
+      "type": "regional",
+      "country": "kosovo",
+      "city": "pristina",
+      "place": "Pristina, Kosovo",
+      "fileStem": "oqc-learning-kosovo-pristina-v3",
+      "scene": "a parent sitting nearby while a teenage girl follows an online Tajweed lesson in a clean compact apartment desk with a houseplant and ivory walls. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Pristina, Kosovo; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A parent sitting nearby while a teenage girl follows an online Tajweed lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-kosovo-prizren",
+      "type": "regional",
+      "country": "kosovo",
+      "city": "prizren",
+      "place": "Prizren, Kosovo",
+      "fileStem": "oqc-learning-kosovo-prizren-v3",
+      "scene": "a mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a clean compact apartment desk with a houseplant and ivory walls. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Prizren, Kosovo; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-moldova",
+      "type": "regional",
+      "country": "moldova",
+      "city": null,
+      "place": "Moldova",
+      "fileStem": "oqc-learning-moldova-v3",
+      "scene": "a teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a clean compact apartment desk with a houseplant and ivory walls. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Moldova; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-moldova-chisinau",
+      "type": "regional",
+      "country": "moldova",
+      "city": "chisinau",
+      "place": "Chisinau, Moldova",
+      "fileStem": "oqc-learning-moldova-chisinau-v3",
+      "scene": "an older adult learner in glasses studying a Quran reading lesson on a large tablet in a clean compact apartment desk with a houseplant and ivory walls. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Chisinau, Moldova; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An older adult learner in glasses studying a Quran reading lesson on a large tablet in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-moldova-balti",
+      "type": "regional",
+      "country": "moldova",
+      "city": "balti",
+      "place": "Balti, Moldova",
+      "fileStem": "oqc-learning-moldova-balti-v3",
+      "scene": "a father and daughter calmly reviewing their online Quran lesson at a small study table in a clean compact apartment desk with a houseplant and ivory walls. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Balti, Moldova; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father and daughter calmly reviewing their online Quran lesson at a small study table in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-ukraine",
+      "type": "regional",
+      "country": "ukraine",
+      "city": null,
+      "place": "Ukraine",
+      "fileStem": "oqc-learning-ukraine-v3",
+      "scene": "a Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a clean compact apartment desk with a houseplant and ivory walls. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Ukraine; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-ukraine-kyiv",
+      "type": "regional",
+      "country": "ukraine",
+      "city": "kyiv",
+      "place": "Kyiv, Ukraine",
+      "fileStem": "oqc-learning-ukraine-kyiv-v3",
+      "scene": "a young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a clean compact apartment desk with a houseplant and ivory walls. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Kyiv, Ukraine; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-ukraine-lviv",
+      "type": "regional",
+      "country": "ukraine",
+      "city": "lviv",
+      "place": "Lviv, Ukraine",
+      "fileStem": "oqc-learning-ukraine-lviv-v3",
+      "scene": "a mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a clean compact apartment desk with a houseplant and ivory walls. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Lviv, Ukraine; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-belarus",
+      "type": "regional",
+      "country": "belarus",
+      "city": null,
+      "place": "Belarus",
+      "fileStem": "oqc-learning-belarus-v3",
+      "scene": "a mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a modern family home with a wide window and a green upholstered chair. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Belarus; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-belarus-minsk",
+      "type": "regional",
+      "country": "belarus",
+      "city": "minsk",
+      "place": "Minsk, Belarus",
+      "fileStem": "oqc-learning-belarus-minsk-v3",
+      "scene": "a father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a modern family home with a wide window and a green upholstered chair. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Minsk, Belarus; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-belarus-brest",
+      "type": "regional",
+      "country": "belarus",
+      "city": "brest",
+      "place": "Brest, Belarus",
+      "fileStem": "oqc-learning-belarus-brest-v3",
+      "scene": "an adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a modern family home with a wide window and a green upholstered chair. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Brest, Belarus; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-turkey",
+      "type": "regional",
+      "country": "turkey",
+      "city": null,
+      "place": "Turkey",
+      "fileStem": "oqc-learning-turkey-v3",
+      "scene": "an adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a modern family home with a wide window and a green upholstered chair. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Turkey; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-turkey-istanbul",
+      "type": "regional",
+      "country": "turkey",
+      "city": "istanbul",
+      "place": "Istanbul, Turkey",
+      "fileStem": "oqc-learning-turkey-istanbul-v3",
+      "scene": "a parent sitting nearby while a teenage girl follows an online Tajweed lesson in a modern family home with a wide window and a green upholstered chair. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Istanbul, Turkey; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A parent sitting nearby while a teenage girl follows an online Tajweed lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-turkey-ankara",
+      "type": "regional",
+      "country": "turkey",
+      "city": "ankara",
+      "place": "Ankara, Turkey",
+      "fileStem": "oqc-learning-turkey-ankara-v3",
+      "scene": "a mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a modern family home with a wide window and a green upholstered chair. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Ankara, Turkey; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-russia",
+      "type": "regional",
+      "country": "russia",
+      "city": null,
+      "place": "Russia",
+      "fileStem": "oqc-learning-russia-v3",
+      "scene": "a teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a modern family home with a wide window and a green upholstered chair. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Russia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-russia-moscow",
+      "type": "regional",
+      "country": "russia",
+      "city": "moscow",
+      "place": "Moscow, Russia",
+      "fileStem": "oqc-learning-russia-moscow-v3",
+      "scene": "an older adult learner in glasses studying a Quran reading lesson on a large tablet in a modern family home with a wide window and a green upholstered chair. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Moscow, Russia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An older adult learner in glasses studying a Quran reading lesson on a large tablet in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-russia-saint-petersburg",
+      "type": "regional",
+      "country": "russia",
+      "city": "saint-petersburg",
+      "place": "Saint Petersburg, Russia",
+      "fileStem": "oqc-learning-russia-saint-petersburg-v3",
+      "scene": "a father and daughter calmly reviewing their online Quran lesson at a small study table in a modern family home with a wide window and a green upholstered chair. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Saint Petersburg, Russia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father and daughter calmly reviewing their online Quran lesson at a small study table in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-andorra",
+      "type": "regional",
+      "country": "andorra",
+      "city": null,
+      "place": "Andorra",
+      "fileStem": "oqc-learning-andorra-v3",
+      "scene": "a Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a modern family home with a wide window and a green upholstered chair. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Andorra; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A Muslim couple comparing a practice notebook with an online teacher during a family learning conversation in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-andorra-andorra-la-vella",
+      "type": "regional",
+      "country": "andorra",
+      "city": "andorra-la-vella",
+      "place": "Andorra la Vella, Andorra",
+      "fileStem": "oqc-learning-andorra-andorra-la-vella-v3",
+      "scene": "a young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a modern family home with a wide window and a green upholstered chair. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Andorra la Vella, Andorra; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A young adult learner in modest clothes taking Arabic vocabulary notes beside a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-andorra-escaldes-engordany",
+      "type": "regional",
+      "country": "andorra",
+      "city": "escaldes-engordany",
+      "place": "Escaldes-Engordany, Andorra",
+      "fileStem": "oqc-learning-andorra-escaldes-engordany-v3",
+      "scene": "a mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a modern family home with a wide window and a green upholstered chair. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Escaldes-Engordany, Andorra; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and two school-age siblings sharing a short Quran practice routine before separate online lessons in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-liechtenstein",
+      "type": "regional",
+      "country": "liechtenstein",
+      "city": null,
+      "place": "Liechtenstein",
+      "fileStem": "oqc-learning-liechtenstein-v3",
+      "scene": "a mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a warm reading corner with a simple oak table and muted mint curtains. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Liechtenstein; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-liechtenstein-vaduz",
+      "type": "regional",
+      "country": "liechtenstein",
+      "city": "vaduz",
+      "place": "Vaduz, Liechtenstein",
+      "fileStem": "oqc-learning-liechtenstein-vaduz-v3",
+      "scene": "a father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a warm reading corner with a simple oak table and muted mint curtains. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Vaduz, Liechtenstein; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-liechtenstein-schaan",
+      "type": "regional",
+      "country": "liechtenstein",
+      "city": "schaan",
+      "place": "Schaan, Liechtenstein",
+      "fileStem": "oqc-learning-liechtenstein-schaan-v3",
+      "scene": "an adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a warm reading corner with a simple oak table and muted mint curtains. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Schaan, Liechtenstein; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-monaco",
+      "type": "regional",
+      "country": "monaco",
+      "city": null,
+      "place": "Monaco",
+      "fileStem": "oqc-learning-monaco-v3",
+      "scene": "an adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a warm reading corner with a simple oak table and muted mint curtains. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Monaco; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-monaco-monaco",
+      "type": "regional",
+      "country": "monaco",
+      "city": "monaco",
+      "place": "Monaco, Monaco",
+      "fileStem": "oqc-learning-monaco-monaco-v3",
+      "scene": "a parent sitting nearby while a teenage girl follows an online Tajweed lesson in a warm reading corner with a simple oak table and muted mint curtains. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Monaco, Monaco; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A parent sitting nearby while a teenage girl follows an online Tajweed lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-san-marino",
+      "type": "regional",
+      "country": "san-marino",
+      "city": null,
+      "place": "San Marino",
+      "fileStem": "oqc-learning-san-marino-v3",
+      "scene": "a mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a warm reading corner with a simple oak table and muted mint curtains. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for San Marino; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-san-marino-san-marino",
+      "type": "regional",
+      "country": "san-marino",
+      "city": "san-marino",
+      "place": "San Marino, San Marino",
+      "fileStem": "oqc-learning-san-marino-san-marino-v3",
+      "scene": "a teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a warm reading corner with a simple oak table and muted mint curtains. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for San Marino, San Marino; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-vatican-city",
+      "type": "regional",
+      "country": "vatican-city",
+      "city": null,
+      "place": "Vatican City",
+      "fileStem": "oqc-learning-vatican-city-v3",
+      "scene": "an older adult learner in glasses studying a Quran reading lesson on a large tablet in a warm reading corner with a simple oak table and muted mint curtains. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Vatican City; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An older adult learner in glasses studying a Quran reading lesson on a large tablet in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "map-vatican-city-vatican-city",
+      "type": "regional",
+      "country": "vatican-city",
+      "city": "vatican-city",
+      "place": "Vatican City, Vatican City",
+      "fileStem": "oqc-learning-vatican-city-vatican-city-v3",
+      "scene": "a father and daughter calmly reviewing their online Quran lesson at a small study table in a warm reading corner with a simple oak table and muted mint curtains. a natural side view showing learner, book stand and laptop together. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Vatican City, Vatican City; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father and daughter calmly reviewing their online Quran lesson at a small study table in a calm home study with Quran learning materials"
+    },
+    {
+      "assetName": "noorani-qaida-child",
+      "slug": "noorani-qaida",
+      "scene": "A young child recognising large beginner Arabic letter shapes in a clean workbook, with a parent and a female tutor on a laptop. A few simple isolated letter forms only, no invented sentences. Close natural side view in a mint and ivory home study.",
+      "alt": "A parent supporting a child during an online beginner Arabic letter lesson",
+      "type": "course",
+      "fileStem": "oqc-course-noorani-qaida-v3"
+    },
+    {
+      "assetName": "quran-recitation-hifz",
+      "slug": "quran-nazara",
+      "scene": "An adult learner reading respectfully from an open Quran on a rehal beside a laptop with a patient online recitation teacher. Side angle, visible headphones, natural listening expression, emerald and ivory home library.",
+      "alt": "An adult learner reading from a Quran on a wooden stand during an online recitation lesson",
+      "type": "course",
+      "fileStem": "oqc-course-quran-nazara-v3"
+    },
+    {
+      "assetName": "course-hifz-memory",
+      "slug": "hifz-quran",
+      "scene": "A teenage learner revising a memorised passage with a closed Quran, revision notebook and an online teacher on a laptop, with a parent calmly nearby. Reflective confident expression, organised light-oak desk, emerald accents.",
+      "alt": "A teenage learner reviewing memorisation with a revision notebook and an online teacher",
+      "type": "course",
+      "fileStem": "oqc-course-hifz-quran-v3"
+    },
+    {
+      "assetName": "adult-arabic-learning",
+      "slug": "arabic-language",
+      "scene": "An adult woman in a soft ivory hijab practising Arabic vocabulary during a live online lesson. Notebook and a small number of simple isolated Arabic letter tiles, no fake paragraphs. Bright professional home workspace with sage and emerald details.",
+      "alt": "An adult woman practising Arabic vocabulary with a notebook during a live online lesson",
+      "type": "course",
+      "fileStem": "oqc-course-arabic-language-v3"
+    },
+    {
+      "assetName": "translation-study",
+      "slug": "quran-translation",
+      "scene": "An adult Muslim learner comparing a Quran and a closed translation reference book with a teacher on a laptop. Calm thoughtful study, notes, professional light-oak home desk and ivory linen, green book bindings. Book pages oblique and out of focus.",
+      "alt": "An adult learner comparing study books and notes during an online Quran translation lesson",
+      "type": "course",
+      "fileStem": "oqc-course-quran-translation-v3"
+    },
+    {
+      "assetName": "course-islamic-studies",
+      "slug": "hadith-translation",
+      "scene": "A parent and child discussing a thoughtful Islamic studies lesson with an online teacher. A green reference book, a simple kindness activity notebook and laptop on an ivory and oak desk. Warm attentive expressions, no cartoons or fantasy props.",
+      "alt": "A parent and child discussing an Islamic studies activity during an online teacher conversation",
+      "type": "course",
+      "fileStem": "oqc-course-hadith-translation-v3"
+    }
+  ]
+}

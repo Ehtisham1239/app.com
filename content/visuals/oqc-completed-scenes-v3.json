@@ -1,0 +1,716 @@
+{
+  "mode": "Built-in image_gen",
+  "status": "Checkpoint only; not active production assets",
+  "scenes": [
+    {
+      "assetName": "map-united-states",
+      "type": "regional",
+      "country": "united-states",
+      "city": null,
+      "place": "United States",
+      "fileStem": "oqc-learning-united-states-v3",
+      "scene": "a mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a bright light-oak dining nook with linen curtains and an emerald cushion. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for United States; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a calm home study with Quran learning materials",
+      "url": "/images/learning/oqc-learning-united-states-v3-1200.webp",
+      "variants": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-learning-united-states-v3-400.webp"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-learning-united-states-v3-800.webp"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-learning-united-states-v3-1200.webp"
+        }
+      ],
+      "avif": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-learning-united-states-v3-400.avif"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-learning-united-states-v3-800.avif"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-learning-united-states-v3-1200.avif"
+        }
+      ]
+    },
+    {
+      "assetName": "map-united-states-new-york",
+      "type": "regional",
+      "country": "united-states",
+      "city": "new-york",
+      "place": "New York, United States",
+      "fileStem": "oqc-learning-united-states-new-york-v3",
+      "scene": "a father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a bright light-oak dining nook with linen curtains and an emerald cushion. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for New York, United States; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father in modest casual clothes helping his 10-year-old son practise Quran reading with an online tutor in a calm home study with Quran learning materials",
+      "url": "/images/learning/oqc-learning-united-states-new-york-v3-1200.webp",
+      "variants": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-learning-united-states-new-york-v3-400.webp"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-learning-united-states-new-york-v3-800.webp"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-learning-united-states-new-york-v3-1200.webp"
+        }
+      ],
+      "avif": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-learning-united-states-new-york-v3-400.avif"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-learning-united-states-new-york-v3-800.avif"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-learning-united-states-new-york-v3-1200.avif"
+        }
+      ]
+    },
+    {
+      "assetName": "map-united-states-los-angeles",
+      "type": "regional",
+      "country": "united-states",
+      "city": "los-angeles",
+      "place": "Los Angeles, United States",
+      "fileStem": "oqc-learning-united-states-los-angeles-v3",
+      "scene": "an adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a bright light-oak dining nook with linen curtains and an emerald cushion. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Los Angeles, United States; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a calm home study with Quran learning materials",
+      "url": "/images/learning/oqc-learning-united-states-los-angeles-v3-1200.webp",
+      "variants": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-learning-united-states-los-angeles-v3-400.webp"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-learning-united-states-los-angeles-v3-800.webp"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-learning-united-states-los-angeles-v3-1200.webp"
+        }
+      ],
+      "avif": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-learning-united-states-los-angeles-v3-400.avif"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-learning-united-states-los-angeles-v3-800.avif"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-learning-united-states-los-angeles-v3-1200.avif"
+        }
+      ]
+    },
+    {
+      "assetName": "map-united-states-chicago",
+      "type": "regional",
+      "country": "united-states",
+      "city": "chicago",
+      "place": "Chicago, United States",
+      "fileStem": "oqc-learning-united-states-chicago-v3",
+      "scene": "an adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a bright light-oak dining nook with linen curtains and an emerald cushion. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Chicago, United States; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult Muslim man revising a short Quran passage during a calm one-to-one video lesson in a calm home study with Quran learning materials",
+      "url": "/images/learning/oqc-learning-united-states-chicago-v3-1200.webp",
+      "variants": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-learning-united-states-chicago-v3-400.webp"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-learning-united-states-chicago-v3-800.webp"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-learning-united-states-chicago-v3-1200.webp"
+        }
+      ],
+      "avif": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-learning-united-states-chicago-v3-400.avif"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-learning-united-states-chicago-v3-800.avif"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-learning-united-states-chicago-v3-1200.avif"
+        }
+      ]
+    },
+    {
+      "assetName": "map-united-states-houston",
+      "type": "regional",
+      "country": "united-states",
+      "city": "houston",
+      "place": "Houston, United States",
+      "fileStem": "oqc-learning-united-states-houston-v3",
+      "scene": "a parent sitting nearby while a teenage girl follows an online Tajweed lesson in a bright light-oak dining nook with linen curtains and an emerald cushion. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Houston, United States; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A parent sitting nearby while a teenage girl follows an online Tajweed lesson in a calm home study with Quran learning materials",
+      "url": "/images/learning/oqc-learning-united-states-houston-v3-1200.webp",
+      "variants": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-learning-united-states-houston-v3-400.webp"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-learning-united-states-houston-v3-800.webp"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-learning-united-states-houston-v3-1200.webp"
+        }
+      ],
+      "avif": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-learning-united-states-houston-v3-400.avif"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-learning-united-states-houston-v3-800.avif"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-learning-united-states-houston-v3-1200.avif"
+        }
+      ]
+    },
+    {
+      "assetName": "map-united-states-dallas",
+      "type": "regional",
+      "country": "united-states",
+      "city": "dallas",
+      "place": "Dallas, United States",
+      "fileStem": "oqc-learning-united-states-dallas-v3",
+      "scene": "a mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a bright light-oak dining nook with linen curtains and an emerald cushion. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Dallas, United States; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A mother and her 8-year-old son preparing an Arabic beginner workbook for a live Quran lesson in a calm home study with Quran learning materials",
+      "url": "/images/learning/oqc-learning-united-states-dallas-v3-1200.webp",
+      "variants": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-learning-united-states-dallas-v3-400.webp"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-learning-united-states-dallas-v3-800.webp"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-learning-united-states-dallas-v3-1200.webp"
+        }
+      ],
+      "avif": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-learning-united-states-dallas-v3-400.avif"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-learning-united-states-dallas-v3-800.avif"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-learning-united-states-dallas-v3-1200.avif"
+        }
+      ]
+    },
+    {
+      "assetName": "map-united-kingdom",
+      "type": "regional",
+      "country": "united-kingdom",
+      "city": null,
+      "place": "United Kingdom",
+      "fileStem": "oqc-learning-united-kingdom-v3",
+      "scene": "a teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a bright light-oak dining nook with linen curtains and an emerald cushion. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for United Kingdom; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a calm home study with Quran learning materials",
+      "url": "/images/learning/oqc-learning-united-kingdom-v3-1200.webp",
+      "variants": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-learning-united-kingdom-v3-400.webp"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-learning-united-kingdom-v3-800.webp"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-learning-united-kingdom-v3-1200.webp"
+        }
+      ],
+      "avif": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-learning-united-kingdom-v3-400.avif"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-learning-united-kingdom-v3-800.avif"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-learning-united-kingdom-v3-1200.avif"
+        }
+      ]
+    },
+    {
+      "assetName": "map-australia",
+      "type": "regional",
+      "country": "australia",
+      "city": null,
+      "place": "Australia",
+      "fileStem": "oqc-learning-australia-v3",
+      "scene": "an adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a quiet cream home study with green bookshelves and soft window light. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Australia; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An adult woman in a sage hijab listening carefully to a Quran recitation lesson through headphones in a calm home study with Quran learning materials",
+      "url": "/images/learning/oqc-learning-australia-v3-1200.webp",
+      "variants": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-learning-australia-v3-400.webp"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-learning-australia-v3-800.webp"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-learning-australia-v3-1200.webp"
+        }
+      ],
+      "avif": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-learning-australia-v3-400.avif"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-learning-australia-v3-800.avif"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-learning-australia-v3-1200.avif"
+        }
+      ]
+    },
+    {
+      "assetName": "map-canada",
+      "type": "regional",
+      "country": "canada",
+      "city": null,
+      "place": "Canada",
+      "fileStem": "oqc-learning-canada-v3",
+      "scene": "a father and daughter calmly reviewing their online Quran lesson at a small study table in a quiet cream home study with green bookshelves and soft window light. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Canada; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "A father and daughter calmly reviewing their online Quran lesson at a small study table in a calm home study with Quran learning materials",
+      "url": "/images/learning/oqc-learning-canada-v3-1200.webp",
+      "variants": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-learning-canada-v3-400.webp"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-learning-canada-v3-800.webp"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-learning-canada-v3-1200.webp"
+        }
+      ],
+      "avif": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-learning-canada-v3-400.avif"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-learning-canada-v3-800.avif"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-learning-canada-v3-1200.avif"
+        }
+      ]
+    },
+    {
+      "assetName": "map-germany",
+      "type": "regional",
+      "country": "germany",
+      "city": null,
+      "place": "Germany",
+      "fileStem": "oqc-learning-germany-v3",
+      "scene": "an older adult learner in glasses studying a Quran reading lesson on a large tablet in a cosy family living room with a pale mint wall, natural wood and an emerald throw. a candid medium-wide three-quarter view at eye level. A respectful Quran on a wooden rehal, laptop video lesson and a simple notebook establish an authentic online Quran academy context. This accompanies online learning for Germany; it is a home-learning scene, not a local campus. Vary the actual people, furniture, outfits and photographic viewpoint from other assets in this series.",
+      "alt": "An older adult learner in glasses studying a Quran reading lesson on a large tablet in a calm home study with Quran learning materials",
+      "url": "/images/learning/oqc-learning-germany-v3-1200.webp",
+      "variants": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-learning-germany-v3-400.webp"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-learning-germany-v3-800.webp"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-learning-germany-v3-1200.webp"
+        }
+      ],
+      "avif": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-learning-germany-v3-400.avif"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-learning-germany-v3-800.avif"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-learning-germany-v3-1200.avif"
+        }
+      ]
+    },
+    {
+      "assetName": "noorani-qaida-child",
+      "slug": "noorani-qaida",
+      "scene": "A young child recognising large beginner Arabic letter shapes in a clean workbook, with a parent and a female tutor on a laptop. A few simple isolated letter forms only, no invented sentences. Close natural side view in a mint and ivory home study.",
+      "alt": "A parent supporting a child during an online beginner Arabic letter lesson",
+      "type": "course",
+      "fileStem": "oqc-course-noorani-qaida-v3",
+      "url": "/images/learning/oqc-course-noorani-qaida-v3-1200.webp",
+      "variants": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-course-noorani-qaida-v3-400.webp"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-course-noorani-qaida-v3-800.webp"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-course-noorani-qaida-v3-1200.webp"
+        }
+      ],
+      "avif": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-course-noorani-qaida-v3-400.avif"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-course-noorani-qaida-v3-800.avif"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-course-noorani-qaida-v3-1200.avif"
+        }
+      ]
+    },
+    {
+      "assetName": "quran-recitation-hifz",
+      "slug": "quran-nazara",
+      "scene": "An adult learner reading respectfully from an open Quran on a rehal beside a laptop with a patient online recitation teacher. Side angle, visible headphones, natural listening expression, emerald and ivory home library.",
+      "alt": "An adult learner reading from a Quran on a wooden stand during an online recitation lesson",
+      "type": "course",
+      "fileStem": "oqc-course-quran-nazara-v3",
+      "url": "/images/learning/oqc-course-quran-nazara-v3-1200.webp",
+      "variants": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-course-quran-nazara-v3-400.webp"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-course-quran-nazara-v3-800.webp"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-course-quran-nazara-v3-1200.webp"
+        }
+      ],
+      "avif": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-course-quran-nazara-v3-400.avif"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-course-quran-nazara-v3-800.avif"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-course-quran-nazara-v3-1200.avif"
+        }
+      ]
+    },
+    {
+      "assetName": "course-hifz-memory",
+      "slug": "hifz-quran",
+      "scene": "A teenage learner revising a memorised passage with a closed Quran, revision notebook and an online teacher on a laptop, with a parent calmly nearby. Reflective confident expression, organised light-oak desk, emerald accents.",
+      "alt": "A teenage learner reviewing memorisation with a revision notebook and an online teacher",
+      "type": "course",
+      "fileStem": "oqc-course-hifz-quran-v3",
+      "url": "/images/learning/oqc-course-hifz-quran-v3-1200.webp",
+      "variants": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-course-hifz-quran-v3-400.webp"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-course-hifz-quran-v3-800.webp"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-course-hifz-quran-v3-1200.webp"
+        }
+      ],
+      "avif": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-course-hifz-quran-v3-400.avif"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-course-hifz-quran-v3-800.avif"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-course-hifz-quran-v3-1200.avif"
+        }
+      ]
+    },
+    {
+      "assetName": "adult-arabic-learning",
+      "slug": "arabic-language",
+      "scene": "An adult woman in a soft ivory hijab practising Arabic vocabulary during a live online lesson. Notebook and a small number of simple isolated Arabic letter tiles, no fake paragraphs. Bright professional home workspace with sage and emerald details.",
+      "alt": "An adult woman practising Arabic vocabulary with a notebook during a live online lesson",
+      "type": "course",
+      "fileStem": "oqc-course-arabic-language-v3",
+      "url": "/images/learning/oqc-course-arabic-language-v3-1200.webp",
+      "variants": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-course-arabic-language-v3-400.webp"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-course-arabic-language-v3-800.webp"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-course-arabic-language-v3-1200.webp"
+        }
+      ],
+      "avif": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-course-arabic-language-v3-400.avif"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-course-arabic-language-v3-800.avif"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-course-arabic-language-v3-1200.avif"
+        }
+      ]
+    },
+    {
+      "assetName": "translation-study",
+      "slug": "quran-translation",
+      "scene": "An adult Muslim learner comparing a Quran and a closed translation reference book with a teacher on a laptop. Calm thoughtful study, notes, professional light-oak home desk and ivory linen, green book bindings. Book pages oblique and out of focus.",
+      "alt": "An adult learner comparing study books and notes during an online Quran translation lesson",
+      "type": "course",
+      "fileStem": "oqc-course-quran-translation-v3",
+      "url": "/images/learning/oqc-course-quran-translation-v3-1200.webp",
+      "variants": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-course-quran-translation-v3-400.webp"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-course-quran-translation-v3-800.webp"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-course-quran-translation-v3-1200.webp"
+        }
+      ],
+      "avif": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-course-quran-translation-v3-400.avif"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-course-quran-translation-v3-800.avif"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-course-quran-translation-v3-1200.avif"
+        }
+      ]
+    },
+    {
+      "assetName": "course-islamic-studies",
+      "slug": "hadith-translation",
+      "scene": "A parent and child discussing a thoughtful Islamic studies lesson with an online teacher. A green reference book, a simple kindness activity notebook and laptop on an ivory and oak desk. Warm attentive expressions, no cartoons or fantasy props.",
+      "alt": "A parent and child discussing an Islamic studies activity during an online teacher conversation",
+      "type": "course",
+      "fileStem": "oqc-course-hadith-translation-v3",
+      "url": "/images/learning/oqc-course-hadith-translation-v3-1200.webp",
+      "variants": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-course-hadith-translation-v3-400.webp"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-course-hadith-translation-v3-800.webp"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-course-hadith-translation-v3-1200.webp"
+        }
+      ],
+      "avif": [
+        {
+          "width": 400,
+          "url": "/images/learning/oqc-course-hadith-translation-v3-400.avif"
+        },
+        {
+          "width": 800,
+          "url": "/images/learning/oqc-course-hadith-translation-v3-800.avif"
+        },
+        {
+          "width": 1200,
+          "url": "/images/learning/oqc-course-hadith-translation-v3-1200.avif"
+        }
+      ]
+    }
+  ],
+  "uploadedBlobs": {
+    "public/images/learning/oqc-learning-germany-v3-400.webp": "e41305379b437d74c411afe9217026f300bf470b",
+    "public/images/learning/oqc-learning-germany-v3-400.avif": "0483fcd08133be3a75f05a17df969c33ea07aeb2",
+    "public/images/learning/oqc-learning-germany-v3-800.webp": "77b2fe8064e8b85769a2e2db099c770d9001bc8c",
+    "public/images/learning/oqc-learning-germany-v3-800.avif": "fa535fbbdbd3a90cf459d8302ad42e7d27aa89f6",
+    "public/images/learning/oqc-learning-germany-v3-1200.webp": "ff6072c21fd0222e341c02b19a8814678dbb02d0",
+    "public/images/learning/oqc-learning-germany-v3-1200.avif": "17ce61f39d0b537b18a8d61a70a5a345b7bc35bd",
+    "public/images/learning/oqc-course-quran-nazara-v3-400.webp": "ad04b3d1c6ff09eae6feeb7c1e7110f3ed88c921",
+    "public/images/learning/oqc-course-quran-nazara-v3-400.avif": "5cbfb20ffa271563a85b31eb9c70ba71ce62f95f",
+    "public/images/learning/oqc-course-quran-nazara-v3-800.webp": "e937d7f15f169b56a3b054bf2bfbe6a439218190",
+    "public/images/learning/oqc-course-quran-nazara-v3-800.avif": "de81565a4125cd462f36ae75a85de0d5f0ff5520",
+    "public/images/learning/oqc-course-quran-nazara-v3-1200.webp": "1fe945fc3e9378f033b91f9a6b864ed60477b42a",
+    "public/images/learning/oqc-course-quran-nazara-v3-1200.avif": "cea2ce5e8bce44e3bed67c4eb6d1775adc31889e",
+    "public/images/learning/oqc-course-noorani-qaida-v3-400.webp": "6d1929b8f1e42db2843b80d8ec318ad184c9bd3c",
+    "public/images/learning/oqc-course-noorani-qaida-v3-400.avif": "2e2f358aab9dff4d45ab09ff964f237050d1c0ad",
+    "public/images/learning/oqc-course-noorani-qaida-v3-800.webp": "4b8c92d99522600b6e0600cc94b33a52112cabb6",
+    "public/images/learning/oqc-course-noorani-qaida-v3-800.avif": "baa3e62f99a20d5f2a5313e4d6b7f42faa2a8617",
+    "public/images/learning/oqc-course-noorani-qaida-v3-1200.webp": "4998e81cc46cdd24375127160d96fb61e6f1995c",
+    "public/images/learning/oqc-course-noorani-qaida-v3-1200.avif": "7ad4b2bcc79484ccf9ac2c7b3354e1741a09b0bf",
+    "public/images/learning/oqc-course-arabic-language-v3-400.webp": "747de57ac7d77f98fb244ae7b67e17f45715d184",
+    "public/images/learning/oqc-course-arabic-language-v3-400.avif": "09ae43fb6384cb00bb5aebcbac1ffe4aeba6100e",
+    "public/images/learning/oqc-course-arabic-language-v3-800.webp": "aa464aed9856fe2332acf76a8aada614fdb1ef5c",
+    "public/images/learning/oqc-course-arabic-language-v3-800.avif": "f8bfb0d20a157e53b099a8021d400d3fa979dcd5",
+    "public/images/learning/oqc-course-arabic-language-v3-1200.webp": "b260acd7ffbdbad600608f7643dee289213c1e4f",
+    "public/images/learning/oqc-course-arabic-language-v3-1200.avif": "0075d919f01c97c54bf06a79030804e522754750",
+    "public/images/learning/oqc-course-hifz-quran-v3-400.webp": "9d58bfe7d4b8d4580e52cb538926a2ba883d4333",
+    "public/images/learning/oqc-course-hifz-quran-v3-400.avif": "e18902c3e52210befe009801fe6a3e22213961af",
+    "public/images/learning/oqc-course-hifz-quran-v3-800.webp": "6d102e04d6947e0ef721f5522727b73bbcd01bbf",
+    "public/images/learning/oqc-course-hifz-quran-v3-800.avif": "d5a31dae578727f9ab26958999726d8a706e58a2",
+    "public/images/learning/oqc-course-hifz-quran-v3-1200.webp": "d6e1e10b5068c6ba7f0f07ad404d8fc75a278270",
+    "public/images/learning/oqc-course-hifz-quran-v3-1200.avif": "7ec60c6f835d6d0013928b7fa5f41fc3e00dcd51",
+    "public/images/learning/oqc-learning-united-kingdom-v3-400.webp": "f289b9d0fd3e9e7849ba2d877c5c4bf380c6c510",
+    "public/images/learning/oqc-learning-united-kingdom-v3-400.avif": "325ab076134cef55fd851c004c98bf2d3dc49237",
+    "public/images/learning/oqc-learning-united-kingdom-v3-800.webp": "b658ac285889c7b214543296910d2ed000354bdd",
+    "public/images/learning/oqc-learning-united-kingdom-v3-800.avif": "774bb33cc4a4badc895fabcf9c3b3eca1147ab41",
+    "public/images/learning/oqc-learning-united-kingdom-v3-1200.webp": "887fa1d16979fd4a088dade056a8ceb8114cc97d",
+    "public/images/learning/oqc-learning-united-kingdom-v3-1200.avif": "321bbfc5852cc577f4b801ac546d4c451091063d",
+    "public/images/learning/oqc-course-hadith-translation-v3-400.webp": "eb4bd89773151ed02c9a9f9a137b26ce6c597af3",
+    "public/images/learning/oqc-course-hadith-translation-v3-400.avif": "89ce262d09ca9ef624f586edf9063f196c8e6af0",
+    "public/images/learning/oqc-course-hadith-translation-v3-800.webp": "2532710d702fdfe85749ed366eba7727607b7fc0",
+    "public/images/learning/oqc-course-hadith-translation-v3-800.avif": "f2b5e681879ccfd07eafa422ad2ab90d96ce22cf",
+    "public/images/learning/oqc-course-hadith-translation-v3-1200.webp": "4fdc872478e30d232d7c86bdcbe628991fda3abf",
+    "public/images/learning/oqc-course-hadith-translation-v3-1200.avif": "8fd0c487d27edf0ca76bef2b1ecd405237d8918d",
+    "public/images/learning/oqc-learning-canada-v3-400.webp": "f2c376e9515cad75ce29426a6c7e349e7d510f7d",
+    "public/images/learning/oqc-learning-canada-v3-400.avif": "ffe5634f03b14d5a3c6ebbce4634826dd2a32cb8",
+    "public/images/learning/oqc-learning-canada-v3-800.webp": "7caa54773f82b86a7173596afa7c7bc5f4db3e75",
+    "public/images/learning/oqc-learning-canada-v3-800.avif": "cbe077ca4afd7b962a139f34e79a9aa967aff10d",
+    "public/images/learning/oqc-learning-canada-v3-1200.webp": "a84f14aa6c20970ab5607596fc36c49eb92afafe",
+    "public/images/learning/oqc-learning-canada-v3-1200.avif": "aa5181da69419401e52c470cf95b246f6fcc1dc6",
+    "public/images/learning/oqc-learning-united-states-v3-400.webp": "69a0cd92428379938b5cf2f87c02a01c291eab3a",
+    "public/images/learning/oqc-learning-united-states-v3-400.avif": "43088d3f07632a26581cf5461c49117833643f69",
+    "public/images/learning/oqc-learning-united-states-v3-800.webp": "65d62106aec3b30c9f522675ad031e9f78a95010",
+    "public/images/learning/oqc-learning-united-states-v3-800.avif": "f5f2143aeb30aaefd65d053ece985a5510838fee",
+    "public/images/learning/oqc-learning-united-states-v3-1200.webp": "ce5443741207c19d2fa375b9e54c11b51fa45904",
+    "public/images/learning/oqc-learning-united-states-v3-1200.avif": "3092245b8a8ab88e0d49558025d12b03744ff037",
+    "public/images/learning/oqc-learning-australia-v3-400.webp": "951cd9b06da48293d2e330e549afa35a64a2e21f",
+    "public/images/learning/oqc-learning-australia-v3-400.avif": "2a3eea6c80a8d1e1e9dd62e599785de0f4483207",
+    "public/images/learning/oqc-learning-australia-v3-800.webp": "13a6dc929e15591b591725e028831f25bcde25e8",
+    "public/images/learning/oqc-learning-australia-v3-800.avif": "f0cc77da47a7d2eebeca6e88928943b514c24f2c",
+    "public/images/learning/oqc-learning-australia-v3-1200.webp": "7217aaf80336196b280c78a7921df40da5494dc2",
+    "public/images/learning/oqc-learning-australia-v3-1200.avif": "a580d9efc6b589cc6de00ebb1ab7dc9d20e09e03",
+    "public/images/learning/oqc-learning-united-states-los-angeles-v3-400.avif": "31b9f036f7cec54c200ee6a45b7956b596cd60e8",
+    "public/images/learning/oqc-learning-united-states-los-angeles-v3-400.webp": "50a22943ce0282deecee78f5555da9dc817c2bbb",
+    "public/images/learning/oqc-learning-united-states-los-angeles-v3-1200.avif": "315f41b007fa2ac00e64885b95030d81eb4cd15f",
+    "public/images/learning/oqc-learning-united-states-los-angeles-v3-800.avif": "b430bd598b2594a0a64ae91374c2e502a5572e24",
+    "public/images/learning/oqc-learning-united-states-los-angeles-v3-800.webp": "4cf4a6fd2d2c9617d6129baca322334c5ab2b953",
+    "public/images/learning/oqc-learning-united-states-los-angeles-v3-1200.webp": "6342672b9d6be59c3e5f6571453de6d5def73465",
+    "public/images/learning/oqc-learning-united-states-dallas-v3-400.webp": "255afdeea459c6380a97f7b062067c14f2451ba6",
+    "public/images/learning/oqc-learning-united-states-dallas-v3-400.avif": "ec802949decc306a95494d82f340889914c1e248",
+    "public/images/learning/oqc-learning-united-states-dallas-v3-800.avif": "80baa03e24e3e4545edec0ecda11011e8bf22d6a",
+    "public/images/learning/oqc-learning-united-states-dallas-v3-800.webp": "ab17a9fe28cfda4218e5303b30930f063a0984ed",
+    "public/images/learning/oqc-learning-united-states-chicago-v3-400.avif": "c7355a09b36e71e142a3a67cba066f16c8cf6a09",
+    "public/images/learning/oqc-learning-united-states-chicago-v3-400.webp": "d389c90e6708fcf64b6d057f8ae67073497aefa1",
+    "public/images/learning/oqc-learning-united-states-dallas-v3-1200.avif": "b81ea3a2dfac8a20a827cc203a7301da85175a9b",
+    "public/images/learning/oqc-learning-united-states-dallas-v3-1200.webp": "901d34142e3948165de115ee5033a83f7d42a0af",
+    "public/images/learning/oqc-learning-united-states-chicago-v3-800.webp": "f65cc3edc6ca1da9873e50efa53aff50a2a7028b",
+    "public/images/learning/oqc-learning-united-states-chicago-v3-800.avif": "23700f259ea4d42159ee18dc7d0c4def4ce7e774",
+    "public/images/learning/oqc-learning-united-states-new-york-v3-400.webp": "16f10d13823032604068e8f743e8a2fbe7f4f590",
+    "public/images/learning/oqc-learning-united-states-new-york-v3-400.avif": "df5df7e489a56dd9fc2a879c1db9cbe61f123cf8",
+    "public/images/learning/oqc-learning-united-states-chicago-v3-1200.avif": "a3162a498919459d2a62c331ed428690a296880f",
+    "public/images/learning/oqc-learning-united-states-chicago-v3-1200.webp": "30e3be0c5a6713b40624735ead68bf3efde29b28",
+    "public/images/learning/oqc-learning-united-states-new-york-v3-800.avif": "8b645af5acc051c7a76e2068f4c76ec7aff89085",
+    "public/images/learning/oqc-learning-united-states-new-york-v3-800.webp": "50fa96ea4ecced9763abebe2eed9f4eead7a0252",
+    "public/images/learning/oqc-learning-united-states-houston-v3-400.webp": "9882a2638b90a8018325c40a197b0357915e9f0c",
+    "public/images/learning/oqc-learning-united-states-houston-v3-400.avif": "6d0c3cc5d54d69c7f22938ee9374a0b49f2049e9",
+    "public/images/learning/oqc-learning-united-states-new-york-v3-1200.webp": "af448fb9f69a7cae24f39369d3223c4e33e085e1",
+    "public/images/learning/oqc-learning-united-states-new-york-v3-1200.avif": "76fdfb298c9518a098caacafcb4158317bd10246",
+    "public/images/learning/oqc-learning-united-states-houston-v3-800.avif": "f422e867d0144245ac2af4b3b1e7f7b74d2bf077",
+    "public/images/learning/oqc-learning-united-states-houston-v3-800.webp": "f2e3d3ac8f2018a8d4f8b433951fe9458c9f0290",
+    "public/images/learning/oqc-course-quran-translation-v3-400.webp": "c498ff224e2b9a8560673e02675896bb89b5d9ff",
+    "public/images/learning/oqc-course-quran-translation-v3-400.avif": "a7c68d0ef0088fb2af373cb7f85bb0311ab636b5",
+    "public/images/learning/oqc-learning-united-states-houston-v3-1200.webp": "0889a1e7e654271c40eadc32250cc60be4da4752",
+    "public/images/learning/oqc-learning-united-states-houston-v3-1200.avif": "2b7857ed0f386e3732da745252bb524f266a78b5",
+    "public/images/learning/oqc-course-quran-translation-v3-800.avif": "aa3eaf1c41d7285c6ec1688b799bd97c4137d428",
+    "public/images/learning/oqc-course-quran-translation-v3-800.webp": "381a689ebf46a16c8b25476952ee8fd2a41797d0",
+    "public/images/learning/oqc-course-quran-translation-v3-1200.avif": "9f63d0ce245d2887bc634d386ed15ca9458c2445",
+    "public/images/learning/oqc-course-quran-translation-v3-1200.webp": "39aa1219e18298901a03fffbc6cd3741b2d572c7"
+  }
+}
