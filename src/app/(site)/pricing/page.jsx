@@ -26,7 +26,8 @@ export default async function PricingPage({ searchParams }) {
         title="Online Quran class fees and packages"
         intro="Choose how many days a week suit your family. Compare lesson frequency, duration and fees below. A 3-day free trial is available on eligible plans; the Weekend plan is excluded."
       />
-      <section className="page-wrap py-16 sm:py-20">
+      <section className="page-wrap py-16 sm:py-20" aria-labelledby="monthly-packages">
+        <h2 id="monthly-packages" className="sr-only">Monthly class packages</h2>
         {packages.length > 0 && <CurrencyPricing plans={packages} defaultCurrency={requestedCurrency} />}
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {[

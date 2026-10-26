@@ -16,8 +16,11 @@ test('original homepage image, small hero, logo and hero component stay byte-ide
  const protectedFiles={
   'public/brand/hero.webp':'2b8d1ad32a0067f608e014544d9d384cb7a6308833e252b1775d6cf411cbed0e',
   'public/brand/hero-320.webp':'dad63c68154b4c8b0a535706dad4c80b781f88d052321b5cd527002eec6ba173',
+  // AVIF copies of the same artwork (26 Oct 2026): half the bytes for the mobile LCP image.
+  'public/brand/hero.avif':'8e0ea0d7038dab326d28ff67d695a8e703a305da09a6beae6f2bdf14e695abae',
+  'public/brand/hero-320.avif':'597cc2b4a571708eb5b3a930fc3405404e4fc2c6169a8e20de464187a1d09414',
   'public/brand/logo-160.webp':'8a7e6365d2653d25343039a39980301960d86a199d383b778795c4adc9e9a4a0',
-  'src/components/site/hero.jsx':'b544a6d04841ee51933738a71fb4e077cce695cc417b016e5a3d8f08070ca996'
+  'src/components/site/hero.jsx':'be905afe2bf33d4c9146890b2ee8fadcc8311bb6cd2c4f82246dbebd7116c0f1'
  };
  for(const [file,hash] of Object.entries(protectedFiles))assert.equal(createHash('sha256').update(readFileSync(new URL(`../${file}`,import.meta.url))).digest('hex'),hash,file);
 });

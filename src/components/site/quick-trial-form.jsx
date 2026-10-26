@@ -5,7 +5,6 @@ import { useSearchParams } from "next/navigation";
 import { clsx } from "clsx";
 import { announceLeadSaved } from "@/lib/conversion-events";
 import { captureAttribution } from "@/lib/attribution";
-import { bookingPreferenceNotes } from "@/lib/booking-preferences";
 import { MARKET_TIME_ZONES } from "@/lib/market-timezones";
 import { LOCATIONS, locationTimeZone } from "@/lib/locations";
 import { AGE_BANDS, COUNTRIES } from "@/lib/constants";
@@ -69,7 +68,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       phone: "",
       email: "",
       course_id: course && courses.some((c) => c.id === course) ? course : "",
-      notes: [planName ? `Package of interest: ${planName}` : "", bookingPreferenceNotes(params, currencies)].filter(Boolean).join("\n"),
+      notes: planName ? `Package of interest: ${planName}` : "",
       consent: false,
       website: "",
     };
@@ -99,6 +98,13 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
     if (state.sending || !validate()) return;
     setState({ sending: true, error: "", reference: null });
     const utm = captureAttribution();
+    // The time-zone library is only needed when a visitor arrives with a
+    // preferred lesson time or quote currency, so it loads on submit instead
+    // of with the form (and every page that prefetches /free-trial).
+    let preferenceNotes = "";
+    if (["currency", "lesson_date", "lesson_time", "lesson_timezone"].some((key) => params.get(key))) {
+      try { preferenceNotes = (await import("@/lib/booking-preferences")).bookingPreferenceNotes(params, currencies); } catch { preferenceNotes = ""; }
+    }
     const payload = {
       learner_name: form.learner_name.trim(),
       email: form.email.trim().toLowerCase(),
@@ -109,7 +115,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       timezone,
       age_band: form.age_band,
       course_id: form.course_id || null,
-      notes: form.notes.trim(),
+      notes: [form.notes.trim(), preferenceNotes].filter(Boolean).join("\n"),
       consent: form.consent,
       marketing_opt_in: false,
       source: utm.utm_source || "website",

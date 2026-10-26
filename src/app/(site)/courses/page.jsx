@@ -34,7 +34,8 @@ export default async function CoursesPage() {
           </Link>
         </div>
       </PageHero>
-      <section className="page-wrap py-16 sm:py-20">
+      <section className="page-wrap py-16 sm:py-20" aria-labelledby="all-courses">
+        <h2 id="all-courses" className="sr-only">All online Quran courses</h2>
         <CoursesGrid courses={courses} />
       </section>
       <section className="page-wrap pb-12" aria-labelledby="choose-course">

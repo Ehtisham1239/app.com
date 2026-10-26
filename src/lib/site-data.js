@@ -9,12 +9,16 @@ import { readContentQuery } from "@/lib/content-query";
 // timeout as an empty listing/404 or resurrect deleted content from old seeds.
 
 let schemaUnavailableUntil = 0;
-async function safe(query, fallback, label) {
-  if (!publicDb || Date.now() < schemaUnavailableUntil) return seedFallback(label, fallback);
+async function safe(query, fallback, label, limit) {
+  const seeded = () => {
+    const rows = seedFallback(label, fallback);
+    return Array.isArray(rows) && limit ? rows.slice(0, limit) : rows;
+  };
+  if (!publicDb || Date.now() < schemaUnavailableUntil) return seeded();
   try {
     return await readContentQuery(query, {
       fallback, label,
-      schemaFallback: () => seedFallback(label, fallback),
+      schemaFallback: seeded,
       onSchemaMissing: () => { schemaUnavailableUntil = Date.now() + 5000; },
     });
   } catch (err) {
@@ -146,6 +150,7 @@ export const getPosts = cache(async (limit = 50) =>
     publicDb.from("blog_posts").select(POST_FIELDS).eq("status", "published").is("deleted_at", null).order("published_at", { ascending: false }).limit(limit),
     [],
     "posts",
+    limit,
   ),
 );
 
