@@ -17,6 +17,9 @@ export function getPublicBrowserClient() {
   if (!browserPublic) {
     browserPublic = createClient(SUPABASE_URL, SUPABASE_KEY, {
       auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false, storageKey: "oqc-public" },
+      // A stalled network must not leave enquiries/certificate checks spinning
+      // indefinitely. Respect an explicit caller cancellation signal.
+      global: { fetch: (input, init = {}) => fetch(input, { ...init, signal: init.signal ?? AbortSignal.timeout(20000) }) },
     });
   }
   return browserPublic;

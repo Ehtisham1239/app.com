@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { DateTime } from "luxon";
+import { STAFF_TIMEZONE } from "@/lib/config";
 import { Download } from "lucide-react";
 import { db, downloadCsv, useLoad } from "@/lib/admin/db";
 import { TRIAL_STATUSES } from "@/lib/constants";
 import { Card, EmptyState, ErrorState, Loading, PageHeader, StatCard, Tabs } from "@/components/admin/ui";
 
-const iso = (d) => d.toISOString().slice(0, 10);
 const PRESETS = [
   { value: "7", label: "7 days" },
   { value: "30", label: "30 days" },
@@ -40,10 +41,10 @@ function Bars({ rows, total }) {
 
 export default function ReportsPage() {
   const [preset, setPreset] = useState("30");
-  const today = new Date();
-  const [from, setFrom] = useState(iso(new Date(Date.now() - 29 * 864e5)));
-  const [to, setTo] = useState(iso(today));
-  const range = preset === "custom" ? { from, to } : { from: iso(new Date(Date.now() - (Number(preset) - 1) * 864e5)), to: iso(today) };
+  const [today] = useState(() => DateTime.now().setZone(STAFF_TIMEZONE).startOf("day"));
+  const [from, setFrom] = useState(() => today.minus({ days: 29 }).toISODate());
+  const [to, setTo] = useState(() => today.toISODate());
+  const range = preset === "custom" ? { from, to } : { from: today.minus({ days: Number(preset) - 1 }).toISODate(), to: today.toISODate() };
   const report = useLoad(() => db().rpc("report_summary", { p_from: range.from, p_to: range.to }), [range.from, range.to]);
   const r = report.data || {};
   const byStatus = r.trials_by_status || {};

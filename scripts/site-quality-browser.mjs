@@ -16,6 +16,7 @@ try {
     const { page } = session;
     try {
       for (const path of paths) {
+        console.log(`Checking ${width}px ${path}`);
         const response = await page.goto(base + path, { waitUntil: 'load' });
         assert.equal(response.status(), 200, `${width} ${path}`);
         assert.equal(await page.locator('h1').count(), 1, `${path}: h1`);

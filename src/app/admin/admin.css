@@ -1,0 +1,44 @@
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+@reference "../globals.css";
+@source "./";
+@source "../../components/admin";
+@source "../../lib/admin";
+
+/* Admin helpers */
+.scrollbar-thin { scrollbar-width: thin; scrollbar-color: var(--color-line-strong) transparent; }
+.tabular { font-variant-numeric: tabular-nums; }
+
+@layer components {
+/* ------------------------------------------------------------------
+   Admin panel
+   ------------------------------------------------------------------ */
+.badge { display: inline-flex; align-items: center; gap: .3rem; border-radius: 999px; padding: .12rem .6rem; font-size: .75rem; font-weight: 600; line-height: 1.5; white-space: nowrap; }
+.badge::before { content: ""; width: .4rem; height: .4rem; border-radius: 999px; background: currentColor; opacity: .7; }
+.tone-green { background: #e7f3df; color: #0c6c0c; }
+.tone-amber { background: #fdf3e2; color: #9a5b06; }
+.tone-blue { background: #e8f0fd; color: #1d4fb8; }
+.tone-violet { background: #f1eafd; color: #6a3bc2; }
+.tone-teal { background: #e3f5f3; color: #0f6e66; }
+.tone-red { background: #fdeaea; color: #b4232f; }
+.tone-muted { background: #eef1ef; color: #6b7280; }
+.tone-neutral { background: #f1f4f1; color: #4b5563; }
+.adm-card { background: #fff; border: 1px solid var(--color-line); border-radius: 1rem; }
+.adm-table { width: 100%; min-width: 42rem; border-collapse: separate; border-spacing: 0; font-size: .9rem; }
+.adm-table th { text-align: left; font-weight: 600; font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; color: var(--color-ink-faint); background: #f7faf6; padding: .65rem .9rem; border-bottom: 1px solid var(--color-line); white-space: nowrap; }
+.adm-table td { padding: .7rem .9rem; border-bottom: 1px solid var(--color-line); vertical-align: middle; }
+.adm-table tbody tr:last-child td { border-bottom: 0; }
+.adm-table tbody tr.row-link { cursor: pointer; }
+.adm-table tbody tr:hover td { background: #f9fbf8; }
+.adm-input { width: 100%; border: 1.5px solid var(--color-line-strong); background: #fff; border-radius: .65rem; padding: .5rem .75rem; font-size: .92rem; line-height: 1.4; }
+.adm-input:focus { outline: none; border-color: var(--color-leaf-600); box-shadow: 0 0 0 3px rgb(26 127 12 / .14); }
+.rich-content :where(h2) { font-size: 1.35rem; font-weight: 700; margin: 1rem 0 .4rem; }
+.rich-content :where(h3) { font-size: 1.1rem; font-weight: 700; margin: .9rem 0 .3rem; }
+.rich-content :where(p) { margin: 0 0 .7rem; }
+.rich-content :where(ul) { list-style: disc; padding-left: 1.4rem; margin: 0 0 .7rem; }
+.rich-content :where(ol) { list-style: decimal; padding-left: 1.4rem; margin: 0 0 .7rem; }
+.rich-content :where(blockquote) { border-left: 3px solid var(--color-gold-500); padding-left: .9rem; color: var(--color-ink-soft); }
+.rich-content :where(a) { color: var(--color-leaf-700); text-decoration: underline; }
+.rich-content .ProseMirror { outline: none; min-height: 14rem; }
+@media print { .no-print { display: none !important; } }
+}

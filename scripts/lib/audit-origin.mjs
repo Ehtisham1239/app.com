@@ -1,6 +1,7 @@
 export const PUBLIC_AUDIT_ORIGINS = [
   'https://www.onlinequrancollege.com',
   'https://project-umber-three-93.vercel.app',
+  'https://appcom-online-quran-college.vercel.app',
 ];
 
 export function auditOrigin(value = PUBLIC_AUDIT_ORIGINS[0]) {

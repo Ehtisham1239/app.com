@@ -2,6 +2,16 @@
 
 # app.com website and CMS deployment
 
+## Current hosting target — 26 October 2026
+
+The old `project-umber-three-93.vercel.app` endpoint returned DEPLOYMENT_NOT_FOUND.
+The current source is hosted at **https://appcom-online-quran-college.vercel.app**,
+project `prj_ohTvpaIwR1bWHFJWl23QiNfOoJG7` in `ehtisham1239s-projects`.
+Use `content/deployment-target.json` and the [current quality release record](docs/QUALITY-SPEED-2026-10-26.md).
+The older target and release entries below are historical. Custom hostnames are
+added but still require external DNS ownership verification; do not change the
+canonical origin before verification. GitHub integration is not connected.
+
 ## Mobile, article and performance follow-up — 26 October 2026
 
 The new implementation integrates the latest three-day, single-step trial, banner-free GA4, unused-file cleanup and staff-only toaster changes from main. It adds article navigation/resources/print tools, responsive fixes, image cache/legacy redirects, origin-consistent robots and machine-readable site guidance. Production builds clear generated output and reject missing static references. GA4 transport runs with Google analytics/ad storage denied; it does not silently grant storage in the banner-free mode.

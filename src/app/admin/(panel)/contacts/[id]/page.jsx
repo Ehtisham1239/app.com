@@ -13,12 +13,12 @@ export default function ContactPage({ params }) {
   const { id } = use(params);
   const { can, access } = useAccess();
   const msg = useLoad(() => db().from("contact_messages").select("*, profiles!contact_messages_replied_by_fkey(full_name)").eq("id", id).maybeSingle(), [id]);
-  const [note, setNote] = useState("");
+  const [draft, setDraft] = useState({ id: null, value: "" });
   const m = msg.data;
+  const note = draft.id === m?.id ? draft.value : m?.internal_note || "";
   const canEdit = can("contacts:update");
 
   useEffect(() => {
-    setNote(m?.internal_note || "");
     if (m && m.status === "new" && canEdit) {
       db().from("contact_messages").update({ status: "read" }).eq("id", m.id).then(({ error }) => !error && msg.reload());
     }
@@ -63,7 +63,7 @@ export default function ContactPage({ params }) {
           </Card>
           <Card title="Internal note">
             <fieldset disabled={!canEdit}>
-              <textarea className="adm-input" rows={4} value={note} onChange={(e) => setNote(e.target.value)} placeholder="Visible to admins only" />
+              <textarea className="adm-input" rows={4} value={note} onChange={(e) => setDraft({ id: m.id, value: e.target.value })} placeholder="Visible to admins only" aria-label="Internal note" />
               <button type="button" className="btn btn-outline btn-sm mt-3" disabled={note === (m.internal_note || "")} onClick={() => set({ internal_note: note || null }, "Note saved")}>
                 <Save className="size-4" /> Save note
               </button>

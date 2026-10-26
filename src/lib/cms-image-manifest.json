@@ -1,0 +1,143 @@
+[
+  {
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/uploads/2026/10/exec-2661f8aa-c222-4fb0-a9d7-847507566d59-0i64gv.png",
+    "source_sha256": "c8334fbdaad050608c683ecba01874722822721cf5ce9c9376537f748fe392fa",
+    "url": "/images/cms/c8334fbdaad05060-1200.webp",
+    "width": 1200,
+    "height": 675,
+    "variants": [
+      {
+        "url": "/images/cms/c8334fbdaad05060-400.webp",
+        "width": 400,
+        "height": 225,
+        "bytes": 13770
+      },
+      {
+        "url": "/images/cms/c8334fbdaad05060-800.webp",
+        "width": 800,
+        "height": 450,
+        "bytes": 33380
+      },
+      {
+        "url": "/images/cms/c8334fbdaad05060-1200.webp",
+        "width": 1200,
+        "height": 675,
+        "bytes": 54876
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/cms/c8334fbdaad05060-400.avif",
+        "width": 400,
+        "height": 225,
+        "bytes": 7644
+      },
+      {
+        "url": "/images/cms/c8334fbdaad05060-800.avif",
+        "width": 800,
+        "height": 450,
+        "bytes": 18838
+      },
+      {
+        "url": "/images/cms/c8334fbdaad05060-1200.avif",
+        "width": 1200,
+        "height": 675,
+        "bytes": 31353
+      }
+    ]
+  },
+  {
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/uploads/2026/10/exec-562eaa79-fed7-41cd-8b56-64c2893cf1d0-e0i0ar.png",
+    "source_sha256": "42f50ff1adb63cb0f9949868f6114fd685ea1b6dde4bf5a6c9831b4b4ef22fe8",
+    "url": "/images/cms/42f50ff1adb63cb0-1200.webp",
+    "width": 1200,
+    "height": 675,
+    "variants": [
+      {
+        "url": "/images/cms/42f50ff1adb63cb0-400.webp",
+        "width": 400,
+        "height": 225,
+        "bytes": 15228
+      },
+      {
+        "url": "/images/cms/42f50ff1adb63cb0-800.webp",
+        "width": 800,
+        "height": 450,
+        "bytes": 38806
+      },
+      {
+        "url": "/images/cms/42f50ff1adb63cb0-1200.webp",
+        "width": 1200,
+        "height": 675,
+        "bytes": 66582
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/cms/42f50ff1adb63cb0-400.avif",
+        "width": 400,
+        "height": 225,
+        "bytes": 8212
+      },
+      {
+        "url": "/images/cms/42f50ff1adb63cb0-800.avif",
+        "width": 800,
+        "height": 450,
+        "bytes": 21648
+      },
+      {
+        "url": "/images/cms/42f50ff1adb63cb0-1200.avif",
+        "width": 1200,
+        "height": 675,
+        "bytes": 36674
+      }
+    ]
+  },
+  {
+    "storage_url": "https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/media/uploads/2026/10/exec-886904fb-6627-4d5c-bfa6-48332dca7551-79dg0i.png",
+    "source_sha256": "f2191943ac8e336337b3d76b40357adab2d7795e0dcb09bfa2c6232d70b63e54",
+    "url": "/images/cms/f2191943ac8e3363-1200.webp",
+    "width": 1200,
+    "height": 675,
+    "variants": [
+      {
+        "url": "/images/cms/f2191943ac8e3363-400.webp",
+        "width": 400,
+        "height": 225,
+        "bytes": 15340
+      },
+      {
+        "url": "/images/cms/f2191943ac8e3363-800.webp",
+        "width": 800,
+        "height": 450,
+        "bytes": 40126
+      },
+      {
+        "url": "/images/cms/f2191943ac8e3363-1200.webp",
+        "width": 1200,
+        "height": 675,
+        "bytes": 69318
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/cms/f2191943ac8e3363-400.avif",
+        "width": 400,
+        "height": 225,
+        "bytes": 8454
+      },
+      {
+        "url": "/images/cms/f2191943ac8e3363-800.avif",
+        "width": 800,
+        "height": 450,
+        "bytes": 22090
+      },
+      {
+        "url": "/images/cms/f2191943ac8e3363-1200.avif",
+        "width": 1200,
+        "height": 675,
+        "bytes": 38716
+      }
+    ]
+  }
+]

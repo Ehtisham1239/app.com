@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { NavigationLink as Link } from "@/components/site/navigation-link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronDown, Menu, ShieldCheck, X } from "@/components/site/icons";
@@ -11,8 +11,13 @@ function isActive(pathname, href) {
   return pathname === href || pathname.startsWith(href + "/");
 }
 
-export function SiteHeader({ menu, courses, brandName }) {
+export function SiteHeader(props) {
   const pathname = usePathname();
+  return <HeaderForPath {...props} pathname={pathname} key={pathname} />;
+}
+
+// A new route starts with closed menus without an extra state-update render.
+function HeaderForPath({ menu, courses, brandName, pathname }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [coursesOpen, setCoursesOpen] = useState(false);
@@ -51,11 +56,6 @@ export function SiteHeader({ menu, courses, brandName }) {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => {
-    setOpen(false);
-    setCoursesOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;

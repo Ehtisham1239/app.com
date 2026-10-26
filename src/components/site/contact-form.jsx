@@ -24,6 +24,7 @@ export function ContactForm({ consentText, successText }) {
 
   async function submit(e) {
     e.preventDefault();
+    if (state.sending) return;
     const errs = {};
     if (form.name.trim().length < 2) errs.name = "Please enter your name.";
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(form.email.trim())) errs.email = "Please enter a valid email address.";

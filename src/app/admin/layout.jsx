@@ -1,4 +1,5 @@
 import { Toaster } from "sonner";
+import "./admin.css";
 
 export const metadata = {
   title: { default: "Admin panel", template: "%s · Admin · Online Quran College" },

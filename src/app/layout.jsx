@@ -40,6 +40,19 @@ const amiri = localFont({
   preload: false,
 });
 
+// Small display faces retain the original shaping and metrics. Uncommon CMS
+// characters still fall back to the complete Amiri fonts above.
+const amiriDisplay = localFont({
+  src: [
+    { path: "../../public/fonts/oqc-arabic-display-400.woff2", weight: "400", style: "normal" },
+    { path: "../../public/fonts/oqc-arabic-display-700.woff2", weight: "700", style: "normal" },
+  ],
+  variable: "--font-amiri-display",
+  display: "swap",
+  preload: false,
+  adjustFontFallback: false,
+});
+
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -64,7 +77,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en-GB" data-scroll-behavior="smooth" className={`${inter.variable} ${interExtended.variable} ${outfit.variable} ${amiri.variable}`} suppressHydrationWarning>
+    <html lang="en-GB" data-scroll-behavior="smooth" className={`${inter.variable} ${interExtended.variable} ${outfit.variable} ${amiri.variable} ${amiriDisplay.variable}`} suppressHydrationWarning>
       <body>
         {children}
       </body>

@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { getBrowserClient } from "@/lib/supabase/browser";
+import { serializeCsv } from "@/lib/csv";
 
 export const db = () => getBrowserClient();
 
@@ -33,25 +34,47 @@ export function refreshSite() {
 
 // Small data hook: runs `fn` (which returns { data, error, count }) and tracks loading/error.
 export function useLoad(fn, deps = []) {
-  const [state, setState] = useState({ loading: true, data: null, count: null, error: null });
-  const fnRef = useRef(fn);
-  fnRef.current = fn;
+  const [state, setState] = useState({ inputs: deps, loading: true, data: null, count: null, error: null });
+  const loadRef = useRef({ fn, deps });
+  const version = useRef(0);
+  const mounted = useRef(false);
+  const invalidate = useCallback(() => { version.current++; }, []);
+  // Update after commit, never during render (which React can abandon).
+  useEffect(() => { loadRef.current = { fn, deps }; });
+  useEffect(() => {
+    mounted.current = true;
+    return () => { mounted.current = false; invalidate(); };
+  }, [invalidate]);
   const run = useCallback(async () => {
-    setState((s) => ({ ...s, loading: true, error: null }));
+    if (!mounted.current) return;
+    const request = ++version.current;
+    const { fn: load, deps: inputs } = loadRef.current;
+    setState(s => ({ ...s, inputs, loading: true, error: null, ...(sameInputs(s.inputs, inputs) ? {} : { data: null, count: null }) }));
     try {
-      const res = await fnRef.current();
+      const res = await load();
       if (res?.error) throw res.error;
-      setState({ loading: false, data: res?.data ?? res ?? null, count: res?.count ?? null, error: null });
+      if (mounted.current && request === version.current) {
+        // A valid empty Supabase response must stay null, not become {data:null}.
+        const data = res && Object.hasOwn(res, "data") ? res.data : res ?? null;
+        setState({ inputs, loading: false, data, count: res?.count ?? null, error: null });
+      }
     } catch (error) {
-      setState({ loading: false, data: null, count: null, error });
+      if (mounted.current && request === version.current) setState({ inputs, loading: false, data: null, count: null, error });
     }
   }, []);
   useEffect(() => {
-    run();
+    let canceled = false;
+    // Begin after commit; cancel Strict Mode's discarded setup before any query.
+    Promise.resolve().then(() => { if (!canceled) return run(); });
+    return () => { canceled = true; invalidate(); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
-  return { ...state, reload: run };
+  const { inputs, ...result } = state;
+  // Never briefly show the previous record under a newly selected record URL.
+  return { ...(sameInputs(inputs, deps) ? result : { loading: true, data: null, count: null, error: null }), reload: run };
 }
+
+function sameInputs(a, b) { return a.length === b.length && a.every((value, index) => Object.is(value, b[index])); }
 
 // Escapes user search text for PostgREST `or=(... ilike ...)` filters.
 export function likeTerm(q) {
@@ -59,14 +82,7 @@ export function likeTerm(q) {
 }
 
 export function downloadCsv(filename, rows, columns) {
-  const esc = (v) => {
-    if (v === null || v === undefined) return "";
-    const s = Array.isArray(v) ? v.join("; ") : typeof v === "object" ? JSON.stringify(v) : String(v);
-    return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
-  };
-  const header = columns.map((c) => esc(c.label)).join(",");
-  const body = rows.map((r) => columns.map((c) => esc(typeof c.value === "function" ? c.value(r) : r[c.key])).join(",")).join("\n");
-  const blob = new Blob([`﻿${header}\n${body}`], { type: "text/csv;charset=utf-8" });
+  const blob = new Blob([serializeCsv(rows, columns)], { type: "text/csv;charset=utf-8" });
   const url = URL.createObjectURL(blob);
   const a = Object.assign(document.createElement("a"), { href: url, download: filename });
   document.body.appendChild(a);

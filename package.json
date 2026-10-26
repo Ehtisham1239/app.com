@@ -2,7 +2,7 @@
   "name": "online-quran-college",
   "version": "2.0.0",
   "private": true,
-  "description": "Online Quran College — public website and admin panel (Next.js + Supabase).",
+  "description": "Online Quran College \u2014 public website and admin panel (Next.js + Supabase).",
   "type": "module",
   "engines": {
     "node": ">=20.9.0"
@@ -23,7 +23,8 @@
     "seo:agent": "node scripts/seo-agent-audit.mjs",
     "seo:keywords": "node scripts/keyword-coverage.mjs",
     "seo:search-engines": "node scripts/search-engine-audit.mjs",
-    "seo:notify": "node scripts/indexnow.mjs"
+    "seo:notify": "node scripts/indexnow.mjs",
+    "test:admin-data": "node scripts/admin-data-smoke.mjs"
   },
   "dependencies": {
     "@fontsource-variable/inter": "5.3.0",
@@ -49,6 +50,7 @@
     "@electric-sql/pglite": "0.5.11",
     "@tailwindcss/postcss": "4.3.3",
     "@tailwindcss/typography": "0.5.20",
+    "esbuild": "0.28.2",
     "eslint": "9.39.5",
     "eslint-config-next": "16.4.3",
     "playwright": "1.64.1",

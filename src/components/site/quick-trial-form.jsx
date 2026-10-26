@@ -51,6 +51,7 @@ function FieldError({ id, children }) {
 export function QuickTrialForm({ courses = [], plans = [], currencies = [], consentText, successText, whatsappHref }) {
   const params = useSearchParams();
   const topRef = useRef(null);
+  const successHeading = useRef(null);
   const [errors, setErrors] = useState({});
   const [state, setState] = useState({ sending: false, error: "", reference: null });
   const [form, setForm] = useState(() => {
@@ -125,7 +126,10 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
     }
     announceLeadSaved({ formType: "trial", country: form.country, reference: data?.reference, honeypot: form.website });
     setState({ sending: false, error: "", reference: data?.reference ?? "sent" });
-    requestAnimationFrame(() => topRef.current?.scrollIntoView({ block: "start" }));
+    requestAnimationFrame(() => {
+      topRef.current?.scrollIntoView({ block: "start" });
+      successHeading.current?.focus({ preventScroll: true });
+    });
   }
 
   if (state.reference) {
@@ -133,7 +137,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
     return (
       <div ref={topRef} className="surface scroll-mt-28 p-7 text-center shadow-[var(--shadow-lift)] sm:p-9" role="status">
         <span className="mx-auto flex size-14 items-center justify-center rounded-full bg-leaf-50 text-leaf-700 ring-1 ring-leaf-100"><CheckCircle2 className="size-8" aria-hidden="true" /></span>
-        <h2 className="mt-4 text-[1.8rem] text-mushaf-900">Request received</h2>
+        <h2 ref={successHeading} tabIndex={-1} className="mt-4 text-[1.8rem] text-mushaf-900">Request received</h2>
         <p className="mx-auto mt-2 max-w-md text-ink-soft">{successText || "A coordinator will contact you by WhatsApp or email, usually within 24 hours, to agree a time."}</p>
         {showRef && <p className="mt-4 inline-flex rounded-full bg-gold-50 px-4 py-1.5 font-mono text-sm font-semibold text-gold-700 ring-1 ring-gold-100">Reference: {state.reference}</p>}
         <div className="mt-6 flex flex-wrap justify-center gap-3">
@@ -155,7 +159,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
 
       <div>
         <label htmlFor="q-learner_name" className="field-label">Learner’s name</label>
-        <input id="q-learner_name" className="input" value={form.learner_name} onChange={(e) => set("learner_name", e.target.value)} autoComplete="name" maxLength={120} {...err("learner_name")} />
+        <input id="q-learner_name" className="input" value={form.learner_name} onChange={(e) => set("learner_name", e.target.value)} autoComplete="name" maxLength={120} required {...err("learner_name")} />
         <FieldError id="q-learner_name-error">{errors.learner_name}</FieldError>
       </div>
 
@@ -175,7 +179,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="q-country" className="field-label">Country</label>
-          <select id="q-country" className="select" value={form.country} onChange={(e) => setForm((f) => ({ ...f, country: e.target.value, zone_choice: "" }))} autoComplete="country-name" {...err("country")}>
+          <select id="q-country" className="select" value={form.country} onChange={(e) => setForm((f) => ({ ...f, country: e.target.value, zone_choice: "" }))} autoComplete="country-name" required {...err("country")}>
             <option value="">Choose your country</option>
             {COUNTRIES.map(([n]) => <option key={n}>{n}</option>)}
           </select>
@@ -201,12 +205,12 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="q-phone" className="field-label">WhatsApp number</label>
-          <input id="q-phone" className="input" type="tel" inputMode="tel" value={form.phone} onChange={(e) => set("phone", e.target.value)} autoComplete="tel" placeholder="+44 7700 900123" maxLength={24} {...err("phone")} />
+          <input id="q-phone" className="input" type="tel" inputMode="tel" value={form.phone} onChange={(e) => set("phone", e.target.value)} autoComplete="tel" placeholder="+44 7700 900123" maxLength={24} required {...err("phone")} />
           <FieldError id="q-phone-error">{errors.phone}</FieldError>
         </div>
         <div>
           <label htmlFor="q-email" className="field-label">Email</label>
-          <input id="q-email" className="input" type="email" inputMode="email" value={form.email} onChange={(e) => set("email", e.target.value)} autoComplete="email" maxLength={254} {...err("email")} />
+          <input id="q-email" className="input" type="email" inputMode="email" value={form.email} onChange={(e) => set("email", e.target.value)} autoComplete="email" maxLength={254} required {...err("email")} />
           <FieldError id="q-email-error">{errors.email}</FieldError>
         </div>
       </div>
@@ -214,7 +218,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
 
       <div>
         <label className="flex items-start gap-3 text-[0.88rem] leading-relaxed text-ink-soft">
-          <input id="q-consent" type="checkbox" className="check mt-0.5 shrink-0" checked={form.consent} onChange={(e) => set("consent", e.target.checked)} {...err("consent")} />
+          <input id="q-consent" type="checkbox" className="check mt-0.5 shrink-0" checked={form.consent} onChange={(e) => set("consent", e.target.checked)} required {...err("consent")} />
           <span>{consentText || "I agree that Online Quran College may contact me about this trial."} <Link href="/privacy-policy" className="font-medium text-leaf-700 underline underline-offset-2">Privacy notice</Link></span>
         </label>
         <FieldError id="q-consent-error">{errors.consent}</FieldError>
