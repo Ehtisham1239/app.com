@@ -75,3 +75,47 @@ returned 403; real server-error scans, authenticated staff journeys, actual
 enquiry delivery, GA4 receipts, GSC indexing/rankings and field CWV are unverified.
 Speed Insights' production script responds HTTP 200. Local QA stubs that
 Vercel-only script and Google/chat scripts; no third-party QA events are sent.
+
+## Verified first production release
+
+Source `b8c0c54d38cd63b8a33de68df02fa294fef5d25b` reached production READY as
+`dpl_5QMkrYBSC6nb9sDK3uKcmMuDxJSL`; the stable alias and Git metadata agree.
+The live audit passes 202/202 sitemap pages, zero technical/quality/topic
+failures, and 194 top-image responses. Cloud browser verifies the actual home
+page, trial navigation, invalid-submission blocking and first-error focus.
+
+At 21:12 PKT Google's mobile report scores 98 performance / 100 accessibility /
+100 best practices / 100 SEO, with FCP 0.964s, LCP 2.326s, TBT 6ms and CLS 0.002.
+Render-blocking estimated savings are 90ms, versus 1,130ms in the initial lab
+sample. Desktop scores 99 / 100 / 100 / 100, FCP 0.321s, LCP 0.671s, TBT 81ms
+and CLS 0.001. These are individual lab samples; they are not timing guarantees
+or field p75 measurements.
+Report: https://pagespeed.web.dev/analysis/https-appcom-online-quran-college-vercel-app/j93ihk7b75?form_factor=mobile
+
+## Navigation and staff-security follow-up
+
+Navigation lists now defer prefetch until pointer hover or keyboard focus,
+using Next's documented Link behavior. Primary hero links retain their existing
+prefetching. Pending navigation feedback remains accessible and does not shift
+layout.
+
+Staff/auth responses get a fresh 128-bit nonce, strict-dynamic script policy,
+no unsafe-inline/eval script allowance in production, denied framing, and
+private/no-store caching. Staff pages render per request so Next can nonce its
+framework scripts. Public pages keep static/ISR rendering. Session-refresh
+cookies are preserved on redirects as well as ordinary responses.
+
+80 Node tests pass. A fresh isolated production build passes asset integrity;
+48 public viewport cases and mobile/desktop blog journeys pass. The staff
+browser test verifies distinct response nonces, actual nonced framework scripts,
+mobile login hydration, anonymous redirects and blocking of a nonce-less script
+injected into parser-delivered HTML. No account was signed into and no form was
+submitted. Authenticated staff editor/report journeys remain unverified.
+
+Global `require-trusted-types-for 'script'` was tested as a candidate response
+header only in a local browser profile. It blocked the legitimate
+`/_vercel/speed-insights/script.js` TrustedScriptURL sink and the mobile menu
+disappeared (`compatible:false`). That breaking header was not deployed. No
+unchecked pass-through Trusted Types policy was added to hide the incompatibility;
+public HTML sanitization remains in place. A complete global Trusted Types
+migration is not claimed by this release.

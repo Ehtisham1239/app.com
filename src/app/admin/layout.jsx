@@ -1,6 +1,9 @@
 import { Toaster } from "sonner";
 import "./admin.css";
 
+// CSP script nonces must be generated per request, including the login page.
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: { default: "Admin panel", template: "%s · Admin · Online Quran College" },
   robots: { index: false, follow: false },

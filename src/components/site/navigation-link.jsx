@@ -1,6 +1,7 @@
 "use client";
 
 import Link, { useLinkStatus } from "next/link";
+import { useState } from "react";
 
 function PendingNavigation() {
   const { pending } = useLinkStatus();
@@ -10,6 +11,13 @@ function PendingNavigation() {
 
 // Native Next.js pending state gives feedback on slow navigation while keeping
 // the complete server-rendered page available to readers without JavaScript.
-export function NavigationLink({ children, ...props }) {
-  return <Link {...props}>{children}<PendingNavigation /></Link>;
+export function NavigationLink({ children, prefetch, onPointerEnter, onFocus, ...props }) {
+  const [intent, setIntent] = useState(false);
+  // Navigation lists should not download every destination's JS on first paint.
+  // Hover/focus restores Next's own prefetch/cache behavior for the chosen link.
+  const enabledPrefetch = prefetch === false ? false : intent ? (prefetch ?? null) : false;
+  return <Link {...props} prefetch={enabledPrefetch}
+    onPointerEnter={event => { setIntent(true); onPointerEnter?.(event); }}
+    onFocus={event => { setIntent(true); onFocus?.(event); }}
+  >{children}<PendingNavigation /></Link>;
 }

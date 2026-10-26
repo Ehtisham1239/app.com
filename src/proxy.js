@@ -1,16 +1,34 @@
 import { NextResponse } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 import { SUPABASE_KEY, SUPABASE_URL, SUPABASE_CONFIGURED } from "@/lib/config";
+import { staffContentSecurityPolicy } from "@/lib/staff-csp";
 
 const PUBLIC_ADMIN_PATHS = ["/admin/login", "/admin/forgot"];
 
 // Refreshes the admin session cookie and keeps the admin panel behind sign-in.
 export async function proxy(request) {
-  let response = NextResponse.next({ request });
+  const nonce = Buffer.from(crypto.getRandomValues(new Uint8Array(16))).toString("base64");
+  const csp = staffContentSecurityPolicy(nonce, SUPABASE_URL, process.env.NODE_ENV === "development");
+  const next = () => {
+    // Re-read headers after cookie refresh so refreshed sessions are forwarded.
+    const requestHeaders = new Headers(request.headers);
+    requestHeaders.set("x-nonce", nonce);
+    requestHeaders.set("content-security-policy", csp);
+    return NextResponse.next({ request: { headers: requestHeaders } });
+  };
+  const secure = result => {
+    // A refreshed session must survive a redirect as well as a normal response.
+    if (result !== response) response.cookies.getAll().forEach(cookie => result.cookies.set(cookie));
+    result.headers.set("Content-Security-Policy", csp);
+    result.headers.set("X-Frame-Options", "DENY");
+    result.headers.set("Cache-Control", "private, no-store, max-age=0");
+    return result;
+  };
+  let response = next();
 
   if (!SUPABASE_CONFIGURED) {
-    if (!PUBLIC_ADMIN_PATHS.includes(request.nextUrl.pathname)) return NextResponse.redirect(new URL("/admin/login", request.url));
-    return response;
+    if (!PUBLIC_ADMIN_PATHS.includes(request.nextUrl.pathname)) return secure(NextResponse.redirect(new URL("/admin/login", request.url)));
+    return secure(response);
   }
 
   const supabase = createServerClient(SUPABASE_URL, SUPABASE_KEY, {
@@ -20,7 +38,7 @@ export async function proxy(request) {
       },
       setAll(cookiesToSet, headers) {
         cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
-        response = NextResponse.next({ request });
+        response = next();
         cookiesToSet.forEach(({ name, value, options }) => response.cookies.set(name, value, options));
         Object.entries(headers ?? {}).forEach(([key, value]) => response.headers.set(key, value));
       },
@@ -41,15 +59,15 @@ export async function proxy(request) {
     const url = request.nextUrl.clone();
     url.pathname = "/admin/login";
     url.search = path === "/admin" ? "" : `?next=${encodeURIComponent(path + request.nextUrl.search)}`;
-    return NextResponse.redirect(url);
+    return secure(NextResponse.redirect(url));
   }
   if (path === "/admin/login" && user) {
     const url = request.nextUrl.clone();
     url.pathname = "/admin";
     url.search = "";
-    return NextResponse.redirect(url);
+    return secure(NextResponse.redirect(url));
   }
-  return response;
+  return secure(response);
 }
 
 export const config = {
