@@ -71,7 +71,7 @@ test("cookieless mode uses direct GA4 with no device storage", () => {
   const gtmOnly = cookielessAnalyticsConfig(analyticsConfig({ enabled: true, gtm_container_id: gtmId }));
   assert.equal(gtmOnly.enabled, true); assert.equal(gtmOnly.mode, "gtm");
   const config = cookielessAnalyticsConfig(analyticsConfig({ enabled: true, ga4_measurement_id: ga4Id }));
-  assert.equal(config.mode, "ga4"); assert.equal(config.withGtm, false);
+  assert.equal(config.mode, "ga4");
   const { win, scripts } = fakeBrowser();
   const adapter = createAnalyticsController(win, config);
   adapter.setConsent(true); adapter.pageView("/courses");
@@ -108,15 +108,14 @@ test("web vitals reach GA4 as named events with only the metric and public path"
   adapter.destroy();
 });
 
-test("with both IDs, GA4 loads directly and the GTM container loads beside it under the same consent", () => {
+test("with a GTM container set, GTM owns GA4: no direct gtag, same cookieless consent", () => {
   const config = cookielessAnalyticsConfig(analyticsConfig({ enabled: true, ga4_measurement_id: ga4Id, gtm_container_id: gtmId }));
-  assert.equal(config.mode, "ga4"); assert.equal(config.withGtm, true);
+  assert.equal(config.mode, "gtm");
   const { win, scripts } = fakeBrowser();
   const adapter = createAnalyticsController(win, config);
   adapter.setConsent(true);
-  assert.deepEqual(scripts.map(s => s.id).sort(), ["oqc-google-analytics", "oqc-google-tag-manager"]);
-  assert.ok(scripts.find(s => s.id === "oqc-google-tag-manager").src.endsWith("gtm.js?id=" + gtmId));
-  const consents = win.dataLayer.map(item => Array.from(item)).filter(item => item[0] === "consent");
-  assert.equal(consents.at(-1)[2].analytics_storage, "granted"); assert.equal(consents.at(-1)[2].ad_storage, "denied");
+  assert.deepEqual(scripts.map(s => s.src), ["https://www.googletagmanager.com/gtm.js?id=" + gtmId]);
+  const consents = win.dataLayer.map(item => Array.from(item ?? [])).filter(item => item[0] === "consent");
+    assert.equal(consents.at(-1)[2].analytics_storage, "granted"); assert.equal(consents.at(-1)[2].ad_storage, "denied");
   adapter.destroy();
 });

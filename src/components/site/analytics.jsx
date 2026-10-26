@@ -17,11 +17,24 @@ export function WebsiteAnalytics({ config }) {
     if (!enabled || !config.cookieless || config.mode === "off") return;
     clearAnalyticsCookies(window);
     try { window.localStorage.removeItem(ANALYTICS_CONSENT_KEY); } catch { /* storage blocked */ }
-    const adapter = createAnalyticsController(window, config);
-    controller.current = adapter;
-    adapter.setConsent(true);
-    adapter.pageView(window.location.href);
-    return () => { adapter.destroy(); controller.current = null; };
+    let adapter, cancelled = false, idle;
+    // Start after the page has loaded and the main thread is idle, so tag code
+    // never competes with the first paint or the hero image.
+    const start = () => {
+      if (cancelled) return;
+      adapter = createAnalyticsController(window, config);
+      controller.current = adapter;
+      adapter.setConsent(true);
+      adapter.pageView(window.location.href);
+    };
+    const schedule = () => { idle = "requestIdleCallback" in window ? window.requestIdleCallback(start, { timeout: 2500 }) : window.setTimeout(start, 1200); };
+    if (document.readyState === "complete") schedule(); else window.addEventListener("load", schedule, { once: true });
+    return () => {
+      cancelled = true;
+      window.removeEventListener("load", schedule);
+      if (idle !== undefined) ("cancelIdleCallback" in window ? window.cancelIdleCallback(idle) : window.clearTimeout(idle));
+      adapter?.destroy(); controller.current = null;
+    };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enabled, ga4Id, config.gtmId]);
   useEffect(() => { controller.current?.pageView(pathname); }, [pathname]);

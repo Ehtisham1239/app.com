@@ -26,6 +26,8 @@ const outfit = localFont({
   src: [{ path: "../../node_modules/@fontsource-variable/outfit/files/outfit-latin-wght-normal.woff2", weight: "100 900", style: "normal" }],
   variable: "--font-outfit",
   display: "swap",
+  // Headings swap in after first paint; not preloading keeps early bandwidth for the hero image.
+  preload: false,
 });
 
 const amiri = localFont({
