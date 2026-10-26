@@ -27,6 +27,10 @@ Pre-release rollback: `dpl_FdoJHyqiFjxgUwCEmed4kPcJvmSc` (source `4617615`).
   replacing the complete initial server HTML. Forms have a 20-second browser
   request timeout, contact-submit guard, required-field semantics and focused
   trial-success confirmation. No real enquiry was submitted during QA.
+- Public content loaders now throw on backend outages so ISR preserves its last
+  successful page. A timeout can no longer become a cached empty listing or
+  false 404. Successful missing/unpublished records remain authoritative; the
+  bootstrap seed fallback is limited to an uninstalled schema.
 - CMS loading ignores stale or unmounted requests, preserves true null results,
   hides the previous record while selecting another, and updates refs after
   commit. Internal-note drafts survive automatic read-status refreshes. Report
@@ -43,7 +47,7 @@ Pre-release rollback: `dpl_FdoJHyqiFjxgUwCEmed4kPcJvmSc` (source `4617615`).
 
 ## Validation
 
-73 Node tests pass, including local database/RLS checks and CSV regression cases.
+76 Node tests cover local database/RLS, CSV regression and content-outage cases.
 An isolated real React/Chromium fixture passes five asynchronous CMS cases:
 Strict Mode startup, out-of-order replies, empty results, retry and unmount.
 48 Chromium viewport cases at 320/390/768/1440px pass with zero browser errors,

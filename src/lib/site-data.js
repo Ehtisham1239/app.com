@@ -2,24 +2,24 @@ import { DEFAULT_SETTINGS } from "@/lib/default-settings";
 import { seedFallback } from "@/lib/seed-fallback";
 import { cache } from "react";
 import { publicDb } from "@/lib/supabase/public";
+import { readContentQuery } from "@/lib/content-query";
 
-// Website content loaders. Each returns safe fallbacks if Supabase is unreachable,
-// so a page still renders (and is refreshed on the next revalidation).
+// Successful queries, including empty/unpublished results, are authoritative.
+// During a backend outage ISR retains its last successful page; do not cache a
+// timeout as an empty listing/404 or resurrect deleted content from old seeds.
 
 let schemaUnavailableUntil = 0;
 async function safe(query, fallback, label) {
   if (!publicDb || Date.now() < schemaUnavailableUntil) return seedFallback(label, fallback);
   try {
-    const { data, error } = await query();
-    if (error) {
-      if (error.code === "PGRST205") schemaUnavailableUntil = Date.now() + 5000;
-      console.error(`[site-data] ${label}:`, error.message);
-      return error.code === "PGRST205" ? seedFallback(label, fallback) : fallback;
-    }
-    return data ?? fallback;
+    return await readContentQuery(query, {
+      fallback, label,
+      schemaFallback: () => seedFallback(label, fallback),
+      onSchemaMissing: () => { schemaUnavailableUntil = Date.now() + 5000; },
+    });
   } catch (err) {
     console.error(`[site-data] ${label}:`, err?.message || err);
-    return fallback;
+    throw err;
   }
 }
 
