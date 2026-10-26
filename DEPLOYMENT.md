@@ -1,3 +1,5 @@
+> **Analytics mode (owner decision, 26 Oct 2026 — keep):** cookieless GA4 with `client_storage: "none"` and `analytics_storage: "granted"`; no banner; ad storage denied. See AGENTS.md before changing.
+
 # app.com website and CMS deployment
 
 ## Mobile, article and performance follow-up — 26 October 2026

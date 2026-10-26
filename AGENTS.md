@@ -7,3 +7,9 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Owner decisions — do not change without the owner's written approval
+
+- **Analytics (26 Oct 2026):** no analytics banner or "Analytics preferences" button. GA4 runs cookieless: `client_storage: "none"` with `analytics_storage: "granted"` so hits appear in GA4 reports; `ad_storage`, `ad_user_data` and `ad_personalization` stay denied and Google signals stay off. Do not switch analytics storage to "denied" (reports go empty) and do not bring back the banner. `tests/analytics.test.mjs` pins this.
+- **Free trial (26 Oct 2026):** 3 days, Weekend plan excluded.
+- **Brand colours (26 Oct 2026):** logo green (`#0C6C0C` / `#249C0C`), deep green `#0D4A1C`, soft gold accents.

@@ -78,11 +78,15 @@ test("cookieless mode uses direct GA4 with no device storage and never loads GTM
   const setup = win.dataLayer.map(item => Array.from(item)).find(item => item[0] === "config");
   assert.equal(setup[2].client_storage, "none");
   assert.equal(setup[2].allow_google_signals, false);
+  // Owner decision (26 Oct 2026): reports must receive hits, so analytics
+  // storage is granted while client_storage "none" keeps the device clean.
   const updates = win.dataLayer.map(item => Array.from(item)).filter(item => item[0] === "consent");
-  assert.ok(updates.length >= 2);
+  assert.equal(updates.at(-1)[1], "update");
+  assert.equal(updates.at(-1)[2].analytics_storage, "granted");
   for (const update of updates) {
-    assert.equal(update[2].analytics_storage, "denied");
     assert.equal(update[2].ad_storage, "denied");
+    assert.equal(update[2].ad_user_data, "denied");
+    assert.equal(update[2].ad_personalization, "denied");
   }
   adapter.destroy();
 });
