@@ -10,8 +10,7 @@ artifacts/
 __pycache__/
 *.pyc
 
-# New learning-scene masters are durable; smaller/AVIF files are built from them.
-/public/images/learning/oqc-*-v3-400.*
-/public/images/learning/oqc-*-v3-800.*
-/public/images/learning/oqc-*-v3-1200.avif
+# Responsive learning-scene sizes (400/800 WebP+AVIF, 1200 AVIF) are committed so
+# builds skip regenerating them; prepare-responsive-learning.mjs only creates
+# files for new masters. Legacy map images stay out of Git.
 /public/images/learning/map-*.webp
