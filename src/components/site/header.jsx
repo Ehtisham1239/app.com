@@ -83,7 +83,8 @@ export function SiteHeader({ menu, courses, brandName }) {
       )}
     >
       <div className="page-wrap flex h-[4.5rem] items-center gap-3 sm:gap-6">
-        <Link href="/" className="header-brand group flex min-w-0 items-center gap-3" aria-label={`${brandName} — home`}>
+        {/* No prefetch for "/": its payload preloads the homepage hero image on every page. */}
+        <Link href="/" prefetch={false} className="header-brand group flex min-w-0 items-center gap-3" aria-label={`${brandName} — home`}>
           <img src="/brand/mark.png" alt="" width={176} height={176} className="size-12 shrink-0 object-contain sm:size-14" />
           <span className="flex flex-col leading-none">
             <span className="font-display text-[1.02rem] font-semibold uppercase tracking-[0.05em] text-leaf-700 sm:text-[1.2rem]">{(brandName || "Online Quran College").replace(/\s+college(\s+ltd\.?)?$/i, "")}</span>
@@ -143,6 +144,7 @@ export function SiteHeader({ menu, courses, brandName }) {
               <Link
                 key={item.href}
                 href={item.href}
+                prefetch={item.href === "/" ? false : undefined}
                 target={item.opens_new_tab ? "_blank" : undefined}
                 className={clsx(
                   "rounded-full px-3.5 py-2 text-[0.95rem] font-medium transition-colors",
@@ -207,6 +209,7 @@ export function SiteHeader({ menu, courses, brandName }) {
               <div key={item.href}>
                 <Link
                   href={item.href}
+                  prefetch={item.href === "/" ? false : undefined}
                   onClick={() => setOpen(false)}
                   target={item.opens_new_tab ? "_blank" : undefined}
                   rel={item.opens_new_tab ? "noopener noreferrer" : undefined}

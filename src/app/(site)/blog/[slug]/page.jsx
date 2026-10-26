@@ -53,7 +53,7 @@ export default async function PostPage({ params }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema(breadcrumbs, SITE_URL)) }} />
       <article>
         <PageHero path={`/blog/${post.slug}`} eyebrow={post.category} title={post.title} visual={<ContentImage src={visual.src} alt={visual.alt} priority sizes="(max-width: 1024px) 100vw, 600px" className="aspect-[3/2] w-full object-cover" />}>
-          <nav aria-label="Breadcrumb" className="mt-5 text-sm text-white/75"><Link href="/">Home</Link> / <Link href="/blog" className="underline">Articles</Link></nav>
+          <nav aria-label="Breadcrumb" className="mt-5 text-sm text-white/75"><Link href="/" prefetch={false}>Home</Link> / <Link href="/blog" className="underline">Articles</Link></nav>
           <p className="mt-5 flex flex-wrap items-center gap-3 text-sm text-white/75">{author["@type"] === "Organization" ? <Link href="/about" className="underline underline-offset-4">{author.name}</Link> : <span>{author.name}</span>}{dates.published && <span>Published <time dateTime={dates.published}>{formatDate(dates.published, "UTC")}</time></span>}{dates.showModified && <span>Updated <time dateTime={dates.modified}>{formatDate(dates.modified, "UTC")}</time></span>}{post.reading_minutes ? <span className="inline-flex items-center gap-1"><Clock3 className="size-4" aria-hidden="true" />{post.reading_minutes} min read</span> : null}</p>
         </PageHero>
         <div className="page-wrap article-layout">

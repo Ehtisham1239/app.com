@@ -41,7 +41,7 @@ export function SiteFooter({ settings, menus }) {
       </div>
       <div className="page-wrap relative grid gap-10 py-10 sm:py-14 lg:grid-cols-12 lg:gap-14">
         <div className="min-w-0 lg:col-span-4">
-          <Link href="/" aria-label={`${identity.name ?? "Online Quran College"} — home`} className="inline-flex rounded-2xl bg-white p-3 shadow-sm"><img src="/brand/logo-160.webp" alt={identity.name ?? "Online Quran College"} width={160} height={160} loading="lazy" decoding="async" className="size-20 object-contain" /></Link>
+          <Link href="/" prefetch={false} aria-label={`${identity.name ?? "Online Quran College"} — home`} className="inline-flex rounded-2xl bg-white p-3 shadow-sm"><img src="/brand/logo-160.webp" alt={identity.name ?? "Online Quran College"} width={160} height={160} loading="lazy" decoding="async" className="size-20 object-contain" /></Link>
           <p className="mt-5 max-w-sm text-[0.95rem] leading-relaxed text-white/85">{identity.tagline}</p>
           <div className="footer-contact mt-5 space-y-1 text-[0.95rem]">
             {contact.email && (
