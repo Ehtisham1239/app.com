@@ -47,12 +47,12 @@ export function WebsiteAnalytics({ config }) {
           <h2 className="text-lg font-semibold">Optional website analytics</h2>
           <p className="mt-2 text-sm leading-relaxed text-ink-soft">Allow Google Analytics to help us understand page visits and enquiries. Your choice does not affect lessons or forms. Advertising consent stays off. <Link href="/privacy-policy#optional-analytics" className="underline underline-offset-4">Privacy details</Link></p>
           <div className="mt-4 grid grid-cols-2 gap-3">
-            <button type="button" className="btn btn-outline btn-sm" onClick={() => choose("denied")}>Reject analytics</button>
-            <button type="button" className="btn btn-primary btn-sm" onClick={() => choose("granted")}>Allow analytics</button>
+            <button type="button" className="btn btn-outline min-h-11 text-sm" onClick={() => choose("denied")}>Reject analytics</button>
+            <button type="button" className="btn btn-primary min-h-11 text-sm" onClick={() => choose("granted")}>Allow analytics</button>
           </div>
-          {consent !== null && <button type="button" className="mt-3 text-sm underline" onClick={() => setSettingsOpen(false)}>Close preferences</button>}
+          {consent !== null && <button type="button" className="mt-3 inline-flex min-h-11 items-center text-sm underline" onClick={() => setSettingsOpen(false)}>Close preferences</button>}
         </section>
-      ) : <button type="button" className="fixed bottom-3 left-3 z-40 rounded-full border border-leaf-100 bg-white px-4 py-2 text-xs font-medium text-leaf-700 shadow-sm" onClick={() => setSettingsOpen(true)}>Analytics preferences</button>}
+      ) : <button type="button" className="fixed bottom-3 left-3 z-40 min-h-11 rounded-full border border-leaf-100 bg-white px-4 py-2 text-xs font-medium text-leaf-700 shadow-sm" onClick={() => setSettingsOpen(true)}>Analytics preferences</button>}
     </>
   );
 }

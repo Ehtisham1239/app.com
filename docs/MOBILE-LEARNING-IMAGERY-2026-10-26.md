@@ -1,6 +1,6 @@
 # Mobile layout and Quran-learning imagery — 26 October 2026
 
-The interrupted visual redesign has been implemented. Production deployment is still pending: the connected Vercel account returns `404 Project not found` for the documented production project, and its project listing is empty. No production alias, CMS record, analytics setting or audience has been changed.
+The interrupted visual redesign has been implemented. Vercel access was subsequently recovered through default-account discovery, which confirmed the original project, account and live alias. The owner-provided GA4 configuration is now active in the public CMS setting. See `docs/seo-agent/GA4-ACTIVATION-2026-10-26.md` for current release status. The imagery implementation itself does not alter CMS content records, production aliases or audiences.
 
 ## Result
 

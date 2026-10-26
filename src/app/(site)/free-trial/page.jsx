@@ -14,12 +14,12 @@ export const metadata = contentMetadata({
   seo_title: "Free Online Quran Trial Classes | Online Quran College",
   cover_url: "/images/islamic/mosque-courtyard-v1-1200.webp",
   cover_alt: "An illustrated mosque courtyard with arches and a reflecting pool",
-}, { path: "/free-trial", description: "Book a 7-day trial of one-to-one online Quran classes for children or adults. Share your course, local time zone and teacher preferences with our coordinator." });
+}, { path: "/free-trial", description: "Request a 7-day free trial of one-to-one Quran classes on eligible plans. The Weekend plan is excluded. Share your course and local time zone." });
 
 const PROMISES = [
   { icon: Clock3, title: "Reply within 24 hours", text: "A coordinator contacts you by WhatsApp or email to confirm a time." },
   { icon: HeartHandshake, title: "Teacher of your choice", text: "Female or male teacher, explained in your language." },
-  { icon: CalendarCheck2, title: "7 days, no card", text: "Attend the trial classes before choosing any package." },
+  { icon: CalendarCheck2, title: "7 days on eligible plans, no card", text: "Attend trial classes before choosing an eligible package. The Weekend plan is excluded." },
   { icon: ShieldCheck, title: "Your details are safe", text: "Used only to arrange your classes — never sold or shared." },
 ];
 
@@ -28,7 +28,7 @@ export default async function FreeTrialPage() {
   const forms = settings["site.forms"] ?? {};
   const wa = whatsappLink(settings["site.contact"]?.whatsapp, "Assalamu alaikum, I have just booked a free trial on your website.");
   return <>
-    <PageHero path="/free-trial" eyebrow="Free trial" title="Request a free online Quran trial" intro="Request a 7-day trial. Share the learner’s level and preferred time; our coordinator confirms the details.">
+    <PageHero path="/free-trial" eyebrow="Free trial" title="Request a free online Quran trial" intro="Request a 7-day trial on an eligible plan. The Weekend plan is excluded. Share the learner’s level and preferred time; our coordinator confirms the details.">
       <Link href="#trial-form" className="btn btn-gold mt-6">Start your trial request</Link>
     </PageHero>
     <section id="trial-form" aria-label="Trial request" className="page-wrap grid scroll-mt-28 items-start gap-8 py-12 lg:grid-cols-[0.65fr_1fr]">
