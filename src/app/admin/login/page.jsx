@@ -107,9 +107,11 @@ export default function LoginPage() {
             <LoginForm />
           </Suspense>
           <p className="mt-8 text-center text-sm text-ink-faint">
-            <Link href="/" className="hover:text-leaf-700">
+            {/* Cross the public/staff CSP boundary with a new document. */}
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+            <a href="/" className="hover:text-leaf-700">
               ← Back to the website
-            </Link>
+            </a>
           </p>
         </div>
       </section>

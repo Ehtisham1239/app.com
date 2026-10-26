@@ -119,3 +119,29 @@ disappeared (`compatible:false`). That breaking header was not deployed. No
 unchecked pass-through Trusted Types policy was added to hide the incompatibility;
 public HTML sanitization remains in place. A complete global Trusted Types
 migration is not claimed by this release.
+
+## Final production measurements and CSP boundary
+
+Source `ab2d27496d0bf572c764933ccb278a6daad1306e` reached production READY as
+`dpl_3bM629J15Bmx3zV3dm6PRmw7mL9Q`. At 21:44 PKT the latest Google lab run
+scores mobile 95 / 100 / 100 / 100 (performance/accessibility/best practices/SEO)
+and desktop 100 / 100 / 100 / 100. Mobile FCP 1.676s, LCP 2.701s, TBT 52ms,
+CLS 0 and Speed Index 1.867s; desktop FCP 0.321s, LCP 0.654s, TBT 30ms,
+CLS 0.001 and Speed Index 0.544s. The previous sample remains recorded above:
+98 mobile is not substituted for the latest score. Lab variability and CrUX
+No Data preclude a timing guarantee. Remaining mobile diagnostics include a
+15.6 KiB CSS request, 50 KiB estimated unused JS, 14 KiB legacy JS and one long
+task. Zero blocking/all-100 mobile/1ms loading are not claimed.
+Report: https://pagespeed.web.dev/analysis/https-appcom-online-quran-college-vercel-app/i4we3hxt9v?form_factor=mobile
+
+Cloud browser verified the production homepage and anonymous Portal redirect to
+the working sign-in form. The supplementary remote scripted security run did not
+finish before the execution environment became unavailable, so the successful
+local security smoke is not represented as a successful live injection test.
+
+Source inspection confirms header/mobile/footer Portal links already use native
+anchors. The login's return-to-website link now also uses a native anchor, so
+returning to public pages obtains a new document and the public response CSP.
+This avoids retaining the staff-only document policy across Next client routing.
+The final anchor-only follow-up requires a fresh remote production build; no
+additional local browser run was possible after the environment disconnected.
