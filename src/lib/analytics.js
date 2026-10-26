@@ -118,8 +118,25 @@ export function createAnalyticsController(win, config) {
     if (channel) emit("contact_click", { contact_channel: channel });
   };
   win.addEventListener("oqc:lead-saved", onLead); doc.addEventListener("click", onClick);
+  // Core Web Vitals from real visits (Next.js useReportWebVitals). Only the
+  // metric itself and the public page path are sent.
+  const VITALS = new Set(["LCP", "INP", "CLS", "FCP", "TTFB"]);
+  function webVital(metric) {
+    if (!metric || !VITALS.has(metric.name) || !Number.isFinite(metric.value)) return false;
+    const location = publicAnalyticsUrl(win.location.href, origin);
+    if (!location) return false;
+    return emit(metric.name, {
+      value: Math.round(metric.name === "CLS" ? metric.value * 1000 : metric.value),
+      metric_value: metric.value,
+      metric_delta: metric.delta,
+      metric_id: String(metric.id || "").slice(0, 60),
+      metric_rating: ["good", "needs-improvement", "poor"].includes(metric.rating) ? metric.rating : undefined,
+      page_path: new URL(location).pathname,
+      non_interaction: true,
+    });
+  }
   return {
-    setConsent, pageView,
+    setConsent, pageView, webVital,
     destroy() {
       win.removeEventListener("oqc:lead-saved", onLead); doc.removeEventListener("click", onClick);
       setConsent(false);

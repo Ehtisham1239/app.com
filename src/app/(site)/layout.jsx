@@ -1,4 +1,5 @@
 import { HatchiumChat } from "@/components/site/hatchium-chat";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { safeJsonLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
 import { CampaignAttribution } from "@/components/site/campaign-attribution";
@@ -47,6 +48,8 @@ export default async function SiteLayout({ children }) {
       <main id="main">{children}</main>
       <SiteFooter settings={settings} menus={footerMenus} />
       <HatchiumChat enabled={chatEnabled} widgetKey={chat.widget_key} />
+      {/* Vercel Speed Insights: cookieless real-visit Core Web Vitals per route. */}
+      <SpeedInsights />
       {analytics.enabled && <WebsiteAnalytics config={analytics} />}
     </>
   );

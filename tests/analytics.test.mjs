@@ -90,3 +90,19 @@ test("cookieless mode uses direct GA4 with no device storage and never loads GTM
   }
   adapter.destroy();
 });
+
+test("web vitals reach GA4 as named events with only the metric and public path", () => {
+  const config = cookielessAnalyticsConfig(analyticsConfig({ enabled: true, ga4_measurement_id: ga4Id }));
+  const { win } = fakeBrowser();
+  const adapter = createAnalyticsController(win, config);
+  assert.equal(adapter.webVital({ name: "LCP", value: 1800, delta: 1800, id: "v1", rating: "good" }), false); // nothing before load
+  adapter.setConsent(true);
+  assert.equal(adapter.webVital({ name: "LCP", value: 1834.6, delta: 1834.6, id: "v1-lcp", rating: "good" }), true);
+  assert.equal(adapter.webVital({ name: "CLS", value: 0.042, delta: 0.042, id: "v1-cls", rating: "good" }), true);
+  assert.equal(adapter.webVital({ name: "Next.js-hydration", value: 20, id: "x" }), false);
+  const events = win.dataLayer.map(item => Array.from(item)).filter(item => item[0] === "event" && ["LCP", "CLS"].includes(item[1]));
+  assert.equal(events[0][2].value, 1835); assert.equal(events[1][2].value, 42);
+  assert.equal(events[0][2].page_path, "/contact");
+  assert.ok(!JSON.stringify(events).includes("private@example.test"));
+  adapter.destroy();
+});

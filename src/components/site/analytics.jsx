@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
+import { useReportWebVitals } from "next/web-vitals";
 import { ANALYTICS_CONSENT_KEY, clearAnalyticsCookies, createAnalyticsController } from "@/lib/analytics";
 
 // Cookieless GA4 (owner decision, 26 Oct 2026): no banner or preference button.
@@ -24,5 +25,7 @@ export function WebsiteAnalytics({ config }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enabled, ga4Id]);
   useEffect(() => { controller.current?.pageView(pathname); }, [pathname]);
+  // Real-visit Core Web Vitals go to GA4 as LCP / INP / CLS / FCP / TTFB events.
+  useReportWebVitals((metric) => { controller.current?.webVital(metric); });
   return null;
 }
