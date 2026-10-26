@@ -27,6 +27,8 @@ const nextConfig = {
   async redirects() {
     const courses = ["noorani-qaida", "quran-nazara", "hifz-quran", "arabic-language", "quran-translation", "hadith-translation"];
     return [
+      { source: "/images/learning/map-:region([a-z-]+)-r2-:width(400|800|1200).webp", destination: "/images/learning/oqc-learning-:region-v3-:width.webp", permanent: true },
+      { source: "/images/learning/map-:region([a-z-]+)-:width(400|800|1200).webp", destination: "/images/learning/oqc-learning-:region-v3-:width.webp", permanent: true },
       ...LOCATIONS.flatMap((country) => [null, ...country.cities].map((city) => ({ source: `/${locationCmsSlug(country, city)}`, destination: locationPath(country, city), permanent: true }))),
       ...LEARNING_GUIDES.map((guide) => ({ source: `/${guide.slug}`, destination: guide.path, permanent: true })),
       { source: "/online-quran-classes-usa", destination: "/locations/united-states", permanent: true },

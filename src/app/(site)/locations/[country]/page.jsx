@@ -15,6 +15,7 @@ async function resolve(params) {
 export async function generateMetadata({ params }) {
   const { country, city } = await resolve(params);
   const page = await getPage(locationCmsSlug(country, city));
+  const place = country.name;
   return contentMetadata({ ...page, seo_title: page?.seo_title || locationSearchTitle(country, city) }, { path: locationPath(country, city), locale: locationLocale(country), title: page?.title || `Online Quran classes in ${place}`, description: page?.seo_description || locationSearchIntro(country, city) });
 }
 export default async function Page({ params }) { return <LocationPage {...await resolve(params)} />; }

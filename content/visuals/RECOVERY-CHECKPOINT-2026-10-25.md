@@ -1,5 +1,7 @@
 # OQC mobile UI and imagery recovery checkpoint
 
+Update, 26 October 2026: the full 171-scene registry and responsive UI implementation are now present in this source. See `docs/MOBILE-LEARNING-IMAGERY-2026-10-26.md` for verification and the outstanding production-access blocker. The interrupted-state notes below are historical and must not be read as a live release claim.
+
 Date: 2026-10-25
 
 Owner request: improve responsive UI and footer using the original OQC emerald/mint/ivory branding; replace all regional maps with unique realistic online-learning scenes; use subject-specific course images; preserve the original homepage main image.

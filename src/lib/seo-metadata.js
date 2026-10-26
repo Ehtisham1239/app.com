@@ -11,12 +11,14 @@ export function contentMetadata(record, { path, title, description, type = "webs
   const canonical = canonicalUrl(record.canonical_url, path, SITE_URL);
   const displayTitle = record.seo_title || title || record.title;
   const cover = publicImageUrl(record.cover_url || heroArt(path).src);
+  const coverAsset = imageManifest.find(item => `${SITE_URL}${item.url}` === cover);
+  const coverAlt = coverAsset?.replacesLegacyVisual ? coverAsset.alt : (record.cover_alt || coverAsset?.alt || displayTitle);
   return {
     title: record.seo_title ? { absolute: record.seo_title } : title || record.title,
     description,
     alternates: { canonical, types: { "application/rss+xml": [{ url: "/blog/feed.xml", title: "Online Quran College articles" }] } },
     robots: { index: !record.seo_noindex, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1, googleBot: { index: !record.seo_noindex, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
-    openGraph: { type, siteName: BRAND_NAME, locale, title: displayTitle, description, url: canonical, images: cover ? [{ url: cover, alt: record.cover_alt || imageManifest.find(item => `${SITE_URL}${item.url}` === cover)?.alt || displayTitle }] : [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: BRAND_NAME }], ...(type === "article" ? { publishedTime: record.published_at, modifiedTime: record.updated_at } : {}) },
+    openGraph: { type, siteName: BRAND_NAME, locale, title: displayTitle, description, url: canonical, images: cover ? [{ url: cover, alt: coverAlt }] : [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: BRAND_NAME }], ...(type === "article" ? { publishedTime: record.published_at, modifiedTime: record.updated_at } : {}) },
     twitter: { card: "summary_large_image", title: displayTitle, description, images: [cover || `${SITE_URL}/opengraph-image`] },
   };
 }
