@@ -1,12 +1,12 @@
 import localFont from "next/font/local";
-import { Toaster } from "sonner";
 import { SITE_URL } from "@/lib/config";
 import "./globals.css";
 
 const inter = localFont({
   src: [
+    // Latin only: the latin-ext face had no unicode-range, so every page
+    // preloaded an extra 85 KB file the English site never needed.
     { path: "../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2", weight: "300 900", style: "normal" },
-    { path: "../../node_modules/@fontsource-variable/inter/files/inter-latin-ext-wght-normal.woff2", weight: "300 900", style: "normal" },
   ],
   variable: "--font-inter",
   display: "swap",
@@ -55,7 +55,6 @@ export default function RootLayout({ children }) {
     <html lang="en-GB" data-scroll-behavior="smooth" className={`${inter.variable} ${outfit.variable} ${amiri.variable}`} suppressHydrationWarning>
       <body>
         {children}
-        <Toaster position="top-center" richColors closeButton toastOptions={{ style: { fontFamily: "var(--font-sans)" } }} />
       </body>
     </html>
   );

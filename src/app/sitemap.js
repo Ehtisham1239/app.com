@@ -8,7 +8,9 @@ const imageUrl = (src) => new URL(imageManifest.find((image) => image.storage_ur
 const fixedImages = {
   "": "/brand/hero.webp",
   "/contact": "/images/learning/contact-coordinator-r2-1200.webp",
-  "/free-trial": "/images/learning/trial-welcome-r2-1200.webp",
+  "/free-trial": "/images/islamic/online-lesson-adult-v1-1200.webp",
+  "/pricing": "/images/islamic/online-lesson-adult-v1-1200.webp",
+  "/locations": "/images/hero/online-lesson-child-v1-1200.webp",
 };
 export const revalidate = 3600;
 export default async function sitemap() {

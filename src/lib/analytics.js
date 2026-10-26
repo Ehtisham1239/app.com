@@ -11,6 +11,14 @@ export function analyticsConfig(value = {}) {
   return { enabled: value.enabled === true && Boolean(gtmId || ga4Id), mode: gtmId ? "gtm" : ga4Id ? "ga4" : "off", ga4Id, gtmId };
 }
 
+// Site-wide mode since 26 Oct 2026: GA4 runs without writing cookies or other
+// device storage, so no consent banner is shown. Only direct GA4 can honour
+// that, so a GTM-only setup stays off (tags inside a container could set cookies).
+export function cookielessAnalyticsConfig(config) {
+  const ga4Id = config?.ga4Id || "";
+  return { ...config, enabled: Boolean(config?.enabled && ga4Id), mode: ga4Id ? "ga4" : "off", gtmId: "", cookieless: true };
+}
+
 export function analyticsSettingsError(value = {}) {
   const config = analyticsConfig(value);
   if (value.ga4_measurement_id && !config.ga4Id) return "Enter only a valid GA4 Measurement ID beginning G-, without script code.";
@@ -53,7 +61,8 @@ export function clearAnalyticsCookies(win) {
   } catch { /* Analytics remains denied even when the browser blocks cookie access. */ }
 }
 
-// One transport per page. Basic consent mode: do not load Google before opt-in.
+// One transport per page. Banner mode: do not load Google before opt-in.
+// Cookieless mode: load straight away with client_storage "none" (nothing stored).
 export function createAnalyticsController(win, config) {
   let consent = false, initialized = false, lastPage = "", previousPage = "";
   const doc = win.document, origin = win.location.origin;
@@ -78,7 +87,7 @@ export function createAnalyticsController(win, config) {
     if (config.mode === "gtm") win.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js", page_location: location });
     else {
       command("js", new Date());
-      command("config", config.ga4Id, { send_page_view: false, page_location: location, page_referrer: previousPage, allow_google_signals: false, allow_ad_personalization_signals: false });
+      command("config", config.ga4Id, { send_page_view: false, page_location: location, page_referrer: previousPage, allow_google_signals: false, allow_ad_personalization_signals: false, ...(config.cookieless ? { client_storage: "none" } : {}) });
     }
     const id = "oqc-google-analytics";
     if (!doc.getElementById(id)) {

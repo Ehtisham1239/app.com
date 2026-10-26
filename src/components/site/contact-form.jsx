@@ -5,7 +5,6 @@ import Link from "next/link";
 import { captureAttribution } from "@/lib/attribution";
 import { useEffect, useRef, useState } from "react";
 import { CheckCircle2, Loader2, Send } from "@/components/site/icons";
-import { getPublicBrowserClient } from "@/lib/supabase/public";
 import { COUNTRIES } from "@/lib/constants";
 
 const SUBJECTS = ["Course enquiry", "Fees and payment", "Class timings", "Teacher request", "Existing student support", "Partnership", "Other"];
@@ -36,7 +35,7 @@ export function ContactForm({ consentText, successText }) {
     const utm = captureAttribution();
     let data, error;
     try {
-      ({ data, error } = await getPublicBrowserClient().rpc("submit_contact_message", { payload: { ...form, email: form.email.trim().toLowerCase(), utm, source: utm.utm_source || "website" } }));
+      ({ data, error } = await (await import("@/lib/supabase/public")).getPublicBrowserClient().rpc("submit_contact_message", { payload: { ...form, email: form.email.trim().toLowerCase(), utm, source: utm.utm_source || "website" } }));
     } catch (cause) { error = cause; }
     if (error) return setState({ sending: false, error: error.message || "Could not send. Please try WhatsApp instead.", done: null });
     announceLeadSaved({ formType: "contact", country: form.country, reference: data?.reference, honeypot: form.website });

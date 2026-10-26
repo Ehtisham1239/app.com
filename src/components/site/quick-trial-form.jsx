@@ -6,7 +6,6 @@ import { clsx } from "clsx";
 import { announceLeadSaved } from "@/lib/conversion-events";
 import { captureAttribution } from "@/lib/attribution";
 import { bookingPreferenceNotes } from "@/lib/booking-preferences";
-import { getPublicBrowserClient } from "@/lib/supabase/public";
 import { MARKET_TIME_ZONES } from "@/lib/market-timezones";
 import { LOCATIONS, locationTimeZone } from "@/lib/locations";
 import { AGE_BANDS, COUNTRIES } from "@/lib/constants";
@@ -118,7 +117,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
     };
     let data, error;
     try {
-      ({ data, error } = await getPublicBrowserClient().rpc("submit_trial_application", { payload }));
+      ({ data, error } = await (await import("@/lib/supabase/public")).getPublicBrowserClient().rpc("submit_trial_application", { payload }));
     } catch (cause) { error = cause; }
     if (error) {
       setState({ sending: false, error: error.message || "We could not send your request. Please try again or message us on WhatsApp.", reference: null });

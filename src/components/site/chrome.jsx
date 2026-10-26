@@ -56,7 +56,7 @@ function ImmersiveHero({ eyebrow, title, titleAccent, intro, children, path, jso
   return (
     <section className="inner-hero hero-immersive relative overflow-hidden bg-mushaf-900 text-white">
       {jsonLd}
-      <picture className="hero-immersive-media">
+      <picture data-hero-visual className="hero-immersive-media">
         <source type="image/avif" srcSet={IMMERSIVE_ART.avif.map(v => `${v.url} ${v.width}w`).join(", ")} sizes="(max-width: 1024px) 100vw, 70vw" />
         <img src={IMMERSIVE_ART.src} srcSet={IMMERSIVE_ART.webp.map(v => `${v.url} ${v.width}w`).join(", ")} sizes="(max-width: 1024px) 100vw, 70vw" width={IMMERSIVE_ART.width} height={IMMERSIVE_ART.height} alt={IMMERSIVE_ART.alt} loading="eager" fetchPriority="high" decoding="async" />
       </picture>
