@@ -1,5 +1,5 @@
 import { guideForSlug } from "@/lib/learning-guides";
-import { LOCATIONS, locationPath, locationCmsSlug } from "@/lib/locations";
+import { LOCATIONS, isCityState, locationPath, locationCmsSlug } from "@/lib/locations";
 import { getPublishedSlugs } from "@/lib/site-data";
 import { SITE_URL } from "@/lib/config";
 import { shouldIncludeInSitemap } from "@/lib/seo";
@@ -17,7 +17,7 @@ export default async function sitemap() {
   const { courses, posts, pages, teachers } = await getPublishedSlugs();
   const fixed = ["", "/courses", "/pricing", "/free-trial", "/teachers", "/blog", "/faq", "/contact", "/careers", "/locations", "/learn"].map((path) => ({ url: `${SITE_URL}${path}`, ...(fixedImages[path] ? { images: [imageUrl(fixedImages[path])] } : {}), changeFrequency: path === "" ? "weekly" : "monthly", priority: path === "" ? 1 : 0.7 }));
   const locationPages = new Map(pages.map((p) => [p.slug, p]));
-  const locations = LOCATIONS.flatMap((country) => [null, ...country.cities].flatMap((city) => {
+  const locations = LOCATIONS.flatMap((country) => [null, ...country.cities.filter((city) => !isCityState(country, city))].flatMap((city) => {
     const path = locationPath(country, city), page = locationPages.get(locationCmsSlug(country, city));
     return shouldIncludeInSitemap(page, path, SITE_URL) ? [{ url: `${SITE_URL}${path}`, ...(page?.updated_at ? { lastModified: page.updated_at } : {}), ...(page?.cover_url ? { images: [imageUrl(page.cover_url)] } : {}), changeFrequency: "monthly", priority: city ? 0.6 : 0.7 }] : [];
   }));

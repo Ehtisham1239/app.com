@@ -875,6 +875,10 @@ export const LOCATIONS = [
 
 export const getLocation = (slug) => LOCATIONS.find((country) => country.slug === slug);
 export const locationPath = (country, city) => `/locations/${country.slug}${city ? `/${city.slug}` : ""}`;
+// City-states (Monaco, San Marino, Vatican City) have one "city" with the same
+// name as the country; that page duplicates the country page, so it points its
+// canonical at the country page and stays out of the sitemap and city links.
+export const isCityState = (country, city) => Boolean(city) && city.name === country.name;
 export const locationCmsSlug = (country, city) => `locations-${country.slug}${city ? `-${city.slug}` : ""}`;
 
 export function locationFromCmsSlug(slug) {

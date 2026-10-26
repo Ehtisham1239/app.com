@@ -7,6 +7,20 @@ export function publicImageUrl(src) {
   const image = imageManifest.find(item => item.url === src || item.storage_url === src || item.previous_urls?.includes(src));
   return image ? `${SITE_URL}${image.url}` : src;
 }
+const TITLE_SUFFIX = " · Online Quran College";
+const BRAND_SUFFIX = /\s*[|·–—-]\s*Online Quran College$/;
+// Search results cut titles at roughly 60 characters. Keep the brand suffix
+// only when the whole title still fits; otherwise lead with the page's topic.
+export function fitTitle(seoTitle, plainTitle) {
+  if (seoTitle) {
+    if (seoTitle.length <= 60) return { absolute: seoTitle };
+    const topic = seoTitle.replace(BRAND_SUFFIX, "").trim();
+    return { absolute: topic.length ? topic : seoTitle };
+  }
+  if (!plainTitle) return plainTitle;
+  return (plainTitle + TITLE_SUFFIX).length <= 60 ? plainTitle : { absolute: plainTitle };
+}
+
 export function contentMetadata(record, { path, title, description, type = "website", locale = "en_GB" }) {
   const canonical = canonicalUrl(record.canonical_url, path, SITE_URL);
   const displayTitle = record.seo_title || title || record.title;
@@ -14,7 +28,7 @@ export function contentMetadata(record, { path, title, description, type = "webs
   const coverAsset = imageManifest.find(item => `${SITE_URL}${item.url}` === cover);
   const coverAlt = coverAsset?.replacesLegacyVisual ? coverAsset.alt : (record.cover_alt || coverAsset?.alt || displayTitle);
   return {
-    title: record.seo_title ? { absolute: record.seo_title } : title || record.title,
+    title: fitTitle(record.seo_title, title || record.title),
     description,
     alternates: { canonical, types: { "application/rss+xml": [{ url: "/blog/feed.xml", title: "Online Quran College articles" }] } },
     robots: { index: !record.seo_noindex, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1, googleBot: { index: !record.seo_noindex, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },

@@ -1,7 +1,8 @@
 import { textContent } from "./seo.js";
 
-// These are individually arranged lessons, not scheduled public events. Do not
-// emit a partial CourseInstance (an Event) or invent dates, offers or ratings.
+// Lessons are arranged individually, so the instance states only what is true
+// for every course: live online, 30-minute classes, repeated weekly, sold as
+// monthly packages. No start dates, prices or ratings are invented here.
 export function courseSchema(course, siteUrl, providerName = "Online Quran College") {
   const url = new URL(`/courses/${course.slug}`, siteUrl).href;
   const description = textContent(course.summary || course.description_html || "");
@@ -14,6 +15,12 @@ export function courseSchema(course, siteUrl, providerName = "Online Quran Colle
     name: course.title,
     description,
     ...(course.cover_url ? { image: new URL(course.cover_url, siteUrl).href } : {}),
+    hasCourseInstance: {
+      "@type": "CourseInstance",
+      courseMode: "Online",
+      courseSchedule: { "@type": "Schedule", duration: "PT30M", repeatFrequency: "Weekly" },
+    },
+    offers: { "@type": "Offer", category: "Subscription", url: new URL("/pricing", siteUrl).href },
     provider: {
       "@type": "EducationalOrganization",
       "@id": new URL("/#organization", siteUrl).href,

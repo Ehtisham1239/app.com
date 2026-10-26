@@ -6,7 +6,7 @@ import { courseSchema, courseListSchema } from "../src/lib/course-schema.js";
 const courses = JSON.parse(readFileSync(new URL("../src/lib/seed-content.json", import.meta.url))).courses;
 const site = "https://college.test";
 
-test("published course markup describes real courses without incomplete event or invented commercial data", () => {
+test("published course markup describes real courses with only facts true for every course (online, 30-minute weekly classes, subscription) and no invented dates, prices or ratings", () => {
   assert.ok(courses.length >= 3);
   for (const course of courses) {
     const schema = courseSchema(course, site, "Owner's College");
@@ -14,7 +14,9 @@ test("published course markup describes real courses without incomplete event or
     assert.ok(schema.description.trim());
     assert.equal(schema.provider.name, "Owner's College");
     assert.equal(new URL(schema.url).pathname, `/courses/${course.slug}`);
-    for (const key of ["hasCourseInstance", "offers", "aggregateRating", "startDate"]) assert.equal(key in schema, false);
+    for (const key of ["aggregateRating", "startDate", "endDate"]) assert.equal(key in schema, false);
+    assert.deepEqual(schema.hasCourseInstance, { "@type": "CourseInstance", courseMode: "Online", courseSchedule: { "@type": "Schedule", duration: "PT30M", repeatFrequency: "Weekly" } });
+    assert.equal(schema.offers.category, "Subscription"); assert.equal("price" in schema.offers, false);
   }
 });
 
