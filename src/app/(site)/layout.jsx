@@ -19,6 +19,16 @@ export async function generateMetadata() {
   return { verification: { google: code(seo.google_verification), other: code(seo.bing_verification) ? { "msvalidate.01": code(seo.bing_verification) } : undefined } };
 }
 
+// Only what the site settings state: a full street address when one is saved,
+// otherwise the country (no invented street, city or postcode).
+const COUNTRY_CODES = { "united kingdom": "GB", "uk": "GB", "united states": "US", "usa": "US", "canada": "CA", "australia": "AU", "pakistan": "PK" };
+function orgAddress(contact = {}) {
+  const a = contact.address;
+  if (a && typeof a === "object") return { "@type": "PostalAddress", ...a };
+  const country = COUNTRY_CODES[String(contact.location || "").trim().toLowerCase()];
+  return country ? { "@type": "PostalAddress", addressCountry: country } : null;
+}
+
 export default async function SiteLayout({ children }) {
   const [settings, menus, courses] = await Promise.all([getSettings(), getMenus(), getCourses()]);
   const chat = settings["site.chat"] ?? {};
@@ -42,7 +52,7 @@ export default async function SiteLayout({ children }) {
         Skip to content
       </a>
       <TopBar announcement={settings["site.announcement"]} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", "@graph": [{ "@type": "WebSite", "@id": `${SITE_URL}/#website`, name: brandName, url: SITE_URL, inLanguage: "en-GB", publisher: { "@id": `${SITE_URL}/#organization` } }, { "@type": ["EducationalOrganization", "Organization"], "@id": `${SITE_URL}/#organization`, name: brandName, legalName: identity.legal_name, url: SITE_URL, logo: `${SITE_URL}/brand/logo.webp`, description: identity.description, email: contact.email, telephone: contact.phone, ...((contact.email || contact.phone) ? { contactPoint: { "@type": "ContactPoint", contactType: "Admissions enquiries", email: contact.email, telephone: contact.phone, url: `${SITE_URL}/contact` } } : {}), ...(/^\d{4}$/.test(identity.established || "") ? { foundingDate: identity.established } : {}), sameAs: Object.values(settings["site.social"] || {}).filter(u => typeof u === "string" && u.startsWith("http")) }] }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", "@graph": [{ "@type": "WebSite", "@id": `${SITE_URL}/#website`, name: brandName, url: SITE_URL, inLanguage: "en-GB", publisher: { "@id": `${SITE_URL}/#organization` } }, { "@type": ["EducationalOrganization", "Organization"], "@id": `${SITE_URL}/#organization`, name: brandName, legalName: identity.legal_name, url: SITE_URL, logo: `${SITE_URL}/brand/logo.webp`, image: [`${SITE_URL}/brand/logo.webp`, `${SITE_URL}/brand/hero.webp`], ...(orgAddress(contact) ? { address: orgAddress(contact) } : {}), description: identity.description, email: contact.email, telephone: contact.phone, ...((contact.email || contact.phone) ? { contactPoint: { "@type": "ContactPoint", contactType: "Admissions enquiries", email: contact.email, telephone: contact.phone, url: `${SITE_URL}/contact` } } : {}), ...(/^\d{4}$/.test(identity.established || "") ? { foundingDate: identity.established } : {}), sameAs: Object.values(settings["site.social"] || {}).filter(u => typeof u === "string" && u.startsWith("http")) }] }) }} />
       <CampaignAttribution />
       <SiteHeader menu={header} courses={courseLinks} brandName={brandName} />
       <main id="main">{children}</main>
