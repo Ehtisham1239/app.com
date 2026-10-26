@@ -30,6 +30,22 @@ function browserTimeZone() {
   }
 }
 
+// Every zone we can name for a country, so families in multi-zone countries can pick theirs.
+function zonesFor(country) {
+  const location = LOCATIONS.find((c) => c.name === country);
+  const zones = [location?.timezone, ...(location?.cities || []).map((c) => c.timezone), ...(MARKET_TIME_ZONES[country] || []).map((c) => c.timezone)].filter(Boolean);
+  return [...new Set(zones)];
+}
+
+function zoneLabel(zone) {
+  try {
+    const name = new Intl.DateTimeFormat("en-GB", { timeZone: zone, timeZoneName: "long" }).formatToParts(new Date()).find((p) => p.type === "timeZoneName")?.value;
+    return `${zone.split("/").pop().replace(/_/g, " ")}${name ? ` — ${name}` : ""}`;
+  } catch {
+    return zone.replace(/_/g, " ");
+  }
+}
+
 // Picks the most specific time zone we know for the chosen country.
 function zoneFor(country, browserTz, cityName) {
   const location = LOCATIONS.find((c) => c.name === country);
@@ -105,6 +121,7 @@ export function TrialForm({ courses = [], plans = [], currencies = [], consentTe
       country: params.get("country") || (COUNTRIES.find(([, zone]) => zone === tz)?.[0] ?? ""),
       city: params.get("city") || "",
       timezone: tz,
+      zone_choice: "",
       preferred_days: [],
       preferred_times: [],
       teacher_gender_pref: "any",
@@ -123,7 +140,9 @@ export function TrialForm({ courses = [], plans = [], currencies = [], consentTe
   const toggle = (k, v) => setForm((f) => ({ ...f, [k]: f[k].includes(v) ? f[k].filter((x) => x !== v) : [...f[k], v] }));
 
   const isChild = form.age_band && form.age_band !== ADULT;
-  const timezone = useMemo(() => zoneFor(form.country, form.timezone || browserTimeZone(), form.city), [form.country, form.timezone, form.city]);
+  const zoneOptions = useMemo(() => zonesFor(form.country), [form.country]);
+  const detectedZone = useMemo(() => zoneFor(form.country, form.timezone || browserTimeZone(), form.city), [form.country, form.timezone, form.city]);
+  const timezone = zoneOptions.includes(form.zone_choice) ? form.zone_choice : detectedZone;
 
   function validate(which) {
     const e = {};
@@ -379,7 +398,15 @@ export function TrialForm({ courses = [], plans = [], currencies = [], consentTe
                 <input id="t-city" className="input" value={form.city} onChange={(e) => set("city", e.target.value)} autoComplete="address-level2" maxLength={80} />
               </div>
             </div>
-            {form.country && <p className="-mt-3 text-[0.85rem] text-ink-faint">We will arrange classes in your time zone ({timezone.replace(/_/g, " ")}).</p>}
+            {form.country && (zoneOptions.length > 1 ? (
+              <div className="-mt-2">
+                <label htmlFor="t-zone" className="field-label">Your time zone</label>
+                <select id="t-zone" className="select" value={timezone} onChange={(e) => set("zone_choice", e.target.value)}>
+                  {[...new Set([timezone, ...zoneOptions])].map((zone) => <option key={zone} value={zone}>{zoneLabel(zone)}</option>)}
+                </select>
+                <p className="field-hint">{form.country} has more than one time zone. Class times will be arranged in the zone shown here.</p>
+              </div>
+            ) : <p className="-mt-3 text-[0.85rem] text-ink-faint">We will arrange classes in your time zone ({timezone.replace(/_/g, " ")}).</p>)}
 
             <fieldset>
               <legend className="field-label">
@@ -517,11 +544,11 @@ export function TrialForm({ courses = [], plans = [], currencies = [], consentTe
             <span className="text-[0.85rem] text-ink-faint">Takes about a minute · No payment needed</span>
           )}
           {step < STEPS.length - 1 ? (
-            <button type="button" className="btn btn-primary btn-lg" onClick={next}>
+            <button key="continue" type="button" className="btn btn-primary btn-lg" onClick={(event) => { event.preventDefault(); next(); }}>
               Continue <ArrowRight className="size-5" aria-hidden="true" />
             </button>
           ) : (
-            <button type="submit" className="btn btn-gold btn-lg" disabled={state.sending}>
+            <button key="submit" type="submit" className="btn btn-gold btn-lg" disabled={state.sending}>
               {state.sending ? <Loader2 className="size-5 animate-spin" aria-hidden="true" /> : <CheckCircle2 className="size-5" aria-hidden="true" />}
               {state.sending ? "Sending…" : "Book my free trial"}
             </button>

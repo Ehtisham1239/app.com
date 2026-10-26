@@ -84,7 +84,11 @@ export function SiteHeader({ menu, courses, brandName }) {
     >
       <div className="page-wrap flex h-[4.5rem] items-center gap-3 sm:gap-6">
         <Link href="/" className="group flex shrink-0 items-center gap-3" aria-label={`${brandName} — home`}>
-          <img src="/brand/logo-160.webp" alt={brandName} width={160} height={64} className="h-14 w-auto max-w-[8rem] object-contain sm:max-w-[10rem]" />
+          <img src="/brand/mark.png" alt="" width={176} height={176} className="size-12 shrink-0 object-contain sm:size-14" />
+          <span className="flex flex-col leading-none" aria-hidden="true">
+            <span className="font-display text-[1.02rem] font-semibold uppercase tracking-[0.05em] text-leaf-700 sm:text-[1.2rem]">{(brandName || "Online Quran College").replace(/\s+college(\s+ltd\.?)?$/i, "")}</span>
+            <span className="mt-1 flex items-center gap-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.34em] text-gold-600 sm:text-[0.74rem]"><span className="h-px w-3 bg-gold-500" />College<span className="h-px w-3 bg-gold-500" /></span>
+          </span>
         </Link>
 
         <nav className="ml-auto hidden items-center gap-1 xl:flex" aria-label="Main">

@@ -12,6 +12,13 @@ const securityHeaders = [
 
 const nextConfig = {
   poweredByHeader: false,
+  // Only CMS uploads from this project's public storage bucket are optimised.
+  images: {
+    remotePatterns: [new URL("https://lgbwidraztavhhbnbfhr.supabase.co/storage/v1/object/public/**")],
+    formats: ["image/avif", "image/webp"],
+    qualities: [75],
+    minimumCacheTTL: 2678400,
+  },
   reactStrictMode: true,
   async headers() {
     return [

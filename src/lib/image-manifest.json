@@ -11200,6 +11200,48 @@
     "kind": "illustration"
   },
   {
+    "url": "/images/islamic/online-lesson-adult-v1-1200.webp",
+    "width": 1200,
+    "height": 675,
+    "alt": "A woman studies the Quran at home while a female teacher guides her over a live video lesson",
+    "variants": [
+      {
+        "url": "/images/islamic/online-lesson-adult-v1-400.webp",
+        "width": 400,
+        "bytes": 15256
+      },
+      {
+        "url": "/images/islamic/online-lesson-adult-v1-800.webp",
+        "width": 800,
+        "bytes": 37464
+      },
+      {
+        "url": "/images/islamic/online-lesson-adult-v1-1200.webp",
+        "width": 1200,
+        "bytes": 62656
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/islamic/online-lesson-adult-v1-400.avif",
+        "width": 400,
+        "bytes": 8534
+      },
+      {
+        "url": "/images/islamic/online-lesson-adult-v1-800.avif",
+        "width": 800,
+        "bytes": 20728
+      },
+      {
+        "url": "/images/islamic/online-lesson-adult-v1-1200.avif",
+        "width": 1200,
+        "bytes": 35478
+      }
+    ],
+    "name": "online-lesson-adult",
+    "kind": "illustration"
+  },
+  {
     "url": "/images/islamic/mosque-courtyard-v1-1200.webp",
     "width": 1200,
     "height": 800,
