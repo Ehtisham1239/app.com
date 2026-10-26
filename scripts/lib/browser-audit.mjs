@@ -10,7 +10,8 @@ export function launchAuditBrowser() {
 // This bridge uses the trusted host TLS path; it never disables certificates.
 export async function auditPage(browser, base, report, options = {}) {
   const origin = auditOrigin(base).origin;
-  const context = await browser.newContext(options);
+  const { googleLibrary = 'stub', ...contextOptions } = options;
+  const context = await browser.newContext(contextOptions);
   const page = await context.newPage();
   const errors = report.errors || report.browserErrors;
   page.on('pageerror', error => errors.push(error.message));
@@ -21,6 +22,15 @@ export async function auditPage(browser, base, report, options = {}) {
   await context.route('**/*', async route => {
     const req = route.request(), url = new URL(req.url());
     try {
+      if (/google-analytics\.com$|doubleclick\.net$/.test(url.hostname)) {
+        report.collectionRequestsBlocked = (report.collectionRequestsBlocked || 0) + 1;
+        return await route.fulfill({ status: 204, body: '' });
+      }
+      if (url.hostname === 'www.googletagmanager.com' && googleLibrary === 'real' && url.pathname.startsWith('/gtag/')) {
+        const response = await fetch(url.href, { headers: { 'accept-encoding': 'identity' }, signal: AbortSignal.timeout(25000) });
+        if (!response.ok) throw Error(`Google JavaScript: HTTP ${response.status}`);
+        return await route.fulfill({ contentType: 'application/javascript', body: await response.text() });
+      }
       if (['app.hatchium.ai', 'www.googletagmanager.com'].includes(url.hostname)) return await route.fulfill({ contentType: 'application/javascript', body: '/* inert vendor QA stub */' });
       if (url.origin !== origin) return await route.abort();
       if (!['GET', 'HEAD'].includes(req.method())) { report.writes = (report.writes || 0) + 1; return await route.abort(); }

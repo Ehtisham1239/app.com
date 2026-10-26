@@ -1,5 +1,8 @@
 import { LOCATIONS, locationPath, locationCmsSlug } from "./src/lib/locations.js";
 import { LEARNING_GUIDES } from "./src/lib/learning-guides.js";
+import { readFileSync } from "node:fs";
+import { legacyImageRedirects } from "./src/lib/legacy-image-redirects.js";
+const imageManifest = JSON.parse(readFileSync(new URL("./src/lib/image-manifest.json", import.meta.url), "utf8"));
 /** @type {import('next').NextConfig} */
 const securityHeaders = [
   { key: "Content-Security-Policy", value: "base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'" },
@@ -36,6 +39,7 @@ const nextConfig = {
   async redirects() {
     const courses = ["noorani-qaida", "quran-nazara", "hifz-quran", "arabic-language", "quran-translation", "hadith-translation"];
     return [
+      ...legacyImageRedirects(imageManifest),
       { source: "/images/learning/map-:region([a-z-]+)-r2-:width(400|800|1200).webp", destination: "/images/learning/oqc-learning-:region-v3-:width.webp", permanent: true },
       { source: "/images/learning/map-:region([a-z-]+)-:width(400|800|1200).webp", destination: "/images/learning/oqc-learning-:region-v3-:width.webp", permanent: true },
       ...LOCATIONS.flatMap((country) => [null, ...country.cities].map((city) => ({ source: `/${locationCmsSlug(country, city)}`, destination: locationPath(country, city), permanent: true }))),

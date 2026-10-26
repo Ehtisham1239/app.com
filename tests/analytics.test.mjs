@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { analyticsConfig, analyticsSettingsError, publicAnalyticsUrl, createAnalyticsController, saveAnalyticsConsent, readAnalyticsConsent, ANALYTICS_CONSENT_KEY } from "../src/lib/analytics.js";
+import { analyticsConfig, analyticsSettingsError, publicAnalyticsUrl, createAnalyticsController, saveAnalyticsConsent, readAnalyticsConsent, cookielessAnalyticsConfig, ANALYTICS_CONSENT_KEY } from "../src/lib/analytics.js";
 
 // Test-only IDs. The fake document records script loads; no network requests occur.
 const ga4Id = "G-TEST123456", gtmId = "GTM-TEST123";
@@ -65,4 +65,24 @@ test("analytics preference expires and a choice still applies when browser stora
   saveAnalyticsConsent(win, "denied"); assert.equal(readAnalyticsConsent(win), "denied");
   win.localStorage.setItem = () => { throw Error("storage blocked"); };
   saveAnalyticsConsent(win, "granted"); assert.equal(readAnalyticsConsent(win), "granted");
+});
+
+test("cookieless mode uses direct GA4 with no device storage and never loads GTM", () => {
+  assert.equal(cookielessAnalyticsConfig(analyticsConfig({ enabled: true, gtm_container_id: gtmId })).enabled, false);
+  const config = cookielessAnalyticsConfig(analyticsConfig({ enabled: true, ga4_measurement_id: ga4Id, gtm_container_id: gtmId }));
+  assert.equal(config.mode, "ga4"); assert.equal(config.gtmId, "");
+  const { win, scripts } = fakeBrowser();
+  const adapter = createAnalyticsController(win, config);
+  adapter.setConsent(true); adapter.pageView("/courses");
+  assert.equal(scripts.length, 1); assert.ok(scripts[0].src.includes("/gtag/js?id=" + ga4Id));
+  const setup = win.dataLayer.map(item => Array.from(item)).find(item => item[0] === "config");
+  assert.equal(setup[2].client_storage, "none");
+  assert.equal(setup[2].allow_google_signals, false);
+  const updates = win.dataLayer.map(item => Array.from(item)).filter(item => item[0] === "consent");
+  assert.ok(updates.length >= 2);
+  for (const update of updates) {
+    assert.equal(update[2].analytics_storage, "denied");
+    assert.equal(update[2].ad_storage, "denied");
+  }
+  adapter.destroy();
 });

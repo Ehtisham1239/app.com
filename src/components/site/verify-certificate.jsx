@@ -13,8 +13,7 @@ export function VerifyCertificate() {
 
   const lookup = useCallback(async (n) => {
     try {
-      const { getPublicBrowserClient } = await import("@/lib/supabase/public");
-      const { data, error } = await getPublicBrowserClient().rpc("verify_certificate", { p_number: n });
+      const { data, error } = await (await import("@/lib/supabase/public")).getPublicBrowserClient().rpc("verify_certificate", { p_number: n });
       if (error) {
         setState({ loading: false, checked: n, result: undefined, error: "We could not check the certificate right now. Please try again in a moment." });
         return;

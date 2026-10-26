@@ -1,10 +1,10 @@
 import localFont from "next/font/local";
-import { Toaster } from "sonner";
 import { SITE_URL } from "@/lib/config";
 import "./globals.css";
 
 const inter = localFont({
   src: [
+    // The main Latin face loads first; extended glyphs use the on-demand family below.
     { path: "../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2", weight: "300 900", style: "normal" },
   ],
   variable: "--font-inter",
@@ -65,7 +65,6 @@ export default function RootLayout({ children }) {
     <html lang="en-GB" data-scroll-behavior="smooth" className={`${inter.variable} ${interExtended.variable} ${outfit.variable} ${amiri.variable}`} suppressHydrationWarning>
       <body>
         {children}
-        <Toaster position="top-center" richColors closeButton toastOptions={{ style: { fontFamily: "var(--font-sans)" } }} />
       </body>
     </html>
   );

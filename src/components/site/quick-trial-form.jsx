@@ -117,8 +117,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
     };
     let data, error;
     try {
-      const { getPublicBrowserClient } = await import("@/lib/supabase/public");
-      ({ data, error } = await getPublicBrowserClient().rpc("submit_trial_application", { payload }));
+      ({ data, error } = await (await import("@/lib/supabase/public")).getPublicBrowserClient().rpc("submit_trial_application", { payload }));
     } catch (cause) { error = cause; }
     if (error) {
       setState({ sending: false, error: error.message || "We could not send your request. Please try again or message us on WhatsApp.", reference: null });

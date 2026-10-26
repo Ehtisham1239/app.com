@@ -40,7 +40,7 @@ export default async function FreeTrialPage() {
           <p className="text-xs font-bold uppercase tracking-[0.24em] text-gold-300">Free trial</p>
           <h1 id="trial-title" className="mt-2 text-[clamp(1.9rem,4.6vw,3rem)] leading-[1.1] text-white">Book a free <span className="text-gold-300">3-day</span> trial</h1>
           <p className="mt-3 max-w-xl text-[1.02rem] leading-relaxed text-white/85">Request a free online Quran trial with 3 days of live one-to-one classes. A coordinator will arrange a time that suits your family.</p>
-          <div className="mt-6 hidden overflow-hidden rounded-[1.5rem] border border-white/15 lg:block">
+          <div data-hero-visual className="mt-6 hidden overflow-hidden rounded-[1.5rem] border border-white/15 lg:block">
             <ContentImage src={COVER.src} alt={COVER.alt} priority sizes="(max-width: 1024px) 0px, 560px" className="aspect-[16/9] w-full object-cover" />
           </div>
           <ul className="mt-6 hidden gap-4 sm:grid sm:grid-cols-2">

@@ -39,10 +39,14 @@ try {
     }
     if (!ready) throw Error(`QA server did not become ready: ${logs}`);
   }
-  await run('scripts/site-quality-browser.mjs', [base, output]);
-  await run('scripts/blog-browser-smoke.mjs', [base, `${output}/blog`]);
-  await run('scripts/analytics-install-smoke.mjs', [base, 'G-57TGPTDNT4', `${output}/analytics`]);
-  await run('scripts/seo-agent-audit.mjs', [base, `${output}/seo`]);
+  if (process.argv.includes('--google-vendor-check')) {
+    await run('scripts/analytics-install-smoke.mjs', [base, 'G-57TGPTDNT4', `${output}/google-vendor`, '--real-google-script']);
+  } else {
+    await run('scripts/site-quality-browser.mjs', [base, output]);
+    await run('scripts/blog-browser-smoke.mjs', [base, `${output}/blog`]);
+    await run('scripts/analytics-install-smoke.mjs', [base, 'G-57TGPTDNT4', `${output}/analytics`]);
+    await run('scripts/seo-agent-audit.mjs', [base, `${output}/seo`]);
+  }
 } finally {
   stopServer();
   writeFileSync(`${output}/server.log`, logs);

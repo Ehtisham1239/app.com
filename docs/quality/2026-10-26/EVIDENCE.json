@@ -1,7 +1,7 @@
 {
   "date": "2026-10-26",
   "reporting_timezone": "Asia/Karachi",
-  "base_commit": "9482c7de9d75b7fcffb85c897d89ad7cc267ae8e",
+  "base_commit": "e3f7c37209584317dc9cec263e066f72d9d3f72a",
   "runtime": "Next.js 16.4.3 / React 19.3.0 / Node 24.22.1",
   "release_status": "local validation; publication evidence appended after deployment",
   "baseline_crawl": {
@@ -14,7 +14,7 @@
     "reason": "Same-origin crawler did not follow robots sitemap on the different canonical hostname. Separate application audit covered all 205 sitemap routes."
   },
   "local_tests": {
-    "automated_pass": 67,
+    "automated_pass": 69,
     "automated_fail": 0,
     "lint_errors": 0,
     "lint_existing_warnings": 19,
@@ -31,7 +31,7 @@
     "physical_devices": "not tested"
   },
   "resource_measurement": {
-    "method": "Chromium 390px, local production builds with vendor stubs; transfer bytes, not field CWV. Initial baseline predates the upstream one-step form; combined changes include that upstream simplification. Extended Latin is loaded where glyphs require it.",
+    "method": "Chromium 390px, local production builds with vendor stubs; transfer bytes, not field CWV. Initial baseline predates upstream one-step form, staff-only toaster and SDK/font cleanup. Numbers describe the combined release, not attribution to one contributor.",
     "pages": [
       {
         "page": "home",
@@ -41,7 +41,7 @@
         },
         "after": {
           "font_transfer_bytes": 190008,
-          "script_transfer_bytes": 193811
+          "script_transfer_bytes": 183208
         }
       },
       {
@@ -52,7 +52,7 @@
         },
         "after": {
           "font_transfer_bytes": 166516,
-          "script_transfer_bytes": 162308
+          "script_transfer_bytes": 151709
         }
       },
       {
@@ -63,7 +63,7 @@
         },
         "after": {
           "font_transfer_bytes": 81148,
-          "script_transfer_bytes": 191818
+          "script_transfer_bytes": 181215
         }
       }
     ]
@@ -108,5 +108,40 @@
     "Field Core Web Vitals",
     "Real remote enquiry delivery and authenticated staff workflows",
     "Clean Vercel runtime-log scan"
-  ]
+  ],
+  "preserved_upstream": [
+    "3-day trial",
+    "one-step form",
+    "shortened trial heading",
+    "banner-free GA4 mode",
+    "staff-only toaster",
+    "lazy public SDK loading",
+    "unused assets/dependencies cleanup"
+  ],
+  "analytics_mode": {
+    "banner": false,
+    "transport": "direct GA4",
+    "analytics_storage": "always denied",
+    "advertising_storage": "always denied",
+    "client_storage": "extra hint, not the storage-control mechanism",
+    "collector_qa": "intercepted; no real events sent"
+  },
+  "build_integrity": {
+    "clean_production_output": true,
+    "html_files": 224,
+    "unique_static_assets": 42,
+    "missing_references": 0
+  },
+  "vendor_script_check": {
+    "status": "blocked",
+    "url": "https://www.googletagmanager.com/gtag/js?id=G-57TGPTDNT4",
+    "http_status": 404,
+    "attempts": 2,
+    "request_variants": [
+      "Node default",
+      "browser User-Agent and owned-site Referer"
+    ],
+    "actual_vendor_cookie_behaviour": "not verified",
+    "required": "Owner should verify this exact web-stream Measurement ID and loader availability in Google Analytics/Tag Assistant. The supplied ID was not replaced."
+  }
 }

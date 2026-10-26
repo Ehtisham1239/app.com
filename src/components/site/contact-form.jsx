@@ -35,8 +35,7 @@ export function ContactForm({ consentText, successText }) {
     const utm = captureAttribution();
     let data, error;
     try {
-      const { getPublicBrowserClient } = await import("@/lib/supabase/public");
-      ({ data, error } = await getPublicBrowserClient().rpc("submit_contact_message", { payload: { ...form, email: form.email.trim().toLowerCase(), utm, source: utm.utm_source || "website" } }));
+      ({ data, error } = await (await import("@/lib/supabase/public")).getPublicBrowserClient().rpc("submit_contact_message", { payload: { ...form, email: form.email.trim().toLowerCase(), utm, source: utm.utm_source || "website" } }));
     } catch (cause) { error = cause; }
     if (error) return setState({ sending: false, error: error.message || "Could not send. Please try WhatsApp instead.", done: null });
     announceLeadSaved({ formType: "contact", country: form.country, reference: data?.reference, honeypot: form.website });
