@@ -1,6 +1,14 @@
 # app.com website and CMS deployment
 
-## Current GA4/GTM integration — 25 October 2026: code READY, activation pending IDs
+## Current GA4 activation and release — 26 October 2026
+
+Owner GA4 ID `G-57TGPTDNT4` is enabled in the existing public CMS setting and source defaults. The consent-controlled integration, responsive imagery/footer and Weekend-plan trial correction are merged and published. The verified public app address is **https://project-umber-three-93.vercel.app**. The current READY deployment observed on that alias is `dpl_xAGB8jmEFf6HvT8hekyy8EfXcJmo`, source `cd848762647b02348c10adab347e34c6008dee22`; subsequent work by another contributor was preserved.
+
+Live checks pass 205 pages, 165 regional scenes, 1,026 responsive images, 12 legacy redirects, protected homepage/logo hashes and mobile/desktop analytics installation. Google was stubbed during browser QA; receipt in GA4 reporting is not established. Runtime-log access returned 403.
+
+**Custom-domain launch remains blocked:** `www.onlinequrancollege.com` currently serves a separate site and both custom project domains await ownership TXT verification. Canonical URLs alone do not move traffic. This session has no access to the authoritative DNS provider. Exact verification values, release details and limits are in [the GA4 activation record](docs/seo-agent/GA4-ACTIVATION-2026-10-26.md). Older entries below are historical and must not be taken as evidence of the custom-domain launch or current analytics state.
+
+## Previous GA4/GTM integration — 25 October 2026: activation was pending IDs
 
 Application source `eaa95a57f11d2af335f61e9e6a368a5a5a5344da` is deployed as `dpl_E8w56fLzgwDAkVb8ZVdoSicGpcNc` (READY, 75.601-second build) at https://www.onlinequrancollege.com. This adds validated public GA4/GTM settings, one selected transport, basic analytics consent, manual public-path views, allowlisted saved-enquiry/click signals and a privacy notice. The adapter is disabled: no owner GA4/GTM ID exists in the reviewed CMS/environment configuration. No real Google data collection, Tag Assistant session, GA4 DebugView result or property connection is claimed.
 
