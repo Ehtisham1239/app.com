@@ -339,7 +339,7 @@ img { max-width: 100%; }
 .course-card:focus-visible { outline-offset: 5px; }
 .editorial-card { min-width: 0; overflow: hidden; border: 1px solid #dde7d6; border-radius: 1.65rem; background: white; box-shadow: 0 6px 24px -16px rgb(10 58 22 / .18); transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease; }
 .editorial-card:focus-visible { outline-offset: 5px; }
-.card-label { max-width: calc(100% - 1.5rem); padding: .4rem .7rem; border-radius: 999px; color: #0a560b; background: #fff; border: 1px solid #dde7d6; font-size: .7rem; font-weight: 700; line-height: 1.4; }
+.card-label { max-width: calc(100% - 1.5rem); padding: .4rem .7rem; border-radius: 999px; color: #0a560b; background: #fff; border: 1px solid #dde7d6; font-size: .75rem; font-weight: 700; line-height: 1.4; }
 .card-action { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .65rem .75rem .65rem 1rem; border: 1px solid #d7e8cc; border-radius: .9rem; background: #f1faf5; color: #0c6c0c; font-size: .9rem; font-weight: 650; }
 .card-arrow { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 1.9rem; height: 1.9rem; border-radius: 50%; background: #0c6c0c; color: white; }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
@@ -356,7 +356,8 @@ main input:not([type="checkbox"]):not([type="radio"]), main select, main textare
 
 /* Mobile header and centred introduction. */
 @media (max-width: 639px) {
-  .site-announcement, .header-portal { display: none; }
+  .header-portal { display: none; }
+  .site-announcement .page-wrap { flex-wrap: wrap; }
   .site-header { background: #fff; border-bottom: 1px solid #f0f5f2; backdrop-filter: none; }
   .site-header > .page-wrap { height: auto; min-height: 76px; padding: 6px 22px; }
   .site-header img { height: 64px; width: 64px; max-width: 64px; }
