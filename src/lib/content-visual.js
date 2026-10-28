@@ -1,4 +1,9 @@
 const covers = {
+  "choose-online-quran-classes-kids": {"src":"/images/blog-20261028/choose-online-quran-classes-kids-1200.webp","alt":"Mother and daughter reviewing a lesson checklist beside a laptop at a sunlit home desk"},
+  "noorani-qaida-home-practice-checklist": {"src":"/images/blog-20261028/noorani-qaida-home-practice-checklist-1200.webp","alt":"Mother supporting a child with simple learning shapes beside a blank practice notebook"},
+  "returning-to-quran-study-adults": {"src":"/images/blog-20261028/returning-to-quran-study-adults-1200.webp","alt":"Adult learner planning a return to study beside a laptop, notebook and wooden book stand"},
+  "family-quran-learning-weekly-routine": {"src":"/images/blog-20261028/family-quran-learning-weekly-routine-1200.webp","alt":"Family arranging blank weekly planning cards on a table beside a laptop and study book"},
+  "online-quran-class-fees-uk-comparison": {"src":"/images/blog-20261028/online-quran-class-fees-uk-comparison-1200.webp","alt":"Woman comparing lesson options with a blank checklist and calculator at a quiet home desk"},
   "help-your-kids-learn-quran-online": {
     "src": "/images/learning/blog-kids-learning-r2-1200.webp",
     "alt": "Father helping his daughter adjust her headset before an online lesson"

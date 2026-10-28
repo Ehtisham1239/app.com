@@ -40,7 +40,14 @@ try {
       await page.waitForURL("**/free-trial");
       await page.locator("#q-learner_name").waitFor();
       assert.equal(new URL(page.url()).pathname, "/free-trial");
-      report.cases.push({ width, comparisonRows: details.rows, linkedResources: details.resourceLinks.length, schemaMatchesVisibleResources: true, validJumpLinks: true, tableKeyboardAccessible: true, trialDestination: "/free-trial", overflow: false });
+      await page.goto(`${base}/locations/united-kingdom`, { waitUntil: "networkidle" });
+      await page.getByRole("heading", { name: "Online Quran classes for children and adult beginners in the UK", exact: true }).waitFor();
+      assert.equal(await page.getByRole("link", { name: "Read the parent learning guide", exact: true }).getAttribute("href"), "/learn/quran-for-kids");
+      await page.getByRole("link", { name: "Read the adult beginner guide", exact: true }).click();
+      await page.waitForURL("**/learn/quran-for-adults");
+      await page.getByRole("heading", { name: "Quran Learning for Adult Beginners", exact: true }).waitFor();
+      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+      report.cases.push({ width, comparisonRows: details.rows, linkedResources: details.resourceLinks.length, schemaMatchesVisibleResources: true, validJumpLinks: true, tableKeyboardAccessible: true, trialDestination: "/free-trial", ukAdultGuideNavigation: true, overflow: false });
     } finally { await session.context.close(); }
   }
   const session = await auditPage(browser, base, report, { viewport: { width: 390, height: 1000 }, javaScriptEnabled: false });
