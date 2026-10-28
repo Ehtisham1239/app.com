@@ -132,3 +132,32 @@ revert the unrelated prior analytics or business changes.
 A 1 ms full-page load and fixed Lighthouse scores cannot be promised across
 Slow 4G, devices and server/network conditions. The actionable goal is low
 first paint/LCP and minimal blocking without breaking the application.
+
+## Production release update — 28 October 2026, 08:25 PKT
+
+The earlier deployment-access blocker is resolved for the existing project.
+PR #5 was merged as `28a2e64bf8a587ddbbed69519f8a7ed0bb55c444` and deployed
+successfully to production as `dpl_5PrY4r83ZHeo3XYteZ9wmMqAajHq` (READY).
+The deployment API resolves `www.onlinequrancollege.com` to this deployment,
+with the matching source SHA and custom-domain alias. Previous production
+rollback is `dpl_HJJPxW2esY9MjE35J6oKprsupnvS`.
+
+Live HTTP checks pass for the homepage, trial, contact, courses, pricing,
+sitemap, robots, versioned logo and staff login. The custom-domain homepage
+contains the new responsive logo, excludes the closed mobile menu's markup,
+and returns enforced `script-src-attr 'none'`. The canonical remains the
+custom domain; staff login retains a nonce CSP and private/no-store caching.
+Cloud-browser inspection verifies the visible homepage and desktop dropdown
+opening and Escape dismissal.
+
+Google's new post-release desktop sample scores 100/100/100/100, FCP 0.3 s,
+LCP 0.6 s, TBT 20 ms (unrounded calculator input 17 ms), CLS 0.001. Its mobile
+analysis was still pending at this record's update; no post-release mobile
+100/0 ms result is claimed:
+https://pagespeed.web.dev/analysis/https-www-onlinequrancollege-com/ht01fnc576?form_factor=desktop
+
+Runtime log access still returns provider 403, so a clean server error-log scan
+is not claimed. This release publishes the tested improvements; it does not
+establish zero remaining Lighthouse advisories or guaranteed scores/timings.
+Release HTTP/browser evidence is under ignored `artifacts/live-release-20261028/`.
+This documentation update does not change the deployed application code.
