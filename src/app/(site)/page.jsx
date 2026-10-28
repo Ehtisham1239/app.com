@@ -12,12 +12,13 @@ import { Benefits, CoursesGrid, CtaBand, FaqList, PricingCards, Steps, TeacherCa
 import { getCourses, getFaqs, getPlans, getPosts, getSettings, getTeachers, getTestimonials } from "@/lib/site-data";
 import { SITE_URL } from "@/lib/config";
 import { truncate } from "@/lib/format";
+import { normalizeSeoSettings } from "@/lib/search-settings";
 
 export const revalidate = 300;
 
 export async function generateMetadata() {
   const settings = await getSettings();
-  const seo = settings["site.seo"] ?? {};
+  const seo = normalizeSeoSettings(settings["site.seo"]);
   return {
     title: { absolute: seo.title ?? "Online Quran College" },
     description: seo.description || "Live one-to-one online Quran classes for children and adults. Explore Noorani Qaida, Tajweed, Hifz and Arabic with Online Quran College.",

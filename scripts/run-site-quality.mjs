@@ -39,7 +39,9 @@ try {
     }
     if (!ready) throw Error(`QA server did not become ready: ${logs}`);
   }
-  if (process.argv.includes('--font-check')) {
+  if (process.argv.includes('--search-check')) {
+    await run('scripts/search-readiness-smoke.mjs', [base, `${output}/search`]);
+  } else if (process.argv.includes('--font-check')) {
     await run('scripts/font-browser-smoke.mjs', [base, `${output}/fonts`]);
   } else if (process.argv.includes('--performance-check')) {
     await run('scripts/public-performance-smoke.mjs', [base, `${output}/performance`]);

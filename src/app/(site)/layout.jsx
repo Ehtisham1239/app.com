@@ -9,14 +9,14 @@ import { TopBar } from "@/components/site/chrome";
 import { getCourses, getMenus, getSettings } from "@/lib/site-data";
 import { WebsiteAnalytics } from "@/components/site/analytics";
 import { analyticsConfig, cookielessAnalyticsConfig } from "@/lib/analytics";
+import { verificationCode } from "@/lib/search-settings";
 
 export const revalidate = 300;
 
 export async function generateMetadata() {
   const settings = await getSettings();
   const seo = settings["site.seo"] || {};
-  const code = (value) => typeof value === "string" && /^[A-Za-z0-9_-]{1,250}$/.test(value.trim()) ? value.trim() : undefined;
-  return { verification: { google: code(seo.google_verification), other: code(seo.bing_verification) ? { "msvalidate.01": code(seo.bing_verification) } : undefined } };
+  return { verification: { google: verificationCode(seo.google_verification), other: verificationCode(seo.bing_verification) ? { "msvalidate.01": verificationCode(seo.bing_verification) } : undefined } };
 }
 
 // Only what the site settings state: a full street address when one is saved,

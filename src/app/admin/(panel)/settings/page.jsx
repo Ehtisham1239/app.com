@@ -8,6 +8,7 @@ import { useAccess } from "@/lib/admin/access";
 import { db, notifyError, refreshSite, useLoad } from "@/lib/admin/db";
 import { DEFAULT_SETTINGS } from "@/lib/default-settings";
 import { analyticsConfig, analyticsSettingsError } from "@/lib/analytics";
+import { normalizeSeoSettings, seoSettingsError } from "@/lib/search-settings";
 import { CONTENT_ICONS, ContentIcon } from "@/components/icon";
 import { Card, ErrorState, Field, Loading, PageHeader, TagInput, Toggle } from "@/components/admin/ui";
 
@@ -24,8 +25,8 @@ const SECTIONS = [
   { key: "site.social", title: "Social links", text: "Leave a link empty to hide it.", fields: [t("facebook", "Facebook"), t("instagram", "Instagram"), t("x", "X (Twitter)"), t("youtube", "YouTube"), t("tiktok", "TikTok")] },
   { key: "site.forms", title: "Forms", text: "Consent wording and thank-you messages.", fields: [area("consent_text", "Consent text"), t("consent_version", "Consent version", { hint: "Change this date when you change the consent text." }), area("trial_success", "Free-trial thank-you"), area("contact_success", "Contact thank-you")] },
   { key: "site.chat", title: "Website chat", text: "Hatchium chat widget on public pages. This embed does not forward website forms to Make or a chat API. API secrets must never be entered here.", fields: [{ name: "enabled", label: "Enable website chat", type: "bool" }, t("widget_key", "Hatchium public widget key")] },
-  { key: "site.analytics", title: "Google Analytics & tags", text: "Use your own public IDs, not script snippets or passwords. Google tags load only after a visitor allows analytics. When a GTM ID is provided, Tag Manager manages GA4; the separate GA4 script is not loaded. Configure and publish the GA4 tags inside your GTM container before enabling it.", fields: [{ name: "enabled", label: "Enable optional analytics", type: "bool" }, t("ga4_measurement_id", "GA4 Measurement ID", { hint: "Starts G-. Find it in GA4 Admin → Data streams → Web." }), t("gtm_container_id", "Tag Manager Container ID", { hint: "Starts GTM-. Leave empty for direct GA4." })] },
-  { key: "site.seo", title: "Search engines", text: "Default title and description for Google.", fields: [t("title", "Title"), area("description", "Description"), t("google_verification", "Google Search Console verification code", { hint: "Paste only the content value from the HTML meta tag, not the whole tag." }), t("bing_verification", "Bing Webmaster verification code", { hint: "Paste only the verification code. These codes are public, not account passwords." })] },
+  { key: "site.analytics", title: "Google Analytics & tags", text: "Use your own public IDs, not script snippets or passwords. The current website uses cookieless analytics without a consent banner: analytics cookies stay in page memory, advertising consent stays denied and Google signals stay off. When a GTM ID is provided, Tag Manager manages GA4; the separate GA4 script is not loaded. Publish the matching Google tags inside your GTM container.", fields: [{ name: "enabled", label: "Enable website analytics", type: "bool" }, t("ga4_measurement_id", "GA4 Measurement ID", { hint: "Starts G-. Find it in GA4 Admin → Data streams → Web." }), t("gtm_container_id", "Tag Manager Container ID", { hint: "Starts GTM-. Leave empty for direct GA4." })] },
+  { key: "site.seo", title: "Search engines", text: "Default search title and description. Google and Bing may choose different wording for a search result. Individual course, page and article metadata can override these defaults.", fields: [t("title", "Title"), area("description", "Description"), t("google_verification", "Google Search Console verification code", { hint: "Optional meta-tag method: paste only the content value supplied by your Search Console account. File or DNS verification does not require this field." }), t("bing_verification", "Bing Webmaster verification code", { hint: "Optional meta-tag method: paste only your Bing account's code. A saved code still needs confirmation in Bing Webmaster Tools." })] },
 ];
 
 function Input({ id, f, value, onChange, disabled }) {
@@ -55,7 +56,8 @@ export default function SettingsPage() {
   useEffect(() => {
     if (!rows.data) return;
     const stored = rows.data.find((r) => r.key === active)?.value;
-    setValue(stored ?? structuredClone(DEFAULT_SETTINGS[active] ?? (section.list ? [] : {})));
+    const fallback = structuredClone(DEFAULT_SETTINGS[active] ?? (section.list ? [] : {}));
+    setValue(active === "site.seo" ? normalizeSeoSettings(stored) : stored ?? fallback);
   }, [active, rows.data, section]);
 
   const save = async () => {
@@ -63,16 +65,13 @@ export default function SettingsPage() {
       const error = analyticsSettingsError(value);
       if (error) return toast.error(error);
     }
-    if (active === "site.seo") {
-      for (const name of ["google_verification", "bing_verification"]) {
-        if (value[name] && !/^[A-Za-z0-9_-]{1,250}$/.test(value[name].trim())) return toast.error("Paste only the verification code, not the full HTML tag.");
-      }
-    }
+    const savedValue = active === "site.seo" ? normalizeSeoSettings(value) : value;
+    if (active === "site.seo" && seoSettingsError(savedValue)) return toast.error(seoSettingsError(savedValue));
     setBusy(true);
     const exists = rows.data.some((r) => r.key === active);
     const { error } = exists
-      ? await db().from("settings").update({ value }).eq("key", active)
-      : await db().from("settings").insert({ key: active, value, is_public: true, label: section.title });
+      ? await db().from("settings").update({ value: savedValue }).eq("key", active)
+      : await db().from("settings").insert({ key: active, value: savedValue, is_public: true, label: section.title });
     setBusy(false);
     if (error) return notifyError(error);
     toast.success("Saved — the website is updated");
@@ -106,7 +105,8 @@ export default function SettingsPage() {
               )}
             >
               <p className="mb-5 text-sm text-ink-soft">{section.text}</p>
-              {active === "site.analytics" && <p role="status" className="mb-5 rounded-xl bg-leaf-50 p-4 text-sm text-leaf-700">{analyticsConfig(value).enabled ? `Configured for ${analyticsConfig(value).mode === "gtm" ? "Tag Manager" : "direct GA4"}. Save your changes, then verify delivery in Tag Assistant and GA4 DebugView.` : "Tracking is off. Add a real ID and enable analytics when the destination is ready."}</p>}
+              {active === "site.analytics" && <p role="status" className="mb-5 rounded-xl bg-leaf-50 p-4 text-sm text-leaf-700">{analyticsConfig(value).enabled ? `Configured for ${analyticsConfig(value).mode === "gtm" ? "Tag Manager" : "direct GA4"}. This confirms the ID format, not event delivery. Save your changes, then verify delivery in Tag Assistant and GA4 DebugView.` : "Tracking is off. Add a real ID and enable analytics when the destination is ready."}</p>}
+              {active === "site.seo" && <p className="mb-5 rounded-xl bg-leaf-50 p-4 text-sm text-leaf-700">Verification codes prove account ownership; they do not improve rankings. Leave meta-code fields empty when using file or DNS verification. After saving a code, confirm ownership in the relevant search-engine account and submit /sitemap.xml.</p>}
               {section.fields ? (
                 <fieldset disabled={!canEdit} className="grid gap-5 sm:grid-cols-2">
                   {section.fields.map((f) => (
