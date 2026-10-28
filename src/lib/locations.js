@@ -893,8 +893,10 @@ export function locationFromCmsSlug(slug) {
 // Country defaults are fallbacks; named cities can have a different IANA zone.
 export const locationTimeZone = (country, city) => city?.timezone || country.timezone;
 export const locationLocale = (country) => ({ "united-states": "en_US", "united-kingdom": "en_GB", canada: "en_CA", australia: "en_AU" }[country.slug] || "en_GB");
+// "in the United Kingdom", "in the Netherlands", but "in Canada".
+export const countryInName = (country) => `${/^(United |Netherlands$|Czech Republic$)/.test(country.name) ? "the " : ""}${country.name}`;
 export function locationSearchTitle(country, city) {
-  return `${city ? "Quran classes" : "Online Quran classes"} in ${city?.name || country.name} | OQC`;
+  return `${city ? "Quran classes" : "Online Quran classes"} in ${city?.name || countryInName(country)} | OQC`;
 }
 export function locationBreadcrumbs(country, city) {
   return [{ name: "Countries & cities", path: "/locations" },
@@ -906,7 +908,7 @@ export function locationSearchIntro(country, city) {
   const place = city ? `${city.name}, ${country.name}` : country.name;
   return city
     ? `Online Quran classes in ${place} for children and adults. Plan lessons using ${locationTimeZone(country, city)} and confirm the course and ${country.currency} fee with a coordinator.`
-    : `Live one-to-one online Quran classes for families in ${/^United /.test(country.name) ? "the " : ""}${country.name}: Noorani Qaida, Tajweed and Hifz at local class times. Book a 3-day free trial.`;
+    : `Live one-to-one online Quran classes for families in ${countryInName(country)}: Noorani Qaida, Tajweed and Hifz at local class times. Book a 3-day free trial.`;
 }
 
 // Pathway decision (26–28 Oct 2026): only the country hubs for approved markets

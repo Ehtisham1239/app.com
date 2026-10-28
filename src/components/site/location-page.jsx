@@ -10,7 +10,7 @@ import { SITE_URL } from "@/lib/config";
 import { PageHero } from "@/components/site/chrome";
 import { FaqList } from "@/components/site/sections";
 import { getCourses, getPage, getPlans } from "@/lib/site-data";
-import { locationPath, locationCmsSlug, locationBreadcrumbs, locationLocale, locationSearchIntro, isCityState } from "@/lib/locations";
+import { locationPath, locationCmsSlug, locationBreadcrumbs, locationLocale, locationSearchIntro, isCityState, countryInName } from "@/lib/locations";
 import { locationImage } from "@/lib/location-image";
 import { cleanHtml } from "@/lib/sanitize";
 import { formatMoney } from "@/lib/format";
@@ -18,7 +18,7 @@ import { formatMoney } from "@/lib/format";
 export async function LocationPage({ country, city }) {
   const guide = !city ? MARKET_GUIDES[country.slug] : null;
   const image = locationImage(country, city);
-  const place = city ? `${city.name}, ${country.name}` : country.name;
+  const place = city ? `${city.name}, ${country.name}` : countryInName(country);
   const [courses, plans, cms] = await Promise.all([getCourses(), getPlans(), getPage(locationCmsSlug(country, city))]);
   const query = new URLSearchParams({ country: country.name, currency: country.currency, ...(city ? { city: city.name } : {}) });
   const breadcrumbs = locationBreadcrumbs(country, city);
