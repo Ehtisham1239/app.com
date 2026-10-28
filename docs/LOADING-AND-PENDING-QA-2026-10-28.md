@@ -88,3 +88,22 @@ connection. The verified/working domains still report an IP recommendation;
 no DNS record change is claimed. A particular reported 404 still needs its
 exact URL to reproduce. Authenticated staff/SMTP/GA4 receipt/GSC/Semrush and
 external DNS changes are not implied by these public-site checks.
+
+## Verified production release
+
+PR #6 was merged as `36187436fd3f3ac68c8b3c6cf6c17f854f336ffb` and deployed
+READY as `dpl_DefE8AaqefyHSazecjguRUb2Rh8h` on 28 October 2026. The custom
+www hostname resolves through the deployment API to that exact source and
+alias. HTTP checks for six public routes/assets plus both new font files pass;
+the live font files have the expected 31,708/24,212 byte sizes. The homepage
+contains the English meaning, new font preload and existing inline-handler CSP.
+
+Live browser font/fallback/readability/overflow/focus-prefetch/trial-navigation
+checks pass at 320, 390 and 1440px with zero browser errors and zero form writes.
+Cloud-browser inspection also confirms the rendered English meaning and
+current homepage. PR #4 is closed as superseded by this deployed implementation.
+These live functional checks do not turn the local Lighthouse samples above
+into live scores. Google retesting remains unavailable in this blocked browser.
+
+The release's preceding deployment is retained as the rollback target. This
+recording update changes documentation only, not the released application code.
