@@ -906,5 +906,12 @@ export function locationSearchIntro(country, city) {
   const place = city ? `${city.name}, ${country.name}` : country.name;
   return city
     ? `Online Quran classes in ${place} for children and adults. Plan lessons using ${locationTimeZone(country, city)} and confirm the course and ${country.currency} fee with a coordinator.`
-    : `Online Quran classes in ${place}, with live one-to-one lessons from home. Choose your city’s clock, explore courses and confirm the available ${country.currency} fee before enrolling.`;
+    : `Live one-to-one online Quran classes for families in ${/^United /.test(country.name) ? "the " : ""}${country.name}: Noorani Qaida, Tajweed and Hifz at local class times. Book a 3-day free trial.`;
 }
+
+// Pathway decision (26–28 Oct 2026): only the country hubs for approved markets
+// are indexed by default. City pages and other countries stay noindex,follow
+// unless the CMS row explicitly says otherwise (after local proof is added).
+export const INDEXED_MARKETS = ["united-kingdom", "united-states", "australia", "canada"];
+export const defaultLocationNoindex = (country, city) => Boolean(city) || !INDEXED_MARKETS.includes(country.slug);
+export const locationIndexRecord = (page, country, city) => ({ ...(page || {}), seo_noindex: page?.seo_noindex ?? defaultLocationNoindex(country, city) });
