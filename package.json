@@ -2,7 +2,7 @@
   "name": "online-quran-college",
   "version": "2.0.0",
   "private": true,
-  "description": "Online Quran College \u2014 public website and admin panel (Next.js + Supabase).",
+  "description": "Online Quran College — public website and admin panel (Next.js + Supabase).",
   "type": "module",
   "engines": {
     "node": ">=20.9.0"
@@ -18,6 +18,7 @@
     "seed:locations": "node scripts/seed-locations.mjs",
     "test:browser": "node scripts/browser-smoke.mjs",
     "verify:site": "node scripts/run-site-quality.mjs",
+    "audit:performance": "node scripts/performance-audit.mjs",
     "db:bundle": "node scripts/bundle-database.mjs",
     "seed:snapshot": "node scripts/export-seed-content.mjs",
     "seo:agent": "node scripts/seo-agent-audit.mjs",
@@ -50,9 +51,11 @@
     "@electric-sql/pglite": "0.5.11",
     "@tailwindcss/postcss": "4.3.3",
     "@tailwindcss/typography": "0.5.20",
+    "chrome-launcher": "1.2.2",
     "esbuild": "0.28.2",
     "eslint": "9.39.5",
     "eslint-config-next": "16.4.3",
+    "lighthouse": "13.6.0",
     "playwright": "1.64.1",
     "tailwindcss": "4.3.3"
   },

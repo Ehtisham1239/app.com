@@ -5,7 +5,9 @@ import { legacyImageRedirects } from "./src/lib/legacy-image-redirects.js";
 const imageManifest = JSON.parse(readFileSync(new URL("./src/lib/image-manifest.json", import.meta.url), "utf8"));
 /** @type {import('next').NextConfig} */
 const securityHeaders = [
-  { key: "Content-Security-Policy", value: "base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'" },
+  // Disallow HTML event-handler attributes even on cacheable public pages.
+  // This is separate from the nonce-based script policy on staff/auth routes.
+  { key: "Content-Security-Policy", value: "base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src-attr 'none'" },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
