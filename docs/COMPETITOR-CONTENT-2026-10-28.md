@@ -71,3 +71,20 @@ Current primary guidance: [Google helpful content](https://developers.google.com
 ## Recovery and source
 
 Application code remains the deployed 807d5969c32e0430e344467179c8153e1e71cb2e release. This is a CMS content release; a new application deployment is unnecessary. The original five authored bodies in content/blog/2026-10-28 remain the retained baseline. competitor-informed-additions.json records each inserted section; insertion is before the last h2 for each blog and appended to the previous UK body. To reverse, restore only the relevant baseline body with a fresh version check, preserving slug, status, canonical and image. Do not reset the database or republish unrelated records.
+
+## Final verification after the owner excluded prices
+
+Owner scope update on 28 October 2026: leave prices alone and finish the remaining accessible SEO work. Pricing records and the approved USD billing setup were not changed, and GBP pricing is excluded from this completion scope.
+
+Further live read-only checks completed:
+
+- All 49 declared sitemap pages passed visible-topic coverage. The audit initially produced a false UK alert because its expected phrase omitted “the” from “the United Kingdom”. The helper now uses the same `countryInName` function as the public country templates. After that correction, the full 49-page run passed with zero failures. Website wording was already correct. The retained helper is commit `269f53970f00b267d747497cc53fb47ca5a104c8`; it is audit tooling and needs no application deployment.
+- All six enhanced content bodies are present: three new practical questions on each of five articles and five on the UK page.
+- All 26 unique same-origin links/anchors used by those bodies resolve successfully, including their referenced fragments.
+- All 30 400/800/1200px WebP/AVIF image variants return image responses and match the retained source files byte for byte. This verifies published responsive assets, not a fresh mobile-device layout test.
+- A fresh authorised GA4 read, filtered to the production hostname and matched web stream, confirms that page views, contact clicks and lead-event data are being received. The period includes the current partial day and known QA activity; it is not a claim of organic growth, qualified leads or enrolments. Raw account metrics are not committed.
+- Search Console's sitemap records report no errors/warnings, but their last download dates predate this release and their historical submitted counts do not describe the current 49-URL sitemap. New article indexing is not established by those records.
+
+The accessible public SEO/content work in this release is implemented and verified. Two further verification attempts remain unavailable: Vercel grouped runtime-error access returned HTTP 403 for the actual team/project, with no installed/authenticated CLI fallback; the official Google PageSpeed API returned HTTP 429 daily-quota exhaustion on the mobile test. Neither response proves a site defect. No unchanged retries, permission weakening, fabricated performance scores or account modifications were used. Earlier local Chromium installation also failed because the download was truncated. Consequently fresh mobile/desktop Lighthouse, field CWV and private runtime logs remain unverified.
+
+No new price, outbound message, enquiry submission, indexing notification or recurring task was created. The completion does not promise a top ranking, a deadline for Google indexing or a universally perfect website.
