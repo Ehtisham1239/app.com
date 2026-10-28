@@ -1,0 +1,53 @@
+{
+  "reviewed": "2026-10-28",
+  "policy": "Research only. No contact, form submission, payment, membership purchase or link acquisition authorized or performed. No promise of a placement or ranking credit.",
+  "prospects": [
+    {
+      "id": "LINK-01",
+      "organization": "ISRE – Islamic Special Religious Education",
+      "source": "https://www.isre.org.au/resources/",
+      "market": "Australia",
+      "observed": "The teaching-resource page provides syllabus resources and explicitly welcomes recommended links through its listed syllabus email.",
+      "contact_route": "syllabus.isre@gmail.com, as published on the source page",
+      "proposed_value": "An academically reviewed practical checklist for a parent supporting a teacher-assigned home-learning task.",
+      "target_oqc_url": "https://www.onlinequrancollege.com/blog/noorani-qaida-home-practice-checklist",
+      "evidence_level": "Observed invitation to recommend resources; suitability is an inference.",
+      "risk": "Confirm the resource matches their audience and editorial requirements; do not imply affiliation or request ranking-credit links.",
+      "approval": "Not requested; no outreach prepared for sending",
+      "status": "Researched; owner and Academics review needed",
+      "acquired_backlink": false
+    },
+    {
+      "id": "LINK-02",
+      "organization": "Islamic Schools League of America",
+      "source": "https://theisla.org/blog/",
+      "market": "USA",
+      "observed": "The current blog includes educational resources, teacher/parent topics and an identified guest-blog item.",
+      "contact_route": "Organization website contact navigation; contribution policy not established",
+      "proposed_value": "A reviewed, original parent–teacher progress-conversation checklist, using real approved experience if a contribution is invited.",
+      "target_oqc_url": "https://www.onlinequrancollege.com/blog/parent-teacher-quran-progress-review",
+      "evidence_level": "Publication examples observed; acceptance of an OQC contribution is unverified.",
+      "risk": "Do not buy membership or a placement for ranking credit. Confirm unpaid editorial eligibility and any required qualification before outreach.",
+      "approval": "Not requested; no outreach performed",
+      "status": "Research candidate; intake policy unknown",
+      "acquired_backlink": false
+    }
+  ],
+  "held_candidates": [
+    {
+      "organization": "Muslim Council of Britain",
+      "url": "https://mcb.org.uk/resources/",
+      "reason": "Direct page retrieval timed out; no opportunity qualified from search snippets alone."
+    },
+    {
+      "organization": "ISNA Education Forum",
+      "url": "https://isna.net/education-forum-papers/",
+      "reason": "Search describes educational papers, but direct extraction returned an iframe-only document; no current intake/deadline verified."
+    },
+    {
+      "organization": "Muslim Teachers Association",
+      "url": "https://mta-uk.org/teaching",
+      "reason": "Relevant resource list exists, but it contains visibly dated references and old recent-post dates; active editorial maintenance needs verification."
+    }
+  ]
+}

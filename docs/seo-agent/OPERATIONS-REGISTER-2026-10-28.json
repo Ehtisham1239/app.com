@@ -1,0 +1,262 @@
+{
+  "reviewed": "2026-10-28",
+  "timezone": "Asia/Karachi",
+  "site": "https://www.onlinequrancollege.com",
+  "specification": {
+    "file": "docs/seo-agent/MASTER-OPERATING-SPEC.md",
+    "sha256": "494a59b40dcce7465ba29855fa4fe9abda09e62c2a9cc7d9cd47938e7e67c8f9",
+    "words": 8057,
+    "sections": 28,
+    "complete_text_preserved": true
+  },
+  "scheduling": {
+    "external_task_confirmed_enabled": true,
+    "daily_local_time": "08:00",
+    "timezone": "Asia/Karachi",
+    "first_scheduled_date": "2026-10-29",
+    "manual_request_required": false,
+    "future_run_completion_claimed": false
+  },
+  "actions": [
+    {
+      "id": "OPS-01",
+      "priority": "P1",
+      "workstream": "Complete operating specification",
+      "status": "Configured and verified",
+      "result": "All 28 sections and 8,057 words are retained in source and in the confirmed external task prompt.",
+      "next": "Read current source and registers at each run; do not treat a configured workflow as completed future work."
+    },
+    {
+      "id": "OPS-02",
+      "priority": "P1",
+      "workstream": "Existing blogs",
+      "status": "Verified live in the preceding 28 October release",
+      "result": "20/20 articles received targeted changes and passed HTML/desktop checks.",
+      "evidence": "docs/seo-agent/BLOG-ACTION-REGISTER-2026-10-28.json",
+      "next": "Audit changed/new articles; retain the maximum 1,000 words."
+    },
+    {
+      "id": "OPS-03",
+      "priority": "P1",
+      "workstream": "Technical SEO",
+      "status": "Latest public checks passed",
+      "result": "49/49 declared sitemap pages; zero findings/errors in the preceding release.",
+      "evidence": "docs/BLOG-OPTIMIZATION-2026-10-28.md",
+      "next": "Monitor changed routes and unresolved issues; do not repeat unchanged checks without a reason."
+    },
+    {
+      "id": "OPS-04",
+      "priority": "P2",
+      "workstream": "Keywords and competitors",
+      "status": "Existing qualitative maps retained",
+      "evidence": "docs/BLOG-KEYWORDS-2026-10-28.md; docs/COMPETITOR-CONTENT-2026-10-28.md",
+      "next": "Use meaningful new query evidence before changing intent targets; do not invent demand or ranks."
+    },
+    {
+      "id": "OPS-05",
+      "priority": "P2",
+      "workstream": "AEO/GEO",
+      "status": "Existing answer/schema work verified; guidance corrected",
+      "result": "FAQ rich-result guidance updated against Google documentation updates. Visible FAQs retained.",
+      "evidence": "https://developers.google.com/search/updates",
+      "next": "Continue clear, source-backed answers; never promise AI citations."
+    },
+    {
+      "id": "OPS-06",
+      "priority": "P2",
+      "workstream": "Analytics and organic funnel",
+      "status": "Current read-only baseline collected; qualification unresolved",
+      "result": "Matching production stream, hostname, Measurement ID and Asia/Karachi reporting timezone confirmed. Complete seven-day session/event reads obtained; comparison period returned no rows. Raw figures are private.",
+      "next": "Do not calculate growth against unavailable data. Check current key-event configuration with account evidence before proposing a setting change; confirm real enquiries/admissions through authorized aggregate CRM/ERP data."
+    },
+    {
+      "id": "OPS-07",
+      "priority": "P2",
+      "workstream": "Editorial relationships/backlinks",
+      "status": "Two researched candidates, no links acquired",
+      "evidence": "content/seo-agent/link-prospects-2026-10-28.json",
+      "next": "Review relevance and eligibility; no outreach, purchase or disavow without explicit authorization."
+    },
+    {
+      "id": "OPS-08",
+      "priority": "P2",
+      "workstream": "International SEO",
+      "status": "Approved existing hubs retained",
+      "result": "UK, USA, Australia and Canada intent hubs; no new duplicate city pages or physical-office claims.",
+      "next": "Use actual country demand and approved local proof before expansion; prices excluded."
+    },
+    {
+      "id": "OPS-09",
+      "priority": "P2",
+      "workstream": "Image SEO/accessibility",
+      "status": "20 desktop cover/alt/TOC checks passed in preceding release",
+      "next": "Fresh mobile/layout and measured performance remain separate."
+    },
+    {
+      "id": "OPS-10",
+      "priority": "P2",
+      "workstream": "Mobile/field CWV",
+      "status": "Blocked by measurement/browser availability",
+      "result": "No new mobile Lighthouse or field-CWV measurement claimed.",
+      "next": "Use an approved working measurement environment; do not repeat failed downloads or quota-limited requests unchanged."
+    },
+    {
+      "id": "OPS-11",
+      "priority": "P2",
+      "workstream": "Religious review",
+      "status": "Qualified review pending",
+      "result": "Source references checked; no Academics sign-off fabricated.",
+      "next": "Academics reviews existing religious explanations and chosen translations."
+    },
+    {
+      "id": "OPS-12",
+      "priority": "P2",
+      "workstream": "External registers and private hosting logs",
+      "status": "Access limited",
+      "result": "Repository registers are available. External Pathway/Claude document and private hosting logs were not updated or declared accessible.",
+      "next": "Continue independent work and reconcile when authorized capability becomes available."
+    }
+  ],
+  "master_sections": [
+    {
+      "section": 1,
+      "title": "MASTER ROLE AND IDENTITY",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 2,
+      "title": "AUTHORITY, ACCESS AND NON-NEGOTIABLE RULES",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 3,
+      "title": "OPERATING MODEL: STANDARDIZE → AUTOMATE → OPTIMIZE",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 4,
+      "title": "PRIORITY ORDER",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 5,
+      "title": "EXISTING BLOG AUDIT — MANDATORY FIRST WORKSTREAM",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 6,
+      "title": "TECHNICAL SEO AUDIT",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 7,
+      "title": "KEYWORD RESEARCH AND SEARCH-INTENT MAPPING",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 8,
+      "title": "COMPETITOR INTELLIGENCE",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 9,
+      "title": "ON-PAGE SEO AND CONTENT QUALITY",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 10,
+      "title": "AEO — ANSWER ENGINE OPTIMIZATION",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 11,
+      "title": "GEO — GENERATIVE ENGINE OPTIMIZATION",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 12,
+      "title": "ETHICAL BACKLINK AUDIT AND LINK BUILDING",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 13,
+      "title": "INTERNATIONAL SEO",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 14,
+      "title": "IMAGE SEO, MEDIA AND ACCESSIBILITY",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 15,
+      "title": "CRO — CONVERSION RATE OPTIMIZATION",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 16,
+      "title": "GA4, GOOGLE SEARCH CONSOLE, GTM AND BUSINESS DATA",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 17,
+      "title": "REPORTING AND KPI MANAGEMENT",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 18,
+      "title": "SEO PROJECT MANAGEMENT AND ACTION REGISTERS",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 19,
+      "title": "AUTOMATION ARCHITECTURE",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 20,
+      "title": "EXISTING PROJECT FILES, REGISTERS AND PRIOR WORK",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 21,
+      "title": "CUSTOM GPT KNOWLEDGE AND CONFIGURATION",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 22,
+      "title": "HUMAN APPROVAL GATES",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 23,
+      "title": "RESPONSE AND COMMUNICATION STANDARD",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 24,
+      "title": "STANDARD WORKFLOW FOR EVERY REQUEST",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 25,
+      "title": "STANDARD DAILY EXECUTION CHECKLIST",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 26,
+      "title": "COMMANDS THE OWNER CAN USE",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 27,
+      "title": "DEFINITION OF DONE",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    },
+    {
+      "section": 28,
+      "title": "FINAL OPERATING DIRECTIVE",
+      "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
+    }
+  ]
+}
