@@ -1,7 +1,7 @@
 // Visible-topic coverage, not search-volume or ranking measurement. Owned public GETs only.
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { SEARCH_INTENTS } from '../src/lib/search-intent.js';
-import { getLocation } from '../src/lib/locations.js';
+import { getLocation, countryInName } from '../src/lib/locations.js';
 import { textContent } from '../src/lib/seo.js';
 import { auditOrigin } from './lib/audit-origin.mjs';
 
@@ -24,7 +24,7 @@ await Promise.all(Array.from({ length: 3 }, async () => {
       if (!phrase && path.startsWith('/locations/')) {
         const [, , countrySlug, citySlug] = path.split('/'), country = getLocation(countrySlug), city = country?.cities.find(c => c.slug === citySlug);
         if (!country || (citySlug && !city)) throw Error('Unknown location in sitemap');
-        phrase = `online Quran classes in ${city ? `${city.name}, ${country.name}` : country.name}`; source = 'Existing local service and scheduling context';
+        phrase = `online Quran classes in ${city ? `${city.name}, ${country.name}` : countryInName(country)}`; source = 'Existing local service and scheduling context';
       }
       if (!phrase) { phrase = heading || title.replace(/\s*[|·—]\s*(?:OQC|Online Quran College)\s*$/i, '').trim(); source = 'Published page topic; preserve original article, profile or policy intent'; }
       const placements = [['title', title], ['h1', heading], ['main', main]].filter(([, value]) => normal(value).includes(normal(phrase))).map(([key]) => key);
