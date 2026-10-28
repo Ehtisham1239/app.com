@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { NavigationLink as Link } from "@/components/site/navigation-link";
 import { preload } from "react-dom";
 import { SEARCH_INTENTS } from "@/lib/search-intent";
 import { ArrowRight, Check } from "@/components/site/icons";
@@ -20,6 +20,7 @@ export function HomeHero({ hero, stats }) {
     <div className="hero-glow hero-glow-one" aria-hidden="true" /><div className="hero-glow hero-glow-two" aria-hidden="true" />
     <div className="hero-layout relative page-wrap grid items-center gap-12 py-14 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14 lg:py-24"><div className="hero-copy">
       <p lang="ar" dir="rtl" className="arabic text-left text-[1.8rem] text-mushaf-900 sm:text-[2.4rem]">اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ</p>
+      <p lang="en" className="mt-2 max-w-xl text-sm leading-relaxed text-ink-soft">“Recite in the name of your Lord who created” <span className="font-semibold">— Qur’an 96:1</span></p>
       <h1 className="mt-4 max-w-2xl text-[2.25rem] font-bold leading-[1.15] text-mushaf-900 sm:text-[3rem]">{h.title}</h1>
       {h.subtitle && <p className="hero-intro mt-6 max-w-xl text-[1.05rem] leading-relaxed text-ink-soft">{h.subtitle.length > 150 ? SEARCH_INTENTS["/"].intro : h.subtitle}</p>}
 
