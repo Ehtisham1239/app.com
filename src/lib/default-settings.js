@@ -13,7 +13,7 @@ export const DEFAULT_SETTINGS = {
     phone: "+44 7864 710821",
     whatsapp: "447864710821",
     location: "United Kingdom",
-    hours: "Classes 24/7 across time zones",
+    hours: "Morning and evening class slots across time zones",
   },
   "site.social": {
     facebook: "https://www.facebook.com/OnlineQuranCollegeLtdUK",
@@ -35,7 +35,7 @@ export const DEFAULT_SETTINGS = {
     { value: "Online", label: "Learn from home" },
     { value: "All ages", label: "Children & adults" },
     { value: "1-on-1", label: "Live classes" },
-    { value: "24/7", label: "Flexible timings" },
+    { value: "AM & PM", label: "Class slots" },
   ],
   "site.benefits": [
     { icon: "badge-percent", title: "Affordable fees", text: "Simple monthly packages with a 15% discount for additional siblings." },

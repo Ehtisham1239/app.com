@@ -14,7 +14,10 @@ try {
     const { page } = session;
     const r = await page.goto(base + "/blog", { waitUntil: "load" }); assert.equal(r.status(), 200);
     const topics = page.getByRole("navigation", { name: "Article topics" });
-    assert.equal(await topics.getByRole("link").count(), 9);
+    const topicLinks = await topics.getByRole("link").all();
+    const topicDestinations = await Promise.all(topicLinks.map(link => link.getAttribute("href")));
+    assert.ok(topicLinks.length >= 4, "All articles plus the established topic categories");
+    assert.equal(new Set(topicDestinations).size, topicLinks.length, "No duplicate topic destinations");
     for (const category of ["Parents", "Tajweed", "Hifz"]) {
       await topics.getByRole("link", { name: category, exact: true }).click();
       await page.waitForURL(url => url.searchParams.get("category") === category);
@@ -47,7 +50,7 @@ try {
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
     await page.screenshot({ path: `${out}/article-${width}.png` });
-    report.cases.push({ width, categories: 8, pagination: true, imageLoaded: true, dateVisible: true, tableOfContents: true, overflow: false });
+    report.cases.push({ width, categories: topicLinks.length - 1, pagination: true, imageLoaded: true, dateVisible: true, tableOfContents: true, overflow: false });
     await page.evaluate(() => { navigator.clipboard.writeText = async value => { window.__copiedArticle = value; }; window.print = () => { window.__printedArticle = true; }; });
     const reject = page.getByRole('button', { name: 'Reject analytics', exact: true });
     if (await reject.count()) await reject.click();

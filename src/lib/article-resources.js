@@ -11,6 +11,11 @@ const topics = {
 };
 
 const articleTopics = {
+  "choose-online-quran-classes-kids": "parents",
+  "noorani-qaida-home-practice-checklist": "parents",
+  "returning-to-quran-study-adults": "adults",
+  "family-quran-learning-weekly-routine": "parents",
+  "online-quran-class-fees-uk-comparison": "international",
   "help-your-kids-learn-quran-online": "parents",
   "importance-of-reciting-quran-with-tajweed": "tajweed",
   "memorization-techniques-for-beginners": "hifz",

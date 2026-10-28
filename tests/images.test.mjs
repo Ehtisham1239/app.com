@@ -42,7 +42,7 @@ test('all course, blog and location fallback covers resolve to registered genera
  const seed=JSON.parse(readFileSync(new URL('../src/lib/seed-content.json',import.meta.url)));
  const covers=[...seed.courses,...seed.posts,...seed.pages.filter(p=>p.slug==='about'||/^(locations-|learning-)/.test(p.slug))];
  assert.equal(new Set(covers.map(row=>row.cover_url)).size,covers.length,'Distinct content needs distinct covers');
- for(const row of covers){assert.ok(manifest.some(m=>m.storage_url===row.cover_url),row.slug);assert.ok(row.cover_alt.length>30,row.slug);}
+ for(const row of covers){assert.ok(manifest.some(m=>m.url===row.cover_url||m.storage_url===row.cover_url),row.slug);assert.ok(row.cover_alt.length>30,row.slug);}
 });
 test('CMS SEO audit catches a cover without descriptive alt text',()=>{
  assert.equal(analyzeSeo({cover_url:'/test.webp'}).checks.find(c=>c.id==='alt').pass,false);

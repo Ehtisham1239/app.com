@@ -104,7 +104,7 @@ export default async function PostPage({ params }) {
           </div>
         </section>
       )}
-      <div data-article-cta><CtaBand title="Put it into practice with a teacher" text="Book a free trial class and get personal guidance from a qualified teacher." whatsappHref={wa} /></div>
+      <div data-article-cta><CtaBand title="Put it into practice with a teacher" text="Book a free trial to discuss your learning level, course and lesson time with the college." whatsappHref={wa} /></div>
     </>
   );
 }
