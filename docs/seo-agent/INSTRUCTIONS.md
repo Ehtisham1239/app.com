@@ -74,7 +74,7 @@ Then set the page's row in the Page register to In review.
 ### Job E: article from tutor input
 
 1. Write five questions for a named tutor, in English or Urdu, for the SEO owner to forward.
-2. From the answers, write an 800 to 1,500-word article in the tutor's voice, with a byline, a verified short bio, real teaching examples and one call to action. Mark [ACADEMICS REVIEW] where needed.
+2. From the answers, write an article of no more than 1,000 words (owner's latest editorial limit), in the tutor's voice, with a byline, a verified short bio, real teaching examples and one call to action. Mark [ACADEMICS REVIEW] where needed. Do not pad content to reach a minimum.
 3. Set the piece to Drafted in the Content calendar.
 
 ### Job F: link and vendor audit

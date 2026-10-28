@@ -1,0 +1,561 @@
+{
+  "reviewed": "2026-10-28",
+  "site": "https://www.onlinequrancollege.com",
+  "source_baseline": "88779c2d97efb12fe09f65c6a662adef19112cc2",
+  "cms_project": "lgbwidraztavhhbnbfhr",
+  "scope": "20 published articles; Google Business Profile and prices excluded",
+  "articles": [
+    {
+      "id": "BLOG-01",
+      "url": "https://www.onlinequrancollege.com/blog/noorani-qaida-home-practice-checklist",
+      "primary_topic": "Noorani Qaida home practice",
+      "changed_fields": [
+        "body_html",
+        "reading_minutes"
+      ],
+      "before_body_words": 1345,
+      "after_body_words": 898,
+      "schema_word_count": 900,
+      "approval": "Owner request: optimize all blogs now; maximum 1,000 words",
+      "cms_version": 4,
+      "status": "Verified live",
+      "verification": [
+        "CMS read matches intended patch",
+        "HTTP 200",
+        "Body agrees with CMS",
+        "Title/meta/H1/canonical/indexability pass",
+        "BlogPosting agrees with source",
+        "Cover alt/dimensions present",
+        "TOC targets valid",
+        "Desktop browser: cover loaded and no horizontal overflow"
+      ],
+      "body_md5": "714cc537c80ad5b8abe5b66fec1222a5",
+      "last_reviewed": "2026-10-28"
+    },
+    {
+      "id": "BLOG-02",
+      "url": "https://www.onlinequrancollege.com/blog/choose-online-quran-classes-kids",
+      "primary_topic": "online Quran classes for kids",
+      "changed_fields": [
+        "body_html",
+        "reading_minutes"
+      ],
+      "before_body_words": 1358,
+      "after_body_words": 915,
+      "schema_word_count": 920,
+      "approval": "Owner request: optimize all blogs now; maximum 1,000 words",
+      "cms_version": 4,
+      "status": "Verified live",
+      "verification": [
+        "CMS read matches intended patch",
+        "HTTP 200",
+        "Body agrees with CMS",
+        "Title/meta/H1/canonical/indexability pass",
+        "BlogPosting agrees with source",
+        "Cover alt/dimensions present",
+        "TOC targets valid",
+        "Desktop browser: cover loaded and no horizontal overflow"
+      ],
+      "body_md5": "5c137a82e8e16e7677da58f6ab6f1c66",
+      "last_reviewed": "2026-10-28"
+    },
+    {
+      "id": "BLOG-03",
+      "url": "https://www.onlinequrancollege.com/blog/returning-to-quran-study-adults",
+      "primary_topic": "returning to Quran study",
+      "changed_fields": [
+        "body_html",
+        "reading_minutes"
+      ],
+      "before_body_words": 1336,
+      "after_body_words": 875,
+      "schema_word_count": 877,
+      "approval": "Owner request: optimize all blogs now; maximum 1,000 words",
+      "cms_version": 4,
+      "status": "Verified live",
+      "verification": [
+        "CMS read matches intended patch",
+        "HTTP 200",
+        "Body agrees with CMS",
+        "Title/meta/H1/canonical/indexability pass",
+        "BlogPosting agrees with source",
+        "Cover alt/dimensions present",
+        "TOC targets valid",
+        "Desktop browser: cover loaded and no horizontal overflow"
+      ],
+      "body_md5": "e05ef07c18e8deb92fdf5aaf3429962d",
+      "last_reviewed": "2026-10-28"
+    },
+    {
+      "id": "BLOG-04",
+      "url": "https://www.onlinequrancollege.com/blog/family-quran-learning-weekly-routine",
+      "primary_topic": "family Quran learning routine",
+      "changed_fields": [
+        "body_html",
+        "reading_minutes"
+      ],
+      "before_body_words": 1436,
+      "after_body_words": 915,
+      "schema_word_count": 917,
+      "approval": "Owner request: optimize all blogs now; maximum 1,000 words",
+      "cms_version": 4,
+      "status": "Verified live",
+      "verification": [
+        "CMS read matches intended patch",
+        "HTTP 200",
+        "Body agrees with CMS",
+        "Title/meta/H1/canonical/indexability pass",
+        "BlogPosting agrees with source",
+        "Cover alt/dimensions present",
+        "TOC targets valid",
+        "Desktop browser: cover loaded and no horizontal overflow"
+      ],
+      "body_md5": "d3a579a0463e3056c43aabde7327ad75",
+      "last_reviewed": "2026-10-28"
+    },
+    {
+      "id": "BLOG-05",
+      "url": "https://www.onlinequrancollege.com/blog/online-quran-class-fees-uk-comparison",
+      "primary_topic": "online Quran class fees in the UK",
+      "changed_fields": [
+        "body_html",
+        "reading_minutes"
+      ],
+      "before_body_words": 1342,
+      "after_body_words": 856,
+      "schema_word_count": 858,
+      "approval": "Owner request: optimize all blogs now; maximum 1,000 words",
+      "cms_version": 4,
+      "status": "Verified live",
+      "verification": [
+        "CMS read matches intended patch",
+        "HTTP 200",
+        "Body agrees with CMS",
+        "Title/meta/H1/canonical/indexability pass",
+        "BlogPosting agrees with source",
+        "Cover alt/dimensions present",
+        "TOC targets valid",
+        "Desktop browser: cover loaded and no horizontal overflow"
+      ],
+      "body_md5": "e4a892c39435966d609a0fa510498b8f",
+      "last_reviewed": "2026-10-28"
+    },
+    {
+      "id": "BLOG-06",
+      "url": "https://www.onlinequrancollege.com/blog/adult-quran-beginner-first-month",
+      "primary_topic": "adult beginner Quran study plan",
+      "changed_fields": [
+        "body_html"
+      ],
+      "before_body_words": 510,
+      "after_body_words": 548,
+      "schema_word_count": 567,
+      "approval": "Owner request: optimize all blogs now; maximum 1,000 words",
+      "cms_version": 8,
+      "status": "Verified live",
+      "verification": [
+        "CMS read matches intended patch",
+        "HTTP 200",
+        "Body agrees with CMS",
+        "Title/meta/H1/canonical/indexability pass",
+        "BlogPosting agrees with source",
+        "Cover alt/dimensions present",
+        "TOC targets valid",
+        "Desktop browser: cover loaded and no horizontal overflow"
+      ],
+      "body_md5": "ded4a791fad73e41a9ddfcb3a9ffaf6e",
+      "last_reviewed": "2026-10-28"
+    },
+    {
+      "id": "BLOG-07",
+      "url": "https://www.onlinequrancollege.com/blog/prepare-child-first-online-quran-trial",
+      "primary_topic": "preparing a child for an online Quran trial",
+      "changed_fields": [
+        "body_html"
+      ],
+      "before_body_words": 506,
+      "after_body_words": 544,
+      "schema_word_count": 561,
+      "approval": "Owner request: optimize all blogs now; maximum 1,000 words",
+      "cms_version": 8,
+      "status": "Verified live",
+      "verification": [
+        "CMS read matches intended patch",
+        "HTTP 200",
+        "Body agrees with CMS",
+        "Title/meta/H1/canonical/indexability pass",
+        "BlogPosting agrees with source",
+        "Cover alt/dimensions present",
+        "TOC targets valid",
+        "Desktop browser: cover loaded and no horizontal overflow"
+      ],
+      "body_md5": "7e6b90fe0abc968d08735e945e0d67af",
+      "last_reviewed": "2026-10-28"
+    },
+    {
+      "id": "BLOG-08",
+      "url": "https://www.onlinequrancollege.com/blog/tajweed-practice-with-feedback",
+      "primary_topic": "Tajweed practice with teacher feedback",
+      "changed_fields": [
+        "body_html"
+      ],
+      "before_body_words": 514,
+      "after_body_words": 553,
+      "schema_word_count": 572,
+      "approval": "Owner request: optimize all blogs now; maximum 1,000 words",
+      "cms_version": 7,
+      "status": "Verified live",
+      "verification": [
+        "CMS read matches intended patch",
+        "HTTP 200",
+        "Body agrees with CMS",
+        "Title/meta/H1/canonical/indexability pass",
+        "BlogPosting agrees with source",
+        "Cover alt/dimensions present",
+        "TOC targets valid",
+        "Desktop browser: cover loaded and no horizontal overflow"
+      ],
+      "body_md5": "b7fdbdf67ef9108adb774107c96bb64e",
+      "last_reviewed": "2026-10-28"
+    },
+    {
+      "id": "BLOG-09",
+      "url": "https://www.onlinequrancollege.com/blog/hifz-revision-with-school",
+      "primary_topic": "Hifz revision alongside school",
+      "changed_fields": [
+        "body_html"
+      ],
+      "before_body_words": 495,
+      "after_body_words": 531,
+      "schema_word_count": 549,
+      "approval": "Owner request: optimize all blogs now; maximum 1,000 words",
+      "cms_version": 8,
+      "status": "Verified live",
+      "verification": [
+        "CMS read matches intended patch",
+        "HTTP 200",
+        "Body agrees with CMS",
+        "Title/meta/H1/canonical/indexability pass",
+        "BlogPosting agrees with source",
+        "Cover alt/dimensions present",
+        "TOC targets valid",
+        "Desktop browser: cover loaded and no horizontal overflow"
+      ],
+      "body_md5": "62d7224f769e8052e53fa5eebc7db11d",
+      "last_reviewed": "2026-10-28"
+    },
+    {
+      "id": "BLOG-10",
+      "url": "https://www.onlinequrancollege.com/blog/questions-before-quran-course-enrolment",
+      "primary_topic": "questions before Quran course enrolment",
+      "changed_fields": [
+        "body_html"
+      ],
+      "before_body_words": 497,
+      "after_body_words": 534,
+      "schema_word_count": 554,
+      "approval": "Owner request: optimize all blogs now; maximum 1,000 words",
+      "cms_version": 7,
+      "status": "Verified live",
+      "verification": [
+        "CMS read matches intended patch",
+        "HTTP 200",
+        "Body agrees with CMS",
+        "Title/meta/H1/canonical/indexability pass",
+        "BlogPosting agrees with source",
+        "Cover alt/dimensions present",
+        "TOC targets valid",
+        "Desktop browser: cover loaded and no horizontal overflow"
+      ],
+      "body_md5": "a01419c49681b4767dd105fe89d956d2",
+      "last_reviewed": "2026-10-28"
+    },
+    {
+      "id": "BLOG-11",
+      "url": "https://www.onlinequrancollege.com/blog/noorani-qaida-or-quran-reading",
+      "primary_topic": "Noorani Qaida or Quran reading",
+      "changed_fields": [
+        "body_html"
+      ],
+      "before_body_words": 494,
+      "after_body_words": 535,
+      "schema_word_count": 554,
+      "approval": "Owner request: optimize all blogs now; maximum 1,000 words",
+      "cms_version": 8,
+      "status": "Verified live",
+      "verification": [
+        "CMS read matches intended patch",
+        "HTTP 200",
+        "Body agrees with CMS",
+        "Title/meta/H1/canonical/indexability pass",
+        "BlogPosting agrees with source",
+        "Cover alt/dimensions present",
+        "TOC targets valid",
+        "Desktop browser: cover loaded and no horizontal overflow"
+      ],
+      "body_md5": "5dbc85d62051d7334151d276db8d16ac",
+      "last_reviewed": "2026-10-28"
+    },
+    {
+      "id": "BLOG-12",
+      "url": "https://www.onlinequrancollege.com/blog/quran-translation-and-arabic-difference",
+      "primary_topic": "Quran translation vs Arabic study",
+      "changed_fields": [
+        "body_html"
+      ],
+      "before_body_words": 509,
+      "after_body_words": 548,
+      "schema_word_count": 565,
+      "approval": "Owner request: optimize all blogs now; maximum 1,000 words",
+      "cms_version": 8,
+      "status": "Verified live",
+      "verification": [
+        "CMS read matches intended patch",
+        "HTTP 200",
+        "Body agrees with CMS",
+        "Title/meta/H1/canonical/indexability pass",
+        "BlogPosting agrees with source",
+        "Cover alt/dimensions present",
+        "TOC targets valid",
+        "Desktop browser: cover loaded and no horizontal overflow"
+      ],
+      "body_md5": "2f8b839892f5f5e135c3394666c17f7d",
+      "last_reviewed": "2026-10-28"
+    },
+    {
+      "id": "BLOG-13",
+      "url": "https://www.onlinequrancollege.com/blog/online-quran-lesson-setup-accessibility",
+      "primary_topic": "online Quran lesson setup",
+      "changed_fields": [
+        "body_html"
+      ],
+      "before_body_words": 521,
+      "after_body_words": 561,
+      "schema_word_count": 578,
+      "approval": "Owner request: optimize all blogs now; maximum 1,000 words",
+      "cms_version": 8,
+      "status": "Verified live",
+      "verification": [
+        "CMS read matches intended patch",
+        "HTTP 200",
+        "Body agrees with CMS",
+        "Title/meta/H1/canonical/indexability pass",
+        "BlogPosting agrees with source",
+        "Cover alt/dimensions present",
+        "TOC targets valid",
+        "Desktop browser: cover loaded and no horizontal overflow"
+      ],
+      "body_md5": "84f1c8e19839382f0bfd9bc510ce0852",
+      "last_reviewed": "2026-10-28"
+    },
+    {
+      "id": "BLOG-14",
+      "url": "https://www.onlinequrancollege.com/blog/parent-teacher-quran-progress-review",
+      "primary_topic": "parent teacher Quran progress review",
+      "changed_fields": [
+        "body_html"
+      ],
+      "before_body_words": 493,
+      "after_body_words": 532,
+      "schema_word_count": 549,
+      "approval": "Owner request: optimize all blogs now; maximum 1,000 words",
+      "cms_version": 7,
+      "status": "Verified live",
+      "verification": [
+        "CMS read matches intended patch",
+        "HTTP 200",
+        "Body agrees with CMS",
+        "Title/meta/H1/canonical/indexability pass",
+        "BlogPosting agrees with source",
+        "Cover alt/dimensions present",
+        "TOC targets valid",
+        "Desktop browser: cover loaded and no horizontal overflow"
+      ],
+      "body_md5": "d4f4f943140ca77551bcd40cc3b6140e",
+      "last_reviewed": "2026-10-28"
+    },
+    {
+      "id": "BLOG-15",
+      "url": "https://www.onlinequrancollege.com/blog/family-quran-learning-multiple-children",
+      "primary_topic": "Quran lessons for multiple children",
+      "changed_fields": [
+        "body_html"
+      ],
+      "before_body_words": 485,
+      "after_body_words": 522,
+      "schema_word_count": 541,
+      "approval": "Owner request: optimize all blogs now; maximum 1,000 words",
+      "cms_version": 7,
+      "status": "Verified live",
+      "verification": [
+        "CMS read matches intended patch",
+        "HTTP 200",
+        "Body agrees with CMS",
+        "Title/meta/H1/canonical/indexability pass",
+        "BlogPosting agrees with source",
+        "Cover alt/dimensions present",
+        "TOC targets valid",
+        "Desktop browser: cover loaded and no horizontal overflow"
+      ],
+      "body_md5": "696e81487f965a5565f5edead705a1ec",
+      "last_reviewed": "2026-10-28"
+    },
+    {
+      "id": "BLOG-16",
+      "url": "https://www.onlinequrancollege.com/blog/choose-online-quran-teacher-usa",
+      "primary_topic": "choosing an online Quran teacher in the USA",
+      "changed_fields": [
+        "body_html"
+      ],
+      "before_body_words": 553,
+      "after_body_words": 590,
+      "schema_word_count": 608,
+      "approval": "Owner request: optimize all blogs now; maximum 1,000 words",
+      "cms_version": 8,
+      "status": "Verified live",
+      "verification": [
+        "CMS read matches intended patch",
+        "HTTP 200",
+        "Body agrees with CMS",
+        "Title/meta/H1/canonical/indexability pass",
+        "BlogPosting agrees with source",
+        "Cover alt/dimensions present",
+        "TOC targets valid",
+        "Desktop browser: cover loaded and no horizontal overflow"
+      ],
+      "body_md5": "bef5435adced09ef643917da43ed66d1",
+      "last_reviewed": "2026-10-28"
+    },
+    {
+      "id": "BLOG-17",
+      "url": "https://www.onlinequrancollege.com/blog/quran-lessons-australia-time-zones",
+      "primary_topic": "Quran lesson times in Australia",
+      "changed_fields": [
+        "body_html"
+      ],
+      "before_body_words": 541,
+      "after_body_words": 578,
+      "schema_word_count": 596,
+      "approval": "Owner request: optimize all blogs now; maximum 1,000 words",
+      "cms_version": 8,
+      "status": "Verified live",
+      "verification": [
+        "CMS read matches intended patch",
+        "HTTP 200",
+        "Body agrees with CMS",
+        "Title/meta/H1/canonical/indexability pass",
+        "BlogPosting agrees with source",
+        "Cover alt/dimensions present",
+        "TOC targets valid",
+        "Desktop browser: cover loaded and no horizontal overflow"
+      ],
+      "body_md5": "27f691316d18097522fa297c8a7b0e90",
+      "last_reviewed": "2026-10-28"
+    },
+    {
+      "id": "BLOG-18",
+      "url": "https://www.onlinequrancollege.com/blog/help-your-kids-learn-quran-online",
+      "primary_topic": "help kids learn Quran online",
+      "changed_fields": [
+        "seo_title",
+        "seo_description"
+      ],
+      "before_body_words": 559,
+      "after_body_words": 559,
+      "schema_word_count": 568,
+      "approval": "Owner request: optimize all blogs now; maximum 1,000 words",
+      "cms_version": 8,
+      "status": "Verified live",
+      "verification": [
+        "CMS read matches intended patch",
+        "HTTP 200",
+        "Body agrees with CMS",
+        "Title/meta/H1/canonical/indexability pass",
+        "BlogPosting agrees with source",
+        "Cover alt/dimensions present",
+        "TOC targets valid",
+        "Desktop browser: cover loaded and no horizontal overflow"
+      ],
+      "body_md5": "2927853ca2bf0702056b140ae115348e",
+      "last_reviewed": "2026-10-28"
+    },
+    {
+      "id": "BLOG-19",
+      "url": "https://www.onlinequrancollege.com/blog/importance-of-reciting-quran-with-tajweed",
+      "primary_topic": "importance of Tajweed",
+      "changed_fields": [
+        "seo_title",
+        "seo_description"
+      ],
+      "before_body_words": 459,
+      "after_body_words": 459,
+      "schema_word_count": 469,
+      "approval": "Owner request: optimize all blogs now; maximum 1,000 words",
+      "cms_version": 8,
+      "status": "Verified live",
+      "verification": [
+        "CMS read matches intended patch",
+        "HTTP 200",
+        "Body agrees with CMS",
+        "Title/meta/H1/canonical/indexability pass",
+        "BlogPosting agrees with source",
+        "Cover alt/dimensions present",
+        "TOC targets valid",
+        "Desktop browser: cover loaded and no horizontal overflow"
+      ],
+      "body_md5": "3f7d8ff46d430b9a3f51a76a15148ff3",
+      "last_reviewed": "2026-10-28"
+    },
+    {
+      "id": "BLOG-20",
+      "url": "https://www.onlinequrancollege.com/blog/memorization-techniques-for-beginners",
+      "primary_topic": "Quran memorisation techniques for beginners",
+      "changed_fields": [
+        "title",
+        "seo_title",
+        "seo_description"
+      ],
+      "before_body_words": 506,
+      "after_body_words": 506,
+      "schema_word_count": 515,
+      "approval": "Owner request: optimize all blogs now; maximum 1,000 words",
+      "cms_version": 8,
+      "status": "Verified live",
+      "verification": [
+        "CMS read matches intended patch",
+        "HTTP 200",
+        "Body agrees with CMS",
+        "Title/meta/H1/canonical/indexability pass",
+        "BlogPosting agrees with source",
+        "Cover alt/dimensions present",
+        "TOC targets valid",
+        "Desktop browser: cover loaded and no horizontal overflow"
+      ],
+      "body_md5": "0a389af1f83c85ee3a3a3f40077b2665",
+      "last_reviewed": "2026-10-28"
+    }
+  ],
+  "remaining": [
+    {
+      "id": "VERIFY-MOBILE",
+      "priority": "P2",
+      "status": "Blocked",
+      "evidence": "Local Chromium download was truncated; fresh mobile emulation and Lighthouse not obtained. Desktop browser checks are separate.",
+      "next": "Use a working approved browser environment to verify 390px layout and measured performance."
+    },
+    {
+      "id": "ACADEMICS-REVIEW",
+      "priority": "P2",
+      "status": "Pending qualified review",
+      "evidence": "Existing Quran 73:4 and Bukhari 5027 references were checked against linked sources. Religious bodies were not rewritten and no scholar sign-off is claimed.",
+      "next": "Academics confirms the existing religious explanations and chosen translation wording."
+    },
+    {
+      "id": "MEASUREMENT",
+      "priority": "P2",
+      "status": "Insufficient new-article data",
+      "evidence": "Authorized Search Console query/page sample covers legacy UK pages, not a meaningful new-blog performance baseline. Private metrics are not in this repository.",
+      "next": "Use comparable complete periods once enough article impressions and qualified lead data are available."
+    }
+  ]
+}

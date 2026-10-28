@@ -9,7 +9,7 @@ const report={base,articles:[],cases:[],browserErrors:[],formSubmissions:0,scope
 for(const post of posts){
  const r=await fetch(`${base}/blog/${post.slug}`,{signal:AbortSignal.timeout(30000)});assert.equal(r.status,200,post.slug);const html=await r.text();
  const graph=[...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(m=>JSON.parse(m[1]));
- const article=graph.find(s=>s['@type']==='BlogPosting');assert.ok(article.wordCount>=1000,post.slug);assert.equal(article.author.name,'Online Quran College');
+ const article=graph.find(s=>s['@type']==='BlogPosting');assert.ok(article.wordCount>0&&article.wordCount<=1000,post.slug);assert.equal(article.author.name,'Online Quran College');
  assert.ok(html.includes('AI-generated editorial illustration'));assert.equal((html.match(/<h1[\s>]/g)||[]).length,1);
  assert.ok(html.includes(post.seo_title.replaceAll('&','&amp;')));assert.ok(article.image.endsWith(post.cover_url));
  report.articles.push({slug:post.slug,status:200,words:article.wordCount,image:article.image,author:article.author.name});
@@ -23,7 +23,7 @@ try{
     const {page}=session;await page.goto(`${base}/blog/${post.slug}`,{waitUntil:'networkidle'});
     await loadedImage(page,'[data-hero-visual] img');
     const result=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth>innerWidth,words:document.querySelector('.prose-oqc').textContent.trim().split(/\s+/).length,alt:document.querySelector('[data-hero-visual] img').alt,anchors:[...document.querySelectorAll('nav[aria-label="In this article"] a')].every(a=>Boolean(document.getElementById(a.getAttribute('href').slice(1))))}));
-    assert.equal(result.overflow,false);assert.ok(result.words>=1000);assert.ok(result.alt.length>30);assert.ok(result.anchors);
+    assert.equal(result.overflow,false);assert.ok(result.words>0&&result.words<=1000);assert.ok(result.alt.length>30);assert.ok(result.anchors);
     if(post===posts[0])await page.screenshot({path:`${out}/first-article-${width}.png`,fullPage:true});
     report.cases.push({width,slug:post.slug,words:result.words,overflow:false,imageDecoded:true,tocAnchors:true});
    }
