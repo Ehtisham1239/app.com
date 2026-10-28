@@ -85,7 +85,7 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
       <div className="page-wrap flex h-[4.5rem] items-center gap-3 sm:gap-6">
         {/* No prefetch for "/": its payload preloads the homepage hero image on every page. */}
         <Link href="/" prefetch={false} className="header-brand group flex min-w-0 items-center gap-3" aria-label={`${brandName} — home`}>
-          <img src="/brand/mark.png" alt="" width={176} height={176} className="size-12 shrink-0 object-contain sm:size-14" />
+          <img src="/brand/mark-v2-128.png" srcSet="/brand/mark-v2-64.png 64w, /brand/mark-v2-128.png 128w, /brand/mark-v2-176.png 176w" sizes="(max-width: 639px) 64px, 56px" alt="" width={176} height={176} className="size-12 shrink-0 object-contain sm:size-14" />
           <span className="flex flex-col leading-none">
             <span className="font-display text-[1.02rem] font-semibold uppercase tracking-[0.05em] text-leaf-700 sm:text-[1.2rem]">{(brandName || "Online Quran College").replace(/\s+college(\s+ltd\.?)?$/i, "")}</span>
             {" "}<span className="mt-1 flex items-center gap-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.34em] text-gold-600 sm:text-[0.74rem]"><span className="h-px w-3 bg-gold-500" />College<span className="h-px w-3 bg-gold-500" /></span>
@@ -106,13 +106,13 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
                     isActive(pathname, item.href) ? "text-leaf-700" : "text-ink-soft hover:text-ink",
                   )}
                   aria-expanded={coursesOpen}
-                  aria-controls="desktop-course-links"
+                  aria-controls={coursesOpen ? "desktop-course-links" : undefined}
                   onClick={() => setCoursesOpen((v) => !v)}
                 >
                   {item.label}
                   <ChevronDown className={clsx("size-4 transition-transform", coursesOpen && "rotate-180")} aria-hidden="true" />
                 </button>
-                <div
+                {coursesOpen && <div
                   id="desktop-course-links"
                   hidden={!coursesOpen}
                   className="absolute left-1/2 top-full w-[34rem] -translate-x-1/2 pt-3"
@@ -138,7 +138,7 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
                       <ArrowRight className="size-4 text-gold-400" aria-hidden="true" />
                     </Link>
                   </div>
-                </div>
+                </div>}
               </div>
             ) : (
               <Link
@@ -173,7 +173,7 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
             ref={menuButtonRef}
             aria-label="Open menu"
             aria-expanded={open}
-            aria-controls="mobile-navigation"
+            aria-controls={open ? "mobile-navigation" : undefined}
           >
             <Menu className="size-5" aria-hidden="true" />
           </button>
@@ -181,8 +181,9 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
       </div>
 
     </header>
-      {/* Mobile menu */}
-      <div className={clsx("fixed inset-0 z-50 overflow-hidden xl:hidden", open ? "visible" : "invisible")} aria-hidden={!open}>
+      {/* Mount the hidden menu's links only when needed to reduce initial DOM
+          and hydration work on both mobile and desktop. */}
+      {open && <div className={clsx("fixed inset-0 z-50 overflow-hidden xl:hidden", open ? "visible" : "invisible")} aria-hidden={!open}>
         <div
           className={clsx("absolute inset-0 bg-mushaf-950/50 backdrop-blur-sm transition-opacity", open ? "opacity-100" : "opacity-0")}
           onClick={() => setOpen(false)}
@@ -244,7 +245,7 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
 
           </div>
         </div>
-      </div>
+      </div>}
     </>
   );
 }

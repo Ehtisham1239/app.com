@@ -39,7 +39,9 @@ try {
     }
     if (!ready) throw Error(`QA server did not become ready: ${logs}`);
   }
-  if (process.argv.includes('--google-vendor-check')) {
+  if (process.argv.includes('--performance-check')) {
+    await run('scripts/public-performance-smoke.mjs', [base, `${output}/performance`]);
+  } else if (process.argv.includes('--google-vendor-check')) {
     await run('scripts/analytics-install-smoke.mjs', [base, 'G-57TGPTDNT4', `${output}/google-vendor`, '--real-google-script']);
   } else {
     await run('scripts/site-quality-browser.mjs', [base, output]);
