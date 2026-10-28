@@ -4,7 +4,7 @@ import { HomeContact } from "@/components/site/home-contact";
 import { ContentImage } from "@/components/site/content-image";
 import { HomeMotion } from "@/components/site/home-motion";
 import { faqSchema, safeJsonLd } from "@/lib/seo";
-import Link from "next/link";
+import { NavigationLink as Link } from "@/components/site/navigation-link";
 import { ArrowRight } from "@/components/site/icons";
 import { HomeHero } from "@/components/site/hero";
 import { SectionHeading } from "@/components/site/chrome";

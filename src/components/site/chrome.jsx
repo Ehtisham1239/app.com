@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { NavigationLink as Link } from "@/components/site/navigation-link";
 import { ArrowRight, Clock, Globe2, Users, Video } from "@/components/site/icons";
 import { ContentImage } from "./content-image";
 import { heroArt, IMMERSIVE_ART } from "@/lib/hero-art";

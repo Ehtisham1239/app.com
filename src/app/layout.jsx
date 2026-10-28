@@ -3,12 +3,21 @@ import { SITE_URL } from "@/lib/config";
 import "./globals.css";
 
 const inter = localFont({
-  src: [
-    // The main Latin face loads first; extended glyphs use the on-demand family below.
-    { path: "../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2", weight: "300 900", style: "normal" },
-  ],
+  src: [{ path: "../../public/fonts/oqc-inter-text-v1.woff2", weight: "300 900", style: "normal" }],
   variable: "--font-inter",
   display: "swap",
+  adjustFontFallback: false,
+});
+
+// Uncommon Latin characters retain the original design without downloading
+// its complete face on every English page.
+const interLatin = localFont({
+  src: [
+    { path: "../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2", weight: "300 900", style: "normal" },
+  ],
+  variable: "--font-inter-latin",
+  display: "swap",
+  preload: false,
   adjustFontFallback: false,
 });
 
@@ -23,8 +32,16 @@ const interExtended = localFont({
 });
 
 const outfit = localFont({
-  src: [{ path: "../../node_modules/@fontsource-variable/outfit/files/outfit-latin-wght-normal.woff2", weight: "100 900", style: "normal" }],
+  src: [{ path: "../../public/fonts/oqc-outfit-text-v1.woff2", weight: "100 900", style: "normal" }],
   variable: "--font-outfit",
+  display: "swap",
+  preload: false,
+  adjustFontFallback: false,
+});
+
+const outfitLatin = localFont({
+  src: [{ path: "../../node_modules/@fontsource-variable/outfit/files/outfit-latin-wght-normal.woff2", weight: "100 900", style: "normal" }],
+  variable: "--font-outfit-latin",
   display: "swap",
   // Headings swap in after first paint; not preloading keeps early bandwidth for the hero image.
   preload: false,
@@ -77,7 +94,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en-GB" data-scroll-behavior="smooth" className={`${inter.variable} ${interExtended.variable} ${outfit.variable} ${amiri.variable} ${amiriDisplay.variable}`} suppressHydrationWarning>
+    <html lang="en-GB" data-scroll-behavior="smooth" className={`${inter.variable} ${interLatin.variable} ${interExtended.variable} ${outfit.variable} ${outfitLatin.variable} ${amiri.variable} ${amiriDisplay.variable}`} suppressHydrationWarning>
       <body>
         {children}
       </body>
