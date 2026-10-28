@@ -1,0 +1,106 @@
+[
+  {
+    "device": "mobile",
+    "url": "http://127.0.0.1:37949",
+    "fetchTime": "2026-10-28T13:26:06.044Z",
+    "lighthouseVersion": "13.6.0",
+    "mode": "local lab; vendor scripts blocked; seed content",
+    "scores": {
+      "performance": 93,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "first-contentful-paint": 928.8145,
+      "largest-contentful-paint": 3169.629,
+      "total-blocking-time": 35,
+      "cumulative-layout-shift": 0.005385142071899292,
+      "speed-index": 1011.5888459998157
+    },
+    "diagnostics": [
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "value": "3.2 s"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "value": "120 ms"
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "value": "3.3 s"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "value": "Est savings of 52 KiB"
+      },
+      {
+        "id": "forced-reflow-insight",
+        "title": "Forced reflow"
+      },
+      {
+        "id": "legacy-javascript-insight",
+        "title": "Legacy JavaScript",
+        "value": "Est savings of 14 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree"
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests"
+      }
+    ]
+  },
+  {
+    "device": "desktop",
+    "url": "http://127.0.0.1:37949",
+    "fetchTime": "2026-10-28T13:26:14.399Z",
+    "lighthouseVersion": "13.6.0",
+    "mode": "local lab; vendor scripts blocked; seed content",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "first-contentful-paint": 253.89299999999997,
+      "largest-contentful-paint": 717.8394999999999,
+      "total-blocking-time": 0,
+      "cumulative-layout-shift": 0.03516441994012684,
+      "speed-index": 283.71550699952314
+    },
+    "diagnostics": [
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "value": "0.7 s"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "value": "Est savings of 52 KiB"
+      },
+      {
+        "id": "legacy-javascript-insight",
+        "title": "Legacy JavaScript",
+        "value": "Est savings of 14 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree"
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests"
+      }
+    ]
+  }
+]

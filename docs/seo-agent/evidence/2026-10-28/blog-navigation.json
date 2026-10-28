@@ -1,0 +1,26 @@
+{
+  "base": "https://www.onlinequrancollege.com",
+  "cases": [
+    {
+      "width": 390,
+      "categories": 9,
+      "pagination": true,
+      "imageLoaded": true,
+      "dateVisible": true,
+      "tableOfContents": true,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "categories": 9,
+      "pagination": true,
+      "imageLoaded": true,
+      "dateVisible": true,
+      "tableOfContents": true,
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "writes": 0,
+  "scope": "Chromium desktop/mobile emulation, vendor stubbed; owned-site GETs only; no forms submitted"
+}

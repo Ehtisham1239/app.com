@@ -12,6 +12,8 @@ export async function auditPage(browser, base, report, options = {}) {
   const origin = auditOrigin(base).origin;
   const { googleLibrary = 'stub', ...contextOptions } = options;
   const context = await browser.newContext(contextOptions);
+  const pendingRequests = new AbortController();
+  let closing = false;
   const page = await context.newPage();
   page.setDefaultTimeout(15000);
   page.setDefaultNavigationTimeout(30000);
@@ -29,7 +31,7 @@ export async function auditPage(browser, base, report, options = {}) {
         return await route.fulfill({ status: 204, body: '' });
       }
       if (url.hostname === 'www.googletagmanager.com' && googleLibrary === 'real' && (url.pathname.startsWith('/gtag/') || url.pathname === '/gtm.js')) {
-        const response = await fetch(url.href, { headers: { 'accept-encoding': 'identity' }, signal: AbortSignal.timeout(25000) });
+        const response = await fetch(url.href, { headers: { 'accept-encoding': 'identity' }, signal: AbortSignal.any([pendingRequests.signal, AbortSignal.timeout(25000)]) });
         if (!response.ok) throw Error(`Google JavaScript: HTTP ${response.status}`);
         return await route.fulfill({ contentType: 'application/javascript', body: await response.text() });
       }
@@ -40,18 +42,25 @@ export async function auditPage(browser, base, report, options = {}) {
       if (url.protocol === 'http:') return await route.continue();
       const headers = { ...(await req.allHeaders()), 'accept-encoding': 'identity' };
       delete headers.host; delete headers.connection;
-      const response = await fetch(req.url(), { method: req.method(), headers, redirect: 'manual', signal: AbortSignal.timeout(25000) });
+      const response = await fetch(req.url(), { method: req.method(), headers, redirect: 'manual', signal: AbortSignal.any([pendingRequests.signal, AbortSignal.timeout(25000)]) });
       if ([401, 403, 429].includes(response.status)) throw Error(`Access/rate wall: ${url.pathname} (${response.status})`);
       const responseHeaders = Object.fromEntries(response.headers);
       for (const key of ['content-length', 'content-encoding', 'transfer-encoding']) delete responseHeaders[key];
       const body = Buffer.from(await response.arrayBuffer());
       await route.fulfill({ status: response.status, headers: responseHeaders, body });
     } catch (error) {
-      if (!page.isClosed() && browser.isConnected()) errors.push(`Request ${url.pathname}: ${error.message}`);
+      if (!closing && !page.isClosed() && browser.isConnected()) errors.push(`Request ${url.pathname}: ${error.message}`);
       try { await route.abort(); } catch { /* A closed page has no pending route. */ }
     }
   });
-  return { context, page, close: async () => { await context.unrouteAll({ behavior: 'wait' }); await context.close(); } };
+  return { context, page, close: async () => {
+    // Assertions have finished. Cancel prefetches rather than waiting for router
+    // background requests to drain indefinitely during context teardown.
+    closing = true;
+    pendingRequests.abort();
+    await context.unrouteAll({ behavior: 'ignoreErrors' });
+    await context.close();
+  } };
 }
 
 export async function loadedImage(page, selector) {

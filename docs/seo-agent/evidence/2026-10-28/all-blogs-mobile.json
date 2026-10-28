@@ -1,0 +1,209 @@
+{
+  "base": "https://www.onlinequrancollege.com",
+  "width": 390,
+  "articles": [
+    {
+      "path": "/blog/help-your-kids-learn-quran-online",
+      "status": 200,
+      "singleH1": true,
+      "canonical": "https://www.onlinequrancollege.com/blog/help-your-kids-learn-quran-online",
+      "coverDecoded": true,
+      "coverAlt": true,
+      "tocTargets": 9,
+      "overflow": false
+    },
+    {
+      "path": "/blog/importance-of-reciting-quran-with-tajweed",
+      "status": 200,
+      "singleH1": true,
+      "canonical": "https://www.onlinequrancollege.com/blog/importance-of-reciting-quran-with-tajweed",
+      "coverDecoded": true,
+      "coverAlt": true,
+      "tocTargets": 5,
+      "overflow": false
+    },
+    {
+      "path": "/blog/memorization-techniques-for-beginners",
+      "status": 200,
+      "singleH1": true,
+      "canonical": "https://www.onlinequrancollege.com/blog/memorization-techniques-for-beginners",
+      "coverDecoded": true,
+      "coverAlt": true,
+      "tocTargets": 10,
+      "overflow": false
+    },
+    {
+      "path": "/blog/quran-translation-and-arabic-difference",
+      "status": 200,
+      "singleH1": true,
+      "canonical": "https://www.onlinequrancollege.com/blog/quran-translation-and-arabic-difference",
+      "coverDecoded": true,
+      "coverAlt": true,
+      "tocTargets": 7,
+      "overflow": false
+    },
+    {
+      "path": "/blog/online-quran-lesson-setup-accessibility",
+      "status": 200,
+      "singleH1": true,
+      "canonical": "https://www.onlinequrancollege.com/blog/online-quran-lesson-setup-accessibility",
+      "coverDecoded": true,
+      "coverAlt": true,
+      "tocTargets": 7,
+      "overflow": false
+    },
+    {
+      "path": "/blog/parent-teacher-quran-progress-review",
+      "status": 200,
+      "singleH1": true,
+      "canonical": "https://www.onlinequrancollege.com/blog/parent-teacher-quran-progress-review",
+      "coverDecoded": true,
+      "coverAlt": true,
+      "tocTargets": 7,
+      "overflow": false
+    },
+    {
+      "path": "/blog/family-quran-learning-multiple-children",
+      "status": 200,
+      "singleH1": true,
+      "canonical": "https://www.onlinequrancollege.com/blog/family-quran-learning-multiple-children",
+      "coverDecoded": true,
+      "coverAlt": true,
+      "tocTargets": 7,
+      "overflow": false
+    },
+    {
+      "path": "/blog/choose-online-quran-teacher-usa",
+      "status": 200,
+      "singleH1": true,
+      "canonical": "https://www.onlinequrancollege.com/blog/choose-online-quran-teacher-usa",
+      "coverDecoded": true,
+      "coverAlt": true,
+      "tocTargets": 7,
+      "overflow": false
+    },
+    {
+      "path": "/blog/quran-lessons-australia-time-zones",
+      "status": 200,
+      "singleH1": true,
+      "canonical": "https://www.onlinequrancollege.com/blog/quran-lessons-australia-time-zones",
+      "coverDecoded": true,
+      "coverAlt": true,
+      "tocTargets": 7,
+      "overflow": false
+    },
+    {
+      "path": "/blog/noorani-qaida-or-quran-reading",
+      "status": 200,
+      "singleH1": true,
+      "canonical": "https://www.onlinequrancollege.com/blog/noorani-qaida-or-quran-reading",
+      "coverDecoded": true,
+      "coverAlt": true,
+      "tocTargets": 7,
+      "overflow": false
+    },
+    {
+      "path": "/blog/adult-quran-beginner-first-month",
+      "status": 200,
+      "singleH1": true,
+      "canonical": "https://www.onlinequrancollege.com/blog/adult-quran-beginner-first-month",
+      "coverDecoded": true,
+      "coverAlt": true,
+      "tocTargets": 7,
+      "overflow": false
+    },
+    {
+      "path": "/blog/prepare-child-first-online-quran-trial",
+      "status": 200,
+      "singleH1": true,
+      "canonical": "https://www.onlinequrancollege.com/blog/prepare-child-first-online-quran-trial",
+      "coverDecoded": true,
+      "coverAlt": true,
+      "tocTargets": 7,
+      "overflow": false
+    },
+    {
+      "path": "/blog/tajweed-practice-with-feedback",
+      "status": 200,
+      "singleH1": true,
+      "canonical": "https://www.onlinequrancollege.com/blog/tajweed-practice-with-feedback",
+      "coverDecoded": true,
+      "coverAlt": true,
+      "tocTargets": 7,
+      "overflow": false
+    },
+    {
+      "path": "/blog/hifz-revision-with-school",
+      "status": 200,
+      "singleH1": true,
+      "canonical": "https://www.onlinequrancollege.com/blog/hifz-revision-with-school",
+      "coverDecoded": true,
+      "coverAlt": true,
+      "tocTargets": 7,
+      "overflow": false
+    },
+    {
+      "path": "/blog/questions-before-quran-course-enrolment",
+      "status": 200,
+      "singleH1": true,
+      "canonical": "https://www.onlinequrancollege.com/blog/questions-before-quran-course-enrolment",
+      "coverDecoded": true,
+      "coverAlt": true,
+      "tocTargets": 7,
+      "overflow": false
+    },
+    {
+      "path": "/blog/choose-online-quran-classes-kids",
+      "status": 200,
+      "singleH1": true,
+      "canonical": "https://www.onlinequrancollege.com/blog/choose-online-quran-classes-kids",
+      "coverDecoded": true,
+      "coverAlt": true,
+      "tocTargets": 11,
+      "overflow": false
+    },
+    {
+      "path": "/blog/noorani-qaida-home-practice-checklist",
+      "status": 200,
+      "singleH1": true,
+      "canonical": "https://www.onlinequrancollege.com/blog/noorani-qaida-home-practice-checklist",
+      "coverDecoded": true,
+      "coverAlt": true,
+      "tocTargets": 11,
+      "overflow": false
+    },
+    {
+      "path": "/blog/returning-to-quran-study-adults",
+      "status": 200,
+      "singleH1": true,
+      "canonical": "https://www.onlinequrancollege.com/blog/returning-to-quran-study-adults",
+      "coverDecoded": true,
+      "coverAlt": true,
+      "tocTargets": 11,
+      "overflow": false
+    },
+    {
+      "path": "/blog/family-quran-learning-weekly-routine",
+      "status": 200,
+      "singleH1": true,
+      "canonical": "https://www.onlinequrancollege.com/blog/family-quran-learning-weekly-routine",
+      "coverDecoded": true,
+      "coverAlt": true,
+      "tocTargets": 12,
+      "overflow": false
+    },
+    {
+      "path": "/blog/online-quran-class-fees-uk-comparison",
+      "status": 200,
+      "singleH1": true,
+      "canonical": "https://www.onlinequrancollege.com/blog/online-quran-class-fees-uk-comparison",
+      "coverDecoded": true,
+      "coverAlt": true,
+      "tocTargets": 11,
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "writes": 0,
+  "scope": "Chromium touch viewport; live owned-site GETs bridged through trusted host TLS; vendors stubbed; no enquiries; not physical Safari or field CWV"
+}

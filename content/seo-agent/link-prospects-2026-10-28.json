@@ -1,19 +1,19 @@
 {
   "reviewed": "2026-10-28",
-  "policy": "Research only. No contact, form submission, payment, membership purchase or link acquisition authorized or performed. No promise of a placement or ranking credit.",
+  "policy": "Owner requested AI-assisted ethical backlink acquisition. No third-party message, submission, payment or acquired backlink performed. Ahrefs was declined and must not be suggested again in this request. Verify channel-specific authorization, sender identity, eligibility and editorial acceptance before sending.",
   "prospects": [
     {
       "id": "LINK-01",
       "organization": "ISRE – Islamic Special Religious Education",
       "source": "https://www.isre.org.au/resources/",
       "market": "Australia",
-      "observed": "The teaching-resource page provides syllabus resources and explicitly welcomes recommended links through its listed syllabus email.",
+      "observed": "Recommendation invitation appears in a video-resources section beside a 2020 syllabus; the same page also lists 2026 curriculum materials. This does not establish acceptance of general commercial articles.",
       "contact_route": "syllabus.isre@gmail.com, as published on the source page",
       "proposed_value": "An academically reviewed practical checklist for a parent supporting a teacher-assigned home-learning task.",
       "target_oqc_url": "https://www.onlinequrancollege.com/blog/noorani-qaida-home-practice-checklist",
       "evidence_level": "Observed invitation to recommend resources; suitability is an inference.",
       "risk": "Confirm the resource matches their audience and editorial requirements; do not imply affiliation or request ranking-credit links.",
-      "approval": "Not requested; no outreach prepared for sending",
+      "approval": "No message sent; current scope suitability and sender authorization pending.",
       "status": "Researched; owner and Academics review needed",
       "acquired_backlink": false
     },
@@ -22,14 +22,46 @@
       "organization": "Islamic Schools League of America",
       "source": "https://theisla.org/blog/",
       "market": "USA",
-      "observed": "The current blog includes educational resources, teacher/parent topics and an identified guest-blog item.",
+      "observed": "Official individual-membership FAQ expressly describes blog contributions as a membership benefit. A guest-blog example is visible. OQC membership and non-member eligibility are unverified.",
       "contact_route": "Organization website contact navigation; contribution policy not established",
       "proposed_value": "A reviewed, original parent–teacher progress-conversation checklist, using real approved experience if a contribution is invited.",
       "target_oqc_url": "https://www.onlinequrancollege.com/blog/parent-teacher-quran-progress-review",
       "evidence_level": "Publication examples observed; acceptance of an OQC contribution is unverified.",
       "risk": "Do not buy membership or a placement for ranking credit. Confirm unpaid editorial eligibility and any required qualification before outreach.",
-      "approval": "Not requested; no outreach performed",
-      "status": "Research candidate; intake policy unknown",
+      "approval": "No message or membership action performed.",
+      "status": "Conditional; verify existing membership or non-member editorial eligibility; do not purchase membership for a link.",
+      "acquired_backlink": false,
+      "source_membership": "https://theisla.org/membership/individual-faq/"
+    },
+    {
+      "id": "LINK-03",
+      "organization": "Resources for Islamic School Educators (RISE)",
+      "source": "https://resourcesforislamicschools.com/connect",
+      "market": "Canada / international educators",
+      "observed": "Open resource submissions invite an overview, audience, authorship and curriculum context; form accepts a resource URL.",
+      "contact_route": "Published resource-submission form; info@resourcesforislamicschools.com is listed for general contact.",
+      "proposed_value": "Practical parent checklist for an accessible online Quran lesson setup; does not assert curriculum alignment or qualified endorsement.",
+      "target_oqc_url": "https://www.onlinequrancollege.com/blog/online-quran-lesson-setup-accessibility",
+      "evidence_level": "Direct invitation to submit resources; editorial fit and AI policy require confirmation.",
+      "approval": "Concrete eligibility pitch prepared for owner review; sender identity/channel authorization pending.",
+      "status": "Prepared, not sent or accepted",
+      "acquired_backlink": false
+    },
+    {
+      "id": "LINK-04",
+      "organization": "Ihsaan Home Academy",
+      "source": "https://ihsaanhomeacademy.com/submit-guest-post/",
+      "observed": "Explicitly rejects AI-generated articles; allows one nofollow author-bio link for accepted original work.",
+      "status": "Excluded from AI-authored article submission",
+      "reason": "Respect publisher policy; do not relabel AI writing as human-written.",
+      "acquired_backlink": false
+    },
+    {
+      "id": "LINK-05",
+      "organization": "Dream Forward Books",
+      "source": "https://dreamforwardbooks.com/lesson-plan-unit-study-submission-guidelines",
+      "observed": "Direct guideline verification redirected to an inaccessible identity page. Search snippets alone are insufficient for qualification.",
+      "status": "Held; guideline access unavailable",
       "acquired_backlink": false
     }
   ],

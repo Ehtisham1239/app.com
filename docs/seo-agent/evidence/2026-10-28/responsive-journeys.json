@@ -1,0 +1,382 @@
+{
+  "base": "https://www.onlinequrancollege.com",
+  "widths": [
+    320,
+    390,
+    768,
+    1440
+  ],
+  "pages": [
+    {
+      "width": 320,
+      "path": "/",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 320,
+      "path": "/courses",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 320,
+      "path": "/courses/noorani-qaida",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 320,
+      "path": "/locations",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 320,
+      "path": "/locations/united-states",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 320,
+      "path": "/locations/united-kingdom/london",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 320,
+      "path": "/pricing",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 320,
+      "path": "/free-trial",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 320,
+      "path": "/contact",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 320,
+      "path": "/blog",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 320,
+      "path": "/blog?page=2",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 320,
+      "path": "/blog/help-your-kids-learn-quran-online",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 390,
+      "path": "/",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 390,
+      "path": "/courses",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 390,
+      "path": "/courses/noorani-qaida",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 390,
+      "path": "/locations",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 390,
+      "path": "/locations/united-states",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 390,
+      "path": "/locations/united-kingdom/london",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 390,
+      "path": "/pricing",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 390,
+      "path": "/free-trial",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 390,
+      "path": "/contact",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 390,
+      "path": "/blog",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 390,
+      "path": "/blog?page=2",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 390,
+      "path": "/blog/help-your-kids-learn-quran-online",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 768,
+      "path": "/",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 768,
+      "path": "/courses",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 768,
+      "path": "/courses/noorani-qaida",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 768,
+      "path": "/locations",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 768,
+      "path": "/locations/united-states",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 768,
+      "path": "/locations/united-kingdom/london",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 768,
+      "path": "/pricing",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 768,
+      "path": "/free-trial",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 768,
+      "path": "/contact",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 768,
+      "path": "/blog",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 768,
+      "path": "/blog?page=2",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 768,
+      "path": "/blog/help-your-kids-learn-quran-online",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 1440,
+      "path": "/",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 1440,
+      "path": "/courses",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 1440,
+      "path": "/courses/noorani-qaida",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 1440,
+      "path": "/locations",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 1440,
+      "path": "/locations/united-states",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 1440,
+      "path": "/locations/united-kingdom/london",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 1440,
+      "path": "/pricing",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 1440,
+      "path": "/free-trial",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 1440,
+      "path": "/contact",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 1440,
+      "path": "/blog",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 1440,
+      "path": "/blog?page=2",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    },
+    {
+      "width": 1440,
+      "path": "/blog/help-your-kids-learn-quran-online",
+      "status": 200,
+      "overflow": false,
+      "heroAndFooterDecoded": true
+    }
+  ],
+  "journeys": [
+    {
+      "width": 320,
+      "menuTouchTargets": true,
+      "escapeAndFocus": true,
+      "text200Percent": true
+    },
+    {
+      "width": 390,
+      "menuTouchTargets": true,
+      "escapeAndFocus": true,
+      "text200Percent": true
+    },
+    {
+      "width": 390,
+      "oneStepTrial": true,
+      "invalidSubmissionBlocked": true,
+      "firstErrorFocused": true,
+      "timeZoneChoice": true,
+      "finalSubmission": "not performed"
+    },
+    {
+      "width": 1440,
+      "oneStepTrial": true,
+      "invalidSubmissionBlocked": true,
+      "firstErrorFocused": true,
+      "timeZoneChoice": true,
+      "finalSubmission": "not performed"
+    }
+  ],
+  "errors": [],
+  "writes": 0,
+  "vendorCode": "stubbed; no real analytics events or enquiries",
+  "coverage": "Chromium viewport emulation; not physical Safari or field CWV",
+  "noJavaScriptArticle": true
+}

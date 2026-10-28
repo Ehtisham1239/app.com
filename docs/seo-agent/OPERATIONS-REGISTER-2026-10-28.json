@@ -31,7 +31,7 @@
       "priority": "P1",
       "workstream": "Existing blogs",
       "status": "Verified live in the preceding 28 October release",
-      "result": "20/20 articles received targeted changes and passed HTML/desktop checks.",
+      "result": "20/20 targeted article remediations remain verified live; all 20 now pass 390px touch-emulated rendering and article checks.",
       "evidence": "docs/seo-agent/BLOG-ACTION-REGISTER-2026-10-28.json",
       "next": "Audit changed/new articles; retain the maximum 1,000 words."
     },
@@ -65,17 +65,18 @@
       "id": "OPS-06",
       "priority": "P2",
       "workstream": "Analytics and organic funnel",
-      "status": "Current read-only baseline collected; qualification unresolved",
-      "result": "Matching production stream, hostname, Measurement ID and Asia/Karachi reporting timezone confirmed. Complete seven-day session/event reads obtained; comparison period returned no rows. Raw figures are private.",
-      "next": "Do not calculate growth against unavailable data. Check current key-event configuration with account evidence before proposing a setting change; confirm real enquiries/admissions through authorized aggregate CRM/ERP data."
+      "status": "Read-only GA4, GSC and aggregate CMS baseline checked; organic admissions attribution unresolved",
+      "result": "Matching production GA4 identity confirmed. Comparable prior reporting returns no rows. Read-only CMS aggregate confirms saved trial rows but does not identify qualified real enquiries or connect them to organic sessions. No learner/customer PII exported.",
+      "next": "Retain private evidence; verify real/test classification and authorized CRM/ERP linkage before claiming organic admissions. Do not change analytics settings from historical report rows."
     },
     {
       "id": "OPS-07",
       "priority": "P2",
       "workstream": "Editorial relationships/backlinks",
-      "status": "Two researched candidates, no links acquired",
-      "evidence": "content/seo-agent/link-prospects-2026-10-28.json",
-      "next": "Review relevance and eligibility; no outreach, purchase or disavow without explicit authorization."
+      "status": "Five reviewed candidates; one concrete resource pitch; zero acquired backlinks",
+      "evidence": "content/seo-agent/link-prospects-2026-10-28.json; content/seo-agent/resource-pitch-2026-10-28.md",
+      "next": "Ask owner for a verified OQC sender and explicit RISE submission authorization or existing partner/directory publishing access. Do not suggest Ahrefs again.",
+      "result": "RISE resource-submission invitation verified; ISRE context narrowed; ISLA eligibility conditional; Ihsaan excluded for AI-authored content; Dream Forward held for inaccessible guidelines. Ahrefs declined."
     },
     {
       "id": "OPS-08",
@@ -89,16 +90,18 @@
       "id": "OPS-09",
       "priority": "P2",
       "workstream": "Image SEO/accessibility",
-      "status": "20 desktop cover/alt/TOC checks passed in preceding release",
-      "next": "Fresh mobile/layout and measured performance remain separate."
+      "status": "Desktop and all-article mobile functional checks passed",
+      "next": "Physical Safari and production performance are not covered by Chromium viewport emulation.",
+      "result": "20/20 live covers decoded at 390px with alt/H1/canonical/date/TOC checks and no overflow; representative site targets, 200% text and focus/menu journeys passed."
     },
     {
       "id": "OPS-10",
       "priority": "P2",
       "workstream": "Mobile/field CWV",
-      "status": "Blocked by measurement/browser availability",
-      "result": "No new mobile Lighthouse or field-CWV measurement claimed.",
-      "next": "Use an approved working measurement environment; do not repeat failed downloads or quota-limited requests unchanged."
+      "status": "Mobile functional blocker resolved; local lab measured; production/field measurement unavailable",
+      "result": "48 live page/viewport cases at 320/390/768/1440px, four menu/form journeys, no-JavaScript article, zero browser errors/writes. Local Lighthouse 13.6.0: mobile performance 93, desktop 100; accessibility/best-practices/SEO 100 both. Remote Lighthouse failed ERR_EMPTY_RESPONSE before a valid measurement.",
+      "next": "Measure production through an authorized working environment and obtain actual field p75/device/window evidence. Local mobile LCP 3.17s warrants production verification; do not infer field CWV from lab results.",
+      "evidence": "docs/seo-agent/evidence/2026-10-28/"
     },
     {
       "id": "OPS-11",
