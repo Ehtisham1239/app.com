@@ -1,0 +1,21 @@
+{
+  "site": "https://www.onlinequrancollege.com",
+  "reviewedAt": "2026-10-28",
+  "timezone": "Asia/Karachi",
+  "evidence": "Owner-supplied competitor-topic reference, current published OQC records and 28 October public competitor review. These are content-intent hypotheses, not measured positions, volumes or traffic.",
+  "competitorSources": ["https://www.tarteelequran.com/", "https://www.tarteelequran.com/learn-noorani-qaida-online-with-classes-for-kids-and-beginners/"],
+  "conversion": "Course or learning guide -> three-day trial request; actual successful enquiry is distinct from a CTA click. Weekend excluded.",
+  "topics": [
+    {"theme":"online Quran classes for kids", "intent":"commercial", "primary":"/learn/quran-for-kids", "support":"/blog/help-your-kids-learn-quran-online", "brief":"Help a parent compare starting level, trial preparation, supervision and teacher feedback; no fabricated credentials."},
+    {"theme":"online Quran classes for beginners", "intent":"course selection", "primary":"/learn", "support":"/blog/noorani-qaida-or-quran-reading", "brief":"Direct answer and six-course comparison based on the current published catalogue; link to the relevant guide and available course."},
+    {"theme":"Noorani Qaida for kids and beginners", "intent":"commercial", "primary":"/courses/noorani-qaida", "support":"/blog/noorani-qaida-or-quran-reading", "brief":"Explain reading foundations and discuss placement using a learner's actual starting point."},
+    {"theme":"Tajweed for beginners", "intent":"informational", "primary":"/courses/tajweed", "support":"/blog/tajweed-practice-with-feedback", "brief":"Explain the feedback/practice process and link to supported Quran reading; religious instruction needs academic review."},
+    {"theme":"online Hifz and revision plan", "intent":"commercial", "primary":"/courses/hifz-quran", "support":"/blog/hifz-revision-with-school", "brief":"Distinguish new memorisation, recent review and long-term revision; avoid a universal completion timeline."},
+    {"theme":"learn Quran online as an adult beginner", "intent":"commercial", "primary":"/learn/quran-for-adults", "support":"/blog/adult-quran-beginner-first-month", "brief":"Reading level, a manageable practice routine and review questions for adults returning to study."},
+    {"theme":"choose an online Quran teacher", "intent":"commercial investigation", "primary":"/teachers", "support":"/blog/questions-before-quran-course-enrolment", "brief":"Ask about teaching language, appropriate experience, feedback and availability. Publish only substantiated qualifications."},
+    {"theme":"online Quran classes USA", "intent":"regional commercial", "primary":"/locations/united-states", "support":"/blog/choose-online-quran-teacher-usa", "brief":"Use the existing hub, actual local date/time and published USD package; no invented office or new city template."},
+    {"theme":"online Quran classes UK fees and scheduling", "intent":"regional commercial", "primary":"/locations/united-kingdom", "support":"/pricing", "brief":"Use existing UK information and published fee currency; confirm teacher and timetable with the coordinator."},
+    {"theme":"Quran reading vs Tajweed vs Hifz", "intent":"course comparison", "primary":"/learn#course-comparison", "support":"/courses", "brief":"Answer the course-selection question on the existing learning hub rather than making a second competing beginner page."}
+  ],
+  "measurement": {"searchConsole":"Unconnected in this session; ownership confirmation and query/page/country/device baseline unavailable.", "ga4":"Live public destination IDs confirmed in settings. Actual GA4 receipt and organic qualified enrolments unavailable.", "bing":"No account-issued meta code or verified property available.", "rankings":"Unmeasured; no position or traffic increase asserted."}
+}
