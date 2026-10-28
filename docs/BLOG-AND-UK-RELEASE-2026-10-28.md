@@ -27,3 +27,18 @@ Focused local checks pass all five articles at 390/1440px: minimum word count, m
 CMS entries are created as five new drafts with distinct IDs; existing articles are untouched. After source verification, publish only those IDs, merge the reviewed source and deploy to the verified production project. Confirm the actual source on the www hostname, all new article/image responses, 49 declared sitemap URLs (44 existing + five new), listing/feed discovery and mobile/desktop flows. A failed release can return only these five IDs to draft and restore the retained deployment. Record the actual release and notification receipt below; a commit or notification alone is not deployment or indexing evidence.
 
 No fresh live Lighthouse, field CWV, search ranking improvement or arbitrary 100%/0ms outcome is claimed. Earlier 202-URL audits in historical notes predate the approved 44-URL indexing policy.
+
+
+## Verified production result
+
+PR [#8](https://github.com/Ehtisham1239/app.com/pull/8) is merged. Application source `807d5969c32e0430e344467179c8153e1e71cb2e` is READY as deployment `dpl_bSgePBUqrucGQZ9GeNfDKqWr1xPn`; lookup of the actual www hostname confirms that source. Both www/apex and the stable Vercel alias are attached. The uploaded tree `959d45406770baafc29854f2cc0861e51929e00c` exactly matches the tested local tree. All five recorded CMS IDs were published atomically after their draft/body hashes matched, at 13:12 Pakistan time on 28 October. No pre-existing article was changed.
+
+Post-release checks:
+
+- **49/49 live sitemap URLs** audited (cap 250, three workers): zero fetch errors, zero robots skips and zero technical findings; genuine unknown-route/noindex and utility/pagination probes also pass. The earlier draft PR description's 55 bootstrap count was a transcription error; the actual complete local and live release audits both cover 49. The PR description is corrected.
+- All five article URLs independently opened in the cloud browser, with the expected titles and cover imagery; the blog collection is left available as the user-facing result.
+- Ten live article viewport cases pass at 390/1440px, with decoded responsive images, more than 1,000 body words, no page overflow, valid TOC targets and matching article/image identity. All five occur in the current RSS feed and sitemap. Zero browser errors and zero enquiry submissions.
+- Three additional live learning/UK cases pass at 320/390/1440px, including adult-guide and trial navigation, table keyboard focus and no-JavaScript comparison content. Zero browser errors or submissions.
+- IndexNow received exactly the five new canonical article URLs at 13:17 Pakistan time with **HTTP 200**. This is notification acceptance, not proof of Bing/Google indexing, ranking or AI citations. No repeated full-site submission was sent.
+
+Evidence logs and screenshots were inspected in the scoped QA workspace; no account tokens or confidential analytics were committed. The new covers and editorial sources are committed with the application. Runtime account/log scans, Bing Webmaster ownership, current GA4 key-event qualification, field CWV and a fresh all-device Lighthouse run are not established by these public checks. Full strict public CSP/Trusted Types migration and a guaranteed mobile 0ms blocking result remain outside the achieved outcome. The published articles and site fixes are live; no claim of a 100% perfect site or guaranteed top rank is made.
