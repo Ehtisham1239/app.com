@@ -23,7 +23,7 @@ export const metadata = contentMetadata({
 const PROMISES = [
   { icon: Clock3, title: "Reply within 24 hours", text: "A coordinator contacts you by WhatsApp or email to confirm a time." },
   { icon: HeartHandshake, title: "Share your teacher preference", text: "Request a female or male teacher; the coordinator confirms availability and language." },
-  { icon: CalendarCheck2, title: "3 days free on eligible plans", text: "No card needed. The Weekend plan is excluded." },
+  { icon: CalendarCheck2, title: "3 days free on eligible plans", text: "No card needed for the free Quran trial classes. The Weekend plan is excluded." },
   { icon: ShieldCheck, title: "Your details are safe", text: "Used only to arrange your classes — never sold or shared." },
 ];
 

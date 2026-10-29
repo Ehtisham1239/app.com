@@ -23,6 +23,7 @@
     "seed:snapshot": "node scripts/export-seed-content.mjs",
     "seo:agent": "node scripts/seo-agent-audit.mjs",
     "seo:keywords": "node scripts/keyword-coverage.mjs",
+    "seo:keyword-map": "node scripts/keyword-map-check.mjs",
     "seo:search-engines": "node scripts/search-engine-audit.mjs",
     "seo:notify": "node scripts/indexnow.mjs",
     "test:admin-data": "node scripts/admin-data-smoke.mjs"

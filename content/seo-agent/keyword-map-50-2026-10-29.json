@@ -1,0 +1,333 @@
+{
+  "date": "2026-10-29",
+  "method": "50 target phrases, one target page each. Sources: Google Search Console queries for sc-domain:onlinequrancollege.com, Oct 2026 (gsc), and manual review of Google results for the main service phrases (serp). Search volumes are not included: the Semrush account had no API units. GSC impressions and average positions are for 1-28 Oct 2026.",
+  "keywords": [
+    {
+      "phrase": "online Quran classes in the UK",
+      "intent": "commercial-local",
+      "page": "/locations/united-kingdom",
+      "source": "gsc",
+      "impressions": 18,
+      "position": 13.3,
+      "query": "online Quran classes UK"
+    },
+    {
+      "phrase": "learn Quran online in the UK",
+      "intent": "commercial-local",
+      "page": "/locations/united-kingdom",
+      "source": "gsc",
+      "impressions": 9,
+      "position": 48.8,
+      "query": "learn Quran online UK"
+    },
+    {
+      "phrase": "online Quran classes for adults in the UK",
+      "intent": "commercial-local",
+      "page": "/locations/united-kingdom",
+      "source": "gsc",
+      "impressions": 7,
+      "position": 34.3,
+      "query": "online Quran classes for adults UK"
+    },
+    {
+      "phrase": "how much do online Quran classes cost in the UK",
+      "intent": "commercial-question",
+      "page": "/blog/online-quran-class-fees-uk-comparison",
+      "source": "gsc",
+      "impressions": 1,
+      "position": 8
+    },
+    {
+      "phrase": "online Quran classes in London",
+      "intent": "commercial-local",
+      "page": "/locations/united-kingdom",
+      "source": "gsc",
+      "impressions": 5,
+      "position": 35.8
+    },
+    {
+      "phrase": "Quran teacher in London",
+      "intent": "commercial-local",
+      "page": "/locations/united-kingdom",
+      "source": "gsc",
+      "impressions": 1,
+      "position": 29
+    },
+    {
+      "phrase": "Quran classes in Birmingham",
+      "intent": "commercial-local",
+      "page": "/locations/united-kingdom",
+      "source": "gsc",
+      "impressions": 1,
+      "position": 33
+    },
+    {
+      "phrase": "Quran teacher in Manchester",
+      "intent": "commercial-local",
+      "page": "/locations/united-kingdom",
+      "source": "gsc",
+      "impressions": 2,
+      "position": 12.5
+    },
+    {
+      "phrase": "female Quran teacher",
+      "intent": "commercial",
+      "page": "/teachers",
+      "source": "gsc",
+      "impressions": 2,
+      "position": 5.5
+    },
+    {
+      "phrase": "online Quran teacher",
+      "intent": "commercial",
+      "page": "/teachers",
+      "source": "gsc",
+      "impressions": 6,
+      "position": 23
+    },
+    {
+      "phrase": "online Quran classes",
+      "intent": "commercial",
+      "page": "/",
+      "source": "serp"
+    },
+    {
+      "phrase": "learn Quran online",
+      "intent": "commercial",
+      "page": "/",
+      "source": "serp"
+    },
+    {
+      "phrase": "one-to-one Quran classes",
+      "intent": "commercial",
+      "page": "/",
+      "source": "serp"
+    },
+    {
+      "phrase": "online Quran academy",
+      "intent": "commercial",
+      "page": "/about",
+      "source": "serp"
+    },
+    {
+      "phrase": "online Quran courses",
+      "intent": "commercial",
+      "page": "/courses",
+      "source": "serp"
+    },
+    {
+      "phrase": "online Quran classes for kids",
+      "intent": "commercial",
+      "page": "/learn/quran-for-kids",
+      "source": "serp"
+    },
+    {
+      "phrase": "Quran classes for beginners",
+      "intent": "commercial",
+      "page": "/learn/quran-for-adults",
+      "source": "serp"
+    },
+    {
+      "phrase": "learn Quran online for adults",
+      "intent": "commercial",
+      "page": "/learn/quran-for-adults",
+      "source": "serp"
+    },
+    {
+      "phrase": "learn Noorani Qaida online",
+      "intent": "commercial",
+      "page": "/courses/noorani-qaida",
+      "source": "serp"
+    },
+    {
+      "phrase": "Noorani Qaida for kids",
+      "intent": "commercial",
+      "page": "/courses/noorani-qaida",
+      "source": "serp"
+    },
+    {
+      "phrase": "learn to read the Quran",
+      "intent": "commercial",
+      "page": "/courses/quran-nazara",
+      "source": "serp"
+    },
+    {
+      "phrase": "online Quran reading with Tajweed",
+      "intent": "commercial",
+      "page": "/courses/quran-nazara",
+      "source": "serp"
+    },
+    {
+      "phrase": "learn Tajweed online",
+      "intent": "informational-commercial",
+      "page": "/courses/tajweed",
+      "source": "serp"
+    },
+    {
+      "phrase": "Tajweed rules for beginners",
+      "intent": "informational",
+      "page": "/courses/tajweed",
+      "source": "serp"
+    },
+    {
+      "phrase": "online Hifz classes",
+      "intent": "commercial",
+      "page": "/courses/hifz-quran",
+      "source": "serp"
+    },
+    {
+      "phrase": "learn Hifz ul Quran",
+      "intent": "commercial",
+      "page": "/courses/hifz-quran",
+      "source": "gsc",
+      "impressions": 1,
+      "position": 44
+    },
+    {
+      "phrase": "online Quran memorization",
+      "intent": "commercial",
+      "page": "/courses/hifz-quran",
+      "source": "serp"
+    },
+    {
+      "phrase": "Hifz revision routine",
+      "intent": "informational",
+      "page": "/blog/hifz-revision-with-school",
+      "source": "serp"
+    },
+    {
+      "phrase": "Quran memorisation techniques",
+      "intent": "informational",
+      "page": "/blog/memorization-techniques-for-beginners",
+      "source": "serp"
+    },
+    {
+      "phrase": "learn Quranic Arabic online",
+      "intent": "commercial",
+      "page": "/courses/arabic-language",
+      "source": "serp"
+    },
+    {
+      "phrase": "online Quran translation and Tafseer",
+      "intent": "commercial",
+      "page": "/courses/quran-translation",
+      "source": "serp"
+    },
+    {
+      "phrase": "Quran translation or Arabic",
+      "intent": "informational",
+      "page": "/blog/quran-translation-and-arabic-difference",
+      "source": "serp"
+    },
+    {
+      "phrase": "online Hadith classes",
+      "intent": "commercial",
+      "page": "/courses/hadith-translation",
+      "source": "serp"
+    },
+    {
+      "phrase": "Islamic studies for kids",
+      "intent": "commercial",
+      "page": "/learn/islamic-studies-for-kids",
+      "source": "serp"
+    },
+    {
+      "phrase": "online Quran classes in the USA",
+      "intent": "commercial-local",
+      "page": "/locations/united-states",
+      "source": "serp"
+    },
+    {
+      "phrase": "online Quran teacher in the USA",
+      "intent": "commercial-local",
+      "page": "/blog/choose-online-quran-teacher-usa",
+      "source": "serp"
+    },
+    {
+      "phrase": "online Quran classes in Canada",
+      "intent": "commercial-local",
+      "page": "/locations/canada",
+      "source": "serp"
+    },
+    {
+      "phrase": "online Quran classes in Australia",
+      "intent": "commercial-local",
+      "page": "/locations/australia",
+      "source": "gsc",
+      "impressions": 1,
+      "position": 30
+    },
+    {
+      "phrase": "Quran lessons across Australian time zones",
+      "intent": "informational-local",
+      "page": "/blog/quran-lessons-australia-time-zones",
+      "source": "serp"
+    },
+    {
+      "phrase": "online Quran class fees",
+      "intent": "commercial",
+      "page": "/pricing",
+      "source": "serp"
+    },
+    {
+      "phrase": "free online Quran trial",
+      "intent": "transactional",
+      "page": "/free-trial",
+      "source": "serp"
+    },
+    {
+      "phrase": "free Quran trial class",
+      "intent": "transactional",
+      "page": "/free-trial",
+      "source": "serp"
+    },
+    {
+      "phrase": "questions about online Quran classes",
+      "intent": "informational",
+      "page": "/faq",
+      "source": "serp"
+    },
+    {
+      "phrase": "Noorani Qaida or Quran reading",
+      "intent": "informational",
+      "page": "/blog/noorani-qaida-or-quran-reading",
+      "source": "serp"
+    },
+    {
+      "phrase": "Noorani Qaida home practice",
+      "intent": "informational",
+      "page": "/blog/noorani-qaida-home-practice-checklist",
+      "source": "serp"
+    },
+    {
+      "phrase": "choosing online Quran classes for kids",
+      "intent": "informational",
+      "page": "/blog/choose-online-quran-classes-kids",
+      "source": "serp"
+    },
+    {
+      "phrase": "returning to Quran study",
+      "intent": "informational",
+      "page": "/blog/returning-to-quran-study-adults",
+      "source": "serp"
+    },
+    {
+      "phrase": "first online Quran trial",
+      "intent": "informational",
+      "page": "/blog/prepare-child-first-online-quran-trial",
+      "source": "serp"
+    },
+    {
+      "phrase": "family Quran learning routine",
+      "intent": "informational",
+      "page": "/blog/family-quran-learning-weekly-routine",
+      "source": "serp"
+    },
+    {
+      "phrase": "Quran learning guides",
+      "intent": "informational",
+      "page": "/learn",
+      "source": "serp"
+    }
+  ]
+}

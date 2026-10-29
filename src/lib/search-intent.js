@@ -43,7 +43,7 @@ export const SEARCH_INTENTS = {
   "/teachers": {
     "phrase": "female Quran teacher online",
     "heading": "Female and male Quran teachers",
-    "intro": "Request a female Quran teacher online for your preferred learning language and class time. The coordinator confirms teacher availability before lessons are arranged."
+    "intro": "Request a female Quran teacher online for your preferred learning language and class time. The coordinator confirms which online Quran teacher is available before lessons are arranged."
   },
   "/locations/united-states": {
     "phrase": "online Quran classes in the USA",
