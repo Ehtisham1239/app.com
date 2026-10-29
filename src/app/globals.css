@@ -368,7 +368,7 @@ main input:not([type="checkbox"]):not([type="radio"]), main select, main textare
   .home-hero .hero-portrait { grid-row: 1; width: 64vw; max-width: 300px; border-width: 9px; border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; }
   .home-hero .hero-copy { grid-row: 2; min-width: 0; text-align: center; }
   .home-hero .arabic { text-align: center; font-size: clamp(27px, 8.3vw, 36px); line-height: 1.8; min-height: 1.8em; }
-  .home-hero h1 { margin: 12px auto 0; font-size: clamp(22px, 6.1vw, 31px); line-height: 1.2; font-weight: 800; text-transform: capitalize; color: #0c6c0c; text-wrap: wrap; }
+  .home-hero h1 { margin: 12px auto 0; font-size: clamp(22px, 6.1vw, 31px); line-height: 1.2; font-weight: 800; color: #0c6c0c; text-wrap: wrap; }
   .home-hero .hero-intro { margin: 16px auto 0; font-size: 14px; line-height: 1.75; color: #535b61; }
   .home-hero .hero-actions, .home-hero .hero-badges { justify-content: center; }
 }
@@ -387,3 +387,17 @@ main input:not([type="checkbox"]):not([type="radio"]), main select, main textare
 .card-tinted[data-card-tone="4"] { --card-wash: #ffeef0; --card-accent: #e4adb9; }
 .card-tinted[data-card-tone="5"] { --card-wash: #e4f8f4; --card-accent: #8dcfc1; }
 .home-hero .hero-portrait { width: 100%; max-width: 440px; }
+
+/* Mobile action bar: hidden (and not focusable) until the visitor scrolls past the first screen. */
+.mobile-action-bar { transform: translateY(110%); visibility: hidden; transition: transform .25s ease, visibility 0s linear .25s; }
+.mobile-action-bar[data-shown="true"] { transform: none; visibility: visible; transition: transform .25s ease; }
+@media (prefers-reduced-motion: reduce) { .mobile-action-bar, .mobile-action-bar[data-shown="true"] { transition: none; } }
+@media print { .mobile-action-bar { display: none !important; } }
+
+/* Phones: card rows scroll sideways with snapping instead of stacking into a very long page. */
+@media (max-width: 639px) {
+  .swipe-row { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 1rem; margin-inline: -1rem; padding: 0.25rem 1rem 0.75rem; scrollbar-width: none; overscroll-behavior-x: contain; }
+  .swipe-row::-webkit-scrollbar { display: none; }
+  .swipe-row > * { flex: 0 0 84%; scroll-snap-align: start; }
+  .swipe-row:focus-visible { outline: 2px solid var(--color-leaf-700); outline-offset: 2px; }
+}

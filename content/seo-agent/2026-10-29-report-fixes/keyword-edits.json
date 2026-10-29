@@ -1,41 +1,117 @@
 {
   "note": "Exact replacements applied to the live CMS on 29 Oct 2026 for the 50-keyword map. To roll back, swap old and new for each row, guarded by the version noted.",
   "edits": [
-    {"table": "pages", "column": "body_html", "slug": "locations-united-kingdom", "version": 7,
-     "old": "<h2>Quran learning from home in United Kingdom</h2>",
-     "new": "<h2>Quran learning from home in the United Kingdom</h2>"},
-    {"table": "pages", "column": "body_html", "slug": "locations-united-kingdom", "version": 7,
-     "old": "<h2>Choosing online Quran classes in the UK: practical answers</h2>",
-     "new": "<h2>Online Quran classes in the UK, wherever you live</h2>\n<p>Lessons are live and online, so you can learn Quran online in the UK from any town or city. Families searching for online Quran classes in London, a Quran teacher in London, Quran classes in Birmingham or a Quran teacher in Manchester do not need to travel to a centre: share your city and preferred UK local time, and the coordinator confirms which teacher is available.</p>\n<p>Online Quran classes for adults in the UK can be planned around work and family commitments. Tell the coordinator whether you are a beginner, returning after a break or improving your recitation, and which times you can keep each week.</p>\n<h2>Choosing online Quran classes in the UK: practical answers</h2>"},
-    {"table": "pages", "column": "body_html", "slug": "about", "version": 5,
-     "old": "<p>Online Quran College offers live one-to-one online lessons for children and adults.",
-     "new": "<p>Online Quran College is an online Quran academy offering live one-to-one lessons for children and adults."},
-    {"table": "pages", "column": "body_html", "slug": "learning-quran-for-adults", "version": 4,
-     "old": "<h2>You can explain your starting point simply</h2><p>Tell the coordinator",
-     "new": "<h2>You can explain your starting point simply</h2><p>Quran classes for beginners start from what you can already do. Tell the coordinator"},
-    {"table": "pages", "column": "body_html", "slug": "learning-tajweed", "version": 4,
-     "old": "Knowing the name of a rule is different from being able to apply it while reading.",
-     "new": "Knowing the name of a rule is different from being able to apply it while reading, so Tajweed rules for beginners are best introduced one at a time, with a model to listen to."},
-    {"table": "blog_posts", "column": "body_html", "slug": "online-quran-class-fees-uk-comparison", "version": 4,
-     "old": "<h3>How can I calculate a comparable cost per lesson?</h3>",
-     "new": "<h3>How much do online Quran classes cost in the UK?</h3>\n<p>It depends on the course, the lesson length and how many lessons are arranged each week. Online Quran College publishes its package structure on the <a href=\"/pricing?currency=GBP\">pricing page</a>; ask the coordinator for the approved GBP amount for your chosen option before enrolling, and compare other quotes using the headings above.</p>\n<h3>How can I calculate a comparable cost per lesson?</h3>"},
-    {"table": "blog_posts", "column": "body_html", "slug": "hifz-revision-with-school", "version": 8,
-     "old": "<h2>A weekly review to discuss together</h2>",
-     "new": "<h2>A weekly Hifz revision routine to review together</h2>"},
-    {"table": "courses", "column": "description_html", "slug": "hifz-quran", "version": 7,
-     "old": "<p>Our Hifz programme combines",
-     "new": "<p>Our online Hifz classes combine"},
-    {"table": "courses", "column": "description_html", "slug": "hifz-quran", "version": 7,
-     "old": "<p>Children and adults who have completed Noorani Qaida",
-     "new": "<p>Children and adults who want to learn Hifz ul Quran and have completed Noorani Qaida"},
-    {"table": "courses", "column": "description_html", "slug": "noorani-qaida", "version": 8,
-     "old": "<p>Complete beginners with no Arabic background: children from about 4½–5 years old, and adults",
-     "new": "<p>Complete beginners with no Arabic background. Noorani Qaida for kids usually starts from about 4½–5 years old, and adults"},
-    {"table": "courses", "column": "description_html", "slug": "quran-nazara", "version": 8,
-     "old": "whether you are just starting to read the Quran or polishing your recitation",
-     "new": "whether you want to learn to read the Quran fluently or are polishing your recitation"},
-    {"table": "courses", "column": "description_html", "slug": "hadith-translation", "version": 6,
-     "old": "<p>Learn the teachings of the Prophet",
-     "new": "<p>In these online Hadith classes, learn the teachings of the Prophet"}
+    {
+      "table": "pages",
+      "column": "body_html",
+      "slug": "locations-united-kingdom",
+      "version": 7,
+      "old": "<h2>Quran learning from home in United Kingdom</h2>",
+      "new": "<h2>Quran learning from home in the United Kingdom</h2>"
+    },
+    {
+      "table": "pages",
+      "column": "body_html",
+      "slug": "locations-united-kingdom",
+      "version": 7,
+      "old": "<h2>Choosing online Quran classes in the UK: practical answers</h2>",
+      "new": "<h2>Online Quran classes in the UK, wherever you live</h2>\n<p>Lessons are live and online, so you can learn Quran online in the UK from any town or city. Families searching for online Quran classes in London, a Quran teacher in London, Quran classes in Birmingham or a Quran teacher in Manchester do not need to travel to a centre: share your city and preferred UK local time, and the coordinator confirms which teacher is available.</p>\n<p>Online Quran classes for adults in the UK can be planned around work and family commitments. Tell the coordinator whether you are a beginner, returning after a break or improving your recitation, and which times you can keep each week.</p>\n<h2>Choosing online Quran classes in the UK: practical answers</h2>"
+    },
+    {
+      "table": "pages",
+      "column": "body_html",
+      "slug": "about",
+      "version": 5,
+      "old": "<p>Online Quran College offers live one-to-one online lessons for children and adults.",
+      "new": "<p>Online Quran College is an online Quran academy offering live one-to-one lessons for children and adults."
+    },
+    {
+      "table": "pages",
+      "column": "body_html",
+      "slug": "learning-quran-for-adults",
+      "version": 4,
+      "old": "<h2>You can explain your starting point simply</h2><p>Tell the coordinator",
+      "new": "<h2>You can explain your starting point simply</h2><p>Quran classes for beginners start from what you can already do. Tell the coordinator"
+    },
+    {
+      "table": "pages",
+      "column": "body_html",
+      "slug": "learning-tajweed",
+      "version": 4,
+      "old": "Knowing the name of a rule is different from being able to apply it while reading.",
+      "new": "Knowing the name of a rule is different from being able to apply it while reading, so Tajweed rules for beginners are best introduced one at a time, with a model to listen to."
+    },
+    {
+      "table": "blog_posts",
+      "column": "body_html",
+      "slug": "online-quran-class-fees-uk-comparison",
+      "version": 4,
+      "old": "<h3>How can I calculate a comparable cost per lesson?</h3>",
+      "new": "<h3>How much do online Quran classes cost in the UK?</h3>\n<p>It depends on the course, the lesson length and how many lessons are arranged each week. Online Quran College publishes its package structure on the <a href=\"/pricing?currency=GBP\">pricing page</a>; ask the coordinator for the approved GBP amount for your chosen option before enrolling, and compare other quotes using the headings above.</p>\n<h3>How can I calculate a comparable cost per lesson?</h3>"
+    },
+    {
+      "table": "blog_posts",
+      "column": "body_html",
+      "slug": "hifz-revision-with-school",
+      "version": 8,
+      "old": "<h2>A weekly review to discuss together</h2>",
+      "new": "<h2>A weekly Hifz revision routine to review together</h2>"
+    },
+    {
+      "table": "courses",
+      "column": "description_html",
+      "slug": "hifz-quran",
+      "version": 7,
+      "old": "<p>Our Hifz programme combines",
+      "new": "<p>Our online Hifz classes combine"
+    },
+    {
+      "table": "courses",
+      "column": "description_html",
+      "slug": "hifz-quran",
+      "version": 7,
+      "old": "<p>Children and adults who have completed Noorani Qaida",
+      "new": "<p>Children and adults who want to learn Hifz ul Quran and have completed Noorani Qaida"
+    },
+    {
+      "table": "courses",
+      "column": "description_html",
+      "slug": "noorani-qaida",
+      "version": 8,
+      "old": "<p>Complete beginners with no Arabic background: children from about 4½–5 years old, and adults",
+      "new": "<p>Complete beginners with no Arabic background. Noorani Qaida for kids usually starts from about 4½–5 years old, and adults"
+    },
+    {
+      "table": "courses",
+      "column": "description_html",
+      "slug": "quran-nazara",
+      "version": 8,
+      "old": "whether you are just starting to read the Quran or polishing your recitation",
+      "new": "whether you want to learn to read the Quran fluently or are polishing your recitation"
+    },
+    {
+      "table": "courses",
+      "column": "description_html",
+      "slug": "hadith-translation",
+      "version": 6,
+      "old": "<p>Learn the teachings of the Prophet",
+      "new": "<p>In these online Hadith classes, learn the teachings of the Prophet"
+    },
+    {
+      "table": "pages",
+      "column": "seo_title",
+      "slug": "locations-united-kingdom",
+      "version": 8,
+      "old": null,
+      "new": "Online Quran Classes UK | Live One-to-One Lessons | OQC"
+    },
+    {
+      "table": "pages",
+      "column": "seo_title",
+      "slug": "about",
+      "version": 6,
+      "old": "About Us | Online Quran College",
+      "new": "About Online Quran College | Online Quran Academy"
+    }
   ]
 }

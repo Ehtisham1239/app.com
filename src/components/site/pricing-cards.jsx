@@ -18,7 +18,8 @@ export function PricingCards({ plans, compact = false, currency }) {
   if (!list.length) return null;
   const cols = list.length >= 4 ? "lg:grid-cols-4" : list.length === 3 ? "lg:grid-cols-3" : "lg:mx-auto lg:max-w-4xl lg:grid-cols-2";
   return (
-    <div className={clsx("grid gap-5 pt-3 sm:grid-cols-2", cols)}>
+    // The compact homepage list swipes sideways on phones; the full /pricing page stays stacked.
+    <div className={clsx("grid gap-5 pt-3 sm:grid-cols-2", cols, compact && "swipe-row")} {...(compact ? { role: "region", "aria-label": "Packages", tabIndex: 0 } : {})}>
       {list.map((p) => {
         const price = mainPrice(p.prices, currency);
         const others = currency ? [] : (p.prices ?? []).filter((x) => x !== price);
