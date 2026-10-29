@@ -24,3 +24,11 @@ Built-in image generation produced all three new scenes. The production prompts 
 ## Recovery and limits
 
 Revert the visual-refresh source commit to restore the previous banners and header behavior. Original assets remain available. This source-only rollback does not require database, DNS, price, tracking or permission changes. Browser checks use Chromium viewport emulation and cannot establish physical Safari compatibility, WCAG certification, search indexation, ranking gains or field Core Web Vitals. No real enquiry or recipient-directed message is submitted during QA.
+
+## Production verification and follow-up repair
+
+The visual release 04e2e90a73b256f6e692bc132d8f5636b8b4a644 deployed Ready as dpl_3mhee3UgqZSWvtiFcVxXJ3cH9xh6, Production/main, to www.onlinequrancollege.com (1m 21s). The apex returns 308 to www. The actual Weekend CMS link, teacher preference, planner summary, Hifz direct 308/query retention and sitemap imagery are publicly verified. Seed plan UUIDs differ from current CMS IDs and were not substituted for live links.
+
+The 22 distinct visual/functional cases completed across an initial 19-case sweep and a bounded three-route retry after a load-event timeout. The initial sweep also recorded two React #418 hydration errors on the trial form. These were investigated instead of being called a clean run. A local reproduction in UTC, America/Los_Angeles and Asia/Karachi reproduced the pre-existing browser-time-zone initialization mismatch. The form now starts with deterministic query-only state, detects the browser zone after mount, preserves an explicit country/manual zone, and adds localized time-zone names only after hydration. Nine local route/time-zone checks and six interaction regressions pass with zero errors or writes. The follow-up fix awaits production verification. No prices were changed.
+
+Existing build notices were reviewed: broad Node engine range, npm cache-dir configuration, pinned ESLint deprecation, and existing esbuild/unrs-resolver install-script notices. No dependency or security setting was changed to hide a notice.

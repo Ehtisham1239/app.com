@@ -1,0 +1,43 @@
+{
+  "errors": [],
+  "writes": 0,
+  "details": [],
+  "cases": [
+    {
+      "path": "/free-trial",
+      "timezoneId": "UTC"
+    },
+    {
+      "path": "/pricing",
+      "timezoneId": "UTC"
+    },
+    {
+      "path": "/blog",
+      "timezoneId": "UTC"
+    },
+    {
+      "path": "/free-trial",
+      "timezoneId": "America/Los_Angeles"
+    },
+    {
+      "path": "/pricing",
+      "timezoneId": "America/Los_Angeles"
+    },
+    {
+      "path": "/blog",
+      "timezoneId": "America/Los_Angeles"
+    },
+    {
+      "path": "/free-trial",
+      "timezoneId": "Asia/Karachi"
+    },
+    {
+      "path": "/pricing",
+      "timezoneId": "Asia/Karachi"
+    },
+    {
+      "path": "/blog",
+      "timezoneId": "Asia/Karachi"
+    }
+  ]
+}

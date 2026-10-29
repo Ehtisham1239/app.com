@@ -1,0 +1,36 @@
+{
+  "base": "https://www.onlinequrancollege.com",
+  "checkedAt": "2026-10-29T10:59:09.333Z",
+  "errors": [],
+  "writes": 0,
+  "cases": [
+    {
+      "width": 1440,
+      "path": "/locations",
+      "image": {
+        "src": "https://www.onlinequrancollege.com/images/learning/online-lesson-male-v4-1200.avif",
+        "alt": "Illustrative scene of a boy reading at home with a male Quran teacher guiding him over a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "path": "/pricing",
+      "image": {
+        "src": "https://www.onlinequrancollege.com/images/learning/online-lesson-female-v4-1200.avif",
+        "alt": "Illustrative scene of a girl following her lesson at home with a female Quran teacher on a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "path": "/careers",
+      "image": {
+        "src": "https://www.onlinequrancollege.com/images/learning/online-lesson-female-v4-1200.avif",
+        "alt": "Illustrative scene of a girl following her lesson at home with a female Quran teacher on a laptop video call"
+      },
+      "overflow": false
+    }
+  ],
+  "scope": "Chromium viewport/functional QA; external vendors inert; no valid enquiry submitted"
+}

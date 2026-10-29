@@ -1,0 +1,208 @@
+{
+  "base": "https://www.onlinequrancollege.com",
+  "checkedAt": "2026-10-29T10:51:16.525Z",
+  "errors": [
+    "Minified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+    "Minified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+  ],
+  "writes": 0,
+  "cases": [
+    {
+      "width": 320,
+      "zoomMenu": true,
+      "hero": {
+        "src": "https://www.onlinequrancollege.com/images/learning/contact-learning-desk-v4-400.avif",
+        "width": 320,
+        "alt": "Illustration of an online learning desk with a laptop, headset and closed book on a wooden reading stand"
+      },
+      "overflow": false,
+      "text200PercentOverflow": false,
+      "contactCtas": true,
+      "formAnchorAndFocus": true,
+      "invalidSubmissionBlocked": true,
+      "keyboard": true,
+      "relatedLinks": true
+    },
+    {
+      "width": 390,
+      "zoomMenu": true,
+      "hero": {
+        "src": "https://www.onlinequrancollege.com/images/learning/contact-learning-desk-v4-400.avif",
+        "width": 390,
+        "alt": "Illustration of an online learning desk with a laptop, headset and closed book on a wooden reading stand"
+      },
+      "overflow": false,
+      "text200PercentOverflow": false,
+      "contactCtas": true,
+      "formAnchorAndFocus": true,
+      "invalidSubmissionBlocked": true,
+      "keyboard": true,
+      "relatedLinks": true
+    },
+    {
+      "width": 768,
+      "zoomMenu": true,
+      "hero": {
+        "src": "https://www.onlinequrancollege.com/images/learning/contact-learning-desk-v4-800.avif",
+        "width": 768,
+        "alt": "Illustration of an online learning desk with a laptop, headset and closed book on a wooden reading stand"
+      },
+      "overflow": false,
+      "text200PercentOverflow": false,
+      "contactCtas": true,
+      "formAnchorAndFocus": true,
+      "invalidSubmissionBlocked": true,
+      "keyboard": true,
+      "relatedLinks": true
+    },
+    {
+      "width": 1440,
+      "zoomMenu": true,
+      "hero": {
+        "src": "https://www.onlinequrancollege.com/images/learning/contact-learning-desk-v4-1200.avif",
+        "width": 1008,
+        "alt": "Illustration of an online learning desk with a laptop, headset and closed book on a wooden reading stand"
+      },
+      "overflow": false,
+      "text200PercentOverflow": false,
+      "contactCtas": true,
+      "formAnchorAndFocus": true,
+      "invalidSubmissionBlocked": true,
+      "keyboard": true,
+      "relatedLinks": true
+    },
+    {
+      "width": 390,
+      "path": "/courses",
+      "image": {
+        "src": "https://www.onlinequrancollege.com/images/learning/online-lesson-male-v4-800.avif",
+        "alt": "Illustrative scene of a boy reading at home with a male Quran teacher guiding him over a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "path": "/teachers",
+      "image": {
+        "src": "https://www.onlinequrancollege.com/images/learning/online-lesson-female-v4-400.avif",
+        "alt": "Illustrative scene of a girl following her lesson at home with a female Quran teacher on a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "path": "/free-trial",
+      "trialFormPriority": true,
+      "hiddenHeroSourceUpdated": true
+    },
+    {
+      "width": 390,
+      "path": "/learn",
+      "image": {
+        "src": "https://www.onlinequrancollege.com/images/learning/online-lesson-male-v4-800.avif",
+        "alt": "Illustrative scene of a boy reading at home with a male Quran teacher guiding him over a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "path": "/blog",
+      "image": {
+        "src": "https://www.onlinequrancollege.com/images/learning/online-lesson-male-v4-800.avif",
+        "alt": "Illustrative scene of a boy reading at home with a male Quran teacher guiding him over a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "path": "/faq",
+      "image": {
+        "src": "https://www.onlinequrancollege.com/images/learning/online-lesson-male-v4-800.avif",
+        "alt": "Illustrative scene of a boy reading at home with a male Quran teacher guiding him over a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "path": "/locations",
+      "image": {
+        "src": "https://www.onlinequrancollege.com/images/learning/online-lesson-male-v4-800.avif",
+        "alt": "Illustrative scene of a boy reading at home with a male Quran teacher guiding him over a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "path": "/pricing",
+      "image": {
+        "src": "https://www.onlinequrancollege.com/images/learning/online-lesson-female-v4-400.avif",
+        "alt": "Illustrative scene of a girl following her lesson at home with a female Quran teacher on a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "path": "/careers",
+      "image": {
+        "src": "https://www.onlinequrancollege.com/images/learning/online-lesson-female-v4-400.avif",
+        "alt": "Illustrative scene of a girl following her lesson at home with a female Quran teacher on a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "path": "/courses",
+      "image": {
+        "src": "https://www.onlinequrancollege.com/images/learning/online-lesson-male-v4-1200.avif",
+        "alt": "Illustrative scene of a boy reading at home with a male Quran teacher guiding him over a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "path": "/teachers",
+      "image": {
+        "src": "https://www.onlinequrancollege.com/images/learning/online-lesson-female-v4-1200.avif",
+        "alt": "Illustrative scene of a girl following her lesson at home with a female Quran teacher on a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "path": "/free-trial",
+      "image": {
+        "src": "https://www.onlinequrancollege.com/images/learning/online-lesson-female-v4-800.avif",
+        "alt": "Illustrative scene of a girl following her lesson at home with a female Quran teacher on a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "path": "/learn",
+      "image": {
+        "src": "https://www.onlinequrancollege.com/images/learning/online-lesson-male-v4-1200.avif",
+        "alt": "Illustrative scene of a boy reading at home with a male Quran teacher guiding him over a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "path": "/blog",
+      "image": {
+        "src": "https://www.onlinequrancollege.com/images/learning/online-lesson-male-v4-1200.avif",
+        "alt": "Illustrative scene of a boy reading at home with a male Quran teacher guiding him over a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "path": "/faq",
+      "image": {
+        "src": "https://www.onlinequrancollege.com/images/learning/online-lesson-male-v4-1200.avif",
+        "alt": "Illustrative scene of a boy reading at home with a male Quran teacher guiding him over a laptop video call"
+      },
+      "overflow": false
+    }
+  ],
+  "scope": "Chromium viewport/functional QA; external vendors inert; no valid enquiry submitted"
+}

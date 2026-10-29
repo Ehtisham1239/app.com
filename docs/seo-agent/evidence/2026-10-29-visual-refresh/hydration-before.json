@@ -1,0 +1,63 @@
+{
+  "errors": [
+    "Minified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+    "Minified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+    "Minified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+  ],
+  "writes": 0,
+  "details": [
+    {
+      "url": "http://127.0.0.1:3046/free-trial",
+      "timezoneId": "UTC",
+      "error": "Minified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+    },
+    {
+      "url": "http://127.0.0.1:3046/free-trial",
+      "timezoneId": "America/Los_Angeles",
+      "error": "Minified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+    },
+    {
+      "url": "http://127.0.0.1:3046/free-trial",
+      "timezoneId": "Asia/Karachi",
+      "error": "Minified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+    }
+  ],
+  "cases": [
+    {
+      "path": "/free-trial",
+      "timezoneId": "UTC"
+    },
+    {
+      "path": "/pricing",
+      "timezoneId": "UTC"
+    },
+    {
+      "path": "/blog",
+      "timezoneId": "UTC"
+    },
+    {
+      "path": "/free-trial",
+      "timezoneId": "America/Los_Angeles"
+    },
+    {
+      "path": "/pricing",
+      "timezoneId": "America/Los_Angeles"
+    },
+    {
+      "path": "/blog",
+      "timezoneId": "America/Los_Angeles"
+    },
+    {
+      "path": "/free-trial",
+      "timezoneId": "Asia/Karachi"
+    },
+    {
+      "path": "/pricing",
+      "timezoneId": "Asia/Karachi"
+    },
+    {
+      "path": "/blog",
+      "timezoneId": "Asia/Karachi"
+    }
+  ]
+}

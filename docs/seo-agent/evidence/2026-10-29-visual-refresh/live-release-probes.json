@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-29",
+  "cases": [
+    {
+      "path": "/hifz-ul-quran-course?utm_source=oqc-release-qa",
+      "status": 308,
+      "location": "/courses/hifz-quran?utm_source=oqc-release-qa",
+      "teacherPreference": false,
+      "weekendEnquiry": false,
+      "plannerSummary": false
+    },
+    {
+      "path": "/free-trial?country=United+States&city=Los+Angeles&currency=USD&lesson_date=2026-11-02&lesson_time=18%3A00&lesson_timezone=America%2FLos_Angeles",
+      "status": 200,
+      "location": null,
+      "h1": "Book a free <span class=\"text-gold-300\">3-day</span> trial",
+      "teacherPreference": true,
+      "weekendEnquiry": false,
+      "plannerSummary": true
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "location": null,
+      "teacherPreference": false,
+      "weekendEnquiry": false,
+      "plannerSummary": false,
+      "newSitemapImages": true
+    },
+    {
+      "path": "/free-trial?plan=a89c9944-595f-4599-8d49-026ddb17231f&currency=PKR",
+      "status": 200,
+      "h1": "Enquire about Weekend",
+      "weekendEnquiry": true,
+      "teacherPreference": true,
+      "source": "Actual live pricing-card link; seed IDs differ from current CMS IDs"
+    }
+  ],
+  "writes": 0,
+  "scope": "Live public HTTP probes; no enquiry submitted",
+  "source_commit": "04e2e90a73b256f6e692bc132d8f5636b8b4a644",
+  "apex": {
+    "status": 308,
+    "location": "https://www.onlinequrancollege.com/"
+  }
+}

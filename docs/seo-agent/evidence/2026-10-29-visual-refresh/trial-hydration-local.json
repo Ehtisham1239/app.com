@@ -1,0 +1,56 @@
+{
+  "base": "http://127.0.0.1:3046",
+  "errors": [],
+  "writes": 0,
+  "cases": [
+    {
+      "timezoneId": "UTC",
+      "path": "/free-trial",
+      "queryCountryPreserved": true,
+      "manualZonePreserved": true,
+      "teacherPreference": true,
+      "invalidSubmissionBlocked": true
+    },
+    {
+      "timezoneId": "UTC",
+      "path": "/free-trial?country=United+States&city=Los+Angeles",
+      "queryCountryPreserved": true,
+      "manualZonePreserved": true,
+      "teacherPreference": true,
+      "invalidSubmissionBlocked": true
+    },
+    {
+      "timezoneId": "America/Los_Angeles",
+      "path": "/free-trial",
+      "queryCountryPreserved": true,
+      "manualZonePreserved": true,
+      "teacherPreference": true,
+      "invalidSubmissionBlocked": true
+    },
+    {
+      "timezoneId": "America/Los_Angeles",
+      "path": "/free-trial?country=United+States&city=Los+Angeles",
+      "queryCountryPreserved": true,
+      "manualZonePreserved": true,
+      "teacherPreference": true,
+      "invalidSubmissionBlocked": true
+    },
+    {
+      "timezoneId": "Asia/Karachi",
+      "path": "/free-trial",
+      "queryCountryPreserved": true,
+      "manualZonePreserved": true,
+      "teacherPreference": true,
+      "invalidSubmissionBlocked": true
+    },
+    {
+      "timezoneId": "Asia/Karachi",
+      "path": "/free-trial?country=United+States&city=Los+Angeles",
+      "queryCountryPreserved": true,
+      "manualZonePreserved": true,
+      "teacherPreference": true,
+      "invalidSubmissionBlocked": true
+    }
+  ],
+  "scope": "SSR/hydration across visitor time zones; vendors inert; invalid submissions only"
+}

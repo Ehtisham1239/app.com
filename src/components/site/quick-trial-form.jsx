@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { clsx } from "clsx";
 import { announceLeadSaved } from "@/lib/conversion-events";
@@ -35,7 +35,10 @@ function detectZone(country, browserTz, cityName) {
   return countryTz;
 }
 
-function zoneLabel(zone) {
+function zoneLabel(zone, hydrated) {
+  // Server and browser ICU/time-zone names can differ. The initial label is
+  // deterministic; friendly seasonal names are added after hydration.
+  if (!hydrated) return zone.split("/").pop().replace(/_/g, " ");
   try {
     const name = new Intl.DateTimeFormat("en-GB", { timeZone: zone, timeZoneName: "long" }).formatToParts(new Date()).find((p) => p.type === "timeZoneName")?.value;
     return `${zone.split("/").pop().replace(/_/g, " ")}${name ? ` — ${name}` : ""}`;
@@ -57,16 +60,15 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
   const [errors, setErrors] = useState({});
   const [state, setState] = useState({ sending: false, error: "", reference: null });
   const [form, setForm] = useState(() => {
-    const tz = browserTimeZone();
     const course = params.get("course");
     const plan = params.get("plan");
     const planName = plans.find((p) => p.id === plan)?.name;
     return {
       learner_name: "",
       age_band: "",
-      country: params.get("country") || (COUNTRIES.find(([, zone]) => zone === tz)?.[0] ?? ""),
+      country: params.get("country") || "",
       city: params.get("city") || "",
-      browser_tz: tz,
+      browser_tz: "",
       zone_choice: "",
       phone: "",
       email: "",
@@ -77,6 +79,15 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       website: "",
     };
   });
+  useEffect(() => {
+    // Keep the first browser render identical to SSR. Detect only after mount,
+    // preserving a query-selected or already chosen country.
+    const frame = requestAnimationFrame(() => {
+      const tz = browserTimeZone();
+      setForm((current) => ({ ...current, browser_tz: tz, country: current.country || (COUNTRIES.find(([, zone]) => zone === tz)?.[0] ?? "") }));
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
   const zoneOptions = useMemo(() => zonesFor(form.country), [form.country]);
   const detected = useMemo(() => detectZone(form.country, form.browser_tz, form.city), [form.country, form.browser_tz, form.city]);
@@ -208,7 +219,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
         <div className="-mt-1">
           <label htmlFor="q-zone" className="field-label">Your time zone</label>
           <select id="q-zone" className="select" value={timezone} onChange={(e) => set("zone_choice", e.target.value)}>
-            {[...new Set([timezone, ...zoneOptions])].map((zone) => <option key={zone} value={zone}>{zoneLabel(zone)}</option>)}
+            {[...new Set([timezone, ...zoneOptions])].map((zone) => <option key={zone} value={zone}>{zoneLabel(zone, Boolean(form.browser_tz))}</option>)}
           </select>
         </div>
       )}

@@ -288,7 +288,7 @@
   "last_visual_refresh": {
     "date": "2026-10-29",
     "report": "docs/CONTACT-AND-LEARNING-VISUALS-2026-10-29.md",
-    "status": "Locally verified; production deployment pending",
+    "status": "Visual release live; trial hydration follow-up locally verified, pending production verification",
     "scope": "Contact experience, three new editorial scenes and full-width learning banners; text-enlargement header correction",
     "source_parent": "87f51fd6366ddae55989a264803380762488f5b8",
     "deployment_target": "Existing appcom-online-quran-college project / onlinequrancollege.com",
@@ -303,6 +303,11 @@
       "browser_cases": 22,
       "browser_errors": 0,
       "enquiries_submitted": 0
-    }
+    },
+    "source_commit": "04e2e90a73b256f6e692bc132d8f5636b8b4a644",
+    "deployment_id": "dpl_3mhee3UgqZSWvtiFcVxXJ3cH9xh6",
+    "initial_live_browser_errors": 2,
+    "hydration_local_regression_cases": 6,
+    "hydration_local_errors": 0
   }
 }
