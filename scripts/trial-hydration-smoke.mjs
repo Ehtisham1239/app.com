@@ -14,7 +14,12 @@ try {
       for (const path of ['/free-trial', '/free-trial?country=United+States&city=Los+Angeles']) {
         const page = session.page;
         assert.equal((await page.goto(base + path, { waitUntil: 'domcontentloaded' })).status(), 200);
+        await page.waitForLoadState('load');
         await page.getByRole('form', { name: 'Book a free trial', exact: true }).waitFor();
+        // Exercise a real pointer interaction before programmatic selection; it
+        // activates a selectively hydrated form on a slow connection.
+        await page.locator('#q-country').click();
+        await page.keyboard.press('Escape');
         if (path.includes('country=')) assert.equal(await page.locator('#q-country').inputValue(), 'United States');
         await page.locator('#q-country').selectOption('United States');
         await page.locator('#q-zone').selectOption('America/Chicago');

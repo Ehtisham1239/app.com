@@ -1,0 +1,16 @@
+{
+  "base": "https://www.onlinequrancollege.com",
+  "errors": [],
+  "writes": 0,
+  "cases": [
+    {
+      "timezoneId": "UTC",
+      "path": "/free-trial",
+      "queryCountryPreserved": true,
+      "manualZonePreserved": true,
+      "teacherPreference": true,
+      "invalidSubmissionBlocked": true
+    }
+  ],
+  "scope": "SSR/hydration across visitor time zones; vendors inert; invalid submissions only"
+}

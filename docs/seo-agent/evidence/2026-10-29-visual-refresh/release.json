@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-29",
+  "timezone": "Asia/Karachi",
+  "status": "Ready \u2014 production and direct public UI verified",
+  "application_commit": "68d9b0111d3beafb61e5d18b6cf6d1e8cc074b06",
+  "visual_commit": "04e2e90a73b256f6e692bc132d8f5636b8b4a644",
+  "deployment_id": "dpl_BUcSc8RHF9yAePAUp3UCyzKo6TQe",
+  "dashboard": "https://vercel.com/ehtisham1239s-projects/appcom-online-quran-college/BUcSc8RHF9yAePAUp3UCyzKo6TQe",
+  "immutable_url": "https://appcom-online-quran-college-c2h28w8oi-ehtisham1239s-projects.vercel.app",
+  "target": "production",
+  "source_ref": "main",
+  "project": "appcom-online-quran-college",
+  "canonical_domain": "https://www.onlinequrancollege.com",
+  "apex_redirect": "308 to canonical www domain",
+  "build_duration": "2m 31s shown in dashboard",
+  "validation": {
+    "tests_passed": 99,
+    "lint_errors": 0,
+    "existing_lint_warnings": 13,
+    "rendered_html_files": 212,
+    "missing_assets": 0,
+    "local_visual_cases": 22,
+    "live_visual_assertion_cases": 22,
+    "local_route_timezone_reproduction_cases": 9,
+    "local_trial_timezone_interaction_cases": 6,
+    "local_post_fix_errors": 0,
+    "automated_live_trial_cases_completed": 1,
+    "automated_live_trial_errors": 0,
+    "direct_live_query_country_flow": true,
+    "real_enquiries_submitted": 0
+  },
+  "verification_limits": [
+    "Initial visual sweep observed two trial-form hydration errors; fixed and redeployed in application_commit, with original evidence retained.",
+    "One visual navigation load wait required a bounded retry of three routes, which passed.",
+    "The full six-case automated public trial sweep did not complete: after the UTC default case passed, an explicit-country navigation timed out. Direct browser verification loaded that same explicit-country/city route and verified manual zone, teacher choice and invalid-form behavior. Remaining automated live cases are not claimed passed.",
+    "Chromium viewport emulation, not physical Safari, WCAG certification, field CWV or ranking proof."
+  ],
+  "build_warnings_reviewed": [
+    "Existing broad Node engines auto-upgrade notice",
+    "Existing npm cache-dir warnings",
+    "Existing pinned ESLint deprecation",
+    "Existing dependency install-script review notices"
+  ],
+  "dependencies_changed": false,
+  "access_resolution": "Owner-authorized existing GitHub App gained app.com access while keeping existing project access; the existing Vercel project was connected. No replacement project, DNS or security-protection change."
+}

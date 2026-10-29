@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-29",
+  "application_commit": "68d9b0111d3beafb61e5d18b6cf6d1e8cc074b06",
+  "public_url": "https://www.onlinequrancollege.com/free-trial?country=United+States&city=Los+Angeles",
+  "observed": [
+    "United States retained from query",
+    "Los Angeles initially selected",
+    "Manual America/Chicago selected and retained after choosing Female teacher",
+    "Invalid submission displays required-field errors; no real enquiry submitted"
+  ],
+  "mode": "Authenticated-user cloud browser on public website; no account or pricing changes"
+}
