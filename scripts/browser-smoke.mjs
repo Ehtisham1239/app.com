@@ -21,10 +21,10 @@ await page.getByRole('button',{name:'Book my free trial',exact:true}).first().wa
 console.log('PASS campaign landing → trial form retains attribution');
 await page.goto(`${base}/pricing`,{waitUntil:'networkidle'});
 await page.getByLabel('Display currency',{exact:true}).first().selectOption('GBP');
-await page.getByText('Ask for the fee in GBP').first().waitFor();
+await page.getByText(/Ask for the fee in GBP|≈£/).first().waitFor();
 await page.getByLabel('Display currency',{exact:true}).first().selectOption('NOK');
-await page.getByText('Ask for the fee in NOK').first().waitFor();
-console.log('PASS unpriced GBP and NOK show quote requests');
+await page.getByText(/Ask for the fee in NOK|≈NOK/).first().waitFor();
+console.log('PASS unpriced GBP and NOK show a quote request or an approximate conversion');
 for(const [country,city,currency] of [['united-states','new-york','USD'],['united-kingdom','london','GBP'],['australia','sydney','AUD'],['canada','toronto','CAD'],['france','paris','EUR'],['germany','berlin','EUR']]){
  const response=await page.goto(`${base}/locations/${country}/${city}`,{waitUntil:'networkidle'});
  assert.equal(response.status(),200);

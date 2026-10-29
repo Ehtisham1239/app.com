@@ -4,6 +4,7 @@ import Link from "next/link";
 import { clsx } from "clsx";
 import { Check } from "@/components/site/icons";
 import { formatMoney } from "@/lib/format";
+import { displayPrice } from "@/lib/fx";
 
 const PERIOD = { monthly: "/ month", quarterly: "/ quarter", yearly: "/ year", one_time: "one-time" };
 
@@ -13,7 +14,7 @@ function mainPrice(prices, currency) {
   return list.find((p) => p.currency === "USD") ?? list[0] ?? null;
 }
 
-export function PricingCards({ plans, compact = false, currency }) {
+export function PricingCards({ plans, compact = false, currency, fx }) {
   const list = Array.isArray(plans) ? plans : [];
   if (!list.length) return null;
   const cols = list.length >= 4 ? "lg:grid-cols-4" : list.length === 3 ? "lg:grid-cols-3" : "lg:mx-auto lg:max-w-4xl lg:grid-cols-2";
@@ -21,7 +22,8 @@ export function PricingCards({ plans, compact = false, currency }) {
     // The compact homepage list swipes sideways on phones; the full /pricing page stays stacked.
     <div className={clsx("grid gap-5 pt-3 sm:grid-cols-2", cols, compact && "swipe-row")} {...(compact ? { role: "region", "aria-label": "Packages", tabIndex: 0 } : {})}>
       {list.map((p) => {
-        const price = mainPrice(p.prices, currency);
+        // An approved price in the chosen currency wins; otherwise show an approximate conversion.
+        const price = mainPrice(p.prices, currency) ?? (currency ? displayPrice(p.prices, currency, fx) : null);
         const others = currency ? [] : (p.prices ?? []).filter((x) => x !== price);
         const features = (Array.isArray(p.features) ? p.features : []).slice(0, compact ? 4 : 12);
         const featured = Boolean(p.is_featured);
@@ -40,8 +42,9 @@ export function PricingCards({ plans, compact = false, currency }) {
             <p className="mt-5 flex flex-wrap items-baseline gap-x-1.5">
               {price ? (
                 <>
-                  <span className="font-display text-[2.6rem] leading-none text-mushaf-900">{formatMoney(price.amount_minor, price.currency)}</span>
+                  <span className="font-display text-[2.6rem] leading-none text-mushaf-900">{price.approximate && <span className="mr-1 text-[1.6rem] text-ink-soft" title="Approximate">≈</span>}{formatMoney(price.amount_minor, price.currency)}</span>
                   <span className="text-[0.9rem] text-ink-faint">{PERIOD[p.billing_period] ?? ""}</span>
+                  {price.approximate && <span className="basis-full text-[0.8rem] text-ink-faint">Approx. from {formatMoney(price.from.amount_minor, price.from.currency)} at today’s rate</span>}
                 </>
               ) : (
                 <span className="font-display text-[1.6rem] text-mushaf-900">{currency ? `Ask for the fee in ${currency}` : "Ask for the fee"}</span>
