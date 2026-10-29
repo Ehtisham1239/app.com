@@ -6,6 +6,7 @@ import { PageHero, SectionHeading } from "@/components/site/chrome";
 import { CtaBand, FaqList } from "@/components/site/sections";
 import { getFaqs, getPlans, getSettings } from "@/lib/site-data";
 import { whatsappLink } from "@/lib/format";
+import { faqSchema, safeJsonLd } from "@/lib/seo";
 
 export const revalidate = 300;
 
@@ -16,7 +17,8 @@ export default async function PricingPage({ searchParams }) {
   const [plans, faqs, settings] = await Promise.all([getPlans(), getFaqs(), getSettings()]);
   const packages = plans.filter((p) => /^package/i.test(p.name));
   const other = plans.filter((p) => !/^package/i.test(p.name));
-  const feeFaqs = faqs.filter((f) => /fee|pay|cancel|discount/i.test(`${f.category} ${f.question}`));
+  // General fee, payment and missed-class questions; country-specific answers stay on their country pages.
+  const feeFaqs = faqs.filter((f) => !/^Market:/i.test(f.category || "") && /fee|pay|cancel|discount|reschedul|miss/i.test(`${f.category} ${f.question}`));
   const currencies = [...new Set(plans.flatMap((p) => p.prices.map((x) => x.currency)))];
   const wa = whatsappLink(settings["site.contact"]?.whatsapp, "Assalamu alaikum, I have a question about your fees.");
 
@@ -68,6 +70,7 @@ export default async function PricingPage({ searchParams }) {
       {feeFaqs.length > 0 && (
         <section className="page-wrap py-16 sm:py-20">
           <SectionHeading eyebrow="Questions" title="About fees and payments" />
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema(feeFaqs)) }} />
           <div className="mx-auto mt-10 max-w-3xl">
             <FaqList faqs={feeFaqs} defaultOpen={-1} />
           </div>
