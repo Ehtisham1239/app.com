@@ -68,7 +68,7 @@ test("import, validation, review, approval and publication follow the permission
   await as("authenticated", ids.academic);
   assessmentId = (await one(
     "insert into public.assessments (code,title,assessment_date,total_marks,status,grade_bands) values ('TERM1-2026','Term 1 Quran reading','2026-11-01',100,'active',$1) returning id",
-    [JSON.stringify([{ grade: "A", min_percent: 85 }, { grade: "B", min_percent: 70 }, { grade: "C", min_percent: 0 }])])).id;
+    [JSON.stringify([{ grade: "A", min_percent: 85, label: "Excellent" }, { grade: "B", min_percent: 70 }, { grade: "C", min_percent: 0 }])])).id;
   const batch = (await one("insert into public.result_import_batches (assessment_id, original_filename, file_sha256) values ($1,'term1.csv',$2) returning id",
     [assessmentId, sha("file-1")])).id;
   const rows = [
@@ -136,8 +136,10 @@ test("corrections keep the previous version and require a reason", async () => {
   await as("authenticated", ids.academic);
   const result = await one("select id, version from public.student_results where student_id=$1", [studentB.id]);
   await assert.rejects(db.query("select public.results_correct($1, 75, 'B', 'Updated', '')", [result.id]), /reason/);
-  await assert.rejects(db.query("select public.results_correct($1, 101, 'A', 'x', 'Mistyped marks')", [result.id]), /check constraint/);
-  await db.query("select public.results_correct($1, 75, 'B', 'Reviewed again', 'Mistyped marks')", [result.id]);
+  await assert.rejects(db.query("select public.results_correct($1, 101, 'A', 'x', 'Mistyped marks')", [result.id]), /between 0 and/);
+  await assert.rejects(db.query("select public.results_correct($1, 75, 'Z', 'x', 'Mistyped marks')", [result.id]), /approved scheme/);
+  await db.query("select public.results_correct($1, 75, '', 'Reviewed again', 'Mistyped marks')", [result.id]);
+  assert.equal((await one("select grade from public.student_results where id=$1", [result.id])).grade, "B", "blank grade uses the bands");
   const after = await one("select marks_obtained::text m, version from public.student_results where id=$1", [result.id]);
   assert.deepEqual([after.m, after.version], ["75.00", result.version + 1]);
   const history = await one("select version, snapshot->>'marks_obtained' m, reason from public.student_result_history where result_id=$1", [result.id]);
@@ -189,8 +191,10 @@ test("parents see only their own children's published results and issued certifi
   assert.deepEqual(data[0].certificates.map((c) => c.id), [issued]);
   assert.deepEqual(data[1].certificates, []);
   const keys = Object.keys(data[0].results[0]).sort();
-  assert.deepEqual(keys, ["assessment", "certificate_id", "course", "date", "grade", "id", "marks", "percentage", "period", "published_at", "remarks", "total"]);
-  assert.ok(!JSON.stringify(data).includes("CLIENT-") && !JSON.stringify(data).includes(studentA.student_code));
+  assert.deepEqual(keys, ["assessment", "certificate_id", "course", "date", "grade", "grade_label", "id", "marks", "percentage", "period", "published_at", "remarks", "total"]);
+  assert.equal(data[0].results[0].grade_label, "Excellent");
+  assert.equal(data[0].code, studentA.student_code, "the parent sees their own child's student code");
+  assert.ok(!JSON.stringify(data).includes("CLIENT-") && !JSON.stringify(data).includes(studentC.student_code));
 
   assert.equal((await one("select public.parent_certificate($1,$2) as c", [globalThis.tokenA, issued])).c.title, "Certificate of Completion");
   for (const id of [draft, revoked, otherFamily]) {
@@ -227,4 +231,19 @@ test("public certificate verification still returns only its fixed fields", asyn
   await as("anon");
   const result = (await one("select public.verify_certificate($1) as r", [cert.number])).r;
   assert.deepEqual(Object.keys(result).sort(), ["course", "issued_on", "number", "signed_by", "student", "title"]);
+});
+
+test("staff see code status without the hash, and can remove access", async () => {
+  await as("authenticated", ids.editor);
+  await assert.rejects(db.query("select * from public.guardian_access_status($1)", [[guardianA]]), /guardians:read/);
+  await as("authenticated", ids.admin);
+  const status = await one("select * from public.guardian_access_status($1)", [[guardianA]]);
+  assert.deepEqual(Object.keys(status).sort(), ["guardian_id", "issued_at", "last_sign_in", "locked"]);
+  await as("authenticated", ids.editor);
+  await assert.rejects(db.query("select public.guardian_revoke_code($1)", [guardianA]), /guardians:update/);
+  await as("authenticated", ids.admin);
+  await db.query("select public.guardian_revoke_code($1)", [guardianA]);
+  assert.equal((await db.query("select * from public.guardian_access_status($1)", [[guardianA]])).rows.length, 0);
+  await as("anon");
+  await assert.rejects(db.query("select * from public.guardian_access_status($1)", [[guardianA]]), /permission denied/);
 });

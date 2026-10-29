@@ -373,16 +373,29 @@ end $$;
 -- Controlled correction of a published result; the previous version is kept.
 create or replace function public.results_correct(p_result_id uuid, p_marks numeric, p_grade text, p_remarks text, p_reason text) returns void
 language plpgsql security definer set search_path = '' as $$
-declare v_result public.student_results;
+declare
+  v_result public.student_results;
+  v_bands jsonb;
+  v_grade text := upper(coalesce(trim(p_grade), ''));
 begin
   perform private.require_permission('results:update');
   if coalesce(char_length(trim(p_reason)), 0) < 3 then raise exception 'Give a reason for the correction.'; end if;
   select * into v_result from public.student_results where id = p_result_id for update;
   if not found then raise exception 'Result not found.'; end if;
+  if p_marks is null or p_marks < 0 or p_marks > v_result.total_marks then
+    raise exception 'Marks must be between 0 and %.', v_result.total_marks;
+  end if;
+  select grade_bands into v_bands from public.assessments where id = v_result.assessment_id;
+  if v_grade = '' then
+    v_grade := private.grade_for(v_bands, round(p_marks * 100 / v_result.total_marks, 2));
+  elsif jsonb_array_length(v_bands) > 0 and not exists (
+    select 1 from jsonb_array_elements(v_bands) b where upper(b ->> 'grade') = v_grade) then
+    raise exception 'Grade is not in the approved scheme for this assessment.';
+  end if;
   insert into public.student_result_history (result_id, version, snapshot, reason, changed_by)
   values (v_result.id, v_result.version, to_jsonb(v_result), trim(p_reason), auth.uid());
-  update public.student_results set marks_obtained = p_marks, grade = upper(coalesce(trim(p_grade), '')),
-    teacher_remarks = coalesce(trim(p_remarks), '')
+  update public.student_results set marks_obtained = p_marks, grade = v_grade,
+    teacher_remarks = left(coalesce(trim(p_remarks), ''), 1000)
   where id = p_result_id;
 end $$;
 
@@ -442,6 +455,29 @@ begin
   insert into public.audit_logs (actor_id, action, entity_type, entity_id, summary)
   values (auth.uid(), 'issue_code', 'guardians', p_guardian_id::text, 'Parent access code issued');
   return substr(v_code, 1, 4) || '-' || substr(v_code, 5, 4) || '-' || substr(v_code, 9, 4);
+end $$;
+
+-- Removes a guardian's access code and ends their sessions.
+create or replace function public.guardian_revoke_code(p_guardian_id uuid) returns void
+language plpgsql security definer set search_path = '' as $$
+begin
+  perform private.require_permission('guardians:update');
+  delete from private.guardian_codes where guardian_id = p_guardian_id;
+  update private.parent_sessions set revoked_at = now() where guardian_id = p_guardian_id and revoked_at is null;
+  insert into public.audit_logs (actor_id, action, entity_type, entity_id, summary)
+  values (auth.uid(), 'revoke_code', 'guardians', p_guardian_id::text, 'Parent access code removed');
+end $$;
+
+-- Code status for staff screens (never the hash).
+create or replace function public.guardian_access_status(p_guardian_ids uuid[])
+returns table (guardian_id uuid, issued_at timestamptz, locked boolean, last_sign_in timestamptz)
+language plpgsql stable security definer set search_path = '' as $$
+begin
+  perform private.require_permission('guardians:read');
+  return query
+    select c.guardian_id, c.issued_at, coalesce(c.locked_until > now(), false),
+           (select max(s.created_at) from private.parent_sessions s where s.guardian_id = c.guardian_id)
+    from private.guardian_codes c where c.guardian_id = any(p_guardian_ids);
 end $$;
 
 -- Returns {"ok": true, "token": …} or {"ok": false}. Unknown Client ID, wrong code and
@@ -509,11 +545,14 @@ begin
     select jsonb_agg(jsonb_build_object(
       'id', s.id,
       'name', s.full_name,
+      'code', s.student_code,
       'results', coalesce((
         select jsonb_agg(jsonb_build_object(
           'id', r.id, 'assessment', a.title, 'period', a.period_label, 'date', a.assessment_date,
           'course', co.title, 'marks', r.marks_obtained, 'total', r.total_marks, 'percentage', r.percentage,
           'grade', r.grade, 'remarks', r.teacher_remarks, 'published_at', r.published_at,
+          'grade_label', (select b ->> 'label' from jsonb_array_elements(a.grade_bands) b
+                          where upper(b ->> 'grade') = r.grade and r.grade <> '' limit 1),
           'certificate_id', case when ce.status = 'issued' then ce.id end) order by a.assessment_date desc)
         from public.student_results r
         join public.assessments a on a.id = r.assessment_id
@@ -562,6 +601,7 @@ revoke execute on function
   public.results_decide_batch(uuid, boolean, text), public.results_publish_batch(uuid), public.results_cancel_batch(uuid),
   public.results_correct(uuid, numeric, text, text, text), public.results_set_withdrawn(uuid, boolean, text),
   public.results_link_certificate(uuid, uuid), public.guardian_issue_code(uuid),
+  public.guardian_revoke_code(uuid), public.guardian_access_status(uuid[]),
   public.parent_sign_in(text, text), public.parent_results(text), public.parent_certificate(text, uuid), public.parent_sign_out(text)
 from public, anon, authenticated;
 
@@ -569,7 +609,8 @@ grant execute on function
   public.results_validate_batch(uuid), public.results_set_row_excluded(uuid, boolean), public.results_submit_batch(uuid),
   public.results_decide_batch(uuid, boolean, text), public.results_publish_batch(uuid), public.results_cancel_batch(uuid),
   public.results_correct(uuid, numeric, text, text, text), public.results_set_withdrawn(uuid, boolean, text),
-  public.results_link_certificate(uuid, uuid), public.guardian_issue_code(uuid)
+  public.results_link_certificate(uuid, uuid), public.guardian_issue_code(uuid),
+  public.guardian_revoke_code(uuid), public.guardian_access_status(uuid[])
 to authenticated;
 
 grant execute on function public.parent_sign_in(text, text), public.parent_results(text),

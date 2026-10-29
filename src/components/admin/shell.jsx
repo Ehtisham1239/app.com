@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { clsx } from "clsx";
 import {
-  Activity, Award, Bell, BookOpen, ChevronDown, CircleDollarSign, ExternalLink, FileText, HelpCircle, Images, Inbox,
+  Activity, Award, Bell, GraduationCap, BookOpen, ChevronDown, CircleDollarSign, ExternalLink, FileText, HelpCircle, Images, Inbox,
   LayoutDashboard, LineChart, Link2, LogOut, Menu, MessageSquareQuote, Newspaper, Search, Settings, Shield, UserRound,
   UserRoundCheck, Users, X,
 } from "lucide-react";
@@ -45,6 +45,7 @@ export const NAV = [
   {
     group: "Records",
     items: [
+      { href: "/admin/results", label: "Results", icon: GraduationCap, perm: "results:read" },
       { href: "/admin/certificates", label: "Certificates", icon: Award, perm: "certificates:read" },
       { href: "/admin/reports", label: "Reports", icon: LineChart, perm: "reports:read" },
       { href: "/admin/campaigns", label: "Campaigns & leads", icon: LineChart, perm: "reports:read" },
