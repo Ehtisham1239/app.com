@@ -7,6 +7,7 @@ import { CtaBand, FaqList } from "@/components/site/sections";
 import { getFaqs, getPlans, getSettings } from "@/lib/site-data";
 import { whatsappLink } from "@/lib/format";
 import { faqSchema, safeJsonLd } from "@/lib/seo";
+import { getUsdRates } from "@/lib/fx";
 
 export const revalidate = 300;
 
@@ -14,7 +15,7 @@ export const metadata = contentMetadata({ title: "Online Quran Class Fees & Pack
 
 export default async function PricingPage({ searchParams }) {
   const requestedCurrency = (await searchParams)?.currency;
-  const [plans, faqs, settings] = await Promise.all([getPlans(), getFaqs(), getSettings()]);
+  const [plans, faqs, settings, fx] = await Promise.all([getPlans(), getFaqs(), getSettings(), getUsdRates()]);
   const packages = plans.filter((p) => /^package/i.test(p.name));
   const other = plans.filter((p) => !/^package/i.test(p.name));
   // General fee, payment and missed-class questions; country-specific answers stay on their country pages.
@@ -31,7 +32,7 @@ export default async function PricingPage({ searchParams }) {
       />
       <section className="page-wrap py-16 sm:py-20" aria-labelledby="monthly-packages">
         <h2 id="monthly-packages" className="sr-only">Monthly class packages</h2>
-        {packages.length > 0 && <CurrencyPricing plans={packages} defaultCurrency={requestedCurrency} />}
+        {packages.length > 0 && <CurrencyPricing plans={packages} defaultCurrency={requestedCurrency} explicit={Boolean(requestedCurrency)} fx={fx} />}
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {[
             { icon: BadgePercent, title: "15% sibling discount", text: "Each additional child from the same family receives 15% off their monthly fee." },
@@ -61,7 +62,7 @@ export default async function PricingPage({ searchParams }) {
           <div className="page-wrap">
             <SectionHeading eyebrow="More options" title="Weekend and flexible plans" intro="For busy weekdays or adults who prefer a lighter pace." />
             <div className="mt-12">
-              <CurrencyPricing plans={other} defaultCurrency={requestedCurrency} />
+              <CurrencyPricing plans={other} defaultCurrency={requestedCurrency} explicit={Boolean(requestedCurrency)} fx={fx} />
             </div>
           </div>
         </section>

@@ -21,7 +21,7 @@ export function FeeCompare({ plans }) {
       <div className="surface overflow-hidden">
         <div className="border-b border-line bg-leaf-50/70 px-5 py-4">
           <h3 className="font-sans text-lg font-bold text-mushaf-900">Compare every plan</h3>
-          <p className="mt-1 text-sm text-ink-soft">All lessons are live and one-to-one. Fees shown in USD; ask for a GBP, CAD or AUD quote.</p>
+          <p className="mt-1 text-sm text-ink-soft">All lessons are live and one-to-one. Fees shown in US dollars; choose a currency in the packages above to see approximate local prices.</p>
         </div>
         <div className="overflow-x-auto" role="region" aria-label="Plan comparison" tabIndex={0}>
           <table className="w-full min-w-[34rem] text-left text-sm">
