@@ -12,7 +12,7 @@ for(const url of urls){const path=new URL(url).pathname;const r=await fetch(base
  for(const match of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)){const schema=JSON.parse(match[1]);if(schema['@type']==='FAQPage'){report.faqSchemas++;for(const q of schema.mainEntity){assert.ok(summaries.includes(q.name),`${path}: visible FAQ question: ${q.name}`);assert.ok(q.acceptedAnswer.text);}}}
  for(const match of html.matchAll(/<a\b[^>]*href="(\/[^"#]*)"/g))links.add(match[1].replaceAll('&amp;','&'));
  if(path==='/locations/united-states'){assert.ok(html.includes('Eastern, Central, Mountain and Pacific'));assert.ok(html.includes('lang="en-US"'));}
- if(path==='/locations/australia'){assert.ok(html.includes('AUD quotes should be confirmed'));assert.ok(html.includes('lang="en-AU"'));}
+ if(path==='/locations/australia'){assert.ok(html.includes('AUD prices: a guide first'));assert.ok(html.includes('lang="en-AU"'));}
  report.publicUrls++;
 }
 report.uniqueTitles=titles.size;

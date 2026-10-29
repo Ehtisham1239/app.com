@@ -1,0 +1,37 @@
+{
+  "note": "Live CMS edits of 29 Oct 2026 aligning country guides with the owner's local-currency decision. To roll back, swap old and new, guarded by version+1.",
+  "edits": [
+    {
+      "table": "pages",
+      "column": "body_html",
+      "slug": "locations-australia",
+      "version": 5,
+      "old": "<h2>AUD quotes should be confirmed, not converted automatically</h2>",
+      "new": "<h2>AUD prices: a guide first, then a confirmed quote</h2>"
+    },
+    {
+      "table": "pages",
+      "column": "body_html",
+      "slug": "locations-australia",
+      "version": 5,
+      "old": "If no AUD amount is approved, request a written quote before enrolling. We do not turn a USD price into an AUD fee using an assumed exchange rate.",
+      "new": "If no AUD amount is approved, the site shows an approximate AUD figure converted from the US dollar price at today’s exchange rate. Treat it as a guide and request a written quote before enrolling; the converted figure is not itself the college’s fee."
+    },
+    {
+      "table": "pages",
+      "column": "body_html",
+      "slug": "locations-canada",
+      "version": 5,
+      "old": "<h2>CAD quotes are confirmed, not converted</h2>",
+      "new": "<h2>CAD prices: a guide first, then a confirmed quote</h2>"
+    },
+    {
+      "table": "pages",
+      "column": "body_html",
+      "slug": "locations-canada",
+      "version": 5,
+      "old": "If no CAD amount is shown, request a written quote before enrolling. We do not turn a USD price into a CAD fee with an assumed exchange rate.",
+      "new": "If no approved CAD amount exists, the site shows an approximate CAD figure converted from the US dollar price at today’s exchange rate. Treat it as a guide and request a written quote before enrolling; the converted figure is not itself the college’s fee."
+    }
+  ]
+}
