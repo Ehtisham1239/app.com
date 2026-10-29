@@ -17,7 +17,7 @@ await page.getByRole('link',{name:'Book a free trial in London',exact:true}).cli
 await page.waitForURL('**/free-trial?**');
 const attribution=await page.evaluate(()=>JSON.parse(sessionStorage.getItem('oqc-campaign')));
 assert.equal(attribution.data.utm_campaign,'london-quran');
-await page.getByRole('button',{name:/Continue/}).first().waitFor();
+await page.getByRole('button',{name:'Book my free trial',exact:true}).first().waitFor();
 console.log('PASS campaign landing → trial form retains attribution');
 await page.goto(`${base}/pricing`,{waitUntil:'networkidle'});
 await page.getByLabel('Display currency',{exact:true}).first().selectOption('GBP');

@@ -44,3 +44,12 @@ test("location breadcrumbs match the visible hierarchy and use absolute URLs", a
   assert.equal(searchTitle({ slug: "locations-united-kingdom-london" }), locationSearchTitle(country,city));
   assert.equal(searchTitle({ slug: "locations-united-kingdom-london", seo_title: "Owner's approved title" }), "Owner's approved title");
 });
+test("seeded location headings gain the article; staff-edited headings are kept", async () => {
+  const { getLocation, locationHeading } = await import("../src/lib/locations.js");
+  const uk = getLocation("united-kingdom"), canada = getLocation("canada"), london = uk.cities.find((c) => c.slug === "london");
+  assert.equal(locationHeading(uk, null, "Online Quran classes in United Kingdom"), "Online Quran classes in the United Kingdom");
+  assert.equal(locationHeading(getLocation("netherlands"), null, undefined), "Online Quran classes in the Netherlands");
+  assert.equal(locationHeading(canada, null, "Online Quran classes in Canada"), "Online Quran classes in Canada");
+  assert.equal(locationHeading(uk, london, "Online Quran classes in London, United Kingdom"), "Online Quran classes in London, United Kingdom");
+  assert.equal(locationHeading(uk, null, "Quran lessons for UK families"), "Quran lessons for UK families");
+});

@@ -10,7 +10,7 @@ import { SITE_URL } from "@/lib/config";
 import { PageHero } from "@/components/site/chrome";
 import { FaqList } from "@/components/site/sections";
 import { getCourses, getPage, getPlans } from "@/lib/site-data";
-import { locationPath, locationCmsSlug, locationBreadcrumbs, locationLocale, locationSearchIntro, isCityState, countryInName } from "@/lib/locations";
+import { locationPath, locationCmsSlug, locationBreadcrumbs, locationLocale, locationSearchIntro, isCityState, locationHeading } from "@/lib/locations";
 import { locationImage } from "@/lib/location-image";
 import { cleanHtml } from "@/lib/sanitize";
 import { formatMoney } from "@/lib/format";
@@ -18,7 +18,6 @@ import { formatMoney } from "@/lib/format";
 export async function LocationPage({ country, city }) {
   const guide = !city ? MARKET_GUIDES[country.slug] : null;
   const image = locationImage(country, city);
-  const place = city ? `${city.name}, ${country.name}` : countryInName(country);
   const [courses, plans, cms] = await Promise.all([getCourses(), getPlans(), getPage(locationCmsSlug(country, city))]);
   const query = new URLSearchParams({ country: country.name, currency: country.currency, ...(city ? { city: city.name } : {}) });
   const breadcrumbs = locationBreadcrumbs(country, city);
@@ -31,7 +30,7 @@ export async function LocationPage({ country, city }) {
     { question: `What are the fees in ${country.currency}?`, answer: lowest !== null ? `Published monthly options start at ${formatMoney(lowest, country.currency)}. The price depends on the package; confirm the lesson length, weekly schedule and payment terms before enrolling.` : `Ask the coordinator for an approved quote in ${country.currency}. We do not convert a price from another currency or treat a currency label as an approved local fee.` },
     { question: `Are these classes at a teaching centre in ${city?.name || country.name}?`, answer: `Classes are live and online. Learners join from home in ${city?.name || country.name}; this page does not represent a local physical branch.` },
   ];
-  const title = cms?.title || `Online Quran classes in ${place}`;
+  const title = locationHeading(country, city, cms?.title);
   return <div lang={locationLocale(country).replace("_", "-")}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema(faqs)) }} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema(breadcrumbs, SITE_URL)) }} />
