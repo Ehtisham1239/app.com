@@ -261,5 +261,11 @@
       "title": "FINAL OPERATING DIRECTIVE",
       "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
     }
-  ]
+  ],
+  "last_daily_review": {
+    "date": "2026-10-29",
+    "record": "docs/seo-agent/DAILY-2026-10-29.json",
+    "report": "docs/SEO-DAILY-2026-10-29.md",
+    "new_priority": "Four verified legacy 404s need equivalent mappings; preserve city noindex policy"
+  }
 }

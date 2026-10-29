@@ -1,0 +1,63 @@
+{
+  "checked_at": "2026-10-29T03:09:13.605Z",
+  "responses": [
+    {
+      "path": "/hifz-ul-quran-course",
+      "status": 404,
+      "location": null,
+      "robots": [
+        "noindex",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ]
+    },
+    {
+      "path": "/basic-islamic-education",
+      "status": 404,
+      "location": null,
+      "robots": [
+        "noindex",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ]
+    },
+    {
+      "path": "/how-to-learn-quran-by-heart-2",
+      "status": 404,
+      "location": null,
+      "robots": [
+        "noindex",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ]
+    },
+    {
+      "path": "/start-teaching-the-quran-to-your-children",
+      "status": 404,
+      "location": null,
+      "robots": [
+        "noindex",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ]
+    },
+    {
+      "path": "/courses/hifz-quran",
+      "status": 200,
+      "location": null,
+      "robots": [
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ]
+    },
+    {
+      "path": "/locations/united-kingdom/london",
+      "status": 200,
+      "location": null,
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,401 @@
+{
+  "checked_at": "2026-10-29T03:07:28.353512+00:00",
+  "article_count": 20,
+  "articles": [
+    {
+      "slug": "help-your-kids-learn-quran-online",
+      "status": 200,
+      "issues": [],
+      "body_matches_snapshot": true,
+      "body_sha256": "a97ac7f940755053e6b9ef1c5b6857f0861d030081acc8b21a5919288e940fa8",
+      "words_including_title_excerpt": 599
+    },
+    {
+      "slug": "importance-of-reciting-quran-with-tajweed",
+      "status": 200,
+      "issues": [],
+      "body_matches_snapshot": true,
+      "body_sha256": "d2ff169a9f2a8d7b6c98a270df56967bf7f30ba521fa4ba8c9e523438887ca75",
+      "words_including_title_excerpt": 501
+    },
+    {
+      "slug": "memorization-techniques-for-beginners",
+      "status": 200,
+      "issues": [],
+      "body_matches_snapshot": true,
+      "body_sha256": "2f1eda59c1c7f521fdcba4671a95d8a5d3c6d03f928692b58827052405ca2ec5",
+      "words_including_title_excerpt": 539
+    },
+    {
+      "slug": "quran-translation-and-arabic-difference",
+      "status": 200,
+      "issues": [],
+      "body_matches_snapshot": true,
+      "body_sha256": "d9792bfcdf597141b61c2724e3c962241d0c838df729ab3353a67d81d16d29e2",
+      "words_including_title_excerpt": 589
+    },
+    {
+      "slug": "online-quran-lesson-setup-accessibility",
+      "status": 200,
+      "issues": [],
+      "body_matches_snapshot": true,
+      "body_sha256": "be2dbc18b91608f30db1d45038a59f206afd560754f6cbdf15c5aba30f0c72b9",
+      "words_including_title_excerpt": 610
+    },
+    {
+      "slug": "parent-teacher-quran-progress-review",
+      "status": 200,
+      "issues": [],
+      "body_matches_snapshot": true,
+      "body_sha256": "5365ccab91679e5517bdcbcdba1890d9ad7e305d6b32efb28448936ed3aefb22",
+      "words_including_title_excerpt": 578
+    },
+    {
+      "slug": "family-quran-learning-multiple-children",
+      "status": 200,
+      "issues": [],
+      "body_matches_snapshot": true,
+      "body_sha256": "93330d6ec4611342d8b175485f5c61a3e8be7189a0488800dddfc7ab9a68b2fa",
+      "words_including_title_excerpt": 569
+    },
+    {
+      "slug": "choose-online-quran-teacher-usa",
+      "status": 200,
+      "issues": [],
+      "body_matches_snapshot": true,
+      "body_sha256": "2344b1017ea1c978bb406442101e6558c0d95f1287bc249e372aa97a455543ef",
+      "words_including_title_excerpt": 639
+    },
+    {
+      "slug": "quran-lessons-australia-time-zones",
+      "status": 200,
+      "issues": [],
+      "body_matches_snapshot": true,
+      "body_sha256": "a6e1c29be216f478439f01c4c4198a95ead33c373abc2a20ea61861d9dee581b",
+      "words_including_title_excerpt": 625
+    },
+    {
+      "slug": "noorani-qaida-or-quran-reading",
+      "status": 200,
+      "issues": [],
+      "body_matches_snapshot": true,
+      "body_sha256": "12b9c229f3dd71720d26107b6ec1857524df6edf01b852cfdfd744584d493d7d",
+      "words_including_title_excerpt": 582
+    },
+    {
+      "slug": "adult-quran-beginner-first-month",
+      "status": 200,
+      "issues": [],
+      "body_matches_snapshot": true,
+      "body_sha256": "8181c8b74a9cd6092c3ae204bd67999986d2b1cf5ee1b6c6940aba469b06c7b0",
+      "words_including_title_excerpt": 597
+    },
+    {
+      "slug": "prepare-child-first-online-quran-trial",
+      "status": 200,
+      "issues": [],
+      "body_matches_snapshot": true,
+      "body_sha256": "1837a83b67789870ce9cca6f3bed8053cfe2cb2f725d383e0d20a557596f3f9d",
+      "words_including_title_excerpt": 590
+    },
+    {
+      "slug": "tajweed-practice-with-feedback",
+      "status": 200,
+      "issues": [],
+      "body_matches_snapshot": true,
+      "body_sha256": "fa2864bd227b0ca982f6a23822f40a4f1fa69c511751d366cd4c7e3b8875d869",
+      "words_including_title_excerpt": 601
+    },
+    {
+      "slug": "hifz-revision-with-school",
+      "status": 200,
+      "issues": [],
+      "body_matches_snapshot": true,
+      "body_sha256": "d1ecc338bec0370dbfd4eb4173fbaa469d36614301ddd97ddb57bbcfff2bea7e",
+      "words_including_title_excerpt": 571
+    },
+    {
+      "slug": "questions-before-quran-course-enrolment",
+      "status": 200,
+      "issues": [],
+      "body_matches_snapshot": true,
+      "body_sha256": "e40c05898deba408da528f08d9a90a3a3d105a11a7ba82e6a329edf61a40b854",
+      "words_including_title_excerpt": 581
+    },
+    {
+      "slug": "choose-online-quran-classes-kids",
+      "status": 200,
+      "issues": [],
+      "body_matches_snapshot": true,
+      "body_sha256": "d668ef737f79c17ae3b1b764bc6bb6c8e27ce07a13c82cb60c909c7867c28abe",
+      "words_including_title_excerpt": 950
+    },
+    {
+      "slug": "noorani-qaida-home-practice-checklist",
+      "status": 200,
+      "issues": [],
+      "body_matches_snapshot": true,
+      "body_sha256": "2169827db5f5e7218fca7b66a709c8655d0660c9fb1db847a94899e7c53c5139",
+      "words_including_title_excerpt": 931
+    },
+    {
+      "slug": "returning-to-quran-study-adults",
+      "status": 200,
+      "issues": [],
+      "body_matches_snapshot": true,
+      "body_sha256": "ce809dc8898446fa4479c113b61fb6d3aa1ff95a2fd55903c2b3ddf9ed425446",
+      "words_including_title_excerpt": 912
+    },
+    {
+      "slug": "family-quran-learning-weekly-routine",
+      "status": 200,
+      "issues": [],
+      "body_matches_snapshot": true,
+      "body_sha256": "7c186a57f3600030b395ba48beb168d601dfbc10be4044fe26ffaae1181daeb8",
+      "words_including_title_excerpt": 947
+    },
+    {
+      "slug": "online-quran-class-fees-uk-comparison",
+      "status": 200,
+      "issues": [],
+      "body_matches_snapshot": true,
+      "body_sha256": "8e588bc6b6d0fa53b6f9245844dfe07b668d0f7f832c4e39d962553e67b35c02",
+      "words_including_title_excerpt": 891
+    }
+  ],
+  "contextual_links": [
+    {
+      "url": "https://www.onlinequrancollege.com/blog/choose-online-quran-classes-kids",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/blog/family-quran-learning-multiple-children",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/blog/help-your-kids-learn-quran-online",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/blog/hifz-revision-with-school",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/blog/memorization-techniques-for-beginners",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/blog/noorani-qaida-or-quran-reading",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/blog/online-quran-lesson-setup-accessibility",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/blog/parent-teacher-quran-progress-review",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/blog/prepare-child-first-online-quran-trial",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/blog/questions-before-quran-course-enrolment",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/blog/tajweed-practice-with-feedback",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/contact",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/courses/arabic-language",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/courses/hifz-quran",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/courses/noorani-qaida",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/courses/quran-nazara",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/courses/quran-translation",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/courses/tajweed",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/faq",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/free-trial",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/free-trial?country=United%20States",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/free-trial?country=United+Kingdom&currency=GBP",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/learn",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/learn#course-comparison",
+      "status": 200,
+      "fragment_valid": true,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/learn/quran-for-adults",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/learn/quran-for-kids",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/australia",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/australia/perth",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/australia/sydney",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/united-kingdom",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/united-states",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/united-states/new-york",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/pricing",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/pricing?currency=GBP",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/refund-policy",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/teachers",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/terms-and-conditions",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    }
+  ],
+  "limits": [
+    "Raw HTML and source agreement only; browser layout and accessibility are separate.",
+    "Not proof of Google indexing, rankings, rich-result eligibility or field Core Web Vitals.",
+    "Contextual same-origin links checked; external citations and vendor endpoints are separate."
+  ]
+}

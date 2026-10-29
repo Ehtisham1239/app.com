@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-29",
+  "cms_project": "lgbwidraztavhhbnbfhr",
+  "published_count": 20,
+  "new_slugs": [],
+  "removed_slugs": [],
+  "changed_body_or_version": [],
+  "metadata_differences": [],
+  "method": "Read-only SQL against published nondeleted blog_posts; no customer data or writes",
+  "latest_cms_update": "2026-10-28 12:48:35.893617+00"
+}

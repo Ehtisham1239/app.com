@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-29",
+  "baseline_commit": "de70b8a1dd01a7b9a239849c67f1a1f8e6b66d1e",
+  "site": "https://www.onlinequrancollege.com",
+  "work_completed": [
+    "Read latest repository registers and later owner audit sections covering migration/conversion priorities",
+    "Compared published CMS hashes, versions and SEO metadata with the baseline: 20 unchanged articles",
+    "Verified 20 live article HTML and 38 contextual same-origin destinations; maximum inclusive article words 950",
+    "Verified robots/sitemap HTTP 200 and current 49-URL sitemap",
+    "Reconfirmed four legacy 404s; prepared exact-path migration decision/implementation pack",
+    "Prepared qualified Academics decision worksheet for two explicit cited passages and adjacent explanations"
+  ],
+  "production_changes": false,
+  "messages_or_submissions": false,
+  "new_backlinks": 0,
+  "new_findings": [
+    {
+      "id": "MIG-01",
+      "priority": "P1",
+      "url": "/hifz-ul-quran-course",
+      "status": "404 confirmed; candidate replacement awaiting equivalence/URL approval"
+    },
+    {
+      "id": "MIG-02",
+      "priority": "P1",
+      "url": "/basic-islamic-education",
+      "status": "404 confirmed; original content and mapping needed"
+    },
+    {
+      "id": "MIG-03",
+      "priority": "P1",
+      "url": "/how-to-learn-quran-by-heart-2",
+      "status": "404 confirmed; original content and mapping needed"
+    },
+    {
+      "id": "MIG-04",
+      "priority": "P1",
+      "url": "/start-teaching-the-quran-to-your-children",
+      "status": "404 confirmed; original content and mapping needed"
+    }
+  ],
+  "limitations": [
+    "No fresh GA4/GSC traffic or admissions measurement; older report figures not reused as current",
+    "No fresh mobile, production Lighthouse or field CWV result claimed",
+    "RISE sender and explicit submission authorization still absent; no outreach",
+    "Correct hosting/log access, external register capability and qualified academic signoff remain unresolved"
+  ],
+  "crawl_scope_note": "Expanded crawl: 150 responses, 49/49 sitemap URLs attempted, cap 150, remaining discovered 58; finding counts {}. This is bounded raw-HTML coverage.",
+  "next_actions": [
+    "Verify/approve legacy replacement intent, then implement and live-check authorized mappings",
+    "Review planner date/time handoff, Weekend enquiry wording and teacher-preference promise from the later audit",
+    "Obtain genuine named Academics decisions; keep original wording intact until authorized"
+  ]
+}
