@@ -50,3 +50,12 @@ Social-playbook interviews, staff rotas, real testimonial/teacher approvals, GHL
 - Online Quran College SEO Audit Full Report.pdf (28 October 2026): all 15 pages extracted and read, including the complete issue matrix.
 - Online Quran College SEO Audit Client Summary..pdf (28 October 2026): all three pages read; used as a summary of the same findings.
 - OQC_Social_Media_Marketing_Playbook.html (9 October 2026): read as a strategy and proposed operational playbook, not a completed-results report. Historical vendor prices/claims were not copied into the live website.
+
+
+## End-to-end release attempt — 29 October 2026
+
+The remaining 58 discovered public URLs were checked with the existing crawler parser, respecting robots and access/rate stop conditions. All 58 returned 200; title, description, single H1, single canonical, JSON-LD parsing and image-alt checks returned no new findings. Together with the earlier 150-page check this completes the 208-URL discovered inventory for these bounded raw-HTML checks. All 49 sitemap URLs were in the earlier check. This is not full browser/device, Google indexation, external-service or field-CWV certification.
+
+The exact team and existing project were confirmed by listing: ehtisham1239s-projects / appcom-online-quran-college. A production deployment of the reviewed d6309d582759c19e058deb8a15c7cb1652b10c45 commit was actually requested. Vercel rejected creation with HTTP 403: no permission to create a Production Deployment for this project. No deployment ID or production release was created. This is a platform authorization failure, not a code build failure or an automatic-approval-review rejection. No installed Vercel CLI, configured Vercel token or outbound-identity manifest was present for the documented alternative. No access control was bypassed.
+
+The required next action is production-deployment permission for the connected account on this existing project, or an owner-authorized deployment of the exact reviewed main revision. Seven CMS content changes remain live; application/form/redirect source changes remain tested and committed but unverified on production. Other unresolved dependencies remain as listed above: original content for three legacy mappings; real staff/Academics and consented proof; and actual GHL/ERP/campaign/sender access and business decisions. No missing dependency is called solved.

@@ -1,0 +1,943 @@
+{
+  "checked_at": "2026-10-29T04:10:42.515878+00:00",
+  "attempted": 58,
+  "prior_same_day_attempts": 150,
+  "combined_same_day_attempts": 208,
+  "findings": [],
+  "pages": [
+    {
+      "url": "https://www.onlinequrancollege.com/locations/albania/durres",
+      "status": 200,
+      "titles": [
+        "Quran classes in Durres | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/albania/durres"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/albania/tirana",
+      "status": 200,
+      "titles": [
+        "Quran classes in Tirana | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/albania/tirana"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/andorra/andorra-la-vella",
+      "status": 200,
+      "titles": [
+        "Quran classes in Andorra la Vella | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/andorra/andorra-la-vella"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/andorra/escaldes-engordany",
+      "status": 200,
+      "titles": [
+        "Quran classes in Escaldes-Engordany | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/andorra/escaldes-engordany"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/belarus/brest",
+      "status": 200,
+      "titles": [
+        "Quran classes in Brest | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/belarus/brest"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/belarus/minsk",
+      "status": 200,
+      "titles": [
+        "Quran classes in Minsk | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/belarus/minsk"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/bosnia-and-herzegovina/mostar",
+      "status": 200,
+      "titles": [
+        "Quran classes in Mostar | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/bosnia-and-herzegovina/mostar"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/bosnia-and-herzegovina/sarajevo",
+      "status": 200,
+      "titles": [
+        "Quran classes in Sarajevo | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/bosnia-and-herzegovina/sarajevo"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/bulgaria/plovdiv",
+      "status": 200,
+      "titles": [
+        "Quran classes in Plovdiv | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/bulgaria/plovdiv"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/bulgaria/sofia",
+      "status": 200,
+      "titles": [
+        "Quran classes in Sofia | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/bulgaria/sofia"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/croatia/split",
+      "status": 200,
+      "titles": [
+        "Quran classes in Split | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/croatia/split"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/croatia/zagreb",
+      "status": 200,
+      "titles": [
+        "Quran classes in Zagreb | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/croatia/zagreb"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/cyprus/limassol",
+      "status": 200,
+      "titles": [
+        "Quran classes in Limassol | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/cyprus/limassol"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/cyprus/nicosia",
+      "status": 200,
+      "titles": [
+        "Quran classes in Nicosia | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/cyprus/nicosia"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/czechia/brno",
+      "status": 200,
+      "titles": [
+        "Quran classes in Brno | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/czechia/brno"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/czechia/prague",
+      "status": 200,
+      "titles": [
+        "Quran classes in Prague | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/czechia/prague"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/estonia/tallinn",
+      "status": 200,
+      "titles": [
+        "Quran classes in Tallinn | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/estonia/tallinn"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/estonia/tartu",
+      "status": 200,
+      "titles": [
+        "Quran classes in Tartu | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/estonia/tartu"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/greece/athens",
+      "status": 200,
+      "titles": [
+        "Quran classes in Athens | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/greece/athens"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/greece/thessaloniki",
+      "status": 200,
+      "titles": [
+        "Quran classes in Thessaloniki | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/greece/thessaloniki"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/hungary/budapest",
+      "status": 200,
+      "titles": [
+        "Quran classes in Budapest | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/hungary/budapest"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/hungary/debrecen",
+      "status": 200,
+      "titles": [
+        "Quran classes in Debrecen | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/hungary/debrecen"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/iceland/akureyri",
+      "status": 200,
+      "titles": [
+        "Quran classes in Akureyri | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/iceland/akureyri"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/iceland/reykjavik",
+      "status": 200,
+      "titles": [
+        "Quran classes in Reykjavik | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/iceland/reykjavik"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/kosovo/pristina",
+      "status": 200,
+      "titles": [
+        "Quran classes in Pristina | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/kosovo/pristina"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/kosovo/prizren",
+      "status": 200,
+      "titles": [
+        "Quran classes in Prizren | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/kosovo/prizren"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/latvia/liepaja",
+      "status": 200,
+      "titles": [
+        "Quran classes in Liepaja | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/latvia/liepaja"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/latvia/riga",
+      "status": 200,
+      "titles": [
+        "Quran classes in Riga | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/latvia/riga"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/liechtenstein/schaan",
+      "status": 200,
+      "titles": [
+        "Quran classes in Schaan | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/liechtenstein/schaan"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/liechtenstein/vaduz",
+      "status": 200,
+      "titles": [
+        "Quran classes in Vaduz | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/liechtenstein/vaduz"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/lithuania/kaunas",
+      "status": 200,
+      "titles": [
+        "Quran classes in Kaunas | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/lithuania/kaunas"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/lithuania/vilnius",
+      "status": 200,
+      "titles": [
+        "Quran classes in Vilnius | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/lithuania/vilnius"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/luxembourg/esch-sur-alzette",
+      "status": 200,
+      "titles": [
+        "Quran classes in Esch-sur-Alzette | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/luxembourg/esch-sur-alzette"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/luxembourg/luxembourg-city",
+      "status": 200,
+      "titles": [
+        "Quran classes in Luxembourg City | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/luxembourg/luxembourg-city"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/malta/sliema",
+      "status": 200,
+      "titles": [
+        "Quran classes in Sliema | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/malta/sliema"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/malta/valletta",
+      "status": 200,
+      "titles": [
+        "Quran classes in Valletta | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/malta/valletta"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/moldova/balti",
+      "status": 200,
+      "titles": [
+        "Quran classes in Balti | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/moldova/balti"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/moldova/chisinau",
+      "status": 200,
+      "titles": [
+        "Quran classes in Chisinau | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/moldova/chisinau"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/montenegro/budva",
+      "status": 200,
+      "titles": [
+        "Quran classes in Budva | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/montenegro/budva"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/montenegro/podgorica",
+      "status": 200,
+      "titles": [
+        "Quran classes in Podgorica | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/montenegro/podgorica"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/north-macedonia/skopje",
+      "status": 200,
+      "titles": [
+        "Quran classes in Skopje | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/north-macedonia/skopje"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/north-macedonia/tetovo",
+      "status": 200,
+      "titles": [
+        "Quran classes in Tetovo | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/north-macedonia/tetovo"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/poland/krakow",
+      "status": 200,
+      "titles": [
+        "Quran classes in Krakow | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/poland/krakow"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/poland/warsaw",
+      "status": 200,
+      "titles": [
+        "Quran classes in Warsaw | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/poland/warsaw"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/romania/bucharest",
+      "status": 200,
+      "titles": [
+        "Quran classes in Bucharest | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/romania/bucharest"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/romania/cluj-napoca",
+      "status": 200,
+      "titles": [
+        "Quran classes in Cluj-Napoca | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/romania/cluj-napoca"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/russia/moscow",
+      "status": 200,
+      "titles": [
+        "Quran classes in Moscow | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/russia/moscow"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/russia/saint-petersburg",
+      "status": 200,
+      "titles": [
+        "Quran classes in Saint Petersburg | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/russia/saint-petersburg"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/serbia/belgrade",
+      "status": 200,
+      "titles": [
+        "Quran classes in Belgrade | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/serbia/belgrade"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/serbia/novi-sad",
+      "status": 200,
+      "titles": [
+        "Quran classes in Novi Sad | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/serbia/novi-sad"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/slovakia/bratislava",
+      "status": 200,
+      "titles": [
+        "Quran classes in Bratislava | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/slovakia/bratislava"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/slovakia/kosice",
+      "status": 200,
+      "titles": [
+        "Quran classes in Kosice | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/slovakia/kosice"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/slovenia/ljubljana",
+      "status": 200,
+      "titles": [
+        "Quran classes in Ljubljana | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/slovenia/ljubljana"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/slovenia/maribor",
+      "status": 200,
+      "titles": [
+        "Quran classes in Maribor | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/slovenia/maribor"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/turkey/ankara",
+      "status": 200,
+      "titles": [
+        "Quran classes in Ankara | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/turkey/ankara"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/turkey/istanbul",
+      "status": 200,
+      "titles": [
+        "Quran classes in Istanbul | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/turkey/istanbul"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/ukraine/kyiv",
+      "status": 200,
+      "titles": [
+        "Quran classes in Kyiv | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/ukraine/kyiv"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/ukraine/lviv",
+      "status": 200,
+      "titles": [
+        "Quran classes in Lviv | OQC"
+      ],
+      "canonicals": [
+        "https://www.onlinequrancollege.com/locations/ukraine/lviv"
+      ],
+      "robots": [
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+        "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": [],
+      "missing_alt": 0
+    }
+  ],
+  "scope": "Remaining public discovery frontier after earlier 150-page run; raw HTML only; no browser, indexation or field-CWV claim",
+  "notes": [
+    "Earlier 150-page crawl covers all 49 sitemap URLs; this finishes its 58-URL discovery frontier",
+    "Content changed after the earlier crawl was separately rechecked on seven pages",
+    "City noindex is intentional; not proof of Google indexation or field performance"
+  ]
+}

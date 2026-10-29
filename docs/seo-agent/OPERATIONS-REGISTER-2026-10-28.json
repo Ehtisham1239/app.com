@@ -275,6 +275,8 @@
     "cms": "Hero title and six course descriptions verified live",
     "source": "Committed; 91 tests/build/18 browser cases pass; public form/redirect still old; deployment pending correct Vercel project access",
     "source_commit": "4e26fe87a3a34395f00adc9281f14e19f60ca536",
-    "verification": "docs/seo-agent/evidence/2026-10-29-report-fixes/live-release.json"
+    "verification": "docs/seo-agent/evidence/2026-10-29-report-fixes/live-release.json",
+    "deployment": "Requested exact d6309d5 production deployment; platform returned 403 create forbidden. No deployment exists.",
+    "remaining_frontier": "58/58 public URLs return 200; no new parser findings. Combined same-day inventory 208."
   }
 }

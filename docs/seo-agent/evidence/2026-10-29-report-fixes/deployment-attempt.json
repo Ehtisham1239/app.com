@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-29",
+  "repository": "Ehtisham1239/app.com",
+  "requested_commit": "d6309d582759c19e058deb8a15c7cb1652b10c45",
+  "team_slug": "ehtisham1239s-projects",
+  "project_name": "appcom-online-quran-college",
+  "project_listed": true,
+  "project_details": "404 not_found",
+  "deployment_list": "403 forbidden",
+  "production_deployment_request": "403 forbidden: no permission to create a Production Deployment for this project",
+  "production_created": false,
+  "deployment_id": null,
+  "cli_fallback": "No installed/authenticated Vercel CLI available",
+  "next_requirement": "An authorized account with production-deployment permission for this existing project, or an owner-performed deployment of the exact reviewed commit",
+  "limits": "No new project, DNS/security/settings changes or access-control bypass attempted"
+}
