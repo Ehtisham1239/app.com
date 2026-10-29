@@ -4,6 +4,7 @@ import { useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { clsx } from "clsx";
 import { announceLeadSaved } from "@/lib/conversion-events";
+import { isTrialEligible } from "@/lib/trial-eligibility";
 import { captureAttribution } from "@/lib/attribution";
 import { MARKET_TIME_ZONES } from "@/lib/market-timezones";
 import { LOCATIONS, locationTimeZone } from "@/lib/locations";
@@ -47,8 +48,10 @@ function FieldError({ id, children }) {
 }
 
 // One short step: only what the coordinator needs to call back and book a slot.
-export function QuickTrialForm({ courses = [], plans = [], currencies = [], consentText, successText, whatsappHref }) {
+export function QuickTrialForm({ courses = [], plans = [], currencies = [], consentText, successText, whatsappHref, initialPreferenceNotes = "" }) {
   const params = useSearchParams();
+  const selectedPlan = plans.find(p => p.id === params.get("plan"));
+  const eligible = isTrialEligible(selectedPlan);
   const topRef = useRef(null);
   const successHeading = useRef(null);
   const [errors, setErrors] = useState({});
@@ -68,6 +71,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       phone: "",
       email: "",
       course_id: course && courses.some((c) => c.id === course) ? course : "",
+      teacher_preference: "",
       notes: planName ? `Package of interest: ${planName}` : "",
       consent: false,
       website: "",
@@ -86,7 +90,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
     const digits = form.phone.replace(/[^0-9]/g, "");
     if (digits.length < 7 || digits.length > 15) e.phone = "Please enter your WhatsApp or phone number with the country code.";
     if (!EMAIL.test(form.email.trim())) e.email = "Please enter a valid email address.";
-    if (!form.consent) e.consent = "Please agree so we can contact you about the trial.";
+    if (!form.consent) e.consent = "Please agree so we can contact you about your enquiry.";
     setErrors(e);
     const first = ["learner_name", "age_band", "country", "phone", "email", "consent"].find((k) => e[k]);
     if (first) requestAnimationFrame(() => document.getElementById(first === "age_band" ? "q-age-0" : `q-${first}`)?.focus());
@@ -115,7 +119,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       timezone,
       age_band: form.age_band,
       course_id: form.course_id || null,
-      notes: [form.notes.trim(), preferenceNotes].filter(Boolean).join("\n"),
+      notes: [form.notes.trim(), preferenceNotes, ["Female teacher", "Male teacher", "No preference"].includes(form.teacher_preference) ? `Teacher preference: ${form.teacher_preference}. Availability to be confirmed.` : ""].filter(Boolean).join("\n"),
       consent: form.consent,
       marketing_opt_in: false,
       source: utm.utm_source || "website",
@@ -144,7 +148,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       <div ref={topRef} className="surface scroll-mt-28 p-7 text-center shadow-[var(--shadow-lift)] sm:p-9" role="status">
         <span className="mx-auto flex size-14 items-center justify-center rounded-full bg-leaf-50 text-leaf-700 ring-1 ring-leaf-100"><CheckCircle2 className="size-8" aria-hidden="true" /></span>
         <h2 ref={successHeading} tabIndex={-1} className="mt-4 text-[1.8rem] text-mushaf-900">Request received</h2>
-        <p className="mx-auto mt-2 max-w-md text-ink-soft">{successText || "A coordinator will contact you by WhatsApp or email, usually within 24 hours, to agree a time."}</p>
+        <p className="mx-auto mt-2 max-w-md text-ink-soft">{(eligible && successText) || "A coordinator will contact you by WhatsApp or email, usually within 24 hours, to discuss your request."}</p>
         {showRef && <p className="mt-4 inline-flex rounded-full bg-gold-50 px-4 py-1.5 font-mono text-sm font-semibold text-gold-700 ring-1 ring-gold-100">Reference: {state.reference}</p>}
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           {whatsappHref && <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="btn btn-primary"><MessageCircle className="size-5" aria-hidden="true" /> Message us on WhatsApp</a>}
@@ -156,12 +160,13 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
 
   const err = (k) => (errors[k] ? { "aria-invalid": true, "aria-describedby": `q-${k}-error` } : {});
   return (
-    <form ref={topRef} onSubmit={submit} noValidate aria-busy={state.sending} aria-label="Book a free trial" className="surface scroll-mt-28 space-y-5 p-6 shadow-[var(--shadow-lift)] sm:p-8">
+    <form ref={topRef} onSubmit={submit} noValidate aria-busy={state.sending} aria-label={eligible ? "Book a free trial" : "Package enquiry"} className="surface scroll-mt-28 space-y-5 p-6 shadow-[var(--shadow-lift)] sm:p-8">
       <div className="absolute -left-[9999px]" aria-hidden="true"><label>Website<input tabIndex={-1} autoComplete="off" value={form.website} onChange={(e) => set("website", e.target.value)} /></label></div>
       <div>
-        <h2 className="text-[1.55rem] text-mushaf-900">Book your free 3-day trial</h2>
-        <p className="mt-1 text-[0.92rem] text-ink-soft">Takes under a minute. No payment or card needed.</p>
+        <h2 className="text-[1.55rem] text-mushaf-900">{eligible ? "Book your free 3-day trial" : `Enquire about ${selectedPlan.name}`}</h2>
+        <p className="mt-1 text-[0.92rem] text-ink-soft">{eligible ? "Takes under a minute. No payment or card needed." : "The Weekend plan is excluded from the free trial. The coordinator will confirm the schedule and terms."}</p>
       </div>
+      {(selectedPlan || initialPreferenceNotes) && <div className="rounded-xl border border-leaf-100 bg-leaf-50 p-4 text-sm text-ink-soft" aria-label="Your enquiry preferences">{selectedPlan && <p>Selected package: <strong>{selectedPlan.name}</strong></p>}{initialPreferenceNotes && <p className="mt-1 whitespace-pre-line">{initialPreferenceNotes}</p>}</div>}
 
       <div>
         <label htmlFor="q-learner_name" className="field-label">Learner’s name</label>
@@ -207,6 +212,11 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
           </select>
         </div>
       )}
+      <div>
+        <label htmlFor="q-teacher_preference" className="field-label">Teacher preference <span className="font-normal text-ink-faint">(optional)</span></label>
+        <select id="q-teacher_preference" className="select" value={form.teacher_preference} onChange={e => set("teacher_preference", e.target.value)}><option value="">Choose a preference</option>{["Female teacher", "Male teacher", "No preference"].map(value => <option key={value}>{value}</option>)}</select>
+        <p className="mt-1 text-xs text-ink-faint">The coordinator confirms availability and teaching language.</p>
+      </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
@@ -225,7 +235,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       <div>
         <label className="flex items-start gap-3 text-[0.88rem] leading-relaxed text-ink-soft">
           <input id="q-consent" type="checkbox" className="check mt-0.5 shrink-0" checked={form.consent} onChange={(e) => set("consent", e.target.checked)} required {...err("consent")} />
-          <span>{consentText || "I agree that Online Quran College may contact me about this trial."} <Link href="/privacy-policy" className="font-medium text-leaf-700 underline underline-offset-2">Privacy notice</Link></span>
+          <span>{(eligible && consentText) || "I agree that Online Quran College may contact me about this enquiry."} <Link href="/privacy-policy" className="font-medium text-leaf-700 underline underline-offset-2">Privacy notice</Link></span>
         </label>
         <FieldError id="q-consent-error">{errors.consent}</FieldError>
       </div>
@@ -233,7 +243,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       {state.error && <p className="rounded-xl bg-rose-600/10 px-4 py-3 text-[0.92rem] font-medium text-rose-600" role="alert">{state.error}</p>}
       <button type="submit" className="btn btn-primary btn-lg w-full" disabled={state.sending}>
         {state.sending ? <Loader2 className="size-5 animate-spin" aria-hidden="true" /> : <CheckCircle2 className="size-5" aria-hidden="true" />}
-        {state.sending ? "Sending…" : "Book my free trial"}
+        {state.sending ? "Sending…" : eligible ? "Book my free trial" : "Send package enquiry"}
       </button>
     </form>
   );

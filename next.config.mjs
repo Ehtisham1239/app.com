@@ -55,6 +55,7 @@ const nextConfig = {
       { source: "/online-quran-classes-uk", destination: "/locations/united-kingdom", permanent: true },
       ...["london", "birmingham", "manchester", "leeds", "bradford", "leicester"].map((city) => ({ source: `/online-quran-classes-${city}`, destination: `/locations/united-kingdom/${city}`, permanent: true })),
       ...courses.map((slug) => ({ source: `/${slug}`, destination: `/courses/${slug}`, permanent: true })),
+      { source: "/hifz-ul-quran-course", destination: "/courses/hifz-quran", permanent: true },
       { source: "/terms-conditions", destination: "/terms-and-conditions", permanent: true },
       { source: "/login.html", destination: "/admin/login", permanent: false },
       { source: "/register", destination: "/free-trial", permanent: false },

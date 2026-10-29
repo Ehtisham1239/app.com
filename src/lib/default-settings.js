@@ -24,7 +24,7 @@ export const DEFAULT_SETTINGS = {
   },
   "site.hero": {
     eyebrow: "Live 1-on-1 online Quran classes",
-    title: "Empowering minds with online Quranic education",
+    title: "Live one-to-one online Quran classes for children and adults",
     subtitle:
       "Professional one-to-one classes for children and adults in Noorani Qaida, Tajweed, Hifz, Arabic and Islamic studies — taught live by male and female teachers at times that suit your family.",
     primary_label: "Book a 3-day free trial",

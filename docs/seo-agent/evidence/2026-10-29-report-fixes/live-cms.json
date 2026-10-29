@@ -1,0 +1,74 @@
+[
+  {
+    "path": "/",
+    "status": 200,
+    "h1": "Live one-to-one online Quran classes for children and adults",
+    "guideSection": false,
+    "links": [
+      "/blog/choose-online-quran-classes-kids",
+      "/blog/noorani-qaida-home-practice-checklist",
+      "/blog/returning-to-quran-study-adults"
+    ]
+  },
+  {
+    "path": "/courses/noorani-qaida",
+    "status": 200,
+    "h1": "Noorani Qaida",
+    "guideSection": true,
+    "links": [
+      "/blog/noorani-qaida-home-practice-checklist",
+      "/blog/noorani-qaida-or-quran-reading"
+    ]
+  },
+  {
+    "path": "/courses/quran-nazara",
+    "status": 200,
+    "h1": "Quran Reading with Tajweed (Nazara)",
+    "guideSection": true,
+    "links": [
+      "/blog/tajweed-practice-with-feedback",
+      "/blog/noorani-qaida-or-quran-reading"
+    ]
+  },
+  {
+    "path": "/courses/hifz-quran",
+    "status": 200,
+    "h1": "Hifz ul Quran",
+    "guideSection": true,
+    "links": [
+      "/blog/memorization-techniques-for-beginners",
+      "/blog/hifz-revision-with-school",
+      "/blog/parent-teacher-quran-progress-review"
+    ]
+  },
+  {
+    "path": "/courses/arabic-language",
+    "status": 200,
+    "h1": "Arabic Language",
+    "guideSection": true,
+    "links": [
+      "/blog/quran-translation-and-arabic-difference",
+      "/blog/questions-before-quran-course-enrolment"
+    ]
+  },
+  {
+    "path": "/courses/quran-translation",
+    "status": 200,
+    "h1": "Quran Translation &amp; Tafseer",
+    "guideSection": true,
+    "links": [
+      "/blog/quran-translation-and-arabic-difference",
+      "/blog/questions-before-quran-course-enrolment"
+    ]
+  },
+  {
+    "path": "/courses/hadith-translation",
+    "status": 200,
+    "h1": "Hadith &amp; Islamic Studies",
+    "guideSection": true,
+    "links": [
+      "/blog/questions-before-quran-course-enrolment",
+      "/blog/parent-teacher-quran-progress-review"
+    ]
+  }
+]

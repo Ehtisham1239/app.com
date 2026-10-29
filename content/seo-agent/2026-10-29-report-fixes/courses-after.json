@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "arabic-language",
+    "version": 7,
+    "body_md5": "810d863884f624787a55e9777220b76a"
+  },
+  {
+    "slug": "hadith-translation",
+    "version": 6,
+    "body_md5": "125e6f5aeb856fca30e7dee6d2f0193d"
+  },
+  {
+    "slug": "hifz-quran",
+    "version": 7,
+    "body_md5": "f398648bcb49deeab695ab45d28f9406"
+  },
+  {
+    "slug": "noorani-qaida",
+    "version": 8,
+    "body_md5": "bc6502c6f6063b635d4004e7a8322fea"
+  },
+  {
+    "slug": "quran-nazara",
+    "version": 8,
+    "body_md5": "16a25e0c1b5aa6ef2105e5e377c3b04e"
+  },
+  {
+    "slug": "quran-translation",
+    "version": 5,
+    "body_md5": "1878eafaef6c693deb7127af5f696a12"
+  }
+]

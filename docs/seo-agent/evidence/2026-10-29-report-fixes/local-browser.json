@@ -1,0 +1,114 @@
+{
+  "base": "http://127.0.0.1:3034",
+  "errors": [],
+  "writes": 0,
+  "cases": [
+    {
+      "width": 390,
+      "course": "noorani-qaida",
+      "contextualLinks": true,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "course": "quran-nazara",
+      "contextualLinks": true,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "course": "hifz-quran",
+      "contextualLinks": true,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "course": "arabic-language",
+      "contextualLinks": true,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "course": "quran-translation",
+      "contextualLinks": true,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "course": "hadith-translation",
+      "contextualLinks": true,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "plannerPreferenceVisible": true,
+      "teacherPreference": true,
+      "invalidSubmissionBlocked": true
+    },
+    {
+      "width": 390,
+      "weekendEnquiry": true,
+      "planContext": true,
+      "noTrialOffer": true
+    },
+    {
+      "width": 390,
+      "hifzPermanentRedirect": true,
+      "queryPreserved": true
+    },
+    {
+      "width": 1440,
+      "course": "noorani-qaida",
+      "contextualLinks": true,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "course": "quran-nazara",
+      "contextualLinks": true,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "course": "hifz-quran",
+      "contextualLinks": true,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "course": "arabic-language",
+      "contextualLinks": true,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "course": "quran-translation",
+      "contextualLinks": true,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "course": "hadith-translation",
+      "contextualLinks": true,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "plannerPreferenceVisible": true,
+      "teacherPreference": true,
+      "invalidSubmissionBlocked": true
+    },
+    {
+      "width": 1440,
+      "weekendEnquiry": true,
+      "planContext": true,
+      "noTrialOffer": true
+    },
+    {
+      "width": 1440,
+      "hifzPermanentRedirect": true,
+      "queryPreserved": true
+    }
+  ],
+  "scope": "Local production build; vendors inert; no final enquiry submitted or real analytics sent"
+}

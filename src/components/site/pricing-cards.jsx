@@ -1,4 +1,5 @@
 import { cardTone } from "@/lib/card-presentation";
+import { isTrialEligible } from "@/lib/trial-eligibility";
 import Link from "next/link";
 import { clsx } from "clsx";
 import { Check } from "@/components/site/icons";
@@ -67,7 +68,7 @@ export function PricingCards({ plans, compact = false, currency }) {
               <div className="flex-1" />
             )}
             <Link href={`/free-trial?${new URLSearchParams({ plan: p.id, ...(currency ? { currency } : {}) })}`} className={clsx("btn mt-6 w-full", featured ? "btn-gold" : "btn-primary")}>
-              Start with a free trial
+              {isTrialEligible(p) ? "Start with a free trial" : "Enquire about this plan"}
             </Link>
           </div>
         );

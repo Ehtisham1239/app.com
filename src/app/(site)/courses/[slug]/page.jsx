@@ -1,4 +1,5 @@
 import { SEARCH_INTENTS } from "@/lib/search-intent";
+import { COURSE_SUPPORT, supplementalCourseFaqs } from "@/lib/course-support";
 import { ContentImage } from "@/components/site/content-image";
 import { SITE_URL } from "@/lib/config";
 import { safeJsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
@@ -34,7 +35,8 @@ export default async function CoursePage({ params }) {
   const course = await getCourse(slug);
   if (!course) notFound();
   const [courses, faqs, plans, settings] = await Promise.all([getCourses(), getFaqs(), getPlans(), getSettings()]);
-  const courseFaqs = faqs.filter((f) => f.course_id === course.id);
+  const savedCourseFaqs = faqs.filter((f) => f.course_id === course.id);
+  const courseFaqs = savedCourseFaqs.length ? savedCourseFaqs : supplementalCourseFaqs(course.slug);
   const generalFaqs = faqs.filter((f) => !f.course_id && !f.category.startsWith("Market:")).slice(0, Math.max(0, 5 - courseFaqs.length));
   const others = courses.filter((c) => c.slug !== course.slug).slice(0, 3);
   const prices = plans.filter((p) => p.course_id === course.id && p.billing_period === "monthly").flatMap((p) => p.prices.filter((x) => x.currency === "USD").map((x) => x.amount_minor));
@@ -58,6 +60,8 @@ export default async function CoursePage({ params }) {
         <div className="min-w-0">
           {intent && <section className="mb-8 border-l-4 border-gold-400 pl-5"><h2 className="text-2xl">{intent.heading}</h2><p className="mt-3 text-ink-soft">{intent.intro}</p></section>}
           {course.description_html && <div className="prose-oqc" dangerouslySetInnerHTML={{ __html: cleanHtml(course.description_html) }} />}
+
+          {!course.description_html?.includes("oqc-course-support-20261029") && COURSE_SUPPORT[course.slug]?.length > 0 && <section className="prose-oqc mt-10" aria-labelledby="course-preparation"><h2 id="course-preparation">Prepare for this learning path</h2><ul>{COURSE_SUPPORT[course.slug].map(([path, label, detail]) => <li key={path}><Link href={path}>{label}</Link>. {detail}</li>)}</ul><p>Compare the <Link href="/learn#course-comparison">course starting points and learning goals</Link>, then discuss a suitable plan with the coordinator.</p></section>}
 
           <section className="surface mt-10 space-y-3 p-6"><h2 className="text-2xl">Plan lessons around your family</h2><p>Explore local scheduling and fee guidance before requesting a trial.</p><div className="flex flex-wrap gap-3"><Link href="/locations/united-states" className="btn btn-outline">USA families</Link><Link href="/locations/united-kingdom" className="btn btn-outline">UK families</Link><Link href="/locations/canada" className="btn btn-outline">Canadian families</Link><Link href="/locations/australia" className="btn btn-outline">Australian families</Link><Link href="/learn" className="btn btn-outline">Learning guides</Link></div></section>
           {course.outcomes?.length > 0 && (
