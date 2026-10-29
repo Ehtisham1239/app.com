@@ -27,3 +27,12 @@ test("visitor country maps to a display currency", () => {
   assert.equal(currencyForCountry("ZZ"), null);
   assert.equal(currencyForCountry(""), null);
 });
+
+test("currency options keep USD and approved currencies and drop codes without a live rate", async () => {
+  const { currencyOptions } = await import("../src/lib/fx.js");
+  const plans = [{ prices: [{ currency: "USD" }, { currency: "ISK" }] }];
+  const options = currencyOptions(plans, { rates: { USD: 1, GBP: 0.79, PKR: 278 } }, ["GBP"]);
+  assert.ok(options.includes("USD") && options.includes("ISK") && options.includes("GBP") && options.includes("PKR"));
+  assert.ok(!options.includes("NOK"));
+  assert.ok(currencyOptions(plans, null, ["NOK"]).includes("NOK"));
+});

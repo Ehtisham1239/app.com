@@ -53,7 +53,7 @@ export default async function PricingPage({ searchParams }) {
       <section className="border-t border-line bg-[#f5faf1] py-16 sm:py-20" aria-labelledby="compare-plans">
         <div className="page-wrap">
           <SectionHeading eyebrow="Compare" title={<span id="compare-plans">Compare plans and estimate your family’s fees</span>} intro="See every plan side by side, then work out a monthly total for more than one learner." />
-          <div className="mt-10"><FeeCompare plans={plans} /></div>
+          <div className="mt-10"><FeeCompare plans={plans} fx={fx} defaultCurrency={requestedCurrency} explicit={Boolean(requestedCurrency)} /></div>
         </div>
       </section>
 
