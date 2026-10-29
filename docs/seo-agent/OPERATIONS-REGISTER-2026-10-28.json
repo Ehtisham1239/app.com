@@ -273,6 +273,8 @@
     "report": "docs/REPORT-REMEDIATION-2026-10-29.md",
     "scope": "Owner-supplied SEO reports and social-playbook reconciliation",
     "cms": "Hero title and six course descriptions verified live",
-    "source": "Enquiry/eligibility/preferences and exact Hifz redirect pass local production QA; live release verification recorded separately"
+    "source": "Committed; 91 tests/build/18 browser cases pass; public form/redirect still old; deployment pending correct Vercel project access",
+    "source_commit": "4e26fe87a3a34395f00adc9281f14e19f60ca536",
+    "verification": "docs/seo-agent/evidence/2026-10-29-report-fixes/live-release.json"
   }
 }

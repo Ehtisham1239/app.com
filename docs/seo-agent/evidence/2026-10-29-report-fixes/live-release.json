@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-10-29T04:01:56.757Z",
+  "results": [
+    {
+      "path": "/hifz-ul-quran-course?utm_source=oqc-release-qa",
+      "status": 404,
+      "location": null,
+      "weekendHeading": false,
+      "teacherPreference": false,
+      "plannerSummary": false
+    },
+    {
+      "path": "/free-trial?plan=1ecab3de-253c-4f24-ad34-06c03ad78ba8",
+      "status": 200,
+      "location": null,
+      "weekendHeading": false,
+      "teacherPreference": false,
+      "plannerSummary": false,
+      "h1": "Book a free <span class=\"text-gold-300\">3-day</span> trial"
+    },
+    {
+      "path": "/free-trial?country=United+States&city=Los+Angeles&currency=USD&lesson_date=2026-11-02&lesson_time=18%3A00&lesson_timezone=America%2FLos_Angeles",
+      "status": 200,
+      "location": null,
+      "weekendHeading": false,
+      "teacherPreference": false,
+      "plannerSummary": false,
+      "h1": "Book a free <span class=\"text-gold-300\">3-day</span> trial"
+    }
+  ]
+}

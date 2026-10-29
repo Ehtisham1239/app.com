@@ -36,3 +36,17 @@ Owner request: read the supplied full SEO audit, client summary and social marke
 ## Recovery
 
 CMS pre/post values and course rollback fields are in content/seo-agent/2026-10-29-report-fixes/. Re-read current versions/hashes before rollback and preserve later staff edits. Restore only changed title/description fields. Source changes are isolated in the release diff; rollback does not require altering prices, tracking, domain/security configuration or unrelated content.
+
+## Actual release status
+
+Source changes saved on main: 4e26fe87a3a34395f00adc9281f14e19f60ca536. Remote ref verified. This is not a production deployment claim. Public post-commit probes still show the old free-trial headings, no teacher-preference field or preference summary, and HTTP 404 for the Hifz alias. The connected Vercel account returns 404/not_found for the documented project in its intended team; no authenticated CLI is available. Do not create a replacement project, change DNS, weaken protection or claim release success. Correct least-privilege access to the existing appcom-online-quran-college project is needed to release this tested source and verify it live.
+
+The homepage title and all six CMS course support sections were independently verified in live HTML after normal revalidation. Those seven content changes are live. The application enquiry and redirect changes remain committed and locally verified, awaiting deployment.
+
+Social-playbook interviews, staff rotas, real testimonial/teacher approvals, GHL/ERP lifecycle integration, paid campaign budgets and consented outreach require their actual owners, account access and business decisions. Current connector discovery supplies GA4 and Search Console only; it does not establish GHL, ERP, ad or messaging access. No ad, interview invitation, campaign, reminder or third-party message was launched.
+
+## Source documents
+
+- Online Quran College SEO Audit Full Report.pdf (28 October 2026): all 15 pages extracted and read, including the complete issue matrix.
+- Online Quran College SEO Audit Client Summary..pdf (28 October 2026): all three pages read; used as a summary of the same findings.
+- OQC_Social_Media_Marketing_Playbook.html (9 October 2026): read as a strategy and proposed operational playbook, not a completed-results report. Historical vendor prices/claims were not copied into the live website.
