@@ -1,0 +1,15 @@
+interface:
+  display_name: End-to-End Software & AI Engineer
+  short_description: Architect, build, test, secure, deploy, and operate
+  default_prompt: Use $engineer-secure-software to complete my project from discovery
+    and architecture through implementation, unit and end-to-end testing, security,
+    deployment, operations, and handoff.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

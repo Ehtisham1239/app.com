@@ -15,3 +15,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - **Free trial (26 Oct 2026):** 3 days, Weekend plan excluded.
 - **Brand colours (26 Oct 2026):** logo green (`#0C6C0C` / `#249C0C`), deep green `#0D4A1C`, soft gold accents.
 - **Local-currency prices (29 Oct 2026):** show prices converted live into the visitor's currency. The visitor's country (Vercel `x-vercel-ip-country`, via `/api/geo`, no cookie) preselects the currency on `/pricing`; daily USD rates come from ExchangeRate-API (`src/lib/fx.js`, attributed on the page). An approved price saved in the CMS always wins. A converted figure is shown with `≈` and "approx." and the page says the coordinator confirms the fee and payment currency. If rates are unavailable, fall back to "ask for a quote" rather than guessing.
+
+## Engineering workflow (owner instruction, 29 Oct 2026)
+
+For any software work in this repository — new features, fixes, reviews, security, testing, migrations or releases — follow the project skill `.claude/skills/engineer-secure-software/SKILL.md` and load only the references the task needs. In particular: inspect before changing, use the smallest workflow that fits, verify with real checks, label status precisely (observed / implemented / locally verified / deployed / production verified), and never claim "100% secure" or untested readiness.
