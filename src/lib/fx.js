@@ -56,3 +56,12 @@ export function displayPrice(prices, currency, fx) {
   const converted = source ? convertMinor(source.amount_minor, source.currency, currency, fx) : null;
   return converted === null ? null : { amount_minor: converted, currency, approximate: true, from: source };
 }
+
+// Currencies offered in a selector: USD, any currency with an approved price, and
+// visitor/location currencies that have a live rate (all of them when rates are unavailable).
+export function currencyOptions(plans, fx, extra = []) {
+  const approved = new Set((plans || []).flatMap((p) => (p.prices || []).map((x) => x.currency)));
+  return [...new Set(["USD", ...approved, ...extra, ...Object.values(COUNTRY_CURRENCY)])]
+    .filter((code) => code === "USD" || approved.has(code) || !fx || fx.rates?.[code])
+    .sort();
+}
