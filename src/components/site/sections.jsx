@@ -58,17 +58,21 @@ export function CourseCard({ course }) {
   );
 }
 
-export function CoursesGrid({ courses }) {
+// `swipe` turns the list into a horizontal, snap-scrolling row on phones only.
+export function CoursesGrid({ courses, swipe = false }) {
   const list = Array.isArray(courses) ? courses : [];
   if (!list.length) {
     return <p className="surface p-10 text-center text-ink-soft">Our course list is being updated. Message us on WhatsApp to hear about current classes.</p>;
   }
   return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {list.map((c) => (
-        <CourseCard key={c.id ?? c.slug} course={c} />
-      ))}
-    </div>
+    <>
+      <div className={`grid gap-6 sm:grid-cols-2 lg:grid-cols-3 ${swipe ? "swipe-row" : ""}`} {...(swipe ? { role: "region", "aria-label": "Courses", tabIndex: 0 } : {})}>
+        {list.map((c) => (
+          <CourseCard key={c.id ?? c.slug} course={c} />
+        ))}
+      </div>
+      {swipe && <p className="mt-3 text-center text-sm text-ink-soft sm:hidden" aria-hidden="true">Swipe to see all {list.length} courses →</p>}
+    </>
   );
 }
 

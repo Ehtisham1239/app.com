@@ -65,13 +65,15 @@ export default async function HomePage() {
           <div><SectionHeading align="left" eyebrow="About our college" title="Welcome to Online Quran College" intro="Learn the Quran from home through personal, live one-to-one Quran classes." /><p className="mt-5 text-ink-soft">From the first Arabic letters to confident recitation, choose a course around your learner’s level and goals.</p><Link href="/about" className="btn btn-primary mt-6">About our college <ArrowRight className="size-4" aria-hidden="true" /></Link></div>
         </div>
       </section>
-      <section className="page-wrap grid gap-4 py-8 sm:grid-cols-2 lg:grid-cols-4" aria-label="Explore learning paths">
+      <section className="page-wrap py-8" aria-label="Explore learning paths">
+        <div className="swipe-row grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {[
           { href: "/locations/united-kingdom", image: "oqc-learning-united-kingdom-v3", alt: "A teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a calm home study with Quran learning materials", title: "Quran classes in the UK", text: "UK local times, courses and GBP quotes." },
           { href: "/locations/united-states", image: "usa-online-quran-learning", alt: "Child and parent reviewing an Arabic workbook beside a laptop", title: "Quran classes in the USA", text: "US time zones, courses and USD packages." },
           { href: "/locations/australia", image: "australia-online-quran-learning", alt: "Young learner studying an Arabic workbook beside a laptop", title: "Quran classes in Australia", text: "Plan around your city and request approved AUD fees." },
           { href: "/learn", image: "home-learning-paths", alt: "Young learner with headphones using a workbook and laptop beside a closed book on a stand", title: "Find your learning path", text: "Guides for parents, adults and recitation learners." },
         ].map(item => <Link key={item.href} href={item.href} data-card-tone={cardTone(item.href)} className="surface editorial-card card-tinted group flex flex-col"><div className="mx-2 mt-2 aspect-[3/2] overflow-hidden rounded-[1.15rem]"><ContentImage src={`/images/learning/${item.image}-1200.webp`} alt={item.alt} sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 300px" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" /></div><div className="flex flex-1 flex-col p-6"><h2 className="text-xl">{item.title}</h2><p className="mt-3 flex-1 text-sm text-ink-soft">{item.text}</p><span className="card-action mt-5">Explore <span className="card-arrow"><ArrowRight className="size-4" aria-hidden="true" /></span></span></div></Link>)}
+        </div>
       </section>
       <section id="courses" className="bg-[#f5faf1] py-20 sm:py-24" aria-labelledby="courses-heading">
         <div className="page-wrap"><div className="flex flex-wrap items-end justify-between gap-6">
@@ -86,7 +88,7 @@ export default async function HomePage() {
           </Link>
         </div>
         <div className="mt-12">
-          <CoursesGrid courses={courses} />
+          <CoursesGrid courses={courses} swipe />
         </div></div>
       </section>
 

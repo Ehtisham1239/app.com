@@ -1,4 +1,6 @@
 import { HatchiumChat } from "@/components/site/hatchium-chat";
+import { MobileActionBar } from "@/components/site/mobile-action-bar";
+import { whatsappLink } from "@/lib/format";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { safeJsonLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
@@ -57,6 +59,7 @@ export default async function SiteLayout({ children }) {
       <SiteHeader menu={header} courses={courseLinks} brandName={brandName} />
       <main id="main">{children}</main>
       <SiteFooter settings={settings} menus={footerMenus} />
+      <MobileActionBar whatsappHref={whatsappLink(contact.whatsapp, "Assalamu alaikum, I would like to know more about your Quran classes.")} chatEnabled={chatEnabled} />
       <HatchiumChat enabled={chatEnabled} widgetKey={chat.widget_key} />
       {/* Vercel Speed Insights: cookieless real-visit Core Web Vitals per route. */}
       <SpeedInsights />
