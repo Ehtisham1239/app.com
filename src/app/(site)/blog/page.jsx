@@ -63,7 +63,7 @@ export default async function BlogPage({ searchParams }) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(collection) }} />
-      <PageHero path={blogUrl(page, category)} eyebrow={category || "Blog"} title={`Quran learning articles for learners and parents${page > 1 ? ` · Page ${page}` : ""}`} arabic="عِلْم" intro="Short, practical reading on recitation, memorisation and building a Quran routine at home." />
+      <PageHero immersive path={blogUrl(page, category)} eyebrow={category || "Blog"} title={`Quran learning articles for learners and parents${page > 1 ? ` · Page ${page}` : ""}`} arabic="عِلْم" intro="Short, practical reading on recitation, memorisation and building a Quran routine at home." />
       <section className="page-wrap py-16 sm:py-20">
         <nav aria-label="Article topics" className="article-topics mb-8">{["", ...categories].map(c => <Link key={c} aria-current={c === category ? "page" : undefined} className={`btn btn-sm ${c === category ? "btn-primary" : "btn-outline"}`} href={blogUrl(1,c)}>{c || "All articles"}</Link>)}</nav>
         {posts.length === 0 ? (

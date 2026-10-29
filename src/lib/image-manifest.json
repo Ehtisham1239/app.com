@@ -11581,5 +11581,134 @@
         "bytes": 40077
       }
     ]
+  },
+  {
+    "name": "contact-learning-desk-v4",
+    "url": "/images/learning/contact-learning-desk-v4-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Illustration of an online learning desk with a laptop, headset and closed book on a wooden reading stand",
+    "kind": "illustration",
+    "provenance": "AI-generated editorial illustration; no real OQC premises or people depicted",
+    "variants": [
+      {
+        "url": "/images/learning/contact-learning-desk-v4-400.webp",
+        "width": 400,
+        "bytes": 21758
+      },
+      {
+        "url": "/images/learning/contact-learning-desk-v4-800.webp",
+        "width": 800,
+        "bytes": 58312
+      },
+      {
+        "url": "/images/learning/contact-learning-desk-v4-1200.webp",
+        "width": 1200,
+        "bytes": 101310
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/learning/contact-learning-desk-v4-400.avif",
+        "width": 400,
+        "bytes": 11286
+      },
+      {
+        "url": "/images/learning/contact-learning-desk-v4-800.avif",
+        "width": 800,
+        "bytes": 29901
+      },
+      {
+        "url": "/images/learning/contact-learning-desk-v4-1200.avif",
+        "width": 1200,
+        "bytes": 52074
+      }
+    ]
+  },
+  {
+    "name": "online-lesson-male-v4",
+    "url": "/images/learning/online-lesson-male-v4-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Illustrative scene of a boy reading at home with a male Quran teacher guiding him over a laptop video call",
+    "kind": "illustration",
+    "provenance": "AI-generated fictional editorial scene; not documented OQC students or staff",
+    "variants": [
+      {
+        "url": "/images/learning/online-lesson-male-v4-400.webp",
+        "width": 400,
+        "bytes": 20598
+      },
+      {
+        "url": "/images/learning/online-lesson-male-v4-800.webp",
+        "width": 800,
+        "bytes": 50608
+      },
+      {
+        "url": "/images/learning/online-lesson-male-v4-1200.webp",
+        "width": 1200,
+        "bytes": 83692
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/learning/online-lesson-male-v4-400.avif",
+        "width": 400,
+        "bytes": 11096
+      },
+      {
+        "url": "/images/learning/online-lesson-male-v4-800.avif",
+        "width": 800,
+        "bytes": 27556
+      },
+      {
+        "url": "/images/learning/online-lesson-male-v4-1200.avif",
+        "width": 1200,
+        "bytes": 45788
+      }
+    ]
+  },
+  {
+    "name": "online-lesson-female-v4",
+    "url": "/images/learning/online-lesson-female-v4-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Illustrative scene of a girl following her lesson at home with a female Quran teacher on a laptop video call",
+    "kind": "illustration",
+    "provenance": "AI-generated fictional editorial scene; not documented OQC students or staff",
+    "variants": [
+      {
+        "url": "/images/learning/online-lesson-female-v4-400.webp",
+        "width": 400,
+        "bytes": 19768
+      },
+      {
+        "url": "/images/learning/online-lesson-female-v4-800.webp",
+        "width": 800,
+        "bytes": 49594
+      },
+      {
+        "url": "/images/learning/online-lesson-female-v4-1200.webp",
+        "width": 1200,
+        "bytes": 83024
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/learning/online-lesson-female-v4-400.avif",
+        "width": 400,
+        "bytes": 10702
+      },
+      {
+        "url": "/images/learning/online-lesson-female-v4-800.avif",
+        "width": 800,
+        "bytes": 26880
+      },
+      {
+        "url": "/images/learning/online-lesson-female-v4-1200.avif",
+        "width": 1200,
+        "bytes": 45713
+      }
+    ]
   }
 ]

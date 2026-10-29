@@ -113,6 +113,7 @@
   .hero-immersive-shade { position: absolute; inset: 0; height: 15rem; background: linear-gradient(180deg, transparent 45%, var(--color-mushaf-900) 100%); pointer-events: none; }
   @media (min-width: 640px) { .hero-immersive-media, .hero-immersive-shade { height: 20rem; } }
   @media (min-width: 1024px) {
+    .hero-immersive-copy { max-width: min(36rem, 55%); }
     .hero-immersive-media { position: absolute; inset: 0 0 0 auto; width: 66%; height: 100%; z-index: -1; }
     .hero-immersive-media img { object-position: 44% 50%; }
     .hero-immersive-shade { height: auto; z-index: -1; background: linear-gradient(90deg, var(--color-mushaf-900) 34%, rgb(13 74 28 / .88) 44%, rgb(13 74 28 / .25) 60%, transparent 74%); }

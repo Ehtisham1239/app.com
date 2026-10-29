@@ -284,5 +284,25 @@
       "production_commit": "807d5969c32e0430e344467179c8153e1e71cb2e",
       "next": "Owner confirmation for GitHub sign-in and Vercel GitHub App access limited to Ehtisham1239/app.com; inspect exact permission scopes before grant. Connect existing production project, release tested main and verify public forms and redirect."
     }
+  },
+  "last_visual_refresh": {
+    "date": "2026-10-29",
+    "report": "docs/CONTACT-AND-LEARNING-VISUALS-2026-10-29.md",
+    "status": "Locally verified; production deployment pending",
+    "scope": "Contact experience, three new editorial scenes and full-width learning banners; text-enlargement header correction",
+    "source_parent": "87f51fd6366ddae55989a264803380762488f5b8",
+    "deployment_target": "Existing appcom-online-quran-college project / onlinequrancollege.com",
+    "evidence": "docs/seo-agent/evidence/2026-10-29-visual-refresh/",
+    "validation": {
+      "tests": 99,
+      "test_failures": 0,
+      "lint_errors": 0,
+      "existing_lint_warnings": 13,
+      "build_html_files": 212,
+      "missing_assets": 0,
+      "browser_cases": 22,
+      "browser_errors": 0,
+      "enquiries_submitted": 0
+    }
   }
 }

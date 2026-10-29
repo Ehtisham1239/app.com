@@ -9,10 +9,11 @@ import { getCourses, getPlans, getSettings } from "@/lib/site-data";
 import { whatsappLink } from "@/lib/format";
 import { safeJsonLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
+import { heroArt } from "@/lib/hero-art";
 
 export const revalidate = 300;
 
-const COVER = { src: "/images/islamic/online-lesson-adult-v1-1200.webp", alt: "A woman studies the Quran at home while a female teacher guides her over a live video lesson" };
+const COVER = heroArt("/free-trial");
 
 export const metadata = contentMetadata({
   seo_title: "Free Online Quran Trial Classes | Online Quran College",

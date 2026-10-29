@@ -19,7 +19,7 @@ export default async function CoursesPage() {
   return (
     <>
       {courses.length > 0 && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(courseListSchema(courses, SITE_URL)) }} />}
-      <PageHero path="/courses"
+      <PageHero immersive path="/courses"
         eyebrow="Courses"
         title="Online Quran courses for every age and level"
         arabic="تَعَلَّمِ القُرْآن"

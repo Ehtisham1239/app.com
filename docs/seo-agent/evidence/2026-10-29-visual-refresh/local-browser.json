@@ -1,0 +1,232 @@
+{
+  "base": "http://127.0.0.1:3044",
+  "checkedAt": "2026-10-29T10:45:08.178Z",
+  "errors": [],
+  "writes": 0,
+  "cases": [
+    {
+      "width": 320,
+      "zoomMenu": true,
+      "hero": {
+        "src": "http://127.0.0.1:3044/images/learning/contact-learning-desk-v4-400.avif",
+        "width": 320,
+        "alt": "Illustration of an online learning desk with a laptop, headset and closed book on a wooden reading stand"
+      },
+      "overflow": false,
+      "text200PercentOverflow": false,
+      "contactCtas": true,
+      "formAnchorAndFocus": true,
+      "invalidSubmissionBlocked": true,
+      "keyboard": true,
+      "relatedLinks": true
+    },
+    {
+      "width": 390,
+      "zoomMenu": true,
+      "hero": {
+        "src": "http://127.0.0.1:3044/images/learning/contact-learning-desk-v4-400.avif",
+        "width": 390,
+        "alt": "Illustration of an online learning desk with a laptop, headset and closed book on a wooden reading stand"
+      },
+      "overflow": false,
+      "text200PercentOverflow": false,
+      "contactCtas": true,
+      "formAnchorAndFocus": true,
+      "invalidSubmissionBlocked": true,
+      "keyboard": true,
+      "relatedLinks": true
+    },
+    {
+      "width": 768,
+      "zoomMenu": true,
+      "hero": {
+        "src": "http://127.0.0.1:3044/images/learning/contact-learning-desk-v4-800.avif",
+        "width": 768,
+        "alt": "Illustration of an online learning desk with a laptop, headset and closed book on a wooden reading stand"
+      },
+      "overflow": false,
+      "text200PercentOverflow": false,
+      "contactCtas": true,
+      "formAnchorAndFocus": true,
+      "invalidSubmissionBlocked": true,
+      "keyboard": true,
+      "relatedLinks": true
+    },
+    {
+      "width": 1440,
+      "zoomMenu": true,
+      "hero": {
+        "src": "http://127.0.0.1:3044/images/learning/contact-learning-desk-v4-1200.avif",
+        "width": 1008,
+        "alt": "Illustration of an online learning desk with a laptop, headset and closed book on a wooden reading stand"
+      },
+      "overflow": false,
+      "text200PercentOverflow": false,
+      "contactCtas": true,
+      "formAnchorAndFocus": true,
+      "invalidSubmissionBlocked": true,
+      "keyboard": true,
+      "relatedLinks": true
+    },
+    {
+      "width": 390,
+      "path": "/courses",
+      "image": {
+        "src": "http://127.0.0.1:3044/images/learning/online-lesson-male-v4-800.avif",
+        "alt": "Illustrative scene of a boy reading at home with a male Quran teacher guiding him over a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "path": "/teachers",
+      "image": {
+        "src": "http://127.0.0.1:3044/images/learning/online-lesson-female-v4-400.avif",
+        "alt": "Illustrative scene of a girl following her lesson at home with a female Quran teacher on a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "path": "/free-trial",
+      "trialFormPriority": true,
+      "hiddenHeroSourceUpdated": true
+    },
+    {
+      "width": 390,
+      "path": "/learn",
+      "image": {
+        "src": "http://127.0.0.1:3044/images/learning/online-lesson-male-v4-800.avif",
+        "alt": "Illustrative scene of a boy reading at home with a male Quran teacher guiding him over a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "path": "/blog",
+      "image": {
+        "src": "http://127.0.0.1:3044/images/learning/online-lesson-male-v4-800.avif",
+        "alt": "Illustrative scene of a boy reading at home with a male Quran teacher guiding him over a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "path": "/faq",
+      "image": {
+        "src": "http://127.0.0.1:3044/images/learning/online-lesson-male-v4-800.avif",
+        "alt": "Illustrative scene of a boy reading at home with a male Quran teacher guiding him over a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "path": "/locations",
+      "image": {
+        "src": "http://127.0.0.1:3044/images/learning/online-lesson-male-v4-800.avif",
+        "alt": "Illustrative scene of a boy reading at home with a male Quran teacher guiding him over a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "path": "/pricing",
+      "image": {
+        "src": "http://127.0.0.1:3044/images/learning/online-lesson-female-v4-400.avif",
+        "alt": "Illustrative scene of a girl following her lesson at home with a female Quran teacher on a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "path": "/careers",
+      "image": {
+        "src": "http://127.0.0.1:3044/images/learning/online-lesson-female-v4-400.avif",
+        "alt": "Illustrative scene of a girl following her lesson at home with a female Quran teacher on a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "path": "/courses",
+      "image": {
+        "src": "http://127.0.0.1:3044/images/learning/online-lesson-male-v4-1200.avif",
+        "alt": "Illustrative scene of a boy reading at home with a male Quran teacher guiding him over a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "path": "/teachers",
+      "image": {
+        "src": "http://127.0.0.1:3044/images/learning/online-lesson-female-v4-1200.avif",
+        "alt": "Illustrative scene of a girl following her lesson at home with a female Quran teacher on a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "path": "/free-trial",
+      "image": {
+        "src": "http://127.0.0.1:3044/images/learning/online-lesson-female-v4-800.avif",
+        "alt": "Illustrative scene of a girl following her lesson at home with a female Quran teacher on a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "path": "/learn",
+      "image": {
+        "src": "http://127.0.0.1:3044/images/learning/online-lesson-male-v4-1200.avif",
+        "alt": "Illustrative scene of a boy reading at home with a male Quran teacher guiding him over a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "path": "/blog",
+      "image": {
+        "src": "http://127.0.0.1:3044/images/learning/online-lesson-male-v4-1200.avif",
+        "alt": "Illustrative scene of a boy reading at home with a male Quran teacher guiding him over a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "path": "/faq",
+      "image": {
+        "src": "http://127.0.0.1:3044/images/learning/online-lesson-male-v4-1200.avif",
+        "alt": "Illustrative scene of a boy reading at home with a male Quran teacher guiding him over a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "path": "/locations",
+      "image": {
+        "src": "http://127.0.0.1:3044/images/learning/online-lesson-male-v4-1200.avif",
+        "alt": "Illustrative scene of a boy reading at home with a male Quran teacher guiding him over a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "path": "/pricing",
+      "image": {
+        "src": "http://127.0.0.1:3044/images/learning/online-lesson-female-v4-1200.avif",
+        "alt": "Illustrative scene of a girl following her lesson at home with a female Quran teacher on a laptop video call"
+      },
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "path": "/careers",
+      "image": {
+        "src": "http://127.0.0.1:3044/images/learning/online-lesson-female-v4-1200.avif",
+        "alt": "Illustrative scene of a girl following her lesson at home with a female Quran teacher on a laptop video call"
+      },
+      "overflow": false
+    }
+  ],
+  "scope": "Chromium viewport/functional QA; external vendors inert; no valid enquiry submitted"
+}

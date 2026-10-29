@@ -4,13 +4,14 @@ import { getPublishedSlugs } from "@/lib/site-data";
 import { SITE_URL } from "@/lib/config";
 import { shouldIncludeInSitemap } from "@/lib/seo";
 import imageManifest from "@/lib/image-manifest.json";
+import { heroArt } from "@/lib/hero-art";
 const imageUrl = (src) => new URL(imageManifest.find((image) => image.storage_url === src || image.url === src || image.previous_urls?.includes(src))?.url || src, SITE_URL).href;
 const fixedImages = {
   "": "/brand/hero.webp",
-  "/contact": "/images/learning/contact-coordinator-r2-1200.webp",
-  "/free-trial": "/images/islamic/online-lesson-adult-v1-1200.webp",
-  "/pricing": "/images/islamic/online-lesson-adult-v1-1200.webp",
-  "/locations": "/images/hero/online-lesson-child-v1-1200.webp",
+  "/contact": heroArt("/contact").src,
+  "/free-trial": heroArt("/free-trial").src,
+  "/pricing": heroArt("/pricing").src,
+  "/locations": heroArt("/courses").src,
 };
 export const revalidate = 3600;
 export default async function sitemap() {

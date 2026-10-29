@@ -25,7 +25,7 @@ export default async function PricingPage({ searchParams }) {
 
   return (
     <>
-      <PageHero path="/pricing"
+      <PageHero immersive path="/pricing"
         eyebrow="Fees"
         title="Online Quran class fees and packages"
         intro="Choose how many days a week suit your family. Compare lesson frequency, duration and fees below. A 3-day free trial is available on eligible plans; the Weekend plan is excluded."

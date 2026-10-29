@@ -21,6 +21,7 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [coursesOpen, setCoursesOpen] = useState(false);
+  const [compact, setCompact] = useState(false);
   const dialogRef = useRef(null);
   const menuButtonRef = useRef(null);
   const coursesRef = useRef(null);
@@ -67,10 +68,18 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
 
 
   useEffect(() => {
-    const desktop = window.matchMedia("(min-width: 1280px)");
-    const onResize = () => { if (desktop.matches) setOpen(false); };
-    desktop.addEventListener("change", onResize);
-    return () => desktop.removeEventListener("change", onResize);
+    // Text enlargement needs the same space as a narrower viewport. Keep the
+    // existing 1280px desktop breakpoint at the default 16px root size.
+    const update = () => {
+      const rootSize = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+      const next = window.innerWidth < Math.max(1280, rootSize * 80);
+      setCompact(next);
+      if (!next) setOpen(false);
+    };
+    window.addEventListener("resize", update);
+    const observer = new ResizeObserver(update);
+    observer.observe(document.documentElement);
+    return () => { window.removeEventListener("resize", update); observer.disconnect(); };
   }, []);
 
 
@@ -92,7 +101,7 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
           </span>
         </Link>
 
-        <nav className="ml-auto hidden items-center gap-1 xl:flex" aria-label="Main">
+        <nav className={clsx("ml-auto hidden items-center gap-1", !compact && "xl:flex")} aria-label="Main">
           {menu.map((item) =>
             item.href === "/courses" && courses.length > 0 ? (
               <div key={item.href} ref={coursesRef} className="relative"
@@ -158,7 +167,7 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
           )}
         </nav>
 
-        <div className="ml-auto flex items-center gap-2 xl:ml-2">
+        <div className={clsx("ml-auto flex items-center gap-2", !compact && "xl:ml-2")}>
           {/* A full document navigation removes the public third-party chat runtime before staff sign-in. */}
           {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
           <a href="/admin" className="btn portal-button header-portal whitespace-nowrap px-3 text-xs sm:px-5 sm:text-sm"><ShieldCheck className="size-4" aria-hidden="true" />Portal</a>
@@ -168,7 +177,7 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
           </Link>
           <button
             type="button"
-            className="mobile-menu-trigger flex size-11 items-center justify-center rounded-full border border-line-strong text-ink xl:hidden"
+            className={clsx("mobile-menu-trigger flex size-11 items-center justify-center rounded-full border border-line-strong text-ink", !compact && "xl:hidden")}
             onClick={() => setOpen(true)}
             ref={menuButtonRef}
             aria-label="Open menu"
@@ -183,7 +192,7 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
     </header>
       {/* Mount the hidden menu's links only when needed to reduce initial DOM
           and hydration work on both mobile and desktop. */}
-      {open && <div className={clsx("fixed inset-0 z-50 overflow-hidden xl:hidden", open ? "visible" : "invisible")} aria-hidden={!open}>
+      {open && <div className={clsx("fixed inset-0 z-50 overflow-hidden", !compact && "xl:hidden", open ? "visible" : "invisible")} aria-hidden={!open}>
         <div
           className={clsx("absolute inset-0 bg-mushaf-950/50 backdrop-blur-sm transition-opacity", open ? "opacity-100" : "opacity-0")}
           onClick={() => setOpen(false)}

@@ -9,7 +9,7 @@ import { COUNTRIES } from "@/lib/constants";
 
 const SUBJECTS = ["Course enquiry", "Fees and payment", "Class timings", "Teacher request", "Existing student support", "Partnership", "Other"];
 
-export function ContactForm({ consentText, successText }) {
+export function ContactForm({ id, consentText, successText }) {
   const formRef = useRef(null);
   const successRef = useRef(null);
   const [form, setForm] = useState({ name: "", email: "", phone: "", country: "", subject: SUBJECTS[0], message: "", consent: false, website: "" });
@@ -64,8 +64,11 @@ export function ContactForm({ consentText, successText }) {
     ) : null;
 
   return (
-    <form ref={formRef} onSubmit={submit} noValidate aria-busy={state.sending} className="surface min-w-0 space-y-5 p-6 shadow-[var(--shadow-lift)] sm:p-8">
-      <p className="text-sm text-ink-soft">Your name, email and message are required. Phone and country are optional.</p>
+    <form id={id} tabIndex={id ? -1 : undefined} aria-labelledby={id ? `${id}-heading` : undefined} ref={formRef} onSubmit={submit} noValidate aria-busy={state.sending} className="surface min-w-0 scroll-mt-28 space-y-5 p-6 shadow-[var(--shadow-lift)] sm:p-8">
+      <div>
+        <h2 id={id ? `${id}-heading` : undefined} className="text-[1.8rem] text-mushaf-900">Send us a message</h2>
+        <p className="mt-2 text-sm leading-relaxed text-ink-soft">Your name, email and message are required. Phone and country are optional.</p>
+      </div>
       <div className="absolute -left-[9999px]" aria-hidden="true">
         <input tabIndex={-1} autoComplete="off" value={form.website} onChange={(e) => set("website", e.target.value)} />
       </div>
@@ -118,7 +121,7 @@ export function ContactForm({ consentText, successText }) {
         <label htmlFor="c-message" className="field-label">
           Message
         </label>
-        <textarea id="c-message" className="textarea" rows={5} value={form.message} onChange={(e) => set("message", e.target.value)} required maxLength={5000} aria-describedby={errors.message ? "c-message-error" : undefined} aria-invalid={Boolean(errors.message)} />
+        <textarea id="c-message" className="textarea" rows={5} placeholder="Tell us the course you are interested in and your preferred class times." value={form.message} onChange={(e) => set("message", e.target.value)} required maxLength={5000} aria-describedby={errors.message ? "c-message-error" : undefined} aria-invalid={Boolean(errors.message)} />
         {err("message")}
       </div>
       <label className="flex gap-3 text-[0.9rem] leading-relaxed text-ink">
