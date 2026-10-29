@@ -35,7 +35,7 @@ test("legacy regional paths resolve directly to relevant routes",async()=>{
   for(const name of ['london','birmingham','manchester','leeds','bradford','leicester']){
     assert.ok(uk.cities.some(c=>c.slug===name));
     const r=redirects.find(r=>r.source===`/online-quran-classes-${name}`);
-    assert.equal(r.destination,`/locations/united-kingdom/${name}`);assert.equal(r.permanent,true);
+    assert.equal(r.destination,'/locations/united-kingdom');assert.equal(r.permanent,true);
   }
   assert.equal(redirects.find(r=>r.source==='/online-quran-classes-uk').destination,'/locations/united-kingdom');
 });

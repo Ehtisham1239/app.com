@@ -1,4 +1,4 @@
-import { LOCATIONS, locationPath, locationCmsSlug } from "./src/lib/locations.js";
+import { LOCATIONS, getLocation, locationPath, locationCmsSlug, defaultLocationNoindex } from "./src/lib/locations.js";
 import { LEARNING_GUIDES } from "./src/lib/learning-guides.js";
 import { readFileSync } from "node:fs";
 import { legacyImageRedirects } from "./src/lib/legacy-image-redirects.js";
@@ -53,11 +53,17 @@ const nextConfig = {
       { source: "/online-quran-classes-usa", destination: "/locations/united-states", permanent: true },
       { source: "/online-quran-classes-australia", destination: "/locations/australia", permanent: true },
       { source: "/online-quran-classes-uk", destination: "/locations/united-kingdom", permanent: true },
-      ...["london", "birmingham", "manchester", "leeds", "bradford", "leicester"].map((city) => ({ source: `/online-quran-classes-${city}`, destination: `/locations/united-kingdom/${city}`, permanent: true })),
+      // Old WordPress city URLs still rank in Search Console. Send them to an indexable
+      // page so that standing is not passed to a noindex city page.
+      ...["london", "birmingham", "manchester", "leeds", "bradford", "leicester"].map((slug) => {
+        const uk = getLocation("united-kingdom"), city = uk.cities.find((c) => c.slug === slug);
+        return { source: `/online-quran-classes-${slug}`, destination: defaultLocationNoindex(uk, city) ? locationPath(uk) : locationPath(uk, city), permanent: true };
+      }),
       ...courses.map((slug) => ({ source: `/${slug}`, destination: `/courses/${slug}`, permanent: true })),
       { source: "/hifz-ul-quran-course", destination: "/courses/hifz-quran", permanent: true },
       { source: "/terms-conditions", destination: "/terms-and-conditions", permanent: true },
       { source: "/login.html", destination: "/admin/login", permanent: false },
+      { source: "/login", destination: "/admin/login", permanent: false },
       { source: "/register", destination: "/free-trial", permanent: false },
     ];
   },

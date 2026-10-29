@@ -62,7 +62,7 @@ export default async function HomePage() {
             <ContentImage src="/images/learning/home-college-welcome-r2-1200.webp" alt="Parents encouraging their daughter during a laptop lesson at a bright home desk" sizes="(max-width: 1024px) 100vw, 560px" className="aspect-[3/2] w-full object-cover" />
             <figcaption className="px-6 py-5"><p className="font-bold text-leaf-700">Islamic mission. Global Quran access.</p><p className="mt-1 text-sm text-ink-soft">Traditional learning, connected to your home.</p></figcaption>
           </figure>
-          <div><SectionHeading align="left" eyebrow="About our college" title="Welcome to Online Quran College" intro="Learn the Quran from home through personal, live lessons." /><p className="mt-5 text-ink-soft">From the first Arabic letters to confident recitation, choose a course around your learner’s level and goals.</p><Link href="/about" className="btn btn-primary mt-6">About our college <ArrowRight className="size-4" aria-hidden="true" /></Link></div>
+          <div><SectionHeading align="left" eyebrow="About our college" title="Welcome to Online Quran College" intro="Learn the Quran from home through personal, live one-to-one Quran classes." /><p className="mt-5 text-ink-soft">From the first Arabic letters to confident recitation, choose a course around your learner’s level and goals.</p><Link href="/about" className="btn btn-primary mt-6">About our college <ArrowRight className="size-4" aria-hidden="true" /></Link></div>
         </div>
       </section>
       <section className="page-wrap grid gap-4 py-8 sm:grid-cols-3" aria-label="Explore learning paths">
