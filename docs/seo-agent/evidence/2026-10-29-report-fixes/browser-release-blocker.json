@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-29",
+  "timezone": "Asia/Karachi",
+  "status": "Blocked — named repository access requires owner confirmation",
+  "team": "ehtisham1239s-projects",
+  "project": "appcom-online-quran-college",
+  "source_commit": "77193ba801ea46a5a5a3568bef1fdb5131e211c9",
+  "application_commit": "4e26fe87a3a34395f00adc9281f14e19f60ca536",
+  "browser_sign_in": "Confirmed owner Vercel dashboard after secure Google/device approval",
+  "production_commit": "807d5969c32e0430e344467179c8153e1e71cb2e",
+  "observations": [
+    "Existing project dashboard shows no connected Git repository",
+    "GitHub namespace Ehtisham1239 picker initially exposes project",
+    "Exact app.com search returns No Results Found and instructs granting Vercel Git repository access",
+    "Configure GitHub App opens GitHub sign-in; no credentials entered and no permission grant performed"
+  ],
+  "next_action": "Owner confirmation for GitHub sign-in and Vercel GitHub App access limited to Ehtisham1239/app.com; inspect exact permission scopes before grant. Connect existing production project, release tested main and verify public forms and redirect.",
+  "not_done": [
+    "No new deployment created",
+    "No all-repository permission or security change",
+    "No new project or DNS change"
+  ],
+  "evidence_ui": "Existing project Settings / Git — Connected Git Repository"
+}
