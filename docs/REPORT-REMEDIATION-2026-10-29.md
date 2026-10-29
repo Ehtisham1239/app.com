@@ -78,3 +78,11 @@ Not done, and why:
 - A separate Tafseer beginner guide was not written. The published "Quran Translation or Arabic" article already covers choosing between translation/tafseer and Arabic study; a second overlapping article would compete with it. A genuine tafseer guide needs input from a qualified teacher.
 - Backlink review: the Semrush account returned "not enough API units", so the 729-domain profile was not exported.
 - GBP/CAD/AUD prices, city-page indexation and Academics sign-off remain owner decisions, as listed above.
+
+### Owner decisions and further fixes (same day)
+
+Owner decisions: open a pull request to bring `main` level with production; keep GBP/CAD/AUD as quote requests until fees are approved; keep city pages noindex; write Hifz/Arabic/Tafseer drafts for teacher review.
+
+- Three review drafts were saved to the CMS with status `review` and `seo_noindex = true`: `is-my-child-ready-for-hifz`, `arabic-for-quran-readers`, `quran-translation-tafseer-beginners` (378–422 words, no quotations or rulings, all internal links 200). Public RLS only exposes `published` posts; the live URL returns 404. Source copies are in `content/seo-agent/2026-10-29-report-fixes/review-drafts/`. A qualified teacher must approve before publishing.
+- 404 pages carried both Next.js's `noindex` and the root layout's `index, follow` robots tags. `src/app/not-found.jsx` now sets `noindex, follow` for robots and googlebot; normal pages are unchanged.
+- The 13 `react-hooks/set-state-in-effect` lint warnings were reviewed and left as they are: they sync admin form state from loaded data and are not defects. Changing them would need staff-login testing of the admin panel.

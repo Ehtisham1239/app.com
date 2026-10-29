@@ -53,3 +53,8 @@ test("seeded location headings gain the article; staff-edited headings are kept"
   assert.equal(locationHeading(uk, london, "Online Quran classes in London, United Kingdom"), "Online Quran classes in London, United Kingdom");
   assert.equal(locationHeading(uk, null, "Quran lessons for UK families"), "Quran lessons for UK families");
 });
+test("404 pages override the layout's index robots with noindex", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const source = await readFile(new URL("../src/app/not-found.jsx", import.meta.url), "utf8");
+  assert.match(source, /robots:\s*\{\s*index:\s*false,\s*follow:\s*true,\s*googleBot:\s*\{\s*index:\s*false/);
+});
