@@ -1,6 +1,7 @@
 import Link from "next/link";
 
-export const metadata = { title: "Page not found" };
+// Overrides the root layout's index/follow robots so a 404 sends one consistent signal.
+export const metadata = { title: "Page not found", robots: { index: false, follow: true, googleBot: { index: false, follow: true } } };
 
 export default function NotFound() {
   return (

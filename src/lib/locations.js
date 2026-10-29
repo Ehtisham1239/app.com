@@ -895,6 +895,14 @@ export const locationTimeZone = (country, city) => city?.timezone || country.tim
 export const locationLocale = (country) => ({ "united-states": "en_US", "united-kingdom": "en_GB", canada: "en_CA", australia: "en_AU" }[country.slug] || "en_GB");
 // "in the United Kingdom", "in the Netherlands", but "in Canada".
 export const countryInName = (country) => `${/^(United |Netherlands$|Czech Republic$)/.test(country.name) ? "the " : ""}${country.name}`;
+// The 22 Oct 2026 location seed saved "Online Quran classes in United Kingdom"
+// (no article) as the CMS title. Only that exact generated text is corrected;
+// a title staff have rewritten is shown as saved.
+export function locationHeading(country, city, cmsTitle) {
+  const place = city ? `${city.name}, ${country.name}` : countryInName(country);
+  const generated = `Online Quran classes in ${city ? place : country.name}`;
+  return !cmsTitle || cmsTitle === generated ? `Online Quran classes in ${place}` : cmsTitle;
+}
 export function locationSearchTitle(country, city) {
   return `${city ? "Quran classes" : "Online Quran classes"} in ${city?.name || countryInName(country)} | OQC`;
 }

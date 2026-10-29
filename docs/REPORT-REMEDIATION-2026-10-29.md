@@ -59,3 +59,30 @@ The remaining 58 discovered public URLs were checked with the existing crawler p
 The exact team and existing project were confirmed by listing: ehtisham1239s-projects / appcom-online-quran-college. A production deployment of the reviewed d6309d582759c19e058deb8a15c7cb1652b10c45 commit was actually requested. Vercel rejected creation with HTTP 403: no permission to create a Production Deployment for this project. No deployment ID or production release was created. This is a platform authorization failure, not a code build failure or an automatic-approval-review rejection. No installed Vercel CLI, configured Vercel token or outbound-identity manifest was present for the documented alternative. No access control was bypassed.
 
 The required next action is production-deployment permission for the connected account on this existing project, or an owner-authorized deployment of the exact reviewed main revision. Seven CMS content changes remain live; application/form/redirect source changes remain tested and committed but unverified on production. Other unresolved dependencies remain as listed above: original content for three legacy mappings; real staff/Academics and consented proof; and actual GHL/ERP/campaign/sender access and business decisions. No missing dependency is called solved.
+
+
+## Production release and follow-up — 29 October 2026 (later session)
+
+Production deployment `dpl_6veAa3SU6MaHG4XEeCZSaDYuwL6n` of commit `21d54f07fd51c7fb21d73d4e143201edf979d49d` (branch `claude/wizardly-noether-ott39z`, which contains main `8684090`) was created through the connected Vercel account, built READY and is aliased to www.onlinequrancollege.com and onlinequrancollege.com. The earlier HTTP 403 no longer occurred. The project still has no connected Git repository, so pushes do not deploy automatically.
+
+Verified on the live domain after release:
+
+- `/hifz-ul-quran-course?utm_source=test` resolves to the Hifz course page (H1 "Hifz ul Quran").
+- `/free-trial` shows the teacher-preference field and "Book my free trial".
+- `/locations/netherlands` H1 now reads "Online Quran classes in the Netherlands". The new `locationHeading` corrects only the exact seeded CMS title; staff-edited titles are kept. Live CMS titles for the US and UK were already corrected.
+
+Canada hub (audit: "Canada / Australia not verified"; "bring UK and CA/AU to the US standard"): the CMS body was two short paragraphs (568 visible words against about 1,090 for the US and Australia). A Canada guide covering household planning, provincial clocks, course choice and CAD quotes was written to the live CMS with a body-equality guard (version 4 → 5). All 11 internal links return 200. No price, address, testimonial or teacher-language claim was added. Before/after bodies are in `content/seo-agent/2026-10-29-report-fixes/canada-hub/`; the seed fallback matches.
+
+Not done, and why:
+
+- A separate Tafseer beginner guide was not written. The published "Quran Translation or Arabic" article already covers choosing between translation/tafseer and Arabic study; a second overlapping article would compete with it. A genuine tafseer guide needs input from a qualified teacher.
+- Backlink review: the Semrush account returned "not enough API units", so the 729-domain profile was not exported.
+- GBP/CAD/AUD prices, city-page indexation and Academics sign-off remain owner decisions, as listed above.
+
+### Owner decisions and further fixes (same day)
+
+Owner decisions: open a pull request to bring `main` level with production; keep GBP/CAD/AUD as quote requests until fees are approved; keep city pages noindex; write Hifz/Arabic/Tafseer drafts for teacher review.
+
+- Three review drafts were saved to the CMS with status `review` and `seo_noindex = true`: `is-my-child-ready-for-hifz`, `arabic-for-quran-readers`, `quran-translation-tafseer-beginners` (378–422 words, no quotations or rulings, all internal links 200). Public RLS only exposes `published` posts; the live URL returns 404. Source copies are in `content/seo-agent/2026-10-29-report-fixes/review-drafts/`. A qualified teacher must approve before publishing.
+- 404 pages carried both Next.js's `noindex` and the root layout's `index, follow` robots tags. `src/app/not-found.jsx` now sets `noindex, follow` for robots and googlebot; normal pages are unchanged.
+- The 13 `react-hooks/set-state-in-effect` lint warnings were reviewed and left as they are: they sync admin form state from loaded data and are not defects. Changing them would need staff-login testing of the admin panel.
