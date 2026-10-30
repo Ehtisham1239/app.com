@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { CheckCircle2, ClipboardList, Loader2, Save, Send } from "lucide-react";
@@ -9,6 +9,7 @@ import { useAccess } from "@/lib/admin/access";
 import { db, errorMessage, useLoad } from "@/lib/admin/db";
 import { CATEGORIES, REPORT_STATUSES, emptyRatings, missingForSubmit, monthInput, monthToPeriod, periodLabel } from "@/lib/progress/constants";
 import { Card, EmptyState, ErrorState, Field, Loading, StatusBadge } from "@/components/admin/ui";
+import { ProgressWorkflow } from "@/components/results/progress-workflow";
 import { RatingPicker } from "@/components/admin/rating-picker";
 
 function TeacherForm() {
@@ -16,35 +17,12 @@ function TeacherForm() {
   const { can } = useAccess();
   const [month, setMonth] = useState(params.get("month") || monthInput());
   const [studentId, setStudentId] = useState(params.get("student") || "");
-  const [ratings, setRatings] = useState(emptyRatings());
-  const [remarks, setRemarks] = useState("");
   const [busy, setBusy] = useState("");
   const period = monthToPeriod(month);
   const students = useLoad(() => (period ? db().rpc("progress_my_students", { p_period: period }) : { data: [] }), [period]);
   const current = (students.data || []).find((s) => s.student_id === studentId) || null;
   const report = useLoad(() => (current?.report_id ? db().from("monthly_reports").select("*").eq("id", current.report_id).maybeSingle() : { data: null }), [current?.report_id]);
 
-  // Load the saved report for this student and month, or start blank.
-  useEffect(() => {
-    const r = report.data;
-    setRatings(r ? Object.fromEntries(CATEGORIES.map((c) => [c.key, r[c.key] || ""])) : emptyRatings());
-    setRemarks(r?.remarks || "");
-  }, [report.data, studentId, month]);
-
-  const locked = current?.status === "submitted" && !can("progress:review");
-  const missing = missingForSubmit(ratings, remarks);
-  const save = async (submit) => {
-    if (!current) return toast.error("Choose a student.");
-    if (submit && missing.length) return toast.error(`Still needed: ${missing.join(", ")}.`);
-    setBusy(submit ? "submit" : "draft");
-    const { error } = await db().rpc("progress_save", { p_student_id: current.student_id, p_period: period, p_ratings: ratings, p_remarks: remarks, p_submit: submit });
-    setBusy("");
-    // Entered values stay on screen if saving fails.
-    if (error) return toast.error(errorMessage(error));
-    toast.success(submit ? "Submitted for review. Thank you!" : "Draft saved");
-    students.reload();
-    report.reload();
-  };
 
   return (
     <>
@@ -59,10 +37,11 @@ function TeacherForm() {
           </div>
         </div>
       </header>
+      <ProgressWorkflow status={current?.status || "draft"} />
       <div className="grid gap-6 xl:grid-cols-[20rem_1fr]">
         <Card title="Your students" bodyClass="">
           <div className="border-b border-line p-4">
-            <Field label="Reporting month"><input type="month" className="adm-input" value={month} max={monthInput()} onChange={(e) => setMonth(e.target.value)} /></Field>
+            <Field label="Reporting month"><input type="month" disabled={!!busy} className="adm-input" value={month} max={monthInput()} onChange={(e) => setMonth(e.target.value)} /></Field>
           </div>
           {students.loading ? <Loading rows={4} /> : students.error ? <ErrorState error={students.error} onRetry={students.reload} /> : !students.data?.length ? (
             <EmptyState icon={ClipboardList} title="No students assigned" text="Ask the admin to assign your students under Monthly progress → Assignments." />
@@ -70,7 +49,7 @@ function TeacherForm() {
             <ul className="max-h-[32rem] divide-y divide-line overflow-auto">
               {students.data.map((s) => (
                 <li key={s.student_id}>
-                  <button type="button" onClick={() => setStudentId(s.student_id)} aria-pressed={s.student_id === studentId}
+                  <button type="button" disabled={!!busy} onClick={() => setStudentId(s.student_id)} aria-pressed={s.student_id === studentId}
                     className={`flex w-full items-center justify-between gap-2 px-4 py-3 text-left hover:bg-paper ${s.student_id === studentId ? "bg-leaf-50" : ""}`}>
                     <span className="min-w-0">
                       <span className="block truncate font-semibold text-mushaf-900">{s.full_name}</span>
@@ -85,13 +64,47 @@ function TeacherForm() {
         </Card>
 
         <Card title={current ? `${current.full_name} · ${periodLabel(period)}` : "Monthly ratings"}>
-          {!current ? <EmptyState icon={ClipboardList} title="Choose a student" text="Pick a student on the left to fill in this month’s ratings." /> : report.loading && current.report_id ? <Loading rows={6} /> : (
-            <form onSubmit={(e) => { e.preventDefault(); save(true); }}>
-              {report.data?.status === "changes_requested" && report.data.change_note && (
-                <p className="mb-4 rounded-xl bg-gold-50 px-4 py-3 text-sm text-gold-700"><b>Changes requested by the admin:</b> {report.data.change_note}</p>
+          {!current ? <EmptyState icon={ClipboardList} title="Choose a student" text="Pick a student on the left to fill in this month’s ratings." /> : report.error ? <ErrorState error={report.error} onRetry={report.reload} /> : report.loading && current.report_id ? <Loading rows={6} /> : current.report_id && !report.data ? <EmptyState title="Report unavailable" text="Reload the student list before editing this report." /> : (
+            <TeacherRatingsForm key={`${studentId}:${period}:${report.data?.version || "new"}`} current={current} report={report.data} period={period} can={can} onBusyChange={setBusy} onSaved={() => { students.reload(); report.reload(); }} />
+          )}
+        </Card>
+      </div>
+    </>
+  );
+}
+
+function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChange }) {
+  const [ratings, setRatings] = useState(() => report ? Object.fromEntries(CATEGORIES.map((c) => [c.key, report[c.key] || ""])) : emptyRatings());
+  const [remarks, setRemarks] = useState(report?.remarks || "");
+  const [busy, setBusy] = useState("");
+  const locked = report?.status === "submitted" && !can("progress:review");
+  const missing = missingForSubmit(ratings, remarks);
+  const save = async (submit) => {
+    if (!current) return toast.error("Choose a student.");
+    if (submit && missing.length) return toast.error(`Still needed: ${missing.join(", ")}.`);
+    onBusyChange(true);
+    setBusy(submit ? "submit" : "draft");
+    try {
+      const { error } = await db().rpc("progress_save", { p_student_id: current.student_id, p_period: period, p_ratings: ratings, p_remarks: remarks, p_submit: submit });
+      if (error) throw error;
+      toast.success(submit ? "Submitted for review. Thank you!" : "Draft saved");
+      onSaved();
+    } catch (error) {
+      // Retain the teacher's work for a retry, including network failures.
+      toast.error(errorMessage(error));
+    } finally {
+      setBusy("");
+      onBusyChange(false);
+    }
+  };
+
+  return (
+            <form aria-label="Teacher monthly progress" onSubmit={(e) => { e.preventDefault(); save(true); }}>
+              {report?.status === "changes_requested" && report.change_note && (
+                <p className="mb-4 rounded-xl bg-gold-50 px-4 py-3 text-sm text-gold-700"><b>Changes requested by the admin:</b> {report.change_note}</p>
               )}
               {locked && <p className="mb-4 flex items-center gap-2 rounded-xl bg-leaf-50 px-4 py-3 text-sm text-leaf-800"><CheckCircle2 className="size-4" /> Submitted and waiting for the admin’s review. It can be edited again if changes are requested.</p>}
-              {report.data?.published && report.data.status !== "published" && <p className="mb-4 rounded-xl bg-paper px-4 py-3 text-sm text-ink-soft">Parents still see the last published version until this revision is approved.</p>}
+              {report?.published && <p className="mb-4 rounded-xl bg-paper px-4 py-3 text-sm text-ink-soft">Parents keep seeing the last published certificate until the admin approves and publishes a revision.</p>}
               <fieldset disabled={locked || !!busy} className="space-y-3">
                 <legend className="sr-only">Monthly ratings</legend>
                 <div className="mb-1 flex items-center justify-between gap-3">
@@ -114,10 +127,6 @@ function TeacherForm() {
               )}
               {can("progress:read") && current.report_id && <p className="mt-4 text-sm"><Link className="font-semibold text-leaf-700 underline" href={`/admin/progress/${current.report_id}`}>Open the review page</Link></p>}
             </form>
-          )}
-        </Card>
-      </div>
-    </>
   );
 }
 

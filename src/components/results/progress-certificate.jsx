@@ -15,7 +15,7 @@ export function ProgressCertificate({ report, studentName, studentOfMonth = fals
   const r = report || {};
   const month = periodLabel(r.period);
   return (
-    <article className="progress-certificate relative mx-auto w-full max-w-[52rem] overflow-hidden rounded-[10px] bg-[#fffdf7] text-ink shadow-[0_30px_70px_-40px_rgba(13,74,28,0.7)] print:shadow-none" aria-label={`Monthly progress certificate for ${studentName}, ${month}`}>
+    <article className="progress-certificate relative mx-auto w-full max-w-[52rem] overflow-hidden rounded-[10px] bg-[#fffdf7] text-ink shadow-[0_30px_70px_-40px_rgba(13,74,28,0.7)] print:shadow-none print:break-inside-avoid" aria-label={`Monthly progress certificate for ${studentName}, ${month}`}>
       <div className="pointer-events-none absolute inset-0 pattern-girih opacity-[0.045]" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-[12px] rounded-[6px] border-2 border-gold-500" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-[18px] rounded-[4px] border border-gold-300" aria-hidden="true" />
@@ -34,7 +34,7 @@ export function ProgressCertificate({ report, studentName, studentOfMonth = fals
 
         <div className="mt-7 text-center">
           <p className="text-[0.95rem] italic text-ink-soft">This is to certify the progress of</p>
-          <p className="mx-auto mt-2 inline-block min-w-[60%] border-b-2 border-gold-400 px-6 pb-1.5 font-display text-[1.9rem] text-ink sm:text-[2.3rem]">{studentName}</p>
+          <p className="mx-auto mt-2 inline-block max-w-full break-words min-w-[60%] border-b-2 border-gold-400 px-6 pb-1.5 font-display text-[1.9rem] text-ink sm:text-[2.3rem]">{studentName}</p>
           <p className="mx-auto mt-3 max-w-lg text-[0.95rem] leading-relaxed text-ink-soft">in Quran learning during {month}, as assessed by the class teacher and reviewed by the college.</p>
         </div>
 
@@ -73,7 +73,7 @@ export function ProgressCertificate({ report, studentName, studentOfMonth = fals
 
         <figure className="mt-6 rounded-xl border border-gold-300/70 bg-white/90 px-5 py-4">
           <figcaption className="text-xs font-bold uppercase tracking-[0.16em] text-gold-700">Teacher’s remarks</figcaption>
-          <blockquote className="mt-1.5 whitespace-pre-line leading-relaxed text-ink">{r.remarks || "—"}</blockquote>
+          <blockquote className="mt-1.5 whitespace-pre-line break-words leading-relaxed text-ink">{r.remarks || "—"}</blockquote>
         </figure>
 
         <footer className="mt-10 grid grid-cols-3 items-end gap-4 text-center text-xs text-ink-soft sm:gap-8">

@@ -7,6 +7,7 @@ import { useAccess } from "@/lib/admin/access";
 import { db, notifyError, useLoad } from "@/lib/admin/db";
 import { formatDateTime } from "@/lib/format";
 import { CATEGORIES, RATINGS, REPORT_STATUSES, missingForSubmit, periodLabel, ratingLabel } from "@/lib/progress/constants";
+import { ProgressWorkflow } from "@/components/results/progress-workflow";
 import { ProgressCertificate } from "@/components/results/progress-certificate";
 import { Card, ConfirmButton, ErrorState, Field, Loading, Modal, PageHeader, StatusBadge } from "@/components/admin/ui";
 
@@ -121,6 +122,7 @@ export default function ProgressReportPage({ params }) {
         {r.status === "draft" && <p className="mb-4 rounded-xl bg-paper px-4 py-3 text-sm text-ink-soft">The teacher has not submitted this report yet.</p>}
       </div>
 
+      <ProgressWorkflow status={r.status} />
       <div className="grid gap-6 xl:grid-cols-[1fr_20rem]">
         <ProgressCertificate report={working} studentName={r.students?.full_name} studentOfMonth={!!award.data} stamp={r.status === "published" ? null : "Preview"} />
         <div className="no-print space-y-4">
