@@ -21,7 +21,7 @@ export const MARKET_GUIDES = {
     ],
   },
   australia: {
-    title: "Planning Quran lessons across Australian time zones",
+    title: "Australian lesson times: state clocks and daylight saving",
     sections: [
       { title: "Check your state’s daylight saving rule", text: "Australia has several local clocks, and states decide daylight saving themselves. New South Wales, Victoria, South Australia, Tasmania and the ACT move their clocks; Queensland, Western Australia and the Northern Territory do not. A lesson fixed in Sydney time can therefore shift by an hour for a family in Brisbane or Perth. Pick your city and the actual lesson date in the planner before proposing a weekly time.", path: "/free-trial?country=Australia&currency=AUD", link: "Discuss an Australian lesson time" },
       { title: "Fit lessons around school and work", text: "Tell the coordinator which after-school, evening or weekend window suits the learner, and whether a child needs a parent nearby during the trial. Describe what they can already read, whether Noorani Qaida, guided Quran reading with Tajweed or memorisation, then confirm the AUD fee, weekly frequency and rescheduling terms in writing.", path: "/blog/quran-lessons-australia-time-zones", link: "Read the Australian time-zone guide" },
