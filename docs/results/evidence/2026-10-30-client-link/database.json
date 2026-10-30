@@ -1,0 +1,18 @@
+{
+  "project": "lgbwidraztavhhbnbfhr",
+  "migration_version": "20261030085637",
+  "migration": "progress_client_identity",
+  "applied": true,
+  "source_routine_hashes_matched_before_change": true,
+  "post_apply_checks": {
+    "return_shape_has_clients_jsonb": true,
+    "anonymous_execute_denied": true,
+    "authenticated_execute_allowed": true,
+    "missing_link_submit_guard": true,
+    "invalid_parent_token_returns_null": true
+  },
+  "synthetic_database_tests": 8,
+  "all_tests": 147,
+  "advisory_counts_unchanged": true,
+  "real_student_report_writes_for_QA": 0
+}

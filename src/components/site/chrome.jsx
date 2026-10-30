@@ -85,8 +85,8 @@ function ImmersiveHero({ eyebrow, title, titleAccent, intro, children, arabic, i
   );
 }
 
-export function PageHero({ eyebrow, title, titleAccent, intro, children, arabic, visual, path, art, immersive = false, features }) {
-  const image = heroArt(art || path || title);
+export function PageHero({ eyebrow, title, titleAccent, intro, children, arabic, visual, path, art, imageOverride, immersive = false, features }) {
+  const image = imageOverride || heroArt(art || path || title);
   if (immersive) {
     const jsonLd = path && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", "@type": "WebPage", "@id": `${SITE_URL}${path}#webpage`, url: `${SITE_URL}${path}`, name: title, description: intro, isPartOf: { "@id": `${SITE_URL}/#website` }, about: { "@id": `${SITE_URL}/#organization` }, inLanguage: "en-GB" }) }} />;
     return <ImmersiveHero {...{ eyebrow, title, titleAccent, intro, children, arabic, image, features, jsonLd }} />;

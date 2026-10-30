@@ -1,3 +1,4 @@
+import { ClientIdentity } from "./client-identity";
 import { Award } from "lucide-react";
 import { formatDate } from "@/lib/format";
 import { CATEGORIES, periodLabel, ratingLabel, ratingStars } from "@/lib/progress/constants";
@@ -11,7 +12,7 @@ const PILL = {
 
 // Monthly progress certificate: Online Quran College logo, deep green and soft gold.
 // Server-safe; staff can print it from the CMS, parents only view it.
-export function ProgressCertificate({ report, studentName, studentCode, studentOfMonth = false, stamp = null }) {
+export function ProgressCertificate({ report, studentName, studentCode, clientId, clientName, studentOfMonth = false, stamp = null }) {
   const r = report || {};
   const month = periodLabel(r.period);
   return (
@@ -28,7 +29,7 @@ export function ProgressCertificate({ report, studentName, studentCode, studentO
           <img src="/brand/logo.webp" alt="Online Quran College" width={96} height={96} className="mx-auto size-20 sm:size-24" />
           <p className="mt-3 font-display text-lg tracking-wide text-mushaf-900 sm:text-xl">Online Quran College</p>
           <div className="mx-auto mt-3 flex max-w-xs items-center gap-3 text-gold-500" aria-hidden="true"><span className="h-px flex-1 bg-current" /><span className="size-1.5 rotate-45 bg-current" /><span className="h-px flex-1 bg-current" /></div>
-          <h2 className="mt-3 font-display text-[1.85rem] leading-tight text-mushaf-900 sm:text-[2.5rem]">Certificate of Monthly Progress</h2>
+          <h2 className="mt-3 font-display text-[1.85rem] leading-tight text-mushaf-900 sm:text-[2.5rem]">Monthly Student Result Card</h2>
           <p className="mt-1 text-sm font-semibold uppercase tracking-[0.2em] text-gold-700">{month}</p>
         </header>
 
@@ -49,6 +50,7 @@ export function ProgressCertificate({ report, studentName, studentCode, studentO
           </div>
         )}
 
+        {(clientId || clientName) && <div className="mt-5"><ClientIdentity clientId={clientId} clientName={clientName} /></div>}
         <table className="mt-8 w-full border-separate border-spacing-0 overflow-hidden rounded-xl border border-gold-300 bg-white/90 text-left">
           <caption className="sr-only">Ratings for {month}</caption>
           <thead>

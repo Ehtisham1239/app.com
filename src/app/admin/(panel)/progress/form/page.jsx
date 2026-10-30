@@ -9,6 +9,7 @@ import { useAccess } from "@/lib/admin/access";
 import { db, errorMessage, useLoad } from "@/lib/admin/db";
 import { CATEGORIES, REPORT_STATUSES, emptyRatings, missingForSubmit, monthInput, monthToPeriod, periodLabel } from "@/lib/progress/constants";
 import { Card, EmptyState, ErrorState, Field, Loading, Modal, StatusBadge } from "@/components/admin/ui";
+import { ClientIdentity } from "@/components/results/client-identity";
 import { ProgressCertificate } from "@/components/results/progress-certificate";
 import { ProgressWorkflow } from "@/components/results/progress-workflow";
 import { RatingPicker } from "@/components/admin/rating-picker";
@@ -99,7 +100,9 @@ function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChang
     return () => window.removeEventListener("beforeunload", warn);
   }, [dirty]);
   const locked = report?.status === "submitted" && !can("progress:review");
+  const client = current.clients?.[0];
   const missing = missingForSubmit(ratings, remarks);
+  if (!client?.client_id) missing.push("Linked Client ID/name");
   const save = async (submit) => {
     if (!current) return toast.error("Choose a student.");
     if (submit && missing.length) return toast.error(`Still needed: ${missing.join(", ")}.`);
@@ -108,7 +111,7 @@ function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChang
     try {
       const { error } = await db().rpc("progress_save", { p_student_id: current.student_id, p_period: period, p_ratings: ratings, p_remarks: remarks, p_submit: submit });
       if (error) throw error;
-      toast.success(submit ? "Submitted for review. Thank you!" : "Draft saved");
+      toast.success(submit ? "Submitted to Results → Monthly reports for admin review." : "Draft saved");
       onSaved();
     } catch (error) {
       // Retain the teacher's work for a retry, including network failures.
@@ -126,6 +129,7 @@ function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChang
               )}
               {locked && <p className="mb-4 flex items-center gap-2 rounded-xl bg-leaf-50 px-4 py-3 text-sm text-leaf-800"><CheckCircle2 className="size-4" /> Submitted and waiting for the admin’s review. It can be edited again if changes are requested.</p>}
               {report?.published && <p className="mb-4 rounded-xl bg-paper px-4 py-3 text-sm text-ink-soft">Parents keep seeing the last published certificate until the admin approves and publishes a revision.</p>}
+              <div className="mb-4"><ClientIdentity clientId={client?.client_id} clientName={client?.client_name} /></div>
               <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-line bg-paper px-4 py-3">
                 <p className="text-sm font-semibold text-ink-soft" role="status">{dirty ? "Unsaved changes" : report ? "Saved report loaded" : "New report — not saved"}</p>
                 <button type="button" aria-expanded={preview} aria-controls="teacher-certificate-preview" className="btn btn-outline btn-sm" onClick={() => setPreview((v) => !v)}>{preview ? <EyeOff className="size-4" /> : <Eye className="size-4" />}{preview ? "Hide certificate preview" : "Preview certificate"}</button>
@@ -134,9 +138,9 @@ function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChang
                 <legend className="sr-only">Monthly ratings</legend>
                 <div className="mb-1 flex items-center justify-between gap-3">
                   <p className="text-sm font-bold text-mushaf-900">Monthly ratings</p>
-                  <p className="text-xs font-semibold text-ink-faint" aria-live="polite">{7 - missing.length} of 7 done</p>
+                  <p className="text-xs font-semibold text-ink-faint" aria-live="polite">{7 - missingForSubmit(ratings, remarks).length} of 7 done</p>
                 </div>
-                <div className="h-1.5 overflow-hidden rounded-full bg-line" aria-hidden="true"><div className="h-full rounded-full bg-leaf-600 transition-all" style={{ width: `${((7 - missing.length) / 7) * 100}%` }} /></div>
+                <div className="h-1.5 overflow-hidden rounded-full bg-line" aria-hidden="true"><div className="h-full rounded-full bg-leaf-600 transition-all" style={{ width: `${((7 - missingForSubmit(ratings, remarks).length) / 7) * 100}%` }} /></div>
                 {CATEGORIES.map((c) => (
                   <RatingPicker key={c.key} name={`rating-${c.key}`} label={c.label} hint={c.hint} value={ratings[c.key]} onChange={(v) => setRatings((r) => ({ ...r, [c.key]: v }))} disabled={locked || !!busy} />
                 ))}
@@ -152,7 +156,7 @@ function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChang
               )}
               {preview && <section id="teacher-certificate-preview" className="mt-6" aria-label="Draft certificate preview">
                 <p className="mb-3 rounded-xl bg-gold-50 px-4 py-3 text-sm text-gold-700">Preview only. These changes reach parents after the report is submitted, reviewed and published by the admin.</p>
-                <ProgressCertificate report={{ ...report, ...ratings, remarks, period, published_at: null }} studentName={current.full_name} studentCode={current.student_code} stamp="Draft preview" />
+                <ProgressCertificate report={{ ...report, ...ratings, remarks, period, published_at: null }} studentName={current.full_name} studentCode={current.student_code} clientId={client?.client_id} clientName={client?.client_name} stamp="Draft preview" />
               </section>}
               {can("progress:read") && current.report_id && <p className="mt-4 text-sm"><Link className="font-semibold text-leaf-700 underline" href={`/admin/progress/${current.report_id}`} onClick={(e) => { if (dirty) { e.preventDefault(); toast.error("Save a draft before opening the review page."); } }}>Open the review page</Link></p>}
             </form>

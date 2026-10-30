@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { Award, ClipboardList, Hourglass, Loader2, PenLine, Users } from "lucide-react";
 import { useAccess } from "@/lib/admin/access";
 import { db, notifyError, useLoad } from "@/lib/admin/db";
+import { ResultsNav } from "@/components/admin/results-nav";
 import { REPORT_STATUSES, monthInput, monthToPeriod, periodLabel } from "@/lib/progress/constants";
 import { Card, EmptyState, ErrorState, Loading, PageHeader, StatCard, StatusBadge, Tabs } from "@/components/admin/ui";
 
@@ -66,12 +67,13 @@ export default function ProgressReviewPage() {
 
   return (
     <>
-      <PageHeader title="Monthly progress — review and publish" subtitle="Check reports before parents can see them. Edit, ask the teacher for changes, or publish."
+      <PageHeader title="Results — monthly reports" subtitle="Check reports before parents can see them. Edit, ask the teacher for changes, or publish."
         actions={<>
           {can("progress:update") && <Link href="/admin/progress/assignments" className="btn btn-outline btn-sm"><Users className="size-4" /> Assignments</Link>}
           {(can("progress:submit") || can("progress:review")) && <Link href="/admin/progress/form" className="btn btn-primary btn-sm"><PenLine className="size-4" /> Teacher form</Link>}
         </>} />
 
+      <ResultsNav />
       <div className="mb-5 flex flex-wrap items-end gap-3">
         <label className="text-sm font-semibold text-ink">Month<input type="month" className="adm-input mt-1 w-44" value={month} max={monthInput()} onChange={(e) => setMonth(e.target.value)} /></label>
         <label className="text-sm font-semibold text-ink">Teacher

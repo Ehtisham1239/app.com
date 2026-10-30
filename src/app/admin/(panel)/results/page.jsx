@@ -107,6 +107,11 @@ export default function ResultsPage() {
           {(can("results:create") || can("certificates:create")) && <button type="button" className="btn btn-primary btn-sm" onClick={() => setEditing(EMPTY)}><Plus className="size-4" /> New assessment</button>}
         </>} />
       <ResultsNav />
+      {can("progress:read") && <div className="mb-6 rounded-2xl border border-gold-300 bg-leaf-50 p-5">
+        <h2 className="font-display text-xl text-mushaf-900">Teacher monthly result cards</h2>
+        <p className="mt-1 text-sm text-ink-soft">Teacher submissions arrive directly in Monthly reports. Review the six ratings and remarks, edit if needed, then approve and publish to the parent portal.</p>
+        <Link href="/admin/progress" className="btn btn-primary btn-sm mt-3">Review monthly reports</Link>
+      </div>}
       <div className="mb-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard label="Open assessments" value={assessments.data ? active : null} icon={GraduationCap} />
         <StatCard label="Uploads to review" value={counts.data?.review} icon={ClipboardCheck} tone="amber" />

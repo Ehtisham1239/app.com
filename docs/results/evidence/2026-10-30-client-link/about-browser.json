@@ -1,0 +1,43 @@
+{
+  "cases": [
+    {
+      "width": 320,
+      "status": 200,
+      "imageDecoded": true,
+      "oneH1": true,
+      "ctaPaths": true,
+      "noOverflow": true,
+      "text200Percent": false
+    },
+    {
+      "width": 390,
+      "status": 200,
+      "imageDecoded": true,
+      "oneH1": true,
+      "ctaPaths": true,
+      "noOverflow": true,
+      "text200Percent": false
+    },
+    {
+      "width": 768,
+      "status": 200,
+      "imageDecoded": true,
+      "oneH1": true,
+      "ctaPaths": true,
+      "noOverflow": true,
+      "text200Percent": false
+    },
+    {
+      "width": 1440,
+      "status": 200,
+      "imageDecoded": true,
+      "oneH1": true,
+      "ctaPaths": true,
+      "noOverflow": true,
+      "text200Percent": true
+    }
+  ],
+  "errors": [],
+  "writes": 0,
+  "scope": "Local production build with seed fallback; inert vendors; Chromium viewport emulation"
+}

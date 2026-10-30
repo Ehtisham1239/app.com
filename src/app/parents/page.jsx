@@ -19,8 +19,8 @@ async function loadChildren() {
   if (data === null) return { signedIn: false, expired: true };
   // Monthly progress reports are optional: the results page still works without them.
   const progress = await publicDb.rpc("parent_progress", { p_token: token });
-  const reports = Object.fromEntries((Array.isArray(progress.data) ? progress.data : []).map((p) => [p.student_id, p.reports || []]));
-  return { signedIn: true, children: (Array.isArray(data) ? data : []).map((k) => ({ ...k, progress: reports[k.id] || [] })) };
+  const reports = Object.fromEntries((Array.isArray(progress.data) ? progress.data : []).map((p) => [p.student_id, p]));
+  return { signedIn: true, children: (Array.isArray(data) ? data : []).map((k) => ({ ...k, progress: reports[k.id]?.reports || [], clientId: reports[k.id]?.client_id, clientName: reports[k.id]?.client_name })) };
 }
 
 export default async function ParentsPage({ searchParams }) {
@@ -128,7 +128,7 @@ function ProgressSection({ kid, chosen }) {
           </nav>
         )}
       </div>
-      <ProgressCertificate report={current} studentName={kid.name} studentCode={kid.code} studentOfMonth={current.student_of_month} />
+      <ProgressCertificate report={current} studentName={kid.name} studentCode={kid.code} clientId={kid.clientId} clientName={kid.clientName} studentOfMonth={current.student_of_month} />
     </div>
   );
 }

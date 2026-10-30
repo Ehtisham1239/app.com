@@ -7,6 +7,7 @@ import { useAccess } from "@/lib/admin/access";
 import { db, notifyError, useLoad } from "@/lib/admin/db";
 import { formatDateTime } from "@/lib/format";
 import { CATEGORIES, REPORT_STATUSES, missingForSubmit, periodLabel, ratingLabel } from "@/lib/progress/constants";
+import { ResultsNav } from "@/components/admin/results-nav";
 import { RatingPicker } from "@/components/admin/rating-picker";
 import { ProgressWorkflow } from "@/components/results/progress-workflow";
 import { ProgressCertificate } from "@/components/results/progress-certificate";
@@ -75,6 +76,7 @@ export default function ProgressReportPage({ params }) {
   const history = useLoad(() => db().from("monthly_report_history").select("id, action, snapshot, reason, changed_at").eq("report_id", id).order("changed_at", { ascending: false }), [id]);
   const r = report.data;
   const award = useLoad(() => (r ? db().from("student_of_month").select("period").eq("student_id", r.student_id).eq("period", r.period).maybeSingle() : { data: null }), [r?.student_id, r?.period]);
+  const identity = useLoad(() => r ? db().rpc("progress_my_students", { p_period: r.period }).eq("student_id", r.student_id).maybeSingle() : { data: null }, [r?.student_id, r?.period]);
   if (report.loading && !r) return <Loading rows={6} />;
   if (report.error) return <ErrorState error={report.error} onRetry={report.reload} />;
   if (!r) return <PageHeader title="Report not found" back={{ href: "/admin/progress", label: "Monthly progress" }} />;
@@ -118,9 +120,10 @@ export default function ProgressReportPage({ params }) {
         {r.status === "draft" && <p className="mb-4 rounded-xl bg-paper px-4 py-3 text-sm text-ink-soft">The teacher has not submitted this report yet.</p>}
       </div>
 
+      <ResultsNav />
       <ProgressWorkflow status={r.status} />
       <div className="grid gap-6 xl:grid-cols-[1fr_20rem]">
-        <ProgressCertificate report={working} studentName={r.students?.full_name} studentCode={r.students?.student_code} studentOfMonth={!!award.data} stamp={r.status === "published" ? null : "Preview"} />
+        <ProgressCertificate report={working} studentName={r.students?.full_name} studentCode={r.students?.student_code} clientId={identity.data?.clients?.[0]?.client_id} clientName={identity.data?.clients?.[0]?.client_name} studentOfMonth={!!award.data} stamp={r.status === "published" ? null : "Preview"} />
         <div className="no-print space-y-4">
           <Card title={<span className="inline-flex items-center gap-2"><History className="size-4 text-ink-faint" /> History</span>} bodyClass="">
             {!history.data?.length ? <p className="p-5 text-sm text-ink-soft">No history yet.</p> : (
