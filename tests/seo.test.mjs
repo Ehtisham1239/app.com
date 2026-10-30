@@ -58,3 +58,20 @@ test("404 pages override the layout's index robots with noindex", async () => {
   const source = await readFile(new URL("../src/app/not-found.jsx", import.meta.url), "utf8");
   assert.match(source, /robots:\s*\{\s*index:\s*false,\s*follow:\s*true,\s*googleBot:\s*\{\s*index:\s*false/);
 });
+test("location pages describe online tuition for the place without claiming a local branch", async () => {
+  const { getLocation, countryInName } = await import("../src/lib/locations.js");
+  const { locationServiceSchema } = await import("../src/lib/seo.js");
+  const { MARKET_GUIDES } = await import("../src/lib/market-guides.js");
+  const au = getLocation("australia"), perth = au.cities.find((c) => c.slug === "perth");
+  const hub = locationServiceSchema({ country: au, city: null, placeName: countryInName(au), url: "https://college.test/locations/australia", siteUrl: "https://college.test" });
+  assert.equal(hub["@type"], "Service");
+  assert.equal(hub.name, "Online Quran classes in Australia");
+  assert.deepEqual(hub.areaServed, { "@type": "Country", name: "Australia" });
+  assert.equal(hub.provider["@id"], "https://college.test/#organization");
+  assert.equal("address" in hub, false);
+  const city = locationServiceSchema({ country: au, city: perth, placeName: "Perth, Australia", url: "https://college.test/locations/australia/perth", siteUrl: "https://college.test" });
+  assert.deepEqual(city.areaServed, { "@type": "City", name: "Perth", containedInPlace: { "@type": "Country", name: "Australia" } });
+  const guide = MARKET_GUIDES.australia;
+  assert.ok(guide.sections.length >= 2);
+  assert.ok(guide.sources.every((s) => new URL(s.url).hostname.endsWith(".gov.au")));
+});
