@@ -19,11 +19,12 @@ function EditReport({ report, onDone }) {
   const [open, setOpen] = useState(false);
   const [ratings, setRatings] = useState(() => Object.fromEntries(CATEGORIES.map((c) => [c.key, report[c.key] || ""])));
   const [remarks, setRemarks] = useState(report.remarks || "");
+  const [plan, setPlan] = useState(report.learning_plan || "");
   const [reason, setReason] = useState("");
   const [busy, setBusy] = useState(false);
   const save = async () => {
     setBusy(true);
-    const { error } = await db().rpc("progress_admin_update", { p_report_id: report.id, p_ratings: ratings, p_remarks: remarks, p_reason: reason });
+    const { error } = await db().rpc("progress_admin_update", { p_report_id: report.id, p_ratings: ratings, p_remarks: remarks, p_reason: reason, p_plan: plan });
     setBusy(false);
     if (error) return notifyError(error);
     toast.success("Changes saved. Publish when you are happy with the certificate.");
@@ -39,6 +40,7 @@ function EditReport({ report, onDone }) {
             <div key={c.key} className="sm:col-span-2"><RatingPicker name={`edit-${c.key}`} label={c.label} hint={c.hint} value={ratings[c.key]} onChange={(value) => setRatings((r) => ({ ...r, [c.key]: value }))} disabled={busy} /></div>
           ))}
           <Field label="Teacher remarks" className="sm:col-span-2" hint={`${remarks.length}/1000`}><textarea className="adm-input" rows={4} maxLength={1000} value={remarks} onChange={(e) => setRemarks(e.target.value)} /></Field>
+          <Field label="Learning & home-practice plan" className="sm:col-span-2" hint={`${plan.length}/2000`}><textarea className="adm-input" rows={4} maxLength={2000} value={plan} onChange={(e) => setPlan(e.target.value)} /></Field>
           <Field label="Reason for the edit" required className="sm:col-span-2" hint="Kept in the report history"><input className="adm-input" maxLength={500} value={reason} onChange={(e) => setReason(e.target.value)} placeholder="e.g. Corrected the Tajweed rating after speaking to the teacher" /></Field>
         </div>
       </Modal>

@@ -8,6 +8,7 @@ import { useAccess } from "@/lib/admin/access";
 import { db, likeTerm, notifyError, useLoad } from "@/lib/admin/db";
 import { formatDateTime } from "@/lib/format";
 import { ResultsNav } from "@/components/admin/results-nav";
+import { ParentAccessRequests } from "@/components/admin/parent-access-requests";
 import { BulkCodes } from "@/components/admin/parent-codes";
 import { Badge, Card, ConfirmButton, EmptyState, ErrorState, Field, Loading, Modal, PageHeader, Pagination, SearchInput } from "@/components/admin/ui";
 
@@ -17,25 +18,38 @@ const CLIENT_ID = /^[A-Za-z0-9][A-Za-z0-9._-]{2,63}$/;
 function GuardianForm({ open, initial, onClose, onSaved }) {
   const [form, setForm] = useState({ full_name: initial?.full_name ?? "", relationship: initial?.relationship ?? "Parent", email: initial?.email ?? "", phone: initial?.phone ?? "", client_id: initial?.client_id ?? "" });
   const [busy, setBusy] = useState(false);
+  const [requestId] = useState(() => crypto.randomUUID());
+  const [studentQuery,setStudentQuery]=useState("");
+  const [studentId,setStudentId]=useState("");
+  const matches=useLoad(()=>!initial?.id && studentQuery.trim().length>=2 ? db().from("students").select("id,full_name,student_code").is("deleted_at",null).or(`full_name.ilike.${likeTerm(studentQuery)},student_code.ilike.${likeTerm(studentQuery)}`).limit(10):{data:[]},[studentQuery]);
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
   const save = async () => {
+    if (busy) return;
     if (form.full_name.trim().length < 2) return toast.error("Enter the parent’s name.");
     if (form.client_id && !CLIENT_ID.test(form.client_id.trim())) return toast.error("Client ID: 3–64 letters, numbers, dots, dashes or underscores.");
+    if (!initial?.id && !studentId) return toast.error("Choose the existing student to link.");
+    if (!initial?.id && !form.email.trim() && !form.phone.trim()) return toast.error("Add a registered email or phone for account recovery.");
     setBusy(true);
     const row = { full_name: form.full_name.trim(), relationship: form.relationship.trim() || "Parent", email: form.email.trim().toLowerCase() || null, phone: form.phone.trim() || null, client_id: form.client_id.trim() || null };
-    const { error } = initial?.id ? await db().from("guardians").update(row).eq("id", initial.id) : await db().from("guardians").insert(row);
-    setBusy(false);
-    if (error) return notifyError(error.code === "23505" ? { message: "That Client ID is already used by another parent." } : error);
-    toast.success("Saved");
-    onSaved();
+    try {
+      const { data, error } = initial?.id ? await db().from("guardians").update(row).eq("id", initial.id) : await db().rpc("guardian_create_portal_account", { p_request_id: requestId,p_name: row.full_name,p_student_id: studentId,p_email: row.email,p_phone: row.phone,p_client_id: row.client_id });
+      if (error) throw error;
+      toast.success("Saved");
+      onSaved(data);
+    } catch (error) {
+      notifyError(error.code === "23505" ? { message: "That Client ID is already used by another parent." } : error);
+    } finally {
+      setBusy(false);
+    }
   };
   return (
-    <Modal open={open} onClose={onClose} title={initial?.id ? "Edit parent" : "Add parent"}
+    <Modal open={open} onClose={() => !busy && onClose()} title={initial?.id ? "Edit parent" : "Create linked parent portal account"}
       footer={<><button type="button" className="btn btn-ghost btn-sm" onClick={onClose} disabled={busy}>Cancel</button><button type="button" className="btn btn-primary btn-sm" onClick={save} disabled={busy}>{busy && <Loader2 className="size-4 animate-spin" />} Save</button></>}>
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Full name" required className="sm:col-span-2"><input className="adm-input" value={form.full_name} onChange={(e) => set("full_name", e.target.value)} /></Field>
-        <Field label="Client ID" hint="The ERP Client ID the parent uses to sign in"><input className="adm-input font-mono" value={form.client_id} onChange={(e) => set("client_id", e.target.value)} placeholder="e.g. C-10245" /></Field>
-        <Field label="Relationship"><input className="adm-input" value={form.relationship} onChange={(e) => set("relationship", e.target.value)} /></Field>
+        <Field label="Client ID" hint={initial?.id ? "The ERP Client ID the parent uses to sign in" : "Leave blank to generate a unique Client ID automatically"}><input className="adm-input font-mono" value={form.client_id} onChange={(e) => set("client_id", e.target.value)} placeholder="e.g. C-10245" /></Field>
+        {!initial?.id && <div className="sm:col-span-2"><Field label="Find existing student" required hint="The account will be linked only to the student you choose"><input className="adm-input" value={studentQuery} onChange={e=>{setStudentQuery(e.target.value);setStudentId("");}} placeholder="Student name or code" /></Field>{matches.error?<ErrorState error={matches.error} onRetry={matches.reload}/>:<ul className="mt-2 max-h-40 overflow-auto rounded-xl border border-line">{(matches.data||[]).map(child=><li key={child.id}><button type="button" className={`w-full px-3 py-2 text-left text-sm ${studentId===child.id?"bg-leaf-100":"hover:bg-paper"}`} onClick={()=>setStudentId(child.id)} aria-pressed={studentId===child.id}>{child.full_name} · {child.student_code}</button></li>)}</ul>}</div>}
+        {initial?.id && <Field label="Relationship"><input className="adm-input" value={form.relationship} onChange={(e) => set("relationship", e.target.value)} /></Field>}
         <Field label="Email"><input type="email" className="adm-input" value={form.email} onChange={(e) => set("email", e.target.value)} /></Field>
         <Field label="Phone / WhatsApp"><input className="adm-input" value={form.phone} onChange={(e) => set("phone", e.target.value)} /></Field>
       </div>
@@ -131,14 +145,17 @@ export default function ParentAccessPage() {
 
   return (
     <>
-      <PageHeader title="Parent access" subtitle="Each parent signs in to the parent portal with their Client ID and a one-time issued access code, and sees only their own children’s published results."
+      <PageHeader title="Parent portal management" subtitle="Each parent signs in to the parent portal with their Client ID and a one-time issued access code, and sees only their own children’s published results."
         back={{ href: "/admin/results", label: "Results" }}
         actions={<>
+          <a href="/parents" target="_blank" rel="noreferrer" className="btn btn-outline btn-sm">Open parent portal</a>
+          {can("progress:read") && <Link href="/admin/progress" className="btn btn-outline btn-sm">Results & learning plans</Link>}
           {can("guardians:update") && <BulkCodes label="Codes for all without one" onDone={list.reload} />}
           {can("guardians:create") && <Link href="/admin/results/parents/import" className="btn btn-outline btn-sm"><FileUp className="size-4" /> Bulk upload</Link>}
-          {can("guardians:create") && <button type="button" className="btn btn-primary btn-sm" onClick={() => setEditing({})}><UserPlus className="size-4" /> Add parent</button>}
+          {can("guardians:create") && can("guardians:update") && <button type="button" className="btn btn-primary btn-sm" onClick={() => setEditing({})}><UserPlus className="size-4" /> Create parent account</button>}
         </>} />
       <ResultsNav />
+      <ParentAccessRequests onReveal={(data)=>{setReveal(data);list.reload();}}/>
       <div className="mb-4 flex justify-end"><SearchInput value={q} onChange={(v) => { setQ(v); setPage(0); }} placeholder="Name, Client ID or email…" className="w-full sm:w-80" /></div>
       <Card bodyClass="">
         {list.loading ? <Loading /> : list.error ? <ErrorState error={list.error} onRetry={list.reload} /> : !list.data?.length ? (
@@ -182,7 +199,7 @@ export default function ParentAccessPage() {
         )}
         <Pagination page={page} pageSize={PAGE} count={list.count} onPage={setPage} />
       </Card>
-      {editing && <GuardianForm open initial={editing.id ? editing : null} onClose={() => setEditing(null)} onSaved={() => { setEditing(null); list.reload(); }} />}
+      {editing && <GuardianForm open initial={editing.id ? editing : null} onClose={() => setEditing(null)} onSaved={(data) => { setEditing(null); list.reload(); if(data?.code) setReveal(data); else if(data?.guardian) toast.success("This account was already created. Use Issue code if the original code was not received."); }} />}
       {reveal && <CodeReveal {...reveal} onClose={() => setReveal(null)} />}
     </>
   );

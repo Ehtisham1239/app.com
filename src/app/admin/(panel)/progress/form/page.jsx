@@ -89,9 +89,10 @@ function TeacherForm() {
 function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChange, onDirtyChange }) {
   const [ratings, setRatings] = useState(() => report ? Object.fromEntries(CATEGORIES.map((c) => [c.key, report[c.key] || ""])) : emptyRatings());
   const [remarks, setRemarks] = useState(report?.remarks || "");
+  const [plan, setPlan] = useState(report?.learning_plan || "");
   const [busy, setBusy] = useState("");
   const [preview, setPreview] = useState(false);
-  const dirty = remarks !== (report?.remarks || "") || CATEGORIES.some((c) => ratings[c.key] !== (report?.[c.key] || ""));
+  const dirty = plan !== (report?.learning_plan || "") || remarks !== (report?.remarks || "") || CATEGORIES.some((c) => ratings[c.key] !== (report?.[c.key] || ""));
   useEffect(() => { onDirtyChange(dirty); }, [dirty, onDirtyChange]);
   useEffect(() => {
     if (!dirty) return;
@@ -109,7 +110,7 @@ function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChang
     onBusyChange(true);
     setBusy(submit ? "submit" : "draft");
     try {
-      const { error } = await db().rpc("progress_save", { p_student_id: current.student_id, p_period: period, p_ratings: ratings, p_remarks: remarks, p_submit: submit });
+      const { error } = await db().rpc("progress_save", { p_student_id: current.student_id, p_period: period, p_ratings: ratings, p_remarks: remarks, p_submit: submit, p_plan: plan });
       if (error) throw error;
       toast.success(submit ? "Submitted to Results → Monthly reports for admin review." : "Draft saved");
       onSaved();
@@ -147,6 +148,7 @@ function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChang
                 <Field label="Teacher remarks" required hint={`${remarks.length}/1000 · plain text that parents will read`}>
                   <textarea className="adm-input" rows={4} maxLength={1000} value={remarks} onChange={(e) => setRemarks(e.target.value)} placeholder="For example: Improving in recitation. Practise duas daily at home." />
                 </Field>
+                <Field label="Learning & home-practice plan" hint={`${plan.length}/2000 · shown to parents only after admin publication`}><textarea className="adm-input" rows={4} maxLength={2000} value={plan} onChange={(e) => setPlan(e.target.value)} placeholder="Teacher-assigned next steps, lesson focus and manageable home practice" /></Field>
               </fieldset>
               {!locked && (
                 <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
@@ -156,7 +158,7 @@ function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChang
               )}
               {preview && <section id="teacher-certificate-preview" className="mt-6" aria-label="Draft certificate preview">
                 <p className="mb-3 rounded-xl bg-gold-50 px-4 py-3 text-sm text-gold-700">Preview only. These changes reach parents after the report is submitted, reviewed and published by the admin.</p>
-                <ProgressCertificate report={{ ...report, ...ratings, remarks, period, published_at: null }} studentName={current.full_name} studentCode={current.student_code} clientId={client?.client_id} clientName={client?.client_name} stamp="Draft preview" />
+                <ProgressCertificate report={{ ...report, ...ratings, remarks, learning_plan: plan, period, published_at: null }} studentName={current.full_name} studentCode={current.student_code} clientId={client?.client_id} clientName={client?.client_name} stamp="Draft preview" />
               </section>}
               {can("progress:read") && current.report_id && <p className="mt-4 text-sm"><Link className="font-semibold text-leaf-700 underline" href={`/admin/progress/${current.report_id}`} onClick={(e) => { if (dirty) { e.preventDefault(); toast.error("Save a draft before opening the review page."); } }}>Open the review page</Link></p>}
             </form>

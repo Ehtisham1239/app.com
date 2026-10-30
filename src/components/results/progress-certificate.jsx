@@ -82,6 +82,7 @@ export function ProgressCertificate({ report, studentName, studentCode, clientId
           <blockquote className="mt-1.5 whitespace-pre-line break-words leading-relaxed text-ink">{r.remarks || "—"}</blockquote>
         </figure>
 
+        <section className="mt-5 rounded-xl border border-leaf-200 bg-leaf-50/60 px-5 py-4" aria-label="Learning and home-practice plan"><h3 className="text-xs font-bold uppercase tracking-[0.16em] text-leaf-800">Learning & home-practice plan</h3><p className="mt-2 whitespace-pre-line break-words text-sm leading-relaxed text-ink">{r.learning_plan || "No learning plan has been published for this period."}</p></section>
         <footer className="mt-10 grid grid-cols-3 items-end gap-4 text-center text-xs text-ink-soft sm:gap-8">
           <div><p className="min-h-[1.3em] font-semibold text-ink">{r.teacher || ""}</p><p className="mt-1 border-t border-ink/30 pt-1.5">Class teacher</p></div>
           <div className="flex flex-col items-center">
