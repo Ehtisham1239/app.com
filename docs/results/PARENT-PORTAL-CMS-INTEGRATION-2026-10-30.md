@@ -41,3 +41,9 @@ Authenticated live staff/parent sessions are unavailable in the agent's browser.
 Use CMS Parent portal to create/link access, view requests and issue/revoke codes. Results & learning plans opens the existing monthly queue; submitted plans must be reviewed before publication. A real parent should then sign in through `/parents` and see only linked learners' published versions.
 
 Application rollback can restore the preceding production code while keeping the additive plan column/tables and optional-argument routines. Do not drop tables or discard published plans to roll back the UI. A full database rollback requires coordinated routine restoration from the prior migrations and preservation/export of new plan/request records; never reset/reseed production. Keep later staff changes when preparing any rollback.
+
+## Production release verified
+
+Application commit **2e19f82204d863a6991edf225771c4b4872219ef** deployed as **dpl_ETdxaUR4ZsKrBQKu7HsUvuM3fhWp**, Ready / Production, build duration 1m14s. Domain https://www.onlinequrancollege.com/parents shows the new recovery/activation controls and results/learning-plan copy. Both controls open the correct live request interface. Signed-out CMS management redirects to the login page with the correct return path. No public recovery form was submitted for QA. No app-origin browser errors observed; extension metadata errors are excluded.
+
+GitHub reports deployment success and the signed-in Vercel dashboard confirms the exact commit, environment and domain. The Vercel MCP connection still cannot resolve this project (404); production runtime-log inspection remains unavailable and is not claimed. Authenticated private screens remain verified through synthetic actual-component/database tests, not a real logged-in production account. See evidence/2026-10-30-parent-integration/release.json.
