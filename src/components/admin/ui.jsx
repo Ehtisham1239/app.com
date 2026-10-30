@@ -18,6 +18,7 @@ export function PageHeader({ title, subtitle, actions, back, children }) {
             <ArrowLeft className="size-4" aria-hidden="true" /> {back.label}
           </Link>
         )}
+        <span className="mb-2 block h-1 w-10 rounded-full bg-linear-to-r from-gold-400 to-gold-600" aria-hidden="true" />
         <h1 className="font-sans text-[1.65rem] font-bold leading-tight tracking-tight text-mushaf-900">{title}</h1>
         {subtitle && <p className="mt-1 text-[0.95rem] text-ink-soft">{subtitle}</p>}
         {children}
@@ -233,13 +234,14 @@ export function Pagination({ page, pageSize, count, onPage }) {
 
 export function StatCard({ label, value, hint, icon: Icon, href, tone = "green" }) {
   const body = (
-    <div className="adm-card flex h-full items-start gap-4 p-5 transition-shadow hover:shadow-[var(--shadow-lift)]">
+    <div className="adm-card relative flex h-full items-start gap-4 overflow-hidden p-5 transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-lift)]">
+      <span className={clsx("pointer-events-none absolute -right-6 -top-6 size-20 rounded-full opacity-60", `tone-${tone}`)} aria-hidden="true" />
       {Icon && (
-        <span className={clsx("flex size-11 shrink-0 items-center justify-center rounded-xl", `tone-${tone}`)}>
+        <span className={clsx("relative flex size-11 shrink-0 items-center justify-center rounded-xl ring-4 ring-white", `tone-${tone}`)}>
           <Icon className="size-5" aria-hidden="true" />
         </span>
       )}
-      <div className="min-w-0">
+      <div className="relative min-w-0">
         <p className="text-[0.8rem] font-semibold uppercase tracking-wider text-ink-faint">{label}</p>
         <p className="mt-1 font-display text-[2rem] leading-none text-mushaf-900 tabular">{value ?? "—"}</p>
         {hint && <p className="mt-1.5 text-[0.82rem] text-ink-soft">{hint}</p>}
