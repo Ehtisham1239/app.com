@@ -1,0 +1,50 @@
+[
+  {
+    "path": "/robots.txt",
+    "status": 200,
+    "robots": [],
+    "canonical": [],
+    "new_learning_image": false,
+    "text": "User-Agent: *\nAllow: /\nDisallow: /admin\nDisallow: /auth\nDisallow: /api/\nDisallow: /parents\n\nSitemap: https://www.onlinequrancollege.com/sitemap.xml\n"
+  },
+  {
+    "path": "/verify",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "path": "/contact",
+    "status": 200,
+    "robots": [
+      "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+    ],
+    "canonical": [
+      "https://www.onlinequrancollege.com/contact"
+    ],
+    "new_learning_image": true,
+    "text": null
+  },
+  {
+    "path": "/teachers",
+    "status": 200,
+    "robots": [
+      "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+    ],
+    "canonical": [
+      "https://www.onlinequrancollege.com/teachers"
+    ],
+    "new_learning_image": true,
+    "text": null
+  },
+  {
+    "path": "/locations",
+    "status": 200,
+    "robots": [
+      "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+    ],
+    "canonical": [
+      "https://www.onlinequrancollege.com/locations"
+    ],
+    "new_learning_image": true,
+    "text": null
+  }
+]

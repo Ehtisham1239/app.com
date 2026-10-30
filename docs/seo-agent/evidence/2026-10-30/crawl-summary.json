@@ -1,0 +1,96 @@
+{
+  "site": "https://www.onlinequrancollege.com/",
+  "utc_timestamp": "2026-10-30T03:12:17.869804+00:00",
+  "max_pages": 250,
+  "pages_attempted": 209,
+  "html_pages": 209,
+  "statuses": {
+    "200": 209
+  },
+  "sitemap_url_count": 49,
+  "sitemap_urls_attempted": 49,
+  "sitemap_urls_not_attempted": [],
+  "robots_skipped": [],
+  "stopped_reason": null,
+  "remaining_discovered": 0,
+  "finding_counts": {
+    "CANONICAL_REVIEW": 1
+  },
+  "robots": {
+    "url": "https://www.onlinequrancollege.com/robots.txt",
+    "final_url": "https://www.onlinequrancollege.com/robots.txt",
+    "status": 200,
+    "headers": {
+      "accept-ranges": "bytes",
+      "access-control-allow-origin": "*",
+      "age": "0",
+      "cache-control": "public, max-age=0, must-revalidate",
+      "content-disposition": "inline; filename=\"robots.txt\"",
+      "content-security-policy": "base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src-attr 'none'",
+      "content-type": "text/plain; charset=utf-8",
+      "cross-origin-opener-policy": "same-origin-allow-popups",
+      "date": "Fri, 30 Oct 2026 03:07:33 GMT",
+      "etag": "\"f3254d6d6c5e190115891c6e1f039099\"",
+      "last-modified": "Fri, 30 Oct 2026 03:07:33 GMT",
+      "permissions-policy": "camera=(), microphone=(), geolocation=(), payment=()",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "server": "envoy",
+      "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "x-matched-path": "/robots.txt",
+      "x-vercel-cache": "MISS",
+      "x-vercel-id": "cle1::z7tsh-1793329653140-b079b1bc52cf",
+      "content-length": "148",
+      "x-envoy-upstream-service-time": "294",
+      "connection": "close"
+    },
+    "fetch_seconds": 3.251,
+    "bytes_read": 148,
+    "truncated": false
+  },
+  "sitemaps": [
+    {
+      "url": "https://www.onlinequrancollege.com/sitemap.xml",
+      "final_url": "https://www.onlinequrancollege.com/sitemap.xml",
+      "status": 200,
+      "headers": {
+        "accept-ranges": "bytes",
+        "access-control-allow-origin": "*",
+        "age": "0",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-disposition": "inline; filename=\"sitemap.xml\"",
+        "content-security-policy": "base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src-attr 'none'",
+        "content-type": "application/xml",
+        "cross-origin-opener-policy": "same-origin-allow-popups",
+        "date": "Fri, 30 Oct 2026 03:07:38 GMT",
+        "etag": "\"0f74d9af8d697d65ca6bb8ba98dbb045\"",
+        "last-modified": "Fri, 30 Oct 2026 03:07:38 GMT",
+        "permissions-policy": "camera=(), microphone=(), geolocation=(), payment=()",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "server": "envoy",
+        "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN",
+        "x-matched-path": "/sitemap.xml",
+        "x-vercel-cache": "MISS",
+        "x-vercel-id": "cle1::z7tsh-1793329658821-a6bf09a145f7",
+        "content-length": "13734",
+        "x-envoy-upstream-service-time": "143",
+        "connection": "close"
+      },
+      "fetch_seconds": 5.766,
+      "bytes_read": 13734,
+      "truncated": false
+    }
+  ],
+  "limitations": [
+    "Raw HTML only; no JavaScript execution",
+    "No field CWV, rankings, index coverage or analytics verified",
+    "Same-origin only; query URLs and private/API paths excluded",
+    "JSON-LD syntax/types only; no rich-result eligibility test",
+    "HTML word count includes repeated navigation",
+    "Redirect destinations recorded; chains not captured",
+    "Crawler-specific directives beyond Googlebot need manual review"
+  ]
+}

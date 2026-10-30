@@ -1,0 +1,1800 @@
+{
+  "origin": "https://www.onlinequrancollege.com",
+  "utc_timestamp": "2026-10-30T03:09:14.268884+00:00",
+  "article_count": 20,
+  "articles": [
+    {
+      "slug": "help-your-kids-learn-quran-online",
+      "url": "https://www.onlinequrancollege.com/blog/help-your-kids-learn-quran-online",
+      "final_url": "https://www.onlinequrancollege.com/blog/help-your-kids-learn-quran-online",
+      "status": 200,
+      "title": [
+        "How to Help Kids Learn Quran Online | OQC"
+      ],
+      "description": "Help kids learn Quran online with a calm setup, teacher-agreed practice and clear parent communication. Use these practical questions before and after class.",
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/help-your-kids-learn-quran-online"
+      ],
+      "robots": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "h1": [
+        "How to Help Your Kids Learn Quran Online Successfully"
+      ],
+      "body_words": 559,
+      "body_matches_cms": true,
+      "body_sha256": "a97ac7f940755053e6b9ef1c5b6857f0861d030081acc8b21a5919288e940fa8",
+      "contextual_links": [
+        "/courses/noorani-qaida",
+        "/learn/quran-for-kids",
+        "https://sunnah.com/bukhari:5027"
+      ],
+      "toc_valid": true,
+      "cover": {
+        "src": "/images/learning/blog-kids-learning-r2-1200.webp",
+        "alt": "Father helping his daughter adjust her headset before an online lesson",
+        "width": "1200",
+        "height": "800",
+        "srcset": "/images/learning/blog-kids-learning-r2-400.webp 400w, /images/learning/blog-kids-learning-r2-800.webp 800w, /images/learning/blog-kids-learning-r2-1200.webp 1200w",
+        "sizes": "(max-width: 1024px) 100vw, 600px",
+        "loading": "eager",
+        "fetchpriority": "high",
+        "decoding": "async",
+        "class": "aspect-[3/2] w-full object-cover"
+      },
+      "article_schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://www.onlinequrancollege.com/blog/help-your-kids-learn-quran-online#article",
+        "headline": "How to Help Your Kids Learn Quran Online Successfully",
+        "description": "Help kids learn Quran online with a calm setup, teacher-agreed practice and clear parent communication. Use these practical questions before and after class.",
+        "inLanguage": "en-GB",
+        "articleSection": "Parents",
+        "keywords": "Kids, Parents, Online learning, Quran learning for kids, parent guided Quran practice",
+        "datePublished": "2026-06-15T09:00:00.000Z",
+        "dateModified": "2026-10-28T12:48:35.893Z",
+        "image": "https://www.onlinequrancollege.com/images/learning/blog-kids-learning-r2-1200.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "OQC Editorial Team",
+          "url": "https://www.onlinequrancollege.com/about"
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.onlinequrancollege.com/#organization",
+          "name": "Online Quran College",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.onlinequrancollege.com/brand/logo.webp"
+          }
+        },
+        "wordCount": 568,
+        "mainEntityOfPage": "https://www.onlinequrancollege.com/blog/help-your-kids-learn-quran-online",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://www.onlinequrancollege.com/blog#blog",
+          "url": "https://www.onlinequrancollege.com/blog",
+          "name": "Quran learning articles"
+        }
+      },
+      "schema_errors": [],
+      "issues": []
+    },
+    {
+      "slug": "importance-of-reciting-quran-with-tajweed",
+      "url": "https://www.onlinequrancollege.com/blog/importance-of-reciting-quran-with-tajweed",
+      "final_url": "https://www.onlinequrancollege.com/blog/importance-of-reciting-quran-with-tajweed",
+      "status": 200,
+      "title": [
+        "Why Tajweed Matters in Quran Recitation | OQC"
+      ],
+      "description": "Learn what Tajweed covers, why pronunciation matters and how to turn a teacher’s recitation feedback into a clear practice task for the next lesson.",
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/importance-of-reciting-quran-with-tajweed"
+      ],
+      "robots": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "h1": [
+        "The Importance of Reciting Quran with Tajweed"
+      ],
+      "body_words": 459,
+      "body_matches_cms": true,
+      "body_sha256": "d2ff169a9f2a8d7b6c98a270df56967bf7f30ba521fa4ba8c9e523438887ca75",
+      "contextual_links": [
+        "/courses/quran-nazara",
+        "/courses/tajweed",
+        "https://quran.com/73/4"
+      ],
+      "toc_valid": true,
+      "cover": {
+        "src": "/images/learning/blog-tajweed-recitation-r2-1200.webp",
+        "alt": "Adult learner practising recitation beside a desktop microphone and an open book",
+        "width": "1200",
+        "height": "800",
+        "srcset": "/images/learning/blog-tajweed-recitation-r2-400.webp 400w, /images/learning/blog-tajweed-recitation-r2-800.webp 800w, /images/learning/blog-tajweed-recitation-r2-1200.webp 1200w",
+        "sizes": "(max-width: 1024px) 100vw, 600px",
+        "loading": "eager",
+        "fetchpriority": "high",
+        "decoding": "async",
+        "class": "aspect-[3/2] w-full object-cover"
+      },
+      "article_schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://www.onlinequrancollege.com/blog/importance-of-reciting-quran-with-tajweed#article",
+        "headline": "The Importance of Reciting Quran with Tajweed",
+        "description": "Learn what Tajweed covers, why pronunciation matters and how to turn a teacher’s recitation feedback into a clear practice task for the next lesson.",
+        "inLanguage": "en-GB",
+        "articleSection": "Tajweed",
+        "keywords": "Tajweed, Recitation, Quran recitation practice, Tajweed lessons online",
+        "datePublished": "2026-06-10T09:00:00.000Z",
+        "dateModified": "2026-10-28T12:48:35.893Z",
+        "image": "https://www.onlinequrancollege.com/images/learning/blog-tajweed-recitation-r2-1200.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "OQC Editorial Team",
+          "url": "https://www.onlinequrancollege.com/about"
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.onlinequrancollege.com/#organization",
+          "name": "Online Quran College",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.onlinequrancollege.com/brand/logo.webp"
+          }
+        },
+        "wordCount": 469,
+        "mainEntityOfPage": "https://www.onlinequrancollege.com/blog/importance-of-reciting-quran-with-tajweed",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://www.onlinequrancollege.com/blog#blog",
+          "url": "https://www.onlinequrancollege.com/blog",
+          "name": "Quran learning articles"
+        }
+      },
+      "schema_errors": [],
+      "issues": []
+    },
+    {
+      "slug": "memorization-techniques-for-beginners",
+      "url": "https://www.onlinequrancollege.com/blog/memorization-techniques-for-beginners",
+      "final_url": "https://www.onlinequrancollege.com/blog/memorization-techniques-for-beginners",
+      "status": 200,
+      "title": [
+        "Quran Memorisation Techniques for Beginners | OQC"
+      ],
+      "description": "Explore Quran memorisation techniques for beginners: accurate reading, small tasks, recall checks and revision to discuss with your Hifz teacher.",
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/memorization-techniques-for-beginners"
+      ],
+      "robots": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "h1": [
+        "Quran Memorisation Techniques for Beginners"
+      ],
+      "body_words": 506,
+      "body_matches_cms": true,
+      "body_sha256": "2f1eda59c1c7f521fdcba4671a95d8a5d3c6d03f928692b58827052405ca2ec5",
+      "contextual_links": [
+        "/courses/hifz-quran",
+        "/blog/hifz-revision-with-school"
+      ],
+      "toc_valid": true,
+      "cover": {
+        "src": "/images/learning/blog-memory-techniques-r2-1200.webp",
+        "alt": "Revision notebook, flashcards, timer and closed book arranged for a memorisation routine",
+        "width": "1200",
+        "height": "800",
+        "srcset": "/images/learning/blog-memory-techniques-r2-400.webp 400w, /images/learning/blog-memory-techniques-r2-800.webp 800w, /images/learning/blog-memory-techniques-r2-1200.webp 1200w",
+        "sizes": "(max-width: 1024px) 100vw, 600px",
+        "loading": "eager",
+        "fetchpriority": "high",
+        "decoding": "async",
+        "class": "aspect-[3/2] w-full object-cover"
+      },
+      "article_schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://www.onlinequrancollege.com/blog/memorization-techniques-for-beginners#article",
+        "headline": "Quran Memorisation Techniques for Beginners",
+        "description": "Explore Quran memorisation techniques for beginners: accurate reading, small tasks, recall checks and revision to discuss with your Hifz teacher.",
+        "inLanguage": "en-GB",
+        "articleSection": "Hifz",
+        "keywords": "Hifz, Memorisation, Hifz revision routine, Quran memorisation for beginners",
+        "datePublished": "2026-06-05T09:00:00.000Z",
+        "dateModified": "2026-10-28T12:48:35.893Z",
+        "image": "https://www.onlinequrancollege.com/images/learning/blog-memory-techniques-r2-1200.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "OQC Editorial Team",
+          "url": "https://www.onlinequrancollege.com/about"
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.onlinequrancollege.com/#organization",
+          "name": "Online Quran College",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.onlinequrancollege.com/brand/logo.webp"
+          }
+        },
+        "wordCount": 515,
+        "mainEntityOfPage": "https://www.onlinequrancollege.com/blog/memorization-techniques-for-beginners",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://www.onlinequrancollege.com/blog#blog",
+          "url": "https://www.onlinequrancollege.com/blog",
+          "name": "Quran learning articles"
+        }
+      },
+      "schema_errors": [],
+      "issues": []
+    },
+    {
+      "slug": "quran-translation-and-arabic-difference",
+      "url": "https://www.onlinequrancollege.com/blog/quran-translation-and-arabic-difference",
+      "final_url": "https://www.onlinequrancollege.com/blog/quran-translation-and-arabic-difference",
+      "status": 200,
+      "title": [
+        "Quran Translation or Arabic Study? | OQC"
+      ],
+      "description": "Understand the difference between discussing meaning through translation and studying Arabic language skills before choosing a course.",
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/quran-translation-and-arabic-difference"
+      ],
+      "robots": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "h1": [
+        "Quran Translation or Arabic: comparing learning goals"
+      ],
+      "body_words": 548,
+      "body_matches_cms": true,
+      "body_sha256": "d9792bfcdf597141b61c2724e3c962241d0c838df729ab3353a67d81d16d29e2",
+      "contextual_links": [
+        "/courses/quran-translation",
+        "/courses/arabic-language",
+        "/learn/quran-for-adults",
+        "/free-trial",
+        "/courses/quran-translation",
+        "/courses/arabic-language"
+      ],
+      "toc_valid": true,
+      "cover": {
+        "src": "/images/learning/blog-translation-arabic-r2-1200.webp",
+        "alt": "Adult learner reviewing an open reference book and taking notes beside a laptop",
+        "width": "1200",
+        "height": "800",
+        "srcset": "/images/learning/blog-translation-arabic-r2-400.webp 400w, /images/learning/blog-translation-arabic-r2-800.webp 800w, /images/learning/blog-translation-arabic-r2-1200.webp 1200w",
+        "sizes": "(max-width: 1024px) 100vw, 600px",
+        "loading": "eager",
+        "fetchpriority": "high",
+        "decoding": "async",
+        "class": "aspect-[3/2] w-full object-cover"
+      },
+      "article_schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://www.onlinequrancollege.com/blog/quran-translation-and-arabic-difference#article",
+        "headline": "Quran Translation or Arabic: comparing learning goals",
+        "description": "Understand the difference between discussing meaning through translation and studying Arabic language skills before choosing a course.",
+        "inLanguage": "en-GB",
+        "articleSection": "Adult learning",
+        "keywords": "Adult learning",
+        "datePublished": "2026-10-22T10:51:29.770Z",
+        "dateModified": "2026-10-28T12:48:35.893Z",
+        "image": "https://www.onlinequrancollege.com/images/learning/blog-translation-arabic-r2-1200.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "Online Quran College Editorial",
+          "url": "https://www.onlinequrancollege.com/about"
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.onlinequrancollege.com/#organization",
+          "name": "Online Quran College",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.onlinequrancollege.com/brand/logo.webp"
+          }
+        },
+        "wordCount": 565,
+        "mainEntityOfPage": "https://www.onlinequrancollege.com/blog/quran-translation-and-arabic-difference",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://www.onlinequrancollege.com/blog#blog",
+          "url": "https://www.onlinequrancollege.com/blog",
+          "name": "Quran learning articles"
+        }
+      },
+      "schema_errors": [],
+      "issues": []
+    },
+    {
+      "slug": "online-quran-lesson-setup-accessibility",
+      "url": "https://www.onlinequrancollege.com/blog/online-quran-lesson-setup-accessibility",
+      "final_url": "https://www.onlinequrancollege.com/blog/online-quran-lesson-setup-accessibility",
+      "status": 200,
+      "title": [
+        "Accessible Online Quran Lesson Setup | OQC"
+      ],
+      "description": "Practical checks for audio, materials, screen size and learning preferences before an online Quran lesson, with questions to discuss with the teacher.",
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/online-quran-lesson-setup-accessibility"
+      ],
+      "robots": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "h1": [
+        "Setting up an online lesson that is easier to follow"
+      ],
+      "body_words": 561,
+      "body_matches_cms": true,
+      "body_sha256": "be2dbc18b91608f30db1d45038a59f206afd560754f6cbdf15c5aba30f0c72b9",
+      "contextual_links": [
+        "/blog/prepare-child-first-online-quran-trial",
+        "/learn/quran-for-adults",
+        "/contact",
+        "/free-trial"
+      ],
+      "toc_valid": true,
+      "cover": {
+        "src": "/images/learning/blog-accessible-setup-r2-1200.webp",
+        "alt": "Learner wearing headphones at a bright organised desk with a raised laptop, notebook and reading lamp",
+        "width": "1200",
+        "height": "800",
+        "srcset": "/images/learning/blog-accessible-setup-r2-400.webp 400w, /images/learning/blog-accessible-setup-r2-800.webp 800w, /images/learning/blog-accessible-setup-r2-1200.webp 1200w",
+        "sizes": "(max-width: 1024px) 100vw, 600px",
+        "loading": "eager",
+        "fetchpriority": "high",
+        "decoding": "async",
+        "class": "aspect-[3/2] w-full object-cover"
+      },
+      "article_schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://www.onlinequrancollege.com/blog/online-quran-lesson-setup-accessibility#article",
+        "headline": "Setting up an online lesson that is easier to follow",
+        "description": "Practical checks for audio, materials, screen size and learning preferences before an online Quran lesson, with questions to discuss with the teacher.",
+        "inLanguage": "en-GB",
+        "articleSection": "Parents & children",
+        "keywords": "Parents & children",
+        "datePublished": "2026-10-22T10:51:29.770Z",
+        "dateModified": "2026-10-28T12:48:35.893Z",
+        "image": "https://www.onlinequrancollege.com/images/learning/blog-accessible-setup-r2-1200.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "Online Quran College Editorial",
+          "url": "https://www.onlinequrancollege.com/about"
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.onlinequrancollege.com/#organization",
+          "name": "Online Quran College",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.onlinequrancollege.com/brand/logo.webp"
+          }
+        },
+        "wordCount": 578,
+        "mainEntityOfPage": "https://www.onlinequrancollege.com/blog/online-quran-lesson-setup-accessibility",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://www.onlinequrancollege.com/blog#blog",
+          "url": "https://www.onlinequrancollege.com/blog",
+          "name": "Quran learning articles"
+        }
+      },
+      "schema_errors": [],
+      "issues": []
+    },
+    {
+      "slug": "parent-teacher-quran-progress-review",
+      "url": "https://www.onlinequrancollege.com/blog/parent-teacher-quran-progress-review",
+      "final_url": "https://www.onlinequrancollege.com/blog/parent-teacher-quran-progress-review",
+      "status": 200,
+      "title": [
+        "Parent–Teacher Quran Progress Reviews | OQC"
+      ],
+      "description": "Review a small learning sample, the teacher’s feedback and a manageable next step instead of relying only on pages completed or lesson attendance.",
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/parent-teacher-quran-progress-review"
+      ],
+      "robots": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "h1": [
+        "A useful parent–teacher Quran progress conversation"
+      ],
+      "body_words": 532,
+      "body_matches_cms": true,
+      "body_sha256": "5365ccab91679e5517bdcbcdba1890d9ad7e305d6b32efb28448936ed3aefb22",
+      "contextual_links": [
+        "/learn/quran-for-kids",
+        "/courses/hifz-quran",
+        "/blog/help-your-kids-learn-quran-online",
+        "/faq"
+      ],
+      "toc_valid": true,
+      "cover": {
+        "src": "/images/learning/blog-parent-progress-r2-1200.webp",
+        "alt": "Mother discussing a lesson on a laptop while taking progress notes beside her child",
+        "width": "1200",
+        "height": "800",
+        "srcset": "/images/learning/blog-parent-progress-r2-400.webp 400w, /images/learning/blog-parent-progress-r2-800.webp 800w, /images/learning/blog-parent-progress-r2-1200.webp 1200w",
+        "sizes": "(max-width: 1024px) 100vw, 600px",
+        "loading": "eager",
+        "fetchpriority": "high",
+        "decoding": "async",
+        "class": "aspect-[3/2] w-full object-cover"
+      },
+      "article_schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://www.onlinequrancollege.com/blog/parent-teacher-quran-progress-review#article",
+        "headline": "A useful parent–teacher Quran progress conversation",
+        "description": "Review a small learning sample, the teacher’s feedback and a manageable next step instead of relying only on pages completed or lesson attendance.",
+        "inLanguage": "en-GB",
+        "articleSection": "Parents & children",
+        "keywords": "Parents & children",
+        "datePublished": "2026-10-22T10:51:29.770Z",
+        "dateModified": "2026-10-28T12:48:35.893Z",
+        "image": "https://www.onlinequrancollege.com/images/learning/blog-parent-progress-r2-1200.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "Online Quran College Editorial",
+          "url": "https://www.onlinequrancollege.com/about"
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.onlinequrancollege.com/#organization",
+          "name": "Online Quran College",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.onlinequrancollege.com/brand/logo.webp"
+          }
+        },
+        "wordCount": 549,
+        "mainEntityOfPage": "https://www.onlinequrancollege.com/blog/parent-teacher-quran-progress-review",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://www.onlinequrancollege.com/blog#blog",
+          "url": "https://www.onlinequrancollege.com/blog",
+          "name": "Quran learning articles"
+        }
+      },
+      "schema_errors": [],
+      "issues": []
+    },
+    {
+      "slug": "family-quran-learning-multiple-children",
+      "url": "https://www.onlinequrancollege.com/blog/family-quran-learning-multiple-children",
+      "final_url": "https://www.onlinequrancollege.com/blog/family-quran-learning-multiple-children",
+      "status": 200,
+      "title": [
+        "Quran Lessons for Multiple Children | OQC"
+      ],
+      "description": "Compare each child’s starting point, timetable and package clearly, and ask about any applicable family offer without assuming a discount.",
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/family-quran-learning-multiple-children"
+      ],
+      "robots": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "h1": [
+        "Planning Quran lessons for more than one child"
+      ],
+      "body_words": 522,
+      "body_matches_cms": true,
+      "body_sha256": "93330d6ec4611342d8b175485f5c61a3e8be7189a0488800dddfc7ab9a68b2fa",
+      "contextual_links": [
+        "/locations/united-states",
+        "/locations/australia",
+        "/learn/quran-for-kids",
+        "/blog/questions-before-quran-course-enrolment",
+        "/pricing",
+        "/learn/quran-for-kids"
+      ],
+      "toc_valid": true,
+      "cover": {
+        "src": "/images/learning/blog-family-siblings-r2-1200.webp",
+        "alt": "Two siblings using separate study spaces with a parent helping the younger learner",
+        "width": "1200",
+        "height": "800",
+        "srcset": "/images/learning/blog-family-siblings-r2-400.webp 400w, /images/learning/blog-family-siblings-r2-800.webp 800w, /images/learning/blog-family-siblings-r2-1200.webp 1200w",
+        "sizes": "(max-width: 1024px) 100vw, 600px",
+        "loading": "eager",
+        "fetchpriority": "high",
+        "decoding": "async",
+        "class": "aspect-[3/2] w-full object-cover"
+      },
+      "article_schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://www.onlinequrancollege.com/blog/family-quran-learning-multiple-children#article",
+        "headline": "Planning Quran lessons for more than one child",
+        "description": "Compare each child’s starting point, timetable and package clearly, and ask about any applicable family offer without assuming a discount.",
+        "inLanguage": "en-GB",
+        "articleSection": "Parents & children",
+        "keywords": "Parents & children",
+        "datePublished": "2026-10-22T10:51:29.770Z",
+        "dateModified": "2026-10-28T12:48:35.893Z",
+        "image": "https://www.onlinequrancollege.com/images/learning/blog-family-siblings-r2-1200.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "Online Quran College Editorial",
+          "url": "https://www.onlinequrancollege.com/about"
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.onlinequrancollege.com/#organization",
+          "name": "Online Quran College",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.onlinequrancollege.com/brand/logo.webp"
+          }
+        },
+        "wordCount": 541,
+        "mainEntityOfPage": "https://www.onlinequrancollege.com/blog/family-quran-learning-multiple-children",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://www.onlinequrancollege.com/blog#blog",
+          "url": "https://www.onlinequrancollege.com/blog",
+          "name": "Quran learning articles"
+        }
+      },
+      "schema_errors": [],
+      "issues": []
+    },
+    {
+      "slug": "choose-online-quran-teacher-usa",
+      "url": "https://www.onlinequrancollege.com/blog/choose-online-quran-teacher-usa",
+      "final_url": "https://www.onlinequrancollege.com/blog/choose-online-quran-teacher-usa",
+      "status": 200,
+      "title": [
+        "Choosing an Online Quran Teacher in the USA | OQC"
+      ],
+      "description": "A practical checklist for US families: assess the learner’s starting point, ask about the teacher, compare local times and read the package details.",
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/choose-online-quran-teacher-usa"
+      ],
+      "robots": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "h1": [
+        "Choosing an online Quran teacher from the USA"
+      ],
+      "body_words": 590,
+      "body_matches_cms": true,
+      "body_sha256": "2344b1017ea1c978bb406442101e6558c0d95f1287bc249e372aa97a455543ef",
+      "contextual_links": [
+        "/locations/united-states",
+        "/courses/noorani-qaida",
+        "/courses/quran-nazara",
+        "/free-trial?country=United%20States",
+        "/locations/united-states",
+        "/locations/united-states/new-york",
+        "/free-trial?country=United%20States"
+      ],
+      "toc_valid": true,
+      "cover": {
+        "src": "/images/learning/blog-usa-teacher-r2-1200.webp",
+        "alt": "Parent reviewing online lesson options with a laptop and a checklist at a home desk",
+        "width": "1200",
+        "height": "800",
+        "srcset": "/images/learning/blog-usa-teacher-r2-400.webp 400w, /images/learning/blog-usa-teacher-r2-800.webp 800w, /images/learning/blog-usa-teacher-r2-1200.webp 1200w",
+        "sizes": "(max-width: 1024px) 100vw, 600px",
+        "loading": "eager",
+        "fetchpriority": "high",
+        "decoding": "async",
+        "class": "aspect-[3/2] w-full object-cover"
+      },
+      "article_schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://www.onlinequrancollege.com/blog/choose-online-quran-teacher-usa#article",
+        "headline": "Choosing an online Quran teacher from the USA",
+        "description": "A practical checklist for US families: assess the learner’s starting point, ask about the teacher, compare local times and read the package details.",
+        "inLanguage": "en-GB",
+        "articleSection": "USA & Australia",
+        "keywords": "USA & Australia, online Quran classes USA, choosing a Quran teacher",
+        "datePublished": "2026-10-22T10:51:29.770Z",
+        "dateModified": "2026-10-28T12:48:35.893Z",
+        "image": "https://www.onlinequrancollege.com/images/learning/blog-usa-teacher-r2-1200.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "Online Quran College Editorial",
+          "url": "https://www.onlinequrancollege.com/about"
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.onlinequrancollege.com/#organization",
+          "name": "Online Quran College",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.onlinequrancollege.com/brand/logo.webp"
+          }
+        },
+        "wordCount": 608,
+        "mainEntityOfPage": "https://www.onlinequrancollege.com/blog/choose-online-quran-teacher-usa",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://www.onlinequrancollege.com/blog#blog",
+          "url": "https://www.onlinequrancollege.com/blog",
+          "name": "Quran learning articles"
+        }
+      },
+      "schema_errors": [],
+      "issues": []
+    },
+    {
+      "slug": "quran-lessons-australia-time-zones",
+      "url": "https://www.onlinequrancollege.com/blog/quran-lessons-australia-time-zones",
+      "final_url": "https://www.onlinequrancollege.com/blog/quran-lessons-australia-time-zones",
+      "status": 200,
+      "title": [
+        "Australian Quran Lesson Time Zones | OQC"
+      ],
+      "description": "Use an actual city, date and local time when arranging Australian online lessons. Understand why one national time label can be misleading.",
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/quran-lessons-australia-time-zones"
+      ],
+      "robots": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "h1": [
+        "Planning Quran lessons across Australian time zones"
+      ],
+      "body_words": 578,
+      "body_matches_cms": true,
+      "body_sha256": "a6e1c29be216f478439f01c4c4198a95ead33c373abc2a20ea61861d9dee581b",
+      "contextual_links": [
+        "/locations/australia",
+        "/learn/quran-for-kids",
+        "/learn/quran-for-adults",
+        "/locations/australia",
+        "/locations/australia/sydney",
+        "/locations/australia/perth"
+      ],
+      "toc_valid": true,
+      "cover": {
+        "src": "/images/learning/blog-australia-schedule-r2-1200.webp",
+        "alt": "Sunlit study desk with a clock, weekly planner and laptop for scheduling online lessons",
+        "width": "1200",
+        "height": "800",
+        "srcset": "/images/learning/blog-australia-schedule-r2-400.webp 400w, /images/learning/blog-australia-schedule-r2-800.webp 800w, /images/learning/blog-australia-schedule-r2-1200.webp 1200w",
+        "sizes": "(max-width: 1024px) 100vw, 600px",
+        "loading": "eager",
+        "fetchpriority": "high",
+        "decoding": "async",
+        "class": "aspect-[3/2] w-full object-cover"
+      },
+      "article_schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://www.onlinequrancollege.com/blog/quran-lessons-australia-time-zones#article",
+        "headline": "Planning Quran lessons across Australian time zones",
+        "description": "Use an actual city, date and local time when arranging Australian online lessons. Understand why one national time label can be misleading.",
+        "inLanguage": "en-GB",
+        "articleSection": "USA & Australia",
+        "keywords": "USA & Australia, online Quran classes Australia, Quran lesson time zones",
+        "datePublished": "2026-10-22T10:51:29.770Z",
+        "dateModified": "2026-10-28T12:48:35.893Z",
+        "image": "https://www.onlinequrancollege.com/images/learning/blog-australia-schedule-r2-1200.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "Online Quran College Editorial",
+          "url": "https://www.onlinequrancollege.com/about"
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.onlinequrancollege.com/#organization",
+          "name": "Online Quran College",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.onlinequrancollege.com/brand/logo.webp"
+          }
+        },
+        "wordCount": 596,
+        "mainEntityOfPage": "https://www.onlinequrancollege.com/blog/quran-lessons-australia-time-zones",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://www.onlinequrancollege.com/blog#blog",
+          "url": "https://www.onlinequrancollege.com/blog",
+          "name": "Quran learning articles"
+        }
+      },
+      "schema_errors": [],
+      "issues": []
+    },
+    {
+      "slug": "noorani-qaida-or-quran-reading",
+      "url": "https://www.onlinequrancollege.com/blog/noorani-qaida-or-quran-reading",
+      "final_url": "https://www.onlinequrancollege.com/blog/noorani-qaida-or-quran-reading",
+      "status": 200,
+      "title": [
+        "Noorani Qaida or Quran Reading? | OQC"
+      ],
+      "description": "Compare reading foundations with supported Quran reading and prepare useful questions about the learner’s current level before selecting a course.",
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/noorani-qaida-or-quran-reading"
+      ],
+      "robots": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "h1": [
+        "Noorani Qaida or Quran reading: where to start?"
+      ],
+      "body_words": 535,
+      "body_matches_cms": true,
+      "body_sha256": "12b9c229f3dd71720d26107b6ec1857524df6edf01b852cfdfd744584d493d7d",
+      "contextual_links": [
+        "/courses/noorani-qaida",
+        "/courses/quran-nazara",
+        "/courses/tajweed",
+        "/free-trial",
+        "/courses/noorani-qaida",
+        "/courses/quran-nazara"
+      ],
+      "toc_valid": true,
+      "cover": {
+        "src": "/images/learning/blog-qaida-reading-r2-1200.webp",
+        "alt": "Child following beginner letters in a workbook beside a closed book on a wooden stand",
+        "width": "1200",
+        "height": "800",
+        "srcset": "/images/learning/blog-qaida-reading-r2-400.webp 400w, /images/learning/blog-qaida-reading-r2-800.webp 800w, /images/learning/blog-qaida-reading-r2-1200.webp 1200w",
+        "sizes": "(max-width: 1024px) 100vw, 600px",
+        "loading": "eager",
+        "fetchpriority": "high",
+        "decoding": "async",
+        "class": "aspect-[3/2] w-full object-cover"
+      },
+      "article_schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://www.onlinequrancollege.com/blog/noorani-qaida-or-quran-reading#article",
+        "headline": "Noorani Qaida or Quran reading: where to start?",
+        "description": "Compare reading foundations with supported Quran reading and prepare useful questions about the learner’s current level before selecting a course.",
+        "inLanguage": "en-GB",
+        "articleSection": "First steps",
+        "keywords": "First steps, Qaida for beginners, Arabic letter recognition",
+        "datePublished": "2026-10-22T10:51:29.770Z",
+        "dateModified": "2026-10-28T12:48:35.893Z",
+        "image": "https://www.onlinequrancollege.com/images/learning/blog-qaida-reading-r2-1200.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "Online Quran College Editorial",
+          "url": "https://www.onlinequrancollege.com/about"
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.onlinequrancollege.com/#organization",
+          "name": "Online Quran College",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.onlinequrancollege.com/brand/logo.webp"
+          }
+        },
+        "wordCount": 554,
+        "mainEntityOfPage": "https://www.onlinequrancollege.com/blog/noorani-qaida-or-quran-reading",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://www.onlinequrancollege.com/blog#blog",
+          "url": "https://www.onlinequrancollege.com/blog",
+          "name": "Quran learning articles"
+        }
+      },
+      "schema_errors": [],
+      "issues": []
+    },
+    {
+      "slug": "adult-quran-beginner-first-month",
+      "url": "https://www.onlinequrancollege.com/blog/adult-quran-beginner-first-month",
+      "final_url": "https://www.onlinequrancollege.com/blog/adult-quran-beginner-first-month",
+      "status": 200,
+      "title": [
+        "An Adult Beginner’s First Month | OQC"
+      ],
+      "description": "An illustrative review framework for adult beginners: establish a starting point, use small practice tasks and discuss progress without a completion promise.",
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/adult-quran-beginner-first-month"
+      ],
+      "robots": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "h1": [
+        "An adult beginner’s first month of Quran study"
+      ],
+      "body_words": 548,
+      "body_matches_cms": true,
+      "body_sha256": "8181c8b74a9cd6092c3ae204bd67999986d2b1cf5ee1b6c6940aba469b06c7b0",
+      "contextual_links": [
+        "/learn/quran-for-adults",
+        "/courses/noorani-qaida",
+        "/courses/quran-nazara",
+        "/learn/quran-for-adults",
+        "/courses/noorani-qaida"
+      ],
+      "toc_valid": true,
+      "cover": {
+        "src": "/images/learning/blog-adult-beginner-r2-1200.webp",
+        "alt": "Adult beginner in a sage hijab studying a workbook during an online lesson at home",
+        "width": "1200",
+        "height": "800",
+        "srcset": "/images/learning/blog-adult-beginner-r2-400.webp 400w, /images/learning/blog-adult-beginner-r2-800.webp 800w, /images/learning/blog-adult-beginner-r2-1200.webp 1200w",
+        "sizes": "(max-width: 1024px) 100vw, 600px",
+        "loading": "eager",
+        "fetchpriority": "high",
+        "decoding": "async",
+        "class": "aspect-[3/2] w-full object-cover"
+      },
+      "article_schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://www.onlinequrancollege.com/blog/adult-quran-beginner-first-month#article",
+        "headline": "An adult beginner’s first month of Quran study",
+        "description": "An illustrative review framework for adult beginners: establish a starting point, use small practice tasks and discuss progress without a completion promise.",
+        "inLanguage": "en-GB",
+        "articleSection": "Adult learning",
+        "keywords": "Adult learning, Quran learning for adults, beginner Quran lessons",
+        "datePublished": "2026-10-22T10:51:29.770Z",
+        "dateModified": "2026-10-28T12:48:35.893Z",
+        "image": "https://www.onlinequrancollege.com/images/learning/blog-adult-beginner-r2-1200.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "Online Quran College Editorial",
+          "url": "https://www.onlinequrancollege.com/about"
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.onlinequrancollege.com/#organization",
+          "name": "Online Quran College",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.onlinequrancollege.com/brand/logo.webp"
+          }
+        },
+        "wordCount": 567,
+        "mainEntityOfPage": "https://www.onlinequrancollege.com/blog/adult-quran-beginner-first-month",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://www.onlinequrancollege.com/blog#blog",
+          "url": "https://www.onlinequrancollege.com/blog",
+          "name": "Quran learning articles"
+        }
+      },
+      "schema_errors": [],
+      "issues": []
+    },
+    {
+      "slug": "prepare-child-first-online-quran-trial",
+      "url": "https://www.onlinequrancollege.com/blog/prepare-child-first-online-quran-trial",
+      "final_url": "https://www.onlinequrancollege.com/blog/prepare-child-first-online-quran-trial",
+      "status": 200,
+      "title": [
+        "Preparing a Child for a Quran Trial | OQC"
+      ],
+      "description": "A parent’s checklist for the device, learning sample, supervision questions and a calm discussion after a child’s first online lesson.",
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/prepare-child-first-online-quran-trial"
+      ],
+      "robots": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "h1": [
+        "Preparing a child for a first online Quran trial"
+      ],
+      "body_words": 544,
+      "body_matches_cms": true,
+      "body_sha256": "1837a83b67789870ce9cca6f3bed8053cfe2cb2f725d383e0d20a557596f3f9d",
+      "contextual_links": [
+        "/learn/quran-for-kids",
+        "/locations/united-states",
+        "/locations/australia",
+        "/free-trial",
+        "/faq"
+      ],
+      "toc_valid": true,
+      "cover": {
+        "src": "/images/learning/blog-first-trial-r2-1200.webp",
+        "alt": "Mother and child greeting an online teacher on a laptop at the start of a lesson",
+        "width": "1200",
+        "height": "800",
+        "srcset": "/images/learning/blog-first-trial-r2-400.webp 400w, /images/learning/blog-first-trial-r2-800.webp 800w, /images/learning/blog-first-trial-r2-1200.webp 1200w",
+        "sizes": "(max-width: 1024px) 100vw, 600px",
+        "loading": "eager",
+        "fetchpriority": "high",
+        "decoding": "async",
+        "class": "aspect-[3/2] w-full object-cover"
+      },
+      "article_schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://www.onlinequrancollege.com/blog/prepare-child-first-online-quran-trial#article",
+        "headline": "Preparing a child for a first online Quran trial",
+        "description": "A parent’s checklist for the device, learning sample, supervision questions and a calm discussion after a child’s first online lesson.",
+        "inLanguage": "en-GB",
+        "articleSection": "Parents & children",
+        "keywords": "Parents & children, first Quran lesson for kids, online lesson preparation",
+        "datePublished": "2026-10-22T10:51:29.770Z",
+        "dateModified": "2026-10-28T12:48:35.893Z",
+        "image": "https://www.onlinequrancollege.com/images/learning/blog-first-trial-r2-1200.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "Online Quran College Editorial",
+          "url": "https://www.onlinequrancollege.com/about"
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.onlinequrancollege.com/#organization",
+          "name": "Online Quran College",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.onlinequrancollege.com/brand/logo.webp"
+          }
+        },
+        "wordCount": 561,
+        "mainEntityOfPage": "https://www.onlinequrancollege.com/blog/prepare-child-first-online-quran-trial",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://www.onlinequrancollege.com/blog#blog",
+          "url": "https://www.onlinequrancollege.com/blog",
+          "name": "Quran learning articles"
+        }
+      },
+      "schema_errors": [],
+      "issues": []
+    },
+    {
+      "slug": "tajweed-practice-with-feedback",
+      "url": "https://www.onlinequrancollege.com/blog/tajweed-practice-with-feedback",
+      "final_url": "https://www.onlinequrancollege.com/blog/tajweed-practice-with-feedback",
+      "status": 200,
+      "title": [
+        "Tajweed Practice with Teacher Feedback | OQC"
+      ],
+      "description": "A practical feedback loop for recitation: understand one correction, hear a model, practise carefully and ask a teacher to check the next attempt.",
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/tajweed-practice-with-feedback"
+      ],
+      "robots": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "h1": [
+        "Turning Tajweed feedback into useful practice"
+      ],
+      "body_words": 553,
+      "body_matches_cms": true,
+      "body_sha256": "fa2864bd227b0ca982f6a23822f40a4f1fa69c511751d366cd4c7e3b8875d869",
+      "contextual_links": [
+        "/courses/tajweed",
+        "/courses/quran-nazara",
+        "/courses/noorani-qaida",
+        "/courses/tajweed",
+        "/courses/quran-nazara"
+      ],
+      "toc_valid": true,
+      "cover": {
+        "src": "/images/learning/blog-feedback-practice-r2-1200.webp",
+        "alt": "Teenage learner listening to feedback on headphones and taking notes beside a laptop",
+        "width": "1200",
+        "height": "800",
+        "srcset": "/images/learning/blog-feedback-practice-r2-400.webp 400w, /images/learning/blog-feedback-practice-r2-800.webp 800w, /images/learning/blog-feedback-practice-r2-1200.webp 1200w",
+        "sizes": "(max-width: 1024px) 100vw, 600px",
+        "loading": "eager",
+        "fetchpriority": "high",
+        "decoding": "async",
+        "class": "aspect-[3/2] w-full object-cover"
+      },
+      "article_schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://www.onlinequrancollege.com/blog/tajweed-practice-with-feedback#article",
+        "headline": "Turning Tajweed feedback into useful practice",
+        "description": "A practical feedback loop for recitation: understand one correction, hear a model, practise carefully and ask a teacher to check the next attempt.",
+        "inLanguage": "en-GB",
+        "articleSection": "Recitation & revision",
+        "keywords": "Recitation & revision",
+        "datePublished": "2026-10-22T10:51:29.770Z",
+        "dateModified": "2026-10-28T12:48:35.893Z",
+        "image": "https://www.onlinequrancollege.com/images/learning/blog-feedback-practice-r2-1200.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "Online Quran College Editorial",
+          "url": "https://www.onlinequrancollege.com/about"
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.onlinequrancollege.com/#organization",
+          "name": "Online Quran College",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.onlinequrancollege.com/brand/logo.webp"
+          }
+        },
+        "wordCount": 572,
+        "mainEntityOfPage": "https://www.onlinequrancollege.com/blog/tajweed-practice-with-feedback",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://www.onlinequrancollege.com/blog#blog",
+          "url": "https://www.onlinequrancollege.com/blog",
+          "name": "Quran learning articles"
+        }
+      },
+      "schema_errors": [],
+      "issues": []
+    },
+    {
+      "slug": "hifz-revision-with-school",
+      "url": "https://www.onlinequrancollege.com/blog/hifz-revision-with-school",
+      "final_url": "https://www.onlinequrancollege.com/blog/hifz-revision-with-school",
+      "status": 200,
+      "title": [
+        "Hifz Revision Alongside School | OQC"
+      ],
+      "description": "Questions for families about balancing new memorisation, review, school responsibilities and a manageable discussion with the teacher.",
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/hifz-revision-with-school"
+      ],
+      "robots": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "h1": [
+        "Planning Hifz revision alongside school"
+      ],
+      "body_words": 533,
+      "body_matches_cms": true,
+      "body_sha256": "da0b519f91f4826ff261036649c0d68253b32dfe2c1ac5dc3ab04c198331529b",
+      "contextual_links": [
+        "/courses/hifz-quran",
+        "/locations/united-states",
+        "/locations/australia",
+        "/blog/parent-teacher-quran-progress-review",
+        "/courses/hifz-quran",
+        "/blog/memorization-techniques-for-beginners"
+      ],
+      "toc_valid": true,
+      "cover": {
+        "src": "/images/learning/blog-school-hifz-r2-1200.webp",
+        "alt": "School backpack, revision planner and book stand arranged for balancing study and memorisation",
+        "width": "1200",
+        "height": "800",
+        "srcset": "/images/learning/blog-school-hifz-r2-400.webp 400w, /images/learning/blog-school-hifz-r2-800.webp 800w, /images/learning/blog-school-hifz-r2-1200.webp 1200w",
+        "sizes": "(max-width: 1024px) 100vw, 600px",
+        "loading": "eager",
+        "fetchpriority": "high",
+        "decoding": "async",
+        "class": "aspect-[3/2] w-full object-cover"
+      },
+      "article_schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://www.onlinequrancollege.com/blog/hifz-revision-with-school#article",
+        "headline": "Planning Hifz revision alongside school",
+        "description": "Questions for families about balancing new memorisation, review, school responsibilities and a manageable discussion with the teacher.",
+        "inLanguage": "en-GB",
+        "articleSection": "Recitation & revision",
+        "keywords": "Recitation & revision, Hifz revision with school, Quran memorisation routine",
+        "datePublished": "2026-10-22T10:51:29.770Z",
+        "dateModified": "2026-10-29T07:47:35.881Z",
+        "image": "https://www.onlinequrancollege.com/images/learning/blog-school-hifz-r2-1200.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "Online Quran College Editorial",
+          "url": "https://www.onlinequrancollege.com/about"
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.onlinequrancollege.com/#organization",
+          "name": "Online Quran College",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.onlinequrancollege.com/brand/logo.webp"
+          }
+        },
+        "wordCount": 551,
+        "mainEntityOfPage": "https://www.onlinequrancollege.com/blog/hifz-revision-with-school",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://www.onlinequrancollege.com/blog#blog",
+          "url": "https://www.onlinequrancollege.com/blog",
+          "name": "Quran learning articles"
+        }
+      },
+      "schema_errors": [],
+      "issues": []
+    },
+    {
+      "slug": "questions-before-quran-course-enrolment",
+      "url": "https://www.onlinequrancollege.com/blog/questions-before-quran-course-enrolment",
+      "final_url": "https://www.onlinequrancollege.com/blog/questions-before-quran-course-enrolment",
+      "status": 200,
+      "title": [
+        "Questions Before Quran Course Enrolment | OQC"
+      ],
+      "description": "A clear enrolment checklist covering course suitability, teacher information, lesson times, fee currency, written policies and progress feedback.",
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/questions-before-quran-course-enrolment"
+      ],
+      "robots": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "h1": [
+        "Questions to ask before enrolling in a Quran course"
+      ],
+      "body_words": 534,
+      "body_matches_cms": true,
+      "body_sha256": "e40c05898deba408da528f08d9a90a3a3d105a11a7ba82e6a329edf61a40b854",
+      "contextual_links": [
+        "/terms-and-conditions",
+        "/refund-policy",
+        "/learn",
+        "/free-trial",
+        "/pricing",
+        "/terms-and-conditions",
+        "/refund-policy"
+      ],
+      "toc_valid": true,
+      "cover": {
+        "src": "/images/learning/blog-enrolment-questions-r2-1200.webp",
+        "alt": "Parent preparing an enrolment checklist beside a laptop, calendar and notebook",
+        "width": "1200",
+        "height": "800",
+        "srcset": "/images/learning/blog-enrolment-questions-r2-400.webp 400w, /images/learning/blog-enrolment-questions-r2-800.webp 800w, /images/learning/blog-enrolment-questions-r2-1200.webp 1200w",
+        "sizes": "(max-width: 1024px) 100vw, 600px",
+        "loading": "eager",
+        "fetchpriority": "high",
+        "decoding": "async",
+        "class": "aspect-[3/2] w-full object-cover"
+      },
+      "article_schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://www.onlinequrancollege.com/blog/questions-before-quran-course-enrolment#article",
+        "headline": "Questions to ask before enrolling in a Quran course",
+        "description": "A clear enrolment checklist covering course suitability, teacher information, lesson times, fee currency, written policies and progress feedback.",
+        "inLanguage": "en-GB",
+        "articleSection": "First steps",
+        "keywords": "First steps",
+        "datePublished": "2026-10-22T10:51:29.770Z",
+        "dateModified": "2026-10-28T12:48:35.893Z",
+        "image": "https://www.onlinequrancollege.com/images/learning/blog-enrolment-questions-r2-1200.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "Online Quran College Editorial",
+          "url": "https://www.onlinequrancollege.com/about"
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.onlinequrancollege.com/#organization",
+          "name": "Online Quran College",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.onlinequrancollege.com/brand/logo.webp"
+          }
+        },
+        "wordCount": 554,
+        "mainEntityOfPage": "https://www.onlinequrancollege.com/blog/questions-before-quran-course-enrolment",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://www.onlinequrancollege.com/blog#blog",
+          "url": "https://www.onlinequrancollege.com/blog",
+          "name": "Quran learning articles"
+        }
+      },
+      "schema_errors": [],
+      "issues": []
+    },
+    {
+      "slug": "choose-online-quran-classes-kids",
+      "url": "https://www.onlinequrancollege.com/blog/choose-online-quran-classes-kids",
+      "final_url": "https://www.onlinequrancollege.com/blog/choose-online-quran-classes-kids",
+      "status": 200,
+      "title": [
+        "Online Quran Classes for Kids: A Parent’s Checklist"
+      ],
+      "description": "Compare online Quran classes for kids with questions about teacher fit, trials, schedules, parent support and fees before choosing regular lessons.",
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/choose-online-quran-classes-kids"
+      ],
+      "robots": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "h1": [
+        "Choosing Online Quran Classes for Kids: A Parent’s Checklist"
+      ],
+      "body_words": 915,
+      "body_matches_cms": true,
+      "body_sha256": "d668ef737f79c17ae3b1b764bc6bb6c8e27ce07a13c82cb60c909c7867c28abe",
+      "contextual_links": [
+        "/learn/quran-for-kids",
+        "/courses/noorani-qaida",
+        "/courses/quran-nazara",
+        "/blog/prepare-child-first-online-quran-trial",
+        "/locations",
+        "/pricing",
+        "/blog/parent-teacher-quran-progress-review",
+        "/teachers",
+        "/learn#course-comparison",
+        "/free-trial"
+      ],
+      "toc_valid": true,
+      "cover": {
+        "src": "/images/blog-20261028/choose-online-quran-classes-kids-1200.webp",
+        "alt": "Mother and daughter reviewing a lesson checklist beside a laptop at a sunlit home desk",
+        "width": "1200",
+        "height": "800",
+        "srcset": "/images/blog-20261028/choose-online-quran-classes-kids-400.webp 400w, /images/blog-20261028/choose-online-quran-classes-kids-800.webp 800w, /images/blog-20261028/choose-online-quran-classes-kids-1200.webp 1200w",
+        "sizes": "(max-width: 1024px) 100vw, 600px",
+        "loading": "eager",
+        "fetchpriority": "high",
+        "decoding": "async",
+        "class": "aspect-[3/2] w-full object-cover"
+      },
+      "article_schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://www.onlinequrancollege.com/blog/choose-online-quran-classes-kids#article",
+        "headline": "Choosing Online Quran Classes for Kids: A Parent’s Checklist",
+        "description": "Compare online Quran classes for kids with questions about teacher fit, trials, schedules, parent support and fees before choosing regular lessons.",
+        "inLanguage": "en-GB",
+        "articleSection": "Parents",
+        "keywords": "parents, choosing-lessons",
+        "datePublished": "2026-10-28T08:12:26.114Z",
+        "dateModified": "2026-10-28T12:48:35.893Z",
+        "image": "https://www.onlinequrancollege.com/images/blog-20261028/choose-online-quran-classes-kids-1200.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "Online Quran College",
+          "url": "https://www.onlinequrancollege.com/about"
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.onlinequrancollege.com/#organization",
+          "name": "Online Quran College",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.onlinequrancollege.com/brand/logo.webp"
+          }
+        },
+        "wordCount": 920,
+        "mainEntityOfPage": "https://www.onlinequrancollege.com/blog/choose-online-quran-classes-kids",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://www.onlinequrancollege.com/blog#blog",
+          "url": "https://www.onlinequrancollege.com/blog",
+          "name": "Quran learning articles"
+        }
+      },
+      "schema_errors": [],
+      "issues": []
+    },
+    {
+      "slug": "noorani-qaida-home-practice-checklist",
+      "url": "https://www.onlinequrancollege.com/blog/noorani-qaida-home-practice-checklist",
+      "final_url": "https://www.onlinequrancollege.com/blog/noorani-qaida-home-practice-checklist",
+      "status": 200,
+      "title": [
+        "Noorani Qaida Home Practice: A Parent’s Checklist"
+      ],
+      "description": "Plan Noorani Qaida home practice with clear teacher instructions, manageable tasks and parent notes. Know what to support and what to ask the teacher.",
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/noorani-qaida-home-practice-checklist"
+      ],
+      "robots": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "h1": [
+        "Noorani Qaida Home Practice: A Parent–Teacher Checklist"
+      ],
+      "body_words": 898,
+      "body_matches_cms": true,
+      "body_sha256": "2169827db5f5e7218fca7b66a709c8655d0660c9fb1db847a94899e7c53c5139",
+      "contextual_links": [
+        "/blog/noorani-qaida-or-quran-reading",
+        "/courses/noorani-qaida",
+        "/courses/quran-nazara",
+        "/blog/noorani-qaida-or-quran-reading",
+        "/free-trial",
+        "/learn/quran-for-kids"
+      ],
+      "toc_valid": true,
+      "cover": {
+        "src": "/images/blog-20261028/noorani-qaida-home-practice-checklist-1200.webp",
+        "alt": "Mother supporting a child with simple learning shapes beside a blank practice notebook",
+        "width": "1200",
+        "height": "800",
+        "srcset": "/images/blog-20261028/noorani-qaida-home-practice-checklist-400.webp 400w, /images/blog-20261028/noorani-qaida-home-practice-checklist-800.webp 800w, /images/blog-20261028/noorani-qaida-home-practice-checklist-1200.webp 1200w",
+        "sizes": "(max-width: 1024px) 100vw, 600px",
+        "loading": "eager",
+        "fetchpriority": "high",
+        "decoding": "async",
+        "class": "aspect-[3/2] w-full object-cover"
+      },
+      "article_schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://www.onlinequrancollege.com/blog/noorani-qaida-home-practice-checklist#article",
+        "headline": "Noorani Qaida Home Practice: A Parent–Teacher Checklist",
+        "description": "Plan Noorani Qaida home practice with clear teacher instructions, manageable tasks and parent notes. Know what to support and what to ask the teacher.",
+        "inLanguage": "en-GB",
+        "articleSection": "Parents",
+        "keywords": "Noorani-Qaida, home-practice",
+        "datePublished": "2026-10-28T08:12:26.114Z",
+        "dateModified": "2026-10-28T12:48:35.893Z",
+        "image": "https://www.onlinequrancollege.com/images/blog-20261028/noorani-qaida-home-practice-checklist-1200.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "Online Quran College",
+          "url": "https://www.onlinequrancollege.com/about"
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.onlinequrancollege.com/#organization",
+          "name": "Online Quran College",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.onlinequrancollege.com/brand/logo.webp"
+          }
+        },
+        "wordCount": 900,
+        "mainEntityOfPage": "https://www.onlinequrancollege.com/blog/noorani-qaida-home-practice-checklist",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://www.onlinequrancollege.com/blog#blog",
+          "url": "https://www.onlinequrancollege.com/blog",
+          "name": "Quran learning articles"
+        }
+      },
+      "schema_errors": [],
+      "issues": []
+    },
+    {
+      "slug": "returning-to-quran-study-adults",
+      "url": "https://www.onlinequrancollege.com/blog/returning-to-quran-study-adults",
+      "final_url": "https://www.onlinequrancollege.com/blog/returning-to-quran-study-adults",
+      "status": 200,
+      "title": [
+        "Returning to Quran Study: An Adult’s Planning Guide"
+      ],
+      "description": "Return to Quran study with a realistic adult learning plan. Review your reading level, teacher feedback, lesson times and practice around work and family.",
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/returning-to-quran-study-adults"
+      ],
+      "robots": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "h1": [
+        "Returning to Quran Study After a Long Break: An Adult’s Guide"
+      ],
+      "body_words": 875,
+      "body_matches_cms": true,
+      "body_sha256": "ce809dc8898446fa4479c113b61fb6d3aa1ff95a2fd55903c2b3ddf9ed425446",
+      "contextual_links": [
+        "/learn/quran-for-adults",
+        "/learn#course-comparison",
+        "/courses/noorani-qaida",
+        "/courses/quran-nazara",
+        "/locations",
+        "/blog/tajweed-practice-with-feedback",
+        "/pricing",
+        "/learn#course-comparison",
+        "/pricing",
+        "/free-trial"
+      ],
+      "toc_valid": true,
+      "cover": {
+        "src": "/images/blog-20261028/returning-to-quran-study-adults-1200.webp",
+        "alt": "Adult learner planning a return to study beside a laptop, notebook and wooden book stand",
+        "width": "1200",
+        "height": "800",
+        "srcset": "/images/blog-20261028/returning-to-quran-study-adults-400.webp 400w, /images/blog-20261028/returning-to-quran-study-adults-800.webp 800w, /images/blog-20261028/returning-to-quran-study-adults-1200.webp 1200w",
+        "sizes": "(max-width: 1024px) 100vw, 600px",
+        "loading": "eager",
+        "fetchpriority": "high",
+        "decoding": "async",
+        "class": "aspect-[3/2] w-full object-cover"
+      },
+      "article_schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://www.onlinequrancollege.com/blog/returning-to-quran-study-adults#article",
+        "headline": "Returning to Quran Study After a Long Break: An Adult’s Guide",
+        "description": "Return to Quran study with a realistic adult learning plan. Review your reading level, teacher feedback, lesson times and practice around work and family.",
+        "inLanguage": "en-GB",
+        "articleSection": "Adult learning",
+        "keywords": "adult-learning, study-planning",
+        "datePublished": "2026-10-28T08:12:26.114Z",
+        "dateModified": "2026-10-28T12:48:35.893Z",
+        "image": "https://www.onlinequrancollege.com/images/blog-20261028/returning-to-quran-study-adults-1200.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "Online Quran College",
+          "url": "https://www.onlinequrancollege.com/about"
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.onlinequrancollege.com/#organization",
+          "name": "Online Quran College",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.onlinequrancollege.com/brand/logo.webp"
+          }
+        },
+        "wordCount": 877,
+        "mainEntityOfPage": "https://www.onlinequrancollege.com/blog/returning-to-quran-study-adults",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://www.onlinequrancollege.com/blog#blog",
+          "url": "https://www.onlinequrancollege.com/blog",
+          "name": "Quran learning articles"
+        }
+      },
+      "schema_errors": [],
+      "issues": []
+    },
+    {
+      "slug": "family-quran-learning-weekly-routine",
+      "url": "https://www.onlinequrancollege.com/blog/family-quran-learning-weekly-routine",
+      "final_url": "https://www.onlinequrancollege.com/blog/family-quran-learning-weekly-routine",
+      "status": 200,
+      "title": [
+        "A Weekly Quran Learning Routine for Families"
+      ],
+      "description": "Build a family Quran learning routine around real lessons, school and work. Organise materials, shared devices, practice tasks and weekly reviews.",
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/family-quran-learning-weekly-routine"
+      ],
+      "robots": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "h1": [
+        "Building a Family Quran Learning Routine: A Weekly Guide"
+      ],
+      "body_words": 915,
+      "body_matches_cms": true,
+      "body_sha256": "7c186a57f3600030b395ba48beb168d601dfbc10be4044fe26ffaae1181daeb8",
+      "contextual_links": [
+        "/blog/family-quran-learning-multiple-children",
+        "/blog/online-quran-lesson-setup-accessibility",
+        "/blog/parent-teacher-quran-progress-review",
+        "/locations",
+        "/blog/family-quran-learning-multiple-children",
+        "/pricing",
+        "/free-trial"
+      ],
+      "toc_valid": true,
+      "cover": {
+        "src": "/images/blog-20261028/family-quran-learning-weekly-routine-1200.webp",
+        "alt": "Family arranging blank weekly planning cards on a table beside a laptop and study book",
+        "width": "1200",
+        "height": "800",
+        "srcset": "/images/blog-20261028/family-quran-learning-weekly-routine-400.webp 400w, /images/blog-20261028/family-quran-learning-weekly-routine-800.webp 800w, /images/blog-20261028/family-quran-learning-weekly-routine-1200.webp 1200w",
+        "sizes": "(max-width: 1024px) 100vw, 600px",
+        "loading": "eager",
+        "fetchpriority": "high",
+        "decoding": "async",
+        "class": "aspect-[3/2] w-full object-cover"
+      },
+      "article_schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://www.onlinequrancollege.com/blog/family-quran-learning-weekly-routine#article",
+        "headline": "Building a Family Quran Learning Routine: A Weekly Guide",
+        "description": "Build a family Quran learning routine around real lessons, school and work. Organise materials, shared devices, practice tasks and weekly reviews.",
+        "inLanguage": "en-GB",
+        "articleSection": "Parents",
+        "keywords": "family-learning, routines",
+        "datePublished": "2026-10-28T08:12:26.114Z",
+        "dateModified": "2026-10-28T12:48:35.893Z",
+        "image": "https://www.onlinequrancollege.com/images/blog-20261028/family-quran-learning-weekly-routine-1200.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "Online Quran College",
+          "url": "https://www.onlinequrancollege.com/about"
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.onlinequrancollege.com/#organization",
+          "name": "Online Quran College",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.onlinequrancollege.com/brand/logo.webp"
+          }
+        },
+        "wordCount": 917,
+        "mainEntityOfPage": "https://www.onlinequrancollege.com/blog/family-quran-learning-weekly-routine",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://www.onlinequrancollege.com/blog#blog",
+          "url": "https://www.onlinequrancollege.com/blog",
+          "name": "Quran learning articles"
+        }
+      },
+      "schema_errors": [],
+      "issues": []
+    },
+    {
+      "slug": "online-quran-class-fees-uk-comparison",
+      "url": "https://www.onlinequrancollege.com/blog/online-quran-class-fees-uk-comparison",
+      "final_url": "https://www.onlinequrancollege.com/blog/online-quran-class-fees-uk-comparison",
+      "status": 200,
+      "title": [
+        "Online Quran Class Fees in the UK: A Comparison Guide"
+      ],
+      "description": "Compare online Quran class fees in the UK using lesson length, weekly frequency, GBP pricing, trial eligibility and the actual terms before enrolling.",
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/online-quran-class-fees-uk-comparison"
+      ],
+      "robots": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "h1": [
+        "Online Quran Class Fees in the UK: Comparing Lesson Value"
+      ],
+      "body_words": 915,
+      "body_matches_cms": true,
+      "body_sha256": "8169019a0d3d42624162c8e2e42feff11a3c730412bc2a8fd8b248112f3a990d",
+      "contextual_links": [
+        "/pricing?currency=GBP",
+        "/learn#course-comparison",
+        "/terms-and-conditions",
+        "/refund-policy",
+        "/locations/united-kingdom",
+        "/blog/choose-online-quran-classes-kids",
+        "/learn/quran-for-adults",
+        "/pricing?currency=GBP",
+        "/pricing?currency=GBP",
+        "/free-trial?country=United+Kingdom&currency=GBP"
+      ],
+      "toc_valid": true,
+      "cover": {
+        "src": "/images/blog-20261028/online-quran-class-fees-uk-comparison-1200.webp",
+        "alt": "Woman comparing lesson options with a blank checklist and calculator at a quiet home desk",
+        "width": "1200",
+        "height": "800",
+        "srcset": "/images/blog-20261028/online-quran-class-fees-uk-comparison-400.webp 400w, /images/blog-20261028/online-quran-class-fees-uk-comparison-800.webp 800w, /images/blog-20261028/online-quran-class-fees-uk-comparison-1200.webp 1200w",
+        "sizes": "(max-width: 1024px) 100vw, 600px",
+        "loading": "eager",
+        "fetchpriority": "high",
+        "decoding": "async",
+        "class": "aspect-[3/2] w-full object-cover"
+      },
+      "article_schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://www.onlinequrancollege.com/blog/online-quran-class-fees-uk-comparison#article",
+        "headline": "Online Quran Class Fees in the UK: Comparing Lesson Value",
+        "description": "Compare online Quran class fees in the UK using lesson length, weekly frequency, GBP pricing, trial eligibility and the actual terms before enrolling.",
+        "inLanguage": "en-GB",
+        "articleSection": "International",
+        "keywords": "UK, course-fees",
+        "datePublished": "2026-10-28T08:12:26.114Z",
+        "dateModified": "2026-10-29T07:47:35.881Z",
+        "image": "https://www.onlinequrancollege.com/images/blog-20261028/online-quran-class-fees-uk-comparison-1200.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "Online Quran College",
+          "url": "https://www.onlinequrancollege.com/about"
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.onlinequrancollege.com/#organization",
+          "name": "Online Quran College",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.onlinequrancollege.com/brand/logo.webp"
+          }
+        },
+        "wordCount": 918,
+        "mainEntityOfPage": "https://www.onlinequrancollege.com/blog/online-quran-class-fees-uk-comparison",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://www.onlinequrancollege.com/blog#blog",
+          "url": "https://www.onlinequrancollege.com/blog",
+          "name": "Quran learning articles"
+        }
+      },
+      "schema_errors": [],
+      "issues": []
+    }
+  ],
+  "contextual_link_checks": [
+    {
+      "url": "https://www.onlinequrancollege.com/blog/choose-online-quran-classes-kids",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/blog/family-quran-learning-multiple-children",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/blog/help-your-kids-learn-quran-online",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/blog/hifz-revision-with-school",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/blog/memorization-techniques-for-beginners",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/blog/noorani-qaida-or-quran-reading",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/blog/online-quran-lesson-setup-accessibility",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/blog/parent-teacher-quran-progress-review",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/blog/prepare-child-first-online-quran-trial",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/blog/questions-before-quran-course-enrolment",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/blog/tajweed-practice-with-feedback",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/contact",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/courses/arabic-language",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/courses/hifz-quran",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/courses/noorani-qaida",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/courses/quran-nazara",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/courses/quran-translation",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/courses/tajweed",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/faq",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/free-trial",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/free-trial?country=United%20States",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/free-trial?country=United+Kingdom&currency=GBP",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/learn",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/learn#course-comparison",
+      "status": 200,
+      "fragment_valid": true,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/learn/quran-for-adults",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/learn/quran-for-kids",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/australia",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/australia/perth",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/australia/sydney",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/united-kingdom",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/united-states",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/united-states/new-york",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/pricing",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/pricing?currency=GBP",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/refund-policy",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/teachers",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/terms-and-conditions",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    }
+  ],
+  "limits": [
+    "Raw HTML and source agreement only; browser layout and accessibility are separate.",
+    "Not proof of Google indexing, rankings, rich-result eligibility or field Core Web Vitals.",
+    "Contextual same-origin links checked; external citations and vendor endpoints are separate."
+  ]
+}
