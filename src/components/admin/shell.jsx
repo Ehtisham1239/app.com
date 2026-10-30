@@ -77,20 +77,21 @@ function Sidebar({ onNavigate }) {
   const path = usePathname();
   const { can } = useAccess();
   return (
-    <nav className="scrollbar-thin flex h-full flex-col overflow-y-auto bg-mushaf-950 px-3 pb-6 text-white" aria-label="Admin">
-      <Link href="/admin" onClick={onNavigate} className="flex items-center gap-3 px-2 pb-5 pt-5">
-        <img src="/brand/logo.webp" alt="" width={48} height={48} className="size-12 shrink-0 rounded-lg bg-white p-1" />
+    <nav className="scrollbar-thin relative flex h-full flex-col overflow-y-auto bg-linear-to-b from-mushaf-950 via-[#0b2a14] to-mushaf-900 px-3 pb-6 text-white" aria-label="Admin">
+      <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.06]" aria-hidden="true" />
+      <Link href="/admin" onClick={onNavigate} className="relative mx-1 mb-2 mt-4 flex items-center gap-3 rounded-2xl border border-gold-400/25 bg-white/[0.06] px-3 py-3 shadow-[inset_0_1px_0_rgb(255_255_255/0.06)]">
+        <img src="/brand/logo.webp" alt="" width={44} height={44} className="size-11 shrink-0 rounded-xl bg-white p-1 shadow" />
         <span className="leading-tight">
-          <span className="block whitespace-nowrap font-display text-[1.02rem] text-white">Online Quran College</span>
-          <span className="block text-[0.68rem] font-bold uppercase tracking-[0.2em] text-gold-300">CMS Portal</span>
+          <span className="block font-display text-[0.95rem] leading-snug text-white">Online Quran College</span>
+          <span className="block text-[0.66rem] font-bold uppercase tracking-[0.22em] text-gold-300">CMS Portal</span>
         </span>
       </Link>
       {NAV.map((g) => {
         const items = g.items.filter((i) => !i.perm || [].concat(i.perm).some(can));
         if (!items.length) return null;
         return (
-          <div key={g.group} className="mt-3">
-            <p className="px-3 pb-1.5 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-white/35">{g.group}</p>
+          <div key={g.group} className="relative mt-4">
+            <p className="flex items-center gap-2 px-3 pb-1.5 text-[0.66rem] font-bold uppercase tracking-[0.18em] text-gold-300/60"><span className="h-px w-3 bg-gold-400/50" aria-hidden="true" />{g.group}</p>
             <ul className="space-y-0.5">
               {items.map(({ href, label, icon: Icon }) => {
                 // The most specific matching link wins (e.g. /admin/progress/form over /admin/progress).
@@ -102,8 +103,8 @@ function Sidebar({ onNavigate }) {
                       onClick={onNavigate}
                       aria-current={active ? "page" : undefined}
                       className={clsx(
-                        "group flex items-center gap-3 rounded-xl px-3 py-2 text-[0.92rem] font-medium transition-colors",
-                        active ? "bg-white/10 text-white shadow-[inset_3px_0_0_var(--color-gold-400)]" : "text-white/70 hover:bg-white/5 hover:text-white",
+                        "group flex items-center gap-3 rounded-xl px-3 py-2 text-[0.92rem] font-medium transition-all",
+                        active ? "bg-linear-to-r from-white/[0.14] to-white/[0.04] text-white shadow-[inset_3px_0_0_var(--color-gold-400)]" : "text-white/70 hover:translate-x-0.5 hover:bg-white/[0.06] hover:text-white",
                       )}
                     >
                       <Icon className={clsx("size-[1.1rem]", active ? "text-gold-300" : "text-white/50 group-hover:text-white/80")} aria-hidden="true" />
@@ -116,7 +117,7 @@ function Sidebar({ onNavigate }) {
           </div>
         );
       })}
-      <a href="/" target="_blank" rel="noopener noreferrer" className="mt-auto flex items-center gap-2 rounded-xl px-3 py-2 pt-6 text-[0.85rem] text-white/50 hover:text-gold-300">
+      <a href="/" target="_blank" rel="noopener noreferrer" className="relative mt-auto flex items-center gap-2 rounded-xl px-3 py-2 pt-6 text-[0.85rem] text-white/50 hover:text-gold-300">
         <ExternalLink className="size-4" aria-hidden="true" /> View website
       </a>
     </nav>
@@ -336,7 +337,7 @@ export function Shell({ children }) {
     );
   }
   return (
-    <div className="min-h-screen bg-paper">
+    <div className="adm-shell min-h-screen">
       <aside className="fixed inset-y-0 left-0 z-30 hidden w-64 lg:block">
         <Sidebar />
       </aside>
@@ -352,7 +353,8 @@ export function Shell({ children }) {
         </div>
       )}
       <div className="lg:pl-64">
-        <header className="sticky top-0 z-20 flex h-16 items-center gap-3 border-b border-line bg-white/90 px-4 backdrop-blur sm:px-6">
+        <header className="sticky top-0 z-20 flex h-16 items-center gap-3 border-b border-line bg-white/85 px-4 shadow-[0_6px_20px_-18px_rgb(13_74_28/0.6)] backdrop-blur sm:px-6">
+          <span className="absolute inset-x-0 top-0 h-0.5 bg-linear-to-r from-leaf-700 via-gold-400 to-leaf-700" aria-hidden="true" />
           <button type="button" onClick={() => setDrawer(true)} className="rounded-lg p-2 text-ink-soft hover:bg-paper lg:hidden" aria-label="Open menu">
             <Menu className="size-5" />
           </button>

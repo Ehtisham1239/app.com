@@ -6,7 +6,7 @@ import { ArrowRight, CalendarClock, ClipboardCheck, GraduationCap, PenLine, Exte
 import { useAccess } from "@/lib/admin/access";
 import { db, useLoad } from "@/lib/admin/db";
 import { TRIAL_STATUSES } from "@/lib/constants";
-import { Card, EmptyState, ErrorState, Loading, PageHeader, StatCard, StatusBadge, When } from "@/components/admin/ui";
+import { Card, EmptyState, ErrorState, Loading, StatCard, StatusBadge, When } from "@/components/admin/ui";
 
 function TrendChart({ days }) {
   const [hover, setHover] = useState(null);
@@ -59,15 +59,21 @@ export default function Dashboard() {
 
   return (
     <>
-      <PageHeader
-        title={`${greet}, ${(access?.full_name || "").split(" ")[0] || "admin"}`}
-        subtitle="Here is what is happening on the website."
-        actions={
-          <a href="/" target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-sm">
+      <section className="relative mb-7 overflow-hidden rounded-3xl bg-linear-to-br from-mushaf-950 via-mushaf-900 to-mushaf-700 px-6 py-7 text-white shadow-[0_24px_50px_-30px_rgb(13_74_28/0.8)] sm:px-8">
+        <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.1]" aria-hidden="true" />
+        <div className="pointer-events-none absolute -right-16 -top-20 size-64 rounded-full bg-gold-400/15 blur-2xl" aria-hidden="true" />
+        <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
+          <img src="/brand/logo.webp" alt="" width={64} height={64} className="size-14 shrink-0 rounded-2xl bg-white p-1.5 shadow-lg sm:size-16" />
+          <div className="min-w-0 flex-1">
+            <p className="text-[0.7rem] font-bold uppercase tracking-[0.22em] text-gold-300">{new Date().toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}</p>
+            <h1 className="mt-1 font-display text-[1.7rem] leading-tight sm:text-[2rem]">{greet}, {(access?.full_name || "").split(" ")[0] || "admin"}</h1>
+            <p className="mt-1 text-sm text-white/75">Here is what is happening at Online Quran College today.</p>
+          </div>
+          <a href="/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 self-start rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/20 sm:self-auto">
             <ExternalLink className="size-4" /> View website
           </a>
-        }
-      />
+        </div>
+      </section>
       {summary.loading ? (
         <Loading rows={6} />
       ) : summary.error ? (

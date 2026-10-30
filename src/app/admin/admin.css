@@ -24,14 +24,17 @@
 .tone-red { background: #fdeaea; color: #b4232f; }
 .tone-muted { background: #eef1ef; color: #6b7280; }
 .tone-neutral { background: #f1f4f1; color: #4b5563; }
-.adm-card { background: #fff; border: 1px solid var(--color-line); border-radius: 1rem; }
+.adm-card { background: #fff; border: 1px solid var(--color-line); border-radius: 1.1rem; box-shadow: 0 1px 2px rgb(13 74 28 / .04), 0 12px 28px -22px rgb(13 74 28 / .35); }
+.adm-shell { background: radial-gradient(1200px 500px at 85% -10%, rgb(219 185 96 / .12), transparent 60%), radial-gradient(900px 500px at 0% 0%, rgb(12 108 12 / .06), transparent 55%), var(--color-paper); }
 .adm-table { width: 100%; min-width: 42rem; border-collapse: separate; border-spacing: 0; font-size: .9rem; }
-.adm-table th { text-align: left; font-weight: 600; font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; color: var(--color-ink-faint); background: #f7faf6; padding: .65rem .9rem; border-bottom: 1px solid var(--color-line); white-space: nowrap; }
+.adm-table th { text-align: left; font-weight: 700; font-size: .7rem; text-transform: uppercase; letter-spacing: .07em; color: var(--color-mushaf-800); background: linear-gradient(#f7fbf4, #f0f7eb); padding: .65rem .9rem; border-bottom: 1px solid var(--color-line); white-space: nowrap; }
 .adm-table td { padding: .7rem .9rem; border-bottom: 1px solid var(--color-line); vertical-align: middle; }
 .adm-table tbody tr:last-child td { border-bottom: 0; }
 .adm-table tbody tr.row-link { cursor: pointer; }
-.adm-table tbody tr:hover td { background: #f9fbf8; }
+.adm-table tbody tr:hover td { background: #f3f9ef; }
+.adm-table tbody tr.row-link:hover td:first-child { box-shadow: inset 3px 0 0 var(--color-gold-400); }
 .adm-input { width: 100%; border: 1.5px solid var(--color-line-strong); background: #fff; border-radius: .65rem; padding: .5rem .75rem; font-size: .92rem; line-height: 1.4; }
+.adm-input:hover:not(:disabled):not(:focus) { border-color: var(--color-leaf-200); }
 .adm-input:focus { outline: none; border-color: var(--color-leaf-600); box-shadow: 0 0 0 3px rgb(26 127 12 / .14); }
 .rich-content :where(h2) { font-size: 1.35rem; font-weight: 700; margin: 1rem 0 .4rem; }
 .rich-content :where(h3) { font-size: 1.1rem; font-weight: 700; margin: .9rem 0 .3rem; }
