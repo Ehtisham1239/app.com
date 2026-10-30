@@ -11,7 +11,7 @@ const PILL = {
 
 // Monthly progress certificate: Online Quran College logo, deep green and soft gold.
 // Server-safe; staff can print it from the CMS, parents only view it.
-export function ProgressCertificate({ report, studentName, studentOfMonth = false, stamp = null }) {
+export function ProgressCertificate({ report, studentName, studentCode, studentOfMonth = false, stamp = null }) {
   const r = report || {};
   const month = periodLabel(r.period);
   return (
@@ -32,6 +32,10 @@ export function ProgressCertificate({ report, studentName, studentOfMonth = fals
           <p className="mt-1 text-sm font-semibold uppercase tracking-[0.2em] text-gold-700">{month}</p>
         </header>
 
+        {(studentCode || (!stamp && (r.published_version || r.version))) && <div className="mx-auto mt-4 flex flex-wrap justify-center gap-x-5 gap-y-1 text-xs text-ink-soft">
+          {studentCode && <p>Student code <span className="font-mono font-semibold text-mushaf-900">{studentCode}</span></p>}
+          {!stamp && (r.published_version || r.version) && <p>Published version <span className="font-semibold text-mushaf-900">{r.published_version || r.version}</span></p>}
+        </div>}
         <div className="mt-7 text-center">
           <p className="text-[0.95rem] italic text-ink-soft">This is to certify the progress of</p>
           <p className="mx-auto mt-2 inline-block max-w-full break-words min-w-[60%] border-b-2 border-gold-400 px-6 pb-1.5 font-display text-[1.9rem] text-ink sm:text-[2.3rem]">{studentName}</p>

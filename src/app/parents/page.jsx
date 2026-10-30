@@ -128,7 +128,7 @@ function ProgressSection({ kid, chosen }) {
           </nav>
         )}
       </div>
-      <ProgressCertificate report={current} studentName={kid.name} studentOfMonth={current.student_of_month} />
+      <ProgressCertificate report={current} studentName={kid.name} studentCode={kid.code} studentOfMonth={current.student_of_month} />
     </div>
   );
 }

@@ -1,14 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
-import { CheckCircle2, ClipboardList, Loader2, Save, Send } from "lucide-react";
+import { CheckCircle2, ClipboardList, Loader2, Save, Send, Eye, EyeOff } from "lucide-react";
 import { useAccess } from "@/lib/admin/access";
 import { db, errorMessage, useLoad } from "@/lib/admin/db";
 import { CATEGORIES, REPORT_STATUSES, emptyRatings, missingForSubmit, monthInput, monthToPeriod, periodLabel } from "@/lib/progress/constants";
-import { Card, EmptyState, ErrorState, Field, Loading, StatusBadge } from "@/components/admin/ui";
+import { Card, EmptyState, ErrorState, Field, Loading, Modal, StatusBadge } from "@/components/admin/ui";
+import { ProgressCertificate } from "@/components/results/progress-certificate";
 import { ProgressWorkflow } from "@/components/results/progress-workflow";
 import { RatingPicker } from "@/components/admin/rating-picker";
 
@@ -18,6 +19,13 @@ function TeacherForm() {
   const [month, setMonth] = useState(params.get("month") || monthInput());
   const [studentId, setStudentId] = useState(params.get("student") || "");
   const [busy, setBusy] = useState("");
+  const [dirty, setDirty] = useState(false);
+  const [pendingSelection, setPendingSelection] = useState(null);
+  const select = (selection) => {
+    if (dirty) return setPendingSelection(selection);
+    if (selection.student !== undefined) setStudentId(selection.student);
+    if (selection.month !== undefined) setMonth(selection.month);
+  };
   const period = monthToPeriod(month);
   const students = useLoad(() => (period ? db().rpc("progress_my_students", { p_period: period }) : { data: [] }), [period]);
   const current = (students.data || []).find((s) => s.student_id === studentId) || null;
@@ -41,7 +49,7 @@ function TeacherForm() {
       <div className="grid gap-6 xl:grid-cols-[20rem_1fr]">
         <Card title="Your students" bodyClass="">
           <div className="border-b border-line p-4">
-            <Field label="Reporting month"><input type="month" disabled={!!busy} className="adm-input" value={month} max={monthInput()} onChange={(e) => setMonth(e.target.value)} /></Field>
+            <Field label="Reporting month"><input type="month" disabled={!!busy} className="adm-input" value={month} max={monthInput()} onChange={(e) => select({ month: e.target.value })} /></Field>
           </div>
           {students.loading ? <Loading rows={4} /> : students.error ? <ErrorState error={students.error} onRetry={students.reload} /> : !students.data?.length ? (
             <EmptyState icon={ClipboardList} title="No students assigned" text="Ask the admin to assign your students under Monthly progress → Assignments." />
@@ -49,7 +57,7 @@ function TeacherForm() {
             <ul className="max-h-[32rem] divide-y divide-line overflow-auto">
               {students.data.map((s) => (
                 <li key={s.student_id}>
-                  <button type="button" disabled={!!busy} onClick={() => setStudentId(s.student_id)} aria-pressed={s.student_id === studentId}
+                  <button type="button" disabled={!!busy} onClick={() => { if (s.student_id !== studentId) select({ student: s.student_id }); }} aria-pressed={s.student_id === studentId}
                     className={`flex w-full items-center justify-between gap-2 px-4 py-3 text-left hover:bg-paper ${s.student_id === studentId ? "bg-leaf-50" : ""}`}>
                     <span className="min-w-0">
                       <span className="block truncate font-semibold text-mushaf-900">{s.full_name}</span>
@@ -65,18 +73,31 @@ function TeacherForm() {
 
         <Card title={current ? `${current.full_name} · ${periodLabel(period)}` : "Monthly ratings"}>
           {!current ? <EmptyState icon={ClipboardList} title="Choose a student" text="Pick a student on the left to fill in this month’s ratings." /> : report.error ? <ErrorState error={report.error} onRetry={report.reload} /> : report.loading && current.report_id ? <Loading rows={6} /> : current.report_id && !report.data ? <EmptyState title="Report unavailable" text="Reload the student list before editing this report." /> : (
-            <TeacherRatingsForm key={`${studentId}:${period}:${report.data?.version || "new"}`} current={current} report={report.data} period={period} can={can} onBusyChange={setBusy} onSaved={() => { students.reload(); report.reload(); }} />
+            <TeacherRatingsForm key={`${studentId}:${period}:${report.data?.version || "new"}`} current={current} report={report.data} period={period} can={can} onBusyChange={setBusy} onDirtyChange={setDirty} onSaved={() => { setDirty(false); students.reload(); report.reload(); }} />
           )}
         </Card>
       </div>
+      <Modal open={!!pendingSelection} title="Leave unsaved changes?" size="sm" onClose={() => setPendingSelection(null)}
+        footer={<><button type="button" className="btn btn-outline btn-sm" onClick={() => setPendingSelection(null)}>Keep editing</button><button type="button" className="btn btn-danger btn-sm" onClick={() => { const next = pendingSelection; setPendingSelection(null); setDirty(false); if (next?.student !== undefined) setStudentId(next.student); if (next?.month !== undefined) setMonth(next.month); }}>Discard changes</button></>}>
+        <p className="text-sm text-ink-soft">This report has changes that have not been saved. Keep editing and save a draft, or discard them before changing the student or month.</p>
+      </Modal>
     </>
   );
 }
 
-function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChange }) {
+function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChange, onDirtyChange }) {
   const [ratings, setRatings] = useState(() => report ? Object.fromEntries(CATEGORIES.map((c) => [c.key, report[c.key] || ""])) : emptyRatings());
   const [remarks, setRemarks] = useState(report?.remarks || "");
   const [busy, setBusy] = useState("");
+  const [preview, setPreview] = useState(false);
+  const dirty = remarks !== (report?.remarks || "") || CATEGORIES.some((c) => ratings[c.key] !== (report?.[c.key] || ""));
+  useEffect(() => { onDirtyChange(dirty); }, [dirty, onDirtyChange]);
+  useEffect(() => {
+    if (!dirty) return;
+    const warn = (event) => { event.preventDefault(); event.returnValue = ""; };
+    window.addEventListener("beforeunload", warn);
+    return () => window.removeEventListener("beforeunload", warn);
+  }, [dirty]);
   const locked = report?.status === "submitted" && !can("progress:review");
   const missing = missingForSubmit(ratings, remarks);
   const save = async (submit) => {
@@ -105,6 +126,10 @@ function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChang
               )}
               {locked && <p className="mb-4 flex items-center gap-2 rounded-xl bg-leaf-50 px-4 py-3 text-sm text-leaf-800"><CheckCircle2 className="size-4" /> Submitted and waiting for the admin’s review. It can be edited again if changes are requested.</p>}
               {report?.published && <p className="mb-4 rounded-xl bg-paper px-4 py-3 text-sm text-ink-soft">Parents keep seeing the last published certificate until the admin approves and publishes a revision.</p>}
+              <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-line bg-paper px-4 py-3">
+                <p className="text-sm font-semibold text-ink-soft" role="status">{dirty ? "Unsaved changes" : report ? "Saved report loaded" : "New report — not saved"}</p>
+                <button type="button" aria-expanded={preview} aria-controls="teacher-certificate-preview" className="btn btn-outline btn-sm" onClick={() => setPreview((v) => !v)}>{preview ? <EyeOff className="size-4" /> : <Eye className="size-4" />}{preview ? "Hide certificate preview" : "Preview certificate"}</button>
+              </div>
               <fieldset disabled={locked || !!busy} className="space-y-3">
                 <legend className="sr-only">Monthly ratings</legend>
                 <div className="mb-1 flex items-center justify-between gap-3">
@@ -125,7 +150,11 @@ function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChang
                   <button type="submit" className="btn btn-primary" disabled={!!busy}>{busy === "submit" ? <Loader2 className="size-4 animate-spin" /> : <Send className="size-4" />} Submit for review</button>
                 </div>
               )}
-              {can("progress:read") && current.report_id && <p className="mt-4 text-sm"><Link className="font-semibold text-leaf-700 underline" href={`/admin/progress/${current.report_id}`}>Open the review page</Link></p>}
+              {preview && <section id="teacher-certificate-preview" className="mt-6" aria-label="Draft certificate preview">
+                <p className="mb-3 rounded-xl bg-gold-50 px-4 py-3 text-sm text-gold-700">Preview only. These changes reach parents after the report is submitted, reviewed and published by the admin.</p>
+                <ProgressCertificate report={{ ...report, ...ratings, remarks, period, published_at: null }} studentName={current.full_name} studentCode={current.student_code} stamp="Draft preview" />
+              </section>}
+              {can("progress:read") && current.report_id && <p className="mt-4 text-sm"><Link className="font-semibold text-leaf-700 underline" href={`/admin/progress/${current.report_id}`} onClick={(e) => { if (dirty) { e.preventDefault(); toast.error("Save a draft before opening the review page."); } }}>Open the review page</Link></p>}
             </form>
   );
 }
