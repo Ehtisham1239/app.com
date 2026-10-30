@@ -152,7 +152,7 @@ function ResultDetail({ id, onClose, onChanged }) {
         <div className="grid gap-6 lg:grid-cols-[1fr_20rem]">
           <div>
             {r.status === "withdrawn" && <p className="mb-3 rounded-xl bg-rose-50 px-4 py-2 text-sm font-semibold text-rose-800">Withdrawn — parents cannot see this result.</p>}
-            <ResultCard preview studentName={r.students?.full_name} result={cardData(r)} />
+            <ResultCard preview studentName={r.students?.full_name} studentCode={r.students?.student_code} result={cardData(r)} />
           </div>
           <div className="space-y-4">
             {can("results:update") && <div className="flex flex-wrap gap-2"><Correct result={r} onDone={refresh} /><Withdraw result={r} onDone={refresh} /></div>}

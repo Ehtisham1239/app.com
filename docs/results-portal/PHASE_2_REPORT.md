@@ -1,5 +1,7 @@
 # Phase 2 report — database and security foundation (local only)
 
+> Historical checkpoint. The foundation and later UI have since been merged and the database installed. See [30 October completion and release](RELEASE_2026-10-30.md) for current verified status and remaining data-onboarding requirements.
+
 Date: 29 October 2026. Followed `.claude/skills/engineer-secure-software`.
 
 ## Status

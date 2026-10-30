@@ -11,7 +11,9 @@ import { gradeFor, gradeLabel } from "@/lib/results/import";
 import { BATCH_STATUSES, ROW_STATUSES } from "@/lib/results/status";
 import { ResultsNav } from "@/components/admin/results-nav";
 import { ResultCard } from "@/components/results/result-card";
-import { Card, ConfirmButton, EmptyState, ErrorState, Field, Loading, Modal, PageHeader, StatusBadge, Tabs } from "@/components/admin/ui";
+import { Card, ConfirmButton, EmptyState, ErrorState, Field, Loading, Modal, PageHeader, Pagination, StatusBadge, Tabs } from "@/components/admin/ui";
+
+const ROW_PAGE = 100;
 
 const STEPS = [
   { key: "needs_review", label: "Checked & reviewed" },
@@ -55,10 +57,15 @@ export default function BatchPage({ params }) {
   const { can } = useAccess();
   const [me, setMe] = useState(null);
   const [filter, setFilter] = useState("all");
+  const [page, setPage] = useState(0);
   const [working, setWorking] = useState(false);
   useEffect(() => { db().auth.getUser().then(({ data }) => setMe(data?.user?.id ?? null)); }, []);
   const batch = useLoad(() => db().from("result_import_batches").select("*, assessments(id, code, title, total_marks, grade_bands, period_label, assessment_date, courses(title))").eq("id", id).maybeSingle(), [id]);
-  const rows = useLoad(() => db().from("result_import_rows").select("id, row_number, student_code, student_name, marks_text, grade, teacher_remarks, marks_obtained, errors, status, students(full_name)").eq("batch_id", id).order("row_number").limit(5000), [id]);
+  const rows = useLoad(() => {
+    let query = db().from("result_import_rows").select("id, row_number, student_code, student_name, marks_text, grade, teacher_remarks, marks_obtained, errors, status, students(full_name)", { count: "exact" }).eq("batch_id", id);
+    if (filter !== "all") query = query.eq("status", filter);
+    return query.order("row_number").range(page * ROW_PAGE, (page + 1) * ROW_PAGE - 1);
+  }, [id, filter, page]);
 
   if (batch.loading && !batch.data) return <Loading rows={6} />;
   if (batch.error) return <ErrorState error={batch.error} onRetry={batch.reload} />;
@@ -84,7 +91,8 @@ export default function BatchPage({ params }) {
   };
 
   const list = rows.data || [];
-  const shown = filter === "all" ? list : list.filter((r) => r.status === filter);
+  const shown = list;
+  const statusCounts = { valid: b.valid_rows, invalid: b.invalid_rows, duplicate: b.duplicate_rows, excluded: b.excluded_rows };
   const sample = list.find((r) => r.status === "valid");
   const samplePercent = sample ? (Number(sample.marks_obtained) * 100) / Number(a.total_marks) : 0;
   const sampleGrade = sample ? (sample.grade || gradeFor(a.grade_bands, samplePercent)) : "";
@@ -131,7 +139,7 @@ export default function BatchPage({ params }) {
       <div className="grid gap-6 xl:grid-cols-[1fr_24rem]">
         <Card title="Rows" bodyClass="">
           <div className="border-b border-line px-4 py-2">
-            <Tabs value={filter} onChange={setFilter} tabs={[{ value: "all", label: "All", count: list.length }, ...ROW_STATUSES.filter((s) => s.value !== "pending").map((s) => ({ value: s.value, label: s.label, count: list.filter((r) => r.status === s.value).length }))]} />
+            <Tabs value={filter} onChange={(value) => { setFilter(value); setPage(0); }} tabs={[{ value: "all", label: "All", count: b.total_rows }, ...ROW_STATUSES.filter((s) => s.value !== "pending").map((s) => ({ value: s.value, label: s.label, count: statusCounts[s.value] }))]} />
           </div>
           {rows.loading ? <Loading /> : rows.error ? <ErrorState error={rows.error} onRetry={rows.reload} /> : !shown.length ? <EmptyState title="No rows here" /> : (
             <div className="max-h-[36rem] overflow-auto">
@@ -155,6 +163,7 @@ export default function BatchPage({ params }) {
               </table>
             </div>
           )}
+          <Pagination page={page} pageSize={ROW_PAGE} count={rows.count} onPage={setPage} />
         </Card>
 
         <div className="space-y-3">

@@ -227,6 +227,7 @@ export function mapResultRows(table) {
   if (forbidden) throw new Error(`Remove the “${String(forbidden).trim()}” column. Parent access codes must never be put in a results sheet.`);
   const index = {};
   for (const [key, names] of Object.entries(ALIASES)) {
+    if (headers.filter((h) => names.includes(h)).length > 1) throw new Error(`The file has more than one ${key} column. Keep one column for each field.`);
     const at = headers.findIndex((h) => names.includes(h));
     if (at >= 0) index[key] = at;
   }
@@ -239,8 +240,8 @@ export function mapResultRows(table) {
     const row = { row_number: i + 1 };
     for (const key of Object.keys(ALIASES)) {
       const value = index[key] === undefined ? "" : String(cells[index[key]] ?? "").replace(/\s+/g, " ").trim();
-      row[key] = value.slice(0, LIMITS[key]);
-      if (value.length > LIMITS[key]) row.truncated = [...(row.truncated || []), key];
+      if (value.length > LIMITS[key]) throw new Error(`Row ${i + 1}: ${key} is longer than ${LIMITS[key]} characters. Shorten it in the original file; no text has been removed.`);
+      row[key] = value;
     }
     row.student_code = row.student_code.toUpperCase();
     return row;
@@ -264,8 +265,11 @@ export function previewIssues(row, assessment) {
 }
 
 // Rows sent to the database: only the columns it stores.
-export function toImportRows(rows, batchId) {
-  return rows.map((r) => ({
+export function toImportRows(rows, batchId, assessment) {
+  return rows.map((r) => {
+    if (assessment && r.assessment_code && r.assessment_code.toUpperCase() !== assessment.code) throw new Error(`Row ${r.row_number}: assessment code does not match ${assessment.code}.`);
+    if (assessment && r.total_marks && Number(r.total_marks) !== Number(assessment.total_marks)) throw new Error(`Row ${r.row_number}: total marks do not match ${assessment.total_marks}.`);
+    return ({
     batch_id: batchId,
     row_number: r.row_number,
     student_code: r.student_code,
@@ -273,7 +277,8 @@ export function toImportRows(rows, batchId) {
     marks_text: r.marks_obtained,
     grade: r.grade.toUpperCase(),
     teacher_remarks: r.teacher_remarks,
-  }));
+    });
+  });
 }
 
 export function templateRows(assessment) {
@@ -293,6 +298,7 @@ export function normalizeGradeBands(bands) {
     if (b.label.length > 40) throw new Error(`Grade ${b.grade}: keep the description under 40 characters.`);
   }
   if (new Set(list.map((b) => b.grade)).size !== list.length) throw new Error("Each grade can appear only once.");
+  if (new Set(list.map((b) => b.min_percent)).size !== list.length) throw new Error("Each grade needs a different minimum percentage.");
   return list.sort((a, b) => b.min_percent - a.min_percent).map((b) => (b.label ? b : { grade: b.grade, min_percent: b.min_percent }));
 }
 

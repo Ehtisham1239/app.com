@@ -4,6 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { publicDb } from "@/lib/supabase/public";
 import { PARENT_COOKIE, validToken } from "@/lib/results/parent-session";
 import { CertificateArtwork } from "@/components/results/certificate-artwork";
+import { ParentSessionGuard } from "@/components/results/parent-session-guard";
 
 export const metadata = { title: "Certificate", robots: { index: false, follow: false } };
 
@@ -27,12 +28,12 @@ export default async function ParentCertificatePage({ params }) {
       ) : !cert ? (
         <p className="rounded-2xl bg-white p-8 text-center text-ink-soft">This certificate is not available.</p>
       ) : (
-        <>
+        <ParentSessionGuard>
           <div className="overflow-hidden rounded-2xl border border-gold-300 bg-white shadow-[0_24px_60px_-34px_rgba(13,74,28,0.6)]">
             <CertificateArtwork title={cert.title} studentName={cert.student} achievement={cert.achievement} courseTitle={cert.course} issuedOn={cert.issued_on} number={cert.number} signedBy={cert.signed_by} verifyText={`Certificate number ${cert.number} can be checked on the Verify page of our website.`} />
           </div>
           <p className="mt-4 text-center text-xs text-ink-faint">For an official copy please contact the coordinator.</p>
-        </>
+        </ParentSessionGuard>
       )}
     </div>
   );
