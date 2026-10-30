@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { ArrowRight, CalendarClock, GraduationCap, ExternalLink, FileText, Inbox, Newspaper, Percent, Settings, UserRoundCheck, Wallet } from "lucide-react";
+import { ArrowRight, CalendarClock, ClipboardCheck, GraduationCap, PenLine, ExternalLink, FileText, Inbox, Newspaper, Percent, Settings, UserRoundCheck, Wallet } from "lucide-react";
 import { useAccess } from "@/lib/admin/access";
 import { db, useLoad } from "@/lib/admin/db";
 import { TRIAL_STATUSES } from "@/lib/constants";
@@ -121,6 +121,8 @@ export default function Dashboard() {
           <Card title="Quick actions">
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {[
+                (can("progress:submit") || can("progress:review")) && { href: "/admin/progress/form", label: "Monthly progress form", icon: PenLine },
+                can("progress:read") && { href: "/admin/progress", label: "Review monthly reports", icon: ClipboardCheck },
                 (can("results:read") || can("certificates:read")) && { href: "/admin/results", label: "Student results", icon: GraduationCap },
                 can("blog:create") && { href: "/admin/blog/new", label: "Write a blog article", icon: Newspaper },
                 can("pricing:update") && { href: "/admin/fees", label: "Update fees", icon: Wallet },

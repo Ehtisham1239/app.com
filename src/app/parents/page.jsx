@@ -4,6 +4,8 @@ import { publicDb } from "@/lib/supabase/public";
 import { formatDate } from "@/lib/format";
 import { PARENT_COOKIE, validToken } from "@/lib/results/parent-session";
 import { MarksSheet, groupByPeriod } from "@/components/results/marks-sheet";
+import { ProgressCertificate } from "@/components/results/progress-certificate";
+import { periodLabel } from "@/lib/progress/constants";
 import { ParentSignInForm, ParentSignOut } from "./sign-in-form";
 
 export const metadata = { title: "Student results", robots: { index: false, follow: false } };
@@ -14,10 +16,14 @@ async function loadChildren() {
   const { data, error } = await publicDb.rpc("parent_results", { p_token: token });
   if (error) return { signedIn: false, expired: false, unavailable: true };
   if (data === null) return { signedIn: false, expired: true };
-  return { signedIn: true, children: Array.isArray(data) ? data : [] };
+  // Monthly progress reports are optional: the results page still works without them.
+  const progress = await publicDb.rpc("parent_progress", { p_token: token });
+  const reports = Object.fromEntries((Array.isArray(progress.data) ? progress.data : []).map((p) => [p.student_id, p.reports || []]));
+  return { signedIn: true, children: (Array.isArray(data) ? data : []).map((k) => ({ ...k, progress: reports[k.id] || [] })) };
 }
 
-export default async function ParentsPage() {
+export default async function ParentsPage({ searchParams }) {
+  const { report: chosen } = await searchParams;
   const state = await loadChildren();
   if (!state.signedIn) return <SignIn expired={state.expired} unavailable={state.unavailable} />;
   const kids = state.children;
@@ -26,8 +32,8 @@ export default async function ParentsPage() {
       <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold-600">Assalamu alaikum</p>
-          <h1 className="mt-1 font-display text-3xl text-mushaf-900">Your children’s results</h1>
-          <p className="mt-1 text-sm text-ink-soft">Only results that OQC has checked and published are shown here.</p>
+          <h1 className="mt-1 font-display text-3xl text-mushaf-900">Your children’s progress</h1>
+          <p className="mt-1 text-sm text-ink-soft">Only reports and results that Online Quran College has checked and published are shown here.</p>
         </div>
         <ParentSignOut />
       </div>
@@ -44,13 +50,14 @@ export default async function ParentsPage() {
         {kids.map((k) => (
           <section key={k.id} id={`student-${k.id}`} aria-labelledby={`name-${k.id}`} className="scroll-mt-6">
             <h2 id={`name-${k.id}`} className="mb-4 flex items-center gap-2 font-display text-2xl text-mushaf-900"><GraduationCap className="size-6 text-leaf-700" aria-hidden="true" /> {k.name}</h2>
+            {k.progress.length > 0 && <ProgressSection kid={k} chosen={chosen} />}
             {k.results.length ? (
               <div className="space-y-8">
                 {groupByPeriod(k.results).map((g) => (
                   <MarksSheet key={g.period} student={k} period={g.period} results={g.results} certificateHref={(id) => `/parents/certificates/${id}`} />
                 ))}
               </div>
-            ) : <Empty title="No published results yet" text="Results appear here as soon as the teacher’s marks are checked and published." />}
+            ) : !k.progress.length && <Empty title="Nothing published yet" text="Monthly reports and results appear here as soon as the college checks and publishes them." />}
             {k.certificates.length > 0 && (
               <div className="mt-6 rounded-2xl border border-line bg-white p-5">
                 <h3 className="flex items-center gap-2 font-bold text-mushaf-900"><Award className="size-5 text-gold-600" aria-hidden="true" /> Certificates</h3>
@@ -100,6 +107,27 @@ function Empty({ title, text }) {
     <div className="rounded-2xl border border-dashed border-line-strong bg-white p-8 text-center">
       <p className="font-semibold text-mushaf-900">{title}</p>
       <p className="mt-1 text-sm text-ink-soft">{text}</p>
+    </div>
+  );
+}
+
+// Latest monthly progress certificate for a child, with chips for earlier months.
+function ProgressSection({ kid, chosen }) {
+  const current = kid.progress.find((p) => p.id === chosen) || kid.progress[0];
+  return (
+    <div className="mb-8">
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+        <h3 className="font-display text-xl text-mushaf-900">Monthly progress</h3>
+        {kid.progress.length > 1 && (
+          <nav aria-label={`${kid.name} months`} className="flex flex-wrap gap-1.5">
+            {kid.progress.map((p) => (
+              <a key={p.id} href={`?report=${p.id}#student-${kid.id}`} aria-current={p.id === current.id ? "page" : undefined}
+                className={`rounded-full px-3 py-1 text-xs font-semibold ${p.id === current.id ? "bg-mushaf-900 text-white" : "border border-line bg-white text-mushaf-900 hover:border-leaf-700"}`}>{periodLabel(p.period)}</a>
+            ))}
+          </nav>
+        )}
+      </div>
+      <ProgressCertificate report={current} studentName={kid.name} studentOfMonth={current.student_of_month} />
     </div>
   );
 }

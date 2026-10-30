@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { clsx } from "clsx";
 import {
-  Activity, Award, Bell, GraduationCap, BookOpen, ChevronDown, CircleDollarSign, ExternalLink, FileText, HelpCircle, Images, Inbox,
+  Activity, Award, Bell, ClipboardCheck, GraduationCap, PenLine, BookOpen, ChevronDown, CircleDollarSign, ExternalLink, FileText, HelpCircle, Images, Inbox,
   LayoutDashboard, LineChart, Link2, LogOut, Menu, MessageSquareQuote, Newspaper, Search, Settings, Shield, UserRound,
   UserRoundCheck, Users, X,
 } from "lucide-react";
@@ -40,6 +40,13 @@ export const NAV = [
       { href: "/admin/growth-metrics", label: "SEO baselines", icon: LineChart, perm: "pages:read" },
       { href: "/admin/redirects", label: "Redirects", icon: Link2, perm: "redirects:read" },
       { href: "/admin/media", label: "Media", icon: Images, perm: "media:read" },
+    ],
+  },
+  {
+    group: "Monthly progress",
+    items: [
+      { href: "/admin/progress/form", label: "Teacher form", icon: PenLine, perm: ["progress:submit", "progress:review"] },
+      { href: "/admin/progress", label: "Review & publish", icon: ClipboardCheck, perm: "progress:read" },
     ],
   },
   {
@@ -85,7 +92,8 @@ function Sidebar({ onNavigate }) {
             <p className="px-3 pb-1.5 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-white/35">{g.group}</p>
             <ul className="space-y-0.5">
               {items.map(({ href, label, icon: Icon }) => {
-                const active = isActive(path, href);
+                // The most specific matching link wins (e.g. /admin/progress/form over /admin/progress).
+                const active = isActive(path, href) && !NAV.some((ng) => ng.items.some((i) => i.href.length > href.length && isActive(path, i.href)));
                 return (
                   <li key={href}>
                     <Link
