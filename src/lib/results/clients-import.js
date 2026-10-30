@@ -36,6 +36,7 @@ export function mapClientRows(table) {
   if (forbidden) throw new Error(`Remove the “${String(forbidden).trim()}” column. Access codes are issued by the system, never uploaded.`);
   const index = {};
   for (const [key, names] of Object.entries(ALIASES)) {
+    if (headers.filter((h) => names.includes(h)).length > 1) throw new Error(`The file has more than one ${key} column. Keep one column for each field.`);
     const at = headers.findIndex((h, i) => names.includes(h) && !Object.values(index).includes(i));
     if (at >= 0) index[key] = at;
   }
@@ -47,7 +48,9 @@ export function mapClientRows(table) {
   return body.map((cells, i) => {
     const row = { row_number: i + 1 };
     for (const key of Object.keys(ALIASES)) {
-      row[key] = (index[key] === undefined ? "" : String(cells[index[key]] ?? "")).replace(/\s+/g, " ").trim().slice(0, LIMITS[key]);
+      const value = (index[key] === undefined ? "" : String(cells[index[key]] ?? "")).replace(/\s+/g, " ").trim();
+      if (value.length > LIMITS[key]) throw new Error(`Row ${i + 1}: ${key} is longer than ${LIMITS[key]} characters. Shorten it in the original file; no text has been removed.`);
+      row[key] = value;
     }
     row.email = row.email.toLowerCase();
     row.student_code = row.student_code.toUpperCase();

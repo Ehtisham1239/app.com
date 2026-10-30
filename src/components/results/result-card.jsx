@@ -4,9 +4,9 @@ import { formatDate } from "@/lib/format";
 // One published result in OQC branding. Server-safe (no hooks), shared by the
 // parent portal and the staff preview. Text is rendered as text, never as HTML.
 // `certificateHref` links to the parent's view-only certificate page.
-export function ResultCard({ studentName, result, certificateHref, preview = false }) {
+export function ResultCard({ studentName, studentCode, result, certificateHref, preview = false }) {
   const percent = clampPercent(result.percentage ?? (Number(result.marks) * 100) / Number(result.total));
-  const tone = percent >= 80 ? TONES.high : percent >= 60 ? TONES.mid : TONES.base;
+  const tone = TONES.high;
   const marks = trimNumber(result.marks), total = trimNumber(result.total);
   return (
     <article className="result-card @container relative overflow-hidden rounded-[1.6rem] border border-gold-300/70 bg-white shadow-[0_18px_50px_-28px_rgba(13,74,28,0.55)]" aria-label={`${result.assessment} result for ${studentName}`}>
@@ -16,7 +16,7 @@ export function ResultCard({ studentName, result, certificateHref, preview = fal
         <div className="relative flex items-start justify-between gap-4">
           <div className="flex items-center gap-3">
             <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-white/95 shadow-sm">
-              <span className="brand-mark block size-8 text-leaf-700" aria-hidden="true" />
+              <img src="/brand/logo.webp" width={36} height={36} className="size-9 object-contain" alt="" />
             </span>
             <div className="leading-tight">
               <p className="text-[0.68rem] font-bold uppercase tracking-[0.22em] text-gold-300">Online Quran College</p>
@@ -37,6 +37,7 @@ export function ResultCard({ studentName, result, certificateHref, preview = fal
         <div className="rounded-2xl border border-line bg-white p-5 shadow-[0_10px_30px_-22px_rgba(13,74,28,0.6)] sm:p-6">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink-faint">Student</p>
           <p className="mt-1 font-display text-2xl text-mushaf-900">{studentName}</p>
+          {studentCode && <p className="mt-1 font-mono text-xs text-ink-faint">Student code · {studentCode}</p>}
 
           <div className="mt-5 grid items-center gap-5 @lg:grid-cols-[auto_1fr]">
             <ScoreRing percent={percent} tone={tone} />
@@ -47,7 +48,7 @@ export function ResultCard({ studentName, result, certificateHref, preview = fal
               </div>
               <div className={`rounded-xl px-4 py-3 ${tone.panel}`}>
                 <dt className="text-xs font-semibold uppercase tracking-wide text-ink-faint">Grade</dt>
-                <dd className="mt-1 flex items-baseline gap-2">
+                <dd className="mt-1 flex flex-wrap items-baseline gap-2">
                   <span className={`font-display text-2xl ${tone.text}`}>{result.grade || "—"}</span>
                   {result.grade_label && <span className="text-sm font-semibold text-ink-soft">{result.grade_label}</span>}
                 </dd>

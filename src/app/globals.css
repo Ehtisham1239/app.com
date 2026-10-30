@@ -300,6 +300,11 @@
 .brand-logo { -webkit-mask-image: url("/brand/logo.png"); mask-image: url("/brand/logo.png"); }
 .brand-mark { -webkit-mask-image: url("/brand/mark.png"); mask-image: url("/brand/mark.png"); }
 
+/* Academic records must contain international names and long teacher remarks
+   without pushing the private portal beyond a narrow phone viewport. */
+.marks-sheet, .result-card { overflow-wrap: anywhere; }
+.marks-sheet dd, .result-card dd { min-width: 0; }
+
 /* Lightweight home motion uses compositor properties, with no hidden content dependency. */
 @keyframes home-arrive { from { transform: translateY(24px); opacity: .35; } to { transform: none; opacity: 1; } }
 @keyframes portrait-arrive { from { transform: translateY(16px) scale(.985); } to { transform: none; } }

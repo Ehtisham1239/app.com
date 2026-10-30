@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { AlertTriangle, CheckCircle2, Download, FileSpreadsheet, Loader2, SearchCheck, Upload } from "lucide-react";
 import { useAccess } from "@/lib/admin/access";
@@ -10,7 +10,9 @@ import { readSheet, MAX_ROWS } from "@/lib/results/import";
 import { CLIENT_COLUMNS, clientRowIssues, clientTemplateRows, mapClientRows, toClientPayload } from "@/lib/results/clients-import";
 import { ResultsNav } from "@/components/admin/results-nav";
 import { BulkCodes } from "@/components/admin/parent-codes";
-import { Card, EmptyState, Field, Loading, PageHeader } from "@/components/admin/ui";
+import { Card, EmptyState, Field, Loading, PageHeader, Pagination } from "@/components/admin/ui";
+
+const PREVIEW_PAGE = 100;
 
 export default function BulkParentsPage() {
   const { can } = useAccess();
@@ -20,15 +22,20 @@ export default function BulkParentsPage() {
   const [busy, setBusy] = useState(false);
   const [check, setCheck] = useState(null);
   const [saved, setSaved] = useState(null);
+  const [page, setPage] = useState(0);
+  const readId = useRef(0);
 
   const choose = async (file) => {
-    setRows(null); setCheck(null); setSaved(null); setFileError("");
-    if (!file) return;
+    const id = ++readId.current;
+    setRows(null); setCheck(null); setSaved(null); setFileError(""); setPage(0);
+    if (!file) { setReading(false); return; }
     setReading(true);
-    try { setRows(mapClientRows((await readSheet(file)).table)); } catch (e) { setFileError(e.message || "The file could not be read."); }
-    setReading(false);
+    try { const mapped = mapClientRows((await readSheet(file)).table); if (id === readId.current) setRows(mapped); }
+    catch (e) { if (id === readId.current) setFileError(e.message || "The file could not be read."); }
+    finally { if (id === readId.current) setReading(false); }
   };
   const run = async (commit) => {
+    if (busy || reading || !rows?.length) return;
     setBusy(true);
     const { data, error } = await db().rpc("guardians_bulk_import", { p_rows: toClientPayload(rows), p_commit: commit });
     setBusy(false);
@@ -85,7 +92,7 @@ export default function BulkParentsPage() {
                 <table className="adm-table">
                   <thead className="sticky top-0 bg-white"><tr><th>Row</th><th>Client ID</th><th>Parent</th><th>Child</th><th>Check</th></tr></thead>
                   <tbody>
-                    {local.slice(0, 500).map((r) => {
+                    {local.slice(page * PREVIEW_PAGE, (page + 1) * PREVIEW_PAGE).map((r) => {
                       const sv = server[r.row_number];
                       const problems = sv ? sv.errors : r.issues;
                       return (
@@ -100,8 +107,8 @@ export default function BulkParentsPage() {
                     })}
                   </tbody>
                 </table>
-                {rows.length > 500 && <p className="px-5 py-3 text-sm text-ink-soft">Showing the first 500 rows. All {rows.length} rows are checked and saved.</p>}
               </div>
+              <Pagination page={page} pageSize={PREVIEW_PAGE} count={rows.length} onPage={setPage} />
               <div className="flex flex-wrap items-center justify-between gap-3 border-t border-line px-5 py-4">
                 {saved ? (
                   <>
