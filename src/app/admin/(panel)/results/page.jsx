@@ -62,7 +62,7 @@ function AssessmentForm({ open, initial, onClose, onSaved }) {
       </div>
       <fieldset className="mt-6 rounded-xl border border-line p-4">
         <legend className="px-1 text-sm font-bold text-mushaf-900">Grade bands</legend>
-        <p className="text-sm text-ink-soft">Optional. Add OQC’s approved grades and the minimum percentage for each. With no bands, parents see marks and percentage only. A grade typed in the spreadsheet must be one of these.</p>
+        <p className="text-sm text-ink-soft">Optional. Add the college’s approved grades and the minimum percentage for each. With no bands, parents see marks and percentage only. A grade typed in the spreadsheet must be one of these.</p>
         {form.grade_bands.length > 0 && (
           <div className="mt-3 space-y-2">
             {form.grade_bands.map((b, i) => (
