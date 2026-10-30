@@ -33,8 +33,8 @@ export function ProgressCertificate({ report, studentName, studentCode, clientId
           <p className="mt-1 text-sm font-semibold uppercase tracking-[0.2em] text-gold-700">{month}</p>
         </header>
 
-        {(studentCode || (!stamp && (r.published_version || r.version))) && <div className="mx-auto mt-4 flex flex-wrap justify-center gap-x-5 gap-y-1 text-xs text-ink-soft">
-          {studentCode && <p>Student code <span className="font-mono font-semibold text-mushaf-900">{studentCode}</span></p>}
+        {/* Owner instruction: the certificate does not show the student code (it carries the OQC prefix). */}
+        {!stamp && (r.published_version || r.version) && <div className="mx-auto mt-4 flex flex-wrap justify-center gap-x-5 gap-y-1 text-xs text-ink-soft">
           {!stamp && (r.published_version || r.version) && <p>Published version <span className="font-semibold text-mushaf-900">{r.published_version || r.version}</span></p>}
         </div>}
         <div className="mt-7 text-center">
