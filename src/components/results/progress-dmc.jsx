@@ -26,7 +26,7 @@ export function ProgressDmc({ report, studentName, clientId, clientName, student
         <div className="pattern-girih absolute inset-0 opacity-[0.14]" aria-hidden="true" />
         <div className="relative flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
           <img src="/brand/logo.webp" alt="Online Quran College" width={56} height={56} className="size-14 shrink-0 rounded-xl bg-white p-1 shadow" />
-          <div className="flex min-w-0 flex-1 items-center gap-3 sm:block">
+          <div className="min-w-0 flex-1">
             <p className="font-display text-lg leading-tight sm:text-xl">Online Quran College</p>
             <p className="text-[0.68rem] font-bold uppercase tracking-[0.2em] text-gold-300">e-DMC · Detailed Monthly Certificate</p>
           </div>
@@ -104,7 +104,7 @@ export function ProgressDmc({ report, studentName, clientId, clientName, student
           Issued by Online Quran College{r.published_at ? ` on ${formatDate(r.published_at)}` : ""}{r.version ? ` · version ${r.version}` : ""}. Contact the coordinator about any entry.
         </p>
       </div>
-      {stamp && <p className="absolute right-6 top-24 rotate-12 rounded border-2 border-rose-600 bg-white/80 px-3 py-1 text-sm font-bold uppercase text-rose-600">{stamp}</p>}
+      {stamp && <p className="absolute right-4 top-5 rotate-12 sm:right-6 sm:top-24 rounded border-2 border-rose-600 bg-white/80 px-3 py-1 text-sm font-bold uppercase text-rose-600">{stamp}</p>}
     </article>
   );
 }
