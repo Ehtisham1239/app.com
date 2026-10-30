@@ -26,6 +26,14 @@ export async function proxy(request) {
   };
   let response = next();
 
+  // Parent portal: strict CSP, no framing, never cached. It has its own session cookie.
+  if (request.nextUrl.pathname === "/parents" || request.nextUrl.pathname.startsWith("/parents/")) {
+    const result = secure(response);
+    result.headers.set("X-Robots-Tag", "noindex, nofollow");
+    result.headers.set("Referrer-Policy", "no-referrer");
+    return result;
+  }
+
   if (!SUPABASE_CONFIGURED) {
     if (!PUBLIC_ADMIN_PATHS.includes(request.nextUrl.pathname)) return secure(NextResponse.redirect(new URL("/admin/login", request.url)));
     return secure(response);
@@ -71,5 +79,5 @@ export async function proxy(request) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/auth/:path*"],
+  matcher: ["/admin/:path*", "/auth/:path*", "/parents", "/parents/:path*"],
 };

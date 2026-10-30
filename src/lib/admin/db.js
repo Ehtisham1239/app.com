@@ -11,6 +11,8 @@ export const db = () => getBrowserClient();
 export function errorMessage(error) {
   if (!error) return "Something went wrong.";
   const msg = error.message || String(error);
+  // A screen whose database tables or functions are not installed yet (a pending migration).
+  if (["42P01", "42883", "PGRST202", "PGRST205"].includes(error.code) || /Could not find the (table|function)/i.test(msg)) return "This section is not set up in the database yet. It will start working as soon as the setup step is completed.";
   if (error.code === "42501" || /row-level security|permission denied/i.test(msg)) return "You do not have permission to do this.";
   if (error.code === "23505" || /duplicate key/i.test(msg)) {
     if (/slug/i.test(msg)) return "That web address (slug) is already used. Choose another.";

@@ -12,7 +12,7 @@ test('homepage and canonical learning/location pages are not redirect sources',(
   for(const path of ['/','/courses','/blog','/pricing','/free-trial','/locations',...LOCATIONS.flatMap(c=>[null,...c.cities].map(city=>locationPath(c,city)))])assert.equal(bySource.has(path),false,path);
   const source=readFileSync(new URL('../src/proxy.js',import.meta.url),'utf8');
   const matchers=JSON.parse(source.match(/matcher:\s*(\[[^\]]*\])/)[1]);
-  assert.deepEqual(matchers,['/admin/:path*','/auth/:path*'],'Only staff/auth routes need the session proxy');
+  assert.deepEqual(matchers,['/admin/:path*','/auth/:path*','/parents','/parents/:path*'],'Only staff/auth and the private parent portal need the proxy');
 });
 
 test('every legacy country and city CMS URL resolves to its own canonical page',()=>{

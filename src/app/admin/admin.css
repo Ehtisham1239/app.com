@@ -3,6 +3,7 @@
 @reference "../globals.css";
 @source "./";
 @source "../../components/admin";
+@source "../../components/results";
 @source "../../lib/admin";
 
 /* Admin helpers */

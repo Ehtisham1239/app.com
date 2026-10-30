@@ -2,6 +2,8 @@
 /* Public pages do not download utilities used only by the CMS or QA scripts. */
 @source "./(site)";
 @source "../components/site";
+@source "../components/results";
+@source "./parents";
 @source "../lib";
 @source not "../lib/admin";
 @source "./layout.jsx";
@@ -401,4 +403,10 @@ main input:not([type="checkbox"]):not([type="radio"]), main select, main textare
   .swipe-row::-webkit-scrollbar { display: none; }
   .swipe-row > * { flex: 0 0 84%; scroll-snap-align: start; }
   .swipe-row:focus-visible { outline: 2px solid var(--color-leaf-700); outline-offset: 2px; }
+}
+
+/* Parent portal: no print view is offered (this does not prevent screenshots). */
+@media print {
+  .parent-portal main { display: none !important; }
+  .parent-portal::after { content: "Printing is not available in the parent portal. Please contact the coordinator for an official copy."; display: block; padding: 2rem; font: 14px/1.5 sans-serif; }
 }
