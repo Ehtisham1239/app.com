@@ -1,12 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { toast } from "sonner";
-import { Copy, KeyRound, Loader2, Lock, Plus, ShieldOff, UserPlus, Users, X } from "lucide-react";
+import { Copy, FileUp, KeyRound, Loader2, Lock, Plus, ShieldOff, UserPlus, Users, X } from "lucide-react";
 import { useAccess } from "@/lib/admin/access";
 import { db, likeTerm, notifyError, useLoad } from "@/lib/admin/db";
 import { formatDateTime } from "@/lib/format";
 import { ResultsNav } from "@/components/admin/results-nav";
+import { BulkCodes } from "@/components/admin/parent-codes";
 import { Badge, Card, ConfirmButton, EmptyState, ErrorState, Field, Loading, Modal, PageHeader, Pagination, SearchInput } from "@/components/admin/ui";
 
 const PAGE = 20;
@@ -131,12 +133,16 @@ export default function ParentAccessPage() {
     <>
       <PageHeader title="Parent access" subtitle="Each parent signs in to the parent portal with their Client ID and a one-time issued access code, and sees only their own children’s published results."
         back={{ href: "/admin/results", label: "Results" }}
-        actions={can("guardians:create") && <button type="button" className="btn btn-primary btn-sm" onClick={() => setEditing({})}><UserPlus className="size-4" /> Add parent</button>} />
+        actions={<>
+          {can("guardians:update") && <BulkCodes label="Codes for all without one" onDone={list.reload} />}
+          {can("guardians:create") && <Link href="/admin/results/parents/import" className="btn btn-outline btn-sm"><FileUp className="size-4" /> Bulk upload</Link>}
+          {can("guardians:create") && <button type="button" className="btn btn-primary btn-sm" onClick={() => setEditing({})}><UserPlus className="size-4" /> Add parent</button>}
+        </>} />
       <ResultsNav />
       <div className="mb-4 flex justify-end"><SearchInput value={q} onChange={(v) => { setQ(v); setPage(0); }} placeholder="Name, Client ID or email…" className="w-full sm:w-80" /></div>
       <Card bodyClass="">
         {list.loading ? <Loading /> : list.error ? <ErrorState error={list.error} onRetry={list.reload} /> : !list.data?.length ? (
-          <EmptyState icon={Users} title="No parents yet" text="Add a parent, enter their Client ID, link their children and issue an access code." />
+          <EmptyState icon={Users} title="No parents yet" text="Add parents one by one, or use Bulk upload to add many from a CSV or Excel sheet." />
         ) : (
           <ul className="divide-y divide-line">
             {list.data.map((g) => {

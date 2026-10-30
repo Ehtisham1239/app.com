@@ -104,3 +104,15 @@ test("readResultsFile: type, size and hash", async () => {
   await assert.rejects(readResultsFile(new File(["x"], "notes.pdf")), /Upload a .csv or .xlsx/);
   await assert.rejects(readResultsFile(new File([new Uint8Array(2 * 1024 * 1024 + 1)], "big.csv")), /larger than 2 MB/);
 });
+
+test("parents sheet: aliases, one row per child, refuses an access code column", async () => {
+  const { mapClientRows, clientRowIssues, toClientPayload } = await import("../src/lib/results/clients-import.js");
+  const rows = mapClientRows([["Client ID", "Parent Name", "E-mail", "Student Code", "Child Name"], [" c-1 ", "Test  Parent", "A@Example.TEST", "oqc-00001", ""], ["c-1", "Test Parent", "", "", "New Child"]]);
+  assert.deepEqual(rows[0], { row_number: 1, client_id: "c-1", parent_name: "Test Parent", relationship: "", email: "a@example.test", phone: "", student_code: "OQC-00001", student_name: "" });
+  assert.equal(rows[1].student_name, "New Child");
+  assert.deepEqual(clientRowIssues(rows[0]), []);
+  assert.deepEqual(clientRowIssues({ ...rows[0], client_id: "x", parent_name: "", email: "bad" }), ["Client ID: 3–64 letters, numbers, dots, dashes or underscores", "Parent name is missing", "Email is not valid"]);
+  assert.deepEqual(Object.keys(toClientPayload(rows)[0]).sort(), ["client_id", "email", "parent_name", "phone", "relationship", "row_number", "student_code", "student_name"]);
+  assert.throws(() => mapClientRows([["client_id", "parent_name", "Access Code"], ["c-1", "P", "X"]]), /never uploaded/);
+  assert.throws(() => mapClientRows([["parent_name"], ["P"]]), /client_id/);
+});
