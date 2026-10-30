@@ -74,4 +74,8 @@ test("location pages describe online tuition for the place without claiming a lo
   const guide = MARKET_GUIDES.australia;
   assert.ok(guide.sections.length >= 2);
   assert.ok(guide.sources.every((s) => new URL(s.url).hostname.endsWith(".gov.au")));
+  const us = MARKET_GUIDES["united-states"];
+  assert.ok(us.sections.length >= 2 && us.sections.every((s) => s.path.startsWith("/")));
+  assert.ok(us.sources.every((s) => new URL(s.url).hostname.endsWith(".gov")));
+  assert.notEqual(us.title, guide.title);
 });

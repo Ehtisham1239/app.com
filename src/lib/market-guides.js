@@ -20,6 +20,14 @@ export const MARKET_GUIDES = {
       { name: "Alberta: the new time system", url: "https://www.alberta.ca/albertas-new-time-system-abt" },
     ],
   },
+  "united-states": {
+    title: "US lesson times: time zones and daylight saving",
+    sections: [
+      { title: "Name your city, not just “Eastern” or “Central”", text: "The United States spans several time zones, and most states move their clocks for daylight saving. Hawaii and most of Arizona do not, although the Navajo Nation in Arizona does. A lesson set in New York time can therefore move by an hour for a family in Phoenix or Honolulu. Choose your city and the actual lesson date in the planner before proposing a weekly time.", path: "/free-trial?country=United+States&currency=USD", link: "Discuss a US lesson time" },
+      { title: "Choose the teacher and course before the package", text: "Explain what the learner can already read, whether they need Noorani Qaida, guided Quran reading with Tajweed or memorisation, and whether a male or female teacher is preferred. Then confirm the USD package, weekly lesson frequency and rescheduling terms in writing. A trial is the time to check the fit, not a promise of a particular slot.", path: "/blog/choose-online-quran-teacher-usa", link: "Read the guide to choosing a teacher in the USA" },
+    ],
+    sources: [{ name: "US Department of Transportation: daylight saving time", url: "https://www.transportation.gov/regulations/daylight-saving-time" }],
+  },
   australia: {
     title: "Australian lesson times: state clocks and daylight saving",
     sections: [
