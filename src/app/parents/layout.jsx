@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Parent portal",
-  description: "Parents of Online Quran College students can see approved results, lesson plans and issued certificates.",
+  description: "Parents of Online Quran College students can see approved results, e-DMC, syllabus and issued certificates.",
   robots: { index: false, follow: false },
 };
 

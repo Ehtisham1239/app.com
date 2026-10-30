@@ -3,7 +3,9 @@ import { formatDate } from "@/lib/format";
 import { periodLabel } from "@/lib/progress/constants";
 import { MarksSheet, groupByPeriod } from "./marks-sheet";
 import { ProgressCertificate } from "./progress-certificate";
-const VIEWS = [{ key: "results", label: "Results", icon: GraduationCap }, { key: "plans", label: "Lesson plans", icon: BookOpen }, { key: "certificates", label: "Certificates", icon: Award }];
+import { ProgressDmc } from "./progress-dmc";
+import { SyllabusCard } from "./syllabus-card";
+const VIEWS = [{ key: "results", label: "Results", icon: GraduationCap }, { key: "plans", label: "Syllabus", icon: BookOpen }, { key: "certificates", label: "Certificates", icon: Award }];
 export function parentRecordHref(view, report, student) {
   const query = new URLSearchParams({ view });
   if (report) query.set("report", report);
@@ -15,12 +17,6 @@ function Empty({ title, text }) {
 function MonthPicker({ kid, current, view }) {
   if (kid.progress.length < 2) return null;
   return <nav aria-label={`${kid.name} months`} className="flex flex-wrap gap-2">{kid.progress.map(report => <a key={report.id} href={parentRecordHref(view, report.id, kid.id)} aria-current={report.id === current.id ? "page" : undefined} className={`rounded-full px-3 py-1.5 text-xs font-semibold ${report.id === current.id ? "bg-mushaf-900 text-white" : "border border-line bg-white text-mushaf-900 hover:border-leaf-700"}`}>{periodLabel(report.period)}</a>)}</nav>;
-}
-function LessonPlan({ kid, report }) {
-  return <article aria-label={`Published lesson plan for ${kid.name}`} className="overflow-hidden rounded-2xl border border-leaf-200 bg-white shadow-[var(--shadow-lift)]">
-    <header className="flex flex-wrap items-center gap-4 bg-mushaf-900 p-5 text-white sm:p-6"><img src="/brand/logo.webp" alt="Online Quran College" width={64} height={64} className="size-16 rounded-xl bg-white p-1" /><div><p className="text-xs font-bold uppercase tracking-[0.16em] text-gold-300">Published lesson plan</p><h3 className="mt-1 font-display text-2xl">{periodLabel(report.period)}</h3><p className="text-sm text-white/80">{kid.name} · {kid.code}</p></div></header>
-    <div className="p-5 sm:p-7"><p className="whitespace-pre-line break-words leading-relaxed text-ink">{report.learning_plan || "No lesson plan has been published for this month. Please ask the coordinator for guidance."}</p><div className="mt-6 flex flex-wrap items-end justify-between gap-4 border-t border-line pt-4"><div className="text-xs leading-relaxed text-ink-soft">{report.teacher && <p>Teacher: {report.teacher}</p>}<p>Published {formatDate(report.published_at)}{report.version ? ` · Version ${report.version}` : ""}</p></div><a href={parentRecordHref("results", report.id, kid.id)} className="btn btn-outline btn-sm">View result card</a></div></div>
-  </article>;
 }
 function Certificates({ kid, progressUnavailable }) {
   return <div className="space-y-6">
@@ -40,8 +36,8 @@ export function ParentAcademicRecords({ kids, chosen, view = "results", progress
     <div className="space-y-12">{kids.map(kid => {
       const current = kid.progress.find(report => report.id === chosen) || kid.progress[0];
       return <section key={kid.id} id={`student-${kid.id}`} aria-labelledby={`name-${kid.id}`} className="scroll-mt-6"><h2 id={`name-${kid.id}`} className="mb-4 flex items-center gap-2 font-display text-2xl text-mushaf-900"><GraduationCap className="size-6 text-leaf-700" />{kid.name}</h2>
-        {selected === "results" && <>{current && <div className="mb-8"><div className="mb-4 flex flex-wrap items-center justify-between gap-3"><h3 className="font-display text-xl text-mushaf-900">Monthly result card</h3><MonthPicker kid={kid} current={current} view="results" /></div><ProgressCertificate report={current} studentName={kid.name} studentCode={kid.code} clientId={kid.clientId} clientName={kid.clientName} studentOfMonth={current.student_of_month} /></div>}{kid.results.length > 0 && <div className="space-y-8">{groupByPeriod(kid.results).map(group => <MarksSheet key={group.period} student={kid} period={group.period} results={group.results} certificateHref={id => `/parents/certificates/${id}`} />)}</div>}{!current && !kid.results.length && !progressUnavailable && <Empty title="Nothing published yet" text="Your approved results will appear here after the college publishes them." />}</>}
-        {selected === "plans" && (current ? <div className="space-y-4"><MonthPicker kid={kid} current={current} view="plans" /><LessonPlan kid={kid} report={current} /></div> : !progressUnavailable && <Empty title="No lesson plan published yet" text="The teacher’s plan will appear after the college reviews and publishes the monthly report." />)}
+        {selected === "results" && <>{current && <div className="mb-8"><div className="mb-4 flex flex-wrap items-center justify-between gap-3"><h3 className="font-display text-xl text-mushaf-900">Monthly e-DMC & certificate</h3><MonthPicker kid={kid} current={current} view="results" /></div><div className="mb-8"><ProgressDmc report={current} studentName={kid.name} clientId={kid.clientId} clientName={kid.clientName} studentOfMonth={current.student_of_month} /></div><ProgressCertificate report={current} studentName={kid.name} studentCode={kid.code} clientId={kid.clientId} clientName={kid.clientName} studentOfMonth={current.student_of_month} /></div>}{kid.results.length > 0 && <div className="space-y-8">{groupByPeriod(kid.results).map(group => <MarksSheet key={group.period} student={kid} period={group.period} results={group.results} certificateHref={id => `/parents/certificates/${id}`} />)}</div>}{!current && !kid.results.length && !progressUnavailable && <Empty title="Nothing published yet" text="Your approved results will appear here after the college publishes them." />}</>}
+        {selected === "plans" && (current ? <div className="space-y-4"><MonthPicker kid={kid} current={current} view="plans" /><SyllabusCard report={current} studentName={kid.name} actions={<a href={parentRecordHref("results", current.id, kid.id)} className="btn btn-outline btn-sm">View e-DMC & certificate</a>} /></div> : !progressUnavailable && <Empty title="No syllabus published yet" text="The teacher’s syllabus and plan will appear after the college reviews and publishes the monthly report." />)}
         {selected === "certificates" && <Certificates kid={kid} progressUnavailable={progressUnavailable} />}
       </section>;
     })}</div>

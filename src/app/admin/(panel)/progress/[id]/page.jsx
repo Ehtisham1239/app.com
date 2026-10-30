@@ -11,6 +11,8 @@ import { ResultsNav } from "@/components/admin/results-nav";
 import { RatingPicker } from "@/components/admin/rating-picker";
 import { ProgressWorkflow } from "@/components/results/progress-workflow";
 import { ProgressCertificate } from "@/components/results/progress-certificate";
+import { ProgressDmc } from "@/components/results/progress-dmc";
+import { SyllabusCard } from "@/components/results/syllabus-card";
 import { Card, ConfirmButton, ErrorState, Field, Loading, Modal, PageHeader, StatusBadge } from "@/components/admin/ui";
 
 const ACTIONS = { submitted: "Submitted by teacher", changes_requested: "Changes requested", edited_before: "Edited by admin (previous values)", published: "Published", unpublished: "Taken off the portal" };
@@ -125,7 +127,11 @@ export default function ProgressReportPage({ params }) {
       <ResultsNav />
       <ProgressWorkflow status={r.status} />
       <div className="grid gap-6 xl:grid-cols-[1fr_20rem]">
-        <ProgressCertificate report={working} studentName={r.students?.full_name} studentCode={r.students?.student_code} clientId={identity.data?.clients?.[0]?.client_id} clientName={identity.data?.clients?.[0]?.client_name} studentOfMonth={!!award.data} stamp={r.status === "published" ? null : "Preview"} />
+        <div className="space-y-6">
+          <div className="no-print"><ProgressDmc report={working} studentName={r.students?.full_name} clientId={identity.data?.clients?.[0]?.client_id} clientName={identity.data?.clients?.[0]?.client_name} studentOfMonth={!!award.data} stamp={r.status === "published" ? null : "Preview"} /></div>
+          <ProgressCertificate report={working} studentName={r.students?.full_name} studentCode={r.students?.student_code} clientId={identity.data?.clients?.[0]?.client_id} clientName={identity.data?.clients?.[0]?.client_name} studentOfMonth={!!award.data} stamp={r.status === "published" ? null : "Preview"} />
+          <div className="no-print"><SyllabusCard report={working} studentName={r.students?.full_name} /></div>
+        </div>
         <div className="no-print space-y-4">
           <Card title={<span className="inline-flex items-center gap-2"><History className="size-4 text-ink-faint" /> History</span>} bodyClass="">
             {!history.data?.length ? <p className="p-5 text-sm text-ink-soft">No history yet.</p> : (
