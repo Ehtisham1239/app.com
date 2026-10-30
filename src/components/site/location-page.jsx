@@ -5,12 +5,12 @@ import { ContentImage } from "@/components/site/content-image";
 import Link from "next/link";
 import { LocationSchedule } from "./location-schedule";
 import { schedulingLocations } from "@/lib/location-schedule";
-import { breadcrumbSchema, safeJsonLd, faqSchema } from "@/lib/seo";
+import { breadcrumbSchema, safeJsonLd, faqSchema, locationServiceSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
 import { PageHero } from "@/components/site/chrome";
 import { FaqList } from "@/components/site/sections";
 import { getCourses, getPage, getPlans } from "@/lib/site-data";
-import { locationPath, locationCmsSlug, locationBreadcrumbs, locationLocale, locationSearchIntro, isCityState, locationHeading } from "@/lib/locations";
+import { locationPath, locationCmsSlug, locationBreadcrumbs, locationLocale, locationSearchIntro, isCityState, locationHeading, countryInName } from "@/lib/locations";
 import { locationImage } from "@/lib/location-image";
 import { cleanHtml } from "@/lib/sanitize";
 import { formatMoney } from "@/lib/format";
@@ -39,6 +39,7 @@ export async function LocationPage({ country, city }) {
   return <div lang={locationLocale(country).replace("_", "-")}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema(faqs)) }} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema(breadcrumbs, SITE_URL)) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(locationServiceSchema({ country, city, placeName: city ? `${city.name}, ${country.name}` : countryInName(country), url: `${SITE_URL}${locationPath(country, city)}`, siteUrl: SITE_URL })) }} />
     <PageHero path={locationPath(country, city)} eyebrow={`Learn from ${city?.name || country.name} · ${country.currency}`} title={title} intro={!city && country.slug === "united-states" ? SEARCH_INTENTS["/locations/united-states"].intro : locationSearchIntro(country, city)} visual={<figure className="relative">
       <ContentImage src={image.url} alt={image.alt} priority sizes="(max-width: 639px) 90vw, (max-width: 1023px) 85vw, 600px" className="aspect-[3/2] w-full object-cover" />
       <figcaption className="flex flex-wrap items-center justify-between gap-3 bg-leaf-50 px-5 py-4 text-mushaf-900"><div className="min-w-0"><p className="text-sm font-semibold sm:text-base">Online learning for {city?.name || country.name}</p><p className="mt-1 break-words text-xs text-ink-soft">{city ? zones[0] : `${country.cities.length} city guides`} · {country.currency}</p></div><span className="rounded-full border border-leaf-200 bg-white px-3 py-1 text-xs font-semibold">Live lessons</span></figcaption>

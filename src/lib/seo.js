@@ -66,3 +66,18 @@ export function breadcrumbSchema(items, siteUrl) {
 export function faqSchema(faqs) {
   return { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.question, acceptedAnswer: { "@type": "Answer", text: f.answer } })) };
 }
+
+// Online tuition offered to learners in a country or city (no local branch implied).
+export function locationServiceSchema({ country, city, placeName, url, siteUrl }) {
+  const countryPlace = { "@type": "Country", name: country.name };
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: `Online Quran classes in ${placeName}`,
+    serviceType: "Online one-to-one Quran tuition",
+    url,
+    provider: { "@id": `${siteUrl}/#organization` },
+    areaServed: city ? { "@type": "City", name: city.name, containedInPlace: countryPlace } : countryPlace,
+    availableChannel: { "@type": "ServiceChannel", serviceUrl: `${siteUrl}/free-trial` },
+  };
+}
