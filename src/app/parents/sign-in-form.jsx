@@ -1,5 +1,6 @@
 "use client";
 
+import { ParentAccessRequest } from "./request-access-form";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { KeyRound, Loader2, Search } from "lucide-react";
@@ -33,7 +34,7 @@ export function ParentSignInForm({ expired = false }) {
     }
   };
   return (
-    <form onSubmit={submit} className="space-y-4" noValidate>
+    <><form onSubmit={submit} className="space-y-4" noValidate>
       <div>
         <label htmlFor="client-id" className="field-label">Client ID</label>
         <input id="client-id" className="input font-mono" autoComplete="username" inputMode="text" spellCheck={false} value={clientId} onChange={(e) => setClientId(e.target.value)} placeholder="e.g. C-10245" maxLength={64} required />
@@ -48,7 +49,7 @@ export function ParentSignInForm({ expired = false }) {
         {busy ? <Loader2 className="size-5 animate-spin" aria-hidden="true" /> : <Search className="size-5" aria-hidden="true" />} View result
       </button>
       <p className="flex items-start gap-2 text-xs text-ink-faint"><KeyRound className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" /> No Client ID or code yet? Ask the coordinator on WhatsApp or through the contact page.</p>
-    </form>
+    </form><ParentAccessRequest clientId={clientId}/></>
   );
 }
 

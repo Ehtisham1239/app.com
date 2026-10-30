@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-30",
+  "project_id": "lgbwidraztavhhbnbfhr",
+  "migration": "20261030093005_parent_portal_accounts_and_planning",
+  "apply_success": true,
+  "live_read_only_checks": {
+    "plan_column": true,
+    "request_rls": true,
+    "new_routines": [
+      {
+        "defaults": 3,
+        "body_hash": "4aa9cd2ea76b8d4d47a9f21003be095e",
+        "signature": "guardian_create_portal_account(uuid,text,uuid,text,text,text)",
+        "anon_execute": false,
+        "authenticated_execute": true
+      },
+      {
+        "defaults": 0,
+        "body_hash": "ea4f53dc7a13fd4dec8244add7537a0e",
+        "signature": "guardian_resolve_access_request(uuid)",
+        "anon_execute": false,
+        "authenticated_execute": true
+      },
+      {
+        "defaults": 1,
+        "body_hash": "3cf85523b4c44bd7d8b85f517d03d41d",
+        "signature": "parent_request_access(text,text,text)",
+        "anon_execute": true,
+        "authenticated_execute": true
+      },
+      {
+        "defaults": 1,
+        "body_hash": "f7a95eca6fd89f4ee9ca0011a5e442c3",
+        "signature": "progress_admin_update(uuid,jsonb,text,text,text)",
+        "anon_execute": false,
+        "authenticated_execute": true
+      },
+      {
+        "defaults": 1,
+        "body_hash": "3c43b1dcbcf0d3b96ba9d54d9774bc4d",
+        "signature": "progress_save(uuid,date,jsonb,text,boolean,text)",
+        "anon_execute": false,
+        "authenticated_execute": true
+      }
+    ],
+    "invalid_token": null,
+    "anon_request_select": false
+  },
+  "advisors_before": [
+    {
+      "name": "rls_enabled_no_policy",
+      "count": 3
+    },
+    {
+      "name": "anon_security_definer_function_executable",
+      "count": 13
+    },
+    {
+      "name": "authenticated_security_definer_function_executable",
+      "count": 48
+    },
+    {
+      "name": "auth_leaked_password_protection",
+      "count": 1
+    }
+  ],
+  "advisors_after": [
+    {
+      "name": "rls_enabled_no_policy",
+      "count": 4
+    },
+    {
+      "name": "anon_security_definer_function_executable",
+      "count": 14
+    },
+    {
+      "name": "authenticated_security_definer_function_executable",
+      "count": 51
+    },
+    {
+      "name": "auth_leaked_password_protection",
+      "count": 1
+    }
+  ],
+  "production_data_writes_for_qa": 0
+}

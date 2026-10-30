@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-30",
+  "application_commit": "76fb61bea1ee61586d10d723750ad3dcbae275b4",
+  "deployment_id": "dpl_D2icT929wxSUDfHwv2M6DJdLvXyd",
+  "status": "Ready",
+  "environment": "Production",
+  "build_duration": "1m14s",
+  "dashboard": "https://vercel.com/ehtisham1239s-projects/appcom-online-quran-college/D2icT929wxSUDfHwv2M6DJdLvXyd",
+  "live_about_url": "https://www.onlinequrancollege.com/about",
+  "live_parent_entry": "https://www.onlinequrancollege.com/parents",
+  "public_browser_observation": "New full-width About hero, gold accent, two readable CTA links and family lesson image; parent entry has Client ID and access code.",
+  "database_migration_version": "20261030085637",
+  "tests": 147,
+  "workflow_browser_checks": 9,
+  "about_viewport_cases": 4,
+  "browser_errors": 0,
+  "real_student_report_writes_for_QA": 0,
+  "limits": [
+    "Authenticated production teacher/admin/parent UI journey requires an existing signed-in session; not claimed completed.",
+    "Synthetic data was used for browser and PGlite integration verification.",
+    "Document six student areas retained; no absent official teacher-evaluation Six Dimensions labels were invented."
+  ]
+}

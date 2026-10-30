@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-30",
+  "application_commit": "2e19f82204d863a6991edf225771c4b4872219ef",
+  "deployment_id": "dpl_ETdxaUR4ZsKrBQKu7HsUvuM3fhWp",
+  "status": "Ready",
+  "environment": "Production",
+  "build_duration": "1m14s",
+  "dashboard": "https://vercel.com/ehtisham1239s-projects/appcom-online-quran-college/ETdxaUR4ZsKrBQKu7HsUvuM3fhWp",
+  "public_parent_entry": "https://www.onlinequrancollege.com/parents",
+  "cms_path": "/admin/results/parents",
+  "live_observations": [
+    "Deployment dashboard shows Ready / Production and exact application commit.",
+    "Public parent entry shows Client ID, access code, approved results/learning plans copy, Forgot password / access code and Request new access.",
+    "Both helper controls open their correct request forms with registered-contact guidance.",
+    "CMS parent-management route redirects signed-out visitors to /admin/login?next=%2Fadmin%2Fresults%2Fparents.",
+    "No application-origin browser errors observed; browser-extension metadata errors excluded."
+  ],
+  "database_migration": "20261030093005_parent_portal_accounts_and_planning",
+  "automated_tests": 151,
+  "parent_cms_browser_checks": 7,
+  "teacher_review_browser_checks": 9,
+  "production_data_writes_for_qa": 0,
+  "limits": [
+    "Signed-in production teacher/admin/parent journey not performed; no authenticated app session available.",
+    "No automatic email/SMS delivery configured. Staff must verify registered contact and deliver the once-shown code.",
+    "Synthetic service adapters were used for local real-component browser checks; permission/data rules tested separately in PGlite.",
+    "Vercel MCP project lookup remains unavailable for this connection (404). Deployment verified through GitHub deployment status and signed-in dashboard; production runtime logs not scanned."
+  ]
+}

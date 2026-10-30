@@ -6,7 +6,10 @@ import { CheckCircle2, EyeOff, History, Loader2, MessageSquareWarning, Pencil, P
 import { useAccess } from "@/lib/admin/access";
 import { db, notifyError, useLoad } from "@/lib/admin/db";
 import { formatDateTime } from "@/lib/format";
-import { CATEGORIES, RATINGS, REPORT_STATUSES, missingForSubmit, periodLabel, ratingLabel } from "@/lib/progress/constants";
+import { CATEGORIES, REPORT_STATUSES, missingForSubmit, periodLabel, ratingLabel } from "@/lib/progress/constants";
+import { ResultsNav } from "@/components/admin/results-nav";
+import { RatingPicker } from "@/components/admin/rating-picker";
+import { ProgressWorkflow } from "@/components/results/progress-workflow";
 import { ProgressCertificate } from "@/components/results/progress-certificate";
 import { Card, ConfirmButton, ErrorState, Field, Loading, Modal, PageHeader, StatusBadge } from "@/components/admin/ui";
 
@@ -16,11 +19,12 @@ function EditReport({ report, onDone }) {
   const [open, setOpen] = useState(false);
   const [ratings, setRatings] = useState(() => Object.fromEntries(CATEGORIES.map((c) => [c.key, report[c.key] || ""])));
   const [remarks, setRemarks] = useState(report.remarks || "");
+  const [plan, setPlan] = useState(report.learning_plan || "");
   const [reason, setReason] = useState("");
   const [busy, setBusy] = useState(false);
   const save = async () => {
     setBusy(true);
-    const { error } = await db().rpc("progress_admin_update", { p_report_id: report.id, p_ratings: ratings, p_remarks: remarks, p_reason: reason });
+    const { error } = await db().rpc("progress_admin_update", { p_report_id: report.id, p_ratings: ratings, p_remarks: remarks, p_reason: reason, p_plan: plan });
     setBusy(false);
     if (error) return notifyError(error);
     toast.success("Changes saved. Publish when you are happy with the certificate.");
@@ -33,14 +37,10 @@ function EditReport({ report, onDone }) {
         footer={<><button type="button" className="btn btn-ghost btn-sm" onClick={() => setOpen(false)} disabled={busy}>Cancel</button><button type="button" className="btn btn-primary btn-sm" onClick={save} disabled={busy || reason.trim().length < 3}>{busy && <Loader2 className="size-4 animate-spin" />} Save changes</button></>}>
         <div className="grid gap-3 sm:grid-cols-2">
           {CATEGORIES.map((c) => (
-            <Field key={c.key} label={c.label}>
-              <select className="adm-input" value={ratings[c.key]} onChange={(e) => setRatings((r) => ({ ...r, [c.key]: e.target.value }))}>
-                <option value="">— Choose —</option>
-                {RATINGS.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
-              </select>
-            </Field>
+            <div key={c.key} className="sm:col-span-2"><RatingPicker name={`edit-${c.key}`} label={c.label} hint={c.hint} value={ratings[c.key]} onChange={(value) => setRatings((r) => ({ ...r, [c.key]: value }))} disabled={busy} /></div>
           ))}
           <Field label="Teacher remarks" className="sm:col-span-2" hint={`${remarks.length}/1000`}><textarea className="adm-input" rows={4} maxLength={1000} value={remarks} onChange={(e) => setRemarks(e.target.value)} /></Field>
+          <Field label="Learning & home-practice plan" className="sm:col-span-2" hint={`${plan.length}/2000`}><textarea className="adm-input" rows={4} maxLength={2000} value={plan} onChange={(e) => setPlan(e.target.value)} /></Field>
           <Field label="Reason for the edit" required className="sm:col-span-2" hint="Kept in the report history"><input className="adm-input" maxLength={500} value={reason} onChange={(e) => setReason(e.target.value)} placeholder="e.g. Corrected the Tajweed rating after speaking to the teacher" /></Field>
         </div>
       </Modal>
@@ -78,6 +78,7 @@ export default function ProgressReportPage({ params }) {
   const history = useLoad(() => db().from("monthly_report_history").select("id, action, snapshot, reason, changed_at").eq("report_id", id).order("changed_at", { ascending: false }), [id]);
   const r = report.data;
   const award = useLoad(() => (r ? db().from("student_of_month").select("period").eq("student_id", r.student_id).eq("period", r.period).maybeSingle() : { data: null }), [r?.student_id, r?.period]);
+  const identity = useLoad(() => r ? db().rpc("progress_my_students", { p_period: r.period }).eq("student_id", r.student_id).maybeSingle() : { data: null }, [r?.student_id, r?.period]);
   if (report.loading && !r) return <Loading rows={6} />;
   if (report.error) return <ErrorState error={report.error} onRetry={report.reload} />;
   if (!r) return <PageHeader title="Report not found" back={{ href: "/admin/progress", label: "Monthly progress" }} />;
@@ -121,8 +122,10 @@ export default function ProgressReportPage({ params }) {
         {r.status === "draft" && <p className="mb-4 rounded-xl bg-paper px-4 py-3 text-sm text-ink-soft">The teacher has not submitted this report yet.</p>}
       </div>
 
+      <ResultsNav />
+      <ProgressWorkflow status={r.status} />
       <div className="grid gap-6 xl:grid-cols-[1fr_20rem]">
-        <ProgressCertificate report={working} studentName={r.students?.full_name} studentOfMonth={!!award.data} stamp={r.status === "published" ? null : "Preview"} />
+        <ProgressCertificate report={working} studentName={r.students?.full_name} studentCode={r.students?.student_code} clientId={identity.data?.clients?.[0]?.client_id} clientName={identity.data?.clients?.[0]?.client_name} studentOfMonth={!!award.data} stamp={r.status === "published" ? null : "Preview"} />
         <div className="no-print space-y-4">
           <Card title={<span className="inline-flex items-center gap-2"><History className="size-4 text-ink-faint" /> History</span>} bodyClass="">
             {!history.data?.length ? <p className="p-5 text-sm text-ink-soft">No history yet.</p> : (

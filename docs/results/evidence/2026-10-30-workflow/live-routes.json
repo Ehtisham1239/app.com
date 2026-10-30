@@ -1,0 +1,19 @@
+[
+  {
+    "path": "/admin/progress",
+    "status": 307,
+    "location": "/admin/login?next=%2Fadmin%2Fprogress",
+    "robots": "noindex, nofollow"
+  },
+  {
+    "path": "/admin/progress/form",
+    "status": 307,
+    "location": "/admin/login?next=%2Fadmin%2Fprogress%2Fform",
+    "robots": "noindex, nofollow"
+  },
+  {
+    "path": "/parents",
+    "status": 200,
+    "robots": "noindex, nofollow"
+  }
+]

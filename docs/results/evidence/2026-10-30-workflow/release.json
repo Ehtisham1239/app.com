@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-30",
+  "application_commit": "6fcaf8a6f62c1db0187b4d96df7461a0343b645b",
+  "deployment_id": "dpl_2q9oea4xGaY1K7Z2yagVSAJoHhzx",
+  "status": "Ready",
+  "environment": "Production",
+  "domain": "www.onlinequrancollege.com",
+  "source_branch": "main",
+  "dashboard": "https://vercel.com/ehtisham1239s-projects/appcom-online-quran-college/2q9oea4xGaY1K7Z2yagVSAJoHhzx",
+  "observed": "Vercel dashboard shows Ready, Production, current domain and exact source commit; GitHub Vercel success agrees",
+  "build_duration": "1m20s",
+  "tests": 145,
+  "test_failures": 0,
+  "browser_checks": 7,
+  "browser_errors": 0,
+  "limits": [
+    "Browser workflow uses actual React screens with synthetic service adapter, with database integration separately verified in PGlite.",
+    "Live CMS browser redirected to sign-in; authenticated production teacher/admin interaction was not claimed.",
+    "Production schema/routines inspected read-only; no real report or certificate was published for QA."
+  ]
+}

@@ -1,3 +1,4 @@
+import { ClientIdentity } from "./client-identity";
 import { Award } from "lucide-react";
 import { formatDate } from "@/lib/format";
 import { CATEGORIES, periodLabel, ratingLabel, ratingStars } from "@/lib/progress/constants";
@@ -11,11 +12,11 @@ const PILL = {
 
 // Monthly progress certificate: Online Quran College logo, deep green and soft gold.
 // Server-safe; staff can print it from the CMS, parents only view it.
-export function ProgressCertificate({ report, studentName, studentOfMonth = false, stamp = null }) {
+export function ProgressCertificate({ report, studentName, studentCode, clientId, clientName, studentOfMonth = false, stamp = null }) {
   const r = report || {};
   const month = periodLabel(r.period);
   return (
-    <article className="progress-certificate relative mx-auto w-full max-w-[52rem] overflow-hidden rounded-[10px] bg-[#fffdf7] text-ink shadow-[0_30px_70px_-40px_rgba(13,74,28,0.7)] print:shadow-none" aria-label={`Monthly progress certificate for ${studentName}, ${month}`}>
+    <article className="progress-certificate relative mx-auto w-full max-w-[52rem] overflow-hidden rounded-[10px] bg-[#fffdf7] text-ink shadow-[0_30px_70px_-40px_rgba(13,74,28,0.7)] print:shadow-none print:break-inside-avoid" aria-label={`Monthly progress certificate for ${studentName}, ${month}`}>
       <div className="pointer-events-none absolute inset-0 pattern-girih opacity-[0.045]" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-[12px] rounded-[6px] border-2 border-gold-500" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-[18px] rounded-[4px] border border-gold-300" aria-hidden="true" />
@@ -28,13 +29,17 @@ export function ProgressCertificate({ report, studentName, studentOfMonth = fals
           <img src="/brand/logo.webp" alt="Online Quran College" width={96} height={96} className="mx-auto size-20 sm:size-24" />
           <p className="mt-3 font-display text-lg tracking-wide text-mushaf-900 sm:text-xl">Online Quran College</p>
           <div className="mx-auto mt-3 flex max-w-xs items-center gap-3 text-gold-500" aria-hidden="true"><span className="h-px flex-1 bg-current" /><span className="size-1.5 rotate-45 bg-current" /><span className="h-px flex-1 bg-current" /></div>
-          <h2 className="mt-3 font-display text-[1.85rem] leading-tight text-mushaf-900 sm:text-[2.5rem]">Certificate of Monthly Progress</h2>
+          <h2 className="mt-3 font-display text-[1.85rem] leading-tight text-mushaf-900 sm:text-[2.5rem]">Monthly Student Result Card</h2>
           <p className="mt-1 text-sm font-semibold uppercase tracking-[0.2em] text-gold-700">{month}</p>
         </header>
 
+        {(studentCode || (!stamp && (r.published_version || r.version))) && <div className="mx-auto mt-4 flex flex-wrap justify-center gap-x-5 gap-y-1 text-xs text-ink-soft">
+          {studentCode && <p>Student code <span className="font-mono font-semibold text-mushaf-900">{studentCode}</span></p>}
+          {!stamp && (r.published_version || r.version) && <p>Published version <span className="font-semibold text-mushaf-900">{r.published_version || r.version}</span></p>}
+        </div>}
         <div className="mt-7 text-center">
           <p className="text-[0.95rem] italic text-ink-soft">This is to certify the progress of</p>
-          <p className="mx-auto mt-2 inline-block min-w-[60%] border-b-2 border-gold-400 px-6 pb-1.5 font-display text-[1.9rem] text-ink sm:text-[2.3rem]">{studentName}</p>
+          <p className="mx-auto mt-2 inline-block max-w-full break-words min-w-[60%] border-b-2 border-gold-400 px-6 pb-1.5 font-display text-[1.9rem] text-ink sm:text-[2.3rem]">{studentName}</p>
           <p className="mx-auto mt-3 max-w-lg text-[0.95rem] leading-relaxed text-ink-soft">in Quran learning during {month}, as assessed by the class teacher and reviewed by the college.</p>
         </div>
 
@@ -45,6 +50,7 @@ export function ProgressCertificate({ report, studentName, studentOfMonth = fals
           </div>
         )}
 
+        {(clientId || clientName) && <div className="mt-5"><ClientIdentity clientId={clientId} clientName={clientName} /></div>}
         <table className="mt-8 w-full border-separate border-spacing-0 overflow-hidden rounded-xl border border-gold-300 bg-white/90 text-left">
           <caption className="sr-only">Ratings for {month}</caption>
           <thead>
@@ -73,9 +79,10 @@ export function ProgressCertificate({ report, studentName, studentOfMonth = fals
 
         <figure className="mt-6 rounded-xl border border-gold-300/70 bg-white/90 px-5 py-4">
           <figcaption className="text-xs font-bold uppercase tracking-[0.16em] text-gold-700">Teacher’s remarks</figcaption>
-          <blockquote className="mt-1.5 whitespace-pre-line leading-relaxed text-ink">{r.remarks || "—"}</blockquote>
+          <blockquote className="mt-1.5 whitespace-pre-line break-words leading-relaxed text-ink">{r.remarks || "—"}</blockquote>
         </figure>
 
+        <section className="mt-5 rounded-xl border border-leaf-200 bg-leaf-50/60 px-5 py-4" aria-label="Learning and home-practice plan"><h3 className="text-xs font-bold uppercase tracking-[0.16em] text-leaf-800">Learning & home-practice plan</h3><p className="mt-2 whitespace-pre-line break-words text-sm leading-relaxed text-ink">{r.learning_plan || "No learning plan has been published for this period."}</p></section>
         <footer className="mt-10 grid grid-cols-3 items-end gap-4 text-center text-xs text-ink-soft sm:gap-8">
           <div><p className="min-h-[1.3em] font-semibold text-ink">{r.teacher || ""}</p><p className="mt-1 border-t border-ink/30 pt-1.5">Class teacher</p></div>
           <div className="flex flex-col items-center">

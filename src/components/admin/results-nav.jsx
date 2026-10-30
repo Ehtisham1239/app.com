@@ -6,10 +6,12 @@ import { clsx } from "clsx";
 import { useAccess } from "@/lib/admin/access";
 
 const LINKS = [
+  { href: "/admin/progress", label: "Monthly reports", perm: "progress:read" },
+  { href: "/admin/progress/form", label: "Teacher form", perm: ["progress:submit", "progress:review"] },
   { href: "/admin/results", label: "Assessments", perm: ["results:read", "certificates:read"] },
   { href: "/admin/results/import", label: "Upload results", perm: ["results:create", "certificates:create"] },
   { href: "/admin/results/published", label: "Published results", perm: ["results:read", "certificates:read"] },
-  { href: "/admin/results/parents", label: "Parent access", perm: "guardians:read" },
+  { href: "/admin/results/parents", label: "Parent portal", perm: "guardians:read" },
 ];
 
 // Sub-navigation shared by every Results screen.

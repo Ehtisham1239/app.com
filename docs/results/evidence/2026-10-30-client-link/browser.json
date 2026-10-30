@@ -1,0 +1,15 @@
+{
+  "checks": [
+    "live certificate preview reflects remarks and ratings at mobile/desktop widths without saving or publishing",
+    "unsaved student/month switches can be cancelled and explicit discard preserves the saved report",
+    "failed save retains input and retry saves draft",
+    "student switching loads each saved report without copying another learner",
+    "teacher submission locks editing pending admin review",
+    "failed report load never opens a blank editable form",
+    "admin edit updates preview and final publish uses corrected values with student code and published version",
+    "certificate and review fit 390px",
+    "certificate and review fit 1440px"
+  ],
+  "errors": [],
+  "scope": "Actual teacher and admin React screens; synthetic PostgREST/RPC adapter; database rules tested separately in PGlite"
+}

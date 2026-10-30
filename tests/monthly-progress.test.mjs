@@ -58,6 +58,7 @@ test("a teacher sees and reports on only their assigned students", async () => {
   await as("authenticated", ids.teacher);
   const mine = (await db.query("select * from public.progress_my_students($1)", [period])).rows;
   assert.deepEqual(mine.map((r) => r.full_name), ["Test Pupil A"]);
+  assert.deepEqual(mine[0].clients, [{ client_id: "PROG-1", client_name: "Test Parent" }]);
   await assert.rejects(db.query("select public.progress_save($1,$2,$3,'x',false)", [studentB.id, period, full]), /not assigned/);
   await assert.rejects(db.query("insert into public.monthly_reports (student_id, period) values ($1,$2)", [studentA.id, period]), /permission denied/);
 });
@@ -112,6 +113,7 @@ test("drafts and submitted reports never reach parents; publishing does", async 
   const rep = after[0].reports[0];
   assert.deepEqual([rep.tajweed, rep.version, rep.student_of_month, rep.period], ["good", 1, true, period]);
   assert.equal(after[0].code, studentA.student_code);
+  assert.equal((await one("select public.parent_progress($1) d", [token])).d[0].client_id, "PROG-1");
   assert.ok(!("status" in rep));
 });
 
@@ -132,4 +134,86 @@ test("a correction keeps the published version visible until republished, with h
   await as("anon");
   assert.deepEqual((await one("select public.parent_progress($1) d", [token])).d[0].reports, []);
   assert.equal((await one("select public.parent_progress($1) d", ["0".repeat(64)])).d, null);
+});
+
+
+test("submission requires a linked client while a draft remains possible", async () => {
+  await as("postgres");
+  const learner = await one("insert into public.students (full_name) values ('Unlinked synthetic learner') returning id");
+  await db.query("insert into public.progress_assignments (teacher_profile_id,student_id) values ($1,$2)", [ids.teacher2, learner.id]);
+  await as("authenticated", ids.teacher2);
+  const draft = await one("select public.progress_save($1,$2,$3,'Draft feedback',false) id", [learner.id, period, full]);
+  assert.ok(draft.id);
+  await assert.rejects(db.query("select public.progress_save($1,$2,$3,'Complete feedback',true)", [learner.id, period, full]), /Link a Client ID/);
+});
+
+test("each guardian receives only their own client identity on a shared child's card", async () => {
+  await as("postgres");
+  const second = await one("insert into public.guardians (full_name,client_id) values ('Second Test Parent','PROG-2') returning id");
+  await db.query("insert into public.student_guardians (student_id,guardian_id) values ($1,$2)", [studentA.id,second.id]);
+  await as("authenticated",ids.admin);
+  const code = (await one("select public.guardian_issue_code($1) c",[second.id])).c;
+  await as("anon");
+  const secondToken = (await one("select public.parent_sign_in('PROG-2',$1) d",[code])).d.token;
+  const data = (await one("select public.parent_progress($1) d",[secondToken])).d;
+  assert.equal(data[0].client_id,'PROG-2');assert.equal(data[0].client_name,'Second Test Parent');
+  assert.equal(JSON.stringify(data).includes('PROG-1'),false);
+});
+
+
+test("learning plans use the same draft and published snapshot boundary as results", async () => {
+  await as("authenticated",ids.admin);
+  await db.query("select public.progress_admin_update($1,$2,'Reviewed','Plan reviewed','Practise the assigned reading section')",[reportId,full]);
+  await db.query("select public.progress_publish($1)",[reportId]);
+  await as("anon");
+  assert.equal((await one("select public.parent_progress($1) d",[token])).d[0].reports[0].learning_plan,'Practise the assigned reading section');
+  await as("authenticated",ids.admin);
+  await db.query("select public.progress_admin_update($1,$2,'Reviewed','Plan corrected','Ask the teacher about the next section')",[reportId,full]);
+  await as("anon");
+  assert.equal((await one("select public.parent_progress($1) d",[token])).d[0].reports[0].learning_plan,'Practise the assigned reading section');
+  await as("authenticated",ids.admin);await db.query("select public.progress_publish($1)",[reportId]);
+  await as("anon");assert.equal((await one("select public.parent_progress($1) d",[token])).d[0].reports[0].learning_plan,'Ask the teacher about the next section');
+});
+
+test("public recovery is non-enumerating, deduplicated and cannot reveal credentials",async()=>{
+  await as("postgres");await db.query("update public.guardians set email='parent@example.test' where id=$1",[guardian]);
+  await as("anon");
+  await assert.rejects(db.query("select * from public.parent_access_requests"),/permission denied/);
+  await assert.rejects(db.query("select * from private.parent_account_creations"),/permission denied/);
+  await assert.rejects(db.query("select public.guardian_resolve_access_request(gen_random_uuid())"),/permission denied/);
+  const unknown=await one("select public.parent_request_access('UNKNOWN','nobody@example.test','recovery') r");
+  const mismatch=await one("select public.parent_request_access('PROG-1','wrong@example.test','recovery') r");
+  const known=await one("select public.parent_request_access('PROG-1','parent@example.test','recovery') r");
+  assert.deepEqual(unknown,known);assert.deepEqual(mismatch,known);
+  await db.query("select public.parent_request_access('PROG-1','parent@example.test','recovery')");
+  await as("authenticated",ids.admin);
+  assert.equal((await one("select count(*)::int n from public.parent_access_requests")).n,1);
+});
+
+test("verified staff reset revokes previous sessions and completes the recovery once",async()=>{
+  await as("authenticated",ids.admin);
+  const request=await one("select id from public.parent_access_requests where guardian_id=$1 and status='pending'",[guardian]);
+  await as("authenticated",ids.teacher);
+  await assert.rejects(db.query("select public.guardian_resolve_access_request($1)",[request.id]),/guardians:update/);
+  await as("authenticated",ids.admin);
+  const resolved=(await one("select public.guardian_resolve_access_request($1) d",[request.id])).d;
+  assert.ok(resolved.code);assert.equal(resolved.guardian.client_id,'PROG-1');
+  await assert.rejects(db.query("select public.guardian_resolve_access_request($1)",[request.id]),/no longer pending/);
+  await as("anon");assert.equal((await one("select public.parent_session_active($1) active",[token])).active,false);
+  assert.equal((await one("select public.parent_sign_in('PROG-1',$1) d",[resolved.code])).d.ok,true);
+});
+
+test("staff can atomically create linked portal access with an automatic Client ID, safely retrying",async()=>{
+  const request='c1111111-1111-4111-8111-111111111111';
+  await as("authenticated",ids.teacher);
+  await assert.rejects(db.query("select public.guardian_create_portal_account($1,'Example Parent',$2,'new@example.test',null,null)",[request,studentA.id]),/guardians:create/);
+  await as("authenticated",ids.admin);
+  const first=(await one("select public.guardian_create_portal_account($1,'Example Parent',$2,'new@example.test',null,null) d",[request,studentA.id])).d;
+  assert.match(first.guardian.client_id,/^OQC-P-[A-F0-9]{12}$/);assert.ok(first.code);assert.equal(first.created,true);
+  const retry=(await one("select public.guardian_create_portal_account($1,'Example Parent',$2,'new@example.test',null,null) d",[request,studentA.id])).d;
+  assert.equal(retry.guardian.id,first.guardian.id);assert.equal(retry.code,null);assert.equal(retry.created,false);
+  assert.equal((await one("select count(*)::int n from public.student_guardians where guardian_id=$1",[first.guardian.id])).n,1);
+  await as("anon");const login=(await one("select public.parent_sign_in($1,$2) d",[first.guardian.client_id,first.code])).d;
+  assert.equal(login.ok,true);const children=(await one("select public.parent_results($1) d",[login.token])).d;
+  assert.deepEqual(children.map(c=>c.id),[studentA.id]);
 });

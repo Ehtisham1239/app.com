@@ -52,6 +52,7 @@ export const NAV = [
   {
     group: "Records",
     items: [
+      { href: "/admin/results/parents", label: "Parent portal", icon: Users, perm: "guardians:read" },
       { href: "/admin/results", label: "Results", icon: GraduationCap, perm: ["results:read", "certificates:read"] },
       { href: "/admin/certificates", label: "Certificates", icon: Award, perm: "certificates:read" },
       { href: "/admin/reports", label: "Reports", icon: LineChart, perm: "reports:read" },

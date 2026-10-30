@@ -19,8 +19,8 @@ async function loadChildren() {
   if (data === null) return { signedIn: false, expired: true };
   // Monthly progress reports are optional: the results page still works without them.
   const progress = await publicDb.rpc("parent_progress", { p_token: token });
-  const reports = Object.fromEntries((Array.isArray(progress.data) ? progress.data : []).map((p) => [p.student_id, p.reports || []]));
-  return { signedIn: true, children: (Array.isArray(data) ? data : []).map((k) => ({ ...k, progress: reports[k.id] || [] })) };
+  const reports = Object.fromEntries((Array.isArray(progress.data) ? progress.data : []).map((p) => [p.student_id, p]));
+  return { signedIn: true, progressUnavailable: !!progress.error, children: (Array.isArray(data) ? data : []).map((k) => ({ ...k, progress: reports[k.id]?.reports || [], clientId: reports[k.id]?.client_id, clientName: reports[k.id]?.client_name })) };
 }
 
 export default async function ParentsPage({ searchParams }) {
@@ -39,6 +39,7 @@ export default async function ParentsPage({ searchParams }) {
         <ParentSignOut />
       </div>
 
+      {state.progressUnavailable && <p role="alert" className="mb-5 rounded-xl bg-gold-50 p-4 text-sm text-gold-700">Monthly results and learning plans are temporarily unavailable. Please try again shortly.</p>}
       {kids.length > 1 && (
         <nav aria-label="Children" className="mb-6 flex flex-wrap gap-2">
           {kids.map((k) => <a key={k.id} href={`#student-${k.id}`} className="rounded-full border border-line bg-white px-4 py-1.5 text-sm font-semibold text-mushaf-900 hover:border-leaf-700">{k.name}</a>)}
@@ -58,7 +59,7 @@ export default async function ParentsPage({ searchParams }) {
                   <MarksSheet key={g.period} student={k} period={g.period} results={g.results} certificateHref={(id) => `/parents/certificates/${id}`} />
                 ))}
               </div>
-            ) : !k.progress.length && <Empty title="Nothing published yet" text="Monthly reports and results appear here as soon as the college checks and publishes them." />}
+            ) : !k.progress.length && !state.progressUnavailable && <Empty title="Nothing published yet" text="Monthly reports and results appear here as soon as the college checks and publishes them." />}
             {k.certificates.length > 0 && (
               <div className="mt-6 rounded-2xl border border-line bg-white p-5">
                 <h3 className="flex items-center gap-2 font-bold text-mushaf-900"><Award className="size-5 text-gold-600" aria-hidden="true" /> Certificates</h3>
@@ -87,7 +88,7 @@ function SignIn({ expired, unavailable }) {
         <div className="text-center text-white">
           <p className="font-arabic text-2xl text-gold-300" lang="ar" dir="rtl">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
           <h1 className="mt-2 font-display text-3xl sm:text-4xl">Student result</h1>
-          <p className="mt-2 text-sm text-white/80">Enter your Client ID and access code to see your child’s marks sheet.</p>
+          <p className="mt-2 text-sm text-white/80">Enter your Client ID and access code to see your child’s approved results and learning plans.</p>
         </div>
         <div className="mt-8 rounded-[1.4rem] border-2 border-gold-300 bg-white p-6 shadow-[0_24px_60px_-30px_rgba(13,74,28,0.6)] sm:p-8">
           {unavailable && <p role="alert" className="mb-4 rounded-xl bg-gold-50 px-4 py-3 text-sm text-gold-700">The results service is not available right now. Please try again shortly.</p>}
@@ -128,7 +129,7 @@ function ProgressSection({ kid, chosen }) {
           </nav>
         )}
       </div>
-      <ProgressCertificate report={current} studentName={kid.name} studentOfMonth={current.student_of_month} />
+      <ProgressCertificate report={current} studentName={kid.name} studentCode={kid.code} clientId={kid.clientId} clientName={kid.clientName} studentOfMonth={current.student_of_month} />
     </div>
   );
 }
