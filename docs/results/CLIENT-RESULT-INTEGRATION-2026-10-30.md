@@ -34,3 +34,5 @@ Release through existing main integration to www.onlinequrancollege.com. Hosting
 Rollback must coordinate this source diff and the three routine definitions. Restore only these routines from the prior monthly_progress migration after checking for later edits; `progress_my_students`'s old return shape requires drop/recreate without CASCADE and restoration of its authenticated-only execute grant. Published snapshots and learner rows must be preserved. Do not reset or reseed production.
 
 Visual QA also caught and fixed the About secondary action's white-on-white styling by using the existing light-outline button variant; the browser guard now checks its foreground/background colors as well as both destinations.
+
+Production verified: application `76fb61bea1ee61586d10d723750ad3dcbae275b4`, deployment `dpl_D2icT929wxSUDfHwv2M6DJdLvXyd`, Ready / Production; live About page shows the new design and the parent entry shows Client ID/access code. See evidence/2026-10-30-client-link/release.json.
