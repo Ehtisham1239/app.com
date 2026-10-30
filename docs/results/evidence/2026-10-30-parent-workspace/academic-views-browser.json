@@ -1,0 +1,21 @@
+{
+  "checks": [
+    "Results shows the approved monthly certificate and assessment marks",
+    "Lesson plan month selection and result-card link retain the same published report",
+    "Certificates indexes issued certificates and approved monthly result cards",
+    "results fits 390px",
+    "results fits 1440px",
+    "plans fits 390px",
+    "plans fits 1440px",
+    "certificates fits 390px",
+    "certificates fits 1440px",
+    "unknown view/report selection falls back to the linked learner’s current approved record",
+    "unlinked, empty and failed-load states remain distinct",
+    "separate CMS sidebar workspace shows published snapshots/issued certificates, supports retry and excludes draft content",
+    "CMS workspace and sidebar fit 390px",
+    "CMS workspace and sidebar fit 1440px",
+    "permission-limited staff do not query restricted progress/guardian data; denied staff query nothing"
+  ],
+  "errors": [],
+  "scope": "Actual React academic views, CMS workspace and sidebar; synthetic service adapter; no production writes"
+}

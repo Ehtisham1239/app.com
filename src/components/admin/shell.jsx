@@ -24,6 +24,13 @@ export const NAV = [
     ],
   },
   {
+    group: "Parent Portal",
+    items: [
+      { href: "/admin/parent-portal", label: "Portal overview", icon: GraduationCap, perm: ["guardians:read", "progress:read", "results:read", "certificates:read"] },
+      { href: "/admin/results/parents", label: "Parent accounts", icon: Users, perm: "guardians:read" },
+    ],
+  },
+  {
     group: "Website",
     items: [
       { href: "/admin/courses", label: "Courses", icon: BookOpen, perm: "courses:read" },
@@ -52,7 +59,6 @@ export const NAV = [
   {
     group: "Records",
     items: [
-      { href: "/admin/results/parents", label: "Parent portal", icon: Users, perm: "guardians:read" },
       { href: "/admin/results", label: "Results", icon: GraduationCap, perm: ["results:read", "certificates:read"] },
       { href: "/admin/certificates", label: "Certificates", icon: Award, perm: "certificates:read" },
       { href: "/admin/reports", label: "Reports", icon: LineChart, perm: "reports:read" },

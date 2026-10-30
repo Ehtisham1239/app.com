@@ -7,7 +7,7 @@ import { Copy, FileUp, KeyRound, Loader2, Lock, Plus, ShieldOff, UserPlus, Users
 import { useAccess } from "@/lib/admin/access";
 import { db, likeTerm, notifyError, useLoad } from "@/lib/admin/db";
 import { formatDateTime } from "@/lib/format";
-import { ResultsNav } from "@/components/admin/results-nav";
+import { ParentPortalNav } from "@/components/admin/parent-portal-nav";
 import { ParentAccessRequests } from "@/components/admin/parent-access-requests";
 import { BulkCodes } from "@/components/admin/parent-codes";
 import { Badge, Card, ConfirmButton, EmptyState, ErrorState, Field, Loading, Modal, PageHeader, Pagination, SearchInput } from "@/components/admin/ui";
@@ -146,7 +146,7 @@ export default function ParentAccessPage() {
   return (
     <>
       <PageHeader title="Parent portal management" subtitle="Each parent signs in to the parent portal with their Client ID and a one-time issued access code, and sees only their own children’s published results."
-        back={{ href: "/admin/results", label: "Results" }}
+        back={{ href: "/admin/parent-portal", label: "Parent Portal" }}
         actions={<>
           <a href="/parents" target="_blank" rel="noreferrer" className="btn btn-outline btn-sm">Open parent portal</a>
           {can("progress:read") && <Link href="/admin/progress" className="btn btn-outline btn-sm">Results & learning plans</Link>}
@@ -154,7 +154,7 @@ export default function ParentAccessPage() {
           {can("guardians:create") && <Link href="/admin/results/parents/import" className="btn btn-outline btn-sm"><FileUp className="size-4" /> Bulk upload</Link>}
           {can("guardians:create") && can("guardians:update") && <button type="button" className="btn btn-primary btn-sm" onClick={() => setEditing({})}><UserPlus className="size-4" /> Create parent account</button>}
         </>} />
-      <ResultsNav />
+      <ParentPortalNav />
       <ParentAccessRequests onReveal={(data)=>{setReveal(data);list.reload();}}/>
       <div className="mb-4 flex justify-end"><SearchInput value={q} onChange={(v) => { setQ(v); setPage(0); }} placeholder="Name, Client ID or email…" className="w-full sm:w-80" /></div>
       <Card bodyClass="">

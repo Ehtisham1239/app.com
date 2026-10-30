@@ -1,0 +1,13 @@
+{
+  "checks": [
+    "recovery pre-fills Client ID; failed request keeps input and retry shows a generic acknowledgement without credentials",
+    "new access request uses activation queue with coordinator linking guidance",
+    "CMS auto account creation links selected child, requests generated Client ID/code, preserves retry identity and reveals the returned credentials once",
+    "CMS recovery requires explicit registered-contact confirmation, returns replacement code and removes resolved queue entry",
+    "parent CMS layout fits 390px",
+    "parent CMS layout fits 1440px",
+    "read-only staff do not receive create/reset controls"
+  ],
+  "errors": [],
+  "scope": "Actual parent sign-in and CMS parent management React components; synthetic PostgREST/RPC adapter; no external writes"
+}

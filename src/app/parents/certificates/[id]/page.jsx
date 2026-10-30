@@ -22,7 +22,7 @@ export default async function ParentCertificatePage({ params }) {
   }
   return (
     <div className="page-wrap max-w-5xl py-8">
-      <Link href="/parents" className="mb-5 inline-flex items-center gap-1.5 text-sm font-semibold text-leaf-700 hover:underline"><ArrowLeft className="size-4" aria-hidden="true" /> Back to results</Link>
+      <Link href="/parents?view=certificates" className="mb-5 inline-flex items-center gap-1.5 text-sm font-semibold text-leaf-700 hover:underline"><ArrowLeft className="size-4" aria-hidden="true" /> Back to certificates</Link>
       {!signedIn ? (
         <p className="rounded-2xl bg-white p-8 text-center text-ink-soft">Please <Link href="/parents" className="font-semibold text-leaf-700 underline">sign in</Link> to see this certificate.</p>
       ) : !cert ? (
