@@ -1,0 +1,15 @@
+tier,site,submit_url,status,listing_url,submitted_on,checked_live_on,nap_matches,notes
+1,Apple Business Connect,https://businessconnect.apple.com/,To do,,,,,Online/service business; service area Australia
+1,Hotfrog Australia,https://www.hotfrog.com.au/,To do,,,,,Hide address; mark Blocked if an Australian address is required
+1,Facebook page (service area + AU link),https://www.facebook.com/OnlineQuranCollegeLtdUK,To do,,,,,Add Australia to service area; website https://www.onlinequrancollege.com/locations/australia
+1,Instagram / X bio check,https://www.instagram.com/online_quran_college,To do,,,,,Same name/phone/email as NAP block
+2,True Local,https://www.truelocal.com.au/,Blocked,,,,,Needs a real Australian address
+2,Yellow Pages AU,https://www.yellowpages.com.au/,Blocked,,,,,Needs a real Australian address
+2,Localsearch,https://www.localsearch.com.au/,Blocked,,,,,Needs a real Australian address
+2,StartLocal,https://www.startlocal.com.au/,Blocked,,,,,Needs a real Australian address
+2,Pink Pages,https://www.pinkpages.com.au/,Blocked,,,,,Needs a real Australian address
+2,Word of Mouth,https://www.wordofmouth.com.au/,Blocked,,,,,Needs a real Australian address
+2,Yelp AU,https://www.yelp.com.au/,Blocked,,,,,Needs a real Australian address
+2,Whitepages AU,https://www.whitepages.com.au/,Blocked,,,,,Needs a real Australian address
+2,Bing Places,https://www.bingplaces.com/,Blocked,,,,,Physical-occupancy rule
+2,Google Business Profile,https://business.google.com/,Excluded,,,,,Excluded by MASTER-OPERATING-SPEC unless owner authorises
