@@ -63,7 +63,7 @@ export default function ImportResultsPage() {
     }
   };
 
-  if (!can("results:create")) return <><PageHeader title="Upload results" back={{ href: "/admin/results", label: "Results" }} /><EmptyState title="You cannot upload results" text="Ask an administrator for the results upload permission." /></>;
+  if (!can("results:create") && !can("certificates:create")) return <><PageHeader title="Upload results" back={{ href: "/admin/results", label: "Results" }} /><EmptyState title="You cannot upload results" text="Ask an administrator for the results upload permission." /></>;
 
   return (
     <>

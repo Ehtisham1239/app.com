@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
-import { Award, Loader2, Plus } from "lucide-react";
+import { Award, GraduationCap, Loader2, Plus } from "lucide-react";
 import { useAccess } from "@/lib/admin/access";
 import { db, likeTerm, notifyError, useLoad } from "@/lib/admin/db";
 import { CERTIFICATE_STATUSES } from "@/lib/constants";
@@ -118,11 +118,14 @@ export default function CertificatesPage() {
       <PageHeader
         title="Certificates"
         subtitle="Issue printable certificates. Every issued certificate can be checked on the website’s Verify page."
-        actions={can("certificates:create") && (
-          <button type="button" className="btn btn-primary btn-sm" onClick={() => setOpen(true)}>
-            <Plus className="size-4" /> New certificate
-          </button>
-        )}
+        actions={<>
+          <Link href="/admin/results" className="btn btn-outline btn-sm"><GraduationCap className="size-4" /> Results</Link>
+          {can("certificates:create") && (
+            <button type="button" className="btn btn-primary btn-sm" onClick={() => setOpen(true)}>
+              <Plus className="size-4" /> New certificate
+            </button>
+          )}
+        </>}
       />
       <div className="mb-4 flex justify-end">
         <SearchInput value={q} onChange={(v) => { setQ(v); setPage(0); }} placeholder="Certificate number or title…" className="w-full sm:w-72" />

@@ -6,9 +6,9 @@ import { clsx } from "clsx";
 import { useAccess } from "@/lib/admin/access";
 
 const LINKS = [
-  { href: "/admin/results", label: "Assessments", perm: "results:read" },
-  { href: "/admin/results/import", label: "Upload results", perm: "results:create" },
-  { href: "/admin/results/published", label: "Published results", perm: "results:read" },
+  { href: "/admin/results", label: "Assessments", perm: ["results:read", "certificates:read"] },
+  { href: "/admin/results/import", label: "Upload results", perm: ["results:create", "certificates:create"] },
+  { href: "/admin/results/published", label: "Published results", perm: ["results:read", "certificates:read"] },
   { href: "/admin/results/parents", label: "Parent access", perm: "guardians:read" },
 ];
 
@@ -18,7 +18,7 @@ export function ResultsNav() {
   const { can } = useAccess();
   return (
     <nav className="scrollbar-thin -mx-1 mb-6 flex gap-1 overflow-x-auto px-1 pb-1" aria-label="Results">
-      {LINKS.filter((l) => can(l.perm)).map((l) => {
+      {LINKS.filter((l) => [].concat(l.perm).some(can)).map((l) => {
         const active = l.href === "/admin/results" ? path === l.href || path.startsWith("/admin/results/batches") : path.startsWith(l.href);
         return (
           <Link key={l.href} href={l.href} aria-current={active ? "page" : undefined}

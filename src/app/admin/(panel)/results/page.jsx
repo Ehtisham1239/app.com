@@ -103,8 +103,8 @@ export default function ResultsPage() {
     <>
       <PageHeader title="Results" subtitle="Upload marks from a CSV or Excel sheet, review and approve them, then publish to the parent portal."
         actions={<>
-          {can("results:create") && <Link href="/admin/results/import" className="btn btn-outline btn-sm"><FileUp className="size-4" /> Upload results</Link>}
-          {can("results:create") && <button type="button" className="btn btn-primary btn-sm" onClick={() => setEditing(EMPTY)}><Plus className="size-4" /> New assessment</button>}
+          {(can("results:create") || can("certificates:create")) && <Link href="/admin/results/import" className="btn btn-outline btn-sm"><FileUp className="size-4" /> Upload results</Link>}
+          {(can("results:create") || can("certificates:create")) && <button type="button" className="btn btn-primary btn-sm" onClick={() => setEditing(EMPTY)}><Plus className="size-4" /> New assessment</button>}
         </>} />
       <ResultsNav />
       <div className="mb-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
