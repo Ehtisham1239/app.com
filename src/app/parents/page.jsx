@@ -54,7 +54,7 @@ function SignIn({ expired, unavailable }) {
         <div className="text-center text-white">
           <p className="font-arabic text-2xl text-gold-300" lang="ar" dir="rtl">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
           <h1 className="mt-2 font-display text-3xl sm:text-4xl">Parent portal</h1>
-          <p className="mt-2 text-sm text-white/80">Enter your Client ID and access code to see your child’s approved results, certificates and lesson plans.</p>
+          <p className="mt-2 text-sm text-white/80">Enter your Client ID and access code to see your child’s approved e-DMC, certificates and syllabus.</p>
         </div>
         <div className="mt-8 rounded-[1.4rem] border-2 border-gold-300 bg-white p-6 shadow-[0_24px_60px_-30px_rgba(13,74,28,0.6)] sm:p-8">
           {unavailable && <p role="alert" className="mb-4 rounded-xl bg-gold-50 px-4 py-3 text-sm text-gold-700">The results service is not available right now. Please try again shortly.</p>}

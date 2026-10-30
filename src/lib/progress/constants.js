@@ -47,3 +47,32 @@ export function missingForSubmit(ratings, remarks) {
   if (!String(remarks || "").trim()) missing.push("Teacher remarks");
   return missing;
 }
+
+// Report details (migration 20261030110000): optional marks out of SCORE_MAX per
+// area, attendance and syllabus. Form state keeps strings so inputs stay controlled.
+export const SCORE_MAX = 10;
+
+export function detailsForm(details) {
+  const d = details || {};
+  return {
+    scores: Object.fromEntries(CATEGORIES.map((c) => [c.key, String(d.scores?.[c.key] ?? "")])),
+    attendance: { held: String(d.attendance?.held ?? ""), attended: String(d.attendance?.attended ?? "") },
+    syllabus: { level: d.syllabus?.level || "", covered: d.syllabus?.covered || "", memorised: d.syllabus?.memorised || "" },
+  };
+}
+
+// Marks summary for the e-DMC: totals only when every area has marks.
+export function marksSummary(details) {
+  const scores = details?.scores || {};
+  const given = CATEGORIES.filter((c) => Number.isFinite(Number(scores[c.key])) && scores[c.key] !== "" && scores[c.key] !== null && scores[c.key] !== undefined);
+  const obtained = given.reduce((sum, c) => sum + Number(scores[c.key]), 0);
+  const complete = given.length === CATEGORIES.length;
+  const total = CATEGORIES.length * SCORE_MAX;
+  return { given: given.length, obtained, total, complete, percent: complete ? Math.round((obtained * 1000) / total) / 10 : null };
+}
+
+export function attendancePercent(details) {
+  const a = details?.attendance;
+  if (!a || !Number(a.held) || a.attended === undefined || a.attended === null || a.attended === "") return null;
+  return Math.round((Number(a.attended) * 100) / Number(a.held));
+}

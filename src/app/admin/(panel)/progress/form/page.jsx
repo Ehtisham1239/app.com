@@ -7,10 +7,12 @@ import { toast } from "sonner";
 import { CheckCircle2, ClipboardList, Loader2, Save, Send, Eye, EyeOff } from "lucide-react";
 import { useAccess } from "@/lib/admin/access";
 import { db, errorMessage, useLoad } from "@/lib/admin/db";
-import { CATEGORIES, REPORT_STATUSES, emptyRatings, missingForSubmit, monthInput, monthToPeriod, periodLabel } from "@/lib/progress/constants";
+import { CATEGORIES, REPORT_STATUSES, SCORE_MAX, detailsForm, emptyRatings, missingForSubmit, monthInput, monthToPeriod, periodLabel } from "@/lib/progress/constants";
 import { Card, EmptyState, ErrorState, Field, Loading, Modal, StatusBadge } from "@/components/admin/ui";
 import { ClientIdentity } from "@/components/results/client-identity";
 import { ProgressCertificate } from "@/components/results/progress-certificate";
+import { ProgressDmc } from "@/components/results/progress-dmc";
+import { SyllabusCard } from "@/components/results/syllabus-card";
 import { ProgressWorkflow } from "@/components/results/progress-workflow";
 import { RatingPicker } from "@/components/admin/rating-picker";
 
@@ -42,7 +44,7 @@ function TeacherForm() {
           <div className="min-w-0 flex-1">
             <p className="text-[0.7rem] font-bold uppercase tracking-[0.22em] text-gold-300">Online Quran College · Monthly student progress</p>
             <h1 className="mt-0.5 font-display text-2xl leading-tight sm:text-[1.7rem]">Teacher progress form</h1>
-            <p className="mt-0.5 text-sm text-white/80">Choose a student and month, give six ratings and a short remark. Save a draft any time; submit when complete.</p>
+            <p className="mt-0.5 text-sm text-white/80">Choose a student and month, give six ratings, optional marks, attendance and syllabus, and a short remark. Save a draft any time; submit when complete.</p>
           </div>
         </div>
       </header>
@@ -90,9 +92,11 @@ function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChang
   const [ratings, setRatings] = useState(() => report ? Object.fromEntries(CATEGORIES.map((c) => [c.key, report[c.key] || ""])) : emptyRatings());
   const [remarks, setRemarks] = useState(report?.remarks || "");
   const [plan, setPlan] = useState(report?.learning_plan || "");
+  const [details, setDetails] = useState(() => detailsForm(report?.details));
+  const setDetail = (group, key, value) => setDetails((d) => ({ ...d, [group]: { ...d[group], [key]: value } }));
   const [busy, setBusy] = useState("");
   const [preview, setPreview] = useState(false);
-  const dirty = plan !== (report?.learning_plan || "") || remarks !== (report?.remarks || "") || CATEGORIES.some((c) => ratings[c.key] !== (report?.[c.key] || ""));
+  const dirty = JSON.stringify(details) !== JSON.stringify(detailsForm(report?.details)) || plan !== (report?.learning_plan || "") || remarks !== (report?.remarks || "") || CATEGORIES.some((c) => ratings[c.key] !== (report?.[c.key] || ""));
   useEffect(() => { onDirtyChange(dirty); }, [dirty, onDirtyChange]);
   useEffect(() => {
     if (!dirty) return;
@@ -104,13 +108,25 @@ function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChang
   const client = current.clients?.[0];
   const missing = missingForSubmit(ratings, remarks);
   if (!client?.client_id) missing.push("Linked Client ID/name");
+  // Quick checks; the database repeats them (progress_details).
+  const detailProblem = (() => {
+    for (const c of CATEGORIES) {
+      const v = details.scores[c.key];
+      if (v !== "" && !(/^\d{1,2}(\.5)?$/.test(v) && Number(v) <= SCORE_MAX)) return `Marks for ${c.label} must be 0–${SCORE_MAX}.`;
+    }
+    const { held, attended } = details.attendance;
+    if (held !== "" && !(/^\d{1,2}$/.test(held) && Number(held) <= 62)) return "Classes held must be a whole number from 0 to 62.";
+    if (attended !== "" && (held === "" || !/^\d{1,2}$/.test(attended) || Number(attended) > Number(held))) return "Classes attended must be a whole number no more than classes held.";
+    return "";
+  })();
   const save = async (submit) => {
     if (!current) return toast.error("Choose a student.");
     if (submit && missing.length) return toast.error(`Still needed: ${missing.join(", ")}.`);
+    if (detailProblem) return toast.error(detailProblem);
     onBusyChange(true);
     setBusy(submit ? "submit" : "draft");
     try {
-      const { error } = await db().rpc("progress_save", { p_student_id: current.student_id, p_period: period, p_ratings: ratings, p_remarks: remarks, p_submit: submit, p_plan: plan });
+      const { error } = await db().rpc("progress_save", { p_student_id: current.student_id, p_period: period, p_ratings: ratings, p_remarks: remarks, p_submit: submit, p_plan: plan, p_details: details });
       if (error) throw error;
       toast.success(submit ? "Submitted to Results → Monthly reports for admin review." : "Draft saved");
       onSaved();
@@ -133,7 +149,7 @@ function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChang
               <div className="mb-4"><ClientIdentity clientId={client?.client_id} clientName={client?.client_name} /></div>
               <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-line bg-paper px-4 py-3">
                 <p className="text-sm font-semibold text-ink-soft" role="status">{dirty ? "Unsaved changes" : report ? "Saved report loaded" : "New report — not saved"}</p>
-                <button type="button" aria-expanded={preview} aria-controls="teacher-certificate-preview" className="btn btn-outline btn-sm" onClick={() => setPreview((v) => !v)}>{preview ? <EyeOff className="size-4" /> : <Eye className="size-4" />}{preview ? "Hide certificate preview" : "Preview certificate"}</button>
+                <button type="button" aria-expanded={preview} aria-controls="teacher-certificate-preview" className="btn btn-outline btn-sm" onClick={() => setPreview((v) => !v)}>{preview ? <EyeOff className="size-4" /> : <Eye className="size-4" />}{preview ? "Hide preview" : "Preview e-DMC, certificate & syllabus"}</button>
               </div>
               <fieldset disabled={locked || !!busy} className="space-y-3">
                 <legend className="sr-only">Monthly ratings</legend>
@@ -148,7 +164,32 @@ function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChang
                 <Field label="Teacher remarks" required hint={`${remarks.length}/1000 · plain text that parents will read`}>
                   <textarea className="adm-input" rows={4} maxLength={1000} value={remarks} onChange={(e) => setRemarks(e.target.value)} placeholder="For example: Improving in recitation. Practise duas daily at home." />
                 </Field>
-                <Field label="Learning & home-practice plan" hint={`${plan.length}/2000 · shown to parents only after admin publication`}><textarea className="adm-input" rows={4} maxLength={2000} value={plan} onChange={(e) => setPlan(e.target.value)} placeholder="Teacher-assigned next steps, lesson focus and manageable home practice" /></Field>
+                <section className="rounded-2xl border border-line bg-paper/60 p-4" aria-labelledby="marks-heading">
+                  <h3 id="marks-heading" className="text-sm font-bold text-mushaf-900">Marks for the e-DMC <span className="font-normal text-ink-faint">(optional, out of {SCORE_MAX})</span></h3>
+                  <p className="text-xs text-ink-faint">Give marks for every area to show a grand total and percentage on the e-DMC. Half marks (e.g. 8.5) are allowed.</p>
+                  <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                    {CATEGORIES.map((c) => (
+                      <Field key={c.key} label={c.label}><input inputMode="decimal" className="adm-input" placeholder={`0–${SCORE_MAX}`} value={details.scores[c.key]} onChange={(e) => setDetail("scores", c.key, e.target.value.trim())} /></Field>
+                    ))}
+                  </div>
+                </section>
+                <section className="rounded-2xl border border-line bg-paper/60 p-4" aria-labelledby="attendance-heading">
+                  <h3 id="attendance-heading" className="text-sm font-bold text-mushaf-900">Attendance this month</h3>
+                  <div className="mt-3 grid grid-cols-2 gap-3">
+                    <Field label="Classes held"><input inputMode="numeric" className="adm-input" placeholder="e.g. 12" value={details.attendance.held} onChange={(e) => setDetail("attendance", "held", e.target.value.trim())} /></Field>
+                    <Field label="Classes attended"><input inputMode="numeric" className="adm-input" placeholder="e.g. 11" value={details.attendance.attended} onChange={(e) => setDetail("attendance", "attended", e.target.value.trim())} /></Field>
+                  </div>
+                </section>
+                <section className="rounded-2xl border border-line bg-paper/60 p-4" aria-labelledby="syllabus-heading">
+                  <h3 id="syllabus-heading" className="text-sm font-bold text-mushaf-900">Syllabus</h3>
+                  <div className="mt-3 grid gap-3">
+                    <Field label="Current level" hint={`${details.syllabus.level.length}/120`}><input className="adm-input" maxLength={120} value={details.syllabus.level} onChange={(e) => setDetail("syllabus", "level", e.target.value)} placeholder="e.g. Noorani Qaida lesson 12 / Juz 2, page 30" /></Field>
+                    <Field label="Covered this month" hint={`${details.syllabus.covered.length}/1000`}><textarea className="adm-input" rows={3} maxLength={1000} value={details.syllabus.covered} onChange={(e) => setDetail("syllabus", "covered", e.target.value)} placeholder="Lessons, surahs, tajweed rules and duas covered" /></Field>
+                    <Field label="Memorised" hint={`${details.syllabus.memorised.length}/600`}><textarea className="adm-input" rows={2} maxLength={600} value={details.syllabus.memorised} onChange={(e) => setDetail("syllabus", "memorised", e.target.value)} placeholder="Surahs or duas learnt by heart this month" /></Field>
+                  </div>
+                </section>
+                <Field label="Next month target & home practice" hint={`${plan.length}/2000 · shown to parents only after admin publication`}><textarea className="adm-input" rows={4} maxLength={2000} value={plan} onChange={(e) => setPlan(e.target.value)} placeholder="Teacher-assigned next steps, lesson focus and manageable home practice" /></Field>
+                {detailProblem && <p role="alert" className="rounded-xl bg-rose-50 px-4 py-2.5 text-sm text-rose-800">{detailProblem}</p>}
               </fieldset>
               {!locked && (
                 <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
@@ -158,11 +199,26 @@ function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChang
               )}
               {preview && <section id="teacher-certificate-preview" className="mt-6" aria-label="Draft certificate preview">
                 <p className="mb-3 rounded-xl bg-gold-50 px-4 py-3 text-sm text-gold-700">Preview only. These changes reach parents after the report is submitted, reviewed and published by the admin.</p>
-                <ProgressCertificate report={{ ...report, ...ratings, remarks, learning_plan: plan, period, published_at: null }} studentName={current.full_name} studentCode={current.student_code} clientId={client?.client_id} clientName={client?.client_name} stamp="Draft preview" />
+                {(() => {
+                  const draft = { ...report, ...ratings, remarks, learning_plan: plan, period, published_at: null, details: previewDetails(details) };
+                  return <div className="space-y-6">
+                    <ProgressDmc report={draft} studentName={current.full_name} clientId={client?.client_id} clientName={client?.client_name} stamp="Draft preview" />
+                    <ProgressCertificate report={draft} studentName={current.full_name} studentCode={current.student_code} clientId={client?.client_id} clientName={client?.client_name} stamp="Draft preview" />
+                    <SyllabusCard report={draft} studentName={current.full_name} />
+                  </div>;
+                })()}
               </section>}
               {can("progress:read") && current.report_id && <p className="mt-4 text-sm"><Link className="font-semibold text-leaf-700 underline" href={`/admin/progress/${current.report_id}`} onClick={(e) => { if (dirty) { e.preventDefault(); toast.error("Save a draft before opening the review page."); } }}>Open the review page</Link></p>}
             </form>
   );
+}
+
+// Form strings → the shape the published report uses, for the on-screen preview only.
+function previewDetails(d) {
+  const scores = Object.fromEntries(Object.entries(d.scores).filter(([, v]) => v !== "" && Number.isFinite(Number(v))).map(([k, v]) => [k, Number(v)]));
+  const attendance = d.attendance.held !== "" ? { held: Number(d.attendance.held), attended: d.attendance.attended === "" ? undefined : Number(d.attendance.attended) } : undefined;
+  const syllabus = Object.fromEntries(Object.entries(d.syllabus).filter(([, v]) => v.trim()).map(([k, v]) => [k, v.trim()]));
+  return { scores, attendance, syllabus };
 }
 
 export default function TeacherFormPage() {
