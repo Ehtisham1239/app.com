@@ -66,11 +66,11 @@ function AssessmentForm({ open, initial, onClose, onSaved }) {
         {form.grade_bands.length > 0 && (
           <div className="mt-3 space-y-2">
             {form.grade_bands.map((b, i) => (
-              <div key={i} className="grid grid-cols-[5rem_7rem_1fr_auto] items-center gap-2">
+              <div key={i} className="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] items-center gap-2 sm:grid-cols-[5rem_7rem_1fr_auto]">
                 <input className="adm-input uppercase" aria-label={`Grade ${i + 1}`} value={b.grade} onChange={(e) => setBand(i, "grade", e.target.value)} placeholder="A" />
                 <input type="number" min="0" max="100" className="adm-input" aria-label={`Minimum percentage for grade ${i + 1}`} value={b.min_percent} onChange={(e) => setBand(i, "min_percent", e.target.value)} placeholder="90" />
-                <input className="adm-input" aria-label={`Description for grade ${i + 1}`} value={b.label ?? ""} onChange={(e) => setBand(i, "label", e.target.value)} placeholder="Description (optional)" />
-                <button type="button" className="btn btn-ghost btn-sm" onClick={() => setForm((f) => ({ ...f, grade_bands: f.grade_bands.filter((_, j) => j !== i) }))} aria-label={`Remove grade ${i + 1}`}><Trash2 className="size-4" /></button>
+                <input className="adm-input col-span-2 row-start-2 sm:col-span-1 sm:row-start-auto" aria-label={`Description for grade ${i + 1}`} value={b.label ?? ""} onChange={(e) => setBand(i, "label", e.target.value)} placeholder="Description (optional)" />
+                <button type="button" className="btn btn-ghost btn-sm col-start-3 row-start-1 sm:col-start-auto sm:row-start-auto" onClick={() => setForm((f) => ({ ...f, grade_bands: f.grade_bands.filter((_, j) => j !== i) }))} aria-label={`Remove grade ${i + 1}`}><Trash2 className="size-4" /></button>
               </div>
             ))}
             <p className="text-xs text-ink-faint">Columns: grade · minimum % · description shown to parents.</p>

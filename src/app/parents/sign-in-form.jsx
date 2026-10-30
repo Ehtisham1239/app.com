@@ -23,7 +23,7 @@ export function ParentSignInForm({ expired = false }) {
     try {
       const { data, error: rpcError } = await getPublicBrowserClient().rpc("parent_sign_in", { p_client_id: clientId.trim(), p_code: code });
       if (rpcError || !data?.ok || !data.token) throw new Error(GENERIC);
-      const response = await fetch("/api/parent-session", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ token: data.token }) });
+      const response = await fetch("/api/parent-session", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ token: data.token }), signal: AbortSignal.timeout(15000) });
       if (!response.ok) throw new Error(GENERIC);
       setCode("");
       router.refresh();
@@ -55,9 +55,22 @@ export function ParentSignInForm({ expired = false }) {
 export function ParentSignOut() {
   const router = useRouter();
   const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  const signOut = async () => {
+    setBusy(true); setError("");
+    try {
+      const response = await fetch("/api/parent-session", { method: "DELETE", signal: AbortSignal.timeout(15000) });
+      if (!response.ok) throw Error("Sign-out failed");
+      router.refresh();
+    } catch { setError("We could not sign you out. Check your connection and try again."); }
+    finally { setBusy(false); }
+  };
   return (
-    <button type="button" className="btn btn-outline btn-sm" disabled={busy} onClick={async () => { setBusy(true); await fetch("/api/parent-session", { method: "DELETE" }).catch(() => {}); router.refresh(); }}>
+    <div className="flex flex-col items-end gap-2">
+    <button type="button" className="btn btn-outline btn-sm" disabled={busy} onClick={signOut}>
       {busy && <Loader2 className="size-4 animate-spin" aria-hidden="true" />} Sign out
     </button>
+    {error && <p role="alert" className="max-w-xs text-sm text-rose-800">{error}</p>}
+    </div>
   );
 }

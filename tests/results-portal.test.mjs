@@ -248,6 +248,27 @@ test("staff see code status without the hash, and can remove access", async () =
   await assert.rejects(db.query("select * from public.guardian_access_status($1)", [[guardianA]]), /permission denied/);
 });
 
+test("Client IDs remain unique regardless of letter case", async () => {
+  await as("authenticated", ids.admin);
+  await assert.rejects(db.query("insert into public.guardians (full_name, client_id) values ('Duplicate family', 'client-a1')"), /duplicate key/);
+});
+
+test("approved results cannot change when an assessment is edited later", async () => {
+  await as("authenticated", ids.admin);
+  for (const change of ["total_marks=200", "grade_bands='[]'::jsonb", "period_label='Another term'", "title='Another assessment'"]) {
+    await assert.rejects(db.query(`update public.assessments set ${change} where id=$1`, [assessmentId]), /already submitted/);
+  }
+  // Closing the assessment is still a normal supported operation.
+  await db.query("update public.assessments set status='closed' where id=$1", [assessmentId]);
+});
+
+test("database rejects invalid or ambiguous grade schemes", async () => {
+  await as("authenticated", ids.admin);
+  for (const bands of [[{grade:"A",min_percent:101}], [{grade:"A",min_percent:80},{grade:"a",min_percent:60}], [{grade:"A",min_percent:"oops"}], [{grade:"A",min_percent:80},{grade:"B",min_percent:80}]]) {
+    await assert.rejects(db.query("insert into public.assessments (code,title,assessment_date,total_marks,grade_bands) values ('BAD-GRADE','Test grading',current_date,100,$1)", [JSON.stringify(bands)]), /grade/i);
+  }
+});
+
 test("bulk parent upload checks every row and saves all or nothing", async () => {
   const rows = [
     { row_number: 1, client_id: "BULK-100", parent_name: "Bulk Parent One", email: "ONE@example.test", student_code: studentA.student_code, student_name: "" },
@@ -295,4 +316,17 @@ test("bulk code issue covers parents without a code and returns each code once",
   const bulk = issued.find((r) => r.client_id === "BULK-100");
   assert.equal((await one("select public.parent_sign_in('bulk-100', $1) r", [bulk.code])).r.ok, true);
   await assert.rejects(db.query("select public.guardians_bulk_import('[]'::jsonb, false)"), /permission denied/);
+});
+
+test("bounded code chunks return every credential without a table response cap", async () => {
+  await as("authenticated", ids.editor);
+  await assert.rejects(db.query("select public.guardian_issue_codes_chunk(null)"), /guardians:update/);
+  await as("authenticated", ids.admin);
+  await assert.rejects(db.query("select public.guardian_issue_codes_chunk($1)", [Array(21).fill(guardianA)]), /at most 20/);
+  for (let i=0;i<21;i++) await db.query("insert into public.guardians(full_name,client_id) values($1,$2)", [`Chunk Parent ${i}`,`CHUNK-${i}`]);
+  const first=(await one("select public.guardian_issue_codes_chunk(null) r")).r;
+  const second=(await one("select public.guardian_issue_codes_chunk(null) r")).r;
+  assert.equal(first.length,20); assert.equal(second.length,1);
+  assert.equal(new Set([...first,...second].map(r=>r.guardian_id)).size,21);
+  assert.deepEqual((await one("select public.guardian_issue_codes_chunk(null) r")).r,[]);
 });

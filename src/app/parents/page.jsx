@@ -6,6 +6,7 @@ import { PARENT_COOKIE, validToken } from "@/lib/results/parent-session";
 import { MarksSheet, groupByPeriod } from "@/components/results/marks-sheet";
 import { ProgressCertificate } from "@/components/results/progress-certificate";
 import { periodLabel } from "@/lib/progress/constants";
+import { ParentSessionGuard } from "@/components/results/parent-session-guard";
 import { ParentSignInForm, ParentSignOut } from "./sign-in-form";
 
 export const metadata = { title: "Student results", robots: { index: false, follow: false } };
@@ -28,7 +29,7 @@ export default async function ParentsPage({ searchParams }) {
   if (!state.signedIn) return <SignIn expired={state.expired} unavailable={state.unavailable} />;
   const kids = state.children;
   return (
-    <div className="page-wrap max-w-5xl py-8 sm:py-10">
+    <ParentSessionGuard><div className="page-wrap max-w-5xl py-8 sm:py-10">
       <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold-600">Assalamu alaikum</p>
@@ -72,7 +73,7 @@ export default async function ParentsPage({ searchParams }) {
         ))}
       </div>
       <p className="mt-10 text-center text-xs text-ink-faint">For your privacy you are signed out after 30 minutes without activity. Please do not share this page.</p>
-    </div>
+    </div></ParentSessionGuard>
   );
 }
 

@@ -30,6 +30,18 @@ test("mapping: a column holding parent access codes is refused", () => {
   assert.throws(() => mapResultRows([["student_code", "marks", "Client Code"], ["OQC-1", "1", "ABCD"]]), /access codes must never/);
 });
 
+test("ambiguous columns and oversized remarks are refused without dropping data", () => {
+  assert.throws(() => mapResultRows([["student_code", "marks", "score"], ["OQC-1", "60", "90"]]), /more than one marks_obtained column/);
+  assert.throws(() => mapResultRows([["student_code", "marks", "remarks"], ["OQC-1", "60", "x".repeat(1001)]]), /no text has been removed/);
+});
+
+test("upload refuses a mismatched assessment or total before dropping preview-only columns", () => {
+  const row = { row_number: 1, student_code: "OQC-1", grade: "", marks_obtained: "60", assessment_code: "OTHER" };
+  assert.throws(() => toImportRows([row], "batch", assessment), /assessment code does not match/);
+  assert.throws(() => toImportRows([{ ...row, assessment_code: "TERM1-2026", total_marks: "200" }], "batch", assessment), /total marks do not match/);
+  assert.throws(() => normalizeGradeBands([{grade:"A",min_percent:80},{grade:"B",min_percent:80}]), /different minimum/);
+});
+
 test("preview checks match the database rules", () => {
   const base = { student_code: "OQC-1", marks_obtained: "90", assessment_code: "", total_marks: "", grade: "" };
   assert.deepEqual(previewIssues(base, assessment), []);
@@ -115,4 +127,6 @@ test("parents sheet: aliases, one row per child, refuses an access code column",
   assert.deepEqual(Object.keys(toClientPayload(rows)[0]).sort(), ["client_id", "email", "parent_name", "phone", "relationship", "row_number", "student_code", "student_name"]);
   assert.throws(() => mapClientRows([["client_id", "parent_name", "Access Code"], ["c-1", "P", "X"]]), /never uploaded/);
   assert.throws(() => mapClientRows([["parent_name"], ["P"]]), /client_id/);
+  assert.throws(() => mapClientRows([["client_id", "parent_name"], ["x".repeat(65), "Example Parent"]]), /no text has been removed/);
+  assert.throws(() => mapClientRows([["client_id", "parent_name", "name"], ["C-1", "First", "Second"]]), /more than one parent_name/);
 });
