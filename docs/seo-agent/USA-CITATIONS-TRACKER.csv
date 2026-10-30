@@ -1,0 +1,15 @@
+tier,site,submit_url,status,listing_url,submitted_on,checked_live_on,nap_matches,notes
+1,Apple Business Connect (add USA to existing listing),https://businessconnect.apple.com/,To do,,,,,Same listing as Australia; service area United States
+1,Facebook page (service area + USA link),https://www.facebook.com/OnlineQuranCollegeLtdUK,To do,,,,,Website https://www.onlinequrancollege.com/locations/united-states
+1,LinkedIn company page,https://www.linkedin.com/company/setup/new/,To do,,,,,Genuine company profile; NAP block + long description
+1,Crunchbase company profile,https://www.crunchbase.com/,Optional,,,,,Company facts only
+2,Bing Places,https://www.bingplaces.com/,Blocked,,,,,Physical-occupancy rule
+2,Yelp,https://biz.yelp.com/,Blocked,,,,,Needs a real US location
+2,Foursquare,https://foursquare.com/,Blocked,,,,,Needs a real US location
+2,Yellow Pages (yp.com),https://www.yellowpages.com/,Blocked,,,,,Needs a real US address
+2,Superpages,https://www.superpages.com/,Blocked,,,,,Needs a real US address
+2,Manta,https://www.manta.com/,Blocked,,,,,Needs a real US address
+2,Nextdoor,https://business.nextdoor.com/,Blocked,,,,,Neighbourhood-based; needs a US location
+2,Thumbtack,https://www.thumbtack.com/pro,Blocked,,,,,US service providers
+2,BBB,https://www.bbb.org/,Blocked,,,,,Accreditation standards cover North American businesses
+2,Google Business Profile,https://business.google.com/,Excluded,,,,,Excluded by MASTER-OPERATING-SPEC unless owner authorises
