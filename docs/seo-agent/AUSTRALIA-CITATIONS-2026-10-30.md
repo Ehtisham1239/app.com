@@ -66,3 +66,27 @@ Real resource or partner mentions from Australian Muslim community sites, such a
 - Hotfrog hide-address support: https://www.yext.com/integrations/hotfrog
 - Australian directory roundups: https://www.yellow.com.au/business-hub/partnerships/the-top-25-business-directories-to-help-you-get-found-online/ · https://sitecentre.com.au/blog/australian-local-listing-sites · https://marginmedia.com.au/our-blog/14-local-directories-australia
 - Bing physical-occupancy note (third-party summary): https://desk.office-serv.co.uk/portal/en/kb/articles/google-my-business-location-bing-places
+
+## 5. Qadam ba qadam (owner ke liye, Roman Urdu)
+
+Har listing mein section 2 ki details **bilkul isi tarah** copy karein: naam, website, email, phone aur description.
+
+**A. Apple Business Connect (10 minute)**
+1. businessconnect.apple.com kholein → apni Apple ID se sign in.
+2. "Get Started" → business ka naam likhein: `Online Quran College`.
+3. Jab poochay ke location hai ya nahi, **"online / service business"** wala option chunein (store ka pata na dein).
+4. Category: Tutoring / Education. Website: `https://www.onlinequrancollege.com/locations/australia`.
+5. Phone `+44 7864 710821`, aur section 2 ki **short description** paste karein. Logo: `https://www.onlinequrancollege.com/brand/logo.webp` se download kar ke upload karein.
+6. Service area mein **Australia** likhein. Verification ka jo tareeqa Apple de (email/document), wo complete karein.
+
+**B. Hotfrog Australia (5 minute)**
+1. hotfrog.com.au → "Add your business" → account banayein (email verify karein).
+2. Section 2 ki details aur **long description** paste karein; address mein **hide address** on karein.
+3. Agar form Australian pata lazmi maange, to **ruk jayein** aur tracker mein "Blocked" likh dein — nakli pata na dein.
+
+**C. Facebook page (3 minute)**
+1. Page → Edit / About → Website: `https://www.onlinequrancollege.com/locations/australia` (ya main website).
+2. "Service area" mein Australia (aur Sydney, Melbourne, Brisbane, Perth, Adelaide) add karein.
+3. Phone aur email check karein ke section 2 jaise hi hain.
+
+Har listing live hone par uska link tracker (`AUSTRALIA-CITATIONS-TRACKER.csv`) mein likhein ya Claude ko bhej dein.
