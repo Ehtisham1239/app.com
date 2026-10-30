@@ -97,7 +97,7 @@ function LinkStudent({ guardian, onDone }) {
 function CodeReveal({ code, guardian, onClose }) {
   return (
     <Modal open onClose={onClose} title="Parent access code" size="sm" footer={<button type="button" className="btn btn-primary btn-sm" onClick={onClose}>I have noted it</button>}>
-      <p className="text-sm text-ink-soft">Give this to <b>{guardian.full_name}</b> through your usual channel. It is shown <b>only once</b>; OQC stores only a scrambled version and sends nothing automatically.</p>
+      <p className="text-sm text-ink-soft">Give this to <b>{guardian.full_name}</b> through your usual channel. It is shown <b>only once</b>; the system stores only a scrambled version and sends nothing automatically.</p>
       <div className="mt-4 rounded-2xl border-2 border-dashed border-gold-400 bg-gold-50 p-4 text-center">
         <p className="text-xs font-semibold uppercase tracking-wide text-gold-700">Client ID</p>
         <p className="font-mono text-lg font-bold text-mushaf-900">{guardian.client_id}</p>

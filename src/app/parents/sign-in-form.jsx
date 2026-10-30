@@ -42,7 +42,7 @@ export function ParentSignInForm({ expired = false }) {
       <div>
         <label htmlFor="access-code" className="field-label">Access code</label>
         <input id="access-code" type="password" className="input font-mono uppercase tracking-[0.15em]" autoComplete="current-password" spellCheck={false} value={code} onChange={(e) => setCode(e.target.value)} placeholder="XXXX-XXXX-XXXX" maxLength={20} required />
-        <p className="mt-1.5 text-xs text-ink-faint">Given to you by the OQC coordinator. Never share it.</p>
+        <p className="mt-1.5 text-xs text-ink-faint">Given to you by the Online Quran College coordinator. Never share it.</p>
       </div>
       {error && <p role="alert" className="rounded-xl bg-rose-50 px-4 py-3 text-sm text-rose-800">{error}</p>}
       <button type="submit" className="btn btn-primary w-full" disabled={busy}>
