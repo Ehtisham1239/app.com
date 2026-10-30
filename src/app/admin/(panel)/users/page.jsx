@@ -8,7 +8,7 @@ import { db, errorMessage, useLoad } from "@/lib/admin/db";
 import { initials } from "@/lib/format";
 import { Badge, Card, ConfirmButton, ErrorState, Field, Loading, Modal, PageHeader, Toggle, When } from "@/components/admin/ui";
 
-const PANEL_ROLES = ["super_admin", "admin", "admissions", "content_editor"];
+const PANEL_ROLES = ["super_admin", "admin", "admissions", "academic", "content_editor", "teacher"];
 
 async function callAdmin(body) {
   const { data, error } = await db().functions.invoke("admin-users", { body });
