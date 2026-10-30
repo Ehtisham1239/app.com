@@ -247,3 +247,52 @@ test("staff see code status without the hash, and can remove access", async () =
   await as("anon");
   await assert.rejects(db.query("select * from public.guardian_access_status($1)", [[guardianA]]), /permission denied/);
 });
+
+test("bulk parent upload checks every row and saves all or nothing", async () => {
+  const rows = [
+    { row_number: 1, client_id: "BULK-100", parent_name: "Bulk Parent One", email: "ONE@example.test", student_code: studentA.student_code, student_name: "" },
+    { row_number: 2, client_id: "bulk-100", parent_name: "Bulk Parent One", student_code: "", student_name: "New Bulk Child" },
+    { row_number: 3, client_id: "BULK-200", parent_name: "Bulk Parent Two", student_code: "OQC-99999", student_name: "" },
+    { row_number: 4, client_id: "x", parent_name: "", student_code: "", student_name: "" },
+  ];
+  await as("authenticated", ids.editor);
+  await assert.rejects(db.query("select public.guardians_bulk_import($1, false)", [JSON.stringify(rows)]), /guardians:create/);
+
+  await as("authenticated", ids.admin);
+  const before = (await one("select count(*)::int n from public.guardians")).n;
+  const check = (await one("select public.guardians_bulk_import($1, true) r", [JSON.stringify(rows)])).r;
+  assert.equal(check.ok, false);
+  assert.equal(check.committed, false);
+  assert.deepEqual(check.rows.map((r) => r.ok), [true, true, false, false]);
+  assert.match(check.rows[2].errors.join(), /Unknown student code/);
+  assert.match(check.rows[3].errors.join(), /Client ID/);
+  assert.equal((await one("select count(*)::int n from public.guardians")).n, before, "nothing saved when any row fails");
+
+  const good = rows.slice(0, 2);
+  const dry = (await one("select public.guardians_bulk_import($1, false) r", [JSON.stringify(good)])).r;
+  assert.deepEqual([dry.ok, dry.committed, dry.summary.parents_new, dry.summary.students_new], [true, false, 1, 1]);
+  assert.equal((await one("select count(*)::int n from public.guardians")).n, before, "a check saves nothing");
+
+  const saved = (await one("select public.guardians_bulk_import($1, true) r", [JSON.stringify(good)])).r;
+  assert.deepEqual([saved.ok, saved.committed, saved.summary.parents_new, saved.summary.students_new, saved.summary.links_new], [true, true, 1, 1, 2]);
+  assert.equal(saved.guardian_ids.length, 1);
+  const parent = await one("select g.full_name, g.email, (select count(*)::int from public.student_guardians sg where sg.guardian_id=g.id) kids from public.guardians g where g.client_id='BULK-100'");
+  assert.deepEqual(parent, { full_name: "Bulk Parent One", email: "one@example.test", kids: 2 });
+
+  const again = (await one("select public.guardians_bulk_import($1, true) r", [JSON.stringify(good)])).r;
+  assert.deepEqual([again.summary.parents_new, again.summary.parents_updated, again.summary.students_new, again.summary.links_new], [0, 1, 0, 0], "re-upload does not duplicate");
+});
+
+test("bulk code issue covers parents without a code and returns each code once", async () => {
+  await as("authenticated", ids.editor);
+  await assert.rejects(db.query("select * from public.guardian_issue_codes_bulk(null)"), /guardians:update/);
+  await as("authenticated", ids.admin);
+  const issued = (await db.query("select * from public.guardian_issue_codes_bulk(null)")).rows;
+  assert.ok(issued.some((r) => r.client_id === "BULK-100"));
+  for (const r of issued) assert.match(r.code, /^[A-Z2-9]{4}-[A-Z2-9]{4}-[A-Z2-9]{4}$/);
+  assert.equal((await db.query("select * from public.guardian_issue_codes_bulk(null)")).rows.length, 0, "second run finds nobody without a code");
+  await as("anon");
+  const bulk = issued.find((r) => r.client_id === "BULK-100");
+  assert.equal((await one("select public.parent_sign_in('bulk-100', $1) r", [bulk.code])).r.ok, true);
+  await assert.rejects(db.query("select public.guardians_bulk_import('[]'::jsonb, false)"), /permission denied/);
+});

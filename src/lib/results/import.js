@@ -197,16 +197,22 @@ function numberText(raw) {
 // ---------------------------------------------------------------------------
 // Mapping and preview checks
 // ---------------------------------------------------------------------------
-export async function readResultsFile(file) {
+// Reads a .csv or .xlsx upload into rows of cell text (first row = headers).
+export async function readSheet(file) {
   if (!file) throw new Error("Choose a file to upload.");
   if (file.size > MAX_FILE_BYTES) throw new Error("The file is larger than 2 MB. Split it into smaller files.");
-  const name = String(file.name || "results");
+  const name = String(file.name || "upload");
   const buffer = await file.arrayBuffer();
   const isXlsx = /\.xlsx$/i.test(name);
   if (/\.(xls|xlsm|xlsb|ods|numbers)$/i.test(name)) throw new Error("Save the sheet as .xlsx or CSV first (File → Save as).");
   if (!isXlsx && !/\.(csv|txt)$/i.test(name)) throw new Error("Upload a .csv or .xlsx file.");
   const table = isXlsx ? await parseXlsx(buffer) : parseCsv(new TextDecoder("utf-8").decode(buffer));
-  return { name: name.slice(0, 200), sha256: await sha256Hex(buffer), ...mapResultRows(table) };
+  return { name: name.slice(0, 200), sha256: await sha256Hex(buffer), table };
+}
+
+export async function readResultsFile(file) {
+  const { name, sha256, table } = await readSheet(file);
+  return { name, sha256, ...mapResultRows(table) };
 }
 
 export async function sha256Hex(buffer) {
