@@ -110,8 +110,8 @@ export function Modal({ open, onClose, title, children, footer, size = "md" }) {
   if (!open || !mounted) return null;
   const width = { sm: "max-w-md", md: "max-w-xl", lg: "max-w-3xl", xl: "max-w-5xl" }[size];
   return createPortal(
-    <div className="fixed inset-0 z-[70] flex items-start justify-center overflow-y-auto bg-mushaf-950/50 p-4 backdrop-blur-[2px] sm:items-center" onMouseDown={(e) => e.target === e.currentTarget && onClose?.()}>
-      <div role="dialog" aria-modal="true" aria-label={title} className={clsx("my-8 w-full rounded-2xl bg-white shadow-[var(--shadow-float)]", width)}>
+    <div className="fixed inset-0 z-[70] flex items-start justify-center overflow-y-auto bg-mushaf-950/50 p-4 backdrop-blur-[2px]" onMouseDown={(e) => e.target === e.currentTarget && onClose?.()}>
+      <div role="dialog" aria-modal="true" aria-label={title} className={clsx("my-4 w-full rounded-2xl sm:my-auto bg-white shadow-[var(--shadow-float)]", width)}>
         <header className="flex items-center justify-between gap-4 border-b border-line px-5 py-4">
           <h2 className="font-sans text-[1.05rem] font-bold text-mushaf-900">{title}</h2>
           <button type="button" onClick={onClose} className="rounded-lg p-1.5 text-ink-faint hover:bg-leaf-50 hover:text-ink" aria-label="Close">

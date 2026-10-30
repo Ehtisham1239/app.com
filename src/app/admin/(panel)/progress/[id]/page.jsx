@@ -6,9 +6,10 @@ import { CheckCircle2, EyeOff, History, Loader2, MessageSquareWarning, Pencil, P
 import { useAccess } from "@/lib/admin/access";
 import { db, notifyError, useLoad } from "@/lib/admin/db";
 import { formatDateTime } from "@/lib/format";
-import { CATEGORIES, REPORT_STATUSES, missingForSubmit, periodLabel, ratingLabel } from "@/lib/progress/constants";
+import { CATEGORIES, REPORT_STATUSES, detailsForm, detailsProblem, missingForSubmit, periodLabel, ratingLabel } from "@/lib/progress/constants";
 import { ResultsNav } from "@/components/admin/results-nav";
 import { RatingPicker } from "@/components/admin/rating-picker";
+import { ProgressDetailsFields } from "@/components/admin/progress-details-fields";
 import { ProgressWorkflow } from "@/components/results/progress-workflow";
 import { ProgressCertificate } from "@/components/results/progress-certificate";
 import { ProgressDmc } from "@/components/results/progress-dmc";
@@ -22,11 +23,14 @@ function EditReport({ report, onDone }) {
   const [ratings, setRatings] = useState(() => Object.fromEntries(CATEGORIES.map((c) => [c.key, report[c.key] || ""])));
   const [remarks, setRemarks] = useState(report.remarks || "");
   const [plan, setPlan] = useState(report.learning_plan || "");
+  const [details, setDetails] = useState(() => detailsForm(report.details));
   const [reason, setReason] = useState("");
   const [busy, setBusy] = useState(false);
+  const problem = detailsProblem(details);
   const save = async () => {
+    if (problem) return toast.error(problem);
     setBusy(true);
-    const { error } = await db().rpc("progress_admin_update", { p_report_id: report.id, p_ratings: ratings, p_remarks: remarks, p_reason: reason, p_plan: plan });
+    const { error } = await db().rpc("progress_admin_update", { p_report_id: report.id, p_ratings: ratings, p_remarks: remarks, p_reason: reason, p_plan: plan, p_details: details });
     setBusy(false);
     if (error) return notifyError(error);
     toast.success("Changes saved. Publish when you are happy with the certificate.");
@@ -36,13 +40,15 @@ function EditReport({ report, onDone }) {
     <>
       <button type="button" className="btn btn-outline btn-sm" onClick={() => setOpen(true)}><Pencil className="size-4" /> Edit</button>
       <Modal open={open} onClose={() => !busy && setOpen(false)} title="Edit before publishing" size="lg"
-        footer={<><button type="button" className="btn btn-ghost btn-sm" onClick={() => setOpen(false)} disabled={busy}>Cancel</button><button type="button" className="btn btn-primary btn-sm" onClick={save} disabled={busy || reason.trim().length < 3}>{busy && <Loader2 className="size-4 animate-spin" />} Save changes</button></>}>
+        footer={<><button type="button" className="btn btn-ghost btn-sm" onClick={() => setOpen(false)} disabled={busy}>Cancel</button><button type="button" className="btn btn-primary btn-sm" onClick={save} disabled={busy || reason.trim().length < 3 || !!problem}>{busy && <Loader2 className="size-4 animate-spin" />} Save changes</button></>}>
         <div className="grid gap-3 sm:grid-cols-2">
           {CATEGORIES.map((c) => (
             <div key={c.key} className="sm:col-span-2"><RatingPicker name={`edit-${c.key}`} label={c.label} hint={c.hint} value={ratings[c.key]} onChange={(value) => setRatings((r) => ({ ...r, [c.key]: value }))} disabled={busy} /></div>
           ))}
           <Field label="Teacher remarks" className="sm:col-span-2" hint={`${remarks.length}/1000`}><textarea className="adm-input" rows={4} maxLength={1000} value={remarks} onChange={(e) => setRemarks(e.target.value)} /></Field>
-          <Field label="Learning & home-practice plan" className="sm:col-span-2" hint={`${plan.length}/2000`}><textarea className="adm-input" rows={4} maxLength={2000} value={plan} onChange={(e) => setPlan(e.target.value)} /></Field>
+          <div className="space-y-3 sm:col-span-2"><ProgressDetailsFields details={details} idPrefix="edit" onChange={(group, key, value) => setDetails((d) => ({ ...d, [group]: { ...d[group], [key]: value } }))} /></div>
+          <Field label="Next month target & home practice" className="sm:col-span-2" hint={`${plan.length}/2000`}><textarea className="adm-input" rows={4} maxLength={2000} value={plan} onChange={(e) => setPlan(e.target.value)} /></Field>
+          {problem && <p role="alert" className="rounded-xl bg-rose-50 px-4 py-2.5 text-sm text-rose-800 sm:col-span-2">{problem}</p>}
           <Field label="Reason for the edit" required className="sm:col-span-2" hint="Kept in the report history"><input className="adm-input" maxLength={500} value={reason} onChange={(e) => setReason(e.target.value)} placeholder="e.g. Corrected the Tajweed rating after speaking to the teacher" /></Field>
         </div>
       </Modal>

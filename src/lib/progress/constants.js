@@ -76,3 +76,24 @@ export function attendancePercent(details) {
   if (!a || !Number(a.held) || a.attended === undefined || a.attended === null || a.attended === "") return null;
   return Math.round((Number(a.attended) * 100) / Number(a.held));
 }
+
+// Quick form checks matching private.progress_details; the database repeats them.
+export function detailsProblem(details) {
+  for (const c of CATEGORIES) {
+    const v = String(details?.scores?.[c.key] ?? "").trim();
+    if (v !== "" && !(/^\d{1,2}(\.[05])?$/.test(v) && Number(v) <= SCORE_MAX)) return `Marks for ${c.label} must be 0–${SCORE_MAX}.`;
+  }
+  const held = String(details?.attendance?.held ?? "").trim();
+  const attended = String(details?.attendance?.attended ?? "").trim();
+  if (held !== "" && !(/^\d{1,2}$/.test(held) && Number(held) <= 62)) return "Classes held must be a whole number from 0 to 62.";
+  if (attended !== "" && (held === "" || !/^\d{1,2}$/.test(attended) || Number(attended) > Number(held))) return "Classes attended must be a whole number no more than classes held.";
+  return "";
+}
+
+// Form strings → the shape a saved report uses, for on-screen previews only.
+export function formToDetails(d) {
+  const scores = Object.fromEntries(Object.entries(d.scores).filter(([, v]) => v !== "" && Number.isFinite(Number(v))).map(([k, v]) => [k, Number(v)]));
+  const attendance = d.attendance.held !== "" ? { held: Number(d.attendance.held), ...(d.attendance.attended === "" ? {} : { attended: Number(d.attendance.attended) }) } : undefined;
+  const syllabus = Object.fromEntries(Object.entries(d.syllabus).filter(([, v]) => v.trim()).map(([k, v]) => [k, v.trim()]));
+  return { scores, attendance, syllabus };
+}
