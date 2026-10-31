@@ -10,30 +10,46 @@ The public widget key is an embed identifier. It is not a ChatGPT API key or a s
 API credential. This integration does not send contact/trial form fields into the widget. Existing
 forms keep saving to the authorised Supabase project and remain available in the CMS.
 
-## Automatic lead forwarding — awaiting destination
+## Automatic lead forwarding — built, off until the webhook is set (31 Oct 2026)
 
-The owner confirmed that no Make webhook or documented lead API endpoint is available yet.
-No endpoint, API action or delivery confirmation has been invented. No existing leads were exported.
-Automatic form forwarding is not active.
+Migration `20261031000100_lead_forwarding.sql` adds a database outbox:
 
-To supply the missing destination:
+- Triggers queue every new contact message and trial application in `private.lead_outbox`.
+  Spam-marked messages are skipped. The payload carries coordinator fields only: no IP hash,
+  user agent, spam score, internal notes or UTM data.
+- A pg_cron job (`oqc-lead-forwarding`, every minute) POSTs each queued lead as JSON to the
+  webhook. Requests use `pg_net`, a 10 s timeout, an `Idempotency-Key` (= `event_id`) and an
+  optional Bearer token. 2xx marks the lead sent. Other results retry with backoff (1, 2, 4 … up to
+  120 min) and stop as `failed` after 6 attempts. The CMS record is never changed.
+- **Off by default.** Nothing is sent until an `https://` URL is stored in Supabase Vault.
+- CMS → Website settings → Website chat shows On/Off and the sent, waiting and failed counts, plus
+  the last error. Staff with `settings:update` can retry failed deliveries.
 
-1. In the owner's Make account, create a scenario with **Webhooks → Custom webhook** and create a
-   webhook for OQC website enquiries. Store its URL securely as server-side configuration; do not
-   put it into public Website settings, browser JavaScript or Git.
-2. Add the intended Hatchium action if Make provides one, or an HTTP action using the API endpoint
-   and authentication documented by Hatchium. Ask Hatchium support for the lead-ingestion API if it
-   is not available in the account. The widget embed key alone does not document this operation.
-3. Once the destination and required fields are known, implement server-side forwarding for new
-   successful contact/trial submissions, with event IDs, persisted delivery status, bounded retries
-   and a duplicate-handling rule. Keep the CMS record even if the provider is unavailable. Avoid
-   forwarding internal notes, abuse-protection data or unnecessary learner information.
-4. Test with an explicitly labelled synthetic enquiry and confirm both Make receipt and its final
-   arrival in the intended Hatchium inbox before describing the full flow as working. Confirm the
-   public privacy notice accurately describes the activated forwarding.
+### To switch it on (owner)
 
-A Make webhook accepting an event proves receipt by Make; it does not alone prove delivery to
-Hatchium or to this ChatGPT conversation. Those are separate integration steps.
+1. Get the destination: a Hatchium lead/API endpoint and API key (ask Hatchium support), or a
+   Make **Webhooks → Custom webhook** URL whose scenario adds the lead to Hatchium.
+2. Supabase dashboard → SQL Editor, run (never paste these values into chat, Git or Website settings):
+   ```sql
+   select vault.create_secret('https://YOUR-WEBHOOK-URL', 'lead_webhook_url');
+   select vault.create_secret('YOUR-API-KEY', 'lead_webhook_token'); -- only if the endpoint needs a key
+   ```
+   To change a value later, use `vault.update_secret`, or create a new secret with the same name;
+   the newest one is used.
+3. Update the privacy policy's "Website chat" section. Replace "Automatic forwarding of those forms
+   to Make or the chat service is not currently enabled. We do not automatically copy website form
+   fields into chat." with:
+   "Contact and free-trial enquiries are stored in the college CMS and are also sent automatically
+   to our enquiry service provided by Hatchium (via Make, if used) so the admissions team can follow
+   up. Only the details you enter in the form are sent; technical data such as your IP address is
+   not."
+4. Submit one clearly labelled synthetic enquiry and confirm three things: the CMS card shows
+   **Sent 1**, Make receives it (if used), and it arrives in the Hatchium inbox. Only then describe
+   forwarding as working.
+
+Leads submitted before the webhook is set wait in the outbox. They are sent when it is set. If
+older enquiries should not be sent, clear them before step 2 with
+`delete from private.lead_outbox where status = 'pending';`.
 
 ## Validation
 
