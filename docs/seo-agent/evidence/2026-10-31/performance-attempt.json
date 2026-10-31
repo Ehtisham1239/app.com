@@ -1,0 +1,8 @@
+{
+  "checked_at": "2026-10-31T03:01:32.496247+00:00",
+  "tool": "PageSpeed Insights API",
+  "strategy": "mobile",
+  "status": 429,
+  "error": "HTTP Error 429: Too Many Requests",
+  "measurement_available": false
+}

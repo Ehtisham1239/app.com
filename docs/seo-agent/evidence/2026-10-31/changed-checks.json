@@ -1,0 +1,133 @@
+{
+  "checked_at": "2026-10-31T03:00:49.822409+00:00",
+  "checks": [
+    {
+      "path": "/robots.txt",
+      "status": 200,
+      "final_url": "https://www.onlinequrancollege.com/robots.txt",
+      "h1": [],
+      "canonical": [],
+      "robots": [],
+      "jsonld_errors": 0,
+      "market_guide": [],
+      "sitemap_count": null
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "final_url": "https://www.onlinequrancollege.com/sitemap.xml",
+      "h1": [],
+      "canonical": [],
+      "robots": [],
+      "jsonld_errors": 0,
+      "market_guide": [],
+      "sitemap_count": 49
+    },
+    {
+      "path": "/locations/united-states",
+      "status": 200,
+      "final_url": "https://www.onlinequrancollege.com/locations/united-states",
+      "h1": [
+        "Online Quran classes in the United States"
+      ],
+      "canonical": [
+        "https://www.onlinequrancollege.com/locations/united-states"
+      ],
+      "robots": [
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": 0,
+      "market_guide": [
+        "US lesson times: time zones and daylight saving"
+      ],
+      "sitemap_count": null
+    },
+    {
+      "path": "/locations/australia",
+      "status": 200,
+      "final_url": "https://www.onlinequrancollege.com/locations/australia",
+      "h1": [
+        "Online Quran classes in Australia"
+      ],
+      "canonical": [
+        "https://www.onlinequrancollege.com/locations/australia"
+      ],
+      "robots": [
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": 0,
+      "market_guide": [
+        "Australian lesson times: state clocks and daylight saving"
+      ],
+      "sitemap_count": null
+    },
+    {
+      "path": "/locations/canada",
+      "status": 200,
+      "final_url": "https://www.onlinequrancollege.com/locations/canada",
+      "h1": [
+        "Online Quran classes in Canada"
+      ],
+      "canonical": [
+        "https://www.onlinequrancollege.com/locations/canada"
+      ],
+      "robots": [
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": 0,
+      "market_guide": [
+        "Planning Quran lessons across Canadian local clocks"
+      ],
+      "sitemap_count": null
+    },
+    {
+      "path": "/contact",
+      "status": 200,
+      "final_url": "https://www.onlinequrancollege.com/contact",
+      "h1": [
+        "Contact Online Quran College"
+      ],
+      "canonical": [
+        "https://www.onlinequrancollege.com/contact"
+      ],
+      "robots": [
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": 0,
+      "market_guide": [],
+      "sitemap_count": null
+    },
+    {
+      "path": "/hifz-ul-quran-course?utm_source=oqc-daily-qa",
+      "status": 200,
+      "final_url": "https://www.onlinequrancollege.com/courses/hifz-quran?utm_source=oqc-daily-qa",
+      "h1": [
+        "Hifz ul Quran"
+      ],
+      "canonical": [
+        "https://www.onlinequrancollege.com/courses/hifz-quran"
+      ],
+      "robots": [
+        "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+      ],
+      "jsonld_errors": 0,
+      "market_guide": [],
+      "sitemap_count": null
+    },
+    {
+      "path": "/basic-islamic-education",
+      "status": 404,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "path": "/how-to-learn-quran-by-heart-2",
+      "status": 404,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "path": "/start-teaching-the-quran-to-your-children",
+      "status": 404,
+      "error": "HTTP Error 404: Not Found"
+    }
+  ]
+}

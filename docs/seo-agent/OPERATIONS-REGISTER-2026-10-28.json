@@ -39,9 +39,9 @@
       "id": "OPS-03",
       "priority": "P1",
       "workstream": "Technical SEO",
-      "status": "Public raw-HTML review verified 30 October",
-      "result": "209 HTTP 200 responses; 49/49 sitemap URLs checked. One canonical review is an intentionally noindexed results utility, with crawler limitation documented.",
-      "evidence": "docs/seo-agent/evidence/2026-10-30/",
+      "status": "Changed-page HTML review verified 31 October",
+      "result": "USA/Australia/Canada country hubs and contact pass response/canonical/indexability checks; 49 sitemap declarations observed; no whole-site recrawl claimed.",
+      "evidence": "docs/seo-agent/evidence/2026-10-31",
       "next": "Monitor changed routes and unresolved issues; do not repeat unchanged checks without a reason."
     },
     {
@@ -65,9 +65,9 @@
       "id": "OPS-06",
       "priority": "P2",
       "workstream": "Analytics and organic funnel",
-      "status": "Read-only GA4, GSC and aggregate CMS baseline checked; organic admissions attribution unresolved",
+      "status": "Read-only GA4/GSC baseline refreshed 31 October; organic lead qualification unresolved",
       "result": "Matching production GA4 identity confirmed. Comparable prior reporting returns no rows. Read-only CMS aggregate confirms saved trial rows but does not identify qualified real enquiries or connect them to organic sessions. No learner/customer PII exported.",
-      "next": "Retain private evidence; verify real/test classification and authorized CRM/ERP linkage before claiming organic admissions. Do not change analytics settings from historical report rows."
+      "next": "Reconcile generate_lead event with a real saved enquiry and QA classification before counting a qualified organic lead, trial or admission. Prior comparison returned no rows; do not calculate growth."
     },
     {
       "id": "OPS-07",
@@ -101,7 +101,13 @@
       "status": "Mobile functional blocker resolved; local lab measured; production/field measurement unavailable",
       "result": "48 live page/viewport cases at 320/390/768/1440px, four menu/form journeys, no-JavaScript article, zero browser errors/writes. Local Lighthouse 13.6.0: mobile performance 93, desktop 100; accessibility/best-practices/SEO 100 both. Remote Lighthouse failed ERR_EMPTY_RESPONSE before a valid measurement.",
       "next": "Measure production through an authorized working environment and obtain actual field p75/device/window evidence. Local mobile LCP 3.17s warrants production verification; do not infer field CWV from lab results.",
-      "evidence": "docs/seo-agent/evidence/2026-10-28/"
+      "evidence": "docs/seo-agent/evidence/2026-10-28/",
+      "latest_attempt": {
+        "date": "2026-10-31",
+        "tool": "PageSpeed Insights API mobile",
+        "result": "HTTP 429; no lab or field measurement returned",
+        "evidence": "docs/seo-agent/evidence/2026-10-31/performance-attempt.json"
+      }
     },
     {
       "id": "OPS-11",
@@ -133,7 +139,7 @@
     },
     {
       "section": 3,
-      "title": "OPERATING MODEL: STANDARDIZE \u2192 AUTOMATE \u2192 OPTIMIZE",
+      "title": "OPERATING MODEL: STANDARDIZE → AUTOMATE → OPTIMIZE",
       "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
     },
     {
@@ -143,7 +149,7 @@
     },
     {
       "section": 5,
-      "title": "EXISTING BLOG AUDIT \u2014 MANDATORY FIRST WORKSTREAM",
+      "title": "EXISTING BLOG AUDIT — MANDATORY FIRST WORKSTREAM",
       "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
     },
     {
@@ -168,12 +174,12 @@
     },
     {
       "section": 10,
-      "title": "AEO \u2014 ANSWER ENGINE OPTIMIZATION",
+      "title": "AEO — ANSWER ENGINE OPTIMIZATION",
       "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
     },
     {
       "section": 11,
-      "title": "GEO \u2014 GENERATIVE ENGINE OPTIMIZATION",
+      "title": "GEO — GENERATIVE ENGINE OPTIMIZATION",
       "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
     },
     {
@@ -193,7 +199,7 @@
     },
     {
       "section": 15,
-      "title": "CRO \u2014 CONVERSION RATE OPTIMIZATION",
+      "title": "CRO — CONVERSION RATE OPTIMIZATION",
       "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
     },
     {
@@ -263,10 +269,11 @@
     }
   ],
   "last_daily_review": {
-    "date": "2026-10-30",
-    "record": "docs/seo-agent/DAILY-2026-10-30.json",
-    "report": "docs/SEO-DAILY-2026-10-30.md",
-    "result": "20 articles, 38 contextual destinations and all 49 sitemap URLs checked; Hifz redirect verified; three legacy mappings remain blocked"
+    "date": "2026-10-31",
+    "record": "docs/seo-agent/DAILY-2026-10-31.json",
+    "report": "docs/SEO-DAILY-2026-10-31.md",
+    "source_reviewed": "9393de30f5cb942910f122b04137a7bc989ba3f8",
+    "result": "20 articles and 38 contextual destinations pass; USA/Australia/Canada guides and Service markup verified live; private analytics baseline refreshed; production PSI measurement quota-blocked"
   },
   "last_implementation": {
     "date": "2026-10-29",
@@ -279,7 +286,7 @@
     "deployment": "Earlier API creation attempts returned 403; owner-authorized GitHub/Vercel setup resolved access. Existing production project is Ready at dpl_BUcSc8RHF9yAePAUp3UCyzKo6TQe and the public domain was verified.",
     "remaining_frontier": "58/58 public URLs return 200; no new parser findings. Combined same-day inventory 208.",
     "browser_release": {
-      "status": "Resolved \u2014 existing project connected; production verified",
+      "status": "Resolved — existing project connected; production verified",
       "evidence": "docs/seo-agent/evidence/2026-10-29-report-fixes/browser-release-blocker.json",
       "production_commit": "807d5969c32e0430e344467179c8153e1e71cb2e",
       "next": "Connection blocker resolved by 29 October release; inspect private logs only when needed and available. Preserve existing project/repository access.",

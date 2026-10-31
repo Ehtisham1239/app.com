@@ -579,12 +579,12 @@
     }
   ],
   "latest_raw_html_verification": {
-    "date": "2026-10-30",
+    "date": "2026-10-31",
     "articles": 20,
     "contextual_destinations": 38,
     "issues": 0,
     "inclusive_word_maximum": 948,
-    "evidence": "docs/seo-agent/evidence/2026-10-30/articles.json",
-    "scope": "Live source agreement; no fresh authenticated CMS or browser matrix"
+    "evidence": "docs/seo-agent/evidence/2026-10-31/articles.json",
+    "scope": "Live HTML/source fallback agreement; no fresh CMS account read or mobile matrix"
   }
 }

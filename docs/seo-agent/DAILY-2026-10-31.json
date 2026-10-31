@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-31",
+  "timezone": "Asia/Karachi",
+  "source_reviewed": "9393de30f5cb942910f122b04137a7bc989ba3f8",
+  "mode": "Read-only public/source and private analytics review",
+  "article_checks": 20,
+  "contextual_destinations": 38,
+  "article_issues": 0,
+  "inclusive_word_maximum": 948,
+  "country_hubs_verified": [
+    "united-states",
+    "australia",
+    "canada"
+  ],
+  "sitemap_declarations_observed": 49,
+  "full_sitemap_crawl_this_run": false,
+  "performance_attempt": {
+    "tool": "PSI mobile API",
+    "status": 429,
+    "measurement_available": false
+  },
+  "analytics": {
+    "fresh_read": true,
+    "current_period": "2026-10-23/2026-10-29",
+    "comparison_period": "2026-10-16/2026-10-22",
+    "comparison_returned_rows": false,
+    "raw_metrics_location": "Private owner report",
+    "organic_business_qualification": "Unverified; reconcile event against genuine saved enquiry"
+  },
+  "migration_status": {
+    "MIG-01": "Verified 308 and query preservation",
+    "MIG-02": "Blocked: original content/equivalence; 404",
+    "MIG-03": "Blocked: original content/equivalence; 404",
+    "MIG-04": "Blocked: original content/equivalence; 404"
+  },
+  "production_content_changes": false,
+  "enquiries_or_messages_sent": false,
+  "acquired_backlinks": 0,
+  "limits": [
+    "No fresh CMS version read or browser matrix",
+    "Not proof of indexing/rankings or rich-result eligibility",
+    "No fresh production lab score or field CWV",
+    "No Academics sign-off or qualified organic admissions",
+    "External Pathway editing and private hosting log inspection unavailable"
+  ],
+  "evidence": "docs/seo-agent/evidence/2026-10-31/",
+  "later_staff_commit_preserved": "fdc94714a0402eb21dcb6dca3298e28ded5c7848",
+  "later_staff_scope": "USA planner Anchorage/Honolulu examples; source preserved, new planner behavior not included in earlier HTML checks",
+  "private_owner_report_version": 5
+}

@@ -1,0 +1,192 @@
+{
+  "guides": [
+    {
+      "path": "/locations/united-states",
+      "guide_heading_present": true,
+      "sections_match": true,
+      "guide_cta_and_article_links_present": true,
+      "official_source_links_present": true,
+      "jsonld_parse_errors": [],
+      "service_schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "Online Quran classes in the United States",
+          "serviceType": "Online one-to-one Quran tuition",
+          "url": "https://www.onlinequrancollege.com/locations/united-states",
+          "provider": {
+            "@id": "https://www.onlinequrancollege.com/#organization"
+          },
+          "areaServed": {
+            "@type": "Country",
+            "name": "United States"
+          },
+          "availableChannel": {
+            "@type": "ServiceChannel",
+            "serviceUrl": "https://www.onlinequrancollege.com/free-trial"
+          }
+        }
+      ],
+      "schema_types": [
+        null,
+        "FAQPage",
+        "BreadcrumbList",
+        "Service",
+        "WebPage"
+      ]
+    },
+    {
+      "path": "/locations/australia",
+      "guide_heading_present": true,
+      "sections_match": true,
+      "guide_cta_and_article_links_present": true,
+      "official_source_links_present": true,
+      "jsonld_parse_errors": [],
+      "service_schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "Online Quran classes in Australia",
+          "serviceType": "Online one-to-one Quran tuition",
+          "url": "https://www.onlinequrancollege.com/locations/australia",
+          "provider": {
+            "@id": "https://www.onlinequrancollege.com/#organization"
+          },
+          "areaServed": {
+            "@type": "Country",
+            "name": "Australia"
+          },
+          "availableChannel": {
+            "@type": "ServiceChannel",
+            "serviceUrl": "https://www.onlinequrancollege.com/free-trial"
+          }
+        }
+      ],
+      "schema_types": [
+        null,
+        "FAQPage",
+        "BreadcrumbList",
+        "Service",
+        "WebPage"
+      ]
+    },
+    {
+      "path": "/locations/canada",
+      "guide_heading_present": true,
+      "sections_match": true,
+      "guide_cta_and_article_links_present": true,
+      "official_source_links_present": true,
+      "jsonld_parse_errors": [],
+      "service_schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "Online Quran classes in Canada",
+          "serviceType": "Online one-to-one Quran tuition",
+          "url": "https://www.onlinequrancollege.com/locations/canada",
+          "provider": {
+            "@id": "https://www.onlinequrancollege.com/#organization"
+          },
+          "areaServed": {
+            "@type": "Country",
+            "name": "Canada"
+          },
+          "availableChannel": {
+            "@type": "ServiceChannel",
+            "serviceUrl": "https://www.onlinequrancollege.com/free-trial"
+          }
+        }
+      ],
+      "schema_types": [
+        null,
+        "FAQPage",
+        "BreadcrumbList",
+        "Service",
+        "WebPage"
+      ]
+    }
+  ],
+  "word_counts": [
+    {
+      "slug": "help-your-kids-learn-quran-online",
+      "inclusive_words": 590
+    },
+    {
+      "slug": "importance-of-reciting-quran-with-tajweed",
+      "inclusive_words": 491
+    },
+    {
+      "slug": "memorization-techniques-for-beginners",
+      "inclusive_words": 530
+    },
+    {
+      "slug": "quran-translation-and-arabic-difference",
+      "inclusive_words": 572
+    },
+    {
+      "slug": "online-quran-lesson-setup-accessibility",
+      "inclusive_words": 593
+    },
+    {
+      "slug": "parent-teacher-quran-progress-review",
+      "inclusive_words": 561
+    },
+    {
+      "slug": "family-quran-learning-multiple-children",
+      "inclusive_words": 550
+    },
+    {
+      "slug": "choose-online-quran-teacher-usa",
+      "inclusive_words": 621
+    },
+    {
+      "slug": "quran-lessons-australia-time-zones",
+      "inclusive_words": 607
+    },
+    {
+      "slug": "noorani-qaida-or-quran-reading",
+      "inclusive_words": 563
+    },
+    {
+      "slug": "adult-quran-beginner-first-month",
+      "inclusive_words": 578
+    },
+    {
+      "slug": "prepare-child-first-online-quran-trial",
+      "inclusive_words": 573
+    },
+    {
+      "slug": "tajweed-practice-with-feedback",
+      "inclusive_words": 582
+    },
+    {
+      "slug": "hifz-revision-with-school",
+      "inclusive_words": 555
+    },
+    {
+      "slug": "questions-before-quran-course-enrolment",
+      "inclusive_words": 561
+    },
+    {
+      "slug": "choose-online-quran-classes-kids",
+      "inclusive_words": 945
+    },
+    {
+      "slug": "noorani-qaida-home-practice-checklist",
+      "inclusive_words": 929
+    },
+    {
+      "slug": "returning-to-quran-study-adults",
+      "inclusive_words": 910
+    },
+    {
+      "slug": "family-quran-learning-weekly-routine",
+      "inclusive_words": 945
+    },
+    {
+      "slug": "online-quran-class-fees-uk-comparison",
+      "inclusive_words": 948
+    }
+  ],
+  "max_inclusive_words": 948
+}
