@@ -61,6 +61,9 @@ const nextConfig = {
       }),
       ...courses.map((slug) => ({ source: `/${slug}`, destination: `/courses/${slug}`, permanent: true })),
       { source: "/hifz-ul-quran-course", destination: "/courses/hifz-quran", permanent: true },
+      // Recovered original articles reviewed in the 31 October migration proposal.
+      { source: "/how-to-learn-quran-by-heart-2", destination: "/blog/memorization-techniques-for-beginners", permanent: true },
+      { source: "/start-teaching-the-quran-to-your-children", destination: "/blog/help-your-kids-learn-quran-online", permanent: true },
       { source: "/terms-conditions", destination: "/terms-and-conditions", permanent: true },
       { source: "/login.html", destination: "/admin/login", permanent: false },
       { source: "/login", destination: "/admin/login", permanent: false },
