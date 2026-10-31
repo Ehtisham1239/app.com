@@ -34,3 +34,12 @@ test('existing country, city, course and guide aliases retain their intended des
   for(const guide of LEARNING_GUIDES)assert.equal(bySource.get('/'+guide.slug)?.destination,guide.path);
   assert.equal(bySource.get('/login.html')?.destination,'/admin/login');assert.equal(bySource.get('/register')?.destination,'/free-trial');
 });
+
+
+test('recovered legacy memorisation and parenting articles map directly to relevant blog guides',()=>{
+  for(const [source,target] of [['/how-to-learn-quran-by-heart-2','/blog/memorization-techniques-for-beginners'],['/start-teaching-the-quran-to-your-children','/blog/help-your-kids-learn-quran-online']]){
+    assert.equal(bySource.get(source)?.destination,target);
+    assert.equal(bySource.get(source)?.permanent,true);
+  }
+  assert.equal(bySource.has('/basic-islamic-education'),false,'Broad course scope still needs a separate decision');
+});
