@@ -46,6 +46,13 @@ test("US planner includes Mountain time and Phoenix without adding indexed city 
  assert.equal(schedulePreview('2026-07-15','18:00','America/Denver').utc,'2026-07-16T00:00:00.000Z');
  assert.equal(schedulePreview('2026-07-15','18:00','America/Phoenix').utc,'2026-07-16T01:00:00.000Z');
  assert.equal(getLocation('united-states').cities.some(c=>c.name==='Denver'),false);
+ // Hawaii keeps one offset all year; Alaska moves with daylight saving.
+ assert.equal(places.find(p=>p.name==='Honolulu').timezone,'Pacific/Honolulu');
+ assert.equal(schedulePreview('2026-07-15','18:00','Pacific/Honolulu').utc,'2026-07-16T04:00:00.000Z');
+ assert.equal(schedulePreview('2026-01-15','18:00','Pacific/Honolulu').utc,'2026-01-16T04:00:00.000Z');
+ assert.equal(schedulePreview('2026-07-15','18:00','America/Anchorage').utc,'2026-07-16T02:00:00.000Z');
+ assert.equal(schedulePreview('2026-01-15','18:00','America/Anchorage').utc,'2026-01-16T03:00:00.000Z');
+ assert.equal(getLocation('united-states').cities.some(c=>c.name==='Honolulu'),false);
 });
 test('known CMS aliases redirect before rendering with one unique mapping per source',async()=>{
  const{LEARNING_GUIDES}=await import('../src/lib/learning-guides.js');
