@@ -2,7 +2,7 @@ import {test} from 'node:test';import assert from 'node:assert/strict';import {e
 import {SEARCH_INTENTS} from '../src/lib/search-intent.js';import {courseVisual} from '../src/lib/card-presentation.js';
 const seed=JSON.parse(readFileSync(new URL('../src/lib/seed-content.json',import.meta.url)));
 test('site-wide search themes have separate principal routes and qualified evidence',()=>{
- const rows=Object.entries(SEARCH_INTENTS);assert.equal(rows.length,21);assert.equal(new Set(rows.map(([,r])=>r.phrase)).size,21);
+ const rows=Object.entries(SEARCH_INTENTS);assert.equal(rows.length,22);assert.equal(new Set(rows.map(([,r])=>r.phrase)).size,22);
  const map=JSON.parse(readFileSync(new URL('../content/seo-intent-map.json',import.meta.url))).competitorResearch;assert.match(map.evidence,/not confirmed top-ten rankings/);assert.equal(map.themes.length,10);
  for(const [path,r]of rows){assert.ok(path.startsWith('/'));assert.ok(r.heading&&r.intro);assert.ok((r.heading+' '+r.intro).toLowerCase().includes(r.phrase.toLowerCase()));}
 });
