@@ -1,0 +1,86 @@
+{
+  "checked_assets": 10,
+  "new_source_served": true,
+  "assets": [
+    {
+      "asset": "/_next/static/immutable/chunks/0ykyzfd0mwwu3.js",
+      "status": 200,
+      "has_search_referrer_marker": false,
+      "has_known_engine_allowlist": false
+    },
+    {
+      "asset": "/_next/static/immutable/chunks/0-aoh2jh42l5a.js",
+      "status": 200,
+      "has_search_referrer_marker": false,
+      "has_known_engine_allowlist": false
+    },
+    {
+      "asset": "/_next/static/immutable/chunks/05llew1hg7v6q.js",
+      "status": 200,
+      "has_search_referrer_marker": false,
+      "has_known_engine_allowlist": false
+    },
+    {
+      "asset": "/_next/static/immutable/chunks/turbopack-1byz1flvc-bu1.js",
+      "status": 200,
+      "has_search_referrer_marker": false,
+      "has_known_engine_allowlist": false
+    },
+    {
+      "asset": "/_next/static/immutable/chunks/00z4pmesk2f4f.js",
+      "status": 200,
+      "has_search_referrer_marker": false,
+      "has_known_engine_allowlist": false
+    },
+    {
+      "asset": "/_next/static/immutable/chunks/3t_9u70dx003d.js",
+      "status": 200,
+      "has_search_referrer_marker": false,
+      "has_known_engine_allowlist": false
+    },
+    {
+      "asset": "/_next/static/immutable/chunks/3fl44h41ehq5z.js",
+      "status": 200,
+      "has_search_referrer_marker": true,
+      "has_known_engine_allowlist": true
+    },
+    {
+      "asset": "/_next/static/immutable/chunks/3mfjknhumcjcc.js",
+      "status": 200,
+      "has_search_referrer_marker": false,
+      "has_known_engine_allowlist": false
+    },
+    {
+      "asset": "/_next/static/immutable/chunks/0c0hxoamwjsbw.js",
+      "status": 200,
+      "has_search_referrer_marker": false,
+      "has_known_engine_allowlist": false
+    },
+    {
+      "asset": "/_next/static/immutable/chunks/2vja0_zguykat.js",
+      "status": 200,
+      "has_search_referrer_marker": false,
+      "has_known_engine_allowlist": false
+    }
+  ],
+  "scope": "Public bundle delivery only; no production form submitted",
+  "verified_at_utc": "2026-10-31T03:27:07.186100+00:00",
+  "source_commit": "e2d07599f2bf35c70ff9acc2b43b112c02666e24",
+  "deployment_id": "dpl_EoSdGarzdE3fELjGRE7tVPKSXJHo",
+  "deployment_status": "Ready",
+  "environment": "Production",
+  "domain": "https://www.onlinequrancollege.com",
+  "github_vercel_status": "success",
+  "production_dependency_audit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "limits": [
+    "Public delivery verified; no production form submission or authenticated staff review performed.",
+    "Inferred source is not a qualified lead, student admission, ranking improvement or traffic acquisition."
+  ]
+}

@@ -34,3 +34,11 @@ Archived originals were located and their actual HTML retrieved successfully for
 | /basic-islamic-education | 29 February 2024 | Original addresses broad Islamic education, not exclusively children. /courses/hadith-translation may cover some basics; confirm scope with Academics/owner. Do not silently redirect to a child-only guide. |
 
 The original-content access blocker is resolved; equivalence/URL approval remains open. Candidate mappings are not deployed by this attribution change.
+
+## Production release verification
+
+Source commit `e2d07599f2bf35c70ff9acc2b43b112c02666e24` deployed successfully. Vercel shows Ready, Production and the www.onlinequrancollege.com domain; GitHub's Vercel check is success. A new fetch of the public homepage and its ten script assets verifies the new `search_referrer` marker and known-engine allowlist in the served JavaScript. Exact asset evidence is in `docs/seo-agent/evidence/2026-10-31/organic-source-release.json`. No production enquiry was submitted and no lead or admission is claimed.
+
+Read-only production dependency audit (`npm audit --omit=dev --json`) reports zero known production vulnerabilities at this run. The successful Vercel build still emits tooling warnings, including an open-ended Node engines range selecting Node 26 despite the project setting 24, ESLint deprecation and dev-install audit warnings. These are recorded follow-ups; no forced package upgrades or platform setting changes were made.
+
+Two content-matched legacy redirect proposals and their five passing redirect tests are preserved separately in draft PR #38: https://github.com/Ehtisham1239/app.com/pull/38 . They are not merged or live. The broad basic-Islamic-education path still needs an Academics/owner scope decision. Specific URL approval remains required by the operating specification.
