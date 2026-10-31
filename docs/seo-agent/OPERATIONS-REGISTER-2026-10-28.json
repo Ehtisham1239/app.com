@@ -67,7 +67,7 @@
       "workstream": "Analytics and organic funnel",
       "status": "Read-only GA4/GSC baseline refreshed 31 October; organic lead qualification unresolved",
       "result": "Matching production GA4 identity confirmed. Comparable prior reporting returns no rows. Read-only CMS aggregate confirms saved trial rows but does not identify qualified real enquiries or connect them to organic sessions. No learner/customer PII exported.",
-      "next": "Reconcile generate_lead event with a real saved enquiry and QA classification before counting a qualified organic lead, trial or admission. Prior comparison returned no rows; do not calculate growth."
+      "next": "Verify future saved enquiries carry inferred organic source, then qualify real enquiries/trial attendance/admissions in the operational CRM. Historical rows cannot be retroactively attributed."
     },
     {
       "id": "OPS-07",
@@ -271,9 +271,10 @@
   "last_daily_review": {
     "date": "2026-10-31",
     "record": "docs/seo-agent/DAILY-2026-10-31.json",
-    "report": "docs/SEO-DAILY-2026-10-31.md",
+    "report": "docs/SEO-PUBLIC-VERIFICATION-2026-10-31.md",
     "source_reviewed": "9393de30f5cb942910f122b04137a7bc989ba3f8",
-    "result": "20 articles and 38 contextual destinations pass; USA/Australia/Canada guides and Service markup verified live; private analytics baseline refreshed; production PSI measurement quota-blocked"
+    "result": "20 articles and 38 contextual destinations pass; USA/Australia/Canada guides and Service markup verified live; private analytics baseline refreshed; production PSI measurement quota-blocked",
+    "country_decision_record": "docs/SEO-DAILY-2026-10-31.md"
   },
   "last_implementation": {
     "date": "2026-10-29",
@@ -323,5 +324,11 @@
     "automated_live_trial_cases_completed": 1,
     "direct_live_country_flow": true,
     "verification": "docs/seo-agent/evidence/2026-10-29-visual-refresh/release.json"
+  },
+  "last_growth_fix": {
+    "date": "2026-10-31",
+    "status": "Implemented locally; release verification pending",
+    "report": "docs/ORGANIC-ENQUIRY-ATTRIBUTION-2026-10-31.md",
+    "scope": "Infer allowlisted search source for untagged enquiries; campaign priority, cookieless analytics and existing public form contracts preserved"
   }
 }

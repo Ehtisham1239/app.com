@@ -1,0 +1,35 @@
+[
+  {
+    "path": "basic-islamic-education",
+    "snapshot": {
+      "status": "200",
+      "available": true,
+      "url": "http://web.archive.org/web/20240229073206/https://onlinequrancollege.com/basic-islamic-education/",
+      "timestamp": "20240229073206"
+    },
+    "status": 200,
+    "bytes": 79490
+  },
+  {
+    "path": "how-to-learn-quran-by-heart-2",
+    "snapshot": {
+      "status": "200",
+      "available": true,
+      "url": "http://web.archive.org/web/20240229094015/https://onlinequrancollege.com/how-to-learn-quran-by-heart-2/",
+      "timestamp": "20240229094015"
+    },
+    "status": 200,
+    "bytes": 80388
+  },
+  {
+    "path": "start-teaching-the-quran-to-your-children",
+    "snapshot": {
+      "status": "200",
+      "available": true,
+      "url": "http://web.archive.org/web/20260513100607/https://onlinequrancollege.com/start-teaching-the-quran-to-your-children/",
+      "timestamp": "20260513100607"
+    },
+    "status": 200,
+    "bytes": 155778
+  }
+]

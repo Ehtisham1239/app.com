@@ -1,0 +1,35 @@
+# OQC SEO review — 31 October 2026
+
+Reporting timezone: Asia/Karachi. Source reviewed: 9393de30f5cb942910f122b04137a7bc989ba3f8. Read the operations register, latest article register, full 28-section master (SHA-256 unchanged) and current private owner report version 4. Preserve subsequent staff edits. GMB and price changes excluded.
+
+## Completed checks
+
+- CONFIRMED: 20/20 live articles agree with current source fallback bodies and expected metadata. All 38 contextual same-origin destinations pass, including referenced fragments. Inclusive title/excerpt/body maximum remains 948 words. No article rewrite was justified. This is not an authenticated CMS version read.
+- CONFIRMED: USA, Australia and Canada hubs return 200, one H1, self-canonical and index/follow. Their new local-clock headings, both guide paragraphs, article/trial links and official-source links match current source. All JSON-LD blocks parse; each includes Service with the correct country areaServed, organisation provider reference and trial service channel. This checks syntax and visible/source agreement, not official rich-result validation or eligibility.
+- CONFIRMED: Contact, robots and sitemap return 200; 49 sitemap URL declarations observed. No whole-site recrawl or fresh mobile/browser matrix is claimed. Protected parent/admin pages were not requested by this run.
+- CONFIRMED: Hifz legacy path returns a direct 308 with query retained, and the target returns 200/self-canonical. MIG-02–04 remain 404 and await original content/approved equivalent intent. No generic redirect was added.
+- SOURCE RECONCILIATION: GitHub Vercel status reports successful deployment of 9393de30. This reconciles the prior source-only USA/Australia guide verification limitation; no fresh private hosting-log scan is claimed.
+
+## Current evidence and remaining dependencies
+
+Read-only production GA4 and domain Search Console connections were rediscovered; fields were discovered before querying. Refreshed 23–29 October against 16–22 October. The earlier period returns no rows, so percentage growth is unavailable. Raw analytics and funnel figures remain in the private owner report, not this public repository. A reported organic generate_lead event is not yet a verified genuine enquiry, booked trial or admission; QA classification and CRM/CMS record reconciliation remain required.
+
+The production mobile PageSpeed Insights API attempt returned HTTP 429. No usable lab result or field data was returned, and no score or CWV pass is claimed. This is a measurement quota limitation, not evidence that the website is down. No repeated quota requests were made.
+
+Official clock references checked: US DOT (Hawaii/most Arizona exceptions), NIST (2026 DST dates), British Columbia and Alberta (year-round offsets from the November transition), and NSW DCJ. Fair Work's direct page returned 403 in the research service; its link presence on OQC is verified, but a fresh read of that source is not claimed. Existing date-aware Canadian override remains in source; no scheduling code changed.
+
+RISE's connect page still invites resource descriptions, audience and authorship. This remains an eligibility prospect, not acceptance. Verified OQC sender and explicit named submission authorization are still absent. No outreach, directory submission, membership purchase, IndexNow submission, acquired backlink or disavow occurred. USA/Australia citation packs remain designed, not submitted. Ahrefs was not suggested.
+
+Named Academics sign-off, business-qualified organic attribution, original material for three legacy mappings, field CWV and external Pathway editing remain pending. The Claude Docs capability needed for the supplied Pathway is unavailable; repository registers were used and updated. Do not web-fetch that private document or fabricate its review.
+
+## Evidence and next work
+
+Evidence: docs/seo-agent/evidence/2026-10-31/. Continue genuine changed-page/critical issues and qualify the reported organic event against a real saved record before reporting business outcomes. Content, production configuration, prices, GMB, analytics settings, learner data and permissions were not changed. This documentation-only update records checks and unresolved dependencies; it does not claim a new application fix or ranking uplift.
+
+References: https://www.transportation.gov/regulations/daylight-saving-time ; https://www.nist.gov/pml/time-and-frequency-division/popular-links/daylight-saving-time-dst ; https://www2.gov.bc.ca/gov/content/governments/celebrating-british-columbia/daylight-saving-time ; https://www.alberta.ca/albertas-new-time-system-abt ; https://dcj.nsw.gov.au/about-us/daylight-saving.html ; https://resourcesforislamicschools.com/connect
+
+Later staff change preserved: fdc94714a0402eb21dcb6dca3298e28ded5c7848 adds Anchorage/Honolulu planning examples and its tests. This later planner behavior is outside the earlier HTTP/source checks; no staff source or prior daily report is overwritten. Private owner report updated successfully to version 5.
+
+## Deployment closeout
+
+The previously pending 858c62b documentation release now reports Vercel success. Staff PR #37 subsequently replaced the date-shared report with an AU/US Search Console/city-policy record. That newer report is preserved, while this separate file retains the complete public verification narrative. The latest city decision continues noindex/follow; do not remove it to chase impressions. No new application code needs deployment from this documentation repair.
