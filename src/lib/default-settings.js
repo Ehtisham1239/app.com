@@ -21,6 +21,7 @@ export const DEFAULT_SETTINGS = {
     instagram: "https://www.instagram.com/online_quran_college",
     youtube: "",
     tiktok: "",
+    trustpilot: "",
   },
   "site.hero": {
     eyebrow: "Live 1-on-1 online Quran classes",
