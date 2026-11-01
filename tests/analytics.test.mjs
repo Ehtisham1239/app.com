@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { analyticsConfig, analyticsSettingsError, publicAnalyticsUrl, createAnalyticsController, saveAnalyticsConsent, readAnalyticsConsent, cookielessAnalyticsConfig, shieldAnalyticsCookies, pageClientId, ANALYTICS_CONSENT_KEY } from "../src/lib/analytics.js";
+import { analyticsConfig, analyticsSettingsError, publicAnalyticsUrl, createAnalyticsController, saveAnalyticsConsent, readAnalyticsConsent, cookielessAnalyticsConfig, shieldAnalyticsCookies, pageClientId, ANALYTICS_CONSENT_KEY, isAnalyticsHost } from "../src/lib/analytics.js";
 
 // Test-only IDs. The fake document records script loads; no network requests occur.
 const ga4Id = "G-TEST123456", gtmId = "GTM-TEST123";
@@ -151,5 +151,13 @@ test("cookieless analytics sends a fresh page-level client id in both transports
     const settings = win.dataLayer.map(item => Array.from(item)).filter(item => item[0] === "set" || item[0] === "config").map(item => item.at(-1));
     assert.ok(settings.some(s => s.client_storage === "none" && /^\d+\.\d+$/.test(s.client_id)), JSON.stringify(settings));
     adapter.destroy();
+  }
+});
+
+test("only the production host reports to GA4", () => {
+  assert.equal(isAnalyticsHost("www.onlinequrancollege.com"), true);
+  assert.equal(isAnalyticsHost("WWW.OnlineQuranCollege.com"), true);
+  for (const host of ["onlinequrancollege.com", "appcom-online-quran-college.vercel.app", "project-umber-three-93.vercel.app", "localhost", "", undefined]) {
+    assert.equal(isAnalyticsHost(host), false, String(host));
   }
 });

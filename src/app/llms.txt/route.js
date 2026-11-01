@@ -1,10 +1,14 @@
 import { getCourses, getPosts, getPublishedSlugs } from "@/lib/site-data";
 import { shouldIncludeInSitemap } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
+import { INDEXED_MARKETS } from "@/lib/locations";
 
 export const dynamic = "force-static";
 export const revalidate = 3600;
 
+// Absolute links: AI crawlers often read this file on its own, without a base URL.
+const abs = path => `${SITE_URL}${path}`;
+const MARKET_NAMES = { "united-kingdom": "United Kingdom", "united-states": "United States", australia: "Australia", canada: "Canada" };
 const label = value => String(value || "").replace(/[\[\]\r\n]/g, " ").trim();
 export async function GET() {
   const [courses, posts, published] = await Promise.all([getCourses(), getPosts(50), getPublishedSlugs()]);
@@ -17,23 +21,25 @@ export async function GET() {
     "## When to use this website", "",
     "Use these public pages to compare a learner’s starting point with the available Quran courses, understand published package and trial terms, prepare questions for a first lesson, or plan a proposed class time in the learner’s country. Follow the course, article and country links below with ordinary HTTP GET requests. Confirm booking and teacher availability with the coordinator; obtain the learner’s or guardian’s consent before submitting a request.", "",
     "## Start here", "",
-    "- [Course comparison](/courses)",
-    "- [Fees and packages](/pricing): A three-day free trial is available on eligible plans. The Weekend plan is excluded.",
-    "- [Trial request](/free-trial)",
-    "- [Countries, cities and time-zone planning](/locations)",
-    "- [Learning guides](/learn)",
-    "- [About the college](/about)",
-    "- [Contact the college](/contact)", "",
+    `- [Course comparison](${abs("/courses")})`,
+    `- [Fees and packages](${abs("/pricing")}): A three-day free trial is available on eligible plans. The Weekend plan is excluded.`,
+    `- [Trial request](${abs("/free-trial")})`,
+    `- [Countries, cities and time-zone planning](${abs("/locations")})`,
+    `- [Learning guides](${abs("/learn")})`,
+    `- [About the college](${abs("/about")})`,
+    `- [Contact the college](${abs("/contact")})`, "",
+    "## Online classes by country", "",
+    ...INDEXED_MARKETS.map(slug => `- [Online Quran classes in ${MARKET_NAMES[slug] || slug}](${abs(`/locations/${slug}`)})`), "",
     "## Courses", "",
-    ...courses.filter(row => courseSlugs.has(row.slug)).map(row => `- [${label(row.title)}](/courses/${encodeURIComponent(row.slug)})`), "",
+    ...courses.filter(row => courseSlugs.has(row.slug)).map(row => `- [${label(row.title)}](${abs(`/courses/${encodeURIComponent(row.slug)}`)})`), "",
     "## Learning articles", "",
-    ...posts.filter(row => postSlugs.has(row.slug)).map(row => `- [${label(row.title)}](/blog/${encodeURIComponent(row.slug)})`), "",
+    ...posts.filter(row => postSlugs.has(row.slug)).map(row => `- [${label(row.title)}](${abs(`/blog/${encodeURIComponent(row.slug)}`)})`), "",
     "## Further information", "",
-    "- [Article RSS feed](/blog/feed.xml)",
-    "- [Public sitemap](/sitemap.xml)",
-    "- [Privacy and optional analytics](/privacy-policy)",
-    "- [Terms and conditions](/terms-and-conditions)",
-    "- [Refund policy](/refund-policy)", "",
+    `- [Article RSS feed](${abs("/blog/feed.xml")})`,
+    `- [Public sitemap](${abs("/sitemap.xml")})`,
+    `- [Privacy and optional analytics](${abs("/privacy-policy")})`,
+    `- [Terms and conditions](${abs("/terms-and-conditions")})`,
+    `- [Refund policy](${abs("/refund-policy")})`, "",
   ];
   return new Response(lines.join("\n"), { headers: { "Content-Type": "text/plain; charset=utf-8", "X-Content-Type-Options": "nosniff" } });
 }

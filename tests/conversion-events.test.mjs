@@ -11,3 +11,11 @@ test('instrumentation failure cannot break successful form confirmation',()=>{
  global.window={dispatchEvent(){throw Error('blocked')}};
  assert.equal(announceLeadSaved({formType:'contact',reference:'MSG-1',country:'Australia'}),false);delete global.window;
 });
+
+test('target markets get their own coarse label; others stay Other',()=>{
+ const events=[];global.window={dispatchEvent:e=>events.push(e)};global.CustomEvent=class{constructor(type,init){this.type=type;this.detail=init.detail;}};
+ const cases=[['United Kingdom','UK'],['Canada','Canada'],['United States','USA'],['Australia','Australia'],['Pakistan','Other'],[undefined,'Other']];
+ for(const [country] of cases) assert.equal(announceLeadSaved({formType:'trial',reference:'TR-1',country}),true);
+ assert.deepEqual(events.map(e=>e.detail.market),cases.map(c=>c[1]));
+ delete global.window;
+});

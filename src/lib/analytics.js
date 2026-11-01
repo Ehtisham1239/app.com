@@ -30,6 +30,13 @@ export function analyticsSettingsError(value = {}) {
   return "";
 }
 
+// Only the production site reports to GA4. Vercel preview and other project
+// hosts that load the same tag otherwise mix test visits into the reports.
+export const ANALYTICS_HOSTS = ["www.onlinequrancollege.com"];
+export function isAnalyticsHost(hostname) {
+  return ANALYTICS_HOSTS.includes(String(hostname || "").toLowerCase());
+}
+
 export function publicAnalyticsUrl(input, origin) {
   try {
     const url = new URL(input, origin);
@@ -156,7 +163,7 @@ export function createAnalyticsController(win, config) {
   }
   const onLead = event => {
     const { form_type, market } = event.detail || {};
-    if (event.detail?.event !== "generate_lead" || !["trial", "contact"].includes(form_type) || !["USA", "Australia", "Other"].includes(market)) return;
+    if (event.detail?.event !== "generate_lead" || !["trial", "contact"].includes(form_type) || !["UK", "USA", "Canada", "Australia", "Other"].includes(market)) return;
     emit("generate_lead", { form_type, market }); // Only a confirmed first-party save signal; no form field values.
   };
   const onClick = event => {
