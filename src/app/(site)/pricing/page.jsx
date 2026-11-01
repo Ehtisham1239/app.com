@@ -8,6 +8,7 @@ import { getFaqs, getPlans, getSettings } from "@/lib/site-data";
 import { whatsappLink } from "@/lib/format";
 import { faqSchema, safeJsonLd } from "@/lib/seo";
 import { getUsdRates } from "@/lib/fx";
+import { feeAnswer } from "@/lib/fee-answer";
 
 export const revalidate = 300;
 
@@ -22,6 +23,9 @@ export default async function PricingPage({ searchParams }) {
   const feeFaqs = faqs.filter((f) => !/^Market:/i.test(f.category || "") && /fee|pay|cancel|discount|reschedul|miss/i.test(`${f.category} ${f.question}`));
   const currencies = [...new Set(plans.flatMap((p) => p.prices.map((x) => x.currency)))];
   const wa = whatsappLink(settings["site.contact"]?.whatsapp, "Assalamu alaikum, I have a question about your fees.");
+  // Direct answer for the most-searched fee question; built from the same published plans as the cards.
+  const quickAnswer = feeAnswer(plans, fx, "GBP");
+  const schemaFaqs = quickAnswer ? [{ question: quickAnswer.question, answer: quickAnswer.answer }, ...feeFaqs] : feeFaqs;
 
   return (
     <>
@@ -30,6 +34,14 @@ export default async function PricingPage({ searchParams }) {
         title="Online Quran class fees and packages"
         intro="Choose how many days a week suit your family. Compare lesson frequency, duration and fees below. A 3-day free trial is available on eligible plans; the Weekend plan is excluded."
       />
+      {quickAnswer && (
+        <section className="page-wrap pt-12 sm:pt-16" aria-labelledby="fee-quick-answer">
+          <div className="mx-auto max-w-3xl rounded-[var(--radius-card)] border border-line bg-white p-6 sm:p-7">
+            <h2 id="fee-quick-answer" className="font-sans text-[1.15rem] font-bold text-mushaf-900">{quickAnswer.question}</h2>
+            <p className="mt-2 text-[0.98rem] leading-relaxed text-ink-soft">{quickAnswer.answer}</p>
+          </div>
+        </section>
+      )}
       <section className="page-wrap py-16 sm:py-20" aria-labelledby="monthly-packages">
         <h2 id="monthly-packages" className="sr-only">Monthly class packages</h2>
         {packages.length > 0 && <CurrencyPricing plans={packages} defaultCurrency={requestedCurrency} explicit={Boolean(requestedCurrency)} fx={fx} />}
@@ -68,10 +80,11 @@ export default async function PricingPage({ searchParams }) {
         </section>
       )}
 
+      {feeFaqs.length === 0 && quickAnswer && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema(schemaFaqs)) }} />}
       {feeFaqs.length > 0 && (
         <section className="page-wrap py-16 sm:py-20">
           <SectionHeading eyebrow="Questions" title="About fees and payments" />
-          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema(feeFaqs)) }} />
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema(schemaFaqs)) }} />
           <div className="mx-auto mt-10 max-w-3xl">
             <FaqList faqs={feeFaqs} defaultOpen={-1} />
           </div>
