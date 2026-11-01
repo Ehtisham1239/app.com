@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight, Mail, MapPin, MessageCircle, Phone } from "@/components/site/icons";
 import { whatsappLink } from "@/lib/format";
 
-const SOCIAL_LABELS = { facebook: "Facebook", instagram: "Instagram", x: "X (Twitter)", youtube: "YouTube", tiktok: "TikTok" };
+const SOCIAL_LABELS = { facebook: "Facebook", instagram: "Instagram", x: "X (Twitter)", youtube: "YouTube", tiktok: "TikTok", trustpilot: "Trustpilot" };
 
 function FooterColumn({ title, items }) {
   if (!items?.length) return null;
