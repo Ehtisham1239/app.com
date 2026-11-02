@@ -1,6 +1,6 @@
 # OQC website audit — 2 Nov 2026
 
-Method: source inspection of `main` at `709d1e9` (the live production commit) plus Google Search Console data for `sc-domain:onlinequrancollege.com`, last 28 days, pulled through Windsor on 2 Nov 2026. A live crawl could not run from this workspace (see `OQC_PROJECT_CONTEXT.md`); earlier crawl evidence is in `../../SEO-PUBLIC-VERIFICATION-2026-10-31.md`.
+Method: source inspection of `main` (production `709d1e9`, then `d9defa4` from mid-session) plus Google Search Console data for `sc-domain:onlinequrancollege.com`, last 28 days, pulled through Windsor on 2 Nov 2026. A live crawl could not run from this workspace (see `OQC_PROJECT_CONTEXT.md`); earlier crawl evidence is in `../../SEO-PUBLIC-VERIFICATION-2026-10-31.md`.
 
 ## 1. Search Console baseline (measured, 28 days to 2 Nov 2026)
 | Country | Clicks | Impressions | Avg position |

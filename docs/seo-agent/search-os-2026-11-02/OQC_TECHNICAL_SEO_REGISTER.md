@@ -12,4 +12,4 @@
 | T8 | Core Web Vitals | — | Read Search Console CWV report / PageSpeed from a machine that can reach the site | Not measured this session |
 | T9 | Repo SEO crawl scripts | network blocked here | Run `npm run seo:agent` after deploy from a connected machine | Blocked here |
 
-Test run (this branch, Node 22): 129 tests, 119 pass, 10 files not runnable here because npm packages (luxon, sharp, esbuild, pglite) could not be installed — same 10 as on `main`. New regression tests fail on `main` (2/2) and pass on this branch.
+Test run (this branch rebased on main `5f0774f`, Node 22): 130 tests, 120 pass, 10 files not runnable here because npm packages (luxon, sharp, esbuild, pglite) could not be installed — same 10 as on `main`. New regression tests fail on `main` (2/2) and pass on this branch.

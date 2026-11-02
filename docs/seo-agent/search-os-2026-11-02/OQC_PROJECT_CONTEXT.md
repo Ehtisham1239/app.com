@@ -6,7 +6,7 @@
 | Production repository | `Ehtisham1239/app.com`, branch `main` | GitHub API |
 | Framework | Next.js 16 + Supabase CMS (`lgbwidraztavhhbnbfhr`) | `package.json`, `AGENTS.md` |
 | Hosting | Vercel project `appcom-online-quran-college` (`prj_ohTvpaIwR1bWHFJWl23QiNfOoJG7`) | Vercel API |
-| Live production deployment | `dpl_GSAzm6mdAoDAbD5kbVfaCgSuzwYW`, commit `709d1e9`, state READY | Vercel API |
+| Live production deployment | `dpl_GoVfGB1v4r65oHPVzGwFEKbiJuku`, commit `d9defa4`, state READY (replaced `709d1e9` during this session; it includes another session's online-only contact/footer/schema fixes `df41cf4`…`6ff6c34`) | Vercel API |
 | Domains on that project | `www.onlinequrancollege.com` (primary); apex `onlinequrancollege.com` → www (308); `appcom-online-quran-college.vercel.app` (alias) | Vercel API |
 | Runtime errors, last 24 h | none | Vercel runtime errors |
 | Other OQC hosts seen in Search Console | `app.`, `go.`, `hiring.`, `portal.onlinequrancollege.com`; separate property `project-umber-three-93.vercel.app` | Search Console via Windsor |
@@ -14,7 +14,7 @@
 The `app./go./hiring./portal.` subdomains are **not** served by this Vercel project; their host is unknown from here (DNS is at Hostinger per earlier notes).
 
 ## Business facts published by the site (observed in CMS `settings`)
-- Name: Online Quran College; founded 2019; email info@onlinequrancollege.com; phone/WhatsApp +44 7864 710821; location shown: "United Kingdom" (country only, no street address).
+- Name: Online Quran College; founded 2019; email info@onlinequrancollege.com; phone/WhatsApp +44 7864 710821; CMS location setting "United Kingdom" (country only, no street address). Since `6899407`/`df41cf4` the footer and Contact page show the online-only model ("no walk-in office") and Organization schema emits no PostalAddress without a full street address.
 - Socials in Organization `sameAs`: X, Facebook, Instagram, Trustpilot.
 - Free trial: 3 days, Weekend plan excluded (`AGENTS.md`).
 
