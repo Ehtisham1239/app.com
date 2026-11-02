@@ -941,6 +941,6 @@ export function locationSearchIntro(country, city) {
 // schema). Update when that code changes so sitemap lastmod reflects the visible page.
 export const LOCATION_TEMPLATE_UPDATED = "2026-10-31";
 export const locationLastModified = (page) => [page?.updated_at, LOCATION_TEMPLATE_UPDATED].filter(Boolean).map((d) => new Date(d)).filter((d) => !Number.isNaN(d.getTime())).sort((a, b) => b - a)[0].toISOString();
-export const INDEXED_MARKETS = ["united-kingdom", "united-states", "australia", "canada"];
+export const INDEXED_MARKETS = ["united-kingdom", "united-states", "australia", "canada", "united-arab-emirates"];
 export const defaultLocationNoindex = (country, city) => Boolean(city) || !INDEXED_MARKETS.includes(country.slug);
 export const locationIndexRecord = (page, country, city) => ({ ...(page || {}), seo_noindex: page?.seo_noindex ?? defaultLocationNoindex(country, city) });
