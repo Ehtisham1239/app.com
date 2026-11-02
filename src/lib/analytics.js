@@ -156,7 +156,7 @@ export function createAnalyticsController(win, config) {
   }
   const onLead = event => {
     const { form_type, market } = event.detail || {};
-    if (event.detail?.event !== "generate_lead" || !["trial", "contact"].includes(form_type) || !["USA", "Australia", "Other"].includes(market)) return;
+    if (event.detail?.event !== "generate_lead" || !["trial", "contact"].includes(form_type) || !["UK", "USA", "Canada", "Australia", "UAE", "Other"].includes(market)) return;
     emit("generate_lead", { form_type, market }); // Only a confirmed first-party save signal; no form field values.
   };
   const onClick = event => {
