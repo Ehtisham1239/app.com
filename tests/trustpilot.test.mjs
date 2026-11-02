@@ -15,7 +15,7 @@ test("public Trustpilot references remain text links until official widget/API e
   assert.match(reviews, /read our public Trustpilot profile/);
   assert.doesNotMatch(settings, /site\.trustpilot_reviews|site\.trustpilot\"/);
   assert.doesNotMatch(defaults, /TRUSTPILOT_DEFAULT_REVIEWS|site\.trustpilot_reviews/);
-  assert.match(settings, /does not automatically publish to Trustpilot/);
+  assert.match(settings, /never auto-publishes/);
 });
 
 test("Trustpilot invitations remain optional and independent of private OQC feedback", () => {
