@@ -27,7 +27,7 @@ export function SiteFooter({ settings, menus }) {
   const contact = settings["site.contact"] ?? {};
   const social = settings["site.social"] ?? {};
   const reviews = settings["site.reviews_button"] ?? {};
-  const reviewPage = typeof reviews.page_url === "string" && /^\\/(?!\\/)[A-Za-z0-9/_-]*$/.test(reviews.page_url) ? reviews.page_url : "/copoloit";
+  const reviewPage = typeof reviews.page_url === "string" && /^\/(?!\/)[A-Za-z0-9/_-]*$/.test(reviews.page_url) ? reviews.page_url : "/copoloit";
   const wa = whatsappLink(contact.whatsapp, "Assalamu alaikum, I would like to know more about your Quran classes.");
   const year = new Date().getFullYear();
   const socials = Object.entries(social).filter(([, url]) => typeof url === "string" && /^https?:\/\//.test(url));
