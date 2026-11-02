@@ -89,3 +89,19 @@ test("the button sits bottom-left above the mobile bar, opens an accessible dial
   const layout = read("src/app/(site)/layout.jsx");
   assert.match(layout, /<ReviewsButton config=\{reviewsButtonConfig\(settings\["site\.reviews_button"\], settings\["site\.social"\]\)\} consentText=\{settings\["site\.forms"\]\?\.consent_text\} \/>/);
 });
+
+test("the form is a two-step flow that keeps a draft, locks page scroll and supports keyboard rating", () => {
+  const source = read("src/components/site/reviews-button.jsx");
+  assert.match(source, /const STEP_FIELDS = \[\["rating", "comment", "media"\], \["name", "email", "consent"\]\]/, "step 1 asks about the classes, step 2 about the reviewer");
+  assert.match(source, /Step 1 of 2: about the classes/);
+  assert.match(source, /<ReviewForm open=\{open\}/, "form stays mounted so a half-written review survives closing");
+  assert.doesNotMatch(source, /\{open && <ReviewForm/);
+  assert.match(source, /document\.documentElement\.style\.overflow = open \? "hidden" : ""/);
+  assert.match(source, /e\.key === "ArrowRight"/);
+  assert.match(source, /URL\.revokeObjectURL/, "photo previews release their memory");
+  assert.match(source, /onDrop=/, "files can be dropped onto the picker");
+  assert.match(source, /RATING_WORDS = \["Tap a star", "Poor", "Fair", "Good", "Very good", "Excellent"\]/);
+  const css = read("src/app/globals.css");
+  assert.match(css, /\.review-star\[data-filled="true"\] \{ color: var\(--color-gold-500\); \}/);
+  assert.match(css, /@keyframes review-sheet-in/);
+});
