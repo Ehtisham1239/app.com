@@ -7,6 +7,7 @@ export const REVIEWS_BUTTON_DEFAULTS = {
   label: "Review us on Trustpilot",
   sublabel: "Parents & students",
   url: "https://www.trustpilot.com/evaluate/onlinequrancollege.com",
+  page_url: "/copoloit",
   every_page: true,
   open_form: false,
   google_url: "",
