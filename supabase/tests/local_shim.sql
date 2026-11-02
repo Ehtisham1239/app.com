@@ -64,3 +64,8 @@ end $$;
 alter default privileges in schema public grant all on tables to anon, authenticated, service_role;
 alter default privileges in schema public grant all on sequences to anon, authenticated, service_role;
 alter default privileges in schema public grant execute on functions to anon, authenticated, service_role;
+
+-- pg_cron is Supabase-managed; migrations that schedule jobs only need the call to exist here.
+create schema if not exists cron;
+create or replace function cron.schedule(job_name text, schedule text, command text) returns bigint
+language sql as $$ select 1::bigint $$;
