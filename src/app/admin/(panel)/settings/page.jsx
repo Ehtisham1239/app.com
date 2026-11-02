@@ -10,6 +10,7 @@ import { DEFAULT_SETTINGS } from "@/lib/default-settings";
 import { analyticsConfig, analyticsSettingsError } from "@/lib/analytics";
 import { normalizeSeoSettings, seoSettingsError } from "@/lib/search-settings";
 import { reviewsButtonError } from "@/lib/reviews-button";
+import { trustpilotReviewsError, trustpilotSummaryError } from "@/lib/trustpilot";
 import { CONTENT_ICONS, ContentIcon } from "@/components/icon";
 import { Card, ErrorState, Field, Loading, PageHeader, TagInput, Toggle } from "@/components/admin/ui";
 
@@ -24,7 +25,9 @@ const SECTIONS = [
   { key: "site.benefits", title: "Why choose us", text: "Benefits on the home page.", list: [{ name: "icon", label: "Icon", type: "icon" }, t("title", "Title"), area("text", "Text")] },
   { key: "site.steps", title: "How it works", text: "Three steps on the home page.", list: [t("title", "Title"), area("text", "Text")] },
   { key: "site.social", title: "Social links", text: "Leave a link empty to hide it.", fields: [t("facebook", "Facebook"), t("instagram", "Instagram"), t("x", "X (Twitter)"), t("youtube", "YouTube"), t("tiktok", "TikTok"), t("trustpilot", "Trustpilot reviews page")] },
-  { key: "site.reviews_button", title: "Reviews button", text: "Customer review entry point. The branded share link is /reviews (short alias: /copoloit). The on-site form sends private feedback to Admissions → Reviews for moderation; it does not automatically publish to Trustpilot. The form offers Trustpilot as a separate optional public-review destination.", fields: [{ name: "enabled", label: "Show the button", type: "bool" }, t("label", "Button text", { hint: "Up to 40 characters, e.g. Review us on Trustpilot" }), t("sublabel", "Small text under it", { hint: "Optional, up to 40 characters, e.g. Parents & students" }), { name: "every_page", label: "Show on every page (off = home page only)", type: "bool" }, { name: "open_form", label: "Open OQC review form first (recommended)", type: "bool" }, t("page_url", "Customer review page URL", { hint: "Your branded on-site review link, e.g. /copoloit. Use it in customer messages and marketing." }), t("url", "Trustpilot link", { hint: "Direct Trustpilot review invitation URL. Default points to OQC’s verified invitation link; any custom URL must be an https://…trustpilot.com address." }), t("google_url", "Google review link", { hint: "Optional. In Google Business Profile choose “Ask for reviews” and paste the link (g.page/r/… or search.google.com/local/writereview…). Shown on the thank-you screen to every reviewer." })] },
+  { key: "site.reviews_button", title: "Reviews button", text: "Customer review entry point. Share link: /reviews (short: /review). The on-site form sends private feedback to Admissions → Reviews for moderation; it does not automatically publish to Trustpilot. The form offers Trustpilot as a separate optional public-review destination.", fields: [{ name: "enabled", label: "Show the button", type: "bool" }, t("label", "Button text", { hint: "Up to 40 characters, e.g. Review us on Trustpilot" }), t("sublabel", "Small text under it", { hint: "Optional, up to 40 characters, e.g. Parents & students" }), { name: "every_page", label: "Show on every page (off = home page only)", type: "bool" }, { name: "open_form", label: "Open OQC review form first (recommended)", type: "bool" }, t("page_url", "Customer review page URL", { hint: "Your on-site review link, e.g. /reviews. Use it in customer messages and marketing." }), t("url", "Trustpilot link", { hint: "Direct Trustpilot review invitation URL. Default points to OQC’s verified invitation link; any custom URL must be an https://…trustpilot.com address." }), t("google_url", "Google review link", { hint: "Optional. In Google Business Profile choose “Ask for reviews” and paste the link (g.page/r/… or search.google.com/local/writereview…). Shown on the thank-you screen to every reviewer." })] },
+  { key: "site.trustpilot", title: "Trustpilot summary", text: "Featured Trustpilot reviews on the home page and /reviews. Copy the TrustScore and total review count exactly from your public Trustpilot profile and update them when they change. The website always links to every review on Trustpilot.", fields: [{ name: "enabled", label: "Show Trustpilot reviews on the website", type: "bool" }, t("heading", "Heading", { hint: "Up to 80 characters" }), t("trust_score", "TrustScore", { hint: "As shown on Trustpilot, e.g. 4.3" }), t("review_count", "Total reviews", { hint: "As shown on Trustpilot, e.g. 8" }), t("min_rating", "Feature reviews rated at least", { hint: "4 or 5 stars" }), t("profile_url", "Trustpilot profile link", { hint: "https://www.trustpilot.com/review/onlinequrancollege.com" })] },
+  { key: "site.trustpilot_reviews", title: "Trustpilot reviews", text: "Genuine reviews copied from Trustpilot, shown in this order (first six on the home page). Paste each review’s own Trustpilot link; do not edit the reviewer’s words. Reviews below the minimum rating in “Trustpilot summary” are not featured.", list: [t("name", "Reviewer name"), t("country", "Country"), t("rating", "Stars (1–5)"), t("date", "Date (YYYY-MM-DD)"), t("title", "Review title"), t("url", "Review link on Trustpilot"), area("text", "Review text"), { name: "excerpt", label: "Text is shortened (shows “Read more”)", type: "bool" }] },
   { key: "site.forms", title: "Forms", text: "Consent wording and thank-you messages.", fields: [area("consent_text", "Consent text"), t("consent_version", "Consent version", { hint: "Change this date when you change the consent text." }), area("trial_success", "Free-trial thank-you"), area("contact_success", "Contact thank-you")] },
   { key: "site.chat", title: "Website chat", text: "Hatchium chat widget on public pages. This embed does not forward website forms to Make or a chat API. API secrets must never be entered here.", fields: [{ name: "enabled", label: "Enable website chat", type: "bool" }, t("widget_key", "Hatchium public widget key")] },
   { key: "site.analytics", title: "Google Analytics & tags", text: "Use your own public IDs, not script snippets or passwords. The current website uses cookieless analytics without a consent banner: analytics cookies stay in page memory, advertising consent stays denied and Google signals stay off. When a GTM ID is provided, Tag Manager manages GA4; the separate GA4 script is not loaded. Publish the matching Google tags inside your GTM container.", fields: [{ name: "enabled", label: "Enable website analytics", type: "bool" }, t("ga4_measurement_id", "GA4 Measurement ID", { hint: "Starts G-. Find it in GA4 Admin → Data streams → Web." }), t("gtm_container_id", "Tag Manager Container ID", { hint: "Starts GTM-. Leave empty for direct GA4." })] },
@@ -69,6 +72,14 @@ export default function SettingsPage() {
     }
     if (active === "site.reviews_button") {
       const error = reviewsButtonError(value);
+      if (error) return toast.error(error);
+    }
+    if (active === "site.trustpilot") {
+      const error = trustpilotSummaryError(value);
+      if (error) return toast.error(error);
+    }
+    if (active === "site.trustpilot_reviews") {
+      const error = trustpilotReviewsError(value);
       if (error) return toast.error(error);
     }
     const savedValue = active === "site.seo" ? normalizeSeoSettings(value) : value;
@@ -140,7 +151,7 @@ export default function SettingsPage() {
                     </div>
                   ))}
                   {canEdit && (
-                    <button type="button" className="btn btn-outline btn-sm" onClick={() => setValue((arr) => [...(arr || []), Object.fromEntries(section.list.map((f) => [f.name, f.type === "icon" ? "sparkles" : ""]))])}>
+                    <button type="button" className="btn btn-outline btn-sm" onClick={() => setValue((arr) => [...(arr || []), Object.fromEntries(section.list.map((f) => [f.name, f.type === "icon" ? "sparkles" : f.type === "bool" ? false : ""]))])}>
                       <Plus className="size-4" /> Add item
                     </button>
                   )}
