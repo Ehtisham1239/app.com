@@ -1,7 +1,7 @@
 "use client";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { Loader2, Star } from "@/components/site/icons";
+import { Loader2, MessageCircle } from "@/components/site/icons";
 
 // The form lives in its own chunk: fetched on first intent and reused afterwards.
 let formChunk = null;
@@ -40,7 +40,7 @@ export function ReviewsButton({ config, consentText }) {
   const trigger = (
     <>
       <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-mushaf-900 text-gold-300" aria-hidden="true">
-        <Star className="size-[1.1rem] fill-current" />
+        <MessageCircle className="size-[1.1rem]" />
       </span>
       <span className="flex min-w-0 flex-col leading-tight">
         <span className="truncate text-sm font-semibold text-mushaf-900">{config.label}</span>

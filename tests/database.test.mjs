@@ -112,7 +112,7 @@ test("growth planning is private, editable by content staff and requires complet
   assert.equal((await db.query('select * from public.seo_growth_tasks')).rows.length,0);
   await assert.rejects(db.query('select public.market_lead_report(current_date,current_date)'),/permission/);
   await role('authenticated',editorId);
-  assert.equal((await db.query("select count(*)::int n from public.seo_growth_tasks where task_key like 'keyword-%'")).rows[0].n,60);
+  assert.equal((await db.query("select count(*)::int n from public.seo_growth_tasks where task_key like 'keyword-%'")).rows[0].n,68);
   await assert.rejects(db.query("update public.seo_growth_tasks set status='complete' where task_key='regional'"),/check constraint/);
   await db.query("update public.seo_growth_tasks set status='complete',evidence_url='Reviewed release and route checks' where task_key='regional'");
   await assert.rejects(db.query("insert into public.seo_growth_metrics(title,market,source,period_start,period_end,clicks,evidence_url) values('Bad sample','USA','Search Console',current_date,current_date,-1,'https://example.test/source')"),/check constraint/);
@@ -143,7 +143,7 @@ test("growth launch preserves edits on repeat and publishes distinct guide/artic
 
 test("country hubs seeded without the article are corrected once, leaving staff edits alone", async () => {
   await role();
-  const migration = sql("supabase/migrations/20261102000100_location_country_article.sql");
+  const migration = sql("supabase/migrations/20261102044950_location_country_article.sql");
   const read = async (slug) => (await db.query("select body_html, excerpt from public.pages where slug=$1", [slug])).rows[0];
   for (const [slug, place] of [["locations-united-states", "the United States"], ["locations-netherlands", "the Netherlands"]]) {
     const page = await read(slug);

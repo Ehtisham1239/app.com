@@ -6,6 +6,7 @@ import { Paperclip, Star } from "lucide-react";
 import { db, likeTerm, useLoad } from "@/lib/admin/db";
 import { REVIEW_STATUSES } from "@/lib/constants";
 import { truncate } from "@/lib/format";
+import { ReviewInvite } from "@/components/admin/review-invite";
 import { Card, EmptyState, ErrorState, Loading, PageHeader, Pagination, SearchInput, StatusBadge, Tabs, When } from "@/components/admin/ui";
 
 const PAGE = 25;
@@ -34,9 +35,10 @@ export default function ReviewsPage() {
           <li>Mark it <strong>Approve</strong>, <strong>Don’t use</strong>, <strong>Archive</strong> or <strong>Spam</strong>. Nothing here is visible on the website.</li>
           <li>To show a review on the website, use <em>Create testimonial draft</em>, ask the reviewer for permission to publish, record that date in the testimonial and then publish it.</li>
           <li>Photos and videos are private. Never publish them without written permission, and use <em>Delete files</em> once they are no longer needed.</li>
-          <li>Invite every family to review on Google and Trustpilot, not only happy ones; selective inviting breaks both platforms’ rules.</li>
+          <li>Invite every family to review on Google and Trustpilot, not only happy ones; use <em>Invite a family to review</em> below. Selective inviting breaks both platforms’ rules.</li>
         </ol>
       </details>
+      <ReviewInvite />
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <Tabs value={status} onChange={(v) => { setStatus(v); setPage(0); }} tabs={[...REVIEW_STATUSES.map((s) => ({ value: s.value, label: s.label, count: counts.data?.[s.value] })), { value: "all", label: "All" }]} />
         <SearchInput value={q} onChange={(v) => { setQ(v); setPage(0); }} placeholder="Name, email or words…" className="w-full sm:w-72" />

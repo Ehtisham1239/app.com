@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { REVIEW_LIMITS, REVIEW_MEDIA_TYPES, REVIEWS_BUTTON_DEFAULTS, googleReviewUrl, reviewFileError, reviewFormErrors, reviewMediaPath, reviewsButtonConfig, reviewsButtonError, trustpilotUrl } from "../src/lib/reviews-button.js";
+import { DEFAULT_INVITE_MESSAGE, REVIEW_LIMITS, REVIEW_MEDIA_TYPES, REVIEWS_BUTTON_DEFAULTS, reviewInviteError, reviewInviteMessage, reviewShortPath, googleReviewUrl, reviewFileError, reviewFormErrors, reviewMediaPath, reviewsButtonConfig, reviewsButtonError, trustpilotUrl } from "../src/lib/reviews-button.js";
 import { DEFAULT_SETTINGS } from "../src/lib/default-settings.js";
 
 const SOCIAL = { trustpilot: "https://www.trustpilot.com/review/onlinequrancollege.com" };
@@ -53,19 +53,19 @@ test("attachments are limited to photos/videos up to 20 MB and use paths the sto
   assert.equal(reviewFileError({ type: "video/mp4", size: REVIEW_LIMITS.maxFileBytes }), null);
   assert.match(reviewFileError({ type: "video/mp4", size: REVIEW_LIMITS.maxFileBytes + 1 }), /20 MB/);
   for (const type of ["application/pdf", "image/svg+xml", "text/html", "application/x-msdownload", ""]) assert.match(reviewFileError({ type, size: 10 }), /Only photos/, type);
-  const policy = read("supabase/migrations/20261102000200_review_submissions.sql").match(/name ~ '([^']+)'/)[1];
+  const policy = read("supabase/migrations/20261102051558_review_submissions.sql").match(/name ~ '([^']+)'/)[1];
   const token = "3f2b8c1e-9a4d-4e6f-8b2a-1c3d5e7f9a0b";
   for (const type of Object.keys(REVIEW_MEDIA_TYPES)) {
     const path = reviewMediaPath(token, 2, { type });
     assert.match(path, new RegExp(policy), path);
     assert.ok(path.startsWith(`pending/${token}/3-`), path);
   }
-  const bucket = read("supabase/migrations/20261102000200_review_submissions.sql").match(/array\[([^\]]+)\]\)\non conflict/)[1];
+  const bucket = read("supabase/migrations/20261102051558_review_submissions.sql").match(/array\[([^\]]+)\]\)\non conflict/)[1];
   assert.deepEqual(bucket.match(/'([^']+)'/g).map((s) => s.slice(1, -1)).sort(), Object.keys(REVIEW_MEDIA_TYPES).sort(), "client and bucket allow the same types");
 });
 
 test("submissions stay private: staff-only table, private bucket, no public read of files", () => {
-  const sql = read("supabase/migrations/20261102000200_review_submissions.sql");
+  const sql = read("supabase/migrations/20261102051558_review_submissions.sql");
   assert.match(sql, /alter table public\.review_submissions enable row level security/);
   assert.match(sql, /revoke all on public\.review_submissions from anon/);
   assert.match(sql, /values \('review-media', 'review-media', false, 20971520/);
@@ -141,4 +141,44 @@ test("only genuine Google review links are accepted", () => {
   assert.equal(reviewsButtonConfig({ google_url: "https://g.page/r/CTestAbc123/review" }, SOCIAL).googleHref, "https://g.page/r/CTestAbc123/review");
   assert.equal(reviewsButtonConfig({ google_url: "https://evil.example/r" }, SOCIAL).googleHref, "");
   assert.match(reviewsButtonError({ ...REVIEWS_BUTTON_DEFAULTS, google_url: "https://evil.example/r" }), /Google review link/);
+});
+
+test("the CMS short review link is one safe word and never shadows a real page", () => {
+  for (const [input, out] of [["/copoloit", "/copoloit"], ["/Feedback", "/feedback"], ["/reviews", "/reviews"], [" /review-us ", "/review-us"]]) assert.equal(reviewShortPath(input), out, input);
+  for (const bad of ["/courses", "/admin", "/api", "/pricing", "/a", "//evil.example", "/x/y", "https://evil.example/x", "/x?y=1", "javascript:alert(1)", "", null]) assert.equal(reviewShortPath(bad), "", String(bad));
+  assert.equal(reviewsButtonConfig({ page_url: "/courses" }, SOCIAL).pageUrl, "/reviews", "a reserved path falls back to the canonical page");
+  assert.match(reviewsButtonError({ ...REVIEWS_BUTTON_DEFAULTS, page_url: "/courses" }), /short review link/i);
+  assert.ok(!reviewsButtonError({ ...REVIEWS_BUTTON_DEFAULTS, page_url: "/copoloit" }));
+});
+
+test("/copoloit, /review and any CMS short link reach /reviews; the site links to /reviews directly", () => {
+  const config = read("next.config.mjs");
+  assert.match(config, /source: "\/copoloit", destination: "\/reviews", permanent: true/);
+  assert.match(config, /source: "\/review", destination: "\/reviews", permanent: true/);
+  const slug = read("src/app/(site)/[slug]/page.jsx");
+  assert.match(slug, /reviewShortPath\(/);
+  assert.match(slug, /permanentRedirect\("\/reviews"\)/);
+  assert.ok(slug.indexOf("permanentRedirect(\"/reviews\")") < slug.lastIndexOf("notFound()"), "short-link redirect runs before the 404");
+  const footer = read("src/components/site/footer.jsx");
+  assert.match(footer, /const reviewPage = "\/reviews";/, "internal links skip the redirect hop");
+  const page = read("src/app/(site)/reviews/page.jsx");
+  assert.match(page, /canonical: "\/reviews"/);
+});
+
+test("staff review invitations are neutral, carry the link and are offered for every family", () => {
+  const link = "https://www.onlinequrancollege.com/copoloit";
+  const msg = reviewInviteMessage(DEFAULT_INVITE_MESSAGE, link);
+  assert.ok(msg.includes(link) && !msg.includes("{link}"));
+  assert.match(msg, /honest experience/);
+  assert.ok(!reviewInviteError(DEFAULT_INVITE_MESSAGE));
+  assert.ok(reviewInviteMessage("Please share your feedback.", link).endsWith(link), "a template without {link} still gets the link");
+  for (const gated of ["Please leave us a 5-star review {link}", "Give us five stars", "Leave a positive review", "Review us and get a free class", "Review for a discount"]) assert.ok(reviewInviteError(gated), gated);
+  assert.ok(reviewInviteError("x".repeat(601)));
+  assert.match(reviewsButtonError({ ...REVIEWS_BUTTON_DEFAULTS, invite_message: "Leave a 5 star review" }), /./);
+  const invite = read("src/components/admin/review-invite.jsx");
+  assert.doesNotMatch(invite, /rating\s*[<>=]/, "the invitation is never filtered by rating");
+  assert.match(invite, /wa\.me\/\?text=/);
+  assert.match(invite, /mailto:\?subject=/);
+  assert.match(read("src/app/admin/(panel)/reviews/page.jsx"), /<ReviewInvite \/>/);
+  assert.match(read("src/app/admin/(panel)/settings/page.jsx"), /invite_message/);
 });

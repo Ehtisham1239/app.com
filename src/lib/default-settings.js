@@ -1,6 +1,5 @@
 // Shared editable defaults without database loaders or the content snapshot.
 import { REVIEWS_BUTTON_DEFAULTS } from "./reviews-button.js";
-import { TRUSTPILOT_DEFAULTS, TRUSTPILOT_DEFAULT_REVIEWS } from "./trustpilot.js";
 export const DEFAULT_SETTINGS = {
   "site.identity": {
     name: "Online Quran College",
@@ -55,8 +54,6 @@ export const DEFAULT_SETTINGS = {
   ],
   "site.announcement": { enabled: true, text: "3 days of free classes — no credit card required.", link_label: "Book now", link: "/free-trial" },
   "site.reviews_button": { ...REVIEWS_BUTTON_DEFAULTS },
-  "site.trustpilot": { ...TRUSTPILOT_DEFAULTS },
-  "site.trustpilot_reviews": TRUSTPILOT_DEFAULT_REVIEWS.map((review) => ({ ...review })),
   "site.forms": {
     consent_version: "2026-10-13",
     consent_text:

@@ -1,14 +1,16 @@
 -- 2 Nov 2026: security hardening found in the Supabase security advisor review.
 --
--- 1. public.rls_auto_enable() is the `ensure_rls` event-trigger function. It is not an
+-- 1. public.rls_auto_enable() is the ensure_rls event-trigger function. It is not an
 --    API endpoint, so signed-in users must not be able to call it through /rest/v1/rpc.
 --    Event triggers keep firing for DDL run by the database owner.
-revoke execute on function public.rls_auto_enable() from public, anon, authenticated;
+-- The project-level ensure_rls event-trigger function is provisioned outside
+-- application migrations. Its EXECUTE privilege was revoked in the live OQC
+-- database during this release; fresh local test databases do not create it.
+
 
 -- 2. Anonymous review attachments: the upload policy already restricts the path to
 --    pending/<random uuid>/<file>. Also cap each review folder at 3 files (the form's
---    limit) and all anonymous review uploads at 200 per hour, so the private bucket
---    cannot be filled by scripted uploads. Staff and service-role access is unchanged.
+--    limit) and all anonymous review uploads at 200 per hour.
 create or replace function public.review_upload_allowed(p_name text)
 returns boolean
 language sql stable security definer set search_path = ''
