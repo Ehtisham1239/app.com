@@ -1,5 +1,5 @@
 import { contentMetadata } from "@/lib/seo-metadata";
-import { ArrowRight, BookOpen, Clock3, HelpCircle, Mail, MapPin, MessageCircle, Phone, Send } from "@/components/site/icons";
+import { ArrowRight, BookOpen, Clock3, HelpCircle, Mail, MessageCircle, Phone, Send } from "@/components/site/icons";
 import { NavigationLink as Link } from "@/components/site/navigation-link";
 import { PageHero } from "@/components/site/chrome";
 import { ContactForm } from "@/components/site/contact-form";
@@ -24,7 +24,7 @@ export default async function ContactPage() {
     wa && { icon: MessageCircle, label: "WhatsApp", value: "Chat with an advisor", href: wa, external: true, highlight: true },
     contact.phone && { icon: Phone, label: "Phone", value: contact.phone, href: `tel:${contact.phone.replace(/\s/g, "")}` },
     contact.email && { icon: Mail, label: "Email", value: contact.email, href: `mailto:${contact.email}` },
-    contact.location && { icon: MapPin, label: "Registered in", value: contact.location },
+    { icon: BookOpen, label: "Service model", value: "Online-only academy · no walk-in office" },
     contact.hours && { icon: Clock3, label: "Class scheduling", value: contact.hours },
   ].filter(Boolean);
 
