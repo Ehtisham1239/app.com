@@ -12,10 +12,10 @@ export const revalidate = 300;
 export const metadata = contentMetadata({ title: "Our Teachers", seo_noindex: false }, { path: "/teachers", description: "Qualified female and male Quran teachers for children and adults \u2014 trained in Tajweed, experienced and caring." });
 
 const STANDARDS = [
-  { icon: BadgeCheck, title: "Qualified and verified", text: "Every teacher is checked for Quran and Tajweed qualifications and passes a teaching assessment before joining." },
+  { icon: BadgeCheck, title: "Discuss teacher qualifications", text: "Before enrolment, ask Admissions to confirm the proposed teacher’s relevant qualifications, experience and suitability for your learner." },
   { icon: HeartHandshake, title: "Female and male teachers", text: "Sisters and young children can learn with a female teacher; you choose your preference when booking." },
-  { icon: Languages, title: "Your language", text: "Lessons are explained in English, Urdu, Arabic and other languages, so learners understand every rule." },
-  { icon: ShieldCheck, title: "Quality monitored", text: "Our quality team reviews classes regularly and parents receive progress updates." },
+  { icon: Languages, title: "Teaching language", text: "Tell Admissions which language helps the learner understand explanations. The team confirms the proposed teacher’s language availability before enrolment." },
+  { icon: ShieldCheck, title: "Progress and feedback", text: "Ask how lesson feedback, progress updates and academic concerns are handled before regular classes begin." },
 ];
 
 export default async function TeachersPage() {
