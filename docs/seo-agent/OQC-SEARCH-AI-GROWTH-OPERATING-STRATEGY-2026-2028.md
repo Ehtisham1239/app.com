@@ -394,7 +394,7 @@ Competitor set must be confirmed using actual Search Console queries and SERPs f
 - Robots disallows `/admin`, `/auth`, `/api/` and `/parents`. PerplexityBot is explicitly allowed on public content while those private paths remain disallowed.
 - Existing exact-intent legacy redirects were not changed. No homepage redirects, blanket city redirects, mass URL renames or bulk 404 redirects were added.
 - 20 published blog posts and 6 published course records were inspected. All 20 blog posts currently have `author_id = null`; do not fabricate authors. Teacher table contains 6 records but 0 public active teacher profiles.
-- GitHub Actions workflow `.github/workflows/oqc-quality-checks.yml` runs tests/lint and a production route smoke test after pushes to `main`.
+- GitHub Actions workflow `.github/workflows/oqc-quality-checks.yml` runs tests, ESLint, a production Next.js build and production route smoke tests after pushes to `main`. Latest successful run: [41474018032](https://github.com/Ehtisham1239/app.com/actions/runs/41474018032), commit `39dfa9c103f5ce56dba7b8fed3ad583a8b99f1db`: 192/192 tests passed, ESLint passed, build passed (230 static pages), and the production smoke test returned HTTP 200 for homepage, /reviews, /free-trial, UK, USA, Canada, Australia, UAE, robots.txt and sitemap.xml. The smoke test validates the current production host, not that the latest commit is deployed.
 
 ### Source changes committed
 - Homepage UAE discovery card and priority navigation; root canonical unchanged.
@@ -428,7 +428,7 @@ Competitor set must be confirmed using actual Search Console queries and SERPs f
 - Detailed comparison: `docs/seo-agent/COMPETITOR-BENCHMARK-ONLINE-QURAN-ACADEMIES-2026-11-02.md`.
 
 ### Access and release blockers
-- Vercel project lookup in the current scope returned 404; production deployment listing returned 403 permission denied. No deployment was created in this pass.
+- Vercel Git status on the latest source commit is failing with a `build-rate-limit` link; project lookup in the current scope returned 404 and production deployment listing returned 403 permission denied. No deployment was created in this pass.
 - GitHub Actions results for the latest commits must be checked. No local clone/build was possible in this environment because GitHub DNS resolution was unavailable.
 - `npm test`, `npm run lint` and `npm run build` are not yet confirmed passing.
 - Search Console, GA4, GTM, admissions conversion data and Perplexity visibility baseline remain unavailable.
@@ -453,13 +453,13 @@ Competitor set must be confirmed using actual Search Console queries and SERPs f
 
 Before declaring the programme live:
 - [ ] Vercel project access restored; connected Git deployment works.
-- [ ] `npm test`, `npm run lint`, `npm run build` pass in the repository environment.
-- [ ] Production deployment succeeds and commit SHA is recorded.
+- [x] `npm test` (192/192), `npm run lint` and `npm run build` passed in GitHub Actions.
+- [ ] Vercel production deployment succeeds and deployed commit SHA is recorded (currently blocked by build-rate-limit / deployment access).
 - [ ] Homepage still canonical at `/`; UAE link visible; no duplicate homepage.
-- [ ] UK, USA, Australia, UAE and retained Canada country hubs return 200.
+- [x] UK, USA, Australia, UAE and retained Canada country hubs return HTTP 200 in the production smoke test.
 - [ ] All intended city pages remain nested under the correct country and default to noindex.
 - [ ] No unintended redirects; 404/410 behaviour tested.
-- [ ] Sitemap and robots fetched and validated.
+- [x] Sitemap and robots endpoints return HTTP 200 in the production smoke test; content-level robots/sitemap validation remains part of post-deploy verification.
 - [ ] Canonicals, metadata, schema and visible identity agree.
 - [ ] Contact/footer no longer imply an unverified physical location.
 - [ ] Trial page single benefits list and privacy wording verified live; pricing and claims verified.
