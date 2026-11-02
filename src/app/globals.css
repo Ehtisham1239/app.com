@@ -429,3 +429,4 @@ main input:not([type="checkbox"]):not([type="radio"]), main select, main textare
 @keyframes review-sheet-in { from { transform: translateY(100%); } to { transform: none; } }
 @keyframes review-panel-in { from { opacity: 0; transform: translateY(16px) scale(.98); } to { opacity: 1; transform: none; } }
 @keyframes review-fade-in { from { opacity: 0; } to { opacity: 1; } }
+.review-help summary::-webkit-details-marker { display: none; }

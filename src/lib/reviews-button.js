@@ -11,6 +11,7 @@ export const REVIEWS_BUTTON_DEFAULTS = {
   url: "",
   every_page: true,
   open_form: true,
+  google_url: "",
 };
 
 const MAX_LABEL = 40;
@@ -38,8 +39,26 @@ export function trustpilotUrl(value) {
   }
 }
 
+// Google review links come from Google Business Profile ("Ask for reviews"): g.page/r/…,
+// search.google.com/local/writereview?placeid=… or a maps.app.goo.gl short link.
+export function googleReviewUrl(value) {
+  if (typeof value !== "string" || !value.trim()) return "";
+  try {
+    const url = new URL(value.trim());
+    const host = url.hostname.toLowerCase();
+    if (url.protocol !== "https:" || url.username || url.password) return "";
+    const ok = host === "g.page" || host === "maps.app.goo.gl"
+      || (host === "search.google.com" && url.pathname.startsWith("/local/writereview"))
+      || ((host === "www.google.com" || host === "google.com") && url.pathname.startsWith("/maps"));
+    return ok ? url.toString() : "";
+  } catch {
+    return "";
+  }
+}
+
 export function reviewsButtonError(value = {}) {
   if (value.url && !trustpilotUrl(value.url)) return "Trustpilot link must start with https:// and be a trustpilot.com address.";
+  if (value.google_url && !googleReviewUrl(value.google_url)) return "Google review link must be the https:// link from Google Business Profile → Ask for reviews (g.page/r/… or search.google.com/local/writereview…).";
   if (value.enabled && !String(value.label ?? "").trim()) return "Add the button text, or switch the button off.";
   if (String(value.label ?? "").length > MAX_LABEL) return `Button text must be ${MAX_LABEL} characters or fewer.`;
   if (String(value.sublabel ?? "").length > MAX_SUBLABEL) return `Small text must be ${MAX_SUBLABEL} characters or fewer.`;
@@ -56,6 +75,7 @@ export function reviewsButtonConfig(setting, social) {
   if (!label || (!openForm && !href)) return null;
   return {
     href,
+    googleHref: googleReviewUrl(value.google_url),
     label,
     sublabel: String(value.sublabel ?? "").trim().slice(0, MAX_SUBLABEL),
     everyPage: Boolean(value.every_page),

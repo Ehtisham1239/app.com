@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { REVIEW_LIMITS, REVIEW_MEDIA_TYPES, REVIEWS_BUTTON_DEFAULTS, reviewFileError, reviewFormErrors, reviewMediaPath, reviewsButtonConfig, reviewsButtonError, trustpilotUrl } from "../src/lib/reviews-button.js";
+import { REVIEW_LIMITS, REVIEW_MEDIA_TYPES, REVIEWS_BUTTON_DEFAULTS, googleReviewUrl, reviewFileError, reviewFormErrors, reviewMediaPath, reviewsButtonConfig, reviewsButtonError, trustpilotUrl } from "../src/lib/reviews-button.js";
 import { DEFAULT_SETTINGS } from "../src/lib/default-settings.js";
 
 const SOCIAL = { trustpilot: "https://www.trustpilot.com/review/onlinequrancollege.com" };
@@ -15,13 +15,13 @@ test("only https Trustpilot addresses are accepted as the button link", () => {
 
 test("by default the button shows on every page and opens the review form, with the saved Trustpilot page linked", () => {
   assert.deepEqual(DEFAULT_SETTINGS["site.reviews_button"], REVIEWS_BUTTON_DEFAULTS);
-  assert.deepEqual(reviewsButtonConfig(undefined, SOCIAL), { href: SOCIAL.trustpilot, label: "Share your review", sublabel: "Parents & students", everyPage: true, openForm: true });
+  assert.deepEqual(reviewsButtonConfig(undefined, SOCIAL), { href: SOCIAL.trustpilot, googleHref: "", label: "Share your review", sublabel: "Parents & students", everyPage: true, openForm: true });
   assert.equal(reviewsButtonConfig(undefined, { trustpilot: "" }).href, "", "the form still works without a Trustpilot page");
 });
 
 test("CMS values control text, link, pages and form/Trustpilot mode", () => {
   const custom = reviewsButtonConfig({ label: " Rate us ", sublabel: "", url: "https://uk.trustpilot.com/review/onlinequrancollege.com", every_page: false, open_form: false }, SOCIAL);
-  assert.deepEqual(custom, { href: "https://uk.trustpilot.com/review/onlinequrancollege.com", label: "Rate us", sublabel: "", everyPage: false, openForm: false });
+  assert.deepEqual(custom, { href: "https://uk.trustpilot.com/review/onlinequrancollege.com", googleHref: "", label: "Rate us", sublabel: "", everyPage: false, openForm: false });
   assert.equal(reviewsButtonConfig({ enabled: false }, SOCIAL), null, "switched off in CMS");
   assert.equal(reviewsButtonConfig({ open_form: false }, { trustpilot: "" }), null, "Trustpilot-only mode needs a Trustpilot link");
   assert.equal(reviewsButtonConfig({ open_form: false, url: "https://example.com/fake" }, { trustpilot: "" }), null, "a non-Trustpilot link never renders");
@@ -75,33 +75,67 @@ test("submissions stay private: staff-only table, private bucket, no public read
   assert.match(sql, /'Please write your comment \(at least 10 characters\)\.'/);
 });
 
-test("the button sits bottom-left above the mobile bar, opens an accessible dialog and links Trustpilot safely", () => {
-  const source = read("src/components/site/reviews-button.jsx");
-  assert.match(source, /fixed bottom-\[calc\(5\.25rem\+env\(safe-area-inset-bottom\)\)\] left-3/);
-  assert.match(source, /lg:bottom-5 lg:left-5/);
-  assert.match(source, /<dialog/);
-  assert.match(source, /aria-labelledby="review-dialog-title"/);
-  assert.match(source, /aria-haspopup="dialog"/);
-  assert.match(source, /aria-label="Close review form"/);
-  assert.match(source, /sm:w-\[27rem\]/, "panel on larger screens; bottom sheet on phones");
-  assert.equal((source.match(/target="_blank" rel="noopener noreferrer"/g) || []).length >= 3, true);
-  assert.doesNotMatch(source, /from "lucide-react"/, "public pages use the shared icon sprite");
+test("the button sits bottom-left above the mobile bar, opens an accessible dialog and links out safely", () => {
+  const trigger = read("src/components/site/reviews-button.jsx");
+  const form = read("src/components/site/review-form.jsx");
+  assert.match(trigger, /fixed bottom-\[calc\(5\.25rem\+env\(safe-area-inset-bottom\)\)\] left-3/);
+  assert.match(trigger, /lg:bottom-5 lg:left-5/);
+  assert.match(trigger, /<dialog/);
+  assert.match(trigger, /aria-labelledby="review-dialog-title"/);
+  assert.match(trigger, /aria-haspopup="dialog"/);
+  assert.match(trigger, /sm:w-\[27rem\]/, "panel on larger screens; bottom sheet on phones");
+  assert.match(form, /aria-label="Close review form"/);
+  assert.match(form, /id="review-dialog-title"/);
+  for (const source of [trigger, form]) {
+    assert.doesNotMatch(source, /from "lucide-react"/, "public pages use the shared icon sprite");
+    for (const link of source.match(/<a [^>]*target="_blank"[^>]*>/g) || []) assert.match(link, /rel="noopener noreferrer"/, link);
+  }
   const layout = read("src/app/(site)/layout.jsx");
   assert.match(layout, /<ReviewsButton config=\{reviewsButtonConfig\(settings\["site\.reviews_button"\], settings\["site\.social"\]\)\} consentText=\{settings\["site\.forms"\]\?\.consent_text\} \/>/);
 });
 
-test("the form is a two-step flow that keeps a draft, locks page scroll and supports keyboard rating", () => {
-  const source = read("src/components/site/reviews-button.jsx");
-  assert.match(source, /const STEP_FIELDS = \[\["rating", "comment", "media"\], \["name", "email", "consent"\]\]/, "step 1 asks about the classes, step 2 about the reviewer");
+test("speed: only the small trigger ships with each page; the form chunk loads on intent and is not in the page HTML", () => {
+  const trigger = read("src/components/site/reviews-button.jsx");
+  assert.doesNotMatch(trigger, /^import .*review-form/m, "no static import of the form");
+  assert.match(trigger, /import\("@\/components\/site\/review-form"\)/);
+  assert.match(trigger, /onPointerEnter=\{prefetch\} onFocus=\{prefetch\} onTouchStart=\{prefetch\}/);
+  assert.match(trigger, /\{Form \? \(\s*<Form open=\{open\}/, "form mounts only after the first opening");
+  assert.doesNotMatch(trigger, /How are the classes going|consentText \|\|/, "form copy is not rendered into every page");
+  assert.match(trigger, /The review form did not load/, "a failed chunk load explains what to do");
+  assert.match(trigger, /\) : open \? \(/, "even the loading message is rendered only while opening");
+});
+
+test("the form is a two-step flow that keeps a draft, guides the reviewer and supports keyboard rating", () => {
+  const source = read("src/components/site/review-form.jsx");
+  assert.match(source, /const STEP_FIELDS = \[\["rating", "comment", "media"\], \["name", "email", "consent"\]\]/);
   assert.match(source, /Step 1 of 2: about the classes/);
-  assert.match(source, /<ReviewForm open=\{open\}/, "form stays mounted so a half-written review survives closing");
-  assert.doesNotMatch(source, /\{open && <ReviewForm/);
-  assert.match(source, /document\.documentElement\.style\.overflow = open \? "hidden" : ""/);
+  assert.match(source, /export function ReviewForm\(\{ open, config, consentText, onClose \}\)/);
+  assert.match(read("src/components/site/reviews-button.jsx"), /document\.documentElement\.style\.overflow = open \? "hidden" : ""/);
   assert.match(source, /e\.key === "ArrowRight"/);
-  assert.match(source, /URL\.revokeObjectURL/, "photo previews release their memory");
-  assert.match(source, /onDrop=/, "files can be dropped onto the picker");
-  assert.match(source, /RATING_WORDS = \["Tap a star", "Poor", "Fair", "Good", "Very good", "Excellent"\]/);
+  assert.match(source, /URL\.revokeObjectURL/);
+  assert.match(source, /onDrop=/);
+  assert.match(source, /How reviews work/);
+  assert.match(source, /first name, rating and comment only/);
+  assert.match(read("src/app/admin/(panel)/reviews/[id]/page.jsx"), /name: r\.name\.trim\(\)\.split\(\/\\s\+\/\)\[0\]/, "testimonial drafts keep that first-name promise");
+  assert.match(read("src/app/admin/(panel)/reviews/page.jsx"), /How to handle reviews/);
   const css = read("src/app/globals.css");
   assert.match(css, /\.review-star\[data-filled="true"\] \{ color: var\(--color-gold-500\); \}/);
   assert.match(css, /@keyframes review-sheet-in/);
+});
+
+test("Google and Trustpilot invitations go to every reviewer, never only to high ratings", () => {
+  const source = read("src/components/site/review-form.jsx");
+  const block = source.slice(source.indexOf("Help other families find us") - 200, source.indexOf("Help other families find us") + 1200);
+  assert.match(block, /config\.googleHref/);
+  assert.match(block, /config\.href/);
+  assert.doesNotMatch(block, /rating\s*(>=|>|===|==)\s*\d/, "no review gating by star rating");
+  assert.doesNotMatch(source, /form\.rating\s*(>=|>)\s*[34]/);
+});
+
+test("only genuine Google review links are accepted", () => {
+  for (const ok of ["https://g.page/r/CTestAbc123/review", "https://search.google.com/local/writereview?placeid=ChIJ123", "https://maps.app.goo.gl/AbCdEf", "https://www.google.com/maps/place/x"]) assert.ok(googleReviewUrl(ok), ok);
+  for (const bad of ["http://g.page/r/x", "https://g.page.evil.example/r/x", "https://search.google.com/search?q=x", "javascript:alert(1)", "https://example.com/review", ""]) assert.equal(googleReviewUrl(bad), "", bad);
+  assert.equal(reviewsButtonConfig({ google_url: "https://g.page/r/CTestAbc123/review" }, SOCIAL).googleHref, "https://g.page/r/CTestAbc123/review");
+  assert.equal(reviewsButtonConfig({ google_url: "https://evil.example/r" }, SOCIAL).googleHref, "");
+  assert.match(reviewsButtonError({ ...REVIEWS_BUTTON_DEFAULTS, google_url: "https://evil.example/r" }), /Google review link/);
 });

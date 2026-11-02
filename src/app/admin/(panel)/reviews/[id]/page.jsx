@@ -50,7 +50,8 @@ export default function ReviewPage({ params }) {
   const makeTestimonial = async () => {
     setBusy(true);
     const { data, error } = await db().from("testimonials").insert({
-      name: r.name, relation: r.relation, country: r.country || "", quote: r.comment, rating: r.rating,
+      // The form promises reviewers that only their first name is shown publicly.
+      name: r.name.trim().split(/\s+/)[0], relation: r.relation, country: r.country || "", quote: r.comment, rating: r.rating,
       status: "draft", source_note: `Website review ${r.reference}`,
     }).select("id").single();
     if (error) { setBusy(false); return notifyError(error); }
@@ -127,7 +128,7 @@ export default function ReviewPage({ params }) {
                 <MessageSquareQuote className="size-4" /> Create testimonial draft
               </button>
             )}
-            <p className="mt-3 text-xs text-ink-faint">Creates an unpublished testimonial with the name, rating and comment. Record the date the reviewer gave permission to publish before publishing it.</p>
+            <p className="mt-3 text-xs text-ink-faint">Creates an unpublished testimonial with the reviewer’s first name, rating and comment. Before publishing, ask the reviewer for permission and record the date in the testimonial.</p>
           </Card>
           <Card title="Status">
             <fieldset disabled={!canEdit} className="space-y-2">
