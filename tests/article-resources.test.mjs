@@ -15,3 +15,9 @@ test('new CMS articles receive a useful fallback without fabricated article or c
   assert.ok(resources.links.every(link => ['/learn', '/courses'].includes(link.href)));
   assert.equal(relatedArticles({ slug: 'new' }, [{ slug: 'a' }, { slug: 'b' }], 1).length, 1);
 });
+
+test('Canada and UAE planning guides share the international scheduling resources with the USA and Australia guides', () => {
+  const australia = articleResources({ slug: 'quran-lessons-australia-time-zones' });
+  for (const slug of ['online-quran-lessons-canada-time-zones', 'online-quran-lessons-uae-families']) assert.deepEqual(articleResources({ slug }), australia, slug);
+  assert.deepEqual(australia.links.map(link => link.href), ['/locations', '/pricing']);
+});

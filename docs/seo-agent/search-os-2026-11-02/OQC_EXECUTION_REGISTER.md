@@ -12,7 +12,7 @@ Statuses: NOT STARTED · READY · BLOCKED · PENDING ACCESS · PENDING APPROVAL 
 | E-06 | AEO | All | /teachers | Female-teacher answer block | Gap register | P1 | Claude | none | 1 h | Low | READY | CMS update |
 | E-07 | AEO | US/CA/AU/AE | country hubs | Local fee answer linking to /pricing currency | Gap register | P2 | Claude | none | 2 h | Low | READY | — |
 | E-08 | Content | US/UK | /courses/quran-translation | Tafseer-intent title/intro/FAQ | GSC pos 65.9 | P2 | Claude | none | 1 h | Low | READY | — |
-| E-09 | Content | CA, UAE | new guides | Canada + UAE guides (≤1,000 words) | Inventory | P1 | Claude | Topic approval | 4 h | Low | READY | — |
+| E-09 | Content | CA, UAE | /blog/online-quran-lessons-canada-time-zones, /blog/online-quran-lessons-uae-families | Canada + UAE guides (≤1,000 words) | Inventory | P1 | Claude | — | done | Low | IMPLEMENTED (published in CMS 2 Nov, 570 / 496 words) | Check live render; request indexing in Search Console |
 | E-10 | Content | AU | /locations/australia | Hub upgrade (state times, AUD answer, FAQ) | GSC pos 89.7 | P0 | Claude | none | 2 h | Low | READY | — |
 | E-11 | Content | UK | /locations/united-kingdom | "learn Quran online UK" + adult section | GSC pos 13.3 / 46.4 | P1 | Claude | none | 1 h | Low | READY | — |
 | E-12 | Authority | UK | outreach list | Pitch listicles/directories that rank | Competitor DB | P2 | Owner | Outreach approval | ongoing | Low | PENDING APPROVAL | Approve outreach email |
