@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Mail, MapPin, MessageCircle, Phone } from "@/components/site/icons";
+import { ArrowUpRight, Mail, MessageCircle, Phone } from "@/components/site/icons";
 import { whatsappLink } from "@/lib/format";
 
 const SOCIAL_LABELS = { facebook: "Facebook", instagram: "Instagram", x: "X (Twitter)", youtube: "YouTube", tiktok: "TikTok", trustpilot: "Trustpilot" };
@@ -62,11 +62,7 @@ export function SiteFooter({ settings, menus }) {
                 <MessageCircle className="size-4 shrink-0 text-leaf-200" aria-hidden="true" /> WhatsApp
               </a>
             )}
-            {contact.location && (
-              <p className="flex items-start gap-3 py-2 text-white/80">
-                <MapPin className="mt-1 size-4 shrink-0 text-leaf-200" aria-hidden="true" /> {contact.location}
-              </p>
-            )}
+            <p className="py-2 text-sm text-white/80">Online-only academy · no walk-in office</p>
           </div>
         </div>
         <div className="footer-navigation grid min-w-0 grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-3 sm:gap-8 lg:col-span-8">
