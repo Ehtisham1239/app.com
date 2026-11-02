@@ -27,6 +27,16 @@ export default function ReviewsPage() {
   return (
     <>
       <PageHeader title="Reviews" subtitle="Reviews sent by parents and students from the website’s reviews button. Nothing here is published until you create a testimonial from it." />
+      <details className="mb-4 rounded-2xl border border-line bg-white px-5 py-4 text-sm text-ink-soft">
+        <summary className="cursor-pointer font-semibold text-ink">How to handle reviews</summary>
+        <ol className="mt-3 list-decimal space-y-1.5 pl-5 leading-relaxed">
+          <li>Open each <strong>New</strong> review. Critical reviews deserve a reply: email the parent or student and note what you did under <em>Internal note</em>.</li>
+          <li>Mark it <strong>Approve</strong>, <strong>Don’t use</strong>, <strong>Archive</strong> or <strong>Spam</strong>. Nothing here is visible on the website.</li>
+          <li>To show a review on the website, use <em>Create testimonial draft</em>, ask the reviewer for permission to publish, record that date in the testimonial and then publish it.</li>
+          <li>Photos and videos are private. Never publish them without written permission, and use <em>Delete files</em> once they are no longer needed.</li>
+          <li>Invite every family to review on Google and Trustpilot, not only happy ones; selective inviting breaks both platforms’ rules.</li>
+        </ol>
+      </details>
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <Tabs value={status} onChange={(v) => { setStatus(v); setPage(0); }} tabs={[...REVIEW_STATUSES.map((s) => ({ value: s.value, label: s.label, count: counts.data?.[s.value] })), { value: "all", label: "All" }]} />
         <SearchInput value={q} onChange={(v) => { setQ(v); setPage(0); }} placeholder="Name, email or words…" className="w-full sm:w-72" />
