@@ -43,3 +43,11 @@ test('recovered legacy memorisation and parenting articles map directly to relev
   }
   assert.equal(bySource.has('/basic-islamic-education'),false,'Broad course scope still needs a separate decision');
 });
+
+test('indexed legacy WordPress course and services pages map to their exact current equivalents',()=>{
+  for(const [source,target] of [['/quran-nazara-course','/courses/quran-nazara'],['/services','/courses'],['/hifz-ul-quran-course','/courses/hifz-quran']]){
+    assert.equal(bySource.get(source)?.destination,target,source);
+    assert.equal(bySource.get(source)?.permanent,true,source);
+  }
+  assert.equal(bySource.has('/ramzan-course'),false,'No current Ramadan course: keep the legacy URL a 404 rather than a soft-404 redirect');
+});

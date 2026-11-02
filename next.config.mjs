@@ -61,6 +61,10 @@ const nextConfig = {
       }),
       ...courses.map((slug) => ({ source: `/${slug}`, destination: `/courses/${slug}`, permanent: true })),
       { source: "/hifz-ul-quran-course", destination: "/courses/hifz-quran", permanent: true },
+      // Old WordPress pages still in the search index (2 Nov 2026 site: check) that now 404.
+      // Only exact-intent targets: /ramzan-course has no current equivalent and stays a 404.
+      { source: "/quran-nazara-course", destination: "/courses/quran-nazara", permanent: true },
+      { source: "/services", destination: "/courses", permanent: true },
       // Recovered original articles reviewed in the 31 October migration proposal.
       { source: "/how-to-learn-quran-by-heart-2", destination: "/blog/memorization-techniques-for-beginners", permanent: true },
       { source: "/start-teaching-the-quran-to-your-children", destination: "/blog/help-your-kids-learn-quran-online", permanent: true },
