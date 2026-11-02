@@ -143,7 +143,7 @@ test("growth launch preserves edits on repeat and publishes distinct guide/artic
 
 test("country hubs seeded without the article are corrected once, leaving staff edits alone", async () => {
   await role();
-  const migration = sql("supabase/migrations/20261102000100_location_country_article.sql");
+  const migration = sql("supabase/migrations/20261102044950_location_country_article.sql");
   const read = async (slug) => (await db.query("select body_html, excerpt from public.pages where slug=$1", [slug])).rows[0];
   for (const [slug, place] of [["locations-united-states", "the United States"], ["locations-netherlands", "the Netherlands"]]) {
     const page = await read(slug);

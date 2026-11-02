@@ -53,19 +53,19 @@ test("attachments are limited to photos/videos up to 20 MB and use paths the sto
   assert.equal(reviewFileError({ type: "video/mp4", size: REVIEW_LIMITS.maxFileBytes }), null);
   assert.match(reviewFileError({ type: "video/mp4", size: REVIEW_LIMITS.maxFileBytes + 1 }), /20 MB/);
   for (const type of ["application/pdf", "image/svg+xml", "text/html", "application/x-msdownload", ""]) assert.match(reviewFileError({ type, size: 10 }), /Only photos/, type);
-  const policy = read("supabase/migrations/20261102000200_review_submissions.sql").match(/name ~ '([^']+)'/)[1];
+  const policy = read("supabase/migrations/20261102051558_review_submissions.sql").match(/name ~ '([^']+)'/)[1];
   const token = "3f2b8c1e-9a4d-4e6f-8b2a-1c3d5e7f9a0b";
   for (const type of Object.keys(REVIEW_MEDIA_TYPES)) {
     const path = reviewMediaPath(token, 2, { type });
     assert.match(path, new RegExp(policy), path);
     assert.ok(path.startsWith(`pending/${token}/3-`), path);
   }
-  const bucket = read("supabase/migrations/20261102000200_review_submissions.sql").match(/array\[([^\]]+)\]\)\non conflict/)[1];
+  const bucket = read("supabase/migrations/20261102051558_review_submissions.sql").match(/array\[([^\]]+)\]\)\non conflict/)[1];
   assert.deepEqual(bucket.match(/'([^']+)'/g).map((s) => s.slice(1, -1)).sort(), Object.keys(REVIEW_MEDIA_TYPES).sort(), "client and bucket allow the same types");
 });
 
 test("submissions stay private: staff-only table, private bucket, no public read of files", () => {
-  const sql = read("supabase/migrations/20261102000200_review_submissions.sql");
+  const sql = read("supabase/migrations/20261102051558_review_submissions.sql");
   assert.match(sql, /alter table public\.review_submissions enable row level security/);
   assert.match(sql, /revoke all on public\.review_submissions from anon/);
   assert.match(sql, /values \('review-media', 'review-media', false, 20971520/);
