@@ -99,6 +99,12 @@ Observed in main source:
 Preview-only work:
 - A separate ready preview branch, two commits ahead of main, changes the review button toward a direct Trustpilot invitation. It is not part of the inspected production deployment. Review and test that branch before any merge.
 
+Current public Trustpilot snapshot (web-crawled 2 November 2026):
+- The profile shows 8 reviews, 0 reviews in the last 12 months, and no recent history of asking for reviews.
+- The page displays 4.3 in text while a TrustScore graphic displays 4.5/5. Treat the score as unresolved and do not publish either value as a fixed claim.
+- Source: https://www.trustpilot.com/review/onlinequrancollege.com (search snapshot retrieved 2 November 2026).
+- Current Trustpilot business guidance (September 2026) requires fair, consistent, neutral invitations to all genuine customers regardless of positive or negative experience and prohibits incentives and selective invitations: https://corporate.trustpilot.com/legal/for-businesses/guidelines-for-businesses/sep-2026.
+
 Previously observed Trustpilot profile issues (dated public audit):
 - Profile had a small historic review count and no recent invitation activity shown.
 - TrustScore presentation was inconsistent between page text and graphic; do not use a fixed score in site copy/schema until rechecked.
