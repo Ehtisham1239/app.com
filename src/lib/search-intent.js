@@ -52,12 +52,12 @@ export const SEARCH_INTENTS = {
   },
   "/locations/united-kingdom": {
     "phrase": "online Quran classes in the UK",
-    "heading": "Online Quran classes across the UK",
+    "heading": "Online Quran classes in the UK",
     "intro": "Live one-to-one online Quran lessons for children and adults across England, Scotland, Wales and Northern Ireland. Plan around GMT or British Summer Time, compare Noorani Qaida, Tajweed and Hifz pathways, and request a written GBP fee quote. Lessons are delivered online; no UK classroom or local branch is represented."
   },
   "/locations/canada": {
     "phrase": "online Quran classes in Canada",
-    "heading": "Online Quran classes across Canada",
+    "heading": "Online Quran classes in Canada",
     "intro": "Live one-to-one online Quran lessons for children and adults across Canadian provinces and time zones. Choose the learner's city and lesson date, explore Noorani Qaida, Tajweed and Hifz, and request a written CAD fee quote. Lessons are delivered online; no Canadian office or local branch is represented."
   },
   "/locations/australia": {
