@@ -56,6 +56,7 @@ Observed in source:
 - `src/app/sitemap.js` dynamically generates public fixed pages, eligible country/location pages, published courses, CMS pages, blogs and teacher profiles.
 - `src/lib/seo.js` includes canonical validation, title/description analysis, duplicate metadata checks and sitemap eligibility rules.
 - Site-wide Organization/WebSite JSON-LD is generated from site identity/contact settings; homepage WebPage JSON-LD is also present.
+- Review point: `orgAddress()` currently maps a country-only contact location such as “United Kingdom” to a `PostalAddress` containing only `addressCountry`. Since the owner confirms the academy is online-only with no customer-facing physical office, validate whether this field should be omitted or explicitly described as a registered/legal address before changing schema. Do not invent a street address or imply a walk-in office.
 - Sitemap/indexability logic excludes CMS records marked noindex and applies canonical checks.
 - SEO scripts exist in package scripts: `seo:agent`, `seo:keywords`, `seo:keyword-map`, `seo:search-engines`, and `audit:performance`.
 
