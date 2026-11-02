@@ -60,7 +60,7 @@ export async function LocationPage({ country, city }) {
       {guide && <section aria-labelledby="local-guide-title" className="space-y-5">
         <h2 id="local-guide-title" className="text-2xl">{guide.title}</h2>
         <div className="grid gap-4 md:grid-cols-2">{guide.sections.map(section => <article key={section.title} className="surface p-6"><h3 className="text-lg">{section.title}</h3><p className="mt-3 text-sm leading-relaxed text-ink-soft">{section.text}</p><Link className="mt-4 inline-block py-2 font-semibold text-leaf-700 underline" href={section.path}>{section.link}</Link></article>)}</div>
-        <details className="text-xs text-ink-soft"><summary className="cursor-pointer py-3">Official local-clock references</summary><ul className="space-y-2">{guide.sources.map(source => <li key={source.url}><a className="inline-block py-2 underline" href={source.url} target="_blank" rel="noopener noreferrer">{source.name}</a></li>)}</ul></details>
+        <details className="text-xs text-ink-soft"><summary className="cursor-pointer py-3">Official guidance and reference links</summary><ul className="space-y-2">{guide.sources.map(source => <li key={source.url}><a className="inline-block py-2 underline" href={source.url} target="_blank" rel="noopener noreferrer">{source.name}</a></li>)}</ul></details>
       </section>}
 
       {!city && country.slug === "united-kingdom" && <section aria-labelledby="uk-learning-paths" className="rounded-3xl border border-line bg-leaf-50/50 p-6 sm:p-8">
