@@ -1,12 +1,10 @@
-// Floating reviews button (owner requests, 2 Nov 2026): bottom-left on every page.
-// It opens an on-site review form for parents and students (comment required, up to
-// three photos/videos optional) and also links to Trustpilot. Edited in
-// CMS → Settings → "Reviews button". The Trustpilot link may be left empty to reuse
-// the Trustpilot reviews page saved under Social links.
+// Floating reviews button (owner request, 2 Nov 2026): direct Trustpilot review invitation by default.
+// The optional on-site review form remains available as a CMS-controlled alternative.
+// Edited in CMS → Settings → "Reviews button".
 
 export const REVIEWS_BUTTON_DEFAULTS = {
   enabled: true,
-  label: "Share your review",
+  label: "Review us on Trustpilot",
   sublabel: "Parents & students",
   url: "https://www.trustpilot.com/evaluate/onlinequrancollege.com",
   every_page: true,

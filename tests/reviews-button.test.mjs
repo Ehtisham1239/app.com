@@ -15,7 +15,7 @@ test("only https Trustpilot addresses are accepted as the button link", () => {
 
 test("by default the button opens OQC’s direct Trustpilot review invitation on every page", () => {
   assert.deepEqual(DEFAULT_SETTINGS["site.reviews_button"], REVIEWS_BUTTON_DEFAULTS);
-  assert.deepEqual(reviewsButtonConfig(undefined, SOCIAL), { href: "https://www.trustpilot.com/evaluate/onlinequrancollege.com", googleHref: "", label: "Share your review", sublabel: "Parents & students", everyPage: true, openForm: false });
+  assert.deepEqual(reviewsButtonConfig(undefined, SOCIAL), { href: "https://www.trustpilot.com/evaluate/onlinequrancollege.com", googleHref: "", label: "Review us on Trustpilot", sublabel: "Parents & students", everyPage: true, openForm: false });
   assert.equal(reviewsButtonConfig(undefined, { trustpilot: "" }).href, "https://www.trustpilot.com/evaluate/onlinequrancollege.com", "the verified direct invitation URL is the safe fallback");
 });
 

@@ -5,7 +5,7 @@ values (
   'site.reviews_button',
   jsonb_build_object(
     'enabled', true,
-    'label', 'Share your review',
+    'label', 'Review us on Trustpilot',
     'sublabel', 'Parents & students',
     'url', 'https://www.trustpilot.com/evaluate/onlinequrancollege.com',
     'every_page', true,
@@ -19,6 +19,7 @@ values (
 on conflict (key) do update
 set value = public.settings.value || jsonb_build_object(
   'enabled', true,
+  'label', 'Review us on Trustpilot',
   'url', 'https://www.trustpilot.com/evaluate/onlinequrancollege.com',
   'every_page', true,
   'open_form', false
