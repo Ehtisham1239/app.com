@@ -27,7 +27,7 @@ export function ReviewsButton({ config, consentText }) {
     return () => { document.documentElement.style.overflow = ""; };
   }, [open]);
   if (!config || !(config.everyPage || pathname === "/")) return null;
-  if (pathname.startsWith("/admin") || pathname.startsWith("/parents")) return null;
+  if (pathname.startsWith("/admin") || pathname.startsWith("/parents") || pathname === "/reviews") return null;
 
   const prefetch = () => { loadForm().catch(() => {}); };
   const openForm = () => {
