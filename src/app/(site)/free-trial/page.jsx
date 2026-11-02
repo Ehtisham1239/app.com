@@ -19,10 +19,10 @@ export const metadata = contentMetadata({
   seo_title: "Free Online Quran Trial Classes | Online Quran College",
   cover_url: COVER.src,
   cover_alt: COVER.alt,
-}, { path: "/free-trial", description: "Book a free 3-day trial of live one-to-one Quran classes on eligible plans. The Weekend plan is excluded. A coordinator replies within 24 hours." });
+}, { path: "/free-trial", description: "Request a free 3-day trial of live one-to-one Quran classes on eligible plans. The Weekend plan is excluded; Admissions confirms teacher and timetable availability." });
 
 const PROMISES = [
-  { icon: Clock3, title: "Reply within 24 hours", text: "A coordinator contacts you by WhatsApp or email to confirm a time." },
+  { icon: Clock3, title: "Admissions follow-up", text: "A coordinator contacts you by WhatsApp or email to discuss a suitable time." },
   { icon: HeartHandshake, title: "Share your teacher preference", text: "Request a female or male teacher; the coordinator confirms availability and language." },
   { icon: CalendarCheck2, title: "3 days free on eligible plans", text: "No card needed for the free Quran trial classes. The Weekend plan is excluded." },
   { icon: ShieldCheck, title: "Your details are safe", text: "Read our privacy policy to understand how enquiry details are collected and used." },
