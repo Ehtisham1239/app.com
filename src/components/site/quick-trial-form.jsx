@@ -232,7 +232,8 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="q-phone" className="field-label">WhatsApp number</label>
-          <input id="q-phone" className="input" type="tel" inputMode="tel" value={form.phone} onChange={(e) => set("phone", e.target.value)} autoComplete="tel" placeholder="+44 7700 900123" maxLength={24} required {...err("phone")} />
+          <input id="q-phone" className="input" type="tel" inputMode="tel" value={form.phone} onChange={(e) => set("phone", e.target.value)} autoComplete="tel" placeholder="Start with country code: +1, +44, +61…" maxLength={24} required {...err("phone")} aria-describedby={errors.phone ? "q-phone-hint q-phone-error" : "q-phone-hint"} />
+          <p id="q-phone-hint" className="mt-1 text-xs text-ink-faint">The number the coordinator can message on WhatsApp.</p>
           <FieldError id="q-phone-error">{errors.phone}</FieldError>
         </div>
         <div>
