@@ -47,7 +47,7 @@ export const SEARCH_INTENTS = {
   },
   "/locations/united-arab-emirates": {
     "phrase": "online Quran classes in UAE",
-    "heading": "Online Quran classes in the United Arab Emirates",
+    "heading": "Online Quran classes in UAE",
     "intro": "Live one-to-one online Quran lessons for children and adults across the UAE. Explore Noorani Qaida, Quran reading, Tajweed and Hifz, and arrange lesson times in Gulf Standard Time (Asia/Dubai). Classes are delivered online; no UAE teaching-centre or branch is represented."
   },
   "/locations/united-kingdom": {
@@ -62,7 +62,7 @@ export const SEARCH_INTENTS = {
   },
   "/locations/australia": {
     "phrase": "online Quran tuition in Australia",
-    "heading": "Online Quran classes in Australia",
+    "heading": "Online Quran tuition in Australia",
     "intro": "Live one-to-one online Quran lessons for children and adults across Australian states and territories. Plan around your city’s local clock and daylight-saving rules, explore Noorani Qaida, Tajweed and Hifz, and request a written AUD fee quote. Lessons are delivered online; no Australian office or local branch is represented."
   },
   "/locations/united-states": {
