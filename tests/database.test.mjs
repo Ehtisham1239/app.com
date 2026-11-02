@@ -140,3 +140,19 @@ test("growth launch preserves edits on repeat and publishes distinct guide/artic
  assert.equal((await db.query("select body_html from pages where slug='locations-australia'")).rows[0].body_html,original);
  assert.equal(original.split('oqc-market-guide-australia-v1').length-1,1);
 });
+
+test("country hubs seeded without the article are corrected once, leaving staff edits alone", async () => {
+  await role();
+  const migration = sql("supabase/migrations/20261102000100_location_country_article.sql");
+  const read = async (slug) => (await db.query("select body_html, excerpt from public.pages where slug=$1", [slug])).rows[0];
+  for (const [slug, place] of [["locations-united-states", "the United States"], ["locations-netherlands", "the Netherlands"]]) {
+    const page = await read(slug);
+    assert.match(page.body_html, new RegExp(`<h2>Quran learning from home in ${place}</h2>`), slug);
+    assert.match(page.excerpt, new RegExp(`online in ${place}\\.`), slug);
+  }
+  await db.exec(migration);
+  assert.doesNotMatch((await read("locations-united-states")).body_html, /in the the /, "re-running is a no-op");
+  await db.query("update public.pages set body_html='<h2>Staff heading in United States</h2>' where slug='locations-united-states'");
+  await db.exec(migration);
+  assert.equal((await read("locations-united-states")).body_html, "<h2>Staff heading in United States</h2>", "custom copy is preserved");
+});
