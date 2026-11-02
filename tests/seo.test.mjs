@@ -122,6 +122,7 @@ test("free-trial benefits render once and avoid an absolute data-sharing promise
   assert.equal((source.match(/promises\.map\(/g) || []).length, 1);
   assert.equal(source.includes("never sold or shared"), false);
   assert.ok(source.includes("privacy policy"));
+  assert.equal(source.includes("within 24 hours"), false);
 });
 
 test("UAE market hub has a distinct online-only guide and all seven emirates", async () => {
