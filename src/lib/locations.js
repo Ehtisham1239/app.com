@@ -907,7 +907,7 @@ export function locationFromCmsSlug(slug) {
 
 // Country defaults are fallbacks; named cities can have a different IANA zone.
 export const locationTimeZone = (country, city) => city?.timezone || country.timezone;
-export const locationLocale = (country) => ({ "united-states": "en_US", "united-kingdom": "en_GB", canada: "en_CA", australia: "en_AU" }[country.slug] || "en_GB");
+export const locationLocale = (country) => ({ "united-states": "en_US", "united-kingdom": "en_GB", canada: "en_CA", australia: "en_AU", "united-arab-emirates": "en_AE" }[country.slug] || "en_GB");
 // "in the United Kingdom", "in the Netherlands", but "in Canada".
 export const countryInName = (country) => `${/^(United |Netherlands$|Czech Republic$)/.test(country.name) ? "the " : ""}${country.name}`;
 // The 22 Oct 2026 location seed saved "Online Quran classes in United Kingdom"
