@@ -81,3 +81,20 @@ export function locationServiceSchema({ country, city, placeName, url, siteUrl }
     availableChannel: { "@type": "ServiceChannel", serviceUrl: `${siteUrl}/free-trial` },
   };
 }
+
+// Only publish a postal address when a complete street address is explicitly configured.
+// A country-only business setting is not a physical or mailing address.
+export function organizationPostalAddress(contact = {}) {
+  const address = contact.address;
+  if (!address || typeof address !== "object" || Array.isArray(address)) return null;
+  const streetAddress = String(address.streetAddress || "").trim();
+  const addressCountry = String(address.addressCountry || "").trim().toUpperCase();
+  if (!streetAddress || !/^[A-Z]{2}$/.test(addressCountry)) return null;
+  const optional = ["addressLocality", "addressRegion", "postalCode"];
+  return {
+    "@type": "PostalAddress",
+    streetAddress,
+    ...Object.fromEntries(optional.filter((key) => String(address[key] || "").trim()).map((key) => [key, String(address[key]).trim()])),
+    addressCountry,
+  };
+}
