@@ -1,5 +1,7 @@
 import { HatchiumChat } from "@/components/site/hatchium-chat";
 import { MobileActionBar } from "@/components/site/mobile-action-bar";
+import { ReviewsButton } from "@/components/site/reviews-button";
+import { reviewsButtonConfig } from "@/lib/reviews-button";
 import { whatsappLink } from "@/lib/format";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { safeJsonLd } from "@/lib/seo";
@@ -60,6 +62,7 @@ export default async function SiteLayout({ children }) {
       <main id="main">{children}</main>
       <SiteFooter settings={settings} menus={footerMenus} />
       <MobileActionBar whatsappHref={whatsappLink(contact.whatsapp, "Assalamu alaikum, I would like to know more about your Quran classes.")} chatEnabled={chatEnabled} />
+      <ReviewsButton config={reviewsButtonConfig(settings["site.reviews_button"], settings["site.social"])} />
       <HatchiumChat enabled={chatEnabled} widgetKey={chat.widget_key} />
       {/* Vercel Speed Insights: cookieless real-visit Core Web Vitals per route. */}
       <SpeedInsights />

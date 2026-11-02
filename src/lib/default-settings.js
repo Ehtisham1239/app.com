@@ -1,4 +1,5 @@
 // Shared editable defaults without database loaders or the content snapshot.
+import { REVIEWS_BUTTON_DEFAULTS } from "./reviews-button.js";
 export const DEFAULT_SETTINGS = {
   "site.identity": {
     name: "Online Quran College",
@@ -52,6 +53,7 @@ export const DEFAULT_SETTINGS = {
     { title: "Start regular classes", text: "Meet your teacher live online on your chosen days and track progress every month." },
   ],
   "site.announcement": { enabled: true, text: "3 days of free classes — no credit card required.", link_label: "Book now", link: "/free-trial" },
+  "site.reviews_button": { ...REVIEWS_BUTTON_DEFAULTS },
   "site.forms": {
     consent_version: "2026-10-13",
     consent_text:

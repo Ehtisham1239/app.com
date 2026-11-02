@@ -9,6 +9,7 @@ import { db, notifyError, refreshSite, useLoad } from "@/lib/admin/db";
 import { DEFAULT_SETTINGS } from "@/lib/default-settings";
 import { analyticsConfig, analyticsSettingsError } from "@/lib/analytics";
 import { normalizeSeoSettings, seoSettingsError } from "@/lib/search-settings";
+import { reviewsButtonError } from "@/lib/reviews-button";
 import { CONTENT_ICONS, ContentIcon } from "@/components/icon";
 import { Card, ErrorState, Field, Loading, PageHeader, TagInput, Toggle } from "@/components/admin/ui";
 
@@ -23,6 +24,7 @@ const SECTIONS = [
   { key: "site.benefits", title: "Why choose us", text: "Benefits on the home page.", list: [{ name: "icon", label: "Icon", type: "icon" }, t("title", "Title"), area("text", "Text")] },
   { key: "site.steps", title: "How it works", text: "Three steps on the home page.", list: [t("title", "Title"), area("text", "Text")] },
   { key: "site.social", title: "Social links", text: "Leave a link empty to hide it.", fields: [t("facebook", "Facebook"), t("instagram", "Instagram"), t("x", "X (Twitter)"), t("youtube", "YouTube"), t("tiktok", "TikTok"), t("trustpilot", "Trustpilot reviews page")] },
+  { key: "site.reviews_button", title: "Trustpilot button", text: "Round button at the bottom-left of the home page inviting parents and students to read or leave a Trustpilot review. It opens Trustpilot in a new tab.", fields: [{ name: "enabled", label: "Show the button", type: "bool" }, t("label", "Button text", { hint: "Up to 40 characters, e.g. Review us on Trustpilot" }), t("sublabel", "Small text under it", { hint: "Optional, up to 40 characters, e.g. Parents & students" }), t("url", "Trustpilot link", { hint: "Leave empty to use the Trustpilot reviews page under Social links. Must be an https://…trustpilot.com address." }), { name: "every_page", label: "Show on every page (off = home page only)", type: "bool" }] },
   { key: "site.forms", title: "Forms", text: "Consent wording and thank-you messages.", fields: [area("consent_text", "Consent text"), t("consent_version", "Consent version", { hint: "Change this date when you change the consent text." }), area("trial_success", "Free-trial thank-you"), area("contact_success", "Contact thank-you")] },
   { key: "site.chat", title: "Website chat", text: "Hatchium chat widget on public pages. This embed does not forward website forms to Make or a chat API. API secrets must never be entered here.", fields: [{ name: "enabled", label: "Enable website chat", type: "bool" }, t("widget_key", "Hatchium public widget key")] },
   { key: "site.analytics", title: "Google Analytics & tags", text: "Use your own public IDs, not script snippets or passwords. The current website uses cookieless analytics without a consent banner: analytics cookies stay in page memory, advertising consent stays denied and Google signals stay off. When a GTM ID is provided, Tag Manager manages GA4; the separate GA4 script is not loaded. Publish the matching Google tags inside your GTM container.", fields: [{ name: "enabled", label: "Enable website analytics", type: "bool" }, t("ga4_measurement_id", "GA4 Measurement ID", { hint: "Starts G-. Find it in GA4 Admin → Data streams → Web." }), t("gtm_container_id", "Tag Manager Container ID", { hint: "Starts GTM-. Leave empty for direct GA4." })] },
@@ -63,6 +65,10 @@ export default function SettingsPage() {
   const save = async () => {
     if (active === "site.analytics") {
       const error = analyticsSettingsError(value);
+      if (error) return toast.error(error);
+    }
+    if (active === "site.reviews_button") {
+      const error = reviewsButtonError(value);
       if (error) return toast.error(error);
     }
     const savedValue = active === "site.seo" ? normalizeSeoSettings(value) : value;
