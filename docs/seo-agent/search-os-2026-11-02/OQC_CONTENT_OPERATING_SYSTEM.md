@@ -1,7 +1,7 @@
 # Content operating system (2 Nov 2026)
 
 ## Inventory (CMS `blog_posts`, published, not deleted)
-20 posts; all have an author; none noindex. Body word counts 469–920 — **all within the 1,000-word rule**. Market-specific guides: USA (choose-online-quran-teacher-usa), Australia (quran-lessons-australia-time-zones), UK (fees comparison and several UK-linked guides). Canada and UAE guides were added and published on 2 Nov 2026 (`online-quran-lessons-canada-time-zones`, `online-quran-lessons-uae-families`), so every primary market now has one planning guide.
+22 posts (20 audited on 2 Nov + 2 new market guides); all have an author; none noindex. Body word counts 469–920 — **all within the 1,000-word rule**. Market-specific guides: USA (choose-online-quran-teacher-usa), Australia (quran-lessons-australia-time-zones), UK (fees comparison and several UK-linked guides). Canada and UAE guides were added and published on 2 Nov 2026 (`online-quran-lessons-canada-time-zones`, `online-quran-lessons-uae-families`), so every primary market now has one planning guide.
 
 ## Rules
 - Improve existing pages before adding new ones; each new post needs a query from `OQC_KEYWORD_DATABASE.md` or the gap register.
