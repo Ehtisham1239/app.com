@@ -45,6 +45,9 @@ const nextConfig = {
   async redirects() {
     const courses = ["noorani-qaida", "quran-nazara", "hifz-quran", "arabic-language", "quran-translation", "hadith-translation"];
     return [
+      // Short, memorable customer-review URL; keep the longer branded page as canonical.
+      { source: "/copoloit", destination: "/reviews", permanent: true },
+      { source: "/review", destination: "/reviews", permanent: true },
       ...legacyImageRedirects(imageManifest),
       { source: "/images/learning/map-:region([a-z-]+)-r2-:width(400|800|1200).webp", destination: "/images/learning/oqc-learning-:region-v3-:width.webp", permanent: true },
       { source: "/images/learning/map-:region([a-z-]+)-:width(400|800|1200).webp", destination: "/images/learning/oqc-learning-:region-v3-:width.webp", permanent: true },
