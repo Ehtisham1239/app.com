@@ -358,7 +358,8 @@ Competitor set must be confirmed using actual Search Console queries and SERPs f
 - Existing location schema uses `Service` with `areaServed`; it does not claim a physical local business.
 - Existing UAE market guide, UAE currency/time zone and seven emirate city entries are present in source.
 - Robots source allows public crawling and disallows `/admin`, `/auth`, `/api/` and `/parents`.
-- Source commit `8ac4f02d37722e17fd243dd615be777d7fc16459` added UAE to homepage market navigation and discovery cards.
+- Source commit `8ac4f02d37722e17fd243dd615be777d7fc16459` added UAE to homepage discovery cards.
+- Source commit `d05c90af2ba264adb12874e11022009fde367d3b` added UAE to the homepage priority market navigation. The homepage canonical remains `/`.
 - Source commit `8571243686b465b811a2b2f4eb65bca89372502d` changed the UAE card to a verified existing OQC image asset.
 - Strategy document commit: `d47546771124fd3776d5ad81de173aea4970751b`; follow-up audit wording commit: `7c9fbe35f26f29aa93db69ed0ccc0cb852c51a83`.
 - Regression test commit: `6f6dd4b34cdf235e8305bc0f40e9146681fe5e13` verifies the four primary country hubs are indexable by default and city pages remain noindex by default. The test has been added but has not been run in a repository build environment.
