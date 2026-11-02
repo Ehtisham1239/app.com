@@ -3,7 +3,13 @@
 -- 1. public.rls_auto_enable() is the ensure_rls event-trigger function. It is not an
 --    API endpoint, so signed-in users must not be able to call it through /rest/v1/rpc.
 --    Event triggers keep firing for DDL run by the database owner.
-revoke execute on function public.rls_auto_enable() from public, anon, authenticated;
+do $
+begin
+  if to_regprocedure('public.rls_auto_enable()') is not null then
+    execute 'revoke execute on function public.rls_auto_enable() from public, anon, authenticated';
+  end if;
+end
+$;
 
 -- 2. Anonymous review attachments: the upload policy already restricts the path to
 --    pending/<random uuid>/<file>. Also cap each review folder at 3 files (the form's
