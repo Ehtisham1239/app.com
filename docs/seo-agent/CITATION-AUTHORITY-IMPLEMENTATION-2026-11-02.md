@@ -50,6 +50,8 @@ Follow the SEO operating specification: UK first; USA and Australia next; Canada
 10. Prioritize relevance, audience trust, referral potential and editorial independence over domain metrics.
 
 ## 4. Priority profile register
+
+**Directory policy:** Do not bulk-submit to generic local directories. For the current online-only academy, use one truthful global brand identity, existing owned profiles, and a small number of genuinely relevant editorial/resource references. Country hubs are landing pages, not separate business locations.
 All statuses below are to verify/create manually unless explicitly marked otherwise. No account access or profile submission has been performed by this repository change.
 
 | Priority | Platform | Scope | Action | Eligibility / control | Official destination |
@@ -139,4 +141,4 @@ For each platform: (1) search for duplicates; (2) read current eligibility polic
 ## 12. Completion definition
 Complete only when website identity inconsistencies are resolved and approved; claims are reconciled with the Claims register; eligible priority profiles are live/claimed/verified; conditional or ineligible directories are explicitly skipped or resolved with evidence; verified sameAs links are implemented; external links are tested and tracked; Search Console, GA4 and admissions/ERP can attribute outcomes where available; and the register contains public URLs, verification evidence, owners and review dates.
 
-Current status: research and controlled plan is documented in the repository. Trustpilot public profile is observed as claimed, but OQC account admin access is not verified. Contact/footer and postal-address schema correction is implemented in source and awaits production deployment/verification. No new third-party profile creation, directory submission, review solicitation, account verification, DNS change or production release is claimed by this file.
+Current status: research and controlled plan is documented in the repository. Existing Facebook, Instagram and X links are present in the official site footer; Trustpilot is a publicly claimed profile. Account admin access is not verified. Contact/footer and postal-address schema correction is implemented in source and awaits production deployment/verification. No new third-party profile creation, directory submission, review solicitation, account verification, DNS change or production release is claimed by this file.
