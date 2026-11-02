@@ -939,7 +939,7 @@ export function locationSearchIntro(country, city) {
 // unless the CMS row explicitly says otherwise (after local proof is added).
 // Last substantive change to the shared location-page template (guides, FAQs, intros,
 // schema). Update when that code changes so sitemap lastmod reflects the visible page.
-export const LOCATION_TEMPLATE_UPDATED = "2026-10-31";
+export const LOCATION_TEMPLATE_UPDATED = "2026-11-02";
 export const locationLastModified = (page) => [page?.updated_at, LOCATION_TEMPLATE_UPDATED].filter(Boolean).map((d) => new Date(d)).filter((d) => !Number.isNaN(d.getTime())).sort((a, b) => b - a)[0].toISOString();
 export const INDEXED_MARKETS = ["united-kingdom", "united-states", "australia", "canada", "united-arab-emirates"];
 export const defaultLocationNoindex = (country, city) => Boolean(city) || !INDEXED_MARKETS.includes(country.slug);
