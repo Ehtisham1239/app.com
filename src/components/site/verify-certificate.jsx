@@ -27,14 +27,14 @@ export function VerifyCertificate() {
   const check = (value) => {
     const n = String(value || "").trim().toUpperCase();
     if (n.length < 4) {
-      setState({ loading: false, checked: "", result: undefined, error: "Enter the certificate number printed on the certificate, for example OQC-CERT-2026-0001." });
+      setState({ loading: false, checked: "", result: undefined, error: "Enter the certificate number printed on the certificate, for example OQC-CERT-2026-0002-K7QM." });
       return;
     }
     setState({ loading: true, checked: n, result: undefined, error: "" });
     lookup(n);
   };
 
-  // A link like /verify-certificate?number=OQC-CERT-2026-0001 checks straight away.
+  // A link like /verify-certificate?number=OQC-CERT-2026-0002-K7QM checks straight away.
   useEffect(() => {
     if (initial.length >= 4) lookup(initial);
   }, [initial, lookup]);
@@ -57,7 +57,7 @@ export function VerifyCertificate() {
           <input
             id="cert-number"
             className="input font-mono uppercase tracking-wide"
-            placeholder="OQC-CERT-2026-0001"
+            placeholder="OQC-CERT-2026-0002-K7QM"
             value={number}
             onChange={(e) => setNumber(e.target.value)}
             autoComplete="off"
