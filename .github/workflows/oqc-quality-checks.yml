@@ -1,0 +1,74 @@
+name: OQC quality checks
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: oqc-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-and-lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Run automated tests
+        run: npm test
+      - name: Run ESLint
+        run: npm run lint
+
+  production-smoke:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: test-and-lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Wait for the production deployment
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://www.onlinequrancollege.com"
+          ready=0
+          for attempt in $(seq 1 60); do
+            status=$(curl -sS -o /tmp/oqc-home.html -w '%{http_code}' "$base/")
+            if [ "$status" = "200" ]; then ready=1; break; fi
+            sleep 10
+          done
+          test "$ready" = "1" || { echo "Production homepage did not become ready"; exit 1; }
+      - name: Smoke-test public routes
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://www.onlinequrancollege.com"
+          for path in /reviews /free-trial /locations/united-kingdom /locations/united-states /locations/canada /locations/australia /locations/united-arab-emirates /robots.txt /sitemap.xml; do
+            status=$(curl -sS -o /tmp/oqc-response -w '%{http_code}' "$base$path")
+            test "$status" = "200" || { echo "$path returned $status"; exit 1; }
+          done
+      - name: Verify review short links redirect to the canonical page
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://www.onlinequrancollege.com"
+          for path in /review /copoloit; do
+            result=$(curl -sS -o /dev/null -w '%{http_code} %{redirect_url}' "$base$path")
+            echo "$path -> $result"
+            case "$result" in
+              "308 $base/reviews"|"307 $base/reviews") ;;
+              *) echo "Unexpected redirect for $path"; exit 1 ;;
+            esac
+          done

@@ -1,5 +1,4 @@
--- 2 Nov 2026: keep the review-upload policy helper outside PostgREST's exposed public schema.
--- Already applied to production as version 20261102095054.
+-- Keep the upload-policy helper outside PostgREST's exposed public schema.
 create schema if not exists private;
 grant usage on schema private to anon, authenticated, service_role;
 
