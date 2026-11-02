@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { analyzeSeo, validCanonical, canonicalUrl, duplicateMetadata, shouldIncludeInSitemap, safeJsonLd, organizationPostalAddress } from "../src/lib/seo.js";
-import { locationFromCmsSlug, locationPath } from "../src/lib/locations.js";
+import { locationFromCmsSlug, locationPath, getLocation, defaultLocationNoindex, locationIndexRecord } from "../src/lib/locations.js";
 test("canonical validation rejects unsafe schemes, fragments and credentials", () => {
   for (const value of ["javascript:alert(1)", "//outside.test/x", "https://user:pass@example.com/", "/page#section", "/two words", "<script>"]) assert.equal(validCanonical(value), false, value);
   for (const value of ["", "/courses/quran", "https://example.com/course"]) assert.equal(validCanonical(value), true, value);
@@ -92,4 +92,47 @@ test("organization schema never turns a country-only setting into a postal addre
   assert.deepEqual(organizationPostalAddress({ address: { streetAddress: "10 Example Street", addressLocality: "London", postalCode: "SW1A 1AA", addressCountry: "GB" } }), {
     "@type": "PostalAddress", streetAddress: "10 Example Street", addressLocality: "London", postalCode: "SW1A 1AA", addressCountry: "GB"
   });
+});
+
+test("priority country hubs remain indexable while city pages stay noindex by default", () => {
+  for (const slug of ["united-kingdom", "united-states", "australia", "united-arab-emirates"]) {
+    const country = getLocation(slug);
+    assert.ok(country, slug);
+    assert.equal(defaultLocationNoindex(country, null), false, slug);
+    assert.equal(locationIndexRecord(null, country, null).seo_noindex, false, slug);
+    assert.equal(defaultLocationNoindex(country, country.cities[0]), true, `${slug} city`);
+  }
+});
+
+test("robots explicitly permits Perplexity search crawling on public pages and blocks private routes", async () => {
+  const { default: robots } = await import("../src/app/robots.js");
+  const config = robots();
+  const perplexity = config.rules.find((rule) => rule.userAgent === "PerplexityBot");
+  const wildcard = config.rules.find((rule) => rule.userAgent === "*");
+  assert.ok(perplexity);
+  assert.ok(perplexity.allow.includes("/"));
+  for (const path of ["/admin", "/auth", "/api/", "/parents"]) assert.ok(perplexity.disallow.includes(path), path);
+  assert.ok(wildcard.allow.includes("/"));
+  for (const path of ["/admin", "/auth", "/api/", "/parents"]) assert.ok(wildcard.disallow.includes(path), path);
+});
+
+test("free-trial benefits render once and avoid an absolute data-sharing promise", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const source = await readFile(new URL("../src/app/(site)/free-trial/page.jsx", import.meta.url), "utf8");
+  assert.equal((source.match(/promises\.map\(/g) || []).length, 1);
+  assert.equal(source.includes("never sold or shared"), false);
+  assert.ok(source.includes("privacy policy"));
+  assert.equal(source.includes("within 24 hours"), false);
+});
+
+test("UAE market hub has a distinct online-only guide and all seven emirates", async () => {
+  const { getLocation } = await import("../src/lib/locations.js");
+  const { MARKET_GUIDES } = await import("../src/lib/market-guides.js");
+  const uae = getLocation("united-arab-emirates");
+  assert.ok(uae);
+  assert.equal(uae.currency, "AED");
+  assert.equal(uae.timezone, "Asia/Dubai");
+  assert.equal(uae.cities.length, 7);
+  assert.ok(MARKET_GUIDES["united-arab-emirates"].sections.length >= 4);
+  assert.ok(MARKET_GUIDES["united-arab-emirates"].sections.some((section) => section.text.includes("does not claim a UAE office")));
 });

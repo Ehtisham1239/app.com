@@ -51,8 +51,8 @@ export default async function HomePage() {
       <nav aria-label="On this page" className="page-wrap flex flex-wrap justify-center gap-2 py-5">
         {[["#courses", "Courses"], ["/reviews", "Share feedback"], ["#how-it-works", "How it works"], ...(homePlans.length ? [["#fees", "Fees"]] : []), ...(faqs.length ? [["#questions", "Questions"]] : [])].map(([href, label]) => <a key={href} href={href} className="home-jump rounded-full border border-leaf-100 bg-white px-5 py-3 text-sm font-semibold text-leaf-700 hover:bg-leaf-50">{label}</a>)}
       </nav>
-      <nav aria-label="Priority study locations" className="page-wrap grid grid-cols-2 gap-3 pb-8 lg:grid-cols-4">
-        {[["united-states", "USA"], ["united-kingdom", "UK"], ["canada", "Canada"], ["australia", "Australia"]].map(([slug, label]) => <Link key={slug} href={`/locations/${slug}`} className="surface flex items-center justify-between gap-2 px-4 py-3 text-sm font-semibold text-leaf-700">Quran classes in {label}<ArrowRight className="size-4 shrink-0" aria-hidden="true" /></Link>)}
+      <nav aria-label="Priority study locations" className="page-wrap grid grid-cols-2 gap-3 pb-8 sm:grid-cols-3 lg:grid-cols-5">
+        {[["united-kingdom", "UK"], ["united-states", "USA"], ["australia", "Australia"], ["united-arab-emirates", "UAE"], ["canada", "Canada"]].map(([slug, label]) => <Link key={slug} href={`/locations/${slug}`} className="surface flex items-center justify-between gap-2 px-4 py-3 text-sm font-semibold text-leaf-700">Quran classes in {label}<ArrowRight className="size-4 shrink-0" aria-hidden="true" /></Link>)}
       </nav>
 
 
@@ -66,11 +66,12 @@ export default async function HomePage() {
         </div>
       </section>
       <section className="page-wrap py-8" aria-label="Explore learning paths">
-        <div className="swipe-row grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="swipe-row grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
         {[
           { href: "/locations/united-kingdom", image: "oqc-learning-united-kingdom-v3", alt: "A teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a calm home study with Quran learning materials", title: "Quran classes in the UK", text: "UK local times, courses and GBP quotes." },
           { href: "/locations/united-states", image: "usa-online-quran-learning", alt: "Child and parent reviewing an Arabic workbook beside a laptop", title: "Quran classes in the USA", text: "US time zones, courses and USD packages." },
           { href: "/locations/australia", image: "australia-online-quran-learning", alt: "Young learner studying an Arabic workbook beside a laptop", title: "Quran classes in Australia", text: "Plan around your city and request approved AUD fees." },
+          { href: "/locations/united-arab-emirates", image: "family-online-quran-study-r2", alt: "Mother and son looking towards a laptop teacher with an open beginner workbook between them", title: "Quran classes in the UAE", text: "Gulf Standard Time, courses and AED quotes." },
           { href: "/learn", image: "home-learning-paths", alt: "Young learner with headphones using a workbook and laptop beside a closed book on a stand", title: "Find your learning path", text: "Guides for parents, adults and recitation learners." },
         ].map(item => <Link key={item.href} href={item.href} data-card-tone={cardTone(item.href)} className="surface editorial-card card-tinted group flex flex-col"><div className="mx-2 mt-2 aspect-[3/2] overflow-hidden rounded-[1.15rem]"><ContentImage src={`/images/learning/${item.image}-1200.webp`} alt={item.alt} sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 300px" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" /></div><div className="flex flex-1 flex-col p-6"><h2 className="text-xl">{item.title}</h2><p className="mt-3 flex-1 text-sm text-ink-soft">{item.text}</p><span className="card-action mt-5">Explore <span className="card-arrow"><ArrowRight className="size-4" aria-hidden="true" /></span></span></div></Link>)}
         </div>
