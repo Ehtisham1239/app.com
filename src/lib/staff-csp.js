@@ -10,6 +10,8 @@ export function staffContentSecurityPolicy(nonce, apiUrl, development = false) {
     // React/Tiptap/Sonner use inline style attributes and generated styles.
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: blob: https:",
+    // Review videos are private files served from the project's own storage (signed URLs).
+    `media-src 'self' blob: ${api.origin}`,
     "font-src 'self' data:",
     `connect-src 'self' ${api.origin} wss://${api.host}`,
     "worker-src 'self' blob:",

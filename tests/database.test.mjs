@@ -156,3 +156,19 @@ test("country hubs seeded without the article are corrected once, leaving staff 
   await db.exec(migration);
   assert.equal((await read("locations-united-states")).body_html, "<h2>Staff heading in United States</h2>", "custom copy is preserved");
 });
+
+test("visitors can send a review only with a comment; reviews and media stay staff-only", async () => {
+  await role("anon");
+  const base = { name: "Amina Parent", email: "Amina@Example.test", relation: "Parent", rating: 5, comment: "My daughter now reads with Tajweed.", consent: true };
+  await assert.rejects(db.query("select public.submit_review($1::jsonb)", [{ ...base, comment: "   " }]), /write your comment/);
+  await assert.rejects(db.query("select public.submit_review($1::jsonb)", [{ ...base, rating: 0 }]), /star rating/);
+  await assert.rejects(db.query("select public.submit_review($1::jsonb)", [{ ...base, consent: false }]), /privacy notice/);
+  await assert.rejects(db.query("select public.submit_review($1::jsonb)", [{ ...base, upload_token: "3f2b8c1e-9a4d-4e6f-8b2a-1c3d5e7f9a0b", media: ["pending/3f2b8c1e-9a4d-4e6f-8b2a-1c3d5e7f9a0b/1-x.jpg"] }]), /could not be matched/, "media must really exist in the bucket");
+  const saved = await db.query("select public.submit_review($1::jsonb) as result", [base]);
+  assert.match(saved.rows[0].result.reference, /^REV-\d{4}-\d{5}$/);
+  await assert.rejects(db.query("select * from public.review_submissions"), /permission denied/);
+  await role();
+  const row = (await db.query("select email, status, media_paths from public.review_submissions where reference=$1", [saved.rows[0].result.reference])).rows[0];
+  assert.deepEqual(row, { email: "amina@example.test", status: "new", media_paths: [] });
+  assert.equal((await db.query("select public from storage.buckets where id='review-media'")).rows[0].public, false);
+});

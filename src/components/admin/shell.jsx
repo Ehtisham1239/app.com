@@ -21,6 +21,7 @@ export const NAV = [
     items: [
       { href: "/admin/trials", label: "Free trials", icon: UserRoundCheck, perm: "trials:read" },
       { href: "/admin/contacts", label: "Messages", icon: Inbox, perm: "contacts:read" },
+      { href: "/admin/reviews", label: "Reviews", icon: MessageSquareQuote, perm: "testimonials:read" },
     ],
   },
   {
