@@ -360,6 +360,8 @@ Competitor set must be confirmed using actual Search Console queries and SERPs f
 - Robots source allows public crawling and disallows `/admin`, `/auth`, `/api/` and `/parents`.
 - Source commit `8ac4f02d37722e17fd243dd615be777d7fc16459` added UAE to homepage market navigation and discovery cards.
 - Source commit `8571243686b465b811a2b2f4eb65bca89372502d` changed the UAE card to a verified existing OQC image asset.
+- Strategy document commit: `d47546771124fd3776d5ad81de173aea4970751b`; follow-up audit wording commit: `7c9fbe35f26f29aa93db69ed0ccc0cb852c51a83`.
+- Regression test commit: `6f6dd4b34cdf235e8305bc0f40e9146681fe5e13` verifies the four primary country hubs are indexable by default and city pages remain noindex by default. The test has been added but has not been run in a repository build environment.
 
 ### Live website observations (not the same as source state)
 - Homepage currently shows links to USA, UK, Canada and Australia; UAE is not visible in the live response yet. The UAE homepage change is committed but not production-verified.
@@ -371,6 +373,7 @@ Competitor set must be confirmed using actual Search Console queries and SERPs f
 - Trial page says personal details are “never sold or shared”; review the privacy policy, subprocessors and actual data flows before retaining this absolute statement.
 - The public footer still displays “United Kingdom” as a location on the live page. A prior source correction for Contact/footer and Organization PostalAddress schema is committed in an earlier change but is not live until the Vercel deployment permission issue is resolved.
 - The live sitemap and robots endpoints could not be read by the external page fetcher in this audit; verify directly through Search Console and production HTTP checks.
+- GitHub reports no CI status checks on the latest regression-test commit. Vercel project lookup returned 404 (project not visible in the current Vercel scope) and production deployment listing returned 403 (permission denied). No deployment was created.
 - No Search Console/GA4/GTM performance export, Perplexity citation baseline, complete CMS claims evidence, or owner-approved external profile admin access was available for this pass.
 
 ### Changes intentionally not made
