@@ -13,7 +13,7 @@ export function LocationDirectory({ countries }) {
     <div className="mb-8 max-w-xl">
       <label htmlFor="location-search" className="field-label">Find your country or city</label>
       <div className="relative"><Search className="pointer-events-none absolute left-4 top-3.5 size-5 text-leaf-700" aria-hidden="true" /><input id="location-search" type="search" className="input pl-12" value={query} onChange={event => setQuery(event.target.value)} placeholder="Try USA, Australia or Sydney" autoComplete="off" aria-describedby="location-results" /></div>
-      <p id="location-results" role="status" className="mt-3 text-sm text-ink-soft">{matches.length} {matches.length === 1 ? 'country' : 'country'} {term ? 'guide found' : 'guides'}</p>
+      <p id="location-results" role="status" className="mt-3 text-sm text-ink-soft">{matches.length} {matches.length === 1 ? 'country guide' : 'country guides'}{term ? ' found' : ''}</p>
       {term && <button type="button" className="mt-2 rounded-lg px-3 py-3 text-sm font-semibold text-leaf-700 underline" onClick={() => setQuery('')}>Clear search</button>}
     </div>
     {!matches.length ? <div className="surface p-8"><h2 className="text-xl">No matching location</h2><p className="mt-3 text-ink-soft">Try a country name or <Link className="font-semibold text-leaf-700 underline" href="/contact">ask us about classes in your time zone</Link>.</p></div> : <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{matches.map(country => <article data-card-tone={cardTone(country.slug)} className="location-country-card editorial-card card-tinted flex flex-col p-6" key={country.slug}>
