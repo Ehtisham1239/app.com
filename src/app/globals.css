@@ -424,6 +424,7 @@ main input:not([type="checkbox"]):not([type="radio"]), main select, main textare
 .review-star[data-filled="true"] .site-icon { fill: currentColor; }
 .review-star:focus-visible { outline-offset: 0; }
 .review-dialog[open] { animation: review-sheet-in .28s cubic-bezier(.2, .8, .2, 1); }
+.review-dialog::backdrop { background: rgb(14 31 18 / .58); backdrop-filter: blur(3px); }
 .review-dialog[open]::backdrop { animation: review-fade-in .2s ease; }
 @media (min-width: 640px) { .review-dialog[open] { animation-name: review-panel-in; } }
 @keyframes review-sheet-in { from { transform: translateY(100%); } to { transform: none; } }

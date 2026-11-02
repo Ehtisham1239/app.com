@@ -14,8 +14,8 @@ export const revalidate = 300;
 
 export const metadata = contentMetadata({ title: "Online Quran Class Fees & Packages", seo_noindex: false }, { path: "/pricing", description: "Compare monthly packages for live one-to-one Quran classes, with a 3-day free trial on eligible plans. The Weekend plan is excluded from the trial." });
 
-export default async function PricingPage({ searchParams }) {
-  const requestedCurrency = (await searchParams)?.currency;
+// No searchParams here: the page stays statically cached; ?currency= is read in the browser.
+export default async function PricingPage() {
   const [plans, faqs, settings, fx] = await Promise.all([getPlans(), getFaqs(), getSettings(), getUsdRates()]);
   const packages = plans.filter((p) => /^package/i.test(p.name));
   const other = plans.filter((p) => !/^package/i.test(p.name));
@@ -44,7 +44,7 @@ export default async function PricingPage({ searchParams }) {
       )}
       <section className="page-wrap py-16 sm:py-20" aria-labelledby="monthly-packages">
         <h2 id="monthly-packages" className="sr-only">Monthly class packages</h2>
-        {packages.length > 0 && <CurrencyPricing plans={packages} defaultCurrency={requestedCurrency} explicit={Boolean(requestedCurrency)} fx={fx} />}
+        {packages.length > 0 && <CurrencyPricing plans={packages} fx={fx} />}
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {[
             { icon: BadgePercent, title: "15% sibling discount", text: "Each additional child from the same family receives 15% off their monthly fee." },
@@ -65,7 +65,7 @@ export default async function PricingPage({ searchParams }) {
       <section className="border-t border-line bg-[#f5faf1] py-16 sm:py-20" aria-labelledby="compare-plans">
         <div className="page-wrap">
           <SectionHeading eyebrow="Compare" title={<span id="compare-plans">Compare plans and estimate your family’s fees</span>} intro="See every plan side by side, then work out a monthly total for more than one learner." />
-          <div className="mt-10"><FeeCompare plans={plans} fx={fx} defaultCurrency={requestedCurrency} explicit={Boolean(requestedCurrency)} /></div>
+          <div className="mt-10"><FeeCompare plans={plans} fx={fx} /></div>
         </div>
       </section>
 
@@ -74,7 +74,7 @@ export default async function PricingPage({ searchParams }) {
           <div className="page-wrap">
             <SectionHeading eyebrow="More options" title="Weekend and flexible plans" intro="For busy weekdays or adults who prefer a lighter pace." />
             <div className="mt-12">
-              <CurrencyPricing plans={other} defaultCurrency={requestedCurrency} explicit={Boolean(requestedCurrency)} fx={fx} />
+              <CurrencyPricing plans={other} fx={fx} />
             </div>
           </div>
         </section>

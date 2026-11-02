@@ -8,7 +8,7 @@ let formChunk = null;
 const loadForm = () => (formChunk ??= import("@/components/site/review-form").then((m) => m.ReviewForm));
 
 // Bottom-left reviews button on every page (CMS: Settings → Reviews button). It opens
-// a two-step review form for parents and students; the chat widget sits bottom-right and,
+// the review form centred on screen (a bottom sheet on phones) for parents and students; the chat widget sits bottom-right and,
 // on phones, the button stays above the trial/WhatsApp action bar. Only this small trigger
 // ships with each page; the dialog content is not in the page HTML until first opened.
 export function ReviewsButton({ config, consentText }) {
@@ -70,7 +70,7 @@ export function ReviewsButton({ config, consentText }) {
         aria-labelledby="review-dialog-title"
         onClose={() => setOpen(false)}
         onClick={(e) => { if (e.target === dialogRef.current) setOpen(false); }}
-        className="review-dialog fixed inset-x-0 bottom-0 top-auto m-0 max-h-[92dvh] w-full max-w-none overflow-hidden rounded-t-[1.75rem] bg-white p-0 text-ink shadow-[0_-12px_40px_rgb(13_74_28/0.25)] backdrop:bg-mushaf-950/50 sm:inset-x-auto sm:bottom-5 sm:left-5 sm:max-h-[calc(100dvh-2.5rem)] sm:w-[27rem] sm:rounded-[1.75rem]"
+        className="review-dialog fixed inset-x-0 bottom-0 top-auto m-0 max-h-[94dvh] w-full max-w-none overflow-hidden rounded-t-[1.75rem] bg-white p-0 text-ink shadow-[0_-12px_40px_rgb(13_74_28/0.25)] sm:inset-0 sm:m-auto sm:h-fit sm:max-h-[min(90dvh,48rem)] sm:w-[min(32rem,calc(100vw-2rem))] sm:rounded-[1.75rem] sm:shadow-[0_24px_70px_rgb(13_74_28/0.35)]"
       >
         {/* Mounted on first opening, then kept so a half-written review survives closing. */}
         {Form ? (

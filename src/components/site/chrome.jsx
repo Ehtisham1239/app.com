@@ -67,7 +67,7 @@ function ImmersiveHero({ eyebrow, title, titleAccent, intro, children, arabic, i
         <div className="hero-immersive-copy max-w-[36rem]">
           {eyebrow && <p className="text-xs font-bold uppercase tracking-[0.24em] text-gold-300">{eyebrow}</p>}
           <h1 className="mt-3 text-[clamp(2.1rem,5vw,3.5rem)] leading-[1.08] text-white">
-            {lead}{titleAccent && lead !== title && <><br /><span className="text-gold-300">{titleAccent}</span></>}
+            {lead}{titleAccent && lead !== title && <>{" "}<br /><span className="text-gold-300">{titleAccent}</span></>}
           </h1>
           {arabic && <p lang="ar" dir="rtl" className="arabic mt-4 text-[2rem] text-gold-300">{arabic}</p>}
           {intro && <p className="mt-5 max-w-xl text-[1.08rem] leading-relaxed text-white/85">{intro}</p>}

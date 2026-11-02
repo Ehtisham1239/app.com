@@ -147,17 +147,28 @@ export function ReviewForm({ open, config, consentText, onClose, inline = false 
   const firstName = form.name.trim().split(/\s+/)[0];
   const commentLength = form.comment.trim().length;
 
-  const header = (
-    <div className="flex items-start justify-between gap-3 px-5 pb-1 pt-4">
-      <div className="min-w-0">
-        <h2 id="review-dialog-title" className="text-[1.35rem] leading-tight text-mushaf-900">{state.done ? "Review received" : "Rate your experience"}</h2>
-        {!state.done && <p className="mt-0.5 text-[0.82rem] text-ink-soft">Takes under a minute · every rating is welcome</p>}
+  const title = state.done ? "Review received" : "Rate your experience";
+  const subtitle = "Takes under a minute · every rating is welcome";
+  // In the pop-up the header carries the OQC mark so the form is clearly ours; on /reviews
+  // the page hero already does, so the inline header stays light.
+  const header = inline ? (
+    <div className="px-5 pb-1 pt-5">
+      <h2 id="review-dialog-title" className="text-[1.35rem] leading-tight text-mushaf-900">{title}</h2>
+      {!state.done && <p className="mt-0.5 text-[0.82rem] text-ink-soft">{subtitle}</p>}
+    </div>
+  ) : (
+    <div className="review-dialog-head relative flex shrink-0 items-center gap-3 overflow-hidden bg-mushaf-900 px-5 py-4 text-white">
+      <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.08]" aria-hidden="true" />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/brand/mark-v2-64.png" alt="" width={44} height={44} className="relative size-11 shrink-0 rounded-xl bg-white p-1 shadow-sm" />
+      <div className="relative min-w-0 flex-1">
+        <p className="text-[0.72rem] font-semibold text-gold-300">Online Quran College</p>
+        <h2 id="review-dialog-title" className="text-[1.25rem] leading-tight text-white">{title}</h2>
+        {!state.done && <p className="mt-0.5 truncate text-[0.78rem] text-white/75">{subtitle}</p>}
       </div>
-      {!inline && (
-        <button type="button" onClick={onClose} className="-mr-1 flex size-10 shrink-0 items-center justify-center rounded-full text-ink-soft hover:bg-leaf-50" aria-label="Close review form">
-          <X className="size-5" />
-        </button>
-      )}
+      <button type="button" onClick={onClose} className="relative -mr-1 flex size-10 shrink-0 items-center justify-center rounded-full text-white/85 hover:bg-white/10 hover:text-white" aria-label="Close review form">
+        <X className="size-5" />
+      </button>
     </div>
   );
 

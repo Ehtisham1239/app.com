@@ -83,7 +83,10 @@ test("the button sits bottom-left above the mobile bar, opens an accessible dial
   assert.match(trigger, /<dialog/);
   assert.match(trigger, /aria-labelledby="review-dialog-title"/);
   assert.match(trigger, /aria-haspopup="dialog"/);
-  assert.match(trigger, /sm:w-\[27rem\]/, "panel on larger screens; bottom sheet on phones");
+  assert.match(trigger, /sm:inset-0 sm:m-auto sm:h-fit/, "centred on larger screens; bottom sheet on phones");
+  assert.match(trigger, /max-h-\[94dvh\]/, "the phone sheet always fits on screen");
+  assert.match(read("src/app/globals.css"), /\.review-dialog::backdrop \{ background: rgb\(14 31 18/, "the page behind is dimmed");
+  assert.match(form, /src="\/brand\/mark-v2-64\.png"/, "the pop-up carries the OQC mark");
   assert.match(form, /aria-label="Close review form"/);
   assert.match(form, /id="review-dialog-title"/);
   for (const source of [trigger, form]) {
