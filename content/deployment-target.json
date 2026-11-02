@@ -2,7 +2,11 @@
   "projectId": "prj_ohTvpaIwR1bWHFJWl23QiNfOoJG7",
   "projectName": "appcom-online-quran-college",
   "teamId": "team_8Xig9mSvNd3XLAzNbQgwPapo",
-  "productionOrigin": "https://appcom-online-quran-college.vercel.app",
+  "productionOrigin": "https://www.onlinequrancollege.com",
+  "vercelOrigin": "https://appcom-online-quran-college.vercel.app",
   "repository": "Ehtisham1239/app.com",
-  "domainStatus": "onlinequrancollege.com and www.onlinequrancollege.com are added but require external DNS ownership verification"
+  "productionBranch": "main",
+  "canonicalDomain": "www.onlinequrancollege.com",
+  "domainStatus": "Verified in Vercel project domain inventory on 2026-11-02; apex onlinequrancollege.com redirects to www with HTTP 308. DNS registrar state not independently inspected.",
+  "lastVerified": "2026-11-02"
 }
