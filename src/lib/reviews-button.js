@@ -1,17 +1,27 @@
-// Floating "Review us on Trustpilot" button (owner request, 2 Nov 2026).
-// Edited in CMS → Settings → "Trustpilot button". The link may be left empty to reuse
+// Floating reviews button (owner requests, 2 Nov 2026): bottom-left on every page.
+// It opens an on-site review form for parents and students (comment required, up to
+// three photos/videos optional) and also links to Trustpilot. Edited in
+// CMS → Settings → "Reviews button". The Trustpilot link may be left empty to reuse
 // the Trustpilot reviews page saved under Social links.
 
 export const REVIEWS_BUTTON_DEFAULTS = {
   enabled: true,
-  label: "Review us on Trustpilot",
+  label: "Share your review",
   sublabel: "Parents & students",
   url: "",
-  every_page: false,
+  every_page: true,
+  open_form: true,
 };
 
 const MAX_LABEL = 40;
 const MAX_SUBLABEL = 40;
+
+// Review form limits — keep in step with public.submit_review and the review-media bucket.
+export const REVIEW_LIMITS = { minComment: 10, maxComment: 2000, maxFiles: 3, maxFileBytes: 20 * 1024 * 1024 };
+export const REVIEW_MEDIA_TYPES = {
+  "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp", "image/heic": "heic", "image/heif": "heif",
+  "video/mp4": "mp4", "video/quicktime": "mov", "video/webm": "webm",
+};
 
 // Only an https Trustpilot address is accepted, so a CMS typo or a pasted script
 // can never turn the button into a link to somewhere else.
@@ -42,11 +52,38 @@ export function reviewsButtonConfig(setting, social) {
   if (!value.enabled) return null;
   const href = trustpilotUrl(value.url) || trustpilotUrl(social?.trustpilot);
   const label = String(value.label ?? "").trim().slice(0, MAX_LABEL);
-  if (!href || !label) return null;
+  const openForm = value.open_form !== false;
+  if (!label || (!openForm && !href)) return null;
   return {
     href,
     label,
     sublabel: String(value.sublabel ?? "").trim().slice(0, MAX_SUBLABEL),
     everyPage: Boolean(value.every_page),
+    openForm,
   };
+}
+
+// Client-side checks mirror the database rules so visitors see errors before upload.
+export function reviewFormErrors(form) {
+  const errors = {};
+  if (String(form.name ?? "").trim().length < 2) errors.name = "Please enter your name.";
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(String(form.email ?? "").trim())) errors.email = "Please enter a valid email address.";
+  if (!(Number(form.rating) >= 1 && Number(form.rating) <= 5)) errors.rating = "Please choose a star rating.";
+  const comment = String(form.comment ?? "").trim();
+  if (comment.length < REVIEW_LIMITS.minComment) errors.comment = `Please write your comment (at least ${REVIEW_LIMITS.minComment} characters).`;
+  else if (comment.length > REVIEW_LIMITS.maxComment) errors.comment = `Please keep your comment under ${REVIEW_LIMITS.maxComment} characters.`;
+  if (!form.consent) errors.consent = "Please agree to the privacy notice before sending.";
+  return errors;
+}
+
+// Returns an error message for a file the bucket would refuse, or null.
+export function reviewFileError(file) {
+  if (!file || !REVIEW_MEDIA_TYPES[file.type]) return "Only photos (JPG, PNG, WebP, HEIC) and videos (MP4, MOV, WebM) can be attached.";
+  if (file.size > REVIEW_LIMITS.maxFileBytes) return "Each file must be 20 MB or smaller.";
+  return null;
+}
+
+// Storage path accepted by the "review media public upload" policy.
+export function reviewMediaPath(token, index, file) {
+  return `pending/${token}/${index + 1}-${Date.now().toString(36)}.${REVIEW_MEDIA_TYPES[file.type]}`;
 }

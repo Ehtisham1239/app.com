@@ -129,6 +129,14 @@ export const CONTACT_STATUSES = [
   { value: "archived", label: "Archived", tone: "muted" },
 ];
 
+export const REVIEW_STATUSES = [
+  { value: "new", label: "New", tone: "blue" },
+  { value: "approved", label: "Approved", tone: "green" },
+  { value: "rejected", label: "Not used", tone: "amber" },
+  { value: "spam", label: "Spam", tone: "red" },
+  { value: "archived", label: "Archived", tone: "muted" },
+];
+
 export const COMPLAINT_STATUSES = [
   { value: "open", label: "Open", tone: "red" },
   { value: "under_review", label: "Under review", tone: "amber" },

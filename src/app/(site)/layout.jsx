@@ -62,7 +62,7 @@ export default async function SiteLayout({ children }) {
       <main id="main">{children}</main>
       <SiteFooter settings={settings} menus={footerMenus} />
       <MobileActionBar whatsappHref={whatsappLink(contact.whatsapp, "Assalamu alaikum, I would like to know more about your Quran classes.")} chatEnabled={chatEnabled} />
-      <ReviewsButton config={reviewsButtonConfig(settings["site.reviews_button"], settings["site.social"])} />
+      <ReviewsButton config={reviewsButtonConfig(settings["site.reviews_button"], settings["site.social"])} consentText={settings["site.forms"]?.consent_text} />
       <HatchiumChat enabled={chatEnabled} widgetKey={chat.widget_key} />
       {/* Vercel Speed Insights: cookieless real-visit Core Web Vitals per route. */}
       <SpeedInsights />
