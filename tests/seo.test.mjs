@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { analyzeSeo, validCanonical, canonicalUrl, duplicateMetadata, shouldIncludeInSitemap, safeJsonLd } from "../src/lib/seo.js";
+import { analyzeSeo, validCanonical, canonicalUrl, duplicateMetadata, shouldIncludeInSitemap, safeJsonLd, organizationPostalAddress } from "../src/lib/seo.js";
 import { locationFromCmsSlug, locationPath } from "../src/lib/locations.js";
 test("canonical validation rejects unsafe schemes, fragments and credentials", () => {
   for (const value of ["javascript:alert(1)", "//outside.test/x", "https://user:pass@example.com/", "/page#section", "/two words", "<script>"]) assert.equal(validCanonical(value), false, value);
@@ -84,4 +84,12 @@ test("location sitemap dates include the latest shared template change", async (
   assert.equal(locationLastModified({ updated_at: "2026-10-29T09:49:43Z" }), new Date(LOCATION_TEMPLATE_UPDATED).toISOString());
   assert.equal(locationLastModified({ updated_at: "2099-01-02T03:04:05Z" }), "2099-01-02T03:04:05.000Z");
   assert.equal(locationLastModified(null), new Date(LOCATION_TEMPLATE_UPDATED).toISOString());
+});
+
+test("organization schema never turns a country-only setting into a postal address", () => {
+  assert.equal(organizationPostalAddress({ location: "United Kingdom" }), null);
+  assert.equal(organizationPostalAddress({ address: { addressCountry: "GB" } }), null);
+  assert.deepEqual(organizationPostalAddress({ address: { streetAddress: "10 Example Street", addressLocality: "London", postalCode: "SW1A 1AA", addressCountry: "GB" } }), {
+    "@type": "PostalAddress", streetAddress: "10 Example Street", addressLocality: "London", postalCode: "SW1A 1AA", addressCountry: "GB"
+  });
 });
