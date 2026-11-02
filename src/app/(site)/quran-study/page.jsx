@@ -1,6 +1,6 @@
 import { PageHero, SectionHeading } from "@/components/site/chrome";
 import { NavigationLink as Link } from "@/components/site/navigation-link";
-import { ArrowRight, BookOpen, ExternalLink, Headphones, Target } from "@/components/site/icons";
+import { ArrowRight, ArrowUpRight, BookOpen, Headset, Target } from "@/components/site/icons";
 import { SITE_URL } from "@/lib/config";
 import { contentMetadata } from "@/lib/seo-metadata";
 
@@ -17,7 +17,7 @@ const resources = [
     description: "Use the official Tarteel app for Quran recitation practice and its in-app learning features. Tarteel is a separate third-party service; availability, features, subscriptions and account terms are set by Tarteel.",
     href: "https://download.tarteel.ai/",
     action: "Open official Tarteel app page",
-    Icon: Headphones,
+    Icon: Headset,
   },
   {
     name: "Quran.com",
@@ -71,7 +71,7 @@ export default function QuranStudyPage() {
               <h2 className="mt-2 text-3xl text-mushaf-900">{name}</h2>
               <p className="mt-4 flex-1 leading-relaxed text-ink-soft">{description}</p>
               <a href={href} target="_blank" rel="noopener noreferrer" className="btn btn-primary mt-7 w-fit">
-                {action} <ExternalLink className="size-4" aria-hidden="true" />
+                {action} <ArrowUpRight className="size-4" aria-hidden="true" />
               </a>
             </article>
           ))}
