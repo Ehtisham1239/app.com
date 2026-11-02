@@ -65,13 +65,14 @@ export function reviewsButtonConfig(setting, social) {
 
 // Client-side checks mirror the database rules so visitors see errors before upload.
 export function reviewFormErrors(form) {
+  // Keys follow the on-screen order so focus moves to the first problem the visitor sees.
   const errors = {};
-  if (String(form.name ?? "").trim().length < 2) errors.name = "Please enter your name.";
-  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(String(form.email ?? "").trim())) errors.email = "Please enter a valid email address.";
   if (!(Number(form.rating) >= 1 && Number(form.rating) <= 5)) errors.rating = "Please choose a star rating.";
   const comment = String(form.comment ?? "").trim();
   if (comment.length < REVIEW_LIMITS.minComment) errors.comment = `Please write your comment (at least ${REVIEW_LIMITS.minComment} characters).`;
   else if (comment.length > REVIEW_LIMITS.maxComment) errors.comment = `Please keep your comment under ${REVIEW_LIMITS.maxComment} characters.`;
+  if (String(form.name ?? "").trim().length < 2) errors.name = "Please enter your name.";
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(String(form.email ?? "").trim())) errors.email = "Please enter a valid email address.";
   if (!form.consent) errors.consent = "Please agree to the privacy notice before sending.";
   return errors;
 }
