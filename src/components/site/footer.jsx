@@ -27,7 +27,8 @@ export function SiteFooter({ settings, menus }) {
   const contact = settings["site.contact"] ?? {};
   const social = settings["site.social"] ?? {};
   const reviews = settings["site.reviews_button"] ?? {};
-  const reviewPage = typeof reviews.page_url === "string" && /^\/(?!\/)[A-Za-z0-9/_-]*$/.test(reviews.page_url) ? reviews.page_url : "/reviews";
+  // Internal links go straight to the canonical page; the CMS short link is for sharing.
+  const reviewPage = "/reviews";
   const wa = whatsappLink(contact.whatsapp, "Assalamu alaikum, I would like to know more about your Quran classes.");
   const year = new Date().getFullYear();
   const socials = Object.entries(social).filter(([, url]) => typeof url === "string" && /^https?:\/\//.test(url));
