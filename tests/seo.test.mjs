@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { analyzeSeo, validCanonical, canonicalUrl, duplicateMetadata, shouldIncludeInSitemap, safeJsonLd, organizationPostalAddress } from "../src/lib/seo.js";
-import { locationFromCmsSlug, locationPath } from "../src/lib/locations.js";
+import { locationFromCmsSlug, locationPath, getLocation, defaultLocationNoindex, locationIndexRecord } from "../src/lib/locations.js";
 test("canonical validation rejects unsafe schemes, fragments and credentials", () => {
   for (const value of ["javascript:alert(1)", "//outside.test/x", "https://user:pass@example.com/", "/page#section", "/two words", "<script>"]) assert.equal(validCanonical(value), false, value);
   for (const value of ["", "/courses/quran", "https://example.com/course"]) assert.equal(validCanonical(value), true, value);
@@ -92,4 +92,14 @@ test("organization schema never turns a country-only setting into a postal addre
   assert.deepEqual(organizationPostalAddress({ address: { streetAddress: "10 Example Street", addressLocality: "London", postalCode: "SW1A 1AA", addressCountry: "GB" } }), {
     "@type": "PostalAddress", streetAddress: "10 Example Street", addressLocality: "London", postalCode: "SW1A 1AA", addressCountry: "GB"
   });
+});
+
+test("priority country hubs remain indexable while city pages stay noindex by default", () => {
+  for (const slug of ["united-kingdom", "united-states", "australia", "united-arab-emirates"]) {
+    const country = getLocation(slug);
+    assert.ok(country, slug);
+    assert.equal(defaultLocationNoindex(country, null), false, slug);
+    assert.equal(locationIndexRecord(null, country, null).seo_noindex, false, slug);
+    assert.equal(defaultLocationNoindex(country, country.cities[0]), true, `${slug} city`);
+  }
 });
