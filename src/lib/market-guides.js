@@ -1,5 +1,18 @@
 // Original short guidance. Offers and teacher availability remain coordinator-confirmed.
 export const MARKET_GUIDES = {
+  "united-arab-emirates": {
+    title: "Planning online Quran lessons across the UAE",
+    sections: [
+      { title: "Choose your emirate and Gulf Standard Time", text: "Dubai, Abu Dhabi, Sharjah, Ajman, Ras Al Khaimah, Fujairah and Umm Al Quwain use Asia/Dubai time (UTC+4). Share a realistic window around school, work and family commitments; the coordinator confirms teacher availability and the final recurring timetable.", path: "/free-trial?country=United+Arab+Emirates&currency=AED", link: "Discuss a UAE lesson time" },
+      { title: "Choose a course and confirm AED fees", text: "Tell the team whether the learner is starting with Noorani Qaida, improving Quran reading and Tajweed, memorising with revision, or studying Arabic and translation. Ask for the written AED package, lesson duration, weekly frequency, payment and rescheduling terms before enrolling. A free-trial request does not guarantee a particular teacher or slot.", path: "/courses", link: "Compare Quran courses" },
+      { title: "Understand the online-only service", text: "OQC provides live online lessons to learners joining from home. This country guide does not claim a UAE office, classroom, local branch or UAE education-centre licence. Families seeking a locally licensed in-person institute should verify the provider with the relevant emirate authority.", path: "/contact", link: "Ask the admissions team" }
+    ],
+    sources: [
+      { name: "UAE Government: licensing private educational institutes", url: "https://u.ae/en/information-and-services/education/licensing-private-educational-institutes" },
+      { name: "Abu Dhabi Department of Economic Development: licensing requirements", url: "https://www.added.gov.ae/en/set-up/establish-your-business/licensing-requirements" },
+      { name: "UAE Media Council: Advertiser Permit", url: "https://uaemc.gov.ae/en/news/" }
+    ]
+  },
   "united-kingdom": {
     title: "Planning Quran lessons around UK family life",
     sections: [
