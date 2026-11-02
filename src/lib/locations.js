@@ -870,6 +870,21 @@ export const LOCATIONS = [
         "slug": "vatican-city"
       }
     ]
+  },
+  {
+    "name": "United Arab Emirates",
+    "slug": "united-arab-emirates",
+    "currency": "AED",
+    "timezone": "Asia/Dubai",
+    "cities": [
+      { "name": "Dubai", "slug": "dubai" },
+      { "name": "Abu Dhabi", "slug": "abu-dhabi" },
+      { "name": "Sharjah", "slug": "sharjah" },
+      { "name": "Ajman", "slug": "ajman" },
+      { "name": "Ras Al Khaimah", "slug": "ras-al-khaimah" },
+      { "name": "Fujairah", "slug": "fujairah" },
+      { "name": "Umm Al Quwain", "slug": "umm-al-quwain" }
+    ]
   }
 ];
 
