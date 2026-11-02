@@ -45,7 +45,7 @@ test("the review form requires a comment, rating, name, email and consent; media
   assert.deepEqual(Object.keys(reviewFormErrors({ ...VALID, comment: "x".repeat(REVIEW_LIMITS.maxComment + 1) })), ["comment"]);
   assert.deepEqual(Object.keys(reviewFormErrors({ ...VALID, rating: 0 })), ["rating"]);
   assert.deepEqual(Object.keys(reviewFormErrors({ ...VALID, consent: false })), ["consent"]);
-  assert.deepEqual(Object.keys(reviewFormErrors({})).sort(), ["comment", "consent", "email", "name", "rating"]);
+  assert.deepEqual(Object.keys(reviewFormErrors({})), ["rating", "comment", "name", "email", "consent"], "same order as the form, so focus lands on the first visible error");
 });
 
 test("attachments are limited to photos/videos up to 20 MB and use paths the storage policy accepts", () => {
