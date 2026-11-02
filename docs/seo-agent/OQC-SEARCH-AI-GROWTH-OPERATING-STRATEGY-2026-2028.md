@@ -365,7 +365,7 @@ Competitor set must be confirmed using actual Search Console queries and SERPs f
 - Homepage currently shows links to USA, UK, Canada and Australia; UAE is not visible in the live response yet. The UAE homepage change is committed but not production-verified.
 - UK, USA and Australia country hubs are publicly retrievable and show market-specific currency, local-time planner, online-only format and course pathways.
 - The UAE country URL could not be retrieved in this external check. This is an unresolved availability/verification issue, not proof that the URL is a 404. Test with production logs and direct browser/URL inspection.
-- The free-trial page visibly repeats its four benefit statements twice. This should be corrected after reviewing the actual component/CMS source.
+- The free-trial page renders the same four benefit statements in separate desktop and mobile lists (CSS hides one at each breakpoint). This is responsive duplication in the DOM, not a confirmed user-visible double display; verify screen-reader behaviour and avoid unnecessary copy changes.
 - Pricing page shows “Certified tutor”; verify that every advertised tutor qualification supports this wording or change it to accurate language.
 - About page says “Since 2018”; verify documentary evidence before amplifying this claim.
 - Trial page says personal details are “never sold or shared”; review the privacy policy, subprocessors and actual data flows before retaining this absolute statement.
