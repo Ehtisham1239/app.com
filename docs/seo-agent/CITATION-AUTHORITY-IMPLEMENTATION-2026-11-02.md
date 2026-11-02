@@ -2,7 +2,7 @@
 Prepared: 2 November 2026
 Website: https://www.onlinequrancollege.com
 Repository: Ehtisham1239/app.com
-Status: Research and controlled implementation plan. No third-party profile is claimed as created or verified.
+Status: Research and controlled implementation plan. Existing profiles are identified from the official site; no new third-party profile creation or account-admin verification is claimed.
 
 ## 1. Objective and measurement
 Build a small, accurate, relevant authority footprint that helps families discover and verify Online Quran College (OQC), supports brand/entity understanding, earns qualified referral visits, and assists organic free-trial bookings and enrolments in approved markets. Citations do not guarantee Google rankings and cannot replace useful pages, technical SEO, independent editorial coverage, and real customer experience. Do not optimize for raw directory count.
@@ -51,42 +51,48 @@ Follow the SEO operating specification: UK first; USA and Australia next; Canada
 
 ## 4. Priority profile register
 
-**Directory policy:** Do not bulk-submit to generic local directories. For the current online-only academy, use one truthful global brand identity, existing owned profiles, and a small number of genuinely relevant editorial/resource references. Country hubs are landing pages, not separate business locations.
-All statuses below are to verify/create manually unless explicitly marked otherwise. No account access or profile submission has been performed by this repository change.
+**Directory policy:** No bulk submissions to generic local directories. Use one truthful global brand identity, audit existing owned profiles, and pursue only a small number of genuinely relevant editorial/resource references. Country hubs are website landing pages, not business locations.
 
-| Priority | Platform | Scope | Action | Eligibility / control | Official destination |
+| Priority | Platform | Scope | Evidence/status | Action | Destination |
 |---|---|---|---|---|---|
-| P0 | LinkedIn Page | Global | Create or claim one Company or Educational Institution Page; complete logo, description, website and contact | Suitable for an online education brand; verify admin authority | https://www.linkedin.com/help/linkedin/answer/a545752 |
-| P0 | YouTube | Global | Official OQC channel; consistent channel name, About text, website link, course playlists and original helpful videos | Use owned/licensed content only | https://www.youtube.com/ |
-| P0 | Facebook Page | Global | Claim one official brand page; add website/email and verified WhatsApp only | No fake country branch pages | https://www.facebook.com/pages/create |
-| P0 | Instagram professional profile | Global | Official brand account; bio, canonical website, consistent logo and verified contact | No separate local profiles without genuine operations | https://www.instagram.com/ |
-| P1 | Trustpilot | Global | Existing public profile is claimed; verify account admin access and update company description/details; only invite genuine customers neutrally | Public profile observed with 8 reviews and no recent invitation history; do not imply account admin access | https://www.trustpilot.com/review/onlinequrancollege.com |
-| P1 | Bing Webmaster Tools | Search presence | Verify domain, submit sitemap, monitor crawling/indexing | Webmaster tool, not a directory citation | https://www.bing.com/webmasters/ |
-| P1 | Google Search Console | Search presence | Verify domain property, submit sitemap, monitor indexing/performance | Check existing connection; do not duplicate properties | https://search.google.com/search-console |
-| P1 | Crunchbase | Global | Create/claim only if current platform rules are met and factual company information is available | Never invent funding, investors, staff counts or milestones | https://www.crunchbase.com/ |
-| P2 | Pinterest Business | Global | Create/claim only with a real visual publishing plan and original learning resources | Brand/referral discovery, not directory-count exercise | https://business.pinterest.com/ |
-| P2 | Yell | UK | Assess only if OQC has a truthful eligible UK address/postcode and meets listing requirements | Do not use the unverified Virtual Learning District address | https://www.yell.com/free-listing/ |
-| P2 | Yelp | USA/selected markets | Eligibility review; submit only if current rules accept the actual business model/location | No fictitious storefront or service area | https://biz.yelp.com/ |
-| P2 | Apple Business Connect | Supported territories | Eligibility review; no map pin for a nonexistent customer-facing site | Genuine place/location required | https://businessconnect.apple.com/ |
-| P2 | Foursquare | Global/local data | Eligibility review only; no fictitious venue/location | Avoid false map pins | https://foursquare.com/ |
-| P3 | Specialist education/Islamic education directories | Global | Research active, curated, relevant directories that accept online academies and provide real audience value | Verify quality, activity, eligibility, moderation, costs and link terms individually | Research queue; no blanket submission |
+| P0 | Facebook Page | Global | Official website footer links to the existing page | Owner/admin audit; keep one global page and canonical website | https://www.facebook.com/OnlineQuranCollegeLtdUK |
+| P0 | Instagram | Global | Official website footer links to the existing profile | Owner/admin audit; verify bio, website and contact | https://www.instagram.com/online_quran_college |
+| P0 | X | Global | Official website footer links to the existing profile | Owner/admin audit; verify bio and canonical URL | https://x.com/OnlineQuranClg |
+| P1 | Trustpilot | Global | Public profile is marked claimed; 8 reviews; no recent invitation history observed | Confirm owner/admin access and correct company details; no selective or incentivised review requests | https://www.trustpilot.com/review/onlinequrancollege.com |
+| P1 | Apple Business (formerly Apple Business Connect) | Global | Apple documentation supports brand presence for businesses without physical locations; organisation verification is required | Owner sign-in and organisation verification; no false street address or local place pin | https://business.apple.com/ |
+| P2 | LinkedIn Company Page | Global | No official LinkedIn link observed in current site footer | Optional; create only if no existing page and owner can verify company/admin identity | https://www.linkedin.com/company/setup/new/ |
+| P2 | YouTube | Global | No official YouTube link observed in current site footer | Optional; publish only OQC-owned or licensed learning content | https://www.youtube.com/ |
+| P3 | Crunchbase / Pinterest | Global | No verified profile observed in this audit | Optional only where factual company data or a genuine publishing programme justifies it | https://www.crunchbase.com/ |
+| P1 | Google Search Console | Search presence | Prior operations register records the domain property connected; not freshly checked in this task | Recheck current property, sitemap and country/page performance | https://search.google.com/search-console |
+| P1 | Bing Webmaster Tools | Search presence | Prior discovery reported no connected account | Owner sign-in, verify domain and submit sitemap; not a directory citation | https://www.bing.com/webmasters/ |
+
+Google Business Profile is excluded while OQC remains online-only: Google's eligibility rules require in-person customer contact and explicitly exclude online-only businesses. Yell, Yelp, Foursquare, Hotfrog, Yellow Pages, Manta, Nextdoor, Thumbtack and similar generic local directories are excluded from the current programme. Do not invent a local address, service-area business, local phone or city branch.
 
 ## 5. Market execution
 
-### UK — first
-Complete global brand profiles first. Yell, Thomson Local, FreeIndex, Cylex, Yelp UK and similar local directories are conditional, not automatic: check current eligibility and address requirements. If a truthful UK business location/postcode is unavailable or required, skip. Do not create London, Birmingham, Manchester, Leeds or other city business listings; city landing pages remain governed by the local-proof/indexation policy.
+### UK — first priority
+- Keep one global identity: Online Quran College; do not imply a London office or city branch.
+- Audit the existing Facebook, Instagram, X and Trustpilot profiles linked from the official website. Verify account access and consistency; do not create duplicates.
+- Apple Business is a global organisation/brand workflow, not a UK storefront listing. Complete only through the owner's authorised account and accepted verification documents.
+- Do not submit generic local directories or create London, Birmingham, Manchester, Leeds or other city business listings.
 
 ### USA
-Use the global brand profile and USA country landing page, not a fictitious US branch. No US phone/address until owner supplies and verifies a real business contact and platform eligibility. No Google Business Profile while online-only. Focus on brand/education profiles, trustworthy editorial mentions, relevant community partnerships and genuine referral sources.
+- Use the same global brand profiles; use the USA country hub in relevant content/campaign links, not as a separate business listing.
+- Do not publish a US address, phone, branch or local service-area claim.
+- Prioritise genuine US Islamic education/community resource mentions and independent editorial references, subject to owner approval.
 
 ### Australia
-Use global brand identity and Australia country landing page. No city listings or claims of Australian premises, staff, local numbers or accreditation without evidence. Pursue real education/community partnership mentions only where genuine relationships exist.
+- Use the same global brand profiles; use the Australia country hub in relevant content/campaign links, not as a separate business listing.
+- Do not claim Australian premises, staff, local numbers, ABN or accreditation without documentary proof.
+- Prioritise genuine education/community resource mentions where a real relationship exists and owner approval is obtained.
 
 ### Canada
-Use global brand identity and Canada country landing page. No city listings or claims of local premises/accreditation without proof. Keep Canadian spelling and locale on the website; business facts remain consistent.
+- Use the same global brand profiles; use the Canada country hub in relevant content/campaign links, not as a separate business listing.
+- Do not create city listings or claim local premises/accreditation without proof.
+- Keep Canadian spelling and locale on the website; business facts remain consistent.
 
 ### UAE
-Parked under the approved SEO market sequence. No UAE directory profiles or claims of UAE operations until the owner reopens the market and provides verified operational details.
+- Parked under the approved SEO market sequence. No UAE profiles or claims of UAE operations until the owner reopens this market and provides verified operational details.
 
 ## 6. Approved brand description — draft for review
 “Online Quran College provides live, one-to-one online Quran and Islamic learning for children and adults. Learners can explore courses including Noorani Qaida, Quran reading with Tajweed, Hifz, Arabic language, Quran translation and Islamic studies, with class arrangements discussed around the learner’s needs and time zone. Visit our website to explore courses and request a trial.”
