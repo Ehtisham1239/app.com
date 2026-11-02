@@ -13,21 +13,21 @@ test("only https Trustpilot addresses are accepted as the button link", () => {
   for (const bad of ["javascript:alert(1)", "http://www.trustpilot.com/review/x", "https://trustpilot.com.evil.example/review/x", "https://eviltrustpilot.com/x", "https://user:pw@www.trustpilot.com/x", "/review", "", null, 42]) assert.equal(trustpilotUrl(bad), "", String(bad));
 });
 
-test("by default the button shows on every page and opens the review form, with the saved Trustpilot page linked", () => {
+test("by default the button opens OQC’s direct Trustpilot review invitation on every page", () => {
   assert.deepEqual(DEFAULT_SETTINGS["site.reviews_button"], REVIEWS_BUTTON_DEFAULTS);
-  assert.deepEqual(reviewsButtonConfig(undefined, SOCIAL), { href: SOCIAL.trustpilot, googleHref: "", label: "Share your review", sublabel: "Parents & students", everyPage: true, openForm: true });
-  assert.equal(reviewsButtonConfig(undefined, { trustpilot: "" }).href, "", "the form still works without a Trustpilot page");
+  assert.deepEqual(reviewsButtonConfig(undefined, SOCIAL), { href: "https://www.trustpilot.com/evaluate/onlinequrancollege.com", googleHref: "", label: "Share your review", sublabel: "Parents & students", everyPage: true, openForm: false });
+  assert.equal(reviewsButtonConfig(undefined, { trustpilot: "" }).href, "https://www.trustpilot.com/evaluate/onlinequrancollege.com", "the verified direct invitation URL is the safe fallback");
 });
 
 test("CMS values control text, link, pages and form/Trustpilot mode", () => {
   const custom = reviewsButtonConfig({ label: " Rate us ", sublabel: "", url: "https://uk.trustpilot.com/review/onlinequrancollege.com", every_page: false, open_form: false }, SOCIAL);
   assert.deepEqual(custom, { href: "https://uk.trustpilot.com/review/onlinequrancollege.com", googleHref: "", label: "Rate us", sublabel: "", everyPage: false, openForm: false });
   assert.equal(reviewsButtonConfig({ enabled: false }, SOCIAL), null, "switched off in CMS");
-  assert.equal(reviewsButtonConfig({ open_form: false }, { trustpilot: "" }), null, "Trustpilot-only mode needs a Trustpilot link");
-  assert.equal(reviewsButtonConfig({ open_form: false, url: "https://example.com/fake" }, { trustpilot: "" }), null, "a non-Trustpilot link never renders");
+  assert.equal(reviewsButtonConfig({ open_form: false }, { trustpilot: "" }).href, "https://www.trustpilot.com/evaluate/onlinequrancollege.com", "direct mode falls back to the verified invitation URL");
+  assert.equal(reviewsButtonConfig({ open_form: false, url: "https://example.com/fake" }, { trustpilot: "" }).href, "https://www.trustpilot.com/evaluate/onlinequrancollege.com", "unsafe CMS links fall back to the verified Trustpilot destination");
   assert.equal(reviewsButtonConfig({ url: "https://example.com/x" }, SOCIAL).href, SOCIAL.trustpilot, "invalid custom link falls back to the saved Trustpilot page");
-  // A row saved before 2 Nov (no open_form key) keeps working and now opens the form.
-  assert.equal(reviewsButtonConfig({ enabled: true, label: "Review us", every_page: false }, SOCIAL).openForm, true);
+  // A row saved before direct-link mode (no open_form key) inherits the safe direct-link default.
+  assert.equal(reviewsButtonConfig({ enabled: true, label: "Review us", every_page: false }, SOCIAL).openForm, false);
 });
 
 test("the settings editor rejects unsafe links and unusable text before saving", () => {

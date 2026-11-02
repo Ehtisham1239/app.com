@@ -8,9 +8,9 @@ export const REVIEWS_BUTTON_DEFAULTS = {
   enabled: true,
   label: "Share your review",
   sublabel: "Parents & students",
-  url: "",
+  url: "https://www.trustpilot.com/evaluate/onlinequrancollege.com",
   every_page: true,
-  open_form: true,
+  open_form: false,
   google_url: "",
 };
 
@@ -69,7 +69,7 @@ export function reviewsButtonError(value = {}) {
 export function reviewsButtonConfig(setting, social) {
   const value = { ...REVIEWS_BUTTON_DEFAULTS, ...(setting && typeof setting === "object" ? setting : {}) };
   if (!value.enabled) return null;
-  const href = trustpilotUrl(value.url) || trustpilotUrl(social?.trustpilot);
+  const href = trustpilotUrl(value.url) || trustpilotUrl(social?.trustpilot) || trustpilotUrl(REVIEWS_BUTTON_DEFAULTS.url);
   const label = String(value.label ?? "").trim().slice(0, MAX_LABEL);
   const openForm = value.open_form !== false;
   if (!label || (!openForm && !href)) return null;
