@@ -40,4 +40,4 @@ Best-placed commercial queries (position ≤ 15): "online quran classes uk" (13.
 - All 20 published blogs are under the 1,000-word rule (largest: 920 words).
 
 ## 4. Free-trial journey (source review)
-`/free-trial` → `QuickTrialForm`: learner, age band, country, time zone, teacher preference, WhatsApp, email, consent. Client validation requires 7–15 digits. Page states 3-day trial, Weekend plan excluded, reply within 24 hours, with FAQPage data matching visible text. Improvement made: country-code placeholder and a visible hint linked to the field for screen readers.
+`/free-trial` → `QuickTrialForm`: learner, age band, country, time zone, teacher preference, WhatsApp, email, consent. Client validation requires 7–15 digits. Page states 3-day trial, Weekend plan excluded, and (since `46e1b9e`) an Admissions follow-up without a 24-hour promise, with FAQPage data matching visible text. Improvement made: country-code placeholder and a visible hint linked to the field for screen readers.

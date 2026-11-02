@@ -4,7 +4,7 @@ Aim: make OQC's own facts easy to quote correctly. No featured-snippet or AI-ans
 
 ## Rules
 1. Answer first: 1–2 sentences that fully answer the question, then detail.
-2. Only facts from the Claims register / CMS (trial 3 days, Weekend plan excluded, reply within 24 h, teacher preference subject to availability, live local-currency estimate with "approx.").
+2. Only facts from the Claims register / CMS (trial 3 days, Weekend plan excluded, Admissions follows up (no response-time promise), teacher preference subject to availability, live local-currency estimate with "approx.").
 3. One question → one destination page. FAQPage data only where the same Q&A is visible on the page (already enforced by tests for /free-trial and learning guides).
 4. Islamic statements: verified Surah:Ayah or graded hadith with source; disputed matters marked as such; no fatwas; scholar review before publishing religious rulings.
 
