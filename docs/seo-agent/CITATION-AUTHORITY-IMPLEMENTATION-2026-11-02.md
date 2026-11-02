@@ -23,8 +23,10 @@ Public email currently shown on site: info@onlinequrancollege.com (reconfirm bef
 Phone currently shown on the Contact page: +44 7864 710821 (reconfirm ownership, support availability, and permission to publish before using).
 Never invent a US, UK, Canadian, Australian, UAE or other office, address, postcode, local phone, legal registration, accreditation, award, student count, local team, or branch.
 
-### Critical live-site inconsistency
-The live Contact page currently displays “Online Quran College Global HQ / Suite 404, Virtual Learning District, London, UK”. The owner's operating context says OQC is online-only and has no customer-facing physical office. Do not copy this address into directory profiles or schema. Confirm whether it is a genuine, verifiable registered/mailing address. If not, remove it from the public Contact page and use a truthful statement such as “Online-only academy — serving students remotely; no walk-in office.” Do not publish a home address or virtual mailbox as a storefront.
+### Identity/location correction — implemented in source
+The live Contact page was rechecked on 2 November 2026. The previously reported “Suite 404, Virtual Learning District” text is no longer present. The current CMS-driven Contact/footer instead displayed “Registered in United Kingdom” / “United Kingdom”, while the owner’s operating context is online-only with no customer-facing physical office. This country-only setting must not be represented as a street/postal address or storefront.
+
+The implementation now displays “Online-only academy · no walk-in office” on Contact and footer, and Organization JSON-LD emits a PostalAddress only when a complete street address and two-letter country code are explicitly configured. A country-only location setting is not converted into a PostalAddress. Recheck the live release after deployment. Do not publish a home address, virtual mailbox, or invented storefront.
 
 The live About page contains claims including “Est. 2018”, “thousands of families”, “25+ countries”, and tutor qualifications/credentials. These require documentary evidence and owner approval before copying to profiles, structured data, press releases or directory descriptions. Use only facts approved in the Claims register.
 
@@ -56,7 +58,7 @@ All statuses below are to verify/create manually unless explicitly marked otherw
 | P0 | YouTube | Global | Official OQC channel; consistent channel name, About text, website link, course playlists and original helpful videos | Use owned/licensed content only | https://www.youtube.com/ |
 | P0 | Facebook Page | Global | Claim one official brand page; add website/email and verified WhatsApp only | No fake country branch pages | https://www.facebook.com/pages/create |
 | P0 | Instagram professional profile | Global | Official brand account; bio, canonical website, consistent logo and verified contact | No separate local profiles without genuine operations | https://www.instagram.com/ |
-| P1 | Trustpilot | Global | Claim/create official profile and invite authentic customers to leave unbiased reviews | No fabricated or incentivised reviews | https://business.trustpilot.com/ |
+| P1 | Trustpilot | Global | Existing public profile is claimed; verify account admin access and update company description/details; only invite genuine customers neutrally | Public profile observed with 8 reviews and no recent invitation history; do not imply account admin access | https://www.trustpilot.com/review/onlinequrancollege.com |
 | P1 | Bing Webmaster Tools | Search presence | Verify domain, submit sitemap, monitor crawling/indexing | Webmaster tool, not a directory citation | https://www.bing.com/webmasters/ |
 | P1 | Google Search Console | Search presence | Verify domain property, submit sitemap, monitor indexing/performance | Check existing connection; do not duplicate properties | https://search.google.com/search-console |
 | P1 | Crunchbase | Global | Create/claim only if current platform rules are met and factual company information is available | Never invent funding, investors, staff counts or milestones | https://www.crunchbase.com/ |
@@ -137,4 +139,4 @@ For each platform: (1) search for duplicates; (2) read current eligibility polic
 ## 12. Completion definition
 Complete only when website identity inconsistencies are resolved and approved; claims are reconciled with the Claims register; eligible priority profiles are live/claimed/verified; conditional or ineligible directories are explicitly skipped or resolved with evidence; verified sameAs links are implemented; external links are tested and tracked; Search Console, GA4 and admissions/ERP can attribute outcomes where available; and the register contains public URLs, verification evidence, owners and review dates.
 
-Current status: this research and controlled plan is documented in the repository. No profile creation, directory submission, review solicitation, account verification, schema deployment, DNS change or production release is claimed by this file.
+Current status: research and controlled plan is documented in the repository. Trustpilot public profile is observed as claimed, but OQC account admin access is not verified. Contact/footer and postal-address schema correction is implemented in source and awaits production deployment/verification. No new third-party profile creation, directory submission, review solicitation, account verification, DNS change or production release is claimed by this file.
