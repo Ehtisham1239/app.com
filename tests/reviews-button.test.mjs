@@ -15,13 +15,13 @@ test("only https Trustpilot addresses are accepted as the button link", () => {
 
 test("by default the button opens OQC’s direct Trustpilot review invitation on every page", () => {
   assert.deepEqual(DEFAULT_SETTINGS["site.reviews_button"], REVIEWS_BUTTON_DEFAULTS);
-  assert.deepEqual(reviewsButtonConfig(undefined, SOCIAL), { href: "https://www.trustpilot.com/evaluate/onlinequrancollege.com", googleHref: "", label: "Review us on Trustpilot", sublabel: "Parents & students", everyPage: true, openForm: false });
+  assert.deepEqual(reviewsButtonConfig(undefined, SOCIAL), { href: "https://www.trustpilot.com/evaluate/onlinequrancollege.com", googleHref: "", label: "Review us on Trustpilot", sublabel: "Parents & students", everyPage: true, openForm: false, pageUrl: "/reviews" });
   assert.equal(reviewsButtonConfig(undefined, { trustpilot: "" }).href, "https://www.trustpilot.com/evaluate/onlinequrancollege.com", "the verified direct invitation URL is the safe fallback");
 });
 
 test("CMS values control text, link, pages and form/Trustpilot mode", () => {
   const custom = reviewsButtonConfig({ label: " Rate us ", sublabel: "", url: "https://uk.trustpilot.com/review/onlinequrancollege.com", every_page: false, open_form: false }, SOCIAL);
-  assert.deepEqual(custom, { href: "https://uk.trustpilot.com/review/onlinequrancollege.com", googleHref: "", label: "Rate us", sublabel: "", everyPage: false, openForm: false });
+  assert.deepEqual(custom, { href: "https://uk.trustpilot.com/review/onlinequrancollege.com", googleHref: "", label: "Rate us", sublabel: "", everyPage: false, openForm: false, pageUrl: "/reviews" });
   assert.equal(reviewsButtonConfig({ enabled: false }, SOCIAL), null, "switched off in CMS");
   assert.equal(reviewsButtonConfig({ open_form: false }, { trustpilot: "" }).href, "https://www.trustpilot.com/evaluate/onlinequrancollege.com", "direct mode falls back to the verified invitation URL");
   assert.equal(reviewsButtonConfig({ open_form: false, url: "https://example.com/fake" }, { trustpilot: "" }).href, "https://www.trustpilot.com/evaluate/onlinequrancollege.com", "unsafe CMS links fall back to the verified Trustpilot destination");
@@ -105,19 +105,22 @@ test("speed: only the small trigger ships with each page; the form chunk loads o
   assert.match(trigger, /\) : open \? \(/, "even the loading message is rendered only while opening");
 });
 
-test("the form is a two-step flow that keeps a draft, guides the reviewer and supports keyboard rating", () => {
+test("the form is one short screen that keeps a draft, guides the reviewer and supports keyboard rating", () => {
   const source = read("src/components/site/review-form.jsx");
-  assert.match(source, /const STEP_FIELDS = \[\["rating", "comment", "media"\], \["name", "email", "consent"\]\]/);
-  assert.match(source, /Step 1 of 2: about the classes/);
-  assert.match(source, /export function ReviewForm\(\{ open, config, consentText, onClose \}\)/);
+  assert.doesNotMatch(source, /STEP_FIELDS|Step 1 of 2/, "no multi-step flow");
+  assert.match(source, /const errs = reviewFormErrors\(form\);/, "one submit validates every field");
+  assert.match(source, /export function ReviewForm\(\{ open, config, consentText, onClose, inline = false \}\)/);
+  assert.match(source, /const STARTERS = \[/, "one-tap topic chips");
+  assert.match(source, /COMMENT_PROMPTS\[form\.rating\]/);
   assert.match(read("src/components/site/reviews-button.jsx"), /document\.documentElement\.style\.overflow = open \? "hidden" : ""/);
   assert.match(source, /e\.key === "ArrowRight"/);
   assert.match(source, /URL\.revokeObjectURL/);
-  assert.match(source, /onDrop=/);
-  assert.match(source, /How reviews work/);
   assert.match(source, /first name, rating and comment only/);
   assert.match(read("src/app/admin/(panel)/reviews/[id]/page.jsx"), /name: r\.name\.trim\(\)\.split\(\/\\s\+\/\)\[0\]/, "testimonial drafts keep that first-name promise");
   assert.match(read("src/app/admin/(panel)/reviews/page.jsx"), /How to handle reviews/);
+  const page = read("src/app/(site)/reviews/page.jsx");
+  assert.match(page, /<ReviewForm open inline /, "the /reviews page shows the form inline");
+  assert.match(page, /robots: \{ index: false, follow: true \}/);
   const css = read("src/app/globals.css");
   assert.match(css, /\.review-star\[data-filled="true"\] \{ color: var\(--color-gold-500\); \}/);
   assert.match(css, /@keyframes review-sheet-in/);

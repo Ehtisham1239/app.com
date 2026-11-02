@@ -7,13 +7,15 @@ const imageManifest = JSON.parse(readFileSync(new URL("./src/lib/image-manifest.
 const securityHeaders = [
   // Disallow HTML event-handler attributes even on cacheable public pages.
   // This is separate from the nonce-based script policy on staff/auth routes.
-  { key: "Content-Security-Policy", value: "base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src-attr 'none'" },
+  { key: "Content-Security-Policy", value: "base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src-attr 'none'; upgrade-insecure-requests" },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=()" },
   { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
   { key: "Cross-Origin-Opener-Policy", value: "same-origin-allow-popups" },
+  { key: "X-Permitted-Cross-Domain-Policies", value: "none" },
+  { key: "Origin-Agent-Cluster", value: "?1" },
 ];
 
 const nextConfig = {
@@ -45,9 +47,9 @@ const nextConfig = {
   async redirects() {
     const courses = ["noorani-qaida", "quran-nazara", "hifz-quran", "arabic-language", "quran-translation", "hadith-translation"];
     return [
-      // Short, memorable customer-review URL; keep the longer branded page as canonical.
-      { source: "/copoloit", destination: "/reviews", permanent: true },
+      // Short customer-review link (/review). /copoloit was shared briefly on 2 Nov 2026; keep it working.
       { source: "/review", destination: "/reviews", permanent: true },
+      { source: "/copoloit", destination: "/reviews", permanent: true },
       ...legacyImageRedirects(imageManifest),
       { source: "/images/learning/map-:region([a-z-]+)-r2-:width(400|800|1200).webp", destination: "/images/learning/oqc-learning-:region-v3-:width.webp", permanent: true },
       { source: "/images/learning/map-:region([a-z-]+)-:width(400|800|1200).webp", destination: "/images/learning/oqc-learning-:region-v3-:width.webp", permanent: true },
