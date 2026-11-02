@@ -57,6 +57,7 @@ export function googleReviewUrl(value) {
 
 export function reviewsButtonError(value = {}) {
   if (value.url && !trustpilotUrl(value.url)) return "Trustpilot link must start with https:// and be a trustpilot.com address.";
+  if (value.page_url && (typeof value.page_url !== "string" || !/^\\/(?!\\/)[A-Za-z0-9/_-]*$/.test(value.page_url))) return "Customer review page must be a same-site path such as /copoloit.";
   if (value.google_url && !googleReviewUrl(value.google_url)) return "Google review link must be the https:// link from Google Business Profile → Ask for reviews (g.page/r/… or search.google.com/local/writereview…).";
   if (value.enabled && !String(value.label ?? "").trim()) return "Add the button text, or switch the button off.";
   if (String(value.label ?? "").length > MAX_LABEL) return `Button text must be ${MAX_LABEL} characters or fewer.`;
@@ -74,6 +75,7 @@ export function reviewsButtonConfig(setting, social) {
   if (!label || (!openForm && !href)) return null;
   return {
     href,
+    pageUrl: value.page_url || "/copoloit",
     googleHref: googleReviewUrl(value.google_url),
     label,
     sublabel: String(value.sublabel ?? "").trim().slice(0, MAX_SUBLABEL),
