@@ -53,7 +53,7 @@ export const DEFAULT_SETTINGS = {
     { title: "Start regular classes", text: "Meet your teacher live online on your chosen days and track progress every month." },
   ],
   "site.announcement": { enabled: true, text: "3 days of free classes — no credit card required.", link_label: "Book now", link: "/free-trial" },
-  "site.reviews_button": { ...REVIEWS_BUTTON_DEFAULTS },
+  "site.reviews_button": { ...REVIEWS_BUTTON_DEFAULTS, page_url: "/copoloit" },
   "site.forms": {
     consent_version: "2026-10-13",
     consent_text:

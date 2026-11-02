@@ -120,6 +120,10 @@ export default function ReviewPage({ params }) {
           </Card>
         </div>
         <aside className="space-y-4">
+          {r.rating <= 2 && <Card title="Negative feedback attention">
+            <p className="text-sm leading-relaxed text-ink-soft">This low-rated review is routed for staff attention. Contact the customer, investigate the issue and record the outcome in the internal note. Public review invitations must remain available to every customer.</p>
+            {r.escalated_at ? <p className="mt-3 rounded-xl bg-rose-50 px-3 py-2 text-sm font-semibold text-rose-800">5-day escalation sent: {formatDateTime(r.escalated_at)}</p> : <p className="mt-3 text-xs text-ink-faint">If it remains in New status for five days, the system sends one escalation notification.</p>}
+          </Card>}
           <Card title="Use this review">
             {r.testimonial_id ? (
               <Link href={`/admin/testimonials/${r.testimonial_id}`} className="btn btn-outline w-full"><MessageSquareQuote className="size-4" /> Open testimonial</Link>

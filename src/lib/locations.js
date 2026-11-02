@@ -870,6 +870,21 @@ export const LOCATIONS = [
         "slug": "vatican-city"
       }
     ]
+  },
+  {
+    "name": "United Arab Emirates",
+    "slug": "united-arab-emirates",
+    "currency": "AED",
+    "timezone": "Asia/Dubai",
+    "cities": [
+      { "name": "Dubai", "slug": "dubai" },
+      { "name": "Abu Dhabi", "slug": "abu-dhabi" },
+      { "name": "Sharjah", "slug": "sharjah" },
+      { "name": "Ajman", "slug": "ajman" },
+      { "name": "Ras Al Khaimah", "slug": "ras-al-khaimah" },
+      { "name": "Fujairah", "slug": "fujairah" },
+      { "name": "Umm Al Quwain", "slug": "umm-al-quwain" }
+    ]
   }
 ];
 
@@ -892,7 +907,7 @@ export function locationFromCmsSlug(slug) {
 
 // Country defaults are fallbacks; named cities can have a different IANA zone.
 export const locationTimeZone = (country, city) => city?.timezone || country.timezone;
-export const locationLocale = (country) => ({ "united-states": "en_US", "united-kingdom": "en_GB", canada: "en_CA", australia: "en_AU" }[country.slug] || "en_GB");
+export const locationLocale = (country) => ({ "united-states": "en_US", "united-kingdom": "en_GB", canada: "en_CA", australia: "en_AU", "united-arab-emirates": "en_AE" }[country.slug] || "en_GB");
 // "in the United Kingdom", "in the Netherlands", but "in Canada".
 export const countryInName = (country) => `${/^(United |Netherlands$|Czech Republic$)/.test(country.name) ? "the " : ""}${country.name}`;
 // The 22 Oct 2026 location seed saved "Online Quran classes in United Kingdom"
@@ -926,6 +941,6 @@ export function locationSearchIntro(country, city) {
 // schema). Update when that code changes so sitemap lastmod reflects the visible page.
 export const LOCATION_TEMPLATE_UPDATED = "2026-10-31";
 export const locationLastModified = (page) => [page?.updated_at, LOCATION_TEMPLATE_UPDATED].filter(Boolean).map((d) => new Date(d)).filter((d) => !Number.isNaN(d.getTime())).sort((a, b) => b - a)[0].toISOString();
-export const INDEXED_MARKETS = ["united-kingdom", "united-states", "australia", "canada"];
+export const INDEXED_MARKETS = ["united-kingdom", "united-states", "australia", "canada", "united-arab-emirates"];
 export const defaultLocationNoindex = (country, city) => Boolean(city) || !INDEXED_MARKETS.includes(country.slug);
 export const locationIndexRecord = (page, country, city) => ({ ...(page || {}), seo_noindex: page?.seo_noindex ?? defaultLocationNoindex(country, city) });

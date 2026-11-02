@@ -45,6 +45,11 @@ export const SEARCH_INTENTS = {
     "heading": "Female and male Quran teachers",
     "intro": "Request a female Quran teacher online for your preferred learning language and class time. The coordinator confirms which online Quran teacher is available before lessons are arranged."
   },
+  "/locations/united-arab-emirates": {
+    "phrase": "online Quran classes in UAE",
+    "heading": "Online Quran classes in the United Arab Emirates",
+    "intro": "Live one-to-one online Quran lessons for children and adults across the UAE. Explore Noorani Qaida, Quran reading, Tajweed and Hifz, and arrange lesson times in Gulf Standard Time (Asia/Dubai). Classes are delivered online; no UAE teaching-centre or branch is represented."
+  },
   "/locations/australia": {
     "phrase": "online Quran tuition in Australia",
     "heading": "Online Quran classes in Australia",
