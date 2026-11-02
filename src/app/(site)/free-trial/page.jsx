@@ -25,7 +25,7 @@ const PROMISES = [
   { icon: Clock3, title: "Reply within 24 hours", text: "A coordinator contacts you by WhatsApp or email to confirm a time." },
   { icon: HeartHandshake, title: "Share your teacher preference", text: "Request a female or male teacher; the coordinator confirms availability and language." },
   { icon: CalendarCheck2, title: "3 days free on eligible plans", text: "No card needed for the free Quran trial classes. The Weekend plan is excluded." },
-  { icon: ShieldCheck, title: "Your details are safe", text: "Used only to arrange your classes — never sold or shared." },
+  { icon: ShieldCheck, title: "Your details are safe", text: "Read our privacy policy to understand how enquiry details are collected and used." },
 ];
 
 export default async function FreeTrialPage({ searchParams }) {
@@ -50,7 +50,7 @@ export default async function FreeTrialPage({ searchParams }) {
           <div data-hero-visual className="mt-6 hidden overflow-hidden rounded-[1.5rem] border border-white/15 lg:block">
             <ContentImage src={COVER.src} alt={COVER.alt} priority sizes="(max-width: 1024px) 0px, 560px" className="aspect-[16/9] w-full object-cover" />
           </div>
-          <ul className="mt-6 hidden gap-4 sm:grid sm:grid-cols-2">
+          <ul className="mt-6 grid gap-4 sm:grid-cols-2">
             {promises.map(({ icon: Icon, title, text }) => (
               <li key={title} className="flex gap-3">
                 <Icon className="mt-0.5 size-5 shrink-0 text-gold-300" aria-hidden="true" />
@@ -62,14 +62,7 @@ export default async function FreeTrialPage({ searchParams }) {
         <Suspense fallback={<div className="surface h-[36rem] animate-pulse" aria-label="Loading trial form" />}>
           <QuickTrialForm initialPreferenceNotes={preferenceNotes} currencies={quoteCurrencies(plans)} courses={courses.map(({ id, title }) => ({ id, title }))} plans={plans.map(({ id, name, trial_days }) => ({ id, name, trial_days }))} consentText={forms.consent_text} successText={forms.trial_success} whatsappHref={wa} />
         </Suspense>
-        <ul className="grid gap-4 text-white sm:hidden">
-          {promises.map(({ icon: Icon, title, text }) => (
-            <li key={title} className="flex gap-3">
-              <Icon className="mt-0.5 size-5 shrink-0 text-gold-300" aria-hidden="true" />
-              <div><h2 className="text-[0.98rem] font-semibold text-white">{title}</h2><p className="mt-0.5 text-[0.86rem] text-white/75">{text}</p></div>
-            </li>
-          ))}
-        </ul>
+
       </div>
     </section>
   );
