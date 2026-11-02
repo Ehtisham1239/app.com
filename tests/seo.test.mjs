@@ -103,3 +103,35 @@ test("priority country hubs remain indexable while city pages stay noindex by de
     assert.equal(defaultLocationNoindex(country, country.cities[0]), true, `${slug} city`);
   }
 });
+
+test("robots explicitly permits Perplexity search crawling on public pages and blocks private routes", async () => {
+  const { default: robots } = await import("../src/app/robots.js");
+  const config = robots();
+  const perplexity = config.rules.find((rule) => rule.userAgent === "PerplexityBot");
+  const wildcard = config.rules.find((rule) => rule.userAgent === "*");
+  assert.ok(perplexity);
+  assert.ok(perplexity.allow.includes("/"));
+  for (const path of ["/admin", "/auth", "/api/", "/parents"]) assert.ok(perplexity.disallow.includes(path), path);
+  assert.ok(wildcard.allow.includes("/"));
+  for (const path of ["/admin", "/auth", "/api/", "/parents"]) assert.ok(wildcard.disallow.includes(path), path);
+});
+
+test("free-trial benefits render once and avoid an absolute data-sharing promise", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const source = await readFile(new URL("../src/app/(site)/free-trial/page.jsx", import.meta.url), "utf8");
+  assert.equal((source.match(/promises\.map\(/g) || []).length, 1);
+  assert.equal(source.includes("never sold or shared"), false);
+  assert.ok(source.includes("privacy policy"));
+});
+
+test("UAE market hub has a distinct online-only guide and all seven emirates", async () => {
+  const { getLocation } = await import("../src/lib/locations.js");
+  const { MARKET_GUIDES } = await import("../src/lib/market-guides.js");
+  const uae = getLocation("united-arab-emirates");
+  assert.ok(uae);
+  assert.equal(uae.currency, "AED");
+  assert.equal(uae.timezone, "Asia/Dubai");
+  assert.equal(uae.cities.length, 7);
+  assert.ok(MARKET_GUIDES["united-arab-emirates"].sections.length >= 4);
+  assert.ok(MARKET_GUIDES["united-arab-emirates"].sections.some((section) => section.text.includes("does not claim a UAE office")));
+});
