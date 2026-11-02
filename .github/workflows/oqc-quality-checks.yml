@@ -31,6 +31,8 @@ jobs:
         run: npm test
       - name: Run ESLint
         run: npm run lint
+      - name: Build production application
+        run: npm run build
 
   production-smoke:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
