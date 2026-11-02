@@ -9,6 +9,7 @@ export const REVIEWS_BUTTON_DEFAULTS = {
   sublabel: "Parents & students",
   url: "https://www.trustpilot.com/evaluate/onlinequrancollege.com",
   page_url: "/reviews",
+  invite_message: "",
   every_page: true,
   open_form: false,
   google_url: "",
@@ -56,9 +57,41 @@ export function googleReviewUrl(value) {
   }
 }
 
+// Shareable short link for the review page (CMS "Customer review page URL"), e.g. /copoloit.
+// Any valid one-segment path redirects to /reviews through the [slug] route; it must not
+// shadow a real section of the site.
+const RESERVED_PATHS = new Set(["admin", "api", "auth", "parents", "blog", "courses", "locations", "pricing", "free-trial",
+  "faq", "contact", "about", "teachers", "careers", "learn", "reviews", "verify-certificate", "privacy-policy",
+  "terms-and-conditions", "refund-policy", "sitemap.xml", "robots.txt", "llms.txt", "brand", "images", "icons", "fonts"]);
+export function reviewShortPath(value) {
+  if (typeof value !== "string") return "";
+  const path = value.trim().toLowerCase();
+  if (path === "/reviews") return path;
+  if (!/^\/[a-z0-9][a-z0-9-]{1,39}$/.test(path) || RESERVED_PATHS.has(path.slice(1))) return "";
+  return path;
+}
+
+// Neutral invitation sent to every eligible family after a genuine interaction such as a PTM
+// (owner's Trustpilot audit, 2 Nov 2026). Never ask for five stars, offer rewards or invite selectively.
+export const DEFAULT_INVITE_MESSAGE = "Assalam-o-Alaikum! Thank you for your time during today's PTM. If you have two minutes, please share your honest experience with Online Quran College: {link} Your feedback and suggestions help us improve. JazakAllah Khair!";
+export function reviewInviteMessage(template, link) {
+  const text = String(template ?? "").trim() || DEFAULT_INVITE_MESSAGE;
+  return text.includes("{link}") ? text.replaceAll("{link}", link) : `${text} ${link}`;
+}
+// Words that would make an invitation non-neutral (rating requests or incentives).
+export function reviewInviteError(template) {
+  const text = String(template ?? "");
+  if (text.length > 600) return "Keep the invitation under 600 characters.";
+  if (/(5|five)[-\s]?stars?|\bpositive review|\bgood review|\bdiscount|\breward|\bgift|\bvoucher|\bfree (class|lesson|month)/i.test(text)) {
+    return "Keep the invitation neutral: do not ask for a rating or offer anything in return for a review.";
+  }
+  return null;
+}
+
 export function reviewsButtonError(value = {}) {
   if (value.url && !trustpilotUrl(value.url)) return "Trustpilot link must start with https:// and be a trustpilot.com address.";
-  if (value.page_url && (typeof value.page_url !== "string" || !/^\/(?!\/)[A-Za-z0-9/_-]*$/.test(value.page_url))) return "Customer review page must be a same-site path such as /reviews.";
+  if (value.page_url && !reviewShortPath(value.page_url)) return "Short review link must be one word after the slash, e.g. /copoloit or /feedback (letters, numbers, hyphens; not an existing section such as /courses).";
+  if (reviewInviteError(value.invite_message)) return reviewInviteError(value.invite_message);
   if (value.google_url && !googleReviewUrl(value.google_url)) return "Google review link must be the https:// link from Google Business Profile → Ask for reviews (g.page/r/… or search.google.com/local/writereview…).";
   if (value.enabled && !String(value.label ?? "").trim()) return "Add the button text, or switch the button off.";
   if (String(value.label ?? "").length > MAX_LABEL) return `Button text must be ${MAX_LABEL} characters or fewer.`;
@@ -76,7 +109,7 @@ export function reviewsButtonConfig(setting, social) {
   if (!label || (!openForm && !href)) return null;
   return {
     href,
-    pageUrl: value.page_url || "/reviews",
+    pageUrl: reviewShortPath(value.page_url) || "/reviews",
     googleHref: googleReviewUrl(value.google_url),
     label,
     sublabel: String(value.sublabel ?? "").trim().slice(0, MAX_SUBLABEL),

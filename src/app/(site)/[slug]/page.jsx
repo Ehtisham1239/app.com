@@ -3,7 +3,8 @@ import { locationFromCmsSlug, locationPath } from "@/lib/locations";
 import { contentMetadata } from "@/lib/seo-metadata";
 import { notFound, permanentRedirect, redirect } from "next/navigation";
 import { CmsPage } from "@/components/site/cms-page";
-import { getPage, getPublishedSlugs, getRedirect } from "@/lib/site-data";
+import { getPage, getPublishedSlugs, getRedirect, getSettings } from "@/lib/site-data";
+import { reviewShortPath } from "@/lib/reviews-button";
 import { truncate, stripHtml } from "@/lib/format";
 
 export const revalidate = 300;
@@ -39,6 +40,9 @@ export default async function Page({ params }) {
       if (r.status_code === 301 || r.status_code === 308) permanentRedirect(r.to_path);
       redirect(r.to_path);
     }
+    // The short review link saved in CMS → Settings → Reviews button (e.g. /copoloit).
+    const short = reviewShortPath((await getSettings())["site.reviews_button"]?.page_url);
+    if (short && short !== "/reviews" && short === `/${String(slug).toLowerCase()}`) permanentRedirect("/reviews");
     notFound();
   }
   return <CmsPage page={page} />;
