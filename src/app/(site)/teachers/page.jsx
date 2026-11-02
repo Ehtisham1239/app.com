@@ -46,7 +46,7 @@ export default async function TeachersPage() {
             ))}
             <div className="rounded-[var(--radius-card)] border border-gold-300 bg-gold-50 p-7 md:col-span-2">
               <p className="text-[1.02rem] text-ink">
-                Teacher profiles are being updated. During your free trial we introduce you to your teacher personally and you can change teacher at any time.
+                Public teacher profiles are not currently displayed. Before enrolment, ask Admissions to confirm the proposed teacher’s qualifications, experience, teaching language and availability.
               </p>
               <Link href="/free-trial" className="mt-4 inline-flex items-center gap-1.5 font-semibold text-leaf-700 hover:text-leaf-800">
                 Meet a teacher in a free trial <ArrowRight className="size-4" aria-hidden="true" />
