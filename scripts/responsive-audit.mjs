@@ -1,0 +1,87 @@
+// Responsive audit of the live site (or SMOKE_BASE_URL): opens the main public
+// pages at phone, tablet and desktop widths and fails when a page scrolls
+// sideways, i.e. something is wider than the screen outside a scrollable box.
+// Also checks the country-hub hreflang cluster and that re-indexed city pages
+// are indexable. Screenshots at 390px go to RESPONSIVE_SHOTS_DIR when set.
+import { chromium } from "playwright";
+import { mkdirSync } from "node:fs";
+
+const base = (process.env.SMOKE_BASE_URL || "https://www.onlinequrancollege.com").replace(/\/$/, "");
+const shots = process.env.RESPONSIVE_SHOTS_DIR || "";
+const WIDTHS = [320, 360, 390, 768, 1024, 1440];
+export const PAGES = [
+  "/", "/courses", "/courses/hifz-quran", "/courses/noorani-qaida", "/pricing", "/free-trial", "/teachers",
+  "/reviews", "/learn", "/learn/quran-for-adults", "/blog", "/blog/online-quran-class-fees-uk-comparison",
+  "/faq", "/about", "/contact", "/locations",
+  "/locations/united-kingdom", "/locations/united-states", "/locations/canada", "/locations/australia", "/locations/united-arab-emirates",
+  "/locations/united-states/houston", "/locations/australia/perth", "/locations/australia/melbourne",
+];
+const HUBS = ["/locations/united-kingdom", "/locations/united-states", "/locations/canada", "/locations/australia", "/locations/united-arab-emirates"];
+const CITY_PAGES = ["/locations/united-states/houston", "/locations/australia/perth", "/locations/australia/melbourne"];
+
+// Runs in the page: elements that stick out past the right edge and are not
+// inside a box that scrolls or clips horizontally.
+function overflowReport() {
+  const width = document.documentElement.clientWidth;
+  const scrollWidth = document.documentElement.scrollWidth;
+  const clipped = (el) => {
+    for (let p = el.parentElement; p && p !== document.body; p = p.parentElement) {
+      const o = getComputedStyle(p).overflowX;
+      if (o === "auto" || o === "scroll" || o === "hidden" || o === "clip") return true;
+    }
+    return false;
+  };
+  const offenders = [];
+  for (const el of document.body.querySelectorAll("*")) {
+    const r = el.getBoundingClientRect();
+    if (!r.width || r.right <= width + 1 || clipped(el)) continue;
+    const s = getComputedStyle(el);
+    if (s.position === "fixed" || s.visibility === "hidden" || s.display === "none") continue;
+    offenders.push({ tag: el.tagName.toLowerCase(), cls: String(el.className || "").slice(0, 80), text: (el.textContent || "").trim().slice(0, 50), right: Math.round(r.right) });
+    if (offenders.length >= 5) break;
+  }
+  return { width, scrollWidth, offenders };
+}
+
+async function main() {
+  if (shots) mkdirSync(shots, { recursive: true });
+  const browser = await chromium.launch({ headless: true, ...(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {}) });
+  const failures = [];
+  let checks = 0;
+  for (const width of WIDTHS) {
+    const context = await browser.newContext({ viewport: { width, height: 900 }, isMobile: width < 768, hasTouch: width < 768, deviceScaleFactor: 1 });
+    const page = await context.newPage();
+    for (const path of PAGES) {
+      const response = await page.goto(`${base}${path}`, { waitUntil: "load", timeout: 60_000 });
+      if (!response || response.status() !== 200) { failures.push(`${path} @${width}px: HTTP ${response?.status()}`); continue; }
+      await page.waitForTimeout(400);
+      const report = await page.evaluate(overflowReport);
+      checks++;
+      if (report.scrollWidth > report.width + 1) {
+        failures.push(`${path} @${width}px: page is ${report.scrollWidth}px wide on a ${report.width}px screen; ${report.offenders.map((o) => `<${o.tag} class="${o.cls}"> "${o.text}" ends at ${o.right}px`).join(" | ") || "offender not identified"}`);
+      }
+      if (width === 390 && shots) await page.screenshot({ path: `${shots}/${(path.replace(/\//g, "_") || "_home")}-390.png`, fullPage: true });
+    }
+    await context.close();
+  }
+  const page = await browser.newPage();
+  for (const path of HUBS) {
+    await page.goto(`${base}${path}`, { waitUntil: "load" });
+    const langs = await page.$$eval('link[rel="alternate"][hreflang]', (els) => els.map((e) => `${e.getAttribute("hreflang")}=${new URL(e.href).pathname}`).sort());
+    const want = ["en-AE=/locations/united-arab-emirates", "en-AU=/locations/australia", "en-CA=/locations/canada", "en-GB=/locations/united-kingdom", "en-US=/locations/united-states", "x-default=/locations"];
+    checks++;
+    if (JSON.stringify(langs) !== JSON.stringify(want)) failures.push(`${path}: hreflang ${JSON.stringify(langs)}`);
+  }
+  for (const path of CITY_PAGES) {
+    await page.goto(`${base}${path}`, { waitUntil: "load" });
+    const robots = await page.$eval('meta[name="robots"]', (m) => m.content).catch(() => "");
+    checks++;
+    if (!/^index/.test(robots)) failures.push(`${path}: robots "${robots}"`);
+  }
+  await browser.close();
+  console.log(`Responsive audit: ${checks} checks on ${base} (${PAGES.length} pages × ${WIDTHS.length} widths, hreflang on ${HUBS.length} hubs, robots on ${CITY_PAGES.length} city pages)`);
+  if (failures.length) { console.log(`FAIL (${failures.length}):\n- ${failures.join("\n- ")}`); process.exit(1); }
+  console.log("PASS: no sideways scrolling at any width; hreflang and city-page indexing as expected");
+}
+
+if (import.meta.url === `file://${process.argv[1]}`) await main();
