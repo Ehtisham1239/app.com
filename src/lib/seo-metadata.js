@@ -24,7 +24,7 @@ export function fitTitle(seoTitle, plainTitle) {
   return { absolute: topic };
 }
 
-export function contentMetadata(record, { path, title, description, type = "website", locale = "en_GB" }) {
+export function contentMetadata(record, { path, title, description, type = "website", locale = "en_GB", languages }) {
   const canonical = canonicalUrl(record.canonical_url, path, SITE_URL);
   const displayTitle = record.seo_title || title || record.title;
   const cover = publicImageUrl(record.cover_url || heroArt(path).src);
@@ -33,7 +33,7 @@ export function contentMetadata(record, { path, title, description, type = "webs
   return {
     title: fitTitle(record.seo_title, title || record.title),
     description,
-    alternates: { canonical, types: { "application/rss+xml": [{ url: "/blog/feed.xml", title: "Online Quran College articles" }] } },
+    alternates: { canonical, ...(languages && !record.seo_noindex ? { languages } : {}), types: { "application/rss+xml": [{ url: "/blog/feed.xml", title: "Online Quran College articles" }] } },
     robots: { index: !record.seo_noindex, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1, googleBot: { index: !record.seo_noindex, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
     openGraph: { type, siteName: BRAND_NAME, locale, title: displayTitle, description, url: canonical, images: cover ? [{ url: cover, alt: coverAlt, ...(coverAsset ? { width: coverAsset.width, height: coverAsset.height } : {}) }] : [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: BRAND_NAME }], ...(type === "article" ? { publishedTime: record.published_at, modifiedTime: record.updated_at } : {}) },
     twitter: { card: "summary_large_image", title: displayTitle, description, images: [cover || `${SITE_URL}/opengraph-image`] },
