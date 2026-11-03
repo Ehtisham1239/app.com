@@ -80,6 +80,9 @@ jobs:
   # On a pull request it audits current production; on main it runs after deploy.
   responsive-audit:
     if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    # A PR is audited against current production, so a fix in the PR only shows
+    # after deploy: report on PRs, enforce on main.
+    continue-on-error: ${{ github.event_name == 'pull_request' }}
     needs: [test-and-lint]
     runs-on: ubuntu-latest
     timeout-minutes: 20
