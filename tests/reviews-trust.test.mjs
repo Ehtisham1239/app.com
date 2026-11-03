@@ -26,7 +26,7 @@ test("migration stores publish permission additively and defaults to no", () => 
 
 test("public pages show only published testimonials and add no self-serving rating schema", () => {
   const data = read("src/lib/site-data.js");
-  assert.match(data, /from\("testimonials"\)\.select\("id, name, relation, country, quote, rating, avatar_url, sort_order"\)\.eq\("status", "published"\)/);
+  assert.match(data, /from\("testimonials"\)\.select\("id, name, relation, country, quote, rating, avatar_url, sort_order"\)\.eq\("status", "published"\)\.not\("consent_recorded_at", "is", null\)/);
   const landing = read("src/components/site/country-landing.jsx");
   assert.match(landing, /testimonials\.length > 0 && <>/);
   assert.match(landing, /shown with the reviewer’s permission \(first name only\)/);
@@ -40,4 +40,12 @@ test("llms.txt points assistants to independent reviews and states the permissio
   assert.match(route, /## Reviews/);
   assert.match(route, /https:\/\/www\.trustpilot\.com\/review\/onlinequrancollege\.com/);
   assert.match(route, /only when the reviewer gives permission/);
+});
+
+
+test("database RLS prevents public reads of testimonials without publication consent", () => {
+  const migration = read("supabase/migrations/20261103181459_require_testimonial_publication_consent.sql");
+  assert.match(migration, /drop policy if exists "public read" on public\.testimonials/i);
+  assert.match(migration, /for select to anon, authenticated/i);
+  assert.match(migration, /status = 'published' and consent_recorded_at is not null/i);
 });

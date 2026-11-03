@@ -119,7 +119,7 @@ export const getFaqs = cache(async () =>
 
 export const getTestimonials = cache(async () =>
   safe(() =>
-    publicDb.from("testimonials").select("id, name, relation, country, quote, rating, avatar_url, sort_order").eq("status", "published").order("sort_order"),
+    publicDb.from("testimonials").select("id, name, relation, country, quote, rating, avatar_url, sort_order").eq("status", "published").not("consent_recorded_at", "is", null).order("sort_order"),
     [],
     "testimonials",
   ),
