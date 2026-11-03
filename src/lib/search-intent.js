@@ -10,6 +10,16 @@ export const SEARCH_INTENTS = {
     "heading": "Online Quran classes for kids",
     "intro": "Start with your child’s reading level, a short practice routine and a parent-supported trial. Ask the coordinator about the most suitable teacher and pace."
   },
+  "/learn/female-quran-teacher": {
+    "phrase": "online Quran classes with a female teacher",
+    "heading": "Online Quran classes with a female teacher",
+    "intro": "Live one-to-one Quran lessons for sisters, girls and young children with a female teacher. Choose your preference when booking; the coordinator confirms the available teacher, language and lesson times."
+  },
+  "/learn/quran-for-reverts": {
+    "phrase": "Quran classes for reverts",
+    "heading": "Quran classes for reverts and new Muslims",
+    "intro": "Start reading the Quran from the first Arabic letters, study its meaning in a language you understand and ask questions freely in one-to-one lessons at your own pace."
+  },
   "/learn/quran-for-adults": {
     "phrase": "learn Quran online for adults",
     "heading": "Learn Quran online for adults",
