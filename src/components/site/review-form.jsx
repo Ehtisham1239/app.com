@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, CheckCircle2, Loader2, Plus, Send, Star, Video, X } from "@/components/site/icons";
 import { REVIEW_LIMITS, reviewFileError, reviewFormErrors, reviewMediaPath } from "@/lib/reviews-button";
 
-const EMPTY = { name: "", email: "", relation: "Parent", rating: 0, comment: "", consent: false, website: "" };
+const EMPTY = { name: "", email: "", relation: "Parent", rating: 0, comment: "", consent: false, publish_consent: false, website: "" };
 const RATING_WORDS = ["Tap a star to rate", "Poor", "Fair", "Good", "Very good", "Excellent"];
 // One-tap starters; visitors can edit the text afterwards. Neutral wording for every rating.
 const STARTERS = ["Our teacher", "Progress", "Class timings", "Communication", "Tajweed", "Hifz"];
@@ -270,7 +270,11 @@ export function ReviewForm({ open, config, consentText, onClose, inline = false 
           <span>{consentText || "I agree that Online Quran College may store my review and contact me about it."} <Link href="/privacy-policy" target="_blank" className="font-semibold text-leaf-700 underline underline-offset-2">Privacy policy</Link></span>
         </label>
         {err("consent")}
-        <p className="text-center text-xs text-ink-faint">Shown on our website only with your permission: first name, rating and comment only.</p>
+        {/* Optional and separate (3 Nov 2026): permission to show this review on the website. */}
+        <label className="flex gap-3 rounded-2xl border border-leaf-100 p-3 text-[0.8rem] leading-relaxed text-ink">
+          <input id="rv-publish" type="checkbox" className="check mt-0.5 shrink-0" checked={form.publish_consent} onChange={(e) => set("publish_consent", e.target.checked)} />
+          <span>Optional: you may show my review on the Online Quran College website (first name, rating and comment only). Photos and videos are never published.</span>
+        </label>
         {state.error && <p className="rounded-xl bg-rose-600/10 px-4 py-3 text-[0.9rem] font-medium text-rose-600" role="alert">{state.error}</p>}
       </div>
       <div className="space-y-1 border-t border-leaf-100 px-5 pb-[max(0.9rem,env(safe-area-inset-bottom))] pt-3">
