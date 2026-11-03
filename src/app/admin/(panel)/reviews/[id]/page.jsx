@@ -52,7 +52,9 @@ export default function ReviewPage({ params }) {
     const { data, error } = await db().from("testimonials").insert({
       // The form promises reviewers that only their first name is shown publicly.
       name: r.name.trim().split(/\s+/)[0], relation: r.relation, country: r.country || "", quote: r.comment, rating: r.rating,
-      status: "draft", source_note: `Website review ${r.reference}`,
+      status: "draft", source_note: `Website review ${r.reference}${r.publish_consent ? " · website permission given in the form" : ""}`,
+      // Permission ticked in the review form is recorded; staff still review the text before publishing.
+      consent_recorded_at: r.publish_consent ? (r.publish_consent_at || r.created_at) : null,
     }).select("id").single();
     if (error) { setBusy(false); return notifyError(error); }
     await set({ testimonial_id: data.id, status: "approved" }, "Testimonial draft created — record publishing permission before you publish it");
@@ -90,6 +92,7 @@ export default function ReviewPage({ params }) {
               <div><dt className="text-ink-faint">Sent from page</dt><dd>{r.page_path || "—"}</dd></div>
               <div><dt className="text-ink-faint">Received</dt><dd>{formatDateTime(r.created_at)}</dd></div>
               <div><dt className="text-ink-faint">Privacy consent</dt><dd>Version {r.consent_text_version}</dd></div>
+              <div><dt className="text-ink-faint">Show on website</dt><dd>{r.publish_consent ? `Yes — permission given ${formatDateTime(r.publish_consent_at || r.created_at)}` : "No permission given in the form"}</dd></div>
             </dl>
           </Card>
           {r.media_paths?.length > 0 && (
@@ -132,7 +135,7 @@ export default function ReviewPage({ params }) {
                 <MessageSquareQuote className="size-4" /> Create testimonial draft
               </button>
             )}
-            <p className="mt-3 text-xs text-ink-faint">Creates an unpublished testimonial with the reviewer’s first name, rating and comment. Before publishing, ask the reviewer for permission and record the date in the testimonial.</p>
+            <p className="mt-3 text-xs text-ink-faint">Creates an unpublished testimonial with the reviewer’s first name, rating and comment. {r.publish_consent ? "The reviewer gave website permission in the form; check the text, then publish." : "Before publishing, ask the reviewer for permission and record the date in the testimonial."}</p>
           </Card>
           <Card title="Status">
             <fieldset disabled={!canEdit} className="space-y-2">

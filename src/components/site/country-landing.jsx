@@ -1,14 +1,15 @@
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, CalendarCheck2, GraduationCap, Users } from "@/components/site/icons";
-import { TeacherCard } from "@/components/site/sections";
+import { TeacherCard, Testimonials } from "@/components/site/sections";
 
 // Landing sections for a country hub (USA first): direct fee answer, how it works, learning
 // paths, the public teachers, independent reviews and further reading. Content comes from the
-// country's hub file; prices come from the live plans; reviews are a text link only, because a
-// live Trustpilot display needs an official TrustBox or approved API.
+// country's hub file; prices come from the live plans. Reviews: published CMS testimonials only
+// (each one a real website review with recorded permission), plus a text link to Trustpilot,
+// because a live Trustpilot display needs an official TrustBox or approved API. No rating schema.
 const STEP_ICONS = [CalendarCheck2, Users, GraduationCap];
 
-export function CountryLanding({ hub, fee, teachers = [], trialHref, trustpilotProfile }) {
+export function CountryLanding({ hub, fee, teachers = [], trialHref, trustpilotProfile, testimonials = [] }) {
   if (!hub) return null;
   return (
     <>
@@ -66,14 +67,21 @@ export function CountryLanding({ hub, fee, teachers = [], trialHref, trustpilotP
         </section>
       )}
 
-      <section aria-labelledby="hub-reviews" className="surface flex flex-wrap items-center justify-between gap-5 p-6">
-        <div className="max-w-2xl">
-          <h2 id="hub-reviews" className="text-xl">Independent reviews</h2>
-          <p className="mt-2 text-sm text-ink-soft">Read what families say on Trustpilot. If you already learn with us, every honest review helps other families choose.</p>
-        </div>
-        <div className="flex flex-wrap gap-3">
-          <a className="btn btn-outline" href={trustpilotProfile} target="_blank" rel="noopener noreferrer">Read reviews on Trustpilot <ArrowUpRight className="size-4" aria-hidden="true" /></a>
-          <Link className="btn btn-ghost" href="/reviews">Share your experience</Link>
+      <section aria-labelledby="hub-reviews" className="space-y-5">
+        {testimonials.length > 0 && <>
+          <h2 id="hub-reviews" className="text-2xl">What families say</h2>
+          <Testimonials items={testimonials.slice(0, 3)} />
+          <p className="text-xs text-ink-faint">Reviews sent through our website and shown with the reviewer’s permission (first name only), unedited.</p>
+        </>}
+        <div className="surface flex flex-wrap items-center justify-between gap-5 p-6">
+          <div className="max-w-2xl">
+            {testimonials.length > 0 ? <h3 className="text-xl">Independent reviews</h3> : <h2 id="hub-reviews" className="text-xl">Independent reviews</h2>}
+            <p className="mt-2 text-sm text-ink-soft">Read what families say on Trustpilot. If you already learn with us, every honest review helps other families choose.</p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <a className="btn btn-outline" href={trustpilotProfile} target="_blank" rel="noopener noreferrer">Read reviews on Trustpilot <ArrowUpRight className="size-4" aria-hidden="true" /></a>
+            <Link className="btn btn-ghost" href="/reviews">Share your experience</Link>
+          </div>
         </div>
       </section>
 

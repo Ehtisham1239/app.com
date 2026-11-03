@@ -169,10 +169,11 @@ export default async function HomePage() {
       <section id="contact" className="bg-white py-16 sm:py-24"><div className="page-wrap max-w-3xl"><SectionHeading eyebrow="Contact the college" title="Send A Message" intro="Have questions about a course or class schedule? Our coordinators can help." /><div className="mt-8"><HomeContact consentText={settings["site.forms"]?.consent_text} successText={settings["site.forms"]?.contact_success} /></div></div></section>
       {testimonials.length > 0 && (
         <section className="page-wrap py-20 sm:py-24">
-          <SectionHeading eyebrow="Testimonials" title="Our Success Stories" />
+          <SectionHeading eyebrow="Reviews" title="What Families Say" intro="Real reviews sent through our website, shown with each reviewer’s permission (first name only)." />
           <div className="mt-12">
             <Testimonials items={testimonials.slice(0, 6)} />
           </div>
+          <p className="mt-8 text-center text-sm"><Link className="font-semibold text-leaf-700 underline underline-offset-4" href="/reviews">Share your experience</Link></p>
         </section>
       )}
 
