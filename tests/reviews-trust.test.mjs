@@ -26,7 +26,7 @@ test("migration stores publish permission additively and defaults to no", () => 
 
 test("public pages show only published testimonials and add no self-serving rating schema", () => {
   const data = read("src/lib/site-data.js");
-  assert.match(data, /from\("testimonials"\)\.select\("id, name, relation, country, quote, rating, avatar_url, sort_order"\)\.eq\("status", "published"\)/);
+  assert.match(data, /from\("testimonials"\)\.select\("id, name, relation, country, quote, rating, avatar_url, sort_order"\)\.eq\("status", "published"\)\.not\("consent_recorded_at", "is", null\)/);
   const landing = read("src/components/site/country-landing.jsx");
   assert.match(landing, /testimonials\.length > 0 && <>/);
   assert.match(landing, /shown with the reviewer’s permission \(first name only\)/);
