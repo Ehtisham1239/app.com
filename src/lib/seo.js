@@ -75,6 +75,9 @@ export function locationServiceSchema({ country, city, placeName, url, siteUrl }
     "@type": "Service",
     name: `Online Quran classes in ${placeName}`,
     serviceType: "Online one-to-one Quran tuition",
+    // Same audience the page names; no price, rating or branch implied.
+    audience: { "@type": "PeopleAudience", audienceType: "Children and adults learning the Quran" },
+    availableLanguage: "en",
     url,
     provider: { "@id": `${siteUrl}/#organization` },
     areaServed: city ? { "@type": "City", name: city.name, containedInPlace: countryPlace } : countryPlace,
