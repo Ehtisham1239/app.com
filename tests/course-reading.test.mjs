@@ -6,7 +6,7 @@ import { LEARNING_GUIDES } from "../src/lib/learning-guides.js";
 
 const dir = new URL("../supabase/migrations/", import.meta.url);
 const migrations = readdirSync(dir).map((f) => readFileSync(new URL(f, dir), "utf8")).join("\n");
-const CMS_POSTS = ["noorani-qaida-home-practice-checklist", "family-quran-learning-weekly-routine"]; // published via the CMS, checked 3 Nov 2026
+const CMS_POSTS = ["noorani-qaida-home-practice-checklist", "family-quran-learning-weekly-routine", "sabaq-sabqi-manzil-explained", "makharij-explained-for-beginners", "common-tajweed-mistakes"]; // published via the CMS, checked live 3 Nov 2026
 const COURSES = ["noorani-qaida", "quran-nazara", "hifz-quran", "arabic-language", "quran-translation", "hadith-translation"];
 const GUIDES = new Set(LEARNING_GUIDES.map((g) => g.path));
 
