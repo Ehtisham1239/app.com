@@ -1,14 +1,19 @@
 "use client";
 import { cardTone } from "@/lib/card-presentation";
-import { useState } from "react";
+import { useDeferredValue, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight, Globe2, Search } from "@/components/site/icons";
 
 const aliases = { 'united-kingdom': 'uk britain england scotland wales', 'united-states': 'usa us america', australia: 'aus' };
 export function LocationDirectory({ countries }) {
   const [query, setQuery] = useState('');
-  const term = query.trim().toLocaleLowerCase();
-  const matches = countries.filter(country => `${country.name} ${aliases[country.slug] || ''} ${country.cities.map(city => city.name).join(' ')}`.toLocaleLowerCase().includes(term));
+  // INP (GA4 web vitals, 28 days to 3 Nov 2026: /locations averaged ~350 ms): the input updates
+  // at once; the card grid re-renders from a deferred copy, and the search text per country is
+  // built once instead of on every keystroke.
+  const deferredQuery = useDeferredValue(query);
+  const term = deferredQuery.trim().toLocaleLowerCase();
+  const haystacks = useMemo(() => countries.map(country => `${country.name} ${aliases[country.slug] || ''} ${country.cities.map(city => city.name).join(' ')}`.toLocaleLowerCase()), [countries]);
+  const matches = useMemo(() => countries.filter((country, index) => haystacks[index].includes(term)), [countries, haystacks, term]);
   return <>
     <div className="mb-8 max-w-xl">
       <label htmlFor="location-search" className="field-label">Find your country or city</label>

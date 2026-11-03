@@ -28,3 +28,11 @@ test("Organization data names the five online markets and the subjects taught", 
   assert.match(layout, /INDEXED_MARKETS\.map\(getLocation\)/);
   assert.equal(INDEXED_MARKETS.length, 5);
 });
+
+test("llms.txt lists the official profiles from the same CMS setting as the footer and sameAs", () => {
+  assert.match(route, /getSettings\(\)/);
+  assert.match(route, /settings\?\.\["site\.social"\]/);
+  assert.match(route, /## Official profiles/);
+  assert.match(route, /one global identity \(online-only, no walk-in office\)/);
+  assert.match(route, /\^https:\\\/\\\/\[\^\\s\]\+\$/, "only https profile URLs are listed");
+});
