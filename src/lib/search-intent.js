@@ -79,7 +79,7 @@ export const SEARCH_INTENTS = {
   "/locations/united-states": {
     "phrase": "online Quran classes in the USA",
     "heading": "Online Quran classes in the USA",
-    "intro": "Live one-to-one online Quran lessons for children and adults across the United States. Choose your city and lesson date across US time zones, explore Noorani Qaida, Tajweed and Hifz, and request a written USD fee quote. Lessons are delivered online; no US office or local branch is represented."
+    "intro": "Learn Quran online in the USA with live one-to-one lessons for kids and adults. Plan lessons in Eastern, Central, Mountain or Pacific time, see monthly fees in US dollars, and explore Noorani Qaida, Tajweed, Hifz and Tafseer. Lessons are delivered online; no US office or local branch is represented."
   },
   "/courses/hadith-translation": {"phrase": "online Hadith translation classes", "heading": "Online Hadith translation classes", "intro": "Explore Hadith meanings with teacher guidance. Ask about the texts, teaching language and reading level covered by the available course."},
   "/courses/tajweed": {"phrase": "learn Tajweed online", "heading": "Learn Tajweed online", "intro": "Understand how listening, pronunciation feedback and supported Quran reading work together. Discuss the most suitable reading course with the coordinator."},
