@@ -2,7 +2,9 @@ import { contentVisual } from "@/lib/content-visual";
 import { cardTone } from "@/lib/card-presentation";
 import { PageHero } from "@/components/site/chrome";
 import { ContentImage } from "@/components/site/content-image";
-import { safeJsonLd, breadcrumbSchema } from "@/lib/seo";
+import { safeJsonLd, breadcrumbSchema, faqSchema } from "@/lib/seo";
+import { articleAnswer, articleNeedsAnswer } from "@/lib/article-answers";
+import { getUsdRates } from "@/lib/fx";
 import { contentMetadata, publicImageUrl } from "@/lib/seo-metadata";
 import { articleNavigation } from "@/lib/article-navigation";
 import { articleResources, relatedArticles } from "@/lib/article-resources";
@@ -12,7 +14,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Clock3 } from "@/components/site/icons";
 import { CtaBand } from "@/components/site/sections";
-import { getPost, getPosts, getPublishedSlugs, getSettings } from "@/lib/site-data";
+import { getPlans, getPost, getPosts, getPublishedSlugs, getSettings } from "@/lib/site-data";
 import { cleanHtml } from "@/lib/sanitize";
 import { formatDate, truncate, stripHtml, whatsappLink } from "@/lib/format";
 import { SITE_URL } from "@/lib/config";
@@ -38,7 +40,7 @@ export default async function PostPage({ params }) {
   const { slug } = await params;
   const post = await getPost(slug);
   if (!post) notFound();
-  const [posts, settings] = await Promise.all([getPosts(50), getSettings()]);
+  const [posts, settings, quick] = await Promise.all([getPosts(50), getSettings(), articleNeedsAnswer(post.slug) ? Promise.all([getPlans(), getUsdRates()]).then(([plans, fx]) => articleAnswer(post.slug, { plans, fx })) : null]);
   const more = relatedArticles(post, posts);
   const resources = articleResources(post);
   const { html, headings } = articleNavigation(cleanHtml(post.body_html));
@@ -51,6 +53,7 @@ export default async function PostPage({ params }) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema(breadcrumbs, SITE_URL)) }} />
+      {quick && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema([quick])) }} />}
       <article>
         <PageHero path={`/blog/${post.slug}`} eyebrow={post.category} title={post.title} visual={<ContentImage src={visual.src} alt={visual.alt} priority sizes="(max-width: 1024px) 100vw, 600px" className="aspect-[3/2] w-full object-cover" />}>
           <nav aria-label="Breadcrumb" className="mt-5 text-sm text-white/75"><Link href="/" prefetch={false}>Home</Link> / <Link href="/blog" className="underline">Articles</Link></nav>
@@ -66,6 +69,13 @@ export default async function PostPage({ params }) {
             </div>
           </aside>
           <div className="article-body min-w-0">
+          {quick && (
+            <section aria-labelledby="quick-answer" className="mb-8 max-w-[68ch] rounded-2xl border border-gold-100 bg-gold-50 p-5 sm:p-6">
+              <h2 id="quick-answer" className="font-sans text-[1.15rem] font-bold text-mushaf-900">{quick.question}</h2>
+              <p className="mt-2 text-[1rem] leading-relaxed text-ink">{quick.answer}</p>
+              <Link href={quick.link.href} className="mt-3 inline-flex items-center gap-1.5 font-semibold text-leaf-700 hover:text-leaf-800">{quick.link.label} <ArrowRight className="size-4" aria-hidden="true" /></Link>
+            </section>
+          )}
           {post.excerpt && <p className="mb-8 max-w-[68ch] border-l-4 border-gold-500 pl-5 text-[1.12rem] leading-relaxed text-ink-soft">{post.excerpt}</p>}
           <div className="prose-oqc text-[1.06rem]" dangerouslySetInnerHTML={{ __html: html }} />
           {post.tags?.length > 0 && (
