@@ -58,6 +58,25 @@ The September update ran from 24 September 09:15 PDT to 8 October 01:00 PDT (13 
 - Perplexity documents `PerplexityBot` as its search-index crawler and recommends allowing it for search-result visibility. `Perplexity-User` is a user-triggered fetcher and generally ignores robots.txt. Perplexity publishes current IP ranges for WAF configuration; never hardcode stale IP lists.
 - On 30 October 2026 Google announced plans to support a shared AI-training preference control in robots.txt during 2027. The token is not treated as live support today. Do not invent syntax or add a training opt-out without an owner decision; training preferences and search/grounding visibility are separate policy choices.
 
+### 2.3a Google AI optimisation guide: checked 3 November 2026, mapped to OQC
+
+Source: https://developers.google.com/search/docs/fundamentals/ai-optimization-guide (fetched 3 Nov 2026). Google states that optimising for generative AI search is still SEO.
+
+| Google recommendation | OQC status (3 Nov) | Action |
+|---|---|---|
+| Pages indexed and eligible for a snippet; crawlable; JavaScript not blocked | Server-rendered Next.js, sitemap of 65 www URLs, no blocked resources | None |
+| Include the site in Search Console's generative AI features setting | Unknown: needs Search Console owner access | **Owner:** Search Console → Settings → confirm the site is included in generative AI features |
+| Good page experience; main content easy to tell apart | Real-user CWV all "good" (GA4, 28 days); `/locations` INP fixed in #79 | Re-check mid-Nov |
+| Reduce duplicate content | `*.vercel.app` noindexed (#72); city pages noindex; old WordPress URLs 301 | Owner: E-04 subdomains (`app./go./hiring./portal.`) |
+| Non-commodity content with first-hand experience | Articles are practical but rarely carry first-hand teacher experience | **Biggest content gap.** Add real, consented teacher observations (for example "what usually helps a 7-year-old start Qaida") under verified teacher names (E-05) |
+| Clear headings and paragraphs; relevant images | Done across hubs, courses and blog | None |
+| AI-assisted content must meet Search Essentials and spam policies | `/editorial-standards` discloses AI use and how references are checked (#82) | Keep human checking of Quran/Hadith references |
+| Google Business Profile for local businesses | Not eligible (online-only) | No action (E-01 removal pending) |
+| Generative AI performance report | Not yet read: no Search Console UI access here | Owner or a future run with access: read monthly |
+| Structured data as part of normal SEO | Organization, BlogPosting, FAQPage, Course, Breadcrumb; `publishingPrinciples` added | None |
+
+Google also says these are **not needed** for its AI features: `llms.txt`, special markup or Markdown files, chunking content, rewriting for AI, a long list of long-tail variants, "AEO/GEO hacks", and AI-specific schema. **Inauthentic mentions across the web** are "not helpful" and conflict with spam protections. OQC keeps `llms.txt` only for other assistants (Perplexity, ChatGPT and similar), which Google explicitly allows, and keeps rejecting bulk directory or profile-link citation schemes.
+
 ### 2.4 Claims not to use as operating rules without primary evidence
 
 Do not repeat as confirmed Google rules: “404 bloat automatically removes a site from AI answers”, a fixed 20% mobile-speed ranking uplift, a direct bounce-rate penalty, a universal 2–6 citation limit, mandatory AI author headshots, a secret “information gain score” for price pages, or a guaranteed citation outcome after a named update. AI content itself is not automatically spam; scaled content that lacks user value and oversight can violate spam policies. OQC's human fact-check requirement is our own editorial standard.
