@@ -7,9 +7,9 @@ import { LEARNING_GUIDES } from "../src/lib/learning-guides.js";
 
 const read = (p) => readFileSync(new URL(`../${p}`, import.meta.url), "utf8");
 
-test("USA landing answers the US searches: kids, adults, new Muslims, English, Tafseer, cost", () => {
+test("USA country hub answers US searches: kids, adults, new Muslims, English, Tafseer, cost", () => {
   const intent = SEARCH_INTENTS["/locations/united-states"];
-  assert.match(intent.intro, /^Learn Quran online in the USA/);
+  assert.match(intent.intro, /^Find online Quran classes in the USA/);
   assert.match(intent.intro, /Eastern, Central, Mountain or Pacific/);
   assert.match(intent.intro, /no US office or local branch/);
   assert.equal(US_HUB.feeQuestion, "How much do online Quran classes cost in the USA?");
@@ -20,12 +20,12 @@ test("USA landing answers the US searches: kids, adults, new Muslims, English, T
   assert.ok(usHubFaqs().every((f) => f.answer.length > 80));
 });
 
-test("USA landing copy makes no price, office, credential, guarantee or response-time claims", () => {
+test("USA country hub copy makes no price, office, credential, guarantee or response-time claims", () => {
   const text = JSON.stringify(US_HUB) + JSON.stringify(usHubFaqs());
   assert.doesNotMatch(text, /\$\d|\d+\s*USD|US\$|office|branch|licen[cs]e|certified|guarantee|within \d+ (?:hours?|minutes?|days?)/i);
 });
 
-test("every USA landing link leads to a published guide or article", () => {
+test("every USA country hub link leads to a published guide or article", () => {
   const migrations = readdirSync(new URL("../supabase/migrations/", import.meta.url)).map((f) => read(`supabase/migrations/${f}`)).join("\n");
   const guides = new Set(LEARNING_GUIDES.map((g) => g.path));
   for (const href of [...US_HUB.paths.map((p) => p.href), ...US_HUB.reading.map((r) => r.href)]) {
