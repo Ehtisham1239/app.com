@@ -14,7 +14,7 @@ import { breadcrumbSchema, safeJsonLd, faqSchema, locationServiceSchema } from "
 import { SITE_URL } from "@/lib/config";
 import { PageHero } from "@/components/site/chrome";
 import { FaqList } from "@/components/site/sections";
-import { getCourses, getPage, getPlans, getSettings, getTeachers } from "@/lib/site-data";
+import { getCourses, getPage, getPlans, getSettings, getTeachers, getTestimonials } from "@/lib/site-data";
 import { locationPath, locationCmsSlug, locationBreadcrumbs, locationLocale, locationSearchIntro, isCityState, locationHeading, countryInName } from "@/lib/locations";
 import { locationImage } from "@/lib/location-image";
 import { cleanHtml } from "@/lib/sanitize";
@@ -27,7 +27,7 @@ export async function LocationPage({ country, city }) {
   const image = locationImage(country, city);
   // Country landing sections on the five indexed hubs; city pages keep the standard layout.
   const hub = !city ? COUNTRY_HUBS[country.slug] || null : null;
-  const [courses, plans, cms, fx, teachers, settings] = await Promise.all([getCourses(), getPlans(), getPage(locationCmsSlug(country, city)), getUsdRates(), hub ? getTeachers() : [], hub ? getSettings() : {}]);
+  const [courses, plans, cms, fx, teachers, settings, testimonials] = await Promise.all([getCourses(), getPlans(), getPage(locationCmsSlug(country, city)), getUsdRates(), hub ? getTeachers() : [], hub ? getSettings() : {}, hub ? getTestimonials() : []]);
   const query = new URLSearchParams({ country: country.name, currency: country.currency, ...(city ? { city: city.name } : {}) });
   const breadcrumbs = locationBreadcrumbs(country, city);
   const places = schedulingLocations(country, city);
@@ -71,7 +71,7 @@ export async function LocationPage({ country, city }) {
         ["Lesson format", "Live online · One learner, one teacher"],
       ].map(([label, value]) => <div key={label} className="surface p-5"><dt className="text-sm text-ink-soft">{label}</dt><dd className="mt-2 font-semibold text-mushaf-900">{value}</dd></div>)}</dl>
       <LocationSchedule countryName={country.name} currency={country.currency} places={places} />
-      {hub && <CountryLanding hub={hub} fee={hubFee} teachers={teachers} trialHref={`/free-trial?${query}`} trustpilotProfile={trustpilotProfile} />}
+      {hub && <CountryLanding hub={hub} fee={hubFee} teachers={teachers} trialHref={`/free-trial?${query}`} trustpilotProfile={trustpilotProfile} testimonials={testimonials} />}
       {guide && <section aria-labelledby="local-guide-title" className="space-y-5">
         <h2 id="local-guide-title" className="text-2xl">{guide.title}</h2>
         <div className="grid gap-4 md:grid-cols-2">{guide.sections.map(section => <article key={section.title} className="surface p-6"><h3 className="text-lg">{section.title}</h3><p className="mt-3 text-sm leading-relaxed text-ink-soft">{section.text}</p><Link className="mt-4 inline-block py-2 font-semibold text-leaf-700 underline" href={section.path}>{section.link}</Link></article>)}</div>

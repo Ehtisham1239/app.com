@@ -223,7 +223,7 @@ export function Testimonials({ items }) {
               ))}
             </p>
           ) : null}
-          <blockquote className="mt-4 flex-1 text-[1rem] leading-relaxed text-ink">“{t.quote}”</blockquote>
+          <blockquote className="mt-4 flex-1 whitespace-pre-line text-[1rem] leading-relaxed text-ink">“{t.quote}”</blockquote>
           <figcaption className="mt-6 flex items-center gap-3 border-t border-line pt-5">
             {t.avatar_url ? (
               <img src={t.avatar_url} alt="" className="size-11 rounded-full object-cover" loading="lazy" />
