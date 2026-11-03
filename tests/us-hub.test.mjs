@@ -36,10 +36,10 @@ test("every USA landing link leads to a published guide or article", () => {
 
 test("the US hub renders the landing block, one fee answer and the US FAQs in the FAQPage data", () => {
   const page = read("src/components/site/location-page.jsx");
-  assert.match(page, /\{ "united-states": US_HUB \}\[country\.slug\]/);
+  assert.match(page, /COUNTRY_HUBS\[country\.slug\]/);
   assert.match(page, /<CountryLanding hub=\{hub\} fee=\{hubFee\}/);
   assert.match(page, /answer: hubFee \? hubFee\.answer :/, "the FAQ and the fee box give the same live answer");
-  assert.match(page, /\.\.\.\(hub === US_HUB \? usHubFaqs\(\) : \[\]\)/);
+  assert.match(page, /\.\.\.\(hub\?\.faqs \? hub\.faqs\(\) : \[\]\)/);
   const landing = read("src/components/site/country-landing.jsx");
   assert.match(landing, /teachers\.slice\(0, 3\)/);
   assert.doesNotMatch(landing, /TrustScore|aggregateRating|★/i, "reviews are a text link, not a copied rating");

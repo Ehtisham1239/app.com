@@ -11,7 +11,7 @@ export const FEE_QUESTION = "How much do online Quran classes cost?";
 const range = (values) => (values.length ? [Math.min(...values), Math.max(...values)] : []);
 const fmtRange = ([low, high], currency) => (low === high ? formatMoney(low, currency) : `${formatMoney(low, currency)} to ${formatMoney(high, currency)}`);
 
-export function feeAnswer(plans, fx, localCurrency = "GBP") {
+export function feeAnswer(plans, fx, localCurrency = "GBP", place = "the UK") {
   const rows = (Array.isArray(plans) ? plans : [])
     .map((plan) => ({ plan, usd: displayPrice(plan.prices, "USD", fx), local: displayPrice(plan.prices, localCurrency, fx) }))
     .filter((row) => row.usd && Number.isFinite(row.usd.amount_minor));
@@ -29,7 +29,7 @@ export function feeAnswer(plans, fx, localCurrency = "GBP") {
   const lessons = perWeek && length ? ` for ${perWeek} live one-to-one ${length} classes a week` : " for live one-to-one classes";
   const sentences = [
     `Monthly fees at Online Quran College range from ${fmtRange(usd, "USD")}${lessons}.`,
-    ...(local ? [`In the UK that is ${approximate ? "about " : ""}${fmtRange(local, localCurrency)} a month${approximate ? " at today's exchange rate" : ""}.`] : []),
+    ...(local ? [`In ${place} that is ${approximate ? "about " : ""}${fmtRange(local, localCurrency)} a month${approximate ? " at today's exchange rate" : ""}.`] : []),
     "Each extra child from the same family gets 15% off, and eligible plans start with a free 3-day trial (the Weekend plan is excluded).",
     "The coordinator confirms the exact fee and payment currency before you enrol.",
   ];

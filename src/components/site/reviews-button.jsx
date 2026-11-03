@@ -42,13 +42,14 @@ export function ReviewsButton({ config, consentText }) {
       <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-mushaf-900 text-gold-300" aria-hidden="true">
         <MessageCircle className="size-[1.1rem]" />
       </span>
-      <span className="flex min-w-0 flex-col leading-tight">
+      {/* Phones: icon only, so it does not cover content next to the action bar; the text stays for screen readers. */}
+      <span className="flex min-w-0 flex-col leading-tight max-lg:sr-only">
         <span className="truncate text-sm font-semibold text-mushaf-900">{config.label}</span>
         {config.sublabel && <span className="truncate text-xs text-leaf-800">{config.sublabel}</span>}
       </span>
     </>
   );
-  const triggerClass = "reviews-trigger fixed bottom-[calc(5.25rem+env(safe-area-inset-bottom))] left-3 z-30 inline-flex min-h-11 max-w-[calc(100vw-7rem)] items-center gap-2.5 rounded-full border border-gold-100 bg-white/95 py-1.5 pl-1.5 pr-4 text-left shadow-[0_6px_20px_rgb(13_74_28/0.16)] backdrop-blur hover:border-gold-300 hover:bg-gold-50 lg:bottom-5 lg:left-5";
+  const triggerClass = "reviews-trigger fixed bottom-[calc(5.25rem+env(safe-area-inset-bottom))] left-3 z-30 inline-flex min-h-11 max-w-[calc(100vw-7rem)] items-center gap-2.5 rounded-full border border-gold-100 bg-white/95 py-1.5 pl-1.5 pr-1.5 text-left lg:pr-4 shadow-[0_6px_20px_rgb(13_74_28/0.16)] backdrop-blur hover:border-gold-300 hover:bg-gold-50 lg:bottom-5 lg:left-5";
 
   if (!config.openForm) {
     return (

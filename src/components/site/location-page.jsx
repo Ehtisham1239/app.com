@@ -1,6 +1,6 @@
 import { MARKET_ARTICLES, MARKET_GUIDES } from "@/lib/market-guides";
 import { UK_HUB, ukHubFaqs } from "@/lib/uk-hub";
-import { US_HUB, usHubFaqs } from "@/lib/us-hub";
+import { COUNTRY_HUBS } from "@/lib/country-hubs";
 import { feeAnswer } from "@/lib/fee-answer";
 import { trustpilotUrl } from "@/lib/reviews-button";
 import { CountryLanding } from "./country-landing";
@@ -25,8 +25,8 @@ export async function LocationPage({ country, city }) {
   const guide = !city ? MARKET_GUIDES[country.slug] : null;
   const article = !city ? MARKET_ARTICLES[country.slug] : null;
   const image = locationImage(country, city);
-  // Country landing sections (USA first). City pages and other hubs keep the standard layout.
-  const hub = !city ? { "united-states": US_HUB }[country.slug] : null;
+  // Country landing sections on the five indexed hubs; city pages keep the standard layout.
+  const hub = !city ? COUNTRY_HUBS[country.slug] || null : null;
   const [courses, plans, cms, fx, teachers, settings] = await Promise.all([getCourses(), getPlans(), getPage(locationCmsSlug(country, city)), getUsdRates(), hub ? getTeachers() : [], hub ? getSettings() : {}]);
   const query = new URLSearchParams({ country: country.name, currency: country.currency, ...(city ? { city: city.name } : {}) });
   const breadcrumbs = locationBreadcrumbs(country, city);
@@ -38,8 +38,9 @@ export async function LocationPage({ country, city }) {
   const usd = plans.filter(p => p.billing_period === "monthly").flatMap(p => (p.prices || []).filter(x => x.currency === "USD").map(x => x.amount_minor));
   const lowestUsd = usd.length ? Math.min(...usd) : null;
   const approx = lowest === null && lowestUsd !== null && country.currency !== "USD" ? convertMinor(lowestUsd, "USD", country.currency, fx) : null;
-  const usdFee = hub ? feeAnswer(plans, fx, "USD") : null;
-  const hubFee = usdFee && { question: hub.feeQuestion, answer: usdFee.answer };
+  // One live fee answer in the local currency, shown in the fee box and the FAQ.
+  const localFee = hub ? feeAnswer(plans, fx, hub.currency, hub.place) : null;
+  const hubFee = localFee && { question: hub.feeQuestion, answer: localFee.answer };
   const faqs = [
     { question: `How do I arrange Quran lessons in ${city?.name || countryInName(country)}?`, answer: `Request an online trial with your learner’s level and preferred local time. ${city ? `Use ${places[0]?.timezone} for ${city.name}.` : zones.length > 1 ? `Choose your city in the time planner; ${countryInName(country)} has more than one time zone.` : `${countryInName(country)[0].toUpperCase()}${countryInName(country).slice(1)} uses ${zones[0]}; choose the actual lesson date in the planner so seasonal clock changes are included.`} The coordinator confirms teacher availability.` },
     { question: !city && country.slug === "united-kingdom" ? UK_HUB.feeQuestion : hub?.feeQuestion || `What are the fees in ${country.currency}?`, answer: hubFee ? hubFee.answer : lowest !== null ? `Published monthly options start at ${formatMoney(lowest, country.currency)}. The price depends on the package; confirm the lesson length, weekly schedule and payment terms before enrolling.` : approx !== null ? `Published monthly packages start at ${formatMoney(lowestUsd, "USD")}, about ${formatMoney(approx, country.currency)} at today’s exchange rate. That figure is a guide only; the coordinator confirms your fee and the currency you pay in before you enrol.` : `Ask the coordinator for an approved quote in ${country.currency}. We do not treat a currency label as an approved local fee.` },
@@ -50,7 +51,7 @@ export async function LocationPage({ country, city }) {
       { question: `Are Tajweed and Hifz lessons available in ${countryInName(country)}?`, answer: `Yes, online. Tajweed (the rules of correct recitation) is practised within Quran reading and Hifz lessons, and the Hifz course covers memorisation with regular revision. Tell the coordinator the learner’s current level; teacher availability and the ${country.currency} package are confirmed before enrolling.` },
     ] : []),
     ...(!city && country.slug === "united-kingdom" ? ukHubFaqs() : []),
-    ...(hub === US_HUB ? usHubFaqs() : []),
+    ...(hub?.faqs ? hub.faqs() : []),
   ];
   const trustpilotProfile = trustpilotUrl(settings?.["site.social"]?.trustpilot) || "https://www.trustpilot.com/review/onlinequrancollege.com";
   const title = locationHeading(country, city, cms?.title);
