@@ -17,6 +17,6 @@
 | 30 Nov | US/UK | Tafseer course page rewrite (title + intro + FAQ) | online tafseer course | /courses/quran-translation | Improve |
 | 7 Dec | All | Female teacher requests: how they work | female quran teacher online | /teachers answer block | Improve |
 | 14 Dec | UK | UK hub: "learn Quran online UK" phrasing + adult section | learn quran online uk | /locations/united-kingdom | Improve |
-| 4 Jan 2027 | All | Ramadan Quran plan for families (live by 8 Jan) | ramadan quran classes | new blog | New (seasonal) |
+| 3 Nov ✔ | All | Ramadan Quran plan for families | ramadan quran classes | /blog/ramadan-quran-plan-for-families | Published early (owner instruction) |
 | 18 Jan | US | Kids section on USA hub | online quran classes usa kids | /locations/united-states | Improve |
 | Monthly | All | Refresh lowest-CTR page from Search Console | — | — | Improve |
