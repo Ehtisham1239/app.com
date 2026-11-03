@@ -10,6 +10,7 @@ import { formatDateTime } from "@/lib/format";
 import { ParentPortalNav } from "@/components/admin/parent-portal-nav";
 import { ParentAccessRequests } from "@/components/admin/parent-access-requests";
 import { BulkCodes } from "@/components/admin/parent-codes";
+import { parentSignInMessage } from "@/lib/parent-portal-health";
 import { Badge, Card, ConfirmButton, EmptyState, ErrorState, Field, Loading, Modal, PageHeader, Pagination, SearchInput } from "@/components/admin/ui";
 
 const PAGE = 20;
@@ -104,7 +105,11 @@ function CodeReveal({ code, guardian, onClose }) {
         <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-gold-700">Access code</p>
         <p className="select-all font-mono text-2xl font-bold tracking-[0.15em] text-mushaf-900">{code}</p>
       </div>
-      <button type="button" className="btn btn-outline btn-sm mt-3" onClick={() => navigator.clipboard?.writeText(code).then(() => toast.success("Copied"), () => {})}><Copy className="size-4" /> Copy code</button>
+      <div className="mt-3 flex flex-wrap gap-2">
+        <button type="button" className="btn btn-outline btn-sm" onClick={() => navigator.clipboard?.writeText(code).then(() => toast.success("Code copied"), () => toast.error("Copy failed — select the code instead"))}><Copy className="size-4" /> Copy code</button>
+        {/* Ready-to-send message with the portal link, Client ID and code (nothing is sent automatically). */}
+        <button type="button" className="btn btn-primary btn-sm" onClick={() => navigator.clipboard?.writeText(parentSignInMessage({ name: guardian.full_name, clientId: guardian.client_id, code, portalUrl: `${window.location.origin}/parents` })).then(() => toast.success("Message copied — paste it into WhatsApp or email"), () => toast.error("Copy failed"))}><Copy className="size-4" /> Copy message for parent</button>
+      </div>
       <p className="mt-3 text-xs text-ink-faint">Issuing a new code later replaces this one and signs the parent out.</p>
     </Modal>
   );
@@ -172,16 +177,19 @@ export default function ParentAccessPage() {
                     <p className="mt-1 text-sm">Client ID: {g.client_id ? <span className="font-mono font-semibold">{g.client_id}</span> : <span className="text-rose-700">not set</span>}</p>
                   </div>
                   <div className="flex flex-wrap items-center gap-1.5">
+                    {!kids.length && <span className="text-sm text-rose-700">No child linked</span>}
                     {kids.map((s) => (
                       <span key={s.id} className="inline-flex items-center gap-1 rounded-full bg-leaf-50 py-1 pl-3 pr-1 text-sm text-leaf-800">
                         {s.full_name} <span className="font-mono text-[0.7rem] text-ink-faint">{s.student_code}</span>
-                        {can("guardians:update") && <button type="button" className="rounded-full p-0.5 hover:bg-white" onClick={() => unlink(g, s)} aria-label={`Unlink ${s.full_name}`}><X className="size-3.5" /></button>}
+                        {can("guardians:update") && <ConfirmButton title={`Unlink ${s.full_name}?`} message={`${g.full_name} will no longer see this child’s results in the parent portal. You can link the child again later.`} confirmLabel="Unlink" className="rounded-full p-0.5 hover:bg-white" onConfirm={() => unlink(g, s)}><X className="size-3.5" aria-hidden="true" /><span className="sr-only">Unlink {s.full_name}</span></ConfirmButton>}
                       </span>
                     ))}
                     {can("guardians:update") && <LinkStudent guardian={g} onDone={list.reload} />}
                   </div>
                   <div className="flex flex-wrap items-center gap-2 lg:justify-end">
                     {g.access ? <Badge tone={g.access.locked ? "red" : "green"}>{g.access.locked ? <><Lock className="mr-1 inline size-3" />Locked 15 min</> : `Code issued ${formatDateTime(g.access.issued_at)}`}</Badge> : <Badge tone="muted">No code</Badge>}
+                    {g.access && <span className="text-xs text-ink-faint">{g.access.last_sign_in ? `Last sign-in ${formatDateTime(g.access.last_sign_in)}` : "Never signed in"}</span>}
+                    {can("guardians:update") && !g.client_id && <span className="text-xs text-rose-700">Add a Client ID to issue a code</span>}
                     {can("guardians:update") && g.client_id && (
                       <ConfirmButton danger={false} className="btn btn-outline btn-sm" confirmLabel={g.access ? "Issue new code" : "Issue code"} title={g.access ? "Replace the access code?" : "Issue an access code?"}
                         message={g.access ? "The old code stops working and the parent is signed out." : "The code is shown once. You give it to the parent yourself."} onConfirm={() => issue(g)}>
