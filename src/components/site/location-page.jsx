@@ -1,4 +1,5 @@
 import { MARKET_ARTICLES, MARKET_GUIDES } from "@/lib/market-guides";
+import { UK_HUB, ukHubFaqs } from "@/lib/uk-hub";
 import { cardTone, courseVisual } from "@/lib/card-presentation";
 import { SEARCH_INTENTS } from "@/lib/search-intent";
 import { ContentImage } from "@/components/site/content-image";
@@ -33,13 +34,14 @@ export async function LocationPage({ country, city }) {
   const approx = lowest === null && lowestUsd !== null && country.currency !== "USD" ? convertMinor(lowestUsd, "USD", country.currency, fx) : null;
   const faqs = [
     { question: `How do I arrange Quran lessons in ${city?.name || countryInName(country)}?`, answer: `Request an online trial with your learner’s level and preferred local time. ${city ? `Use ${places[0]?.timezone} for ${city.name}.` : zones.length > 1 ? `Choose your city in the time planner; ${countryInName(country)} has more than one time zone.` : `${countryInName(country)[0].toUpperCase()}${countryInName(country).slice(1)} uses ${zones[0]}; choose the actual lesson date in the planner so seasonal clock changes are included.`} The coordinator confirms teacher availability.` },
-    { question: `What are the fees in ${country.currency}?`, answer: lowest !== null ? `Published monthly options start at ${formatMoney(lowest, country.currency)}. The price depends on the package; confirm the lesson length, weekly schedule and payment terms before enrolling.` : approx !== null ? `Published monthly packages start at ${formatMoney(lowestUsd, "USD")}, about ${formatMoney(approx, country.currency)} at today’s exchange rate. That figure is a guide only; the coordinator confirms your fee and the currency you pay in before you enrol.` : `Ask the coordinator for an approved quote in ${country.currency}. We do not treat a currency label as an approved local fee.` },
+    { question: !city && country.slug === "united-kingdom" ? UK_HUB.feeQuestion : `What are the fees in ${country.currency}?`, answer: lowest !== null ? `Published monthly options start at ${formatMoney(lowest, country.currency)}. The price depends on the package; confirm the lesson length, weekly schedule and payment terms before enrolling.` : approx !== null ? `Published monthly packages start at ${formatMoney(lowestUsd, "USD")}, about ${formatMoney(approx, country.currency)} at today’s exchange rate. That figure is a guide only; the coordinator confirms your fee and the currency you pay in before you enrol.` : `Ask the coordinator for an approved quote in ${country.currency}. We do not treat a currency label as an approved local fee.` },
     { question: `Are these classes at a teaching centre in ${city?.name || countryInName(country)}?`, answer: `Classes are live and online. Learners join from home in ${city?.name || countryInName(country)}; this page does not represent a local physical branch.` },
     // Country hubs: answer the "near me" and Tajweed/Hifz searches Search Console shows, without claiming a local branch.
     ...(!city ? [
       { question: `Can I find Quran classes near me in ${countryInName(country)}?`, answer: `There is no need to travel: lessons are live and online, so a learner anywhere in ${countryInName(country)} joins from home with a one-to-one teacher. Choose your city in the time planner so the lesson is arranged in your local time.` },
       { question: `Are Tajweed and Hifz lessons available in ${countryInName(country)}?`, answer: `Yes, online. Tajweed (the rules of correct recitation) is practised within Quran reading and Hifz lessons, and the Hifz course covers memorisation with regular revision. Tell the coordinator the learner’s current level; teacher availability and the ${country.currency} package are confirmed before enrolling.` },
     ] : []),
+    ...(!city && country.slug === "united-kingdom" ? ukHubFaqs() : []),
   ];
   const title = locationHeading(country, city, cms?.title);
   return <div lang={locationLocale(country).replace("_", "-")}>
@@ -66,11 +68,11 @@ export async function LocationPage({ country, city }) {
       </section>}
 
       {!city && country.slug === "united-kingdom" && <section aria-labelledby="uk-learning-paths" className="rounded-3xl border border-line bg-leaf-50/50 p-6 sm:p-8">
-        <h2 id="uk-learning-paths" className="text-2xl">Online Quran classes for children and adult beginners in the UK</h2>
+        <h2 id="uk-learning-paths" className="text-2xl">{UK_HUB.pathsHeading}</h2>
         <p className="mt-4 max-w-3xl text-ink-soft">Choose your starting point before choosing a timetable. If Arabic letters are new to you, discuss Noorani Qaida. If you can already read, ask about Quran reading and Tajweed feedback. Children and adults can discuss a one-to-one learning plan with the coordinator.</p>
         <div className="mt-6 grid gap-5 md:grid-cols-2">
           <article className="surface p-5"><h3 className="text-xl">For parents choosing lessons for a child</h3><p className="mt-3 text-sm text-ink-soft">Share your child’s reading level and language needs. Ask how a parent can support the trial, what to practise between lessons and how progress will be discussed.</p><Link prefetch={false} className="mt-4 inline-block font-semibold text-leaf-700 underline underline-offset-4" href="/learn/quran-for-kids">Read the parent learning guide</Link></article>
-          <article className="surface p-5"><h3 className="text-xl">For adults starting or returning to study</h3><p className="mt-3 text-sm text-ink-soft">Explain what you can already read and what you find difficult. Agree a manageable practice routine around work and family, then review the starting level with your teacher.</p><Link prefetch={false} className="mt-4 inline-block font-semibold text-leaf-700 underline underline-offset-4" href="/learn/quran-for-adults">Read the adult beginner guide</Link></article>
+          <article className="surface p-5"><h3 className="text-xl">{UK_HUB.adultHeading}</h3><p className="mt-3 text-sm text-ink-soft">Explain what you can already read and what you find difficult. Agree a manageable practice routine around work and family, then review the starting level with your teacher.</p><Link prefetch={false} className="mt-4 inline-block font-semibold text-leaf-700 underline underline-offset-4" href="/learn/quran-for-adults">Read the adult beginner guide</Link></article>
         </div>
         <p className="mt-5 text-sm text-ink-soft">Use the planner above with your actual lesson date and UK local time so seasonal clock changes are accounted for. The coordinator confirms the available morning or evening slot and the GBP package. The three-day free trial applies to eligible plans; the Weekend plan is excluded.</p>
         <Link prefetch={false} className="mt-4 inline-block font-semibold text-leaf-700 underline underline-offset-4" href="/learn#course-comparison">Compare Noorani Qaida, Quran reading and Hifz</Link>
