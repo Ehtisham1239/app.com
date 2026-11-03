@@ -30,6 +30,7 @@ export async function GET() {
     "- [Learning guides](/learn)",
     "- [Teachers](/teachers): female and male teachers; the coordinator confirms the proposed teacher's qualifications, language and availability.",
     "- [About the college](/about)",
+    "- [Editorial standards](/editorial-standards): who writes the articles, how Quran and hadith references are checked, AI use, reviews and corrections.",
     "- [Contact the college](/contact)", "",
     // Facts the public pages already state, so an assistant can answer without guessing.
     "## Key facts", "",

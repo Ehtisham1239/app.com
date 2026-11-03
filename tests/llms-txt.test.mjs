@@ -36,3 +36,9 @@ test("llms.txt lists the official profiles from the same CMS setting as the foot
   assert.match(route, /one global identity \(online-only, no walk-in office\)/);
   assert.match(route, /\^https:\\\/\\\/\[\^\\s\]\+\$/, "only https profile URLs are listed");
 });
+
+test("editorial standards are linked from articles, Organization data and llms.txt", () => {
+  assert.match(route, /\[Editorial standards\]\(\/editorial-standards\)/);
+  assert.match(read("src/app/(site)/layout.jsx"), /publishingPrinciples: `\$\{SITE_URL\}\/editorial-standards`/);
+  assert.match(read("src/app/(site)/blog/[slug]/page.jsx"), /<Link href="\/editorial-standards"[^>]*>How we write<\/Link>/);
+});
