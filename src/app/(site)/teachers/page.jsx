@@ -6,6 +6,9 @@ import { PageHero } from "@/components/site/chrome";
 import { CtaBand, TeacherCard } from "@/components/site/sections";
 import { getSettings, getTeachers } from "@/lib/site-data";
 import { whatsappLink } from "@/lib/format";
+import { teacherListSchema } from "@/lib/teacher-schema";
+import { safeJsonLd } from "@/lib/seo";
+import { SITE_URL } from "@/lib/config";
 
 export const revalidate = 300;
 
@@ -21,8 +24,10 @@ const STANDARDS = [
 export default async function TeachersPage() {
   const [teachers, settings] = await Promise.all([getTeachers(), getSettings()]);
   const wa = whatsappLink(settings["site.contact"]?.whatsapp, "Assalamu alaikum, I would like to know about your teachers.");
+  const people = teacherListSchema(teachers, SITE_URL);
   return (
     <>
+      {people && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(people) }} />}
       <PageHero immersive path="/teachers" eyebrow="Teachers" title={SEARCH_INTENTS["/teachers"].heading} intro={SEARCH_INTENTS["/teachers"].intro} />
       <section className="page-wrap py-16 sm:py-20">
         {teachers.length > 0 ? (
@@ -48,9 +53,14 @@ export default async function TeachersPage() {
               <p className="text-[1.02rem] text-ink">
                 Public teacher profiles are not currently displayed. Before enrolment, ask Admissions to confirm the proposed teacher’s qualifications, experience, teaching language and availability.
               </p>
-              <Link href="/free-trial" className="mt-4 inline-flex items-center gap-1.5 font-semibold text-leaf-700 hover:text-leaf-800">
-                Meet a teacher in a free trial <ArrowRight className="size-4" aria-hidden="true" />
-              </Link>
+              <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+                <Link href="/free-trial" className="inline-flex items-center gap-1.5 font-semibold text-leaf-700 hover:text-leaf-800">
+                  Meet a teacher in a free trial <ArrowRight className="size-4" aria-hidden="true" />
+                </Link>
+                <Link href="/learn/female-quran-teacher" className="inline-flex items-center gap-1.5 font-semibold text-leaf-700 hover:text-leaf-800">
+                  Learning with a female teacher <ArrowRight className="size-4" aria-hidden="true" />
+                </Link>
+              </div>
             </div>
           </div>
         )}

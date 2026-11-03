@@ -8,17 +8,19 @@ export function publicImageUrl(src) {
   return image ? `${SITE_URL}${image.url}` : src;
 }
 const TITLE_SUFFIX = " · Online Quran College";
-const BRAND_SUFFIX = /\s*[|·–—-]\s*Online Quran College$/;
-// Search results cut titles at roughly 60 characters. Keep the brand suffix
-// only when the whole title still fits; otherwise lead with the page's topic.
+const SHORT_SUFFIX = " · OQC";
+// Any brand ending an editor typed ("| Online Quran College", "- OQC", "· OQC" …).
+const BRAND_SUFFIX = /\s*[|·–—-]\s*(?:Online Quran College|OQC)\s*$/i;
+// One title format site-wide: "<topic> · Online Quran College". Search results cut titles
+// at roughly 60 characters, so the brand shortens to "OQC" and then drops when the topic
+// is long. Returned as absolute titles so the layout template does not add it twice.
 export function fitTitle(seoTitle, plainTitle) {
-  if (seoTitle) {
-    if (seoTitle.length <= 60) return { absolute: seoTitle };
-    const topic = seoTitle.replace(BRAND_SUFFIX, "").trim();
-    return { absolute: topic.length ? topic : seoTitle };
-  }
-  if (!plainTitle) return plainTitle;
-  return (plainTitle + TITLE_SUFFIX).length <= 60 ? plainTitle : { absolute: plainTitle };
+  const topic = String(seoTitle || plainTitle || "").replace(BRAND_SUFFIX, "").trim();
+  if (!topic) return seoTitle || plainTitle;
+  if (/^Online Quran College\b/i.test(topic)) return { absolute: topic };
+  if ((topic + TITLE_SUFFIX).length <= 60) return { absolute: topic + TITLE_SUFFIX };
+  if ((topic + SHORT_SUFFIX).length <= 60) return { absolute: topic + SHORT_SUFFIX };
+  return { absolute: topic };
 }
 
 export function contentMetadata(record, { path, title, description, type = "website", locale = "en_GB" }) {

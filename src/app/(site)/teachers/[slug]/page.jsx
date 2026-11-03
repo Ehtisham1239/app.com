@@ -5,6 +5,9 @@ import { notFound } from "next/navigation";
 import { ArrowRight, Award, Languages, Sparkles } from "@/components/site/icons";
 import { getPublishedSlugs, getTeacher } from "@/lib/site-data";
 import { truncate } from "@/lib/format";
+import { teacherPerson } from "@/lib/teacher-schema";
+import { safeJsonLd } from "@/lib/seo";
+import { SITE_URL } from "@/lib/config";
 
 export const revalidate = 300;
 export const dynamicParams = true;
@@ -25,8 +28,10 @@ export default async function TeacherPage({ params }) {
   const { slug } = await params;
   const t = await getTeacher(slug);
   if (!t) notFound();
+  const person = teacherPerson(t, SITE_URL);
   return (
     <>
+      {person && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", ...person }) }} />}
       <PageHero path={`/teachers/${t.slug}`} art="teachers" eyebrow="Meet your teacher" title={t.display_name} intro={t.headline}>
         <Link href="/teachers" className="mt-5 inline-block text-sm text-white/80 underline">All teachers</Link>
         <div className="mt-5 flex items-center gap-4">{t.photo_url && <img src={t.photo_url} alt={t.display_name} width={80} height={80} className="size-20 rounded-2xl object-cover" />}<div className="flex flex-wrap gap-2 text-sm">{t.years_experience ? <span>{t.years_experience}+ years teaching</span> : null}{t.languages?.map(l => <span key={l} className="rounded-full bg-white/10 px-3 py-1">{l}</span>)}</div></div>
