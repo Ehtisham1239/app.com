@@ -451,3 +451,6 @@ main input:not([type="checkbox"]):not([type="radio"]), main select, main textare
 @media(max-width:639px){.contact-support-float{right:.75rem;bottom:calc(5.25rem + env(safe-area-inset-bottom));width:min(17rem,calc(100vw - 1.5rem))}.contact-support-card{padding:.7rem}}
 @media(prefers-reduced-motion:reduce){.contact-support-card,.contact-support-cta{transition:none}}
 
+/* Homepage jump links: one sideways-scrolling row on phones, no visible scrollbar. */
+.home-jump-row { scrollbar-width: none; overscroll-behavior-x: contain; }
+.home-jump-row::-webkit-scrollbar { display: none; }
