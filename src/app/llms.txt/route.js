@@ -1,6 +1,8 @@
 import { getCourses, getPosts, getPublishedSlugs } from "@/lib/site-data";
 import { shouldIncludeInSitemap } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
+import { LEARNING_GUIDES } from "@/lib/learning-guides";
+import { INDEXED_MARKETS, getLocation, locationPath } from "@/lib/locations";
 
 export const dynamic = "force-static";
 export const revalidate = 3600;
@@ -22,8 +24,21 @@ export async function GET() {
     "- [Trial request](/free-trial)",
     "- [Countries, cities and time-zone planning](/locations)",
     "- [Learning guides](/learn)",
+    "- [Teachers](/teachers): female and male teachers; the coordinator confirms the proposed teacher's qualifications, language and availability.",
     "- [About the college](/about)",
     "- [Contact the college](/contact)", "",
+    // Facts the public pages already state, so an assistant can answer without guessing.
+    "## Key facts", "",
+    "- Lessons are live, one-to-one and online, for children and adults.",
+    "- Learners can ask for a female or male teacher when booking.",
+    "- A three-day free trial is available on eligible plans; the Weekend plan is excluded.",
+    "- Each additional child from the same family receives 15% off their monthly fee.",
+    "- Fees can be shown converted into the visitor's currency for guidance; the coordinator confirms the fee and payment currency before enrolment.",
+    "- Lessons are arranged in the learner's time zone. Country pages describe online coverage, not physical offices.", "",
+    "## Learning guides", "",
+    ...LEARNING_GUIDES.map(g => `- [${label(g.title)}](${g.path}): for ${label(g.audience).toLowerCase()}`), "",
+    "## Country pages", "",
+    ...INDEXED_MARKETS.map(getLocation).filter(Boolean).map(c => `- [Online Quran classes in ${label(c.name)}](${locationPath(c)})`), "",
     "## Courses", "",
     ...courses.filter(row => courseSlugs.has(row.slug)).map(row => `- [${label(row.title)}](/courses/${encodeURIComponent(row.slug)})`), "",
     "## Learning articles", "",

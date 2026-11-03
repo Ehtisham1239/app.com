@@ -43,6 +43,15 @@ const nextConfig = {
       { source: "/admin/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }, { key: "Cache-Control", value: "private, no-store, max-age=0" }] },
     ];
   },
+  // /blog stays static; only filtered or paged lists render per request, at the same address.
+  async rewrites() {
+    return {
+      beforeFiles: [
+        { source: "/blog", has: [{ type: "query", key: "page" }], destination: "/blog/browse" },
+        { source: "/blog", has: [{ type: "query", key: "category" }], destination: "/blog/browse" },
+      ],
+    };
+  },
   // Keep links from the previous WordPress site working
   async redirects() {
     const courses = ["noorani-qaida", "quran-nazara", "hifz-quran", "arabic-language", "quran-translation", "hadith-translation"];
