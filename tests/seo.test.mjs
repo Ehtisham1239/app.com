@@ -118,8 +118,12 @@ test("robots explicitly permits Perplexity search crawling on public pages and b
 
 test("free-trial benefits render once and avoid an absolute data-sharing promise", async () => {
   const { readFile } = await import("node:fs/promises");
-  const source = await readFile(new URL("../src/app/(site)/free-trial/page.jsx", import.meta.url), "utf8");
-  assert.equal((source.match(/promises\.map\(/g) || []).length, 1);
+  const page = await readFile(new URL("../src/app/(site)/free-trial/page.jsx", import.meta.url), "utf8");
+  // The list is rendered in the browser (trial-intro.jsx) so the page stays cached.
+  const intro = await readFile(new URL("../src/components/site/trial-intro.jsx", import.meta.url), "utf8");
+  const source = page + intro;
+  assert.equal((intro.match(/promises\.map\(/g) || []).length, 1);
+  assert.equal((page.match(/<TrialPromises /g) || []).length, 1, "rendered once on the page");
   assert.equal(source.includes("never sold or shared"), false);
   assert.ok(source.includes("privacy policy"));
   assert.equal(source.includes("within 24 hours"), false);
