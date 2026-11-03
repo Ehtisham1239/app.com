@@ -146,7 +146,7 @@ export default async function HomePage() {
           </div>
           <p className="mt-8 text-center">
             <Link href="/pricing" className="inline-flex items-center gap-1.5 font-semibold text-leaf-700 hover:text-leaf-800">
-              See all packages and what is included <ArrowRight className="size-4" aria-hidden="true" />
+              See all packages, including Weekend and flexible plans <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
           </p>
         </section>
