@@ -16,8 +16,8 @@ The new strategy is now Search + AI discovery + brand trust + conversion, not ke
 - Country directory language changed from a blanket availability claim to country/city scheduling guides.
 - City pages remain `noindex,follow` by default; priority country hubs remain indexable by default.
 - PerplexityBot is explicitly allowed to crawl public content in `robots.txt`; private/admin/API/parent paths remain disallowed.
-- Free-trial page source now renders one benefits list rather than separate desktop/mobile copies; an absolute “never sold or shared” marketing promise was replaced with a link to the privacy policy.
-- Teacher page fallback copy no longer claims every teacher is independently verified/certified while no public teacher profiles are active; it asks Admissions to confirm the proposed teacher's credentials, language and availability.
+- Free-trial page source now renders one benefits list rather than separate desktop/mobile copies; the absolute “never sold or shared” privacy promise and unverified 24-hour response-time promise were removed.
+- Teacher page fallback copy and metadata no longer claim every teacher is independently verified/certified while no public teacher profiles are active; they ask Admissions to confirm the proposed teacher's credentials, language and availability.
 - Pricing database copy no longer advertises “Certified tutor” on the first three public plans; it now says teacher availability is confirmed before enrolment.
 - About-page “Since 2018” copy and “since 2019” meta description were removed because the two dates conflicted and documentary evidence was not provided.
 - Organization identity setting no longer publishes an unverified founding date in JSON-LD.
@@ -84,6 +84,7 @@ The active Supabase project is `app.com` in `ap-southeast-2`. Read-only inspecti
 - 6 published courses; all have titles and SEO titles/descriptions.
 - 6 teacher records, but 0 are currently public and active.
 - 165 published location CMS records; 161 noindex and 4 indexable. UAE is source-generated and has no separate CMS page row.
+- Across published pages, blogs and courses there are 199 CMS content records. All indexable records have non-empty SEO titles and descriptions; no duplicate SEO titles or descriptions were found among indexable records. The 161 location records without CMS-specific SEO title/description are noindex city pages, whose route generates fallback metadata from the country/city registry. Twenty-five blog/course records have no explicit canonical field, but the SEO metadata layer generates a self-canonical fallback.
 - First three public pricing plans contained “Certified tutor”; the other three did not.
 
 ### Database copy updates applied and verified by SELECT

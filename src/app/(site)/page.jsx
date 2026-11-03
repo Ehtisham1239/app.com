@@ -49,7 +49,7 @@ export default async function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
       <HomeHero hero={settings["site.hero"]} stats={settings["site.stats"]} />
       <nav aria-label="On this page" className="page-wrap flex flex-wrap justify-center gap-2 py-5">
-        {[["#courses", "Courses"], ["/reviews", "Share feedback"], ["#how-it-works", "How it works"], ...(homePlans.length ? [["#fees", "Fees"]] : []), ...(faqs.length ? [["#questions", "Questions"]] : [])].map(([href, label]) => <a key={href} href={href} className="home-jump rounded-full border border-leaf-100 bg-white px-5 py-3 text-sm font-semibold text-leaf-700 hover:bg-leaf-50">{label}</a>)}
+        {[["#courses", "Courses"], ["/quran-study", "Quran practice"], ["/reviews", "Share feedback"], ["#how-it-works", "How it works"], ...(homePlans.length ? [["#fees", "Fees"]] : []), ...(faqs.length ? [["#questions", "Questions"]] : [])].map(([href, label]) => <a key={href} href={href} className="home-jump rounded-full border border-leaf-100 bg-white px-5 py-3 text-sm font-semibold text-leaf-700 hover:bg-leaf-50">{label}</a>)}
       </nav>
       <nav aria-label="Priority study locations" className="page-wrap grid grid-cols-2 gap-3 pb-8 sm:grid-cols-3 lg:grid-cols-5">
         {[["united-kingdom", "UK"], ["united-states", "USA"], ["australia", "Australia"], ["united-arab-emirates", "UAE"], ["canada", "Canada"]].map(([slug, label]) => <Link key={slug} href={`/locations/${slug}`} className="surface flex items-center justify-between gap-2 px-4 py-3 text-sm font-semibold text-leaf-700">Quran classes in {label}<ArrowRight className="size-4 shrink-0" aria-hidden="true" /></Link>)}
@@ -93,6 +93,17 @@ export default async function HomePage() {
         </div></div>
       </section>
 
+
+      <section className="page-wrap py-14 sm:py-16" aria-labelledby="quran-practice-heading">
+        <div className="surface grid items-center gap-7 p-7 sm:p-10 lg:grid-cols-[1.3fr_auto]">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-leaf-700">Quran practice centre</p>
+            <h2 id="quran-practice-heading" className="mt-3 text-3xl text-mushaf-900">Reading, listening and recitation practice</h2>
+            <p className="mt-3 max-w-2xl leading-relaxed text-ink-soft">Explore independent digital resources, including the Tarteel app, and build a steady practice routine alongside teacher-guided learning.</p>
+          </div>
+          <Link href="/quran-study" className="btn btn-primary w-fit">Explore Quran practice tools <ArrowRight className="size-4" aria-hidden="true" /></Link>
+        </div>
+      </section>
 
       <section className="border-y border-line bg-[#f5faf1] py-20 sm:py-24">
         <div className="page-wrap">

@@ -16,7 +16,7 @@ const fixedImages = {
 export const revalidate = 3600;
 export default async function sitemap() {
   const { courses, posts, pages, teachers } = await getPublishedSlugs();
-  const fixed = ["", "/courses", "/pricing", "/free-trial", "/teachers", "/blog", "/faq", "/contact", "/careers", "/locations", "/learn"].map((path) => ({ url: `${SITE_URL}${path}`, ...(fixedImages[path] ? { images: [imageUrl(fixedImages[path])] } : {}), changeFrequency: path === "" ? "weekly" : "monthly", priority: path === "" ? 1 : 0.7 }));
+  const fixed = ["", "/courses", "/pricing", "/free-trial", "/teachers", "/blog", "/faq", "/contact", "/careers", "/locations", "/learn", "/quran-study"].map((path) => ({ url: `${SITE_URL}${path}`, ...(fixedImages[path] ? { images: [imageUrl(fixedImages[path])] } : {}), changeFrequency: path === "" ? "weekly" : "monthly", priority: path === "" ? 1 : 0.7 }));
   const locationPages = new Map(pages.map((p) => [p.slug, p]));
   const locations = LOCATIONS.flatMap((country) => [null, ...country.cities.filter((city) => !isCityState(country, city))].flatMap((city) => {
     const path = locationPath(country, city), page = locationPages.get(locationCmsSlug(country, city));
