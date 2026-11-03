@@ -19,7 +19,7 @@ What competitors do instead: a search on 3 Nov 2026 for online Quran academy lis
 | Website | https://www.onlinequrancollege.com | canonical host |
 | Email | info@onlinequrancollege.com | CMS `site.contact` |
 | Phone / WhatsApp | +44 7864 710821 | CMS `site.contact`. **Owner: confirm it may be published on third-party sites** |
-| Founded | 2019 | CMS `site.identity.established` |
+| Founded | Omit / not approved | The 2 Nov audit removed the unverified `established` value from CMS identity settings; do not publish a founding year until documentary evidence and owner approval are recorded. |
 | Address | none: online-only, no walk-in office | never add a street, mailbox or virtual office |
 | Service area | Online: USA, UK, Canada, Australia, UAE (and other countries online) | |
 | Categories | Online education · Quran school / Islamic education · Tutoring (online) | pick the nearest the platform offers |
@@ -56,7 +56,7 @@ Excluded (unchanged): Google Business Profile (online-only businesses are not el
 **After each one goes live:** add the URL in CMS → Settings → Social links. The footer, `sameAs` and `llms.txt` then update with no code change. Record the profile in `GLOBAL-CITATION-TRACKER-2026-11-02.csv`.
 
 ## 6. Speed: real-user baseline (GA4 web-vitals events, 28 days to 3 Nov 2026)
-These are averages of event values, not p75. Google's "good" thresholds are LCP < 2.5 s, INP < 200 ms, CLS < 0.1 and TTFB < 0.8 s.
+These are averages of event values, not the 75th-percentile field values used for Core Web Vitals assessment. The Core Web Vitals "good" thresholds are evaluated at the 75th percentile: LCP ≤ 2.5 s, INP ≤ 200 ms and CLS ≤ 0.1. FCP and TTFB are useful diagnostics but are not Core Web Vitals.
 
 | Metric | Desktop | Mobile |
 |---|---|---|
@@ -68,4 +68,4 @@ These are averages of event values, not p75. Google's "good" thresholds are LCP 
 
 By page: `/locations` had the highest INP (≈ 346 ms over 16 events). This PR fixes it: the search input stays instant, the country grid renders from a deferred value, and the search text is built once. `/courses/hifz-quran` had the slowest LCP (≈ 1.74 s), still "good", and its cover image is already pre-encoded WebP. The public pages do not run through the proxy/CSP layer (that layer covers admin and parent pages only), so they stay statically cached.
 
-The site already passes Core Web Vitals on real visits, so speed is not what holds rankings back. Authority (citations, reviews, links) and query coverage are.
+These averages are encouraging, but they do not establish a Core Web Vitals pass/fail result or prove that speed is not limiting performance. Obtain page/device-level p75 field data from CrUX/Search Console or an authorized real-user source before making that claim. Authority, relevant editorial references, useful query coverage and conversion quality remain important workstreams, but their impact must be measured rather than assumed.
