@@ -6,7 +6,7 @@ import { SEARCH_INTENTS } from "../src/lib/search-intent.js";
 import { guideFaqs } from "../src/lib/guide-faqs.js";
 
 const dir = new URL("../supabase/migrations/", import.meta.url);
-const NEW = ["20261103000100_audience_learning_guides.sql", "20261103000200_month_articles.sql"];
+const NEW = ["20261103000100_audience_learning_guides.sql", "20261103000200_month_articles.sql", "20261103000300_tajweed_tafseer_articles.sql"];
 const read = (f) => readFileSync(new URL(f, dir), "utf8");
 const older = readdirSync(dir).filter((f) => !NEW.includes(f)).map(read).join("\n");
 const FIXED = new Set(["/free-trial", "/pricing", "/courses/tajweed", ...LEARNING_GUIDES.map((g) => g.path)]);
@@ -42,4 +42,11 @@ test("new content answers first and promises no timeline, price or result", () =
   assert.match(read(NEW[1]), /<p>There is no fixed time to finish Noorani Qaida\./);
   assert.match(read(NEW[1]), /<p>There is no single timeline for completing Hifz/);
   assert.match(read(NEW[0]), /The Weekend plan is excluded from the free trial\./);
+});
+
+test("Tajweed and Tafseer articles answer first and use the standard rule letters", () => {
+  const sql = read(NEW[2]);
+  assert.match(sql, /<p>The first Tajweed rules most beginners learn are/);
+  assert.match(sql, /<p>Tafseer is the explanation of the Quran/);
+  for (const letters of ["ء ه ع ح غ خ", "ي ر م ل و ن", "ق ط ب ج د"]) assert.ok(sql.includes(letters), letters);
 });

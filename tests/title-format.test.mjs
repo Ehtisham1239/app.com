@@ -26,3 +26,8 @@ test("long titles shorten the brand, then drop it, and never repeat it", () => {
   }
   assert.deepEqual(fitTitle("Online Quran College — Live 1-on-1 Online Quran Classes"), { absolute: "Online Quran College — Live 1-on-1 Online Quran Classes" });
 });
+
+test("a title that already names the brand gets no second brand", () => {
+  assert.deepEqual(fitTitle("About Online Quran College | Online Quran Academy"), { absolute: "About Online Quran College | Online Quran Academy" });
+  assert.deepEqual(fitTitle(undefined, "Contact Online Quran College"), { absolute: "Contact Online Quran College" });
+});

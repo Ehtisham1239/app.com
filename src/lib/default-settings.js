@@ -48,7 +48,7 @@ export const DEFAULT_SETTINGS = {
     { icon: "headset", title: "Always-on support", text: "Coordinators help with rescheduling and make-up classes." },
   ],
   "site.steps": [
-    { title: "Book a free trial", text: "Fill in the short form, choose a course and tell us when you are free. We arrange your trial within 24 hours." },
+    { title: "Book a free trial", text: "Fill in the short form, choose a course and tell us when you are free. A coordinator contacts you to arrange your trial." },
     { title: "Choose your plan", text: "After the trial, a coordinator agrees timings, teacher preference and a monthly package with you." },
     { title: "Start regular classes", text: "Meet your teacher live online on your chosen days and track progress every month." },
   ],
@@ -58,7 +58,7 @@ export const DEFAULT_SETTINGS = {
     consent_version: "2026-10-13",
     consent_text:
       "I agree that Online Quran College may contact me by email, phone or WhatsApp about this request and store my details as described in the privacy policy.",
-    trial_success: "JazakAllah khair! Your free-trial request is in. Our team will contact you within 24 hours to arrange your class.",
+    trial_success: "JazakAllah khair! Your free-trial request is in. Our admissions team will contact you by WhatsApp or email to arrange your class.",
     contact_success: "Thank you — your message has reached our team. We usually reply within one working day.",
   },
   "site.chat": { enabled: true, widget_key: "BZrCMwoaC3UYn9OpkcSASivkWFYm5A0B" },
