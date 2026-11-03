@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { useReportWebVitals } from "next/web-vitals";
-import { ANALYTICS_CONSENT_KEY, clearAnalyticsCookies, createAnalyticsController } from "@/lib/analytics";
+import { ANALYTICS_CONSENT_KEY, clearAnalyticsCookies, createAnalyticsController, isAnalyticsHost } from "@/lib/analytics";
 
 // Cookieless GA4 (owner decision, 26 Oct 2026): no banner or preference button.
 // client_storage "none" means nothing is written to the device; analytics
@@ -15,7 +15,7 @@ export function WebsiteAnalytics({ config }) {
   const controller = useRef(null);
   const pending = useRef([]);
   useEffect(() => {
-    if (!enabled || !config.cookieless || config.mode === "off") return;
+    if (!enabled || !config.cookieless || config.mode === "off" || !isAnalyticsHost(window.location.hostname)) return;
     clearAnalyticsCookies(window);
     try { window.localStorage.removeItem(ANALYTICS_CONSENT_KEY); } catch { /* storage blocked */ }
     let adapter, cancelled = false, idle;

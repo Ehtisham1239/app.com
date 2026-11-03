@@ -62,5 +62,7 @@ export async function GET() {
     "- [Terms and conditions](/terms-and-conditions)",
     "- [Refund policy](/refund-policy)", "",
   ];
-  return new Response(lines.join("\n"), { headers: { "Content-Type": "text/plain; charset=utf-8", "X-Content-Type-Options": "nosniff" } });
+  // Absolute links: AI crawlers often read this file on its own, without a base URL.
+  const body = lines.join("\n").replaceAll("](/", `](${SITE_URL}/`);
+  return new Response(body, { headers: { "Content-Type": "text/plain; charset=utf-8", "X-Content-Type-Options": "nosniff" } });
 }

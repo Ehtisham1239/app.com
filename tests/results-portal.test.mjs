@@ -233,6 +233,22 @@ test("public certificate verification still returns only its fixed fields", asyn
   assert.deepEqual(Object.keys(result).sort(), ["course", "issued_on", "number", "signed_by", "student", "title"]);
 });
 
+test("new certificate numbers cannot be guessed and deleted students are not verified", async () => {
+  await as("postgres");
+  const student = (await one("insert into public.students (full_name) values ('Verify Test Learner') returning id")).id;
+  const a = (await one("insert into public.certificates (student_id,title,status) values ($1,'Cert A','issued') returning number", [student])).number;
+  const b = (await one("insert into public.certificates (student_id,title,status) values ($1,'Cert B','issued') returning number", [student])).number;
+  assert.match(a, /^OQC-CERT-\d{4}-\d{4}-[A-HJKMNP-Z2-9]{4}$/);
+  assert.match(b, /^OQC-CERT-\d{4}-\d{4}-[A-HJKMNP-Z2-9]{4}$/);
+  await as("anon");
+  assert.equal((await one("select public.verify_certificate($1) as r", [a.toLowerCase()])).r.student, "Verify Test Learner", "lower-case input still verifies");
+  assert.equal((await one("select public.verify_certificate($1) as r", [a.slice(0, -5)])).r, null, "number without its suffix is not found");
+  await as("postgres");
+  await db.query("update public.students set deleted_at = now() where id = $1", [student]);
+  await as("anon");
+  assert.equal((await one("select public.verify_certificate($1) as r", [b])).r, null, "deleted student's certificate is not confirmed");
+});
+
 test("staff see code status without the hash, and can remove access", async () => {
   await as("authenticated", ids.editor);
   await assert.rejects(db.query("select * from public.guardian_access_status($1)", [[guardianA]]), /guardians:read/);
