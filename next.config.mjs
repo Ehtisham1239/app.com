@@ -41,6 +41,10 @@ const nextConfig = {
       { source: "/images/islamic/:path*", headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }] },
       { source: "/icons/:path*", headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }] },
       { source: "/admin/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }, { key: "Cache-Control", value: "private, no-store, max-age=0" }] },
+      // The production alias (appcom-online-quran-college.vercel.app) serves the same pages as
+      // www.onlinequrancollege.com. Keep every *.vercel.app host out of search indexes so only the
+      // canonical domain is indexed; links stay followable. (From #65, 3 Nov 2026.)
+      { source: "/:path*", has: [{ type: "host", value: "(?<vercelhost>.+\\.vercel\\.app)" }], headers: [{ key: "X-Robots-Tag", value: "noindex, follow" }] },
     ];
   },
   // /blog stays static; only filtered or paged lists render per request, at the same address.
