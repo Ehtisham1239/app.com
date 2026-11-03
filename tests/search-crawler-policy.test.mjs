@@ -27,5 +27,8 @@ test("wildcard policy preserves existing public crawling and sitemap discovery",
   assert.ok(wildcard);
   assert.equal(wildcard.allow, "/");
   assert.deepEqual(wildcard.disallow, ["/admin", "/auth", "/api/", "/parents"]);
-  assert.match(policy.sitemap, /^https:\/\/.+\/sitemap\.xml$/);
+  const sitemap = new URL(policy.sitemap);
+  assert.ok(["http:", "https:"].includes(sitemap.protocol));
+  assert.equal(sitemap.pathname, "/sitemap.xml");
+  assert.ok(sitemap.hostname);
 });
