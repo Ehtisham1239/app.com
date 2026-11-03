@@ -39,6 +39,19 @@
 **Local/time-zone support:** GST (UTC+4); AED quotes only when current package pricing is approved; no physical branch claims.  
 **Competitor watchlist:** Her Quran Academy UAE, Al Furqan Academy, QuranHost, Salam Campus, Madani Islamic Academy, Al Qalam, QuranInstruct, JoinQuran, Huda Quran Academy, Quran Plus School.
 
+## All-country page coverage and localization template
+The current published CMS location inventory contains country/city page groups for Albania, Andorra, Australia, Austria, Belarus, Belgium, Bosnia and Herzegovina, Bulgaria, Canada, Croatia, Cyprus, Czechia, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Iceland, Ireland, Italy, Kosovo, Latvia, Liechtenstein, Lithuania, Luxembourg, Malta, Moldova, Monaco, Montenegro, Netherlands, North Macedonia, Norway, Poland, Portugal, Romania, Russia, San Marino, Serbia, Slovakia, Slovenia, Spain, Sweden, Switzerland, Turkey, Ukraine, United Kingdom, United States and Vatican City. The UAE is also a priority location route in the application. Treat this as the current generated location inventory, not a claim that OQC has independently researched demand or competitors in every market.
+
+For every country route, the default keyword family to validate locally is:
+- Primary: **online Quran classes in [Country]** / **online Quran academy [Country]**.
+- Secondary: **Quran classes for kids [Country]**, **Quran lessons for adults [Country]**, **online Tajweed classes [Country]**, **online Hifz classes [Country]**, **Noorani Qaida online [Country]**, **female Quran teacher online [Country]**.
+- Local support: local time-zone name and daylight-saving rules; currency and payment information only when approved; language-specific query variants only when OQC can teach in that language.
+- City modifier: **online Quran classes in [City]** only for a city route with genuinely differentiated local guidance.
+- Country page must answer: who can enrol, course choices, real teaching format, teacher preference, local-time scheduling, current fee/currency availability, trial eligibility and how to contact OQC.
+- For markets without validated SERP research, keep the country/city page noindex and do not present a speculative competitor list as fact.
+
+**Country-specific competitor status:** named competitor watchlists are researched candidates for the five priority markets above. For the remaining generated country groups, the competitor field is **research required** rather than populated with guessed brand names. Run a localized Google SERP review for each market before adding competitor names, record at least 5 real organic competitors and their exact ranking URLs, and refresh monthly. Do not add competitors to public OQC copy.
+
 ## Broader international watchlist (research candidates, not a country ranking)
 For worldwide discovery and future market selection, monitor competitor pages and actual local SERPs in: Ireland, New Zealand, Saudi Arabia, Qatar, Kuwait, Bahrain, Oman, Germany, France, Netherlands, Belgium, Italy, Spain, Sweden, Norway, South Africa, Singapore, Malaysia and Pakistan. Do not publish or index a country landing page merely because a competitor has one. First validate language demand, service-hour feasibility, payment/currency support, local consumer rules and genuinely distinct content.
 
