@@ -373,12 +373,16 @@ main input:not([type="checkbox"]):not([type="radio"]), main select, main textare
   .mobile-menu-trigger svg { width: 24px; height: 24px; }
   .home-hero { margin-top: 0; background: linear-gradient(115deg, #f8fbf5, #f1f9ec 80%, #fff); }
   .home-hero .hero-layout { padding: 38px 16px 36px; gap: 32px; }
-  .home-hero .hero-portrait { grid-row: 1; width: 64vw; max-width: 300px; border-width: 9px; border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; }
-  .home-hero .hero-copy { grid-row: 2; min-width: 0; text-align: center; }
+  .home-hero .hero-copy { grid-row: 1; min-width: 0; text-align: center; }
+  .home-hero .hero-portrait { grid-row: 2; width: 82vw; max-width: 360px; border-width: 8px; border-radius: 1.5rem; }
   .home-hero .arabic { text-align: center; font-size: clamp(27px, 8.3vw, 36px); line-height: 1.8; min-height: 1.8em; }
   .home-hero h1 { margin: 12px auto 0; font-size: clamp(22px, 6.1vw, 31px); line-height: 1.2; font-weight: 800; color: #0c6c0c; text-wrap: wrap; }
   .home-hero .hero-intro { margin: 16px auto 0; font-size: 14px; line-height: 1.75; color: #535b61; }
-  .home-hero .hero-actions, .home-hero .hero-badges { justify-content: center; }
+  .home-hero .hero-actions, .home-hero .hero-badges, .home-hero .hero-proof { justify-content: center; }
+  .home-hero .hero-eyebrow { margin-inline: auto; font-size: .68rem; letter-spacing: .1em; }
+  .home-hero .hero-trial-note { justify-content: center; }
+  .home-hero .hero-proof { max-width: 27rem; margin-inline: auto; gap: .65rem 1rem; font-size: .8rem; }
+  .home-hero .hero-areas { margin-top: 1rem; }
 }
 
 /* The first mobile view introduces the college; enquiry fields appear only on request. */
