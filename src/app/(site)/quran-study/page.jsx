@@ -1,6 +1,6 @@
 import { PageHero, SectionHeading } from "@/components/site/chrome";
 import { NavigationLink as Link } from "@/components/site/navigation-link";
-import { ArrowRight, ArrowUpRight, BookOpen, Headset, Target } from "@/components/site/icons";
+import { ArrowRight, ArrowUpRight, BookOpen, Compass, Headset } from "@/components/site/icons";
 import { SITE_URL } from "@/lib/config";
 import { contentMetadata } from "@/lib/seo-metadata";
 
@@ -106,7 +106,7 @@ export default function QuranStudyPage() {
       </section>
 
       <section className="page-wrap py-14 text-center sm:py-20">
-        <Target className="mx-auto size-9 text-leaf-700" aria-hidden="true" />
+        <Compass className="mx-auto size-9 text-leaf-700" aria-hidden="true" />
         <h2 className="mt-4 text-3xl text-mushaf-900">Want a teacher-guided practice plan?</h2>
         <p className="mx-auto mt-4 max-w-2xl text-ink-soft">Tell our admissions team whether you are beginning Quran reading, improving Tajweed, memorising or revising. The team can discuss suitable course options and teacher availability.</p>
         <div className="mt-7 flex flex-wrap justify-center gap-3">
