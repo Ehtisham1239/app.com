@@ -33,6 +33,8 @@ const articleTopics = {
   "questions-before-quran-course-enrolment": "reading",
   "how-long-to-learn-noorani-qaida": "parents",
   "how-long-does-hifz-take-online": "hifz",
+  "tajweed-rules-for-beginners": "tajweed",
+  "online-tafseer-classes-what-you-learn": "understanding",
 };
 
 export function articleResources(post) {

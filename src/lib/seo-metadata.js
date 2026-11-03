@@ -17,7 +17,8 @@ const BRAND_SUFFIX = /\s*[|·–—-]\s*(?:Online Quran College|OQC)\s*$/i;
 export function fitTitle(seoTitle, plainTitle) {
   const topic = String(seoTitle || plainTitle || "").replace(BRAND_SUFFIX, "").trim();
   if (!topic) return seoTitle || plainTitle;
-  if (/^Online Quran College\b/i.test(topic)) return { absolute: topic };
+  // A topic that already names the brand ("About Online Quran College") gets no suffix.
+  if (/Online Quran College|\bOQC\b/i.test(topic)) return { absolute: topic };
   if ((topic + TITLE_SUFFIX).length <= 60) return { absolute: topic + TITLE_SUFFIX };
   if ((topic + SHORT_SUFFIX).length <= 60) return { absolute: topic + SHORT_SUFFIX };
   return { absolute: topic };
