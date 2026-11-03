@@ -42,3 +42,7 @@ test("editorial standards are linked from articles, Organization data and llms.t
   assert.match(read("src/app/(site)/layout.jsx"), /publishingPrinciples: `\$\{SITE_URL\}\/editorial-standards`/);
   assert.match(read("src/app/(site)/blog/[slug]/page.jsx"), /<Link href="\/editorial-standards"[^>]*>How we write<\/Link>/);
 });
+
+test("llms.txt points to the free printable trackers", () => {
+  assert.match(route, /\[Free printable Quran trackers\]\(\/free-quran-learning-resources\)/);
+});
