@@ -3,6 +3,7 @@ import { ContentImage } from "@/components/site/content-image";
 import Link from "next/link";
 import { clsx } from "clsx";
 import { ArrowRight, MessageCircle, Plus, Quote, Star } from "@/components/site/icons";
+import { teacherInitial } from "@/components/site/teacher-initial";
 import { ContentIcon } from "@/components/site/content-icon";
 import { initials, truncate } from "@/lib/format";
 
@@ -169,25 +170,25 @@ export function Steps({ steps, tone = "dark" }) {
 // Teachers
 // ---------------------------------------------------------------------------
 export function TeacherCard({ teacher: t }) {
+  const gender = t.gender ? (t.gender === "female" ? "Female teacher" : "Male teacher") : null;
   return (
     <Link
       href={`/teachers/${t.slug}`}
       className="group flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] border border-line bg-white transition-all duration-300 hover:-translate-y-1 hover:border-gold-300 hover:shadow-[var(--shadow-lift)]"
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-mushaf-900">
-        {t.photo_url ? (
+      {t.photo_url ? (
+        <div className="relative aspect-[4/3] overflow-hidden bg-mushaf-900">
           <img src={t.photo_url} alt={t.display_name} className="size-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-        ) : (
-          <div className="pattern-girih flex size-full items-center justify-center">
-            <span className="brand-mark block size-20 text-gold-400 opacity-80" aria-hidden="true" />
-          </div>
-        )}
-        {t.gender && (
-          <span className="absolute left-4 top-4 rounded-full bg-mushaf-950/80 px-2.5 py-0.5 text-[0.72rem] font-semibold text-gold-300 backdrop-blur">
-            {t.gender === "female" ? "Female teacher" : "Male teacher"}
-          </span>
-        )}
-      </div>
+          {gender && <span className="absolute left-4 top-4 rounded-full bg-mushaf-950/80 px-2.5 py-0.5 text-[0.72rem] font-semibold text-gold-300 backdrop-blur">{gender}</span>}
+        </div>
+      ) : (
+        // No photo yet: a compact branded header instead of a large empty image area.
+        <div className="relative flex items-center gap-4 overflow-hidden bg-mushaf-900 px-5 py-4">
+          <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.12]" aria-hidden="true" />
+          <span className="relative flex size-14 shrink-0 items-center justify-center rounded-full border-2 border-gold-300 bg-mushaf-950 font-serif text-2xl font-bold text-gold-300" aria-hidden="true">{teacherInitial(t.display_name)}</span>
+          {gender && <span className="relative rounded-full bg-white/10 px-2.5 py-0.5 text-[0.72rem] font-semibold text-gold-300">{gender}</span>}
+        </div>
+      )}
       <div className="flex flex-1 flex-col p-5">
         <h3 className="text-[1.08rem] font-bold text-mushaf-900 transition-colors group-hover:text-leaf-700">{t.display_name}</h3>
         {t.headline && <p className="mt-1 text-[0.9rem] leading-snug text-ink-soft">{t.headline}</p>}

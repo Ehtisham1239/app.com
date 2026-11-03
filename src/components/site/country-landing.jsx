@@ -17,7 +17,7 @@ export function CountryLanding({ hub, fee, teachers = [], trialHref, trustpilotP
           <h2 id="hub-fee" className="text-2xl">{fee.question}</h2>
           <p className="mt-3 max-w-3xl leading-relaxed text-ink">{fee.answer}</p>
           <div className="mt-5 flex flex-wrap gap-3">
-            <Link className="btn btn-primary" href="/pricing?currency=USD">See all packages</Link>
+            <Link className="btn btn-primary" href={`/pricing?currency=${hub.currency || "USD"}`}>See all packages</Link>
             <Link className="btn btn-outline" href={trialHref}>Book a free trial</Link>
           </div>
         </section>
@@ -38,7 +38,7 @@ export function CountryLanding({ hub, fee, teachers = [], trialHref, trustpilotP
         </ol>
       </section>
 
-      <section aria-labelledby="hub-paths" className="rounded-3xl border border-line bg-leaf-50/50 p-6 sm:p-8">
+      {hub.paths?.length > 0 && <section aria-labelledby="hub-paths" className="rounded-3xl border border-line bg-leaf-50/50 p-6 sm:p-8">
         <h2 id="hub-paths" className="text-2xl">{hub.pathsHeading}</h2>
         <div className="mt-6 grid gap-5 sm:grid-cols-2">
           {hub.paths.map((path) => (
@@ -49,7 +49,7 @@ export function CountryLanding({ hub, fee, teachers = [], trialHref, trustpilotP
             </article>
           ))}
         </div>
-      </section>
+      </section>}
 
       {teachers.length > 0 && (
         <section aria-labelledby="hub-teachers">
