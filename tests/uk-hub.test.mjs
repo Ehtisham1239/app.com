@@ -22,7 +22,7 @@ test("UK hub copy makes no price, office, credential or response-time claims", (
 test("location page wires the UK copy into the visible page and the FAQPage data", () => {
   const page = readFileSync(new URL("../src/components/site/location-page.jsx", import.meta.url), "utf8");
   assert.match(page, /import \{ UK_HUB, ukHubFaqs \} from "@\/lib\/uk-hub";/);
-  assert.match(page, /!city && country\.slug === "united-kingdom" \? UK_HUB\.feeQuestion : `What are the fees in \$\{country\.currency\}\?`/);
+  assert.match(page, /!city && country\.slug === "united-kingdom" \? UK_HUB\.feeQuestion : hub\?\.feeQuestion \|\| `What are the fees in \$\{country\.currency\}\?`/);
   assert.match(page, /\.\.\.\(!city && country\.slug === "united-kingdom" \? ukHubFaqs\(\) : \[\]\)/);
   // One faqs array feeds both the visible list and the FAQPage JSON-LD.
   assert.match(page, /safeJsonLd\(faqSchema\(faqs\)\)/);
