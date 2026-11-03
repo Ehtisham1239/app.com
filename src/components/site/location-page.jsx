@@ -1,4 +1,4 @@
-import { MARKET_GUIDES } from "@/lib/market-guides";
+import { MARKET_ARTICLES, MARKET_GUIDES } from "@/lib/market-guides";
 import { cardTone, courseVisual } from "@/lib/card-presentation";
 import { SEARCH_INTENTS } from "@/lib/search-intent";
 import { ContentImage } from "@/components/site/content-image";
@@ -18,6 +18,7 @@ import { convertMinor, getUsdRates } from "@/lib/fx";
 
 export async function LocationPage({ country, city }) {
   const guide = !city ? MARKET_GUIDES[country.slug] : null;
+  const article = !city ? MARKET_ARTICLES[country.slug] : null;
   const image = locationImage(country, city);
   const [courses, plans, cms, fx] = await Promise.all([getCourses(), getPlans(), getPage(locationCmsSlug(country, city)), getUsdRates()]);
   const query = new URLSearchParams({ country: country.name, currency: country.currency, ...(city ? { city: city.name } : {}) });
@@ -60,6 +61,7 @@ export async function LocationPage({ country, city }) {
       {guide && <section aria-labelledby="local-guide-title" className="space-y-5">
         <h2 id="local-guide-title" className="text-2xl">{guide.title}</h2>
         <div className="grid gap-4 md:grid-cols-2">{guide.sections.map(section => <article key={section.title} className="surface p-6"><h3 className="text-lg">{section.title}</h3><p className="mt-3 text-sm leading-relaxed text-ink-soft">{section.text}</p><Link className="mt-4 inline-block py-2 font-semibold text-leaf-700 underline" href={section.path}>{section.link}</Link></article>)}</div>
+        {article && <p className="text-sm text-ink-soft">Read the full planning guide: <Link className="font-semibold text-leaf-700 underline underline-offset-4" href={article.path}>{article.label}</Link></p>}
         <details className="text-xs text-ink-soft"><summary className="cursor-pointer py-3">Official guidance and reference links</summary><ul className="space-y-2">{guide.sources.map(source => <li key={source.url}><a className="inline-block py-2 underline" href={source.url} target="_blank" rel="noopener noreferrer">{source.name}</a></li>)}</ul></details>
       </section>}
 
