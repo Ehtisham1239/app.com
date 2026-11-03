@@ -140,3 +140,29 @@ test("UAE market hub has a distinct online-only guide and all seven emirates", a
   assert.ok(MARKET_GUIDES["united-arab-emirates"].sections.length >= 4);
   assert.ok(MARKET_GUIDES["united-arab-emirates"].sections.some((section) => section.text.includes("does not claim a UAE office")));
 });
+
+test("each primary-market hub links visibly to its own published planning article", async () => {
+  const { MARKET_ARTICLES, MARKET_GUIDES } = await import("../src/lib/market-guides.js");
+  const { INDEXED_MARKETS } = await import("../src/lib/locations.js");
+  assert.deepEqual(Object.keys(MARKET_ARTICLES).sort(), [...INDEXED_MARKETS].sort());
+  for (const slug of INDEXED_MARKETS) {
+    assert.ok(MARKET_GUIDES[slug], `${slug} has a market guide section to host the link`);
+    assert.match(MARKET_ARTICLES[slug].path, /^\/blog\/[a-z0-9-]+$/, slug);
+  }
+  assert.equal(new Set(Object.values(MARKET_ARTICLES).map((a) => a.path)).size, INDEXED_MARKETS.length, "no two hubs share an article");
+  const { readFileSync } = await import("node:fs");
+  const page = readFileSync(new URL("../src/components/site/location-page.jsx", import.meta.url), "utf8");
+  assert.match(page, /const article = !city \? MARKET_ARTICLES\[country\.slug\] : null;/);
+  assert.match(page, /\{article && <p[^>]*>Read the full planning guide: <Link[^>]*href=\{article\.path\}>\{article\.label\}<\/Link><\/p>\}/);
+});
+
+test("teachers page answers the female-teacher question without unverified claims", async () => {
+  const { readFileSync } = await import("node:fs");
+  const page = readFileSync(new URL("../src/app/(site)/teachers/page.jsx", import.meta.url), "utf8");
+  assert.match(page, /question: "Can I choose a female Quran teacher\?"/);
+  assert.match(page, /safeJsonLd\(faqSchema\(TEACHER_FAQS\)\)/, "FAQPage data comes from the same visible list");
+  assert.match(page, /<FaqList faqs=\{TEACHER_FAQS\}/);
+  assert.doesNotMatch(page, /trained in Tajweed|experienced and caring|Qualified female and male/, "no credential claims while profiles are not shown");
+  assert.doesNotMatch(page, /you choose your preference when booking/, "a preference is requested, not guaranteed");
+  assert.match(page, /cannot be guaranteed/);
+});

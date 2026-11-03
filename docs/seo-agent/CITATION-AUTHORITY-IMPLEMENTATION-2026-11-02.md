@@ -35,7 +35,7 @@ Do not create or claim a Google Business Profile for the current online-only ope
 Policy: https://support.google.com/business/answer/13763036
 
 ### Market order
-Follow the SEO operating specification: UK first; USA and Australia next; Canada after that. UAE is parked. Do not create local city listings or imply physical branches. Country-targeted website pages are not proof of local offices.
+Updated 2 Nov 2026 (owner's written direction): USA, UK, Canada, Australia and UAE are all primary markets; see `search-os-2026-11-02/OQC_DECISION_LOG.md`. Do not create local city listings or imply physical branches. Country-targeted website pages are not proof of local offices.
 
 ## 3. Citation quality rules
 1. One genuine OQC-owned profile per relevant platform; claim duplicates only when ownership can be verified.
@@ -92,7 +92,7 @@ Google Business Profile is excluded while OQC remains online-only: Google's elig
 - Keep Canadian spelling and locale on the website; business facts remain consistent.
 
 ### UAE
-- Parked under the approved SEO market sequence. No UAE profiles or claims of UAE operations until the owner reopens this market and provides verified operational details.
+- Reopened 2 Nov 2026 as an online-only market. Follow `UAE-ORGANIC-GROWTH-AND-CITATION-PLAN-2026-11-02.md`: use the global brand profile and the UAE country hub; no UAE address, phone, trade licence, branch or local-directory listing that requires local premises.
 
 ## 6. Approved brand description — draft for review
 “Online Quran College provides live, one-to-one online Quran and Islamic learning for children and adults. Learners can explore courses including Noorani Qaida, Quran reading with Tajweed, Hifz, Arabic language, Quran translation and Islamic studies, with class arrangements discussed around the learner’s needs and time zone. Visit our website to explore courses and request a trial.”
