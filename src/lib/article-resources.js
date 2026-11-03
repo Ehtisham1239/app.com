@@ -37,6 +37,10 @@ const articleTopics = {
   "how-long-does-hifz-take-online": "hifz",
   "tajweed-rules-for-beginners": "tajweed",
   "online-tafseer-classes-what-you-learn": "understanding",
+  "sabaq-sabqi-manzil-explained": "hifz",
+  "makharij-explained-for-beginners": "tajweed",
+  "common-tajweed-mistakes": "tajweed",
+  "ramadan-quran-plan-for-families": "parents",
 };
 
 export function articleResources(post) {
