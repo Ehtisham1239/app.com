@@ -48,6 +48,7 @@ export const SEARCH_INTENTS = {
   "/locations/united-arab-emirates": {
     "phrase": "online Quran classes in UAE",
     "heading": "Online Quran classes in UAE",
+    "description": "Live one-to-one online Quran classes for children and adults in the UAE: Noorani Qaida, Tajweed and Hifz, with lesson times in Gulf Standard Time.",
     "intro": "Live one-to-one online Quran lessons for children and adults across the UAE. Explore Noorani Qaida, Quran reading, Tajweed and Hifz, and arrange lesson times in Gulf Standard Time (Asia/Dubai). Classes are delivered online; no UAE teaching-centre or branch is represented."
   },
   "/locations/united-kingdom": {

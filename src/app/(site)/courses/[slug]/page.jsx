@@ -5,6 +5,7 @@ import { SITE_URL } from "@/lib/config";
 import { safeJsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
 import { contentMetadata, publicImageUrl } from "@/lib/seo-metadata";
 import { courseSchema } from "@/lib/course-schema";
+import { courseHeading } from "@/lib/course-heading";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, CalendarClock, CheckCircle2, GraduationCap, MessageCircle, Users } from "@/components/site/icons";
@@ -51,7 +52,7 @@ export default async function CoursePage({ params }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema([{ name: "Courses", path: "/courses" }, { name: course.title, path: `/courses/${course.slug}` }], SITE_URL)) }} />
       {[...courseFaqs, ...generalFaqs].length > 0 && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema([...courseFaqs, ...generalFaqs])) }} />}
       {jsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />}
-      <PageHero path={`/courses/${course.slug}`} eyebrow="Live one-to-one course" title={course.title} intro={truncate(course.summary || "", 180)} arabic={course.arabic_title} visual={course.cover_url ? <ContentImage src={course.cover_url} alt={course.cover_alt} priority sizes="(max-width: 1024px) 100vw, 600px" className="aspect-[3/2] w-full object-cover" /> : undefined}>
+      <PageHero path={`/courses/${course.slug}`} eyebrow="Live one-to-one course" title={courseHeading(course)} intro={truncate(course.summary || "", 180)} arabic={course.arabic_title} visual={course.cover_url ? <ContentImage src={course.cover_url} alt={course.cover_alt} priority sizes="(max-width: 1024px) 100vw, 600px" className="aspect-[3/2] w-full object-cover" /> : undefined}>
         <nav aria-label="Breadcrumb" className="mt-5 text-sm text-white/75"><Link href="/courses" className="underline">Courses</Link> / <span aria-current="page">{course.title}</span></nav>
         <div className="mt-6 flex flex-wrap gap-3"><Link href={`/free-trial?course=${course.id}`} className="btn btn-gold">Book a free trial <ArrowRight className="size-5" aria-hidden="true" /></Link>{wa && <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-outline-light"><MessageCircle className="size-5" aria-hidden="true" /> Ask a question</a>}</div>
       </PageHero>

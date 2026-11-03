@@ -16,6 +16,6 @@ async function resolve(params) {
 export async function generateMetadata({ params }) {
   const { country, city } = await resolve(params);
   const page = await getPage(locationCmsSlug(country, city));
-  return contentMetadata({ ...locationIndexRecord(page, country, city), seo_title: page?.seo_title || locationSearchTitle(country, city) }, { path: locationPath(country, city), locale: locationLocale(country), title: locationHeading(country, city, page?.title), description: page?.seo_description || SEARCH_INTENTS[locationPath(country)]?.intro || locationSearchIntro(country, city) });
+  return contentMetadata({ ...locationIndexRecord(page, country, city), seo_title: page?.seo_title || locationSearchTitle(country, city) }, { path: locationPath(country, city), locale: locationLocale(country), title: locationHeading(country, city, page?.title), description: page?.seo_description || SEARCH_INTENTS[locationPath(country)]?.description || SEARCH_INTENTS[locationPath(country)]?.intro || locationSearchIntro(country, city) });
 }
 export default async function Page({ params }) { return <LocationPage {...await resolve(params)} />; }
