@@ -1,3 +1,20 @@
+# Canonical production target — 4 November 2026
+
+- Public canonical host: **https://www.onlinequrancollege.com** (verified on the current OQC Vercel project).
+- Apex host: **https://onlinequrancollege.com** redirects to `www` with HTTP 308.
+- Repository: `Ehtisham1239/app.com`; production source branch: `main`.
+- Vercel project: `appcom-online-quran-college` (`prj_ohTvpaIwR1bWHFJWl23QiNfOoJG7`).
+- Shared Supabase project: `lgbwidraztavhhbnbfhr`.
+- Public site, CMS/admin, parent portal, results and API routes are maintained in this single Next.js repository. Do not create separate repos/projects for these modules.
+- `go.onlinequrancollege.com` is a separate legacy public host and is not registered as a domain on this Vercel project. Its hosting/DNS owner is not established; do not claim it has been migrated or redirect it until the host, campaign links, forms and analytics are audited and owner approval is obtained.
+- The live `www` site is the source for current offers and public business facts. Do not copy unsupported legacy `go` claims (5-day trial, since-2014, 1,000+ families, 5/5 rating, tutor credentials or virtual office) into production content.
+
+See [the single-repository source-of-truth record](docs/architecture/SINGLE-REPOSITORY-SOURCE-OF-TRUTH.md) for route ownership, duplicate-control rules and acceptance checklist.
+
+---
+
+## Historical deployment notes (do not treat older entries as current configuration)
+
 > **Analytics mode (owner decision, 26 Oct 2026 — keep):** cookieless GA4 with `client_storage: "none"` and `analytics_storage: "granted"`; no banner; ad storage denied. See AGENTS.md before changing.
 
 # app.com website and CMS deployment
