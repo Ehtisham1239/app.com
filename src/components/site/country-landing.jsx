@@ -56,7 +56,7 @@ export function CountryLanding({ hub, fee, teachers = [], trialHref, trustpilotP
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <h2 id="hub-teachers" className="text-2xl">Meet some of our teachers</h2>
-              <p className="mt-2 max-w-2xl text-sm text-ink-soft">Each profile lists the teacher's specialism, qualifications and languages. Ask for a female or male teacher when you book.</p>
+              <p className="mt-2 max-w-2xl text-sm text-ink-soft">Each profile lists the teacher’s specialism, qualifications and languages. Ask for a female or male teacher when you book.</p>
             </div>
             <Link className="font-semibold text-leaf-700 underline" href="/teachers">All teachers</Link>
           </div>
