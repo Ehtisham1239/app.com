@@ -52,6 +52,65 @@ For every country route, the default keyword family to validate locally is:
 
 **Country-specific competitor status:** named competitor watchlists are researched candidates for the five priority markets above. For the remaining generated country groups, the competitor field is **research required** rather than populated with guessed brand names. Run a localized Google SERP review for each market before adding competitor names, record at least 5 real organic competitors and their exact ranking URLs, and refresh monthly. Do not add competitors to public OQC copy.
 
+## Country-by-country competitor evidence for the generated location inventory
+**Research snapshot:** public search results reviewed on 2026-11-03. These are observable competing services/content providers, not an ordered top-10 ranking. A country with no dedicated provider found is explicitly marked; do not pad its competitor list with invented brands. Country-level coverage claims below are based on the linked public pages, not private analytics.
+
+| Country / market | Competitor evidence surfaced | Evidence / qualification |
+|---|---|---|
+| Albania | Quran Web Academy (Balkans) | [Balkans page](https://quranweblearning.com/en/online-quran-classes-balkans/) explicitly names Albania, Bosnia, Kosovo and North Macedonia |
+| Andorra | Regional watchlist: Quran Web Academy Europe; British Quran Academy Europe | [QWA Europe](https://quranweblearning.com/en/online-quran-classes-europe/) says Europe-wide service; dedicated Andorra page not found in this scan |
+| Austria | Quran Web Academy; Al Quran Academy | [QWA Austria](https://quranweblearning.com/en/online-quran-classes-austria/); [Al Quran Academy](https://www.alquranacademy.com/) is a global service, not Austria-specific |
+| Belarus | Regional watchlist: Quran Web Academy Europe; British Quran Academy Europe | Dedicated Belarus competitor page not found in this scan; verify actual localized SERP before making market claims |
+| Belgium | British Quran Academy | [Belgium country page](https://britishquranacademyuk.com/europe/belgium/online-quran-classes) |
+| Bosnia and Herzegovina | Quran Web Academy (Balkans) | [Balkans page](https://quranweblearning.com/en/online-quran-classes-balkans/) explicitly targets Bosnia |
+| Bulgaria | Regional watchlist: Quran Web Academy Europe; British Quran Academy Europe | No dedicated country page surfaced in this scan |
+| Croatia | Regional watchlist: Quran Web Academy Europe; British Quran Academy Europe | No dedicated country page surfaced in this scan |
+| Cyprus | Regional watchlist: Quran Web Academy Europe; British Quran Academy Europe | No dedicated country page surfaced in this scan |
+| Czechia | Regional watchlist: Quran Web Academy Europe; British Quran Academy Europe | No dedicated country page surfaced in this scan |
+| Denmark | British Quran Academy; Quran Web Academy; AlQuranClasses; Quran Tutor Academy Online; Quran Institute Online | [BQA Denmark](https://britishquranacademyuk.com/europe/denmark/online-quran-classes); [QWA Denmark](https://quranweblearning.com/en/online-quran-classes-denmark/); [AlQuranClasses Denmark](https://alquranclasses.com/locations/denmark); [Quran Tutor Academy Online](https://qurantutoracademyonline.com/online-quran-classes-denmark); [Quran Institute Online](https://quraninstituteonline.dk/) |
+| Estonia | International Islamic Learning Center; Eesti Moslemite Ühendus (community/education alternative) | [IILC](https://rih.ee/) lists online Quran/Tajweed courses; [Estonian Muslim Association](https://eestimoslemid.ee/en/) is a community learning alternative, not a like-for-like commercial academy |
+| Finland | Quran Web Academy; My Online Quran Tutor; Quran Pak Teacher | [QWA Finland](https://quranweblearning.com/en/online-quran-classes-finland/); [My Online Quran Tutor Finland](https://www.myonlinequrantutor.com/online-quran-classes-finland); [Quran Pak Teacher Finland](https://quranpakteacher.com/quran-teacher-in-finland/) |
+| France | Regional watchlist: Quran Web Academy Europe; British Quran Academy Europe | [QWA Europe](https://quranweblearning.com/en/online-quran-classes-europe/) lists France; dedicated France competitor page not captured in this scan |
+| Germany | ElQuranOnline / Tilawah Quran Online Academy; Sidq Quran Academy International | [ElQuranOnline Germany](https://elquranonline.com/en/countries/quran-classes-germany/); [Quran Academy Space](https://quranacademy.space/quran-classes/germany) |
+| Greece | My Online Quran Tutor | [Greece country page](https://www.myonlinequrantutor.com/online-quran-classes-greece) |
+| Hungary | Quran Pak Teacher / Islamic Quran Academy | [Hungary country page](https://quranpakteacher.com/quran-teacher-in-hungary/) |
+| Iceland | Regional watchlist: Quran Web Academy Europe; British Quran Academy Europe | Dedicated Iceland page not found in this scan |
+| Ireland | British Quran Academy; Quran Web Academy Europe | [BQA Ireland](https://britishquranacademyuk.com/europe/ireland/online-quran-classes); [QWA Europe](https://quranweblearning.com/en/online-quran-classes-europe/) lists Ireland |
+| Italy | Quran Web Academy; Islamic Quran Center | [QWA Italy](https://quranweblearning.com/en/online-quran-classes-italy/); [Islamic Quran Center Italy](https://islamicqurancenter.com/countries/italy/) |
+| Kosovo | Quran Web Academy (Balkans) | [Balkans page](https://quranweblearning.com/en/online-quran-classes-balkans/) explicitly names Kosovo |
+| Latvia | Regional watchlist: Quran Web Academy Europe; British Quran Academy Europe | Dedicated Latvia page not found in this scan |
+| Liechtenstein | Regional watchlist: Quran Web Academy Europe; British Quran Academy Europe | Dedicated Liechtenstein page not found in this scan |
+| Lithuania | Regional watchlist: Quran Web Academy Europe; British Quran Academy Europe | Dedicated Lithuania page not found in this scan |
+| Luxembourg | British Quran Academy; Quran Web Academy Europe | [QWA Europe](https://quranweblearning.com/en/online-quran-classes-europe/) lists Luxembourg; verify BQA's exact country landing page before treating it as a direct competitor |
+| Malta | British Quran Academy | [Malta country page](https://britishquranacademyuk.com/europe/malta/online-quran-classes) |
+| Moldova | Regional watchlist: Quran Web Academy Europe; British Quran Academy Europe | Dedicated Moldova page not found in this scan |
+| Monaco | Regional watchlist: Quran Web Academy Europe; British Quran Academy Europe | Dedicated Monaco page not found in this scan |
+| Montenegro | QuranlyHub; Quran Web Academy (Balkans) | [QuranlyHub Montenegro](https://quranlyhub.com/online-quran-classes-montenegro/); [QWA Balkans](https://quranweblearning.com/en/online-quran-classes-balkans/) mentions Montenegro/Podgorica in its schedule examples |
+| Netherlands | Al Furqan Academy; Quran Web Academy | [Al Furqan Netherlands](https://alfurqan.academy/online-quran-classes/netherlands); [QWA Netherlands](https://quranweblearning.com/en/online-quran-classes-netherlands/) |
+| North Macedonia | Quran Web Academy (Balkans) | [Balkans page](https://quranweblearning.com/en/online-quran-classes-balkans/) explicitly names North Macedonia |
+| Norway | Quran Web Academy; British Quran Academy | [QWA Norway](https://quranweblearning.com/en/online-quran-classes-norway/); [BQA Norway](https://britishquranacademyuk.com/europe/norway/online-quran-classes) |
+| Poland | Regional watchlist: Quran Web Academy Europe; British Quran Academy Europe | Dedicated Poland page not found in this scan |
+| Portugal | British Quran Academy; Quran Web Academy | [BQA Portugal](https://britishquranacademyuk.com/europe/portugal/online-quran-classes); [QWA Portugal](https://quranweblearning.com/en/online-quran-classes-portugal/) |
+| Romania | Regional watchlist: Quran Web Academy Europe; British Quran Academy Europe | Dedicated Romania page not found in this scan |
+| Russia | Quran Academy (online learning platform); Quran-Online.ru | [Quran Academy](https://en.quranacademy.org/) and [Quran-Online.ru](https://quran-online.ru/) are adjacent Quran-learning/content alternatives; not verified as direct live one-to-one academy competitors |
+| San Marino | Regional watchlist: Quran Web Academy Europe; British Quran Academy Europe | Dedicated San Marino page not found in this scan |
+| Serbia | Regional watchlist: Quran Web Academy Europe; British Quran Academy Europe | Dedicated Serbia page not found in this scan |
+| Slovakia | Regional watchlist: Quran Web Academy Europe; British Quran Academy Europe | Dedicated Slovakia page not found in this scan |
+| Slovenia | Regional watchlist: Quran Web Academy Europe; British Quran Academy Europe | Dedicated Slovenia page not found in this scan |
+| Spain | Quran Plus School; Quran Web Academy; British Quran Academy | [Quran Plus Spain](https://quranplusschool.com/online-quran-classes-spain); [QWA Spain](https://quranweblearning.com/en/online-quran-classes-spain/); [BQA Spain](https://britishquranacademyuk.com/europe/spain/online-quran-classes) |
+| Sweden | Quran Academy Sweden; British Quran Academy | [Quran Academy Sweden](https://quranacademy.se/); [BQA Sweden](https://britishquranacademyuk.com/europe/sweden/online-quran-classes) |
+| Switzerland | Quran Web Academy; British Quran Academy; AlQuranClasses | [QWA Switzerland](https://quranweblearning.com/en/online-quran-classes-switzerland/); [BQA Switzerland](https://britishquranacademyuk.com/europe/switzerland/online-quran-classes); [AlQuranClasses Switzerland](https://alquranclasses.com/locations/switzerland) |
+| Turkey | Regional/global watchlist only: Quran Academy and international one-to-one providers | No dedicated Turkish-language or Turkey-specific direct competitor page verified in this scan |
+| Ukraine | Regional watchlist: Quran Web Academy Europe; British Quran Academy Europe | Dedicated Ukraine page not found in this scan |
+| Vatican City | Regional watchlist only; no dedicated competitor found | Do not create a Vatican-specific commercial SEO page without demand evidence |
+| United Kingdom | See priority-market competitor watchlist above | UK SERP watchlist is a research shortlist, not a rank order |
+| United States | See priority-market competitor watchlist above | USA SERP watchlist is a research shortlist, not a rank order |
+| Canada | See priority-market competitor watchlist above | Canada SERP watchlist is a research shortlist, not a rank order |
+| Australia | See priority-market competitor watchlist above | Australia SERP watchlist is a research shortlist, not a rank order |
+| United Arab Emirates | See priority-market competitor watchlist above | UAE SERP watchlist is a research shortlist, not a rank order |
+
+**Action rule:** where a market has only a regional watchlist, do not treat that as proof of local demand or a top-ranked competitor. Keep generated country/city pages noindex until local SERP validation, language feasibility, time-zone support, unique content and commercial viability are confirmed. The immediate commercial priority remains UK, USA, Canada, Australia and UAE.
+
 ## Broader international watchlist (research candidates, not a country ranking)
 For worldwide discovery and future market selection, monitor competitor pages and actual local SERPs in: Ireland, New Zealand, Saudi Arabia, Qatar, Kuwait, Bahrain, Oman, Germany, France, Netherlands, Belgium, Italy, Spain, Sweden, Norway, South Africa, Singapore, Malaysia and Pakistan. Do not publish or index a country landing page merely because a competitor has one. First validate language demand, service-hour feasibility, payment/currency support, local consumer rules and genuinely distinct content.
 
