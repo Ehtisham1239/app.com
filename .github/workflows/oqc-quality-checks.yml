@@ -114,3 +114,51 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
 
+
+  # Lab performance (Lighthouse), the read-only SEO crawl and the duplicate-host
+  # noindex header, measured against live production from a GitHub runner
+  # (register E-02, E-16, E-31). Report-only: it never fails the PR or main.
+  live-performance-audit:
+    if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    continue-on-error: true
+    needs: [test-and-lint]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Wait for the production deployment of this commit
+        if: github.event_name == 'push'
+        run: sleep 120
+      - name: Duplicate-host noindex header (E-02)
+        shell: bash
+        run: |
+          set -uo pipefail
+          for host in https://appcom-online-quran-college.vercel.app https://www.onlinequrancollege.com; do
+            echo "== $host"
+            curl -sSI "$host/" | grep -i -E '^HTTP|^x-robots-tag' || true
+          done
+      - name: Lighthouse lab audit of key pages (E-31)
+        env:
+          OQC_QA_OUTPUT: artifacts/performance
+          OQC_PERF_PATHS: /,/pricing,/free-trial,/locations/united-kingdom,/locations/united-states
+        run: npm run audit:performance -- https://www.onlinequrancollege.com
+      - name: Read-only SEO crawl of the sitemap (E-16)
+        run: npm run seo:agent -- https://www.onlinequrancollege.com artifacts/seo-agent/ci
+      - name: Upload audit reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-performance-and-seo-audit
+          path: artifacts
+          if-no-files-found: ignore
+          retention-days: 30

@@ -35,12 +35,17 @@ try {
     if (!ready) throw Error(`Server startup timed out: ${logs}`);
   }
   const chrome = process.env.CHROMIUM_PATH || chromium.executablePath();
+  // OQC_PERF_PATHS="/,/pricing" audits several public paths; default is the homepage only.
+  const paths = (process.env.OQC_PERF_PATHS || '/').split(',').map(p => p.trim()).filter(p => p.startsWith('/'));
+  for (const path of paths) {
+  const url = base + (path === '/' ? '' : path);
+  const tag = path === '/' ? '' : path.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '') + '-';
   for (const device of ['mobile', 'desktop']) {
     // chrome-launcher is supplied by Lighthouse and exposes the CDP port.
     const { launch } = await import('chrome-launcher');
     const launched = await launch({ chromePath: chrome, chromeFlags: ['--headless', '--no-sandbox', '--disable-dev-shm-usage'] });
     try {
-      const result = await lighthouse(base, {
+      const result = await lighthouse(url, {
         port: launched.port,
         output: ['json', 'html'],
         onlyCategories: ['performance', 'accessibility', 'best-practices', 'seo'],
@@ -48,13 +53,14 @@ try {
       }, device === 'desktop' ? desktopConfig : undefined);
       const { lhr, report } = result;
       if (lhr.runtimeError) throw Error(JSON.stringify(lhr.runtimeError));
-      writeFileSync(`${out}/${device}.json`, report[0]);
-      writeFileSync(`${out}/${device}.html`, report[1]);
+      writeFileSync(`${out}/${tag}${device}.json`, report[0]);
+      writeFileSync(`${out}/${tag}${device}.html`, report[1]);
       const metrics = Object.fromEntries(['first-contentful-paint', 'largest-contentful-paint', 'total-blocking-time', 'cumulative-layout-shift', 'speed-index'].map(id => [id, lhr.audits[id].numericValue]));
-      const summary = { device, url: base, fetchTime: lhr.fetchTime, lighthouseVersion: lhr.lighthouseVersion, mode: remote ? 'remote lab' : 'local lab; vendor scripts blocked; seed content', scores: Object.fromEntries(Object.entries(lhr.categories).map(([id, value]) => [id, Math.round(value.score * 100)])), metrics, diagnostics: Object.values(lhr.audits).filter(a => a.score !== null && a.score < 1).map(a => ({ id: a.id, title: a.title, value: a.displayValue })) };
+      const summary = { device, url, fetchTime: lhr.fetchTime, lighthouseVersion: lhr.lighthouseVersion, mode: remote ? 'remote lab' : 'local lab; vendor scripts blocked; seed content', scores: Object.fromEntries(Object.entries(lhr.categories).map(([id, value]) => [id, Math.round(value.score * 100)])), metrics, diagnostics: Object.values(lhr.audits).filter(a => a.score !== null && a.score < 1).map(a => ({ id: a.id, title: a.title, value: a.displayValue })) };
       results.push(summary);
       console.log(JSON.stringify(summary, null, 2));
     } finally { await launched.kill(); }
+  }
   }
 } finally {
   server?.kill();
