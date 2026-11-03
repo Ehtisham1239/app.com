@@ -166,3 +166,21 @@ test("teachers page answers the female-teacher question without unverified claim
   assert.doesNotMatch(page, /you choose your preference when booking/, "a preference is requested, not guaranteed");
   assert.match(page, /cannot be guaranteed/);
 });
+
+test("entity names and market hubs carry the 3 Nov keyword and schema updates", async () => {
+  const { readFileSync } = await import("node:fs");
+  const layout = readFileSync(new URL("../src/app/(site)/layout.jsx", import.meta.url), "utf8");
+  assert.equal((layout.match(/alternateName: "OQC"/g) || []).length, 2, "WebSite and Organization");
+  const { locationServiceSchema } = await import("../src/lib/seo.js");
+  const svc = locationServiceSchema({ country: { name: "Australia" }, city: null, placeName: "Australia", url: "https://x/locations/australia", siteUrl: "https://x" });
+  assert.equal(svc.audience["@type"], "PeopleAudience");
+  assert.doesNotMatch(JSON.stringify(svc), /aggregateRating|PostalAddress|price/);
+  const { SEARCH_INTENTS } = await import("../src/lib/search-intent.js");
+  assert.equal(SEARCH_INTENTS["/locations/australia"].heading, "Online Quran classes in Australia");
+  assert.match(SEARCH_INTENTS["/locations/australia"].intro, /Sydney, Melbourne, Brisbane, Adelaide or Perth/);
+  const { COUNTRY_HUBS } = await import("../src/lib/country-hubs.js");
+  for (const slug of ["united-states", "australia"]) {
+    const qs = COUNTRY_HUBS[slug].faqs().map((f) => f.question);
+    assert.ok(qs.some((q) => /suitable for kids/.test(q)) && qs.some((q) => /online Hifz classes/.test(q)), slug);
+  }
+});

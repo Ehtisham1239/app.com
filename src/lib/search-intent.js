@@ -72,9 +72,9 @@ export const SEARCH_INTENTS = {
     "intro": "Live one-to-one online Quran lessons for children and adults across Canadian provinces and time zones. Choose the learner's city and lesson date, explore Noorani Qaida, Tajweed and Hifz, and request a written CAD fee quote. Lessons are delivered online; no Canadian office or local branch is represented."
   },
   "/locations/australia": {
-    "phrase": "online Quran tuition in Australia",
-    "heading": "Online Quran tuition in Australia",
-    "intro": "Live one-to-one online Quran lessons for children and adults across Australian states and territories. Plan around your city’s local clock and daylight-saving rules, explore Noorani Qaida, Tajweed and Hifz, and request a written AUD fee quote. Lessons are delivered online; no Australian office or local branch is represented."
+    "phrase": "online Quran classes in Australia",
+    "heading": "Online Quran classes in Australia",
+    "intro": "Learn Quran online in Australia with live one-to-one online Quran classes for kids and adults. Plan lessons in Sydney, Melbourne, Brisbane, Adelaide or Perth time, including daylight saving, explore Noorani Qaida, Tajweed, Hifz and Tafseer, and see monthly fees in Australian dollars. Lessons are delivered online; no Australian office or local branch is represented."
   },
   "/locations/united-states": {
     "phrase": "online Quran classes in the USA",

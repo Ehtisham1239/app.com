@@ -31,6 +31,13 @@ const FAQS = (place, languages) => () => [
   { question: `Do you offer online Tafseer classes in ${place}?`, answer: "Yes. The Quran translation and Tafseer course explains the meaning and context of the verses. Ask the coordinator which surahs you would start with and which Tafseer works the teacher uses." },
 ];
 
+// Kids and Hifz answers for the main markets (3 Nov 2026). Competitor country pages in AU and the
+// USA lead with children's classes and memorisation; these say only what OQC offers today.
+export const KIDS_HIFZ_FAQS = (place) => [
+  { question: `Are online Quran classes suitable for kids in ${place}?`, answer: "Yes. Children usually start with Noorani Qaida or Quran reading at their level in short one-to-one lessons. A parent books the class, can sit nearby, and can ask for a female teacher." },
+  { question: `Do you offer online Hifz classes in ${place}?`, answer: "Yes. The Hifz course covers new memorisation with daily revision, planned around school. The teacher sets the pace from the learner's reading level, and the coordinator confirms a teacher and time before lessons begin." },
+];
+
 function hub(slug, { place, currency, zone, languages = "English" }) {
   const article = MARKET_ARTICLES[slug];
   return {
@@ -47,10 +54,10 @@ function hub(slug, { place, currency, zone, languages = "English" }) {
 }
 
 export const COUNTRY_HUBS = {
-  "united-states": { ...US_HUB, place: "the USA", currency: "USD", faqs: usHubFaqs },
+  "united-states": { ...US_HUB, place: "the USA", currency: "USD", faqs: () => [...KIDS_HIFZ_FAQS("the USA"), ...usHubFaqs()] },
   // The UK hub already has its own learning-paths section and FAQs (uk-hub.js).
   "united-kingdom": { ...hub("united-kingdom", { place: "the UK", currency: "GBP", zone: "UK time" }), feeQuestion: UK_HUB.feeQuestion, paths: null, faqs: null },
   canada: hub("canada", { place: "Canada", currency: "CAD", zone: "your Canadian time zone (Eastern, Central, Mountain, Pacific or Atlantic)" }),
-  australia: hub("australia", { place: "Australia", currency: "AUD", zone: "your Australian time zone (Sydney, Melbourne, Brisbane, Adelaide or Perth time)" }),
+  australia: (() => { const h = hub("australia", { place: "Australia", currency: "AUD", zone: "your Australian time zone (Sydney, Melbourne, Brisbane, Adelaide or Perth time)" }); return { ...h, faqs: () => [...KIDS_HIFZ_FAQS("Australia"), ...h.faqs()] }; })(),
   "united-arab-emirates": hub("united-arab-emirates", { place: "the UAE", currency: "AED", zone: "Gulf Standard Time", languages: "English, Arabic or Urdu" }),
 };
