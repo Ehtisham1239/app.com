@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { LOCATIONS, INDEXED_MARKETS, locationIndexRecord } from "../src/lib/locations.js";
 
 // Pathway decision 26–28 Oct 2026: only approved country hubs are indexed by default.
@@ -13,4 +14,9 @@ test("an explicit CMS choice always wins over the default", () => {
   const london = uk.cities.find((c) => c.slug === "london");
   assert.equal(locationIndexRecord({ seo_noindex: false }, uk, london).seo_noindex, false, "city page re-indexed after local proof");
   assert.equal(locationIndexRecord({ seo_noindex: true }, uk, null).seo_noindex, true);
+});
+
+test("a city page shows its own CMS guidance open, so re-indexed city pages lead with local content", () => {
+  const src = readFileSync(new URL("../src/components/site/location-page.jsx", import.meta.url), "utf8");
+  assert.match(src, /<details className="surface p-6" open=\{Boolean\(city\)\}>/);
 });

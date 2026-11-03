@@ -21,3 +21,4 @@
 2. Teacher profiles: which teachers and academic reviewer may be named, with verified qualifications and consent?
 3. Subdomains `app./go./hiring./portal.`: where are they hosted, and should they be noindexed or redirected?
 4. Merge this PR (preview build must pass first).
+| 2026-11-03 | Owner re-indexed 3 city pages (Houston, Perth, Melbourne) that outranked their US/AU hubs while noindexed; every other city page keeps the 26–28 Oct noindex default. Content is local time-zone planning, online-only, no local address or branch claim | Windsor GSC query × page × country (28 days to 3 Nov) | Owner (in chat) | Implemented in CMS + PR |
