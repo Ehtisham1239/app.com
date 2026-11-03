@@ -11,7 +11,7 @@ export function ContactSupportButton() {
           <span className="contact-support-icon" aria-hidden="true"><Headset size={20} /></span>
           <div>
             <p className="contact-support-title">Online Quran College</p>
-            <p className="contact-support-subtitle">We're here to help</p>
+            <p className="contact-support-subtitle">We&apos;re here to help</p>
           </div>
         </div>
         <Link href="/contact" className="contact-support-cta">
