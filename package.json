@@ -19,6 +19,7 @@
     "test:browser": "node scripts/browser-smoke.mjs",
     "verify:site": "node scripts/run-site-quality.mjs",
     "audit:performance": "node scripts/performance-audit.mjs",
+    "audit:responsive": "node scripts/responsive-audit.mjs",
     "db:bundle": "node scripts/bundle-database.mjs",
     "seed:snapshot": "node scripts/export-seed-content.mjs",
     "seo:agent": "node scripts/seo-agent-audit.mjs",

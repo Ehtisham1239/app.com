@@ -74,3 +74,43 @@ jobs:
               *) echo "Unexpected redirect for $path"; exit 1 ;;
             esac
           done
+
+  # Opens the live public pages at 320–1440px and fails if any page scrolls
+  # sideways; also checks the country-hub hreflang cluster and city-page indexing.
+  # On a pull request it audits current production; on main it runs after deploy.
+  responsive-audit:
+    if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    # A PR is audited against current production, so a fix in the PR only shows
+    # after deploy: report on PRs, enforce on main.
+    continue-on-error: ${{ github.event_name == 'pull_request' }}
+    needs: [test-and-lint]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Wait for the production deployment of this commit
+        if: github.event_name == 'push'
+        run: sleep 120
+      - name: Responsive audit of the live site
+        env:
+          RESPONSIVE_SHOTS_DIR: responsive-shots
+        run: npm run audit:responsive
+      - name: Upload 390px screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: responsive-screenshots
+          path: responsive-shots
+          if-no-files-found: ignore
+          retention-days: 14
+
