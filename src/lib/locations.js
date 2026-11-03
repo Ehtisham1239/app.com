@@ -942,5 +942,14 @@ export function locationSearchIntro(country, city) {
 export const LOCATION_TEMPLATE_UPDATED = "2026-11-03";
 export const locationLastModified = (page) => [page?.updated_at, LOCATION_TEMPLATE_UPDATED].filter(Boolean).map((d) => new Date(d)).filter((d) => !Number.isNaN(d.getTime())).sort((a, b) => b - a)[0].toISOString();
 export const INDEXED_MARKETS = ["united-kingdom", "united-states", "australia", "canada", "united-arab-emirates"];
+// hreflang for the five country hubs: same service, one English page per market, so
+// Google can show the UK hub in the UK, the Australia hub in Australia, and so on.
+// x-default is the country directory. Only hubs carry these tags, and every hub lists
+// all five (the tags must be reciprocal).
+export const MARKET_HREFLANG = { "united-kingdom": "en-GB", "united-states": "en-US", canada: "en-CA", australia: "en-AU", "united-arab-emirates": "en-AE" };
+export function marketHreflang(siteUrl) {
+  const languages = Object.fromEntries(INDEXED_MARKETS.map((slug) => [MARKET_HREFLANG[slug], `${siteUrl}/locations/${slug}`]));
+  return { ...languages, "x-default": `${siteUrl}/locations` };
+}
 export const defaultLocationNoindex = (country, city) => Boolean(city) || !INDEXED_MARKETS.includes(country.slug);
 export const locationIndexRecord = (page, country, city) => ({ ...(page || {}), seo_noindex: page?.seo_noindex ?? defaultLocationNoindex(country, city) });
