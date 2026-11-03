@@ -6,6 +6,7 @@ import { safeJsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
 import { contentMetadata, publicImageUrl } from "@/lib/seo-metadata";
 import { courseSchema } from "@/lib/course-schema";
 import { courseHeading } from "@/lib/course-heading";
+import { courseReading } from "@/lib/course-reading";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, CalendarClock, CheckCircle2, GraduationCap, MessageCircle, Users } from "@/components/site/icons";
@@ -64,6 +65,7 @@ export default async function CoursePage({ params }) {
 
           {!course.description_html?.includes("oqc-course-support-20261029") && COURSE_SUPPORT[course.slug]?.length > 0 && <section className="prose-oqc mt-10" aria-labelledby="course-preparation"><h2 id="course-preparation">Prepare for this learning path</h2><ul>{COURSE_SUPPORT[course.slug].map(([path, label, detail]) => <li key={path}><Link href={path}>{label}</Link>. {detail}</li>)}</ul><p>Compare the <Link href="/learn#course-comparison">course starting points and learning goals</Link>, then discuss a suitable plan with the coordinator.</p></section>}
 
+          {courseReading(course.slug).length > 0 && <nav aria-labelledby="course-reading" className="mt-10"><h2 id="course-reading" className="text-2xl">Further reading</h2><ul className="mt-4 grid gap-2 sm:grid-cols-2">{courseReading(course.slug).map(({ label, href }) => <li key={href}><Link href={href} className="flex items-center gap-2 rounded-xl border border-line bg-white px-4 py-3 font-semibold text-leaf-700 hover:border-gold-300 hover:bg-gold-50"><ArrowRight className="size-4 shrink-0" aria-hidden="true" />{label}</Link></li>)}</ul></nav>}
           <section className="surface mt-10 space-y-3 p-6"><h2 className="text-2xl">Plan lessons around your family</h2><p>Explore local scheduling and fee guidance before requesting a trial.</p><div className="flex flex-wrap gap-3"><Link href="/locations/united-states" className="btn btn-outline">USA families</Link><Link href="/locations/united-kingdom" className="btn btn-outline">UK families</Link><Link href="/locations/canada" className="btn btn-outline">Canadian families</Link><Link href="/locations/australia" className="btn btn-outline">Australian families</Link><Link href="/learn" className="btn btn-outline">Learning guides</Link></div></section>
           {course.outcomes?.length > 0 && (
             <section className="mt-12">
