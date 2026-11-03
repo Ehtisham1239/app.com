@@ -41,3 +41,11 @@ test("llms.txt points assistants to independent reviews and states the permissio
   assert.match(route, /https:\/\/www\.trustpilot\.com\/review\/onlinequrancollege\.com/);
   assert.match(route, /only when the reviewer gives permission/);
 });
+
+
+test("database RLS prevents public reads of testimonials without publication consent", () => {
+  const migration = read("supabase/migrations/20261103181459_require_testimonial_publication_consent.sql");
+  assert.match(migration, /drop policy if exists "public read" on public\.testimonials/i);
+  assert.match(migration, /for select to anon, authenticated/i);
+  assert.match(migration, /status = 'published' and consent_recorded_at is not null/i);
+});
