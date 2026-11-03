@@ -30,6 +30,14 @@ export function analyticsSettingsError(value = {}) {
   return "";
 }
 
+// Only the production site reports to GA4. Vercel preview and other project
+// hosts load the same tag and otherwise mix test visits into the reports
+// (GA4, 28 days to 3 Nov 2026: 15 of 323 sessions came from *.vercel.app hosts).
+export const ANALYTICS_HOSTS = ["www.onlinequrancollege.com"];
+export function isAnalyticsHost(hostname) {
+  return ANALYTICS_HOSTS.includes(String(hostname || "").toLowerCase());
+}
+
 export function publicAnalyticsUrl(input, origin) {
   try {
     const url = new URL(input, origin);

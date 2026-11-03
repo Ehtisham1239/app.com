@@ -46,3 +46,9 @@ test("editorial standards are linked from articles, Organization data and llms.t
 test("llms.txt points to the free printable trackers", () => {
   assert.match(route, /\[Free printable Quran trackers\]\(\/free-quran-learning-resources\)/);
 });
+
+test("llms.txt turns its site links into absolute URLs before serving", () => {
+  assert.match(route, /lines\.join\("\\n"\)\.replaceAll\("\]\(\/", `\]\(\$\{SITE_URL\}\/`\)/);
+  const sample = "- [Fees](/pricing)\n- [Trustpilot](https://www.trustpilot.com/review/x)".replaceAll("](/", "](https://www.onlinequrancollege.com/");
+  assert.equal(sample, "- [Fees](https://www.onlinequrancollege.com/pricing)\n- [Trustpilot](https://www.trustpilot.com/review/x)");
+});
