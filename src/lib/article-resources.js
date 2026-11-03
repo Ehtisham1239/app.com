@@ -31,6 +31,8 @@ const articleTopics = {
   "tajweed-practice-with-feedback": "tajweed",
   "hifz-revision-with-school": "hifz",
   "questions-before-quran-course-enrolment": "reading",
+  "how-long-to-learn-noorani-qaida": "parents",
+  "how-long-does-hifz-take-online": "hifz",
 };
 
 export function articleResources(post) {
