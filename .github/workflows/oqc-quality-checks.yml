@@ -70,7 +70,7 @@ jobs:
           echo "/pricing/ -> $pricing_redirect"
           test "$pricing_redirect" = "308 $base/pricing"
           curl -fsS "$base/pricing" -o /tmp/oqc-pricing.html
-          grep -Fq 'rel="canonical" href="$base/pricing"' /tmp/oqc-pricing.html
+          grep -Fq "rel=\"canonical\" href=\"$base/pricing\"" /tmp/oqc-pricing.html
           curl -fsS "$base/courses/noorani-qaida" -o /tmp/oqc-course.html
           grep -Fq 'href="/locations/united-arab-emirates"' /tmp/oqc-course.html
 
