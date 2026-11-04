@@ -61,6 +61,19 @@ jobs:
             status=$(curl -sS -o /tmp/oqc-response -w '%{http_code}' "$base$path")
             test "$status" = "200" || { echo "$path returned $status"; exit 1; }
           done
+      - name: Verify legacy pricing slash and course market links
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://www.onlinequrancollege.com"
+          pricing_redirect=$(curl -sS -o /dev/null -w '%{http_code} %{redirect_url}' "$base/pricing/")
+          echo "/pricing/ -> $pricing_redirect"
+          test "$pricing_redirect" = "308 $base/pricing"
+          curl -fsS "$base/pricing" -o /tmp/oqc-pricing.html
+          grep -Fq 'rel="canonical" href="$base/pricing"' /tmp/oqc-pricing.html
+          curl -fsS "$base/courses/noorani-qaida" -o /tmp/oqc-course.html
+          grep -Fq 'href="/locations/united-arab-emirates"' /tmp/oqc-course.html
+
       - name: Verify review short links redirect to the canonical page
         shell: bash
         run: |
