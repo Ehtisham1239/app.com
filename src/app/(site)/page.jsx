@@ -87,6 +87,31 @@ export default async function HomePage() {
         </div>
       </section>
 
+      <section aria-labelledby="oqc-learning-framework" className="border-y border-line bg-[#f5faf1] py-16 sm:py-20">
+        <div className="page-wrap">
+          <SectionHeading
+            eyebrow="The OQC learning approach"
+            title={<span id="oqc-learning-framework">A clear path from first lesson to steady progress</span>}
+            intro="A simple learning cycle helps students and families understand what happens before, during and after a lesson."
+          />
+          <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {[
+              ["01", "Learn", "Understand the lesson goal and introduce the skill at the learner’s current level."],
+              ["02", "Practice", "Work through guided recitation, reading or memorisation with the teacher."],
+              ["03", "Assessment", "Check understanding and identify what the learner can do confidently."],
+              ["04", "Feedback", "Discuss strengths and the next area to practise with the learner."],
+              ["05", "Improve", "Use the next lesson and home practice to build on the previous step."],
+            ].map(([number, title, description]) => (
+              <li key={number} className="surface flex flex-col p-5">
+                <span className="font-display text-2xl text-gold-600">{number}</span>
+                <h3 className="mt-3 text-lg font-bold text-mushaf-900">{title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{description}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
       {homePlans.length > 0 && (
         <section id="fees" className="page-wrap scroll-mt-24 py-16 sm:py-24" aria-labelledby="fees-heading">
           <SectionHeading
