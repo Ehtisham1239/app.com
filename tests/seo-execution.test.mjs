@@ -57,3 +57,17 @@ test("the free-trial FAQ repeats only what the page already promises", () => {
   assert.doesNotMatch(source, /sm:hidden/, "one promise list, not a duplicate for phones");
   assert.doesNotMatch(source, /no obligation/i);
 });
+
+test("course pages link to all five indexed country hubs", () => {
+  const source = read("src/app/(site)/courses/[slug]/page.jsx");
+  for (const [path, label] of [
+    ["/locations/united-kingdom", "UK families"],
+    ["/locations/united-states", "USA families"],
+    ["/locations/canada", "Canadian families"],
+    ["/locations/australia", "Australian families"],
+    ["/locations/united-arab-emirates", "UAE families"],
+  ]) {
+    assert.ok(source.includes(`href="${path}"`), path);
+    assert.ok(source.includes(`>${label}</Link>`), label);
+  }
+});
