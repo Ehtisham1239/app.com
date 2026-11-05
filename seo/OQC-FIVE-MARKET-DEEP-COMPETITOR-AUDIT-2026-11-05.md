@@ -36,6 +36,19 @@ The following is a research sample, not a top-10 ranking, quality ranking or pro
 | Australia | Nouf Australia; Her Quran Academy Australia; Australian Quran Academy; Academy for Quran; Khan Quran Academy | AEST/ACST/AWST and DST; AUD fees; state/city scheduling; family routines and parent information |
 | UAE | Madani UAE; Khan Quran Academy fee page; AQ Online Academy; Madani Dubai; OQC UAE page as internal benchmark | GST/Asia-Dubai scheduling; AED clarity; emirate-specific usefulness; online-only disclosure; parent-facing course and fee answers |
 
+
+### Existing ten-provider monitoring sets and keyword map
+The repository already contains a dated 10-provider monitoring set for each of the five markets, plus keyword clusters mapped to the existing country, course, pricing and trial URLs: `docs/seo-agent/OQC-FIVE-MARKET-COMPETITOR-KEYWORD-EXECUTION-MAP-2026-11-03.md`. Those are research watchlists, not “top 10” rankings. The current audit samples selected live public pages for feature-pattern comparison; it does not claim those providers outrank OQC in a verified localized SERP.
+
+### Historical OQC Search Console sample
+A small 28-day GSC sample was recorded in the 3 November keyword register:
+- UK query “online Quran classes UK”: average position 13.3, 18 impressions.
+- USA query “quran classes”: average position 31.5, 16 impressions.
+- Australia query “online Quran classes Australia”: average position 95.6, 11 impressions.
+- No comparable historical query sample was recorded there for Canada or UAE.
+
+These are low-volume OQC query averages, not competitor rankings, search-volume estimates or a current baseline. They should guide which URLs to inspect first, not be used as a forecast. A fresh authorized GSC export is required before setting market-level ranking targets.
+
 ### High-value examples inspected
 - Learn Quran Academy presents a student portal, monthly assessment, teacher choice and a three-day trial.
 - UK Quran Academy presents progress reports, a student app, teacher claims, parent visibility and a multi-step trial path. Its opened page also showed inconsistent-looking counters (zero active students / zero Trustpilot rating alongside testimonials), a reminder to treat competitor claims cautiously.
