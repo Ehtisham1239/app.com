@@ -42,7 +42,7 @@ export default async function ContactPage() {
         <div className="min-w-0">
           <div className="mb-6">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-leaf-700">Choose your channel</p>
-            <h2 className="mt-2 text-[1.8rem] text-mushaf-900">We’re easy to reach</h2>
+            <h2 className="mt-2 text-[1.8rem] text-mushaf-900">Contact Online Quran College</h2>
             <p className="mt-3 leading-relaxed text-ink-soft">Use whichever contact method is most comfortable. For a quick question, WhatsApp is a convenient place to start; for a detailed request, use the form.</p>
           </div>
           <div className="space-y-3">
