@@ -31,7 +31,7 @@ The five market hubs expose a visible â€œOfficial guidance and reference linksâ€
 These are references supporting time-zone, privacy, marketing, consumer-protection and licensing explanations. They are not endorsements of OQC and must not be described as acquired backlinks or business citations.
 
 ## External entity/profile citations
-The global citation tracker records existing website-linked Facebook, Instagram, X and Trustpilot profiles. Their public URLs are known from the website/CMS, but account-admin ownership and third-party profile edits were not independently verified in this closeout. LinkedIn, YouTube and Apple Business remain owner-controlled optional work.
+The global citation tracker records existing website-linked Facebook, Instagram, X and Trustpilot profiles. Their public URLs are known from the website/CMS, but account-admin ownership and third-party profile edits were not independently verified in this closeout. A read-only CMS count on 5 November 2026 returned zero published testimonial records and zero published testimonial records with a consent timestamp; therefore no testimonial cards or review aggregate markup should be introduced until genuine feedback records and explicit consent exist. LinkedIn, YouTube and Apple Business remain owner-controlled optional work.
 
 No new third-party profile was created, no editorial outreach was sent, and no external backlink placement is claimed. RISE, ISRE and ISLA opportunities remain conditional on owner approval and academic review. Google Business Profile and generic local directories remain excluded while OQC is online-only and has no eligible in-person customer-contact location.
 
