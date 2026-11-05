@@ -113,6 +113,11 @@ The competitor research does **not** justify rebuilding those foundations. The d
 - Gap: verify that Arabic/English/Urdu teaching-language options are explicitly tied to real teacher availability before advertising them.
 - Never add a UAE office, local licence, local telephone number or LocalBusiness address without documentary evidence and actual eligibility.
 
+### OQC CMS / product evidence check (5 November 2026)
+A read-only Supabase inspection confirms the parent portal is implemented and its route is private/noindex. The current data snapshot contained **2 issued certificates**, **0 monthly progress reports**, and **0 published student-result rows**. The portal can display only records linked to the authenticated parent and published by staff. Accordingly, the country-hub CTA must describe approved results/certificates as available only when published and must not imply that monthly reports are already being delivered to every family. The copy in this PR now makes that limitation explicit.
+
+The homepage CMS also contains the phrase “track progress every month” and a benefit describing certificates after final assessments. The first statement needs confirmation from Academic Operations against the actual reporting cadence before it is amplified in public copy. This audit does not silently rewrite it because monthly teacher feedback may occur outside the portal database. Teacher profile records currently contain qualification text, but this database check does not inspect documentary credential evidence; no blanket credential verification claim is made.
+
 ## 4. Cross-market patterns and lawful implementation choices
 
 | Competitor pattern | User benefit | OQC status | Recommended next action |
