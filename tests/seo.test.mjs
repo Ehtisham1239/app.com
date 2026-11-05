@@ -78,6 +78,12 @@ test("location pages describe online tuition for the place without claiming a lo
   assert.ok(us.sections.length >= 2 && us.sections.every((s) => s.path.startsWith("/")));
   assert.ok(us.sources.every((s) => new URL(s.url).hostname.endsWith(".gov")));
   assert.notEqual(us.title, guide.title);
+  const uae = MARKET_GUIDES["united-arab-emirates"];
+  assert.ok(uae.sections.length >= 2);
+  assert.ok(uae.sources.every((s) => new URL(s.url).protocol === "https:"));
+  const advertiserGuide = uae.sources.find((s) => s.name.includes("Advertiser Permit"));
+  assert.equal(new URL(advertiserGuide.url).hostname, "uaemc.gov.ae");
+  assert.match(new URL(advertiserGuide.url).pathname, /Advertiser-Guide\.pdf$/);
 });
 test("location sitemap dates include the latest shared template change", async () => {
   const { locationLastModified, LOCATION_TEMPLATE_UPDATED } = await import("../src/lib/locations.js");
