@@ -170,7 +170,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       <div ref={topRef} className="surface scroll-mt-28 p-7 text-center shadow-[var(--shadow-lift)] sm:p-9" role="status">
         <span className="mx-auto flex size-14 items-center justify-center rounded-full bg-leaf-50 text-leaf-700 ring-1 ring-leaf-100"><CheckCircle2 className="size-8" aria-hidden="true" /></span>
         <h2 ref={successHeading} tabIndex={-1} className="mt-4 text-[1.8rem] text-mushaf-900">Request received</h2>
-        <p className="mx-auto mt-2 max-w-md text-ink-soft">{(eligible && successText) || "A coordinator will contact you by WhatsApp or email, usually within 24 hours, to discuss your request."}</p>
+        <p className="mx-auto mt-2 max-w-md text-ink-soft">{(eligible && successText) || "A coordinator will contact you by WhatsApp or email to discuss your request."}</p>
         {showRef && <p className="mt-4 inline-flex rounded-full bg-gold-50 px-4 py-1.5 font-mono text-sm font-semibold text-gold-700 ring-1 ring-gold-100">Reference: {state.reference}</p>}
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           {whatsappHref && <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="btn btn-primary"><MessageCircle className="size-5" aria-hidden="true" /> Message us on WhatsApp</a>}
