@@ -29,7 +29,7 @@ test("contact notification is built from saved CMS fields and safely escapes HTM
   assert.match(email.text, /Course enquiry/);
   assert.match(email.text, /Please explain class times/);
   assert.match(email.text, /Admin → Contacts/);
-  assert.match(email.html, /&lt;script&gt;alert\(1\)&lt;\\/script&gt;/);
+    assert.match(email.html, /&lt;script&gt;alert\\(1\\)&lt;[/]script&gt;/);
   assert.doesNotMatch(email.html, /<script>/);
   assert.doesNotMatch(email.text, /parent@example\.test.*to:/i);
 });
