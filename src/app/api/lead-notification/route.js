@@ -4,6 +4,7 @@ import { permitsMutation } from "@/lib/request-origin";
 import { SITE_URL } from "@/lib/config";
 import { buildContactEmail, buildLeadEmail, notificationConfig, sendLeadEmail } from "@/lib/usa-lead-notification";
 
+// Staff-only notification sent after CMS persistence; never send this message to the form submitter.
 export const dynamic = "force-dynamic";
 
 const MAX_BODY_BYTES = 2048;
