@@ -5,6 +5,8 @@ import { courseHeading } from "../src/lib/course-heading.js";
 import { GUIDE_FAQS, guideFaqs } from "../src/lib/guide-faqs.js";
 import { SEARCH_INTENTS } from "../src/lib/search-intent.js";
 import { LEARNING_GUIDES } from "../src/lib/learning-guides.js";
+import { calculateHifzPlan } from "../src/lib/hifz-planner.js";
+import { teacherPerson } from "../src/lib/teacher-schema.js";
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
 
@@ -73,14 +75,14 @@ test("course pages link to all five indexed country hubs", () => {
 });
 
 test("Hifz planner calculates only user-entered page targets and validates inputs", () => {
-  assert.deepEqual(calculateHifzPlan({ remainingPages: 50, studyDaysPerWeek: 5, revisionPages: 30, revisionDaysPerWeek: 6 }), {
+  assert.deepEqual(calculateHifzPlan({ remainingPages: 50, studyDaysPerWeek: 5, newPagesPerStudyDay: 10, revisionPages: 30, revisionDaysPerWeek: 6 }), {
     newPagesPerStudyDay: 10, estimatedStudyDays: 5, estimatedWeeks: 1, revisionPagesPerDay: 5,
   });
-  assert.deepEqual(calculateHifzPlan({ remainingPages: 30, studyDaysPerWeek: 5, revisionPages: 0, revisionDaysPerWeek: 6 }), {
+  assert.deepEqual(calculateHifzPlan({ remainingPages: 30, studyDaysPerWeek: 5, newPagesPerStudyDay: 6, revisionPages: 0, revisionDaysPerWeek: 6 }), {
     newPagesPerStudyDay: 6, estimatedStudyDays: 5, estimatedWeeks: 1, revisionPagesPerDay: 0,
   });
-  assert.ok(calculateHifzPlan({ remainingPages: 0, studyDaysPerWeek: 5, revisionPages: 0, revisionDaysPerWeek: 6 }).error);
-  assert.ok(calculateHifzPlan({ remainingPages: 10, studyDaysPerWeek: 8, revisionPages: 0, revisionDaysPerWeek: 6 }).error);
+  assert.ok(calculateHifzPlan({ remainingPages: 0, studyDaysPerWeek: 5, newPagesPerStudyDay: 5, revisionPages: 0, revisionDaysPerWeek: 6 }).error);
+  assert.ok(calculateHifzPlan({ remainingPages: 10, studyDaysPerWeek: 8, newPagesPerStudyDay: 1, revisionPages: 0, revisionDaysPerWeek: 6 }).error);
 });
 
 test("Hifz planner is linked, indexable and included in sitemap", () => {
