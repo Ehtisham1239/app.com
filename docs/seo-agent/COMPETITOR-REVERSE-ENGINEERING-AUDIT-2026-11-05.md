@@ -92,6 +92,13 @@ A source branch removes the unverified CMS `site.identity.established` value fro
 4. Verify GSC domain property ownership, sitemap processing, Manual Actions and Indexing reports; verify GA4 Realtime/DebugView and conversion events. These account-level states are not proven by repository configuration.
 5. Check field Core Web Vitals in Search Console/CrUX separately from Lighthouse lab metrics.
 
+## Legacy search-cache discrepancy (urgent verification)
+A public web-index/open snapshot of the OQC homepage returned an older page version (crawl/cache date shown as approximately three months old) containing 5,000+ active students, 25+ countries, 24/7 support, tutor-specific credential and student-count statements, and named testimonials. This is not proof that the current production response still contains those statements: the current repository and CMS content are newer, and the published CMS pages query found no matching legacy student-count/country-count/support claims. The public search snippet for the current domain also shows newer online-only positioning and the current three-day-trial model.
+
+**Required action:** after the PR deployment, fetch the live homepage and old UK landing URLs directly, compare rendered HTML to the CMS, inspect canonical/redirect headers, then use verified Search Console URL Inspection to request recrawl of the canonical URLs. If the old claims still appear in the current HTML, remove or substantiate them before requesting indexing. If only stale index cache remains, do not change correct page copy to chase the stale snapshot; request recrawl and monitor. Do not publish any of the legacy statistics/claims unless the owner supplies supporting records.
+
+The current teacher records contain owner-confirmation notes dated 3 November 2026 for the six public teacher profiles, including qualifications and consent to publish. Preserve that audit trail; do not broaden those individual confirmations into blanket claims that every tutor has the same credential.
+
 ## Content / AEO / GEO implementation plan
 1. **Progress evidence centre:** Publish an accurate explanation of how a learner is assessed, what feedback families receive, how practice is assigned and how progress is reviewed. Add anonymised examples only with explicit parent/student permission and no identifying details.
 2. **Course outcome pages:** For Noorani Qaida, Tajweed, Hifz, Quran reading, Arabic/translation and Islamic studies, publish syllabus scope, prerequisites, sample milestone, practice routine, assessment method and who reviews academic content. A scholar/academic lead must review religious claims.
