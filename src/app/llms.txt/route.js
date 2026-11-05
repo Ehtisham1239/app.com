@@ -1,5 +1,5 @@
 import { getCourses, getPosts, getPublishedSlugs, getSettings } from "@/lib/site-data";
-import { shouldIncludeInSitemap } from "@/lib/seo";
+import { shouldIncludeInSitemap, organizationIdentityProfiles } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
 import { LEARNING_GUIDES } from "@/lib/learning-guides";
 import { INDEXED_MARKETS, getLocation, locationPath } from "@/lib/locations";
@@ -11,9 +11,9 @@ export const revalidate = 3600;
 const label = value => String(value || "").replace(/[\[\]\r\n]/g, " ").trim();
 export async function GET() {
   const [courses, posts, published, settings] = await Promise.all([getCourses(), getPosts(50), getPublishedSlugs(), getSettings()]);
-  // Official profiles = the same CMS list as the footer and Organization sameAs, so every
-  // citation source names one consistent entity (https only; empty entries skipped).
+  // These are website-configured outbound links, not independent proof of account ownership.
   const profiles = Object.entries(settings?.["site.social"] || {}).filter(([, url]) => typeof url === "string" && /^https:\/\/[^\s]+$/.test(url));
+  const identityProfiles = organizationIdentityProfiles(settings?.["site.social"]);
   const PROFILE_NAMES = { x: "X (Twitter)", facebook: "Facebook", instagram: "Instagram", trustpilot: "Trustpilot", youtube: "YouTube", tiktok: "TikTok", linkedin: "LinkedIn" };
   const eligible = (collection, prefix) => new Set(collection.filter(row => shouldIncludeInSitemap(row, `${prefix}/${row.slug}`, SITE_URL)).map(row => row.slug));
   const courseSlugs = eligible(published.courses, "/courses"), postSlugs = eligible(published.posts, "/blog");
@@ -42,9 +42,11 @@ export async function GET() {
     "- Each additional child from the same family receives 15% off their monthly fee.",
     "- Fees can be shown converted into the visitor's currency for guidance; the coordinator confirms the fee and payment currency before enrolment.",
     "- Lessons are arranged in the learner's time zone. Country pages describe online coverage, not physical offices.", "",
-    "## Official profiles", "",
-    "Online Quran College has one global identity (online-only, no walk-in office). These are its only official profiles:",
+    "## Profile links configured on this website", "",
+    "The following profile URLs are configured as outbound links on the OQC website. A website link does not independently verify account ownership or profile administration:",
     ...profiles.map(([key, url]) => `- [${label(PROFILE_NAMES[key] || key)}](${url})`), "",
+    "Only the exact OQC Trustpilot profile URL linked by this website is used as an Organization sameAs reference. This identifies the public review page; it does not certify account-admin ownership:",
+    ...identityProfiles.map(url => `- [Trustpilot identity reference](${url})`), "",
     "## Reviews", "",
     "- [Independent reviews on Trustpilot](https://www.trustpilot.com/review/onlinequrancollege.com)",
     "- [Share your experience](/reviews): families can send a review to the college; a review appears on the website only when the reviewer gives permission (first name only, text unedited).", "",
