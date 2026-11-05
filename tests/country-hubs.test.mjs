@@ -28,8 +28,12 @@ test("all five indexed hubs get a landing block in their own currency", () => {
   assert.match(COUNTRY_HUBS["united-arab-emirates"].steps[0].text, /Gulf Standard Time/);
 });
 
-test("contact page states its primary topic in visible main content", () => {\n  const page = read("src/app/(site)/contact/page.jsx");\n  assert.match(page, /Contact Online Quran College/);\n});\n\ntest("all market and city landing pages disclose the exact free-trial conditions", () => {
-  const page = read("src/components/site/location-page.jsx");
+test("contact page states its primary topic in visible main content", () => {
+  const page = read("src/app/(site)/contact/page.jsx");
+  assert.match(page, /Contact Online Quran College/);
+});
+
+test("all market and city landing pages disclose the exact free-trial conditions", () => {  const page = read("src/components/site/location-page.jsx");
   assert.match(page, /3-day free trial on eligible plans/);
   assert.match(page, /No card is needed; the Weekend plan is excluded/);
   assert.match(page, /Is the 3-day free trial available on every plan/);
