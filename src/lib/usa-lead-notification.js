@@ -124,7 +124,7 @@ ${rows.map(([label, value]) => `<tr><th scope="row" style="${cell}width:34%;colo
 // the database by the reference/email RPC; never trust browser-supplied content.
 export function buildContactEmail(lead, { siteUrl = "https://www.onlinequrancollege.com" } = {}) {
   const reference = oneLine(lead.reference, 24);
-  const adminUrl = `${String(siteUrl).replace(/\\/$/, "")}/admin/contacts`;
+  const adminUrl = `${String(siteUrl).replace(/\/$/, "")}/admin/contacts`;
   const utm = lead.utm && typeof lead.utm === "object" ? lead.utm : {};
   const rows = [
     ["Reference", reference],
@@ -151,13 +151,13 @@ export function buildContactEmail(lead, { siteUrl = "https://www.onlinequrancoll
     `Open in Admin → Contacts: ${adminUrl}`,
     "",
     "Internal notification only. No email was sent to the person who submitted the form.",
-  ].join("\\n");
+  ].join("\n");
   const cell = "padding:7px 10px;border-bottom:1px solid #e3ead8;vertical-align:top;text-align:left;";
   const html = `<!doctype html><html lang="en"><body style="margin:0;padding:16px;background:#f6f8f3;font-family:Arial,Helvetica,sans-serif;color:#1d2a1f;">
 <div style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #dfe7d6;border-radius:12px;overflow:hidden;">
 <div style="background:#0D4A1C;color:#ffffff;padding:14px 18px;font-size:17px;font-weight:bold;">New OQC website enquiry · ${escapeHtml(reference)}</div>
 <table role="presentation" style="width:100%;border-collapse:collapse;font-size:14px;">
-${rows.map(([label, value]) => `<tr><th scope="row" style="${cell}width:34%;color:#4a5a4c;font-weight:normal;">${escapeHtml(label)}</th><td style="${cell}font-weight:bold;">${escapeHtml(value)}</td></tr>`).join("\\n")}
+${rows.map(([label, value]) => `<tr><th scope="row" style="${cell}width:34%;color:#4a5a4c;font-weight:normal;">${escapeHtml(label)}</th><td style="${cell}font-weight:bold;">${escapeHtml(value)}</td></tr>`).join("\n")}
 </table>
 <div style="padding:14px 18px;font-size:14px;"><p style="margin:0 0 6px;color:#4a5a4c;">Message</p><p style="margin:0;white-space:pre-wrap;">${escapeHtml(message)}</p></div>
 <div style="padding:4px 18px 18px;"><a href="${escapeHtml(adminUrl)}" style="display:inline-block;background:#0C6C0C;color:#ffffff;text-decoration:none;padding:10px 16px;border-radius:999px;font-weight:bold;">Open in Admin → Contacts</a></div>
