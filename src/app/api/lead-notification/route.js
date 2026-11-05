@@ -7,7 +7,7 @@ import { buildContactEmail, buildLeadEmail, notificationConfig, sendLeadEmail } 
 export const dynamic = "force-dynamic";
 
 const MAX_BODY_BYTES = 2048;
-const EMAIL = /^[^@\\s<>"',;]+@[^@\\s<>"',;]+\\.[^@\\s<>"',;]+$/;
+const EMAIL = /^[^@\s<>"',;]+@[^@\s<>"',;]+\.[^@\s<>"',;]+$/;
 const reply = (body, status = 200) => NextResponse.json(body, { status, headers: { "Cache-Control": "private, no-store", "X-Robots-Tag": "noindex" } });
 const log = (level, outcome, reference) => console[level](JSON.stringify({ event: "lead_notification", outcome, reference: reference || null }));
 
@@ -15,13 +15,13 @@ function parseRequest(body) {
   if (!body || typeof body !== "object" || Array.isArray(body)) return null;
   const reference = typeof body.reference === "string" ? body.reference.trim() : "";
   const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
-  if (!/^(?:TR|MSG)-\\d{4}-\\d{5,7}$/.test(reference) || !email || email.length > 254 || !EMAIL.test(email)) return null;
+  if (!/^(?:TR|MSG)-\d{4}-\d{5,7}$/.test(reference) || !email || email.length > 254 || !EMAIL.test(email)) return null;
   return { reference, email };
 }
 
 export async function POST(request) {
   if (!permitsMutation(request)) return reply({ ok: false, error: "forbidden" }, 403);
-  if (!/^application\\/json\\b/i.test(request.headers.get("content-type") || "")) return reply({ ok: false, error: "bad_request" }, 415);
+  if (!/^application\/json\b/i.test(request.headers.get("content-type") || "")) return reply({ ok: false, error: "bad_request" }, 415);
   if (Number(request.headers.get("content-length") || 0) > MAX_BODY_BYTES) return reply({ ok: false, error: "bad_request" }, 413);
 
   let parsed = null;
