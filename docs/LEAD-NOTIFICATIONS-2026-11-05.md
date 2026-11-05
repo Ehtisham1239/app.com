@@ -9,7 +9,7 @@
 - The email body is built from the database row, not browser-supplied names, phone numbers, course, review or message content.
 - A read-only, SECURITY DEFINER RPC exposes only a matching reference + email pair for 30 minutes; it does not grant direct table reads.
 - Resend idempotency keys prevent repeat delivery for the same reference while the provider retains the key.
-- Notifications are internal only; the parent/learner is not emailed.
+- Notifications are internal only; the parent/learner/reviewer is not emailed.
 
 ## Required provider configuration
 The current Vercel project was inspected on 5 November 2026. It contains only the public Supabase URL, public publishable key and public site URL. No Resend API key, verified sender or lead-recipient variable is configured in the project at this checkpoint.
@@ -32,5 +32,5 @@ Never expose or commit the Resend API key. Do not send test messages to real cus
 2. Apply the SQL migration to the correct Supabase project after reviewing the migration and current schema.
 3. Add the three Resend environment variables in Vercel without disclosing values.
 4. Deploy the tested commit and verify the production revision.
-5. Perform one synthetic contact and one synthetic trial test in an approved environment; verify CMS record + both recipient inboxes + no customer email.
+5. Perform one synthetic contact, trial and review test in an approved environment; verify each CMS record + both recipient inboxes + no submitter email.
 6. Reconcile the test records according to the approved test-data retention process.
