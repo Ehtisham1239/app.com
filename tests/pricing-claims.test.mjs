@@ -14,6 +14,6 @@ test("public pricing integrates the approved sibling discount from backend setti
   assert.ok(compare.includes("familyDiscount?.eligible_plan_ids"));
   assert.ok(compare.includes("Apply sibling discount"));
   assert.ok(compare.includes("familyMonthlyEstimate(selectedRow.price.amount_minor, learners, appliedPercent"));
-  assert.ok(answer.includes("15% off each additional child"));
+  assert.ok(answer.includes("familyDiscount.percent") && answer.includes("each additional child"));
   assert.ok(siteData.includes("return rows;"));
 });
