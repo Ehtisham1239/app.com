@@ -7,15 +7,15 @@
 The shared site layout already emits a stable WebSite and EducationalOrganization/Organization graph with:
 - Stable `/#website` and `/#organization` identifiers.
 - Public brand name, alternate name, canonical URL and logo imagery.
-- CMS-configured legal name, description, contact email/telephone and Admissions contact point.
+- Public brand name, description, contact email/telephone and Admissions contact point. The optional `legalName` property is withheld until the exact active Companies House entity is confirmed.
 - Online service coverage across the five indexed markets and the subjects visible on the website.
-- CMS-linked public profile URLs in `sameAs`.
+- Only the exact OQC Trustpilot profile URL in `sameAs`; other social URLs remain footer links until account identity is confirmed.
 - A postal address only when a complete street address and two-letter country code are explicitly configured.
 
 ### Authenticity correction
-The CMS has an `identity.established` value of 2018, but the available evidence does not establish that this is the legal entity's incorporation date. Brand trading history and company incorporation are different facts. This release removes the CMS value from Organization `foundingDate`; no founding date is emitted until the owner supplies documentary evidence and approves the exact public wording.
+The CMS has an `identity.established` value of 2018, but the available evidence does not establish that this is the legal entity's incorporation date. An older same-name Companies House entity (13629654) is officially dissolved; a newer same-name company record (17075457) appears in secondary registry sources but needs direct Companies House and owner confirmation. Brand trading history and company incorporation are different facts. This release omits both `foundingDate` and `legalName` until the exact active legal entity and documentary evidence are confirmed.
 
-Do not add a company number, registered office, LocalBusiness, virtual office, country branch or physical address without an official source and owner confirmation. OQC's public positioning is online-only with no walk-in office.
+Do not add a company number, legalName, registered office, LocalBusiness, virtual office, country branch or physical address without an official source and owner confirmation. OQC's public positioning is online-only with no walk-in office.
 
 ## Structured data guardrails
 - Mark up only facts visible to users and supported by the page.
@@ -25,7 +25,7 @@ Do not add a company number, registered office, LocalBusiness, virtual office, c
 - Structured data may help search engines interpret a page, but does not guarantee rich results or ranking gains.
 
 ## Citation and review evidence
-- Existing website-linked Facebook, Instagram, X and Trustpilot URLs are present in the citation tracker; profile admin ownership and third-party profile edits have not been verified in this review.
+- Existing website-linked Facebook, Instagram, X and Trustpilot URLs are present in the citation tracker; profile admin ownership and third-party profile edits have not been verified in this review. Only the exact OQC Trustpilot review URL is retained as `sameAs` because the official site links directly to that exact brand profile; this does not certify account-admin ownership. Other social links remain ordinary outbound links.
 - A read-only CMS count on 5 November 2026 returned six public teacher records (all six active) and zero published testimonial records, including zero published records with a consent timestamp.
 - Teacher records include owner-confirmation notes dated 3 November 2026 for the six public profiles. Preserve those records and publish only the verified individual fields.
 - Do not publish testimonial cards, review aggregate schema, review counts or average ratings until genuine review records and explicit publication consent are recorded.
