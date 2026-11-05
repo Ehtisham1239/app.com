@@ -45,6 +45,17 @@ Connected GA4 property: `560748871`.
 ## Performance evidence and limits
 The previous PR #123 QA recorded strong Lighthouse lab scores on the tested routes (roughly 95–100 Performance, 97–100 Accessibility, 100 Best Practices and 100 SEO) and no horizontal overflow across its tested responsive widths. Those are lab checks from that release, not fresh measurements for this PR, not CrUX field Core Web Vitals, and not a ranking guarantee. Current GA4 FCP/TTFB/LCP/CLS/INP rows are event counts, not percentile measurements. Fresh field CWV requires Search Console/CrUX data; a fresh direct-network lab run is still required after deployment.
 
+
+## CMS review and testimonial audit
+Seven review submissions were found in the CMS:
+- One review is already approved and published (review reference `REV-2026-00007`).
+- One approved review has no website-publication consent in the review form; it remains unpublished.
+- One review has a publication-consent timestamp and a complete comment, but its selected relation ("Student") conflicts with the text ("My daughter"). Keep it out of public testimonials until the reviewer clarifies the display relation.
+- Three other consented submissions contain only topic/category fragments (teacher, progress, timings, communication), not complete review statements. Do not turn those fragments into endorsements.
+- One additional submission has no publication consent and only a fragmentary comment.
+
+The CMS review detail screen creates an unpublished testimonial draft and requires staff to review the text and record consent before publishing. No reviewer email, photo or private contact detail is to be exposed publicly. The only already-published testimonial remains the only one counted as published in this audit.
+
 ## Citation and backlink audit
 The existing global citation tracker contains 32 register rows, but these are a mix of:
 - Existing social URLs linked from the site footer (Facebook, Instagram, X), whose admin ownership/profile details are not yet verified in the tracker.
