@@ -87,6 +87,6 @@ export function progressBulkPayload(row) {
     ratings,
     remarks: String(row.remarks || "").trim(),
     plan: String(row.learning_plan || "").trim(),
-    details: { assessment_areas, syllabus, ...(attendance ? { attendance } : {}), performance },
+    details: { assessment_version: 1, assessment_areas, syllabus, ...(attendance ? { attendance } : {}), performance },
   };
 }
