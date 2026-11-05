@@ -67,6 +67,18 @@ test("teacher cards without a photo use a compact initial, skipping honorifics",
   assert.doesNotMatch(card.slice(card.indexOf("export function TeacherCard")), /brand-mark block size-20/, "no tall empty image block");
 });
 
+test("teacher availability and fallback copy do not promise unverified options", () => {
+  const hubs = JSON.stringify(Object.values(COUNTRY_HUBS).map((h) => ({ ...h, faqs: h.faqs ? h.faqs() : [] })));
+  const landing = read("src/components/site/country-landing.jsx");
+  const defaults = read("src/lib/default-settings.js");
+  assert.doesNotMatch(hubs + landing + defaults, /female or male teacher|male and female teachers|Female & male teachers/i);
+  assert.match(hubs, /records any teacher preference and confirms who is available/);
+  assert.match(landing, /availability is confirmed before enrolment/);
+  assert.doesNotMatch(defaults, /15% discount|other languages|within one working day|3 days of free classes/i);
+  assert.match(defaults, /Teacher preference discussed/);
+  assert.match(defaults, /No card needed on eligible plans/);
+});
+
 test("the reviews button is icon-only on phones and keeps its accessible text", () => {
   const btn = read("src/components/site/reviews-button.jsx");
   assert.match(btn, /flex min-w-0 flex-col leading-tight max-lg:sr-only/);
