@@ -35,7 +35,7 @@ export function ProgressDetailsFields({ details, onChange, idPrefix = "details" 
             </select>
           </Field>
           <Field label="Lessons completed" hint="Use lesson numbers/pages actually completed">
-            <input className="adm-input" maxLength={100} value={details.lessons_completed || ""} onChange={(e) => onChange("lessons_completed", "", e.target.value)} placeholder="e.g. Qaida lessons 5–8" />
+            <input className="adm-input" maxLength={100} value={details.syllabus.lessons_completed || ""} onChange={(e) => onChange("syllabus", "lessons_completed", e.target.value)} placeholder="e.g. Qaida lessons 5–8" />
           </Field>
         </div>
         <div className="mt-4 grid gap-3">
