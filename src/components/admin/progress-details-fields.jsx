@@ -1,7 +1,7 @@
 "use client";
 
 import { Field } from "@/components/admin/ui";
-import { ASSESSMENT_AREAS, CATEGORIES, COURSE_STANDARD_OPTIONS, EFFORT_OPTIONS, SCORE_MAX } from "@/lib/progress/constants";
+import { ASSESSMENT_AREAS, CATEGORIES, COURSE_STANDARD_OPTIONS, CURRICULUM_STAGES, EFFORT_OPTIONS, SCORE_MAX } from "@/lib/progress/constants";
 
 // Marks, attendance and syllabus inputs shared by the teacher form and the admin edit.
 // `details` is the string form from detailsForm(); onChange(group, key, value).
@@ -22,6 +22,32 @@ export function ProgressDetailsFields({ details, onChange, idPrefix = "details" 
         <div className="mt-3 grid grid-cols-2 gap-3">
           <Field label="Classes held"><input inputMode="numeric" className="adm-input" placeholder="e.g. 12" value={details.attendance.held} onChange={(e) => onChange("attendance", "held", e.target.value.trim())} /></Field>
           <Field label="Classes attended"><input inputMode="numeric" className="adm-input" placeholder="e.g. 11" value={details.attendance.attended} onChange={(e) => onChange("attendance", "attended", e.target.value.trim())} /></Field>
+        </div>
+      </section>
+      <section className="rounded-2xl border border-line bg-paper/60 p-4" aria-labelledby={`${idPrefix}-curriculum`}>
+        <h3 id={`${idPrefix}-curriculum`} className="text-sm font-bold text-mushaf-900">Curriculum pathway · Qaida to Tafseer</h3>
+        <p className="mt-1 text-xs text-ink-faint">Choose the learner's current strand. These are flexible pathways, not a fixed sequence; follow the approved syllabus and learner's level.</p>
+        <div className="mt-3 grid gap-3">
+          <Field label="Current curriculum stage">
+            <select className="adm-input" value={details.syllabus.stage || ""} onChange={(e) => onChange("syllabus", "stage", e.target.value)}>
+              <option value="">Select current stage</option>
+              {CURRICULUM_STAGES.map((stage) => <option key={stage.value} value={stage.value}>{stage.label}</option>)}
+            </select>
+          </Field>
+          <Field label="Lessons completed" hint="Use lesson numbers/pages actually completed">
+            <input className="adm-input" maxLength={100} value={details.lessons_completed || ""} onChange={(e) => onChange("lessons_completed", "", e.target.value)} placeholder="e.g. Qaida lessons 5–8" />
+          </Field>
+        </div>
+        <div className="mt-4 grid gap-3">
+          <Field label="Overall performance" hint={`${(details.performance?.overall || "").length}/300`}>
+            <textarea className="adm-input" rows={2} maxLength={300} value={details.performance?.overall || ""} onChange={(e) => onChange("performance", "overall", e.target.value)} placeholder="Concise overall progress statement" />
+          </Field>
+          <Field label="Improvement targets" hint={`${(details.performance?.improvement_targets || "").length}/1000`}>
+            <textarea className="adm-input" rows={3} maxLength={1000} value={details.performance?.improvement_targets || ""} onChange={(e) => onChange("performance", "improvement_targets", e.target.value)} placeholder="Specific skills to practise next" />
+          </Field>
+          <Field label="Personal development" hint={`${(details.performance?.personal_development || "").length}/500`}>
+            <textarea className="adm-input" rows={2} maxLength={500} value={details.performance?.personal_development || ""} onChange={(e) => onChange("performance", "personal_development", e.target.value)} placeholder="Participation, confidence, consistency and conduct observed" />
+          </Field>
         </div>
       </section>
       <section className="rounded-2xl border border-line bg-paper/60 p-4" aria-labelledby={`${idPrefix}-syllabus`}>
