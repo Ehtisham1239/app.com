@@ -175,6 +175,29 @@ test("learning plans use the same draft and published snapshot boundary as resul
   await as("anon");assert.equal((await one("select public.parent_progress($1) d",[token])).d[0].reports[0].learning_plan,'Ask the teacher about the next section');
 });
 
+
+test("versioned 11-area assessment is required for current-form submission while legacy submission remains compatible", async () => {
+  await as("authenticated", ids.teacher);
+  const missingAreas = { assessment_version: 1, assessment_areas: {} };
+  await assert.rejects(
+    db.query("select public.progress_save($1,$2,$3,'Complete remarks',true,null,$4)", [studentA.id, "2026-11-01", full, missingAreas]),
+    /Complete effort and course-standard selectors for all 11 learning areas/
+  );
+  const assessmentAreas = Object.fromEntries([
+    "qaida_reading", "tajweed", "makharij", "fluency", "hifz_revision",
+    "duas", "daily_sunnah", "surahs", "hadith", "namaz", "islamic_knowledge"
+  ].map((key) => [key, { effort: "good", standard: "at_expected" }]));
+  const details = { assessment_version: 1, assessment_areas: assessmentAreas, syllabus: { stage: "tajweed" } };
+  const id = (await one(
+    "select public.progress_save($1,$2,$3,'Complete remarks',true,'Monthly practice plan',$4) id",
+    [studentA.id, "2026-11-01", full, details]
+  )).id;
+  const saved = await one("select details from public.monthly_reports where id=$1", [id]);
+  assert.equal(saved.details.assessment_version, 1);
+  assert.equal(saved.details.assessment_areas.tajweed.standard, "at_expected");
+  assert.equal(saved.details.syllabus.stage, "tajweed");
+});
+
 test("public recovery is non-enumerating, deduplicated and cannot reveal credentials",async()=>{
   await as("postgres");await db.query("update public.guardians set email='parent@example.test' where id=$1",[guardian]);
   await as("anon");
