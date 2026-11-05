@@ -98,7 +98,7 @@ export default function ProgressReportPage({ params }) {
     toast.success(ok); refresh();
   };
   const working = { ...r, teacher: r.profiles?.full_name || "", published_at: r.published_at };
-  const missing = missingForSubmit(r, r.remarks);
+  const missing = missingForSubmit(r, r.remarks, detailsForm(r.details));
   const canPublish = can("progress:publish") && r.status === "submitted";
 
   return (
