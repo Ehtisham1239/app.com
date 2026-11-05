@@ -6,8 +6,7 @@
 ## Organization JSON-LD
 The shared site layout already emits a stable WebSite and EducationalOrganization/Organization graph with:
 - Stable `/#website` and `/#organization` identifiers.
-- Public brand name, alternate name, canonical URL and logo imagery.
-- Public brand name, description, contact email/telephone and Admissions contact point. The optional `legalName` property is withheld until the exact active Companies House entity is confirmed.
+- Public brand name, alternate name, canonical URL, logo imagery, description, contact email/telephone and Admissions contact point. The optional `legalName` property is withheld until the exact active Companies House entity is confirmed.
 - Online service coverage across the five indexed markets and the subjects visible on the website.
 - Only the exact OQC Trustpilot profile URL in `sameAs`; other social URLs remain footer links until account identity is confirmed.
 - A postal address only when a complete street address and two-letter country code are explicitly configured.
