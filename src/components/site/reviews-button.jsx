@@ -23,7 +23,7 @@ export function ReviewsButton({ config, consentText }) {
     update();
     window.addEventListener("scroll", update, { passive: true });
     return () => window.removeEventListener("scroll", update);
-  }, []);
+  }, [pathname]);
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
