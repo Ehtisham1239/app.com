@@ -143,8 +143,7 @@ export function detailsForm(details) {
   return {
     scores: Object.fromEntries(CATEGORIES.map((c) => [c.key, String(d.scores?.[c.key] ?? "")])),
     attendance: { held: String(d.attendance?.held ?? ""), attended: String(d.attendance?.attended ?? "") },
-    syllabus: { stage: d.syllabus?.stage || "", level: d.syllabus?.level || "", covered: d.syllabus?.covered || "", memorised: d.syllabus?.memorised || "" },
-    lessons_completed: String(d.lessons_completed ?? ""),
+    syllabus: { stage: d.syllabus?.stage || "", level: d.syllabus?.level || "", covered: d.syllabus?.covered || "", memorised: d.syllabus?.memorised || "", lessons_completed: d.syllabus?.lessons_completed || "" },
     performance: { overall: String(d.performance?.overall || ""), improvement_targets: String(d.performance?.improvement_targets || ""), personal_development: String(d.performance?.personal_development || "") },
     assessment_areas: Object.fromEntries(ASSESSMENT_AREAS.map((a) => [a.key, {
       summary: String(d.assessment_areas?.[a.key]?.summary || ""),
@@ -176,7 +175,7 @@ export function detailsProblem(details) {
     const v = String(details?.scores?.[c.key] ?? "").trim();
     if (v !== "" && !(/^\d{1,2}(\.[05])?$/.test(v) && Number(v) <= SCORE_MAX)) return `Marks for ${c.label} must be 0–${SCORE_MAX}.`;
   }
-  if (String(details?.lessons_completed ?? "").length > 100) return "Lessons completed must be 100 characters or fewer.";
+  if (String(details?.syllabus?.lessons_completed ?? "").length > 100) return "Lessons completed must be 100 characters or fewer.";
   for (const [key, limit] of [["overall", 300], ["improvement_targets", 1000], ["personal_development", 500]]) {
     if (String(details?.performance?.[key] || "").length > limit) return `Performance field ${key} must be ${limit} characters or fewer.`;
   }
@@ -203,5 +202,5 @@ export function formToDetails(d) {
     const item = d.assessment_areas[a.key] || {};
     return [a.key, Object.fromEntries(Object.entries(item).filter(([, v]) => String(v).trim()).map(([k, v]) => [k, String(v).trim()]))];
   }).filter(([, item]) => Object.keys(item).length));
-  return { scores, attendance, syllabus, assessment_areas, performance, ...(String(d.lessons_completed || "").trim() ? { lessons_completed: String(d.lessons_completed).trim() } : {}) };
+  return { scores, attendance, syllabus, assessment_areas, performance, ...() };
 }
