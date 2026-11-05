@@ -126,7 +126,7 @@ The homepage CMS also contains the phrase “track progress every month” and a
 | Local currency with duration/frequency | Makes fees comparable | Partly implemented via live plans | Audit all five currencies against approved live packages |
 | Parent progress logs / assessment | Makes learning tangible | Framework visible; cadence/sample not proven | Obtain approved process and consented anonymised sample |
 | Teacher verification process | Builds trust | Teacher profiles exist; process needs HR evidence | Publish only documented OQC checks and verified credentials |
-| Student/parent portal | Improves continuity | OQC portal project exists separately; public capability not confirmed | Do not claim publicly until production-ready and role-tested |
+| Student/parent portal | Improves continuity | Protected `/parents` route and scoped RPCs are implemented; current CMS/database snapshot has 2 issued certificates, 0 monthly reports and 0 published student-result rows | Link to the portal for approved records, but state clearly that monthly reports appear only when reviewed and published; do not imply every learner already has reports |
 | Clear trial sequence | Improves conversion confidence | Trial form and FAQ exist | Align page copy with Admissions' real workflow and SLA |
 | Comparison/resource content | Captures evaluation intent | Blog/editorial infrastructure exists | Publish original, criteria-based guides with dated sources |
 | Local proof and citations | Helps entity confidence | Existing global profiles in tracker; admin not verified | Owner verifies account ownership and NAP consistency; skip ineligible local listings |
