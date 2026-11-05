@@ -211,6 +211,7 @@ test("Organization sameAs includes only the exact OQC Trustpilot profile", async
     instagram: "https://www.instagram.com/online_quran_college",
     x: "https://x.com/OnlineQuranClg",
   }), ["https://www.trustpilot.com/review/onlinequrancollege.com"]);
+  assert.deepEqual(organizationIdentityProfiles({ trustpilot: "https://www.trustpilot.com/review/onlinequrancollege.com/" }), ["https://www.trustpilot.com/review/onlinequrancollege.com"]);
   assert.deepEqual(organizationIdentityProfiles({ trustpilot: "https://www.trustpilot.com/review/another-company.com" }), []);
   assert.deepEqual(organizationIdentityProfiles({ trustpilot: "http://www.trustpilot.com/review/onlinequrancollege.com" }), []);
 });
