@@ -95,3 +95,42 @@ test("lead mapping matches the database function's rules", () => {
   const published = new Set(seed.courses.filter((c) => c.status === "published").map((c) => c.id));
   for (const id of Object.values(CMS_COURSE)) assert.ok(published.has(id), `course ${id} is published`);
 });
+
+
+test("USA campaign publishes only verified contact and content claims", () => {
+  assert.match(landing, /phone: null/);
+  assert.match(landing, /whatsapp: \{ enabled: false, number: '', text: '' \}/);
+  assert.match(landing, /approved: \{\s*pricing: false,\s*teachers: false,\s*testimonials: false,\s*stats: false/s);
+  assert.doesNotMatch(landing, /786-964-5678|17869645678|447864710821|telephone/);
+  assert.doesNotMatch(landing, /within 24 hours|qualified Quran teachers|1,000\+ students/i);
+  assert.doesNotMatch(landing, /Teacher details supplied by the CEO|Reviews 2, 4 and 6 chosen by the CEO/);
+});
+
+test("USA campaign trial copy states eligibility and the Weekend exclusion", () => {
+  assert.match(landing, /3-day free trial on eligible plans/i);
+  assert.match(landing, /Weekend plan is excluded/i);
+  assert.match(landing, /no card is needed on eligible plans/i);
+  assert.doesNotMatch(landing, /3 days of free classes|no credit card required/i);
+});
+
+
+test("standalone USA landing and thank-you pages include the single-label support link", () => {
+  for (const html of [landing, thankYou]) {
+    assert.match(html, /class="support-float" href="https:\/\/www\.onlinequrancollege\.com\/contact" aria-label="Contact Support">Contact Support<\/a>/);
+    assert.match(html, /\.support-float:hover\{[^}]*background:#C5A04A/);
+  }
+});
+
+
+test("USA thank-you page uses verified contact and trial terms", () => {
+  assert.doesNotMatch(thankYou, /786-964-5678|17869645678|447864710821|telephone|within 24 hours/i);
+  assert.match(thankYou, /phone: null/);
+  assert.match(thankYou, /whatsapp: \{ enabled: false, number: '', text: '' \}/);
+  assert.match(thankYou, /3-day free trial is available on eligible plans/i);
+  assert.match(thankYou, /Weekend plan is excluded/i);
+  assert.match(thankYou, /no card is needed on eligible plans/i);
+});
+
+test("USA campaign copy has no duplicated trial or card wording", () => {
+  assert.doesNotMatch(landing, /A A 3-day|no card on eligible plans needed/i);
+});
