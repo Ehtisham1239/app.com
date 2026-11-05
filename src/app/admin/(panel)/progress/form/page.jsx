@@ -49,7 +49,7 @@ function TeacherForm() {
           </div>
         </div>
       </header>
-      <ProgressWorkflow status={current?.status || "draft"} />
+      <ProgressWorkflow status={current?.status || "draft"} />\n      {can("progress:submit") && <div className="mb-4 flex justify-end"><Link href="/admin/progress/bulk" className="btn btn-outline btn-sm"><ClipboardList className="size-4" /> Bulk monthly drafts · Excel template</Link></div>}
       <div className="grid gap-6 xl:grid-cols-[20rem_1fr]">
         <Card title="Your students" bodyClass="">
           <div className="border-b border-line p-4">
