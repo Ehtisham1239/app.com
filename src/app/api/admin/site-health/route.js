@@ -30,13 +30,13 @@ async function inspectPage(url, origin) {
       return { url, status: res.status, findings };
     }
     const html = await res.text();
-    const title = tag(html, /<title[^>]*>([\\s\\S]*?)<\\/title>/i);
-    const description = tag(html, /<meta\\s+[^>]*name=["']description["'][^>]*content=["']([^"']*)["'][^>]*>/i)
-      || tag(html, /<meta\\s+[^>]*content=["']([^"']*)["'][^>]*name=["']description["'][^>]*>/i);
-    const canonical = tag(html, /<link\\s+[^>]*rel=["']canonical["'][^>]*href=["']([^"']*)["'][^>]*>/i)
-      || tag(html, /<link\\s+[^>]*href=["']([^"']*)["'][^>]*rel=["']canonical["'][^>]*>/i);
-    const viewport = /<meta\\s+[^>]*name=["']viewport["']/i.test(html);
-    const robots = tag(html, /<meta\\s+[^>]*name=["']robots["'][^>]*content=["']([^"']*)["'][^>]*>/i);
+    const title = tag(html, /<title[^>]*>([\s\S]*?)<\/title>/i);
+    const description = tag(html, /<meta\s+[^>]*name=["']description["'][^>]*content=["']([^"']*)["'][^>]*>/i)
+      || tag(html, /<meta\s+[^>]*content=["']([^"']*)["'][^>]*name=["']description["'][^>]*>/i);
+    const canonical = tag(html, /<link\s+[^>]*rel=["']canonical["'][^>]*href=["']([^"']*)["'][^>]*>/i)
+      || tag(html, /<link\s+[^>]*href=["']([^"']*)["'][^>]*rel=["']canonical["'][^>]*>/i);
+    const viewport = /<meta\s+[^>]*name=["']viewport["']/i.test(html);
+    const robots = tag(html, /<meta\s+[^>]*name=["']robots["'][^>]*content=["']([^"']*)["'][^>]*>/i);
     if (!title) findings.push("Missing page title");
     if (!description) findings.push("Missing meta description");
     if (!canonical) findings.push("Missing canonical link");
@@ -66,7 +66,7 @@ export async function GET() {
     const sitemapResponse = await fetch(new URL("/sitemap.xml", root), { cache: "no-store", signal: AbortSignal.timeout(10000) });
     if (!sitemapResponse.ok) return response({ error: `Sitemap returned HTTP ${sitemapResponse.status}.` }, 502);
     const xml = await sitemapResponse.text();
-    const urls = [...xml.matchAll(/<loc>([\\s\\S]*?)<\\/loc>/gi)]
+    const urls = [...xml.matchAll(/<loc>([\s\S]*?)<\/loc>/gi)]
       .map((match) => clean(match[1]))
       .map((value) => { try { return new URL(value, root); } catch { return null; } })
       .filter((url) => url && url.origin === root.origin && ["http:", "https:"].includes(url.protocol))
