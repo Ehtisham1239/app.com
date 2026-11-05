@@ -29,11 +29,11 @@ test("Organization data names the five online markets and the subjects taught", 
   assert.equal(INDEXED_MARKETS.length, 5);
 });
 
-test("llms.txt lists the official profiles from the same CMS setting as the footer and sameAs", () => {
+test("llms.txt lists configured public profile links without overstating verification", () => {
   assert.match(route, /getSettings\(\)/);
   assert.match(route, /settings\?\.\["site\.social"\]/);
-  assert.match(route, /## Official profiles/);
-  assert.match(route, /one global identity \(online-only, no walk-in office\)/);
+  assert.match(route, /## Public profiles linked from this website/);
+  assert.match(route, /one global identity \(online-only, no walk-in office\)/);\n  assert.match(route, /a website link alone does not verify account ownership/);\n  assert.doesNotMatch(route, /These are its only official profiles/);
   assert.match(route, /\^https:\\\/\\\/\[\^\\s\]\+\$/, "only https profile URLs are listed");
 });
 
