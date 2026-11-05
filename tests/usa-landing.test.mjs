@@ -112,3 +112,11 @@ test("USA campaign trial copy states eligibility and the Weekend exclusion", () 
   assert.match(landing, /no card is needed on eligible plans/i);
   assert.doesNotMatch(landing, /3 days of free classes|no credit card required/i);
 });
+
+
+test("standalone USA landing and thank-you pages include the single-label support link", () => {
+  for (const html of [landing, thankYou]) {
+    assert.match(html, /class="support-float" href="https:\/\/www\.onlinequrancollege\.com\/contact" aria-label="Contact Support">Contact Support<\/a>/);
+    assert.match(html, /\.support-float:hover\{[^}]*background:#C5A04A/);
+  }
+});
