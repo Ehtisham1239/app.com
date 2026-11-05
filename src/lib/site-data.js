@@ -113,9 +113,14 @@ export const getPlans = cache(async () => {
   return plans.map((p) => ({ ...p, prices: p.pricing_plan_prices ?? [] }));
 });
 
-export const getFaqs = cache(async () =>
-  safe(() => publicDb.from("faqs").select("id, question, answer, category, course_id, sort_order").eq("status", "published").order("sort_order"), [], "faqs"),
-);
+export const getFaqs = cache(async () => {
+  const rows = await safe(() =>
+    publicDb.from("faqs").select("id, question, answer, category, course_id, sort_order").eq("status", "published").order("sort_order"),
+    [],
+    "faqs",
+  );
+  return rows;
+});
 
 export const getTestimonials = cache(async () =>
   safe(() =>

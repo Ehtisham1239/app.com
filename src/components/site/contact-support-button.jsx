@@ -1,7 +1,22 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { MessageCircle } from "lucide-react";
 
+const HIDDEN_ON = ["/contact", "/free-trial"];
+
 export function ContactSupportButton() {
+  const pathname = usePathname();
+  const [shown, setShown] = useState(false);
+  useEffect(() => {
+    const update = () => setShown(window.scrollY > window.innerHeight * 0.8);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
+  }, [pathname]);
+  if (HIDDEN_ON.some((path) => pathname === path || pathname.startsWith(`${path}/`))) return null;
+  if (!shown) return null;
   return (
     <aside
       className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-[calc(1rem+env(safe-area-inset-right))] z-50"

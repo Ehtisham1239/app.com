@@ -1,7 +1,7 @@
 import { contentMetadata } from "@/lib/seo-metadata";
 import { CurrencyPricing } from "@/components/site/currency-pricing";
 import { FeeCompare } from "@/components/site/fee-compare";
-import { BadgePercent, CreditCard, ShieldCheck } from "@/components/site/icons";
+import { CreditCard, ShieldCheck } from "@/components/site/icons";
 import { PageHero, SectionHeading } from "@/components/site/chrome";
 import { CtaBand, FaqList } from "@/components/site/sections";
 import { getFaqs, getPlans, getSettings } from "@/lib/site-data";
@@ -24,7 +24,12 @@ export default async function PricingPage() {
   const currencies = [...new Set(plans.flatMap((p) => p.prices.map((x) => x.currency)))];
   const wa = whatsappLink(settings["site.contact"]?.whatsapp, "Assalamu alaikum, I have a question about your fees.");
   // Direct answer for the most-searched fee question; built from the same published plans as the cards.
-  const quickAnswer = feeAnswer(plans, fx, "GBP");
+  const quickAnswer = feeAnswer(plans, fx, "GBP", "the UK", settings["site.family_discount"]);
+  const familyDiscount = settings["site.family_discount"];
+  const familyDiscountCopy = familyDiscount?.enabled && Number(familyDiscount?.percent) > 0
+    ? `Each additional child from the same family receives ${Number(familyDiscount.percent)}% off their monthly fee.`
+    : "Ask the coordinator whether a sibling discount is available for your selected plan.";
+
   const schemaFaqs = quickAnswer ? [{ question: quickAnswer.question, answer: quickAnswer.answer }, ...feeFaqs] : feeFaqs;
 
   return (
@@ -47,7 +52,6 @@ export default async function PricingPage() {
         {packages.length > 0 && <CurrencyPricing plans={packages} fx={fx} />}
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {[
-            { icon: BadgePercent, title: "15% sibling discount", text: "Each additional child from the same family receives 15% off their monthly fee." },
             { icon: ShieldCheck, title: "Free trial on eligible plans", text: "Try 3 days of classes before choosing an eligible package. The Weekend plan is excluded; confirm your plan with the coordinator." },
             { icon: CreditCard, title: "Easy payment", text: `Pay monthly by card, PayPal or bank transfer${currencies.length ? ` — prices shown in ${currencies.join(", ")}` : ""}.` },
           ].map(({ icon: Icon, title, text }) => (
@@ -65,7 +69,9 @@ export default async function PricingPage() {
       <section className="border-t border-line bg-[#f5faf1] py-16 sm:py-20" aria-labelledby="compare-plans">
         <div className="page-wrap">
           <SectionHeading eyebrow="Compare" title={<span id="compare-plans">Compare plans and estimate your family’s fees</span>} intro="See every plan side by side, then work out a monthly total for more than one learner." />
-          <div className="mt-10"><FeeCompare plans={plans} fx={fx} /></div>
+          <div className="mt-10"><FeeCompare plans={plans} fx={fx} familyDiscount={settings["site.family_discount"]} /></div>
+          <p className="mx-auto mt-4 max-w-3xl text-center text-sm text-ink-soft">{familyDiscountCopy}</p>
+          
         </div>
       </section>
 

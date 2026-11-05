@@ -11,7 +11,7 @@ export const FEE_QUESTION = "How much do online Quran classes cost?";
 const range = (values) => (values.length ? [Math.min(...values), Math.max(...values)] : []);
 const fmtRange = ([low, high], currency) => (low === high ? formatMoney(low, currency) : `${formatMoney(low, currency)} to ${formatMoney(high, currency)}`);
 
-export function feeAnswer(plans, fx, localCurrency = "GBP", place = "the UK") {
+export function feeAnswer(plans, fx, localCurrency = "GBP", place = "the UK", familyDiscount = null) {
   const rows = (Array.isArray(plans) ? plans : [])
     .map((plan) => ({ plan, usd: displayPrice(plan.prices, "USD", fx), local: displayPrice(plan.prices, localCurrency, fx) }))
     .filter((row) => row.usd && Number.isFinite(row.usd.amount_minor));
@@ -30,7 +30,8 @@ export function feeAnswer(plans, fx, localCurrency = "GBP", place = "the UK") {
   const sentences = [
     `Monthly fees at Online Quran College range from ${fmtRange(usd, "USD")}${lessons}.`,
     ...(local ? [`In ${place} that is ${approximate ? "about " : ""}${fmtRange(local, localCurrency)} a month${approximate ? " at today's exchange rate" : ""}.`] : []),
-    "Each extra child from the same family gets 15% off, and eligible plans start with a free 3-day trial (the Weekend plan is excluded).",
+    "Eligible plans start with a free 3-day trial (the Weekend plan is excluded).",
+    ...(familyDiscount?.enabled && Number(familyDiscount.percent) > 0 ? ["Families with more than one learner can receive " + Number(familyDiscount.percent) + "% off each additional child monthly fee through the sibling discount."] : []),
     "The coordinator confirms the exact fee and payment currency before you enrol.",
   ];
   return { question: FEE_QUESTION, answer: sentences.join(" "), usd, local, localCurrency, approximate };

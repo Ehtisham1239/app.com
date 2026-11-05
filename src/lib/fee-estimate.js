@@ -1,7 +1,6 @@
 // Fee comparison helpers. Estimates only: the coordinator confirms the
 // number of classes in a billing month and the final payable amount.
 
-export const SIBLING_DISCOUNT = 0.15;
 // A rough month for comparison. Real billing months can hold more or fewer classes.
 export const WEEKS_PER_MONTH = 4;
 
@@ -17,11 +16,13 @@ export function perClassEstimate(plan, currency = "USD") {
   return Math.round(monthly / (perWeek * WEEKS_PER_MONTH));
 }
 
-// First learner pays the full fee; each additional child from the same family
-// receives the sibling discount.
-export function familyMonthlyEstimate(monthlyMinor, learners) {
-  const n = Math.max(1, Math.min(10, Math.floor(Number(learners) || 1)));
+// First learner pays the published fee; each additional learner receives the
+// backend-configured sibling discount. Amounts are rounded in currency minor units.
+export function familyMonthlyEstimate(monthlyMinor, learners, discountPercent = 0, maxLearners = 5) {
+  const n = Math.max(1, Math.min(maxLearners, Math.floor(Number(learners) || 1)));
   if (monthlyMinor === null || monthlyMinor === undefined) return null;
-  const extra = Math.round(monthlyMinor * (1 - SIBLING_DISCOUNT));
-  return { learners: n, total: monthlyMinor + extra * (n - 1), saving: (monthlyMinor - extra) * (n - 1) };
+  const percent = Math.max(0, Math.min(100, Number(discountPercent) || 0));
+  const discountedLearner = Math.round(monthlyMinor * (1 - percent / 100));
+  const saving = (monthlyMinor - discountedLearner) * (n - 1);
+  return { learners: n, total: monthlyMinor * n - saving, saving, discountPercent: percent };
 }

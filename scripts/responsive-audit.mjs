@@ -3,12 +3,13 @@
 // sideways, i.e. something is wider than the screen outside a scrollable box.
 // Also checks the country-hub hreflang cluster and that re-indexed city pages
 // are indexable. Screenshots at 390px go to RESPONSIVE_SHOTS_DIR when set.
-import { chromium } from "playwright";
+import { chromium, devices } from "playwright";
 import { mkdirSync } from "node:fs";
 
 const base = (process.env.SMOKE_BASE_URL || "https://www.onlinequrancollege.com").replace(/\/$/, "");
 const shots = process.env.RESPONSIVE_SHOTS_DIR || "";
-const WIDTHS = [320, 360, 390, 768, 1024, 1440];
+const WIDTHS = [320, 360, 390, 430, 768, 820, 1024, 1280, 1440, 1600, 1920, 2560];
+const DEVICE_PROFILES = ["iPhone 13", "iPhone 14 Pro Max", "Pixel 7", "iPad Pro 11"];
 export const PAGES = [
   "/", "/courses", "/courses/hifz-quran", "/courses/noorani-qaida", "/pricing", "/free-trial", "/teachers",
   "/reviews", "/learn", "/learn/quran-for-adults", "/blog", "/blog/online-quran-class-fees-uk-comparison",
@@ -64,6 +65,22 @@ async function main() {
     }
     await context.close();
   }
+  // Real browser device descriptors complement width-only desktop checks.
+  // These exercise iOS Safari-like and Android touch/mobile viewports.
+  for (const deviceName of DEVICE_PROFILES) {
+    const descriptor = devices[deviceName];
+    if (!descriptor) { failures.push(`Playwright device descriptor missing: ${deviceName}`); continue; }
+    const context = await browser.newContext({ ...descriptor });
+    const devicePage = await context.newPage();
+    for (const path of ["/", "/pricing", "/free-trial", "/locations/united-states"]) {
+      const response = await devicePage.goto(`${base}${path}`, { waitUntil: "load", timeout: 60_000 });
+      if (!response || response.status() !== 200) { failures.push(`${path} on ${deviceName}: HTTP ${response?.status()}`); continue; }
+      const report = await devicePage.evaluate(overflowReport);
+      checks++;
+      if (report.scrollWidth > report.width + 1) failures.push(`${path} on ${deviceName}: page is ${report.scrollWidth}px wide on a ${report.width}px device`);
+    }
+    await context.close();
+  }
   const page = await browser.newPage();
   for (const path of HUBS) {
     await page.goto(`${base}${path}`, { waitUntil: "load" });
@@ -79,7 +96,7 @@ async function main() {
     if (!/^index/.test(robots)) failures.push(`${path}: robots "${robots}"`);
   }
   await browser.close();
-  console.log(`Responsive audit: ${checks} checks on ${base} (${PAGES.length} pages × ${WIDTHS.length} widths, hreflang on ${HUBS.length} hubs, robots on ${CITY_PAGES.length} city pages)`);
+  console.log(`Responsive audit: ${checks} checks on ${base} (${PAGES.length} pages × ${WIDTHS.length} widths, ${DEVICE_PROFILES.length} device profiles, hreflang on ${HUBS.length} hubs, robots on ${CITY_PAGES.length} city pages)`);
   if (failures.length) { console.log(`FAIL (${failures.length}):\n- ${failures.join("\n- ")}`); process.exit(1); }
   console.log("PASS: no sideways scrolling at any width; hreflang and city-page indexing as expected");
 }

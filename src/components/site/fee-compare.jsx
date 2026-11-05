@@ -3,24 +3,29 @@ import { useState } from "react";
 import Link from "next/link";
 import { formatMoney } from "@/lib/format";
 import { isTrialEligible } from "@/lib/trial-eligibility";
-import { familyMonthlyEstimate, SIBLING_DISCOUNT, WEEKS_PER_MONTH } from "@/lib/fee-estimate";
+import { familyMonthlyEstimate, WEEKS_PER_MONTH } from "@/lib/fee-estimate";
 import { currencyOptions, displayPrice } from "@/lib/fx";
 import { LOCATIONS } from "@/lib/locations";
 import { useVisitorCurrency } from "@/lib/use-visitor-currency";
 
 // Side-by-side plan comparison plus a family fee estimator, built only from the
 // published plans. Amounts follow the chosen currency; converted ones carry "≈".
-export function FeeCompare({ plans, fx = null, defaultCurrency = "USD", explicit = false }) {
+export function FeeCompare({ plans, fx = null, defaultCurrency = "USD", explicit = false, familyDiscount = null }) {
   const all = Array.isArray(plans) ? plans : [];
   const currencies = currencyOptions(all, fx, LOCATIONS.map((c) => c.currency));
   const [currency, setCurrency] = useVisitorCurrency(currencies, defaultCurrency, explicit);
   const priced = all.map((p) => ({ plan: p, price: displayPrice(p.prices, currency, fx) })).filter((row) => row.price);
   const [planId, setPlanId] = useState(all.find((p) => p.is_featured)?.id ?? all[0]?.id);
   const [learners, setLearners] = useState(2);
+  const [discountApplied, setDiscountApplied] = useState(true);
   if (!all.length) return null;
   const money = (price, minor) => `${price.approximate ? "≈ " : ""}${formatMoney(minor, price.currency)}`;
   const selectedRow = priced.find((row) => row.plan.id === planId) ?? priced[0];
-  const estimate = selectedRow ? familyMonthlyEstimate(selectedRow.price.amount_minor, learners) : null;
+  const discountEnabled = Boolean(familyDiscount?.enabled && Number(familyDiscount?.percent) > 0);
+  const eligiblePlanIds = Array.isArray(familyDiscount?.eligible_plan_ids) ? familyDiscount.eligible_plan_ids : [];
+  const planEligible = Boolean(selectedRow && (!eligiblePlanIds.length || eligiblePlanIds.includes(selectedRow.plan.id)) && selectedRow.plan.billing_period === (familyDiscount?.billing_period || "monthly"));
+  const appliedPercent = discountEnabled && planEligible && discountApplied && learners > 1 ? Number(familyDiscount.percent) : 0;
+  const estimate = selectedRow ? familyMonthlyEstimate(selectedRow.price.amount_minor, learners, appliedPercent, Number(familyDiscount?.max_learners) || 5) : null;
   const perClass = (row) => (row.plan.billing_period === "monthly" && row.plan.classes_per_week > 0 ? Math.round(row.price.amount_minor / (row.plan.classes_per_week * WEEKS_PER_MONTH)) : null);
   const anyApprox = priced.some((row) => row.price.approximate);
 
@@ -70,8 +75,8 @@ export function FeeCompare({ plans, fx = null, defaultCurrency = "USD", explicit
           </div>
 
           <div className="surface p-5 sm:p-6">
-            <h3 className="font-sans text-lg font-bold text-mushaf-900">Family fee estimator</h3>
-            <p className="mt-1 text-sm text-ink-soft">Each additional child from the same family receives {Math.round(SIBLING_DISCOUNT * 100)}% off.</p>
+            <h3 className="font-sans text-lg font-bold text-mushaf-900">Multi-learner fee estimator</h3>
+            <p className="mt-1 text-sm text-ink-soft">Estimate your family’s combined monthly fee. The first learner pays the published fee; eligible additional siblings receive the backend-approved discount.</p>
             <label htmlFor="fee-plan" className="field-label mt-5">Plan</label>
             <select id="fee-plan" className="input" value={selectedRow.plan.id} onChange={(e) => setPlanId(e.target.value)}>
               {priced.map((row) => <option key={row.plan.id} value={row.plan.id}>{row.plan.name} — {money(row.price, row.price.amount_minor)} / month</option>)}
@@ -79,16 +84,25 @@ export function FeeCompare({ plans, fx = null, defaultCurrency = "USD", explicit
             <fieldset className="mt-5">
               <legend className="field-label">Number of learners</legend>
               <div className="mt-1 flex gap-2">
-                {[1, 2, 3, 4, 5].map((n) => (
+                {Array.from({ length: Math.max(1, Math.min(5, Number(familyDiscount?.max_learners) || 5)) }, (_, i) => i + 1).map((n) => (
                   <button key={n} type="button" aria-pressed={learners === n} onClick={() => setLearners(n)}
                     className={`size-11 rounded-full border text-base font-semibold transition-colors ${learners === n ? "border-leaf-700 bg-leaf-700 text-white" : "border-line bg-white text-mushaf-900 hover:border-leaf-700"}`}>{n}</button>
                 ))}
               </div>
             </fieldset>
-            <div className="mt-6 rounded-2xl bg-leaf-50 p-4" aria-live="polite">
+            {discountEnabled && planEligible && learners > 1 && (
+              <button type="button" onClick={() => setDiscountApplied((value) => !value)}
+                aria-pressed={discountApplied}
+                className={`mt-5 flex w-full items-center justify-between gap-3 rounded-2xl border-2 px-4 py-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A04A] ${discountApplied ? "border-[#C5A04A] bg-[#fff9e9] text-[#164735]" : "border-line bg-white text-mushaf-900 hover:border-[#C5A04A]"}`}>
+                <span><span className="block text-sm font-bold">{discountApplied ? "Sibling discount applied" : "Apply sibling discount"}</span><span className="mt-0.5 block text-xs text-ink-soft">{Number(familyDiscount.percent)}% off each additional child</span></span>
+                <span className="rounded-full bg-[#0B4935] px-3 py-1.5 text-xs font-bold text-white">{discountApplied ? "Applied" : "Apply"}</span>
+              </button>
+            )}
+            <div className="mt-5 rounded-2xl bg-leaf-50 p-4" aria-live="polite">
               <p className="text-sm text-ink-soft">Estimated monthly total</p>
               <p className="mt-1 font-display text-3xl font-bold text-mushaf-900">{money(selectedRow.price, estimate?.total)}</p>
-              {estimate?.saving > 0 && <p className="mt-1 text-sm font-semibold text-leaf-700">You save {money(selectedRow.price, estimate.saving)} a month with the sibling discount</p>}
+              {estimate?.saving > 0 && <p className="mt-1 text-sm font-semibold text-leaf-700">You save {money(selectedRow.price, estimate.saving)} per month with the sibling discount</p>}
+              {learners > 1 && discountEnabled && !planEligible && <p className="mt-1 text-xs text-ink-soft">This discount is not configured for the selected plan.</p>}
             </div>
             <Link href={`/free-trial?${new URLSearchParams({ plan: selectedRow.plan.id, currency })}`} className="btn btn-primary mt-5 w-full">
               {isTrialEligible(selectedRow.plan) ? "Book a free trial for this plan" : "Ask about this plan"}

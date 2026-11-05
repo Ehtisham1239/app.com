@@ -28,6 +28,19 @@ test("all five indexed hubs get a landing block in their own currency", () => {
   assert.match(COUNTRY_HUBS["united-arab-emirates"].steps[0].text, /Gulf Standard Time/);
 });
 
+test("contact page states its primary topic in visible main content", () => {
+  const page = read("src/app/(site)/contact/page.jsx");
+  assert.match(page, /Contact Online Quran College/);
+});
+
+test("USA landing page clearly explains trial packages and provides a direct phone CTA", () => {
+  const page = read("src/components/site/location-page.jsx");
+  assert.match(page, /3-day free trial with Package 1, Package 2, Package 3, Package 4 and Leisure/);
+  assert.match(page, /Weekend does not include a free trial/);
+  assert.match(page, /Which USA packages include a 3-day free trial/);
+  assert.match(page, /17869645678/);
+  assert.match(page, /Call our US team/);
+});
 test("hub copy makes no price, office, credential, guarantee or response-time claims", () => {
   const text = JSON.stringify(Object.values(COUNTRY_HUBS).map((h) => ({ ...h, faqs: h.faqs ? h.faqs() : [] })));
   assert.doesNotMatch(text, /[£$€]\d|\d+\s*(?:USD|GBP|CAD|AUD|AED)|office|branch|licen[cs]e|certified|guarantee|within \d+ (?:hours?|minutes?|days?)/i);
@@ -57,6 +70,18 @@ test("teacher cards without a photo use a compact initial, skipping honorifics",
   const card = read("src/components/site/sections.jsx");
   assert.match(card, /teacherInitial\(t\.display_name\)/);
   assert.doesNotMatch(card.slice(card.indexOf("export function TeacherCard")), /brand-mark block size-20/, "no tall empty image block");
+});
+
+test("teacher availability and fallback copy do not promise unverified options", () => {
+  const hubs = JSON.stringify(Object.values(COUNTRY_HUBS).map((h) => ({ ...h, faqs: h.faqs ? h.faqs() : [] })));
+  const landing = read("src/components/site/country-landing.jsx");
+  const defaults = read("src/lib/default-settings.js");
+  assert.doesNotMatch(hubs + landing + defaults, /female or male teacher|male and female teachers|Female & male teachers/i);
+  assert.match(hubs, /records any teacher preference and confirms who is available/);
+  assert.match(landing, /availability is confirmed before enrolment/);
+  assert.doesNotMatch(defaults, /15% discount|other languages|within one working day|3 days of free classes/i);
+  assert.match(defaults, /Teacher preference discussed/);
+  assert.match(defaults, /No card needed on eligible plans/);
 });
 
 test("the reviews button is icon-only on phones and keeps its accessible text", () => {
