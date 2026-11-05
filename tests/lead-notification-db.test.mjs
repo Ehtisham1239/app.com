@@ -32,6 +32,17 @@ const contact = async (email = "contact@example.test") => {
   };
   return (await one("select public.submit_contact_message($1::jsonb) as r", [payload])).r.reference;
 };
+
+const review = async (email = "reviewer@example.test") => {
+  await as("anon");
+  const payload = {
+    name: "Synthetic Reviewer", email, relation: "Parent", country: "United Kingdom",
+    rating: 5, comment: "A synthetic review for database notification tests.",
+    consent: true, publish_consent: true, page_path: "/reviews",
+  };
+  return (await one("select public.submit_review($1::jsonb) as r", [payload])).r.reference;
+};
+
 const lookup = async (reference, email) => {
   await as("anon");
   return (await one("select public.lead_for_notification($1, $2) as r", [reference, email])).r;
@@ -71,9 +82,24 @@ test("the just-submitted contact enquiry is available only to its matching email
   await assert.rejects(db.query("select * from public.contact_messages"), /permission denied/);
 });
 
+
+test("the just-submitted review is available only to its matching email and reference", async () => {
+  const reference = await review();
+  const row = await lookup(reference, "REVIEWER@example.test");
+  assert.equal(row.lead_type, "review");
+  assert.equal(row.reference, reference);
+  assert.equal(row.email, "reviewer@example.test");
+  assert.equal(row.rating, 5);
+  assert.equal(row.publish_consent, true);
+  assert.equal(row.media_count, 0);
+  assert.equal(await lookup(reference, "other@example.test"), null);
+  await assert.rejects(db.query("select * from public.review_submissions"), /permission denied/);
+});
+
 test("notification lookup rejects honeypots, made-up references, spam, deleted and old records", async () => {
   assert.equal(await lookup("TR-RECEIVED", "parent@example.test"), null);
   assert.equal(await lookup("MSG-RECEIVED", "contact@example.test"), null);
+  assert.equal(await lookup("REV-RECEIVED", "reviewer@example.test"), null);
   assert.equal(await lookup("MSG-2026-99999", "contact@example.test"), null);
   const spam = await contact("spam@example.test");
   await as("postgres");
