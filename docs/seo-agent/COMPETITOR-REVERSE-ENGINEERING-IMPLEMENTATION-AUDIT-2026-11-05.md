@@ -61,6 +61,11 @@ Existing foundation includes official profiles linked from site/CMS, public Trus
 
 **Implemented in this PR:** publish each indexed market's official government/regulator reference URLs in `/llms.txt`, explicitly identifying them as independent public guidance and not endorsements. This improves source discoverability; it does not guarantee an AI citation or ranking.
 
+### Entity and founding-date caution
+A public search result for the legacy `/about` page still displays “Est. 2018”, “8+ years” and “25+ countries”, while the current About-page CMS body reviewed for this audit no longer contains those claims. Treat that search snippet as potentially stale until the live rendered page and Google Search Console URL Inspection are checked after release.
+
+Companies House currently shows a dissolved same-name record, ONLINE QURAN COLLEGE LTD company number 13629654, incorporated 17 September 2021 and dissolved 20 February 2024. A separate third-party company-data result reports a newer same-name number 17075457, incorporated in 2026, but the exact current legal entity must be confirmed directly by the owner on the official register before publishing a company number, registry link, registered office or incorporation date. The brand's operating start date is a separate claim and requires its own evidence. For this reason, the Organization schema correction removes the CMS `established` field from `foundingDate`; no registered-office address is added as a customer-facing location.
+
 ## PR implementation
 - `src/app/llms.txt/route.js`: use the same `MARKET_GUIDES` data as visible country pages and list primary source URLs for AI-readable discovery.
 - `tests/llms-txt.test.mjs`: regression coverage for the source section and non-endorsement language.
