@@ -8,7 +8,7 @@ import { pgcrypto } from "@electric-sql/pglite/contrib/pgcrypto";
 const db = new PGlite({ extensions: { pgcrypto } });
 const root = new URL("../", import.meta.url);
 const sql = (file) => readFileSync(new URL(file, root), "utf8");
-const as = async (name) => db.exec(\`reset role; set role \${name};\`);
+const as = async (name) => db.exec(`reset role; set role ${name};`);
 const one = async (text, params = []) => (await db.query(text, params)).rows[0];
 let course;
 
@@ -42,7 +42,7 @@ before(async () => {
   await db.exec("alter default privileges in schema public grant all on tables to anon, authenticated, service_role;");
   for (const file of readdirSync(new URL("supabase/migrations", root)).sort()) {
     if (/20261013000800|20261013001400/.test(file)) continue;
-    await db.exec(sql(\`supabase/migrations/\${file}\`));
+    await db.exec(sql(`supabase/migrations/${file}`));
   }
   course = await one("select id from public.courses where status = 'published' and deleted_at is null order by title limit 1");
   assert.ok(course);
@@ -91,10 +91,10 @@ test("notification lookup rejects honeypots, made-up references, spam, deleted a
 
 test("lookup function is stable, security definer, and executable for anonymous form submitters", async () => {
   await as("postgres");
-  const fn = await one(\`select p.provolatile, p.prosecdef, array_to_string(p.proconfig, ',') as config,
+  const fn = await one(`select p.provolatile, p.prosecdef, array_to_string(p.proconfig, ',') as config,
     has_function_privilege('anon', p.oid, 'execute') as anon_exec
     from pg_proc p join pg_namespace n on n.oid=p.pronamespace
-    where n.nspname='public' and p.proname='lead_for_notification'\`);
+    where n.nspname='public' and p.proname='lead_for_notification'`);
   assert.equal(fn.provolatile, "s");
   assert.equal(fn.prosecdef, true);
   assert.equal(fn.config, 'search_path=""');
