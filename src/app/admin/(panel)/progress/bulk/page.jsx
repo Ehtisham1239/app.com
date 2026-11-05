@@ -1,13 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
 import { Download, FileSpreadsheet, Loader2, Upload } from "lucide-react";
 import { useAccess } from "@/lib/admin/access";
-import { db, downloadCsv, notifyError, useLoad } from "@/lib/admin/db";
+import { db, downloadCsv, useLoad } from "@/lib/admin/db";
 import { parseCsv } from "@/lib/results/import";
-import { CATEGORIES, monthInput, monthToPeriod, periodLabel } from "@/lib/progress/constants";
+import { monthInput, monthToPeriod, periodLabel } from "@/lib/progress/constants";
 import { PROGRESS_BULK_COLUMNS, progressBulkTemplateRows, progressBulkPayload, validateProgressBulkRows } from "@/lib/progress/bulk";
 import { ResultsNav } from "@/components/admin/results-nav";
 import { Card, EmptyState, ErrorState, Field, Loading, PageHeader } from "@/components/admin/ui";
@@ -55,16 +54,20 @@ export default function ProgressBulkPage() {
     for (let index = 0; index < parsed.rows.length; index++) {
       const checked = checks[index], row = parsed.rows[index];
       const payload = progressBulkPayload(row);
-      const { error: saveError } = await db().rpc("progress_save", {
-        p_student_id: checked.student.student_id,
-        p_period: period,
-        p_ratings: payload.ratings,
-        p_remarks: payload.remarks,
-        p_submit: false,
-        p_plan: payload.plan,
-        p_details: payload.details,
-      });
-      if (saveError) results.push({ code: checked.code, message: saveError.message || "Save failed" });
+      try {
+        const { error: saveError } = await db().rpc("progress_save", {
+          p_student_id: checked.student.student_id,
+          p_period: period,
+          p_ratings: payload.ratings,
+          p_remarks: payload.remarks,
+          p_submit: false,
+          p_plan: payload.plan,
+          p_details: payload.details,
+        });
+        if (saveError) results.push({ code: checked.code, message: saveError.message || "Save failed" });
+      } catch (saveError) {
+        results.push({ code: checked.code, message: saveError?.message || "Network error" });
+      }
     }
     setBusy(false);
     const saved = parsed.rows.length - results.length;
