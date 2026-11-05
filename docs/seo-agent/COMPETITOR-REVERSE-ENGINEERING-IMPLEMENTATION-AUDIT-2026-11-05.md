@@ -64,7 +64,7 @@ Existing foundation includes official profiles linked from site/CMS, public Trus
 ## PR implementation
 - `src/app/llms.txt/route.js`: use the same `MARKET_GUIDES` data as visible country pages and list primary source URLs for AI-readable discovery.
 - `tests/llms-txt.test.mjs`: regression coverage for the source section and non-endorsement language.
-- No prices, teacher credentials, ratings, founding year, student totals, addresses, licences or competitor content changed.
+- No prices, teacher credentials, ratings, student totals, addresses, licences or competitor content changed. The Organization schema no longer emits the CMS `established` value as `foundingDate`, because the brand's claimed start year and legal-entity incorporation date require separate documentary evidence.
 - No external profiles created and no outreach sent.
 
 ## Competitor source register
