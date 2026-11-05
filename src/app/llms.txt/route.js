@@ -43,7 +43,7 @@ export async function GET() {
     "- Lessons are live, one-to-one and online, for children and adults.",
     "- Learners can ask for a female or male teacher when booking.",
     "- A three-day free trial is available on eligible plans; the Weekend plan is excluded.",
-    "- Each additional child from the same family receives 15% off their monthly fee.",
+    `- ${familyDiscountCopy}`,
     "- Fees can be shown converted into the visitor's currency for guidance; the coordinator confirms the fee and payment currency before enrolment.",
     "- Lessons are arranged in the learner's time zone. Country pages describe online coverage, not physical offices.", "",
     "## Profile links configured on this website", "",
