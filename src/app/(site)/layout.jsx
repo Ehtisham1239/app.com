@@ -1,5 +1,4 @@
 import { HatchiumChat } from "@/components/site/hatchium-chat";
-import { ContactSupportButton } from "@/components/site/contact-support-button";
 import { MobileActionBar } from "@/components/site/mobile-action-bar";
 import { ReviewsButton } from "@/components/site/reviews-button";
 import { reviewsButtonConfig } from "@/lib/reviews-button";
@@ -60,7 +59,6 @@ export default async function SiteLayout({ children }) {
       <MobileActionBar chatEnabled={chatEnabled} />
       <ReviewsButton config={reviewsButtonConfig(settings["site.reviews_button"], settings["site.social"])} consentText={settings["site.forms"]?.consent_text} />
       <HatchiumChat enabled={chatEnabled} widgetKey={chat.widget_key} />
-      <ContactSupportButton />
       {/* Vercel Speed Insights: cookieless real-visit Core Web Vitals per route. */}
       <SpeedInsights />
       {analytics.enabled && <WebsiteAnalytics config={analytics} />}
