@@ -132,10 +132,10 @@ test("USA campaign trial copy: no eligible-plans wording, 'No card needed' kept 
 });
 
 
-test("standalone USA landing and thank-you pages include the single-label support link", () => {
+test("standalone USA landing and thank-you pages do not show a duplicate Contact Support button", () => {
   for (const html of [landing, thankYou]) {
-    assert.match(html, /class="support-float" href="https:\/\/www\.onlinequrancollege\.com\/contact" aria-label="Contact Support">Contact Support<\/a>/);
-    assert.match(html, /\.support-float:hover\{[^}]*background:#C5A04A/);
+    assert.doesNotMatch(html, /class="support-float"|aria-label="Contact Support"|>Contact Support<\/a>/);
+    assert.doesNotMatch(html, /\.support-float/);
   }
 });
 
