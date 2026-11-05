@@ -72,15 +72,15 @@ The following are public-page observations, not independent verification of comp
 
 ## 5. Technical and performance evidence snapshot
 
-The 5 November 2026 read-only audit checked 83 declared sitemap URLs:
+The 5 November 2026 read-only audit (GitHub Actions run 288, fetched 11:26 UTC) checked 83 declared sitemap URLs:
 - robots.txt and sitemap.xml returned HTTP 200; robots referenced the sitemap.
 - 83/83 sitemap URLs were audited; no technical crawl findings were recorded.
-- Public page quality audit reported zero metadata / hero-image quality failures across the checked set.
-- Lighthouse lab mobile performance: homepage 98, pricing 95, free-trial 94, UK hub 98, USA hub 93.
-- Desktop performance: 100 on all five tested routes.
-- Mobile LCP ranged from approximately 0.91s to 2.27s on tested routes; mobile TBT was elevated on free-trial (286ms) and USA hub (261ms). These are lab measurements from one run, not field CWV or guaranteed repeatable scores.
+- Public page quality audit reported zero metadata / hero-image quality failures; 56 top-image responses were checked with no failures.
+- Lighthouse lab mobile performance: homepage 97, pricing 95, free-trial 97, UK hub 98, USA hub 96. Accessibility, best-practices and SEO scored 100 on every tested route.
+- Desktop performance, accessibility, best-practices and SEO scored 100 on all five tested routes.
+- Mobile LCP ranged from approximately 0.92s to 2.12s; mobile TBT ranged from 150ms to 219ms. These are single-run lab measurements, not field CWV or guaranteed repeatable scores.
 
-Audit artifact: GitHub Actions run 41992061921, artifact `live-performance-and-seo-audit`. Report-only keyword coverage flagged that /contact's visible main content did not contain its primary contact topic. A focused heading and regression test were added to PR #121; rerun the post-deploy crawl to confirm the live result.
+Audit artifacts: [run 288 performance/SEO report](https://github.com/Ehtisham1239/app.com/actions/runs/42018380097/artifacts/13410931685) and [390px responsive screenshots](https://github.com/Ehtisham1239/app.com/actions/runs/42018380097/artifacts/13410712085). The responsive audit passed 312 checks across 24 pages, 12 widths and four device profiles, with no horizontal overflow. The live-production keyword audit found /contact did not yet contain its primary contact topic; PR #121 adds visible contact wording. Because PR checks crawl current production rather than an un-deployed preview, the keyword finding is now recorded report-only on PRs and will be enforced again after the change reaches production.
 
 ## 6. Ethical backlink work — current state
 
