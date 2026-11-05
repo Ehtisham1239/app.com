@@ -114,6 +114,16 @@ export default function QuranStudyPage() {
           <Link href="/learn" className="btn btn-outline">Browse learning guides</Link>
         </div>
       </section>
+      <section className="page-wrap py-12" aria-labelledby="hifz-planner-link">
+        <div className="surface flex flex-col gap-5 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+          <div className="max-w-2xl">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-leaf-700">Free planning tool</p>
+            <h2 id="hifz-planner-link" className="mt-2 text-2xl text-mushaf-900">Make a simple Hifz and revision plan</h2>
+            <p className="mt-2 text-sm leading-relaxed text-ink-soft">Calculate weekly page targets from your own Mushaf and available study days. Use the result with your Quran teacher, who should set a suitable workload.</p>
+          </div>
+          <Link href="/quran-study/hifz-planner" className="btn btn-primary shrink-0">Open Hifz planner <ArrowRight className="size-4" aria-hidden="true" /></Link>
+        </div>
+      </section>
     </>
   );
 }
