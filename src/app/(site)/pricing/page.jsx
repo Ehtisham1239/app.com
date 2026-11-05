@@ -24,7 +24,7 @@ export default async function PricingPage() {
   const currencies = [...new Set(plans.flatMap((p) => p.prices.map((x) => x.currency)))];
   const wa = whatsappLink(settings["site.contact"]?.whatsapp, "Assalamu alaikum, I have a question about your fees.");
   // Direct answer for the most-searched fee question; built from the same published plans as the cards.
-  const quickAnswer = feeAnswer(plans, fx, "GBP");
+  const quickAnswer = feeAnswer(plans, fx, "GBP", "the UK", settings["site.family_discount"]);
   const schemaFaqs = quickAnswer ? [{ question: quickAnswer.question, answer: quickAnswer.answer }, ...feeFaqs] : feeFaqs;
 
   return (
