@@ -176,6 +176,10 @@ export function detailsProblem(details) {
     if (v !== "" && !(/^\d{1,2}(\.[05])?$/.test(v) && Number(v) <= SCORE_MAX)) return `Marks for ${c.label} must be 0–${SCORE_MAX}.`;
   }
   if (String(details?.syllabus?.lessons_completed ?? "").length > 100) return "Lessons completed must be 100 characters or fewer.";
+  if (details?.syllabus?.stage && !CURRICULUM_STAGES.some((stage) => stage.value === details.syllabus.stage)) return "Choose a valid curriculum stage.";
+  if (String(details?.syllabus?.level || "").length > 120) return "Current level must be 120 characters or fewer.";
+  if (String(details?.syllabus?.covered || "").length > 1000) return "Covered syllabus must be 1,000 characters or fewer.";
+  if (String(details?.syllabus?.memorised || "").length > 600) return "Memorised content must be 600 characters or fewer.";
   for (const [key, limit] of [["overall", 300], ["improvement_targets", 1000], ["personal_development", 500]]) {
     if (String(details?.performance?.[key] || "").length > limit) return `Performance field ${key} must be ${limit} characters or fewer.`;
   }
