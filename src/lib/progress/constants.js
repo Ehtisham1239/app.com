@@ -10,6 +10,75 @@ export const CATEGORIES = [
   { key: "outcome", label: "Parent Visible Outcome", hint: "Progress parents can notice at home" },
 ];
 
+export const ASSESSMENT_AREAS = [
+  { key: "qaida_reading", label: "Qaida / Quran Reading", hint: "Current Qaida lesson, reading skill and accuracy" },
+  { key: "tajweed", label: "Tajweed", hint: "Rules practised and applied in recitation" },
+  { key: "makharij", label: "Makharij", hint: "Letter articulation and difficult sounds" },
+  { key: "fluency", label: "Fluency", hint: "Reading pace, continuity and confidence" },
+  { key: "hifz_revision", label: "Hifz and Revision", hint: "Memorisation, retention and revision completed" },
+  { key: "duas", label: "Duas", hint: "Assigned duas revised or memorised" },
+  { key: "daily_sunnah", label: "Daily Sunnah", hint: "Practical Sunnah topics covered in class" },
+  { key: "surahs", label: "Surahs", hint: "Surahs studied, revised or memorised" },
+  { key: "hadith", label: "Hadith", hint: "Hadith topic studied and age-appropriate understanding" },
+  { key: "namaz", label: "Namaz", hint: "Prayer knowledge and sequence practised" },
+  { key: "islamic_knowledge", label: "Islamic Knowledge", hint: "Islamic studies topic covered" },
+];
+
+export const EFFORT_OPTIONS = [
+  { value: "excellent", label: "Excellent" },
+  { value: "good", label: "Good" },
+  { value: "satisfactory", label: "Satisfactory" },
+  { value: "needs_improvement", label: "Needs improvement" },
+  { value: "not_applicable", label: "Not applicable" },
+];
+
+// Provisional labels from the design prototype; Academic leadership must approve
+// the final scale before these labels become an official OQC rubric.
+export const COURSE_STANDARD_OPTIONS = [
+  { value: "above_expected", label: "Above expected" },
+  { value: "at_expected", label: "At expected standard" },
+  { value: "working_towards", label: "Working towards expected" },
+  { value: "not_applicable", label: "Not applicable" },
+];
+
+export const MONTHLY_PLAN_TEMPLATE = `MONTHLY TEACHING PLAN
+Reporting month:
+Student / course / current level:
+Teacher:
+
+1. MONTHLY LEARNING TARGETS
+- Target 1:
+- Target 2:
+- Target 3:
+
+2. WEEK-BY-WEEK PLAN
+Week 1 — lesson focus / pages or lesson numbers / practice:
+Week 2 — lesson focus / pages or lesson numbers / practice:
+Week 3 — lesson focus / pages or lesson numbers / practice:
+Week 4 — lesson focus / pages or lesson numbers / practice:
+(Use Week 5 only when required by the calendar and lesson schedule.)
+
+3. LEARNING METHODS USED
+- Teacher-selected method and why it suits this learner:
+- Guided practice / repetition / listening / recitation / discussion:
+- Revision and retrieval practice:
+
+4. CHECK FOR UNDERSTANDING
+- What the learner demonstrated:
+- What needs more practice:
+- How progress will be checked:
+
+5. HOME PRACTICE & PARENT SUPPORT
+- Short, realistic practice task:
+- Suggested frequency:
+- Parent support (if appropriate):
+
+6. NEXT MONTH
+- Next learning target:
+- Any support or follow-up required:
+
+Teacher note: enter only material actually taught or assigned. Adapt the plan to the learner's level and the college-approved syllabus; do not invent lesson completion or religious rulings.`;
+
 export const RATINGS = [
   { value: "excellent", label: "Excellent", tone: "green", stars: 4 },
   { value: "good", label: "Good", tone: "teal", stars: 3 },
@@ -42,9 +111,14 @@ export function emptyRatings() {
   return Object.fromEntries(CATEGORIES.map((c) => [c.key, ""]));
 }
 
-export function missingForSubmit(ratings, remarks) {
+export function missingForSubmit(ratings, remarks, details = null) {
   const missing = CATEGORIES.filter((c) => !ratings?.[c.key]).map((c) => c.label);
   if (!String(remarks || "").trim()) missing.push("Teacher remarks");
+  if (details) for (const area of ASSESSMENT_AREAS) {
+    const item = details.assessment_areas?.[area.key] || {};
+    if (!item.effort) missing.push(`${area.label} · effort`);
+    if (!item.standard) missing.push(`${area.label} · course standard`);
+  }
   return missing;
 }
 
@@ -58,6 +132,11 @@ export function detailsForm(details) {
     scores: Object.fromEntries(CATEGORIES.map((c) => [c.key, String(d.scores?.[c.key] ?? "")])),
     attendance: { held: String(d.attendance?.held ?? ""), attended: String(d.attendance?.attended ?? "") },
     syllabus: { level: d.syllabus?.level || "", covered: d.syllabus?.covered || "", memorised: d.syllabus?.memorised || "" },
+    assessment_areas: Object.fromEntries(ASSESSMENT_AREAS.map((a) => [a.key, {
+      summary: String(d.assessment_areas?.[a.key]?.summary || ""),
+      effort: String(d.assessment_areas?.[a.key]?.effort || ""),
+      standard: String(d.assessment_areas?.[a.key]?.standard || ""),
+    }])),
   };
 }
 
@@ -83,6 +162,12 @@ export function detailsProblem(details) {
     const v = String(details?.scores?.[c.key] ?? "").trim();
     if (v !== "" && !(/^\d{1,2}(\.[05])?$/.test(v) && Number(v) <= SCORE_MAX)) return `Marks for ${c.label} must be 0–${SCORE_MAX}.`;
   }
+  for (const area of ASSESSMENT_AREAS) {
+    const item = details?.assessment_areas?.[area.key] || {};
+    if (String(item.summary || "").length > 500) return `${area.label} summary must be 500 characters or fewer.`;
+    if (item.effort && !EFFORT_OPTIONS.some((o) => o.value === item.effort)) return `Choose a valid effort rating for ${area.label}.`;
+    if (item.standard && !COURSE_STANDARD_OPTIONS.some((o) => o.value === item.standard)) return `Choose a valid course standard for ${area.label}.`;
+  }
   const held = String(details?.attendance?.held ?? "").trim();
   const attended = String(details?.attendance?.attended ?? "").trim();
   if (held !== "" && !(/^\d{1,2}$/.test(held) && Number(held) <= 62)) return "Classes held must be a whole number from 0 to 62.";
@@ -95,5 +180,9 @@ export function formToDetails(d) {
   const scores = Object.fromEntries(Object.entries(d.scores).filter(([, v]) => v !== "" && Number.isFinite(Number(v))).map(([k, v]) => [k, Number(v)]));
   const attendance = d.attendance.held !== "" ? { held: Number(d.attendance.held), ...(d.attendance.attended === "" ? {} : { attended: Number(d.attendance.attended) }) } : undefined;
   const syllabus = Object.fromEntries(Object.entries(d.syllabus).filter(([, v]) => v.trim()).map(([k, v]) => [k, v.trim()]));
-  return { scores, attendance, syllabus };
+  const assessment_areas = Object.fromEntries(ASSESSMENT_AREAS.map((a) => {
+    const item = d.assessment_areas[a.key] || {};
+    return [a.key, Object.fromEntries(Object.entries(item).filter(([, v]) => String(v).trim()).map(([k, v]) => [k, String(v).trim()]))];
+  }).filter(([, item]) => Object.keys(item).length));
+  return { scores, attendance, syllabus, assessment_areas };
 }
