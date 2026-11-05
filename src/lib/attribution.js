@@ -1,4 +1,4 @@
-export const ATTRIBUTION_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid"];
+export const ATTRIBUTION_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "gbraid", "wbraid", "fbclid"];
 const STORAGE_KEY = "oqc-campaign";
 const MAX_AGE = 86400000;
 const SEARCH_SOURCES = [
