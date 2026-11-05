@@ -37,4 +37,4 @@ Do not add a company number, legalName, registered office, LocalBusiness, virtua
 - Companies House public register: https://find-and-update.company-information.service.gov.uk/
 
 ## Release checks
-The PR includes a regression test that fails if `foundingDate` is reintroduced into the shared Organization graph. After deployment, validate the homepage JSON-LD with Google's Rich Results Test and Search Console URL Inspection. A successful syntax test does not guarantee a rich result or ranking change.
+The PR includes regression tests that fail if `foundingDate` or `legalName` is reintroduced without verification, and that restrict `sameAs` to the exact OQC Trustpilot profile. After deployment, validate the homepage JSON-LD with Google's Rich Results Test and Search Console URL Inspection. A successful syntax test does not guarantee a rich result or ranking change.
