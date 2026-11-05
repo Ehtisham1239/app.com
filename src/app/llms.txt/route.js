@@ -3,6 +3,7 @@ import { shouldIncludeInSitemap } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
 import { LEARNING_GUIDES } from "@/lib/learning-guides";
 import { INDEXED_MARKETS, getLocation, locationPath } from "@/lib/locations";
+import { MARKET_GUIDES } from "@/lib/market-guides";
 
 export const dynamic = "force-static";
 export const revalidate = 3600;
@@ -51,6 +52,17 @@ export async function GET() {
     ...LEARNING_GUIDES.map(g => `- [${label(g.title)}](${g.path}): for ${label(g.audience).toLowerCase()}`), "",
     "## Country pages", "",
     ...INDEXED_MARKETS.map(getLocation).filter(Boolean).map(c => `- [Online Quran classes in ${label(c.name)}](${locationPath(c)})`), "",
+    "## Market guidance and primary references", "",
+    "The country hubs link to official government or regulator material for the specific time-zone, privacy, consumer-protection and licensing context. These references are independent public guidance, not endorsements of OQC. For the current source list, use each country's hub:",
+    ...INDEXED_MARKETS.flatMap(slug => {
+      const market = getLocation(slug);
+      const guide = MARKET_GUIDES[slug];
+      return guide ? [
+        `### ${label(market?.name)}`,
+        ...guide.sources.map(source => `- [${label(source.name)}](${source.url})`),
+        "",
+      ] : [];
+    }),
     "## Courses", "",
     ...courses.filter(row => courseSlugs.has(row.slug)).map(row => `- [${label(row.title)}](/courses/${encodeURIComponent(row.slug)})`), "",
     "## Learning articles", "",
