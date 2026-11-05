@@ -43,3 +43,10 @@ test("floating support and review controls stay off contact and free-trial forms
   assert.ok(reviews.includes("window.scrollY > window.innerHeight * 0.8"));
   assert.ok(reviews.includes('pathname === "/free-trial" || pathname.startsWith("/free-trial/")'));
 });
+
+test("public footer has no staff portal shortcut and support stays on the right", () => {
+  const footer = read("src/components/site/footer.jsx");
+  const support = read("src/components/site/contact-support-button.jsx");
+  assert.doesNotMatch(footer, /href="\/admin"|>\s*Portal\s*</);
+  assert.ok(support.includes("right-[calc(1rem+env(safe-area-inset-right))]"));
+});
