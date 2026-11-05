@@ -110,6 +110,14 @@ export function ProgressDmc({ report, studentName, clientId, clientName, student
             </div>
           </section>
         )}
+        {d.performance && Object.values(d.performance).some((value) => String(value || "").trim()) && (
+          <section className="mt-5 grid gap-3 rounded-xl border border-gold-300/70 bg-white/85 p-4">
+            <h3 className="font-semibold text-mushaf-900">Progress and next steps</h3>
+            {d.performance.overall && <div><p className="text-xs font-semibold uppercase tracking-wide text-ink-faint">Overall performance</p><p className="mt-1 whitespace-pre-line text-sm text-ink">{d.performance.overall}</p></div>}
+            {d.performance.improvement_targets && <div><p className="text-xs font-semibold uppercase tracking-wide text-ink-faint">Improvement targets</p><p className="mt-1 whitespace-pre-line text-sm text-ink">{d.performance.improvement_targets}</p></div>}
+            {d.performance.personal_development && <div><p className="text-xs font-semibold uppercase tracking-wide text-ink-faint">Personal development</p><p className="mt-1 whitespace-pre-line text-sm text-ink">{d.performance.personal_development}</p></div>}
+          </section>
+        )}
         <div className="mt-5 grid gap-4 sm:grid-cols-[auto_1fr] sm:items-stretch">
           <div className="flex min-w-44 flex-col items-center justify-center rounded-xl border border-line bg-white/85 px-4 py-3 text-center">
             <CalendarCheck className="size-5 text-leaf-700" aria-hidden="true" />
