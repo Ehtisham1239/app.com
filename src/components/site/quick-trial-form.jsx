@@ -157,9 +157,23 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       setState({ sending: false, error: error.message || "We could not send your request. Please try again or message us on WhatsApp.", reference: null });
       return;
     }
+    const reference = typeof data?.reference === "string" && /^TR-[A-Z0-9-]{4,32}$/.test(data.reference) && data.reference !== "TR-RECEIVED" ? data.reference : "";
+    if (reference) {
+      try {
+        const notification = await fetch("/api/lead-notification", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ reference, email: form.email.trim().toLowerCase() }),
+          cache: "no-store",
+          signal: AbortSignal.timeout(6000),
+        });
+        if (!notification.ok) console.warn("OQC internal trial notification was not confirmed", reference, notification.status);
+      } catch {
+        console.warn("OQC internal trial notification request failed", reference);
+      }
+    }
     announceLeadSaved({ formType: "trial", country: form.country, reference: data?.reference, honeypot: form.website });
     setState({ sending: false, error: "", reference: null });
-    const reference = typeof data?.reference === "string" && /^TR-[A-Z0-9-]{4,32}$/.test(data.reference) && data.reference !== "TR-RECEIVED" ? data.reference : "";
     router.push("/free-trial/thank-you" + (reference ? "?ref=" + encodeURIComponent(reference) : ""));
   }
 
