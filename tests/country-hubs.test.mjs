@@ -33,13 +33,14 @@ test("contact page states its primary topic in visible main content", () => {
   assert.match(page, /Contact Online Quran College/);
 });
 
-test("all market and city landing pages disclose the exact free-trial conditions", () => {  const page = read("src/components/site/location-page.jsx");
-  assert.match(page, /3-day free trial on eligible plans/);
-  assert.match(page, /No card is needed; the Weekend plan is excluded/);
-  assert.match(page, /Is the 3-day free trial available on every plan/);
-  assert.match(page, /No card is needed for an eligible trial/);
+test("USA landing page clearly explains trial packages and provides a direct phone CTA", () => {
+  const page = read("src/components/site/location-page.jsx");
+  assert.match(page, /3-day free trial with Package 1, Package 2, Package 3, Package 4 and Leisure/);
+  assert.match(page, /Weekend does not include a free trial/);
+  assert.match(page, /Which USA packages include a 3-day free trial/);
+  assert.match(page, /17869645678/);
+  assert.match(page, /Call our US team/);
 });
-
 test("hub copy makes no price, office, credential, guarantee or response-time claims", () => {
   const text = JSON.stringify(Object.values(COUNTRY_HUBS).map((h) => ({ ...h, faqs: h.faqs ? h.faqs() : [] })));
   assert.doesNotMatch(text, /[£$€]\d|\d+\s*(?:USD|GBP|CAD|AUD|AED)|office|branch|licen[cs]e|certified|guarantee|within \d+ (?:hours?|minutes?|days?)/i);
