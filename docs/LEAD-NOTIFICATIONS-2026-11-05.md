@@ -3,9 +3,10 @@
 ## Scope implemented in source
 - Main website free-trial form: after `submit_trial_application` confirms the lead is saved, the browser calls `/api/lead-notification` with only the returned reference and the visitor email.
 - Main website contact form: after `submit_contact_message` confirms the enquiry is saved, the browser calls the same endpoint with only the returned reference and email.
+- Public review form: after `submit_review` confirms the review is saved, the browser calls the same endpoint with only the returned reference and email. Review photos/videos remain private and are never attached to email.
 - USA standalone landing pages continue to use the existing `/api/usa-lead-notification` route.
 - Both routes send an internal notification to the comma-separated recipients in `LEAD_NOTIFICATION_TO`. The public form itself remains the CMS/database source of truth.
-- The email body is built from the database row, not browser-supplied names, phone numbers, course or message content.
+- The email body is built from the database row, not browser-supplied names, phone numbers, course, review or message content.
 - A read-only, SECURITY DEFINER RPC exposes only a matching reference + email pair for 30 minutes; it does not grant direct table reads.
 - Resend idempotency keys prevent repeat delivery for the same reference while the provider retains the key.
 - Notifications are internal only; the parent/learner is not emailed.
