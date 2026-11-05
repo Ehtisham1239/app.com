@@ -49,6 +49,19 @@ A small 28-day GSC sample was recorded in the 3 November keyword register:
 
 These are low-volume OQC query averages, not competitor rankings, search-volume estimates or a current baseline. They should guide which URLs to inspect first, not be used as a forecast. A fresh authorized GSC export is required before setting market-level ranking targets.
 
+### Market-specific examples from public pages
+These are observable page patterns, not independently verified service quality or proof of a higher Google rank.
+
+| Market | Public page pattern observed | OQC lesson |
+|---|---|---|
+| UK | Her Quran Academy's UK page combines one-to-one positioning, a local time finder, GBP plans, after-school/weekend messaging and two trial lessons. Learn Quran Academy has previously surfaced a student portal and monthly assessment messaging. | OQC already has GBP-aware guidance and GMT/BST handling. Keep its own 3-day eligible-plan offer; improve the clarity of the post-submit steps and publish progress details only when Operations confirms the real SOP. |
+| USA | Her Quran Academy shows ET-to-Pacific scheduling, daylight-saving reminders, USD plans and two trial lessons; Nouf describes local-time and currency options across four US zones. | OQC already has multi-zone scheduling and USD display. Compare actual class duration/frequency beside fee; never promise competitor-style 7-day availability or a specific time slot unless Admissions confirms it. |
+| Canada | Nouf's Canada page describes Eastern/Central/Mountain/Pacific scheduling, CAD billing, course selection and rescheduling; Her Quran Academy also presents Canadian time zones and CAD. | OQC already has a Canada hub, CAD-aware display and IANA city/time-zone planning. Ensure any converted amount is clearly an estimate unless the owner approves a CAD-denominated plan. |
+| Australia | Her Quran Academy lists AEST/ACST/AWST and DST but shows USD pricing; Australian Quran Academy lists prices by lesson duration and weekly frequency, while the displayed dollar sign is not itself proof of AUD. | OQC's AUD display and city-aware time zones are useful. Show lesson duration/frequency with approved prices and never infer competitor currency from a bare “$”. |
+| UAE | Her Quran Academy describes Gulf Standard Time, AED plans, online-only delivery and coverage across emirates. | OQC already has Asia/Dubai time, AED-aware display and an online-only disclosure. Keep UAE regulatory guidance linked to the official UAE Media Council and avoid implying a local centre or licence. |
+
+Sources: [Her Quran Academy UK](https://herquranacademy.com/online-quran-classes-uk/), [Her Quran Academy USA](https://herquranacademy.com/online-quran-classes-usa/), [Nouf Canada](https://www.noufquranacademy.com/online-quran-classes/canada), [Her Quran Academy Australia](https://herquranacademy.com/online-quran-classes-australia/), [Australian Quran Academy pricing](https://australianquranacademy.com/pricing/), [Her Quran Academy UAE](https://herquranacademy.com/online-quran-classes-uae/), [Learn Quran Academy](https://learnquraan.co.uk/).
+
 ### High-value examples inspected
 - Learn Quran Academy presents a student portal, monthly assessment, teacher choice and a three-day trial.
 - UK Quran Academy presents progress reports, a student app, teacher claims, parent visibility and a multi-step trial path. Its opened page also showed inconsistent-looking counters (zero active students / zero Trustpilot rating alongside testimonials), a reminder to treat competitor claims cautiously.
