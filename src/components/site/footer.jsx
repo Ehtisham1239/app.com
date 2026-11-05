@@ -89,11 +89,6 @@ export function SiteFooter({ settings, menus }) {
                 <ArrowUpRight className="size-3.5" aria-hidden="true" />
               </a>
             ))}
-            {/* Full document navigation clears the public chat runtime before staff sign-in. */}
-            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            <a href="/admin" className="inline-flex min-h-11 items-center rounded-full px-3 py-1 text-white/75 hover:text-white">
-              Portal
-            </a>
           </div>
         </div>
       </div>
