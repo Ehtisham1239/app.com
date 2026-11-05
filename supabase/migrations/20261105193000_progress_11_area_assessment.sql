@@ -109,7 +109,7 @@ begin
 
   -- Enforce the 11-area rubric for current-form submissions only.
   -- Legacy reports retain their original six-category submission path.
-  if new.details ->> 'assessment_version' <> '1' then return new; end if;
+  if new.details ->> 'assessment_version' is distinct from '1' then return new; end if;
 
   foreach v_key in array array[
     'qaida_reading', 'tajweed', 'makharij', 'fluency', 'hifz_revision',
