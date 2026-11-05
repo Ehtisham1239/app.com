@@ -63,9 +63,38 @@ as $$
         and m.status <> 'spam'
       limit 1
     )
+    when p_reference ~ '^REV-[0-9]{4}-[0-9]{5,7}
+
+revoke execute on function public.lead_for_notification(text, text) from public, anon, authenticated;
+grant execute on function public.lead_for_notification(text, text) to anon, authenticated, service_role;
+ then (
+      select jsonb_build_object(
+        'lead_type', 'review',
+        'id', r.id,
+        'reference', r.reference,
+        'created_at', r.created_at,
+        'name', r.name,
+        'email', r.email,
+        'relation', r.relation,
+        'country', r.country,
+        'rating', r.rating,
+        'comment', r.comment,
+        'publish_consent', r.publish_consent,
+        'publish_consent_at', r.publish_consent_at,
+        'page_path', r.page_path,
+        'media_count', cardinality(r.media_paths)
+      )
+      from public.review_submissions r
+      where r.reference = p_reference
+        and r.email = lower(trim(coalesce(p_email, '')))
+        and r.created_at > now() - interval '30 minutes'
+        and r.deleted_at is null
+        and r.status <> 'spam'
+      limit 1
+    )
     else null
   end
-$$;
+$;
 
 revoke execute on function public.lead_for_notification(text, text) from public, anon, authenticated;
 grant execute on function public.lead_for_notification(text, text) to anon, authenticated, service_role;
