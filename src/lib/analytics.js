@@ -167,12 +167,40 @@ export function createAnalyticsController(win, config) {
     if (event.detail?.event !== "generate_lead" || !["trial", "contact"].includes(form_type) || !["UK", "USA", "Canada", "Australia", "UAE", "Other"].includes(market)) return;
     emit("generate_lead", { form_type, market }); // Only a confirmed first-party save signal; no form field values.
   };
+  const pagePath = () => {
+    const location = publicAnalyticsUrl(win.location.href, origin);
+    return location ? new URL(location).pathname : "";
+  };
   const onClick = event => {
-    const href = event.target?.closest?.("a[href]")?.getAttribute("href") || "";
+    const anchor = event.target?.closest?.("a[href]");
+    const href = anchor?.getAttribute("href") || "";
     const channel = href.startsWith("tel:") ? "phone" : href.startsWith("mailto:") ? "email" : /^https:\/\/(?:wa\.me|api\.whatsapp\.com)\//.test(href) ? "whatsapp" : null;
     if (channel) emit("contact_click", { contact_channel: channel });
+    const path = href.split(/[?#]/, 1)[0];
+    const placement = anchor?.getAttribute?.("data-oqc-cta") || "";
+    if (path === "/free-trial" || path === "/usa-quran-classes" || placement) {
+      emit("trial_cta_click", {
+        cta_placement: /^[a-z0-9_-]{1,48}$/i.test(placement) ? placement : "internal_link",
+        destination: path === "/usa-quran-classes" ? "usa_landing_page" : "free_trial",
+        page_path: pagePath(),
+      });
+    }
   };
-  win.addEventListener("oqc:lead-saved", onLead); doc.addEventListener("click", onClick);
+  let trialFormStarted = false, trialFormAttempted = false;
+  const onFormFocus = event => {
+    if (trialFormStarted || !event.target?.closest?.('form[aria-label="Book a free trial"]')) return;
+    trialFormStarted = true;
+    emit("trial_form_start", { page_path: pagePath() });
+  };
+  const onFormSubmit = event => {
+    if (trialFormAttempted || !event.target?.matches?.('form[aria-label="Book a free trial"]')) return;
+    trialFormAttempted = true;
+    emit("trial_form_submit_attempt", { page_path: pagePath() });
+  };
+  win.addEventListener("oqc:lead-saved", onLead);
+  doc.addEventListener("click", onClick);
+  doc.addEventListener("focusin", onFormFocus);
+  doc.addEventListener("submit", onFormSubmit);
   // Core Web Vitals from real visits (Next.js useReportWebVitals). Only the
   // metric itself and the public page path are sent.
   const VITALS = new Set(["LCP", "INP", "CLS", "FCP", "TTFB"]);
@@ -193,7 +221,10 @@ export function createAnalyticsController(win, config) {
   return {
     setConsent, pageView, webVital,
     destroy() {
-      win.removeEventListener("oqc:lead-saved", onLead); doc.removeEventListener("click", onClick);
+      win.removeEventListener("oqc:lead-saved", onLead);
+      doc.removeEventListener("click", onClick);
+      doc.removeEventListener("focusin", onFormFocus);
+      doc.removeEventListener("submit", onFormSubmit);
       setConsent(false);
     },
   };
