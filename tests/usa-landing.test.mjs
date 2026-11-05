@@ -120,3 +120,13 @@ test("standalone USA landing and thank-you pages include the single-label suppor
     assert.match(html, /\.support-float:hover\{[^}]*background:#C5A04A/);
   }
 });
+
+
+test("USA thank-you page uses verified contact and trial terms", () => {
+  assert.doesNotMatch(thankYou, /786-964-5678|17869645678|447864710821|telephone|within 24 hours/i);
+  assert.match(thankYou, /phone: null/);
+  assert.match(thankYou, /whatsapp: \{ enabled: false, number: '', text: '' \}/);
+  assert.match(thankYou, /3-day free trial is available on eligible plans/i);
+  assert.match(thankYou, /Weekend plan is excluded/i);
+  assert.match(thankYou, /no card is needed on eligible plans/i);
+});
