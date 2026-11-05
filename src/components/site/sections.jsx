@@ -91,11 +91,11 @@ export function CtaBand({ title, text, whatsappHref, primaryHref = "/free-trial"
           <h2 className="text-[2.1rem] text-white sm:text-[2.7rem]">{title}</h2>
           {text && <p className="mt-4 text-[1.06rem] leading-relaxed text-white/75">{text}</p>}
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={primaryHref} className="btn btn-gold btn-lg">
+            <Link href={primaryHref} className="btn btn-gold btn-lg" data-oqc-cta="section_cta_primary">
               {primaryLabel} <ArrowRight className="size-5" aria-hidden="true" />
             </Link>
             {whatsappHref && (
-              <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="btn btn-outline-light btn-lg">
+              <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="btn btn-outline-light btn-lg" data-oqc-cta="section_cta_whatsapp">
                 <MessageCircle className="size-5" aria-hidden="true" /> WhatsApp us
               </a>
             )}
