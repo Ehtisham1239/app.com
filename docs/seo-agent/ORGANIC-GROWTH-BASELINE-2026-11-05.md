@@ -46,6 +46,15 @@ Connected GA4 property: `560748871`.
 The previous PR #123 QA recorded strong Lighthouse lab scores on the tested routes (roughly 95–100 Performance, 97–100 Accessibility, 100 Best Practices and 100 SEO) and no horizontal overflow across its tested responsive widths. Those are lab checks from that release, not fresh measurements for this PR, not CrUX field Core Web Vitals, and not a ranking guarantee. Current GA4 FCP/TTFB/LCP/CLS/INP rows are event counts, not percentile measurements. Fresh field CWV requires Search Console/CrUX data; a fresh direct-network lab run is still required after deployment.
 
 
+
+## CMS content inventory
+Read-only CMS inventory on 5 November 2026:
+- 177 published pages; 151 are marked noindex, leaving 26 indexable published pages.
+- All indexable published pages have both an SEO title and description in the CMS.
+- 32 published blog posts (3 additional drafts); all published posts have both an SEO title and description.
+- 32 published FAQs.
+- This is a metadata-completeness check, not a quality or uniqueness audit. The next content pass should assess actual usefulness, topical overlap, author/reviewer evidence, source references, freshness and internal-link depth—not simply create more pages.
+
 ## CMS review and testimonial audit
 Seven review submissions were found in the CMS:
 - One review is already approved and published (review reference `REV-2026-00007`).
