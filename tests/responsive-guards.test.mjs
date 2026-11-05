@@ -10,6 +10,17 @@ test("the /learn trial button wraps inside its column", () => {
   assert.match(read("src/app/(site)/learn/page.jsx"), /className="btn btn-primary mt-5 max-w-full whitespace-normal text-center" href="\/free-trial">Request a three-day trial/);
 });
 
+test("CMS hero and image-text sections use responsive AVIF/WebP image variants", () => {
+  const sections = read("src/components/site/page-sections.jsx");
+  const image = read("src/components/site/content-image.jsx");
+  assert.match(sections, /import \{ ContentImage \} from "@\/components\/site\/content-image";/);
+  assert.equal((sections.match(/<ContentImage /g) || []).length, 2);
+  assert.match(sections, /sizes="\(max-width: 1023px\) calc\(100vw - 2\.5rem\), \(max-width: 1599px\) 42vw, 42rem"/);
+  assert.match(image, /<source type="image\/avif"/);
+  assert.match(image, /srcSet=\{asset \? asset\.variants/);
+  assert.match(image, /loading=\{priority \? "eager" : "lazy"\}/);
+});
+
 test("the responsive audit covers phone to desktop widths and the market pages", () => {
   const src = read("scripts/responsive-audit.mjs");
   assert.match(src, /const WIDTHS = \[320, 360, 390, 430, 768, 820, 1024, 1280, 1440, 1600, 1920, 2560\];/);
