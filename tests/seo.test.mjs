@@ -194,7 +194,7 @@ test("entity names and market hubs carry the 3 Nov keyword and schema updates", 
 test("organization JSON-LD does not publish an unverified CMS founding year", async () => {
   const { readFile } = await import("node:fs/promises");
   const source = await readFile(new URL("../src/app/(site)/layout.jsx", import.meta.url), "utf8");
-  assert.match(source, /legalName: identity\.legal_name/);
+  assert.doesNotMatch(source, /legalName:/);
   assert.match(source, /organizationPostalAddress\(contact\)/);
   assert.doesNotMatch(source, /foundingDate/);
 });
