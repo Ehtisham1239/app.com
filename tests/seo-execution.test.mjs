@@ -71,3 +71,34 @@ test("course pages link to all five indexed country hubs", () => {
     assert.ok(source.includes(`>${label}</Link>`), label);
   }
 });
+
+test("Hifz planner calculates only user-entered page targets and validates inputs", () => {
+  assert.deepEqual(calculateHifzPlan({ remainingPages: 50, studyDaysPerWeek: 5, revisionPages: 30, revisionDaysPerWeek: 6 }), {
+    newPagesPerStudyDay: 10, estimatedStudyDays: 5, estimatedWeeks: 1, revisionPagesPerDay: 5,
+  });
+  assert.deepEqual(calculateHifzPlan({ remainingPages: 30, studyDaysPerWeek: 5, revisionPages: 0, revisionDaysPerWeek: 6 }), {
+    newPagesPerStudyDay: 6, estimatedStudyDays: 5, estimatedWeeks: 1, revisionPagesPerDay: 0,
+  });
+  assert.ok(calculateHifzPlan({ remainingPages: 0, studyDaysPerWeek: 5, revisionPages: 0, revisionDaysPerWeek: 6 }).error);
+  assert.ok(calculateHifzPlan({ remainingPages: 10, studyDaysPerWeek: 8, revisionPages: 0, revisionDaysPerWeek: 6 }).error);
+});
+
+test("Hifz planner is linked, indexable and included in sitemap", () => {
+  const hub = read("src/app/(site)/quran-study/page.jsx");
+  const page = read("src/app/(site)/quran-study/hifz-planner/page.jsx");
+  const sitemap = read("src/app/sitemap.js");
+  assert.match(hub, /href="\/quran-study\/hifz-planner"/);
+  assert.match(page, /seo_noindex: false/);
+  assert.match(page, /calculate a simple weekly target/i);
+  assert.match(sitemap, /"\/quran-study\/hifz-planner"/);
+});
+
+test("teacher credentials are not represented as verified structured credentials without evidence", () => {
+  const person = teacherPerson({ slug: "teacher", display_name: "Teacher", qualifications: "Qualification claim" }, "https://example.com");
+  assert.equal(person.hasCredential, undefined);
+  assert.equal(person.name, "Teacher");
+});
+
+test("trial request fallback does not promise an unverified response time", () => {
+  assert.doesNotMatch(read("src/components/site/quick-trial-form.jsx"), /within 24 hours/i);
+});
