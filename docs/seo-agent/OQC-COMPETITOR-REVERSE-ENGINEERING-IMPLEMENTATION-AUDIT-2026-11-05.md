@@ -293,3 +293,40 @@ The current indexed OQC homepage and market pages describe the five target marke
 - FQE Academy pricing: https://www.fqeacademy.com/pricing/
 - Google people-first content: https://developers.google.com/search/docs/fundamentals/creating-helpful-content
 - Google spam policies: https://developers.google.com/search/docs/essentials/spam-policies
+
+## 12. Implementation addendum — 5 November 2026
+
+The current PR branch adds the following original, evidence-led implementation changes:
+
+### Hifz and revision planner
+- New public route: /quran-study/hifz-planner.
+- The visitor enters remaining pages, teacher-agreed new pages per study day, study days per week, revision pages and revision days per week.
+- The calculator estimates study days/weeks and a revision pages-per-day target using arithmetic only. It does not assess recitation, retention, Tajweed or academic readiness.
+- No fixed Mushaf page count is assumed, and form values stay in browser state rather than being sent to OQC or analytics.
+- The route is linked from /quran-study and included in the XML sitemap.
+- A visible disclaimer directs families to agree the workload and revision method with their Quran teacher.
+
+### Authentic entity and teacher structured data
+- Organization JSON-LD no longer publishes the CMS 2018 field as foundingDate. The legal entity and brand-start date have not been conclusively reconciled; owner documentation is required before adding a founding date or company number.
+- The Organization sameAs array is restricted to the exact public OQC Trustpilot profile URL. Other CMS social links remain ordinary social links until each account is owner-confirmed.
+- Teacher profile qualification text remains visible on the public profile, but is no longer emitted as formal EducationalOccupationalCredential structured data without evidence-backed verification.
+- No aggregateRating, fabricated review data, local-office address or LocalBusiness markup is added.
+
+### Trial and parent-progress conversion clarity
+- The trial form's generic fallback no longer promises a 24-hour response time. The coordinator follow-up statement remains, without an unsupported deadline.
+- Each country hub exposes the existing parent portal and progress-review article. The copy says only checked/published results appear and explicitly avoids promising a monthly report for every learner/month.
+
+### Legal entity / brand-history reconciliation
+- The CMS identity setting still contains established=2018, but the public About CMS body inspected for this audit does not support that year.
+- Companies House record 13629654 is an older same-name entity that is dissolved (20 February 2024; incorporated 17 September 2021). A secondary register aggregator reports a separate active same-name record 17075457 (incorporated 6 March 2026), but the official Companies House page for that latter record could not be directly retrieved in this audit.
+- These records must not be conflated. The PR deliberately omits foundingDate and does not add a company number. Owner/Finance must confirm the exact current legal entity and documentary brand history before public legal-identity changes.
+
+### External profile consistency
+- Public LinkedIn snippets show historical wording such as “trusted since 2014”, “1,000+ students” and a 5-day trial. Those claims conflict with current website/CMS messaging and are not substantiated by this audit. No LinkedIn edit was made; the owner must reconcile and update the profile using documented facts.
+- A stale About-page search snapshot still shows 2018 and 25+ countries, while the currently inspected CMS About body does not. Treat this as an indexing/cache issue until a fresh public fetch and Search Console URL Inspection prove otherwise.
+
+### Latest GSC sample boundary
+The 25–30 October 2026 query export shows only small samples: UK “online quran classes uk” 18 impressions at average position 13.3; Australia “online quran classes australia” 13 impressions at 89.7; Canada “online quran classes canada” 1 impression at 83; and no UAE query in the extract. These are not stable rankings or a competitor comparison. Fresh 28–90 day GSC exports are still required.
+
+### Test and release boundary
+The PR adds automated checks for the Hifz calculation, sitemap/link visibility, teacher credential schema guard, trial response-time wording, Organization foundingDate guard and exact Trustpilot sameAs validation. CI, responsive/performance checks and preview readiness must be confirmed on the final PR SHA. Production deployment remains subject to owner approval.
