@@ -51,9 +51,9 @@ The competitors below are a representative watchlist surfaced in market research
 | Market | Competitor examples and visible tactics | What appears to help their conversion | Legal OQC adaptation |
 |---|---|---|---|
 | UK | Learn Quran Academy (learnquraan.co.uk): GBP packages, 3-day trial, student portal and lesson progress notes. UK Quran Academy (ukquranacademy.com): UK schedules, trial, parent progress messaging and an app. Her Quran Academy: after-school/weekend planning and UK local-time guidance. | Local GBP prices, explicit lesson frequency, parent visibility, trial steps and teacher choice. | Keep the existing UK hub; show approved GBP amounts if owner supplies them, with classes/week and minutes beside each amount. Explain the real parent update process and keep the Weekend trial exclusion prominent. |
-| USA | QuranMentors (quranmentors.com): USA-focused 1:1 trial funnel and course coverage. eQuran Academy (equranacademy.org): placement-test and Hifz-planner tools, USD plans and progress messaging. Her Quran Academy: scheduling across US time zones. | Time-zone coverage, placement/goal guidance, interactive tools, transparent plan tiers and family-focused content. | Keep the existing US hub and date-aware time planner. Extend the existing course-choice table rather than cloning a competitor quiz; any new assessment must be teacher-reviewed and clearly labelled as a self-check, not a Tajweed grade. |
-| Canada | Her Quran Academy: Atlantic-to-Pacific scheduling and CAD prices. Online Quran Academy USA (onlinequranacademy.us): Canada comparison content. OnlineQuran.pk: CAD plan display with frequency and lesson length. | CAD clarity, multi-time-zone scheduling, parent/guardian information and decision-stage comparison content. | Keep the Canada hub as the sole commercial country destination. Add actual CAD prices only after approval; keep CASL and child-privacy guidance linked to official sources. |
-| Australia | Her Quran Academy: AEST/ACST/AWST scheduling. OnlineQuran.pk: AUD plan display and family offer. Australia Quran Academy: AUD package tiers and pay-as-you-learn messaging. | State-specific daylight-saving clarity, AUD price presentation, school-time scheduling and flexible terms. | Keep the existing Australia planner and state guidance. Make the fee estimate label unmistakable unless Admissions approves AUD-denominated packages. |
+| USA | Quran Mentors (quranmentors.com): USA-focused 1:1 trial funnel, course pages and a multi-currency fee selector. eQuran Academy (equranacademy.org): placement-test and Hifz-planner tools, USD plans and progress messaging. Her Quran Academy: scheduling across US time zones. | Time-zone coverage, placement/goal guidance, interactive tools, transparent plan tiers and family-focused content. | Keep the existing US hub and date-aware time planner. Extend the existing course-choice table rather than cloning a competitor quiz; any new assessment must be teacher-reviewed and clearly labelled as a self-check, not a Tajweed grade. |
+| Canada | Her Quran Academy: Atlantic-to-Pacific scheduling and CAD prices. Nouf Quran Academy: Canadian time-zone coverage and CAD billing. Online Quran Academy USA (onlinequranacademy.us): Canada comparison content. | CAD clarity, multi-time-zone scheduling, parent/guardian information and decision-stage comparison content. | Keep the Canada hub as the sole commercial country destination. Add actual CAD prices only after approval; keep CASL and child-privacy guidance linked to official sources. |
+| Australia | Her Quran Academy: AEST/ACST/AWST scheduling. Nouf Quran Academy: AEST/AEDT, ACST and AWST time planning with AUD billing. Australia Quran Academy: AUD package tiers and pay-as-you-learn messaging. | State-specific daylight-saving clarity, AUD price presentation, school-time scheduling and flexible terms. | Keep the existing Australia planner and state guidance. Make the fee estimate label unmistakable unless Admissions approves AUD-denominated packages. |
 | UAE | Her Quran Academy: AED prices and Gulf Standard Time. Salam Campus: UAE page, parent portal, AED plans and free first class. Khan Quran Academy: AED price matrix across weekly frequencies. | AED prices, GST/Asia-Dubai scheduling, clear online-only service, parent portal and first-class trial. | Keep the UAE hub and its seven-emirate coverage. Use Asia/Dubai time and AED estimates honestly; do not claim UAE licensing, local offices, local teachers or in-person services. |
 
 ### Cross-market competitor patterns
@@ -178,14 +178,13 @@ No outreach, directory submission, paid placement or external profile creation w
 - https://learnquraan.co.uk/
 - https://ukquranacademy.com/
 - https://herquranacademy.com/online-quran-classes-uk/
-- https://quranmentors.com/
+- https://www.quranmentors.com/
+- https://www.noufquranacademy.com/online-quran-classes
 - https://equranacademy.org/
 - https://herquranacademy.com/online-quran-classes-usa/
 - https://herquranacademy.com/online-quran-classes-canada/
 - https://onlinequranacademy.us/top-10-online-quran-academies-in-canada/
-- https://onlinequran.pk/canada/
 - https://herquranacademy.com/online-quran-classes-australia/
-- https://onlinequran.pk/australia/
 - https://australia-quran.academy/pricing/
 - https://herquranacademy.com/online-quran-classes-uae/
 - https://salamcampus.com/online-quran-classes-uae/
