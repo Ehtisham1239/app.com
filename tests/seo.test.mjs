@@ -214,3 +214,9 @@ test("Organization sameAs includes only the exact OQC Trustpilot profile", async
   assert.deepEqual(organizationIdentityProfiles({ trustpilot: "https://www.trustpilot.com/review/another-company.com" }), []);
   assert.deepEqual(organizationIdentityProfiles({ trustpilot: "http://www.trustpilot.com/review/onlinequrancollege.com" }), []);
 });
+
+test("UAE advertiser guidance points to the official Media Council guidelines", async () => {
+  const { MARKET_GUIDES } = await import("../src/lib/market-guides.js");
+  const source = MARKET_GUIDES["united-arab-emirates"].sources.find((item) => item.name.includes("Advertiser Permit"));
+  assert.equal(source.url, "https://uaemc.gov.ae/en/guidelines/");
+});
