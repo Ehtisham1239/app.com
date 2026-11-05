@@ -25,7 +25,7 @@ export function HomeHero({ hero, stats }) {
       <h1 className="mt-4 max-w-2xl text-[2.25rem] font-bold leading-[1.15] text-mushaf-900 sm:text-[3rem]">{h.title}</h1>
       {h.subtitle && <p className="hero-intro mt-6 max-w-xl text-[1.05rem] leading-relaxed text-ink-soft">{h.subtitle.length > 150 ? SEARCH_INTENTS["/"].intro : h.subtitle}</p>}
 
-      <div className="hero-actions mt-8 flex flex-wrap gap-3"><Link href="/free-trial" className="btn btn-primary btn-lg">{h.primary_label || "Book a free trial"}<ArrowRight className="size-5" /></Link><Link href="/courses" className="btn btn-outline btn-lg">{h.secondary_label || "Explore courses"}</Link></div>
+      <div className="hero-actions mt-8 flex flex-wrap gap-3"><Link href="/free-trial" className="btn btn-primary btn-lg" data-oqc-cta="home_hero_primary">{h.primary_label || "Book a free trial"}<ArrowRight className="size-5" /></Link><Link href="/courses" className="btn btn-outline btn-lg" data-oqc-cta="home_hero_secondary">{h.secondary_label || "Explore courses"}</Link></div>
       <div className="hero-trial-note mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm">
         <span className="chip chip-gold">3-day free trial</span>
         <span className="text-ink-soft">No card on eligible packages</span>
