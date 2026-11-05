@@ -119,8 +119,7 @@ export const getFaqs = cache(async () => {
     [],
     "faqs",
   );
-  // Keep the legacy FAQ in the CMS for review, but do not publish an unsubstantiated commercial offer.
-  return rows.filter((faq) => !/family discount|sibling discount/i.test(`${faq.question} ${faq.answer}`));
+  return rows;
 });
 
 export const getTestimonials = cache(async () =>
