@@ -1,4 +1,4 @@
-// Database checks for public.usa_lead_for_notification (supabase/migrations/20261105100000_usa_lead_notification.sql),
+// Database checks for public.usa_lead_for_notification (supabase/migrations/20261105104232_usa_lead_notification.sql),
 // run in PGlite with synthetic data only.
 import { before, after, test } from "node:test";
 import assert from "node:assert/strict";
