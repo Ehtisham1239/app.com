@@ -28,6 +28,8 @@ export function ReviewsButton({ config, consentText }) {
   }, [open]);
   if (!config || !(config.everyPage || pathname === "/")) return null;
   if (pathname.startsWith("/admin") || pathname.startsWith("/parents") || pathname === "/reviews") return null;
+  // Keep conversion forms unobstructed on small screens; those pages already expose direct support actions.
+  if (pathname === "/contact" || pathname.startsWith("/contact/") || pathname === "/free-trial" || pathname.startsWith("/free-trial/")) return null;
 
   const prefetch = () => { loadForm().catch(() => {}); };
   const openForm = () => {
