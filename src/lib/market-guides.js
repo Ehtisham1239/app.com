@@ -75,7 +75,7 @@ export const MARKET_GUIDES = {
       { name: "UAE Government: licensing private educational institutes", url: "https://u.ae/en/information-and-services/education/licensing-private-educational-institutes" },
       { name: "Abu Dhabi Department of Economic Development: licensing requirements", url: "https://www.added.gov.ae/en/set-up/establish-your-business/licensing-requirements" },
       { name: "UAE Government: National Economic Register", url: "https://u.ae/en/information-and-services/business/important-digital-services/national-economic-register" },
-      { name: "UAE Media Council: Advertiser Permit", url: "https://uaemc.gov.ae/en/news/" },
+      { name: "UAE Media Council: Advertiser Permit guide", url: "https://uaemc.gov.ae/wp-content/uploads/2025/08/Advertiser-Guide.pdf" },
       { name: "Google Business Profile: eligibility", url: "https://support.google.com/business/answer/13763036?hl=en" }
     ]
   }
