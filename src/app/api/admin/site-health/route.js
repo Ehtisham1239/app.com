@@ -15,7 +15,7 @@ const tag = (html, pattern) => clean(html.match(pattern)?.[1] || "");
 async function inspectPage(url, origin) {
   const findings = [];
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 7500);
+  const timer = setTimeout(() => controller.abort(), 5000);
   try {
     const res = await fetch(url, {
       redirect: "follow",
@@ -73,7 +73,7 @@ export async function GET() {
       .map((url) => url.href);
     const unique = [...new Set(urls)];
     if (!unique.length) return response({ error: "The sitemap did not contain any valid same-site URLs." }, 502);
-    const limit = 60;
+    const limit = 40;
     const selected = unique.slice(0, limit);
     const pages = [];
     for (let i = 0; i < selected.length; i += 6) {
