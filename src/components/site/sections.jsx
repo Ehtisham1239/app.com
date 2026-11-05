@@ -95,7 +95,7 @@ export function CtaBand({ title, text, whatsappHref, primaryHref = "/free-trial"
               {primaryLabel} <ArrowRight className="size-5" aria-hidden="true" />
             </Link>
             {whatsappHref && (
-              <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="btn btn-outline-light btn-lg" data-oqc-cta="section_cta_whatsapp">
+              <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="btn btn-outline-light btn-lg">
                 <MessageCircle className="size-5" aria-hidden="true" /> WhatsApp us
               </a>
             )}
