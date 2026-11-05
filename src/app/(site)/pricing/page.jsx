@@ -29,10 +29,7 @@ export default async function PricingPage() {
   const familyDiscountCopy = familyDiscount?.enabled && Number(familyDiscount?.percent) > 0
     ? `Each additional child from the same family receives ${Number(familyDiscount.percent)}% off their monthly fee.`
     : "Ask the coordinator whether a sibling discount is available for your selected plan.";
-  const familyDiscount = settings["site.family_discount"];
-  const familyDiscountCopy = familyDiscount?.enabled && Number(familyDiscount?.percent) > 0
-    ? `Each additional child from the same family receives ${Number(familyDiscount.percent)}% off their monthly fee.`
-    : "Ask the coordinator whether a sibling discount is available for your selected plan.";
+
   const schemaFaqs = quickAnswer ? [{ question: quickAnswer.question, answer: quickAnswer.answer }, ...feeFaqs] : feeFaqs;
 
   return (
@@ -74,7 +71,7 @@ export default async function PricingPage() {
           <SectionHeading eyebrow="Compare" title={<span id="compare-plans">Compare plans and estimate your family’s fees</span>} intro="See every plan side by side, then work out a monthly total for more than one learner." />
           <div className="mt-10"><FeeCompare plans={plans} fx={fx} familyDiscount={settings["site.family_discount"]} /></div>
           <p className="mx-auto mt-4 max-w-3xl text-center text-sm text-ink-soft">{familyDiscountCopy}</p>
-          <p className="mx-auto mt-4 max-w-3xl text-center text-sm text-ink-soft">{familyDiscountCopy}</p>
+          
         </div>
       </section>
 
