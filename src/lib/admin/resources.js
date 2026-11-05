@@ -24,7 +24,7 @@ export const RESOURCES = {
     fields: [
       {name:"title",label:"Task or keyword theme",type:"text",required:true},
       {name:"workstream",label:"Workstream",type:"select",options:["keyword","content","technical","authority","measurement"].map(value=>({value,label:value}))},
-      {name:"market",label:"Market",type:"select",options:["Both","USA","Australia"].map(value=>({value,label:value}))},
+      {name:"market",label:"Market",type:"select",options:["Both","USA","UK","Canada","Australia","UAE"].map(value=>({value,label:value}))},
       {name:"status",label:"Progress",type:"select",options:["planned","in_progress","blocked","complete"].map(value=>({value,label:value.replaceAll("_"," ")}))},
       {name:"priority",label:"Priority",type:"select",options:["high","medium","low"].map(value=>({value,label:value}))},
       {name:"target_path",label:"Target page path",type:"text",hint:"One canonical page per search intent. Example: /locations/united-states"},
@@ -41,7 +41,7 @@ export const RESOURCES = {
     columns:[{key:"title",label:"Manual source record",primary:true,sub:"source"},{key:"market",label:"Market"},{key:"period_end",label:"Period end",type:"date"},{key:"clicks",label:"Clicks"},{key:"impressions",label:"Impressions"},{key:"organic_sessions",label:"Organic sessions"}],
     fields:[
       {name:"title",label:"Evidence record title",type:"text",required:true},
-      {name:"market",label:"Country filter used",type:"select",options:["USA","Australia","Both"].map(value=>({value,label:value}))},
+      {name:"market",label:"Country filter used",type:"select",options:["USA","UK","Canada","Australia","UAE","Both"].map(value=>({value,label:value}))},
       {name:"source",label:"Data source",type:"select",options:["Search Console","GA4","Manual research"].map(value=>({value,label:value}))},
       {name:"period_start",label:"Period start (YYYY-MM-DD)",type:"text",required:true},
       {name:"period_end",label:"Period end (YYYY-MM-DD)",type:"text",required:true},
