@@ -39,3 +39,10 @@ test("no published prices means no answer block", () => {
   assert.equal(feeAnswer([], fx), null);
   assert.equal(feeAnswer([{ name: "Package 1", prices: [] }], fx), null);
 });
+
+test("fee answer uses the configured sibling discount from backend settings", () => {
+  const result = feeAnswer(plans, fx, "GBP", "the UK", { enabled: true, percent: 15 });
+  assert.match(result.answer, /15% off each additional child/);
+  const disabled = feeAnswer(plans, fx, "GBP", "the UK", { enabled: false, percent: 15 });
+  assert.doesNotMatch(disabled.answer, /sibling discount/i);
+});
