@@ -14,7 +14,7 @@ export function ContactSupportButton() {
     update();
     window.addEventListener("scroll", update, { passive: true });
     return () => window.removeEventListener("scroll", update);
-  }, []);
+  }, [pathname]);
   if (HIDDEN_ON.some((path) => pathname === path || pathname.startsWith(`${path}/`))) return null;
   if (!shown) return null;
   return (
