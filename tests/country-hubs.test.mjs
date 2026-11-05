@@ -71,7 +71,7 @@ test("each country landing explains the verified parent progress portal without 
   assert.match(component, /hub-parent-progress/);
   assert.match(component, /href="\/parents"/);
   assert.match(component, /href="\/blog\/parent-teacher-quran-progress-review"/);
-  assert.match(component, /only after staff review and publication/);
+  assert.match(component, /only if the college has completed its review and published it/);
   assert.match(portal, /Only reports and results that Online Quran College has checked and published are shown here/);
   assert.match(portal, /parent_progress/);
 });
