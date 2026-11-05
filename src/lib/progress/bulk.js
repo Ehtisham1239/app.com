@@ -40,7 +40,7 @@ export function validateProgressBulkRows(rows, assignedStudents) {
     const code = String(row.student_code || "").trim().toUpperCase();
     const student = byCode.get(code);
     if (!code) issues.push("Student code is required.");
-    else if (!student) issues.push("Student code is not in your assigned roster for this month.");
+    else if (!student) issues.push("Student code is not in your assigned roster for this month.");\n    else if (["submitted", "published"].includes(student.status)) issues.push("This month’s report is already submitted or published; ask an admin to return it before replacing it.");
     if (seen.has(code)) issues.push("Duplicate student code in this file.");
     if (code) seen.add(code);
     if (!String(row.remarks || "").trim()) issues.push("Teacher remarks are required.");
@@ -67,8 +67,8 @@ export function progressBulkPayload(row) {
   const ratings = Object.fromEntries(CATEGORIES.map((c) => [c.key, normal(row[c.key]) || null]));
   const assessment_areas = Object.fromEntries(ASSESSMENT_AREAS.map((a) => [a.key, {
     summary: String(row[`${a.key}_summary`] || "").trim(),
-    effort: normal(row[`${a.key}_effort`),
-    standard: normal(row[`${a.key}_standard`),
+    effort: normal(row[`${a.key}_effort`]),
+    standard: normal(row[`${a.key}_standard`]),
   }]));
   const syllabus = Object.fromEntries([
     ["stage", "curriculum_stage"], ["level", "current_level"], ["covered", "covered"],
