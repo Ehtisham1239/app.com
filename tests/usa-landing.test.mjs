@@ -130,3 +130,7 @@ test("USA thank-you page uses verified contact and trial terms", () => {
   assert.match(thankYou, /Weekend plan is excluded/i);
   assert.match(thankYou, /no card is needed on eligible plans/i);
 });
+
+test("USA campaign copy has no duplicated trial or card wording", () => {
+  assert.doesNotMatch(landing, /A A 3-day|no card on eligible plans needed/i);
+});
