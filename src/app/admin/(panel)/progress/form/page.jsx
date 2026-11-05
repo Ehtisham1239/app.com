@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import { CheckCircle2, ClipboardList, Loader2, Save, Send, Eye, EyeOff } from "lucide-react";
 import { useAccess } from "@/lib/admin/access";
 import { db, errorMessage, useLoad } from "@/lib/admin/db";
-import { CATEGORIES, REPORT_STATUSES, detailsForm, detailsProblem, emptyRatings, formToDetails, missingForSubmit, monthInput, monthToPeriod, periodLabel } from "@/lib/progress/constants";
+import { ASSESSMENT_AREAS, CATEGORIES, MONTHLY_PLAN_TEMPLATE, REPORT_STATUSES, detailsForm, detailsProblem, emptyRatings, formToDetails, missingForSubmit, monthInput, monthToPeriod, periodLabel } from "@/lib/progress/constants";
 import { Card, EmptyState, ErrorState, Field, Loading, Modal, StatusBadge } from "@/components/admin/ui";
 import { ClientIdentity } from "@/components/results/client-identity";
 import { ProgressCertificate } from "@/components/results/progress-certificate";
@@ -45,7 +45,7 @@ function TeacherForm() {
           <div className="min-w-0 flex-1">
             <p className="text-[0.7rem] font-bold uppercase tracking-[0.22em] text-gold-300">Online Quran College · Monthly student progress</p>
             <h1 className="mt-0.5 font-display text-2xl leading-tight sm:text-[1.7rem]">Teacher progress form</h1>
-            <p className="mt-0.5 text-sm text-white/80">Choose a student and month, give six ratings, optional marks, attendance and syllabus, and a short remark. Save a draft any time; submit when complete.</p>
+            <p className="mt-0.5 text-sm text-white/80">Choose a student and month, complete the six existing progress ratings and the 11-area assessment, then add attendance, syllabus and a monthly teaching plan. Save a draft any time; submit when complete.</p>
           </div>
         </div>
       </header>
@@ -107,9 +107,9 @@ function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChang
   }, [dirty]);
   const locked = report?.status === "submitted" && !can("progress:review");
   const client = current.clients?.[0];
-  const missing = missingForSubmit(ratings, remarks);
+  const missing = missingForSubmit(ratings, remarks, details);
   if (!client?.client_id) missing.push("Linked Client ID/name");
-  const detailProblem = detailsProblem(details);
+  const detailProblem = detailsProblem(details);\n  const requiredCount = CATEGORIES.length + 1 + (ASSESSMENT_AREAS.length * 2);\n  const completedCount = Math.max(0, requiredCount - missing.length);
   const save = async (submit) => {
     if (!current) return toast.error("Choose a student.");
     if (submit && missing.length) return toast.error(`Still needed: ${missing.join(", ")}.`);
@@ -146,7 +146,7 @@ function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChang
                 <legend className="sr-only">Monthly ratings</legend>
                 <div className="mb-1 flex items-center justify-between gap-3">
                   <p className="text-sm font-bold text-mushaf-900">Monthly ratings</p>
-                  <p className="text-xs font-semibold text-ink-faint" aria-live="polite">{7 - missingForSubmit(ratings, remarks).length} of 7 done</p>
+                  <p className="text-xs font-semibold text-ink-faint" aria-live="polite">{completedCount} of {requiredCount} required checks complete</p>
                 </div>
                 <div className="h-1.5 overflow-hidden rounded-full bg-line" aria-hidden="true"><div className="h-full rounded-full bg-leaf-600 transition-all" style={{ width: `${((7 - missingForSubmit(ratings, remarks).length) / 7) * 100}%` }} /></div>
                 {CATEGORIES.map((c) => (
@@ -156,7 +156,10 @@ function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChang
                   <textarea className="adm-input" rows={4} maxLength={1000} value={remarks} onChange={(e) => setRemarks(e.target.value)} placeholder="For example: Improving in recitation. Practise duas daily at home." />
                 </Field>
                 <ProgressDetailsFields details={details} onChange={setDetail} idPrefix="teacher" />
-                <Field label="Next month target & home practice" hint={`${plan.length}/2000 · shown to parents only after admin publication`}><textarea className="adm-input" rows={4} maxLength={2000} value={plan} onChange={(e) => setPlan(e.target.value)} placeholder="Teacher-assigned next steps, lesson focus and manageable home practice" /></Field>
+                <Field label="Next month target & home practice" hint={`${plan.length}/2000 · shown to parents only after admin publication`}>
+                  <div className="mb-2 flex flex-wrap items-center justify-between gap-2"><span className="text-xs text-ink-faint">Use a structured template, then tailor it to the student's approved syllabus.</span><button type="button" className="btn btn-outline btn-sm" disabled={locked || !!busy} onClick={() => { if (!plan.trim() || window.confirm("Replace the current plan text with the blank monthly teaching-plan template?")) setPlan(MONTHLY_PLAN_TEMPLATE); }}>Insert monthly plan template</button></div>
+                  <textarea className="adm-input" rows={10} maxLength={2000} value={plan} onChange={(e) => setPlan(e.target.value)} placeholder="Teacher-assigned next steps, lesson focus and manageable home practice" />
+                </Field>
                 {detailProblem && <p role="alert" className="rounded-xl bg-rose-50 px-4 py-2.5 text-sm text-rose-800">{detailProblem}</p>}
               </fieldset>
               {!locked && (
