@@ -12,7 +12,8 @@ test("the /learn trial button wraps inside its column", () => {
 
 test("the responsive audit covers phone to desktop widths and the market pages", () => {
   const src = read("scripts/responsive-audit.mjs");
-  assert.match(src, /const WIDTHS = \[320, 360, 390, 768, 1024, 1440\];/);
+  assert.match(src, /const WIDTHS = \[320, 360, 390, 430, 768, 820, 1024, 1280, 1440, 1600, 1920, 2560\];/);
+  assert.match(src, /const DEVICE_PROFILES = \["iPhone 13", "iPhone 14 Pro Max", "Pixel 7", "iPad Pro 11"\];/);
   for (const path of ["/locations/united-kingdom", "/locations/united-states", "/locations/canada", "/locations/australia", "/locations/united-arab-emirates", "/learn", "/pricing", "/free-trial"]) {
     assert.ok(src.includes(`"${path}"`), path);
   }
