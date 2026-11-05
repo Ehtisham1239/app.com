@@ -13,7 +13,6 @@ declare
   v_held int; v_att int;
   v_text text;
   v_syl jsonb := '{}'::jsonb;
-  v_performance jsonb := '{}'::jsonb;
   v_item jsonb;
   v_effort text;
   v_standard text;
@@ -44,18 +43,11 @@ begin
     if v_att > v_held then raise exception 'Classes attended cannot be more than classes held.'; end if;
   end if;
 
-  foreach v_key in array array['stage', 'level', 'covered', 'memorised', 'lessons_completed'] loop
+  foreach v_key in array array['level', 'covered', 'memorised'] loop
     v_text := trim(coalesce(p -> 'syllabus' ->> v_key, ''));
-    v_limit := case v_key when 'stage' then 40 when 'level' then 120 when 'covered' then 1000 when 'lessons_completed' then 100 else 600 end;
+    v_limit := case v_key when 'level' then 120 when 'covered' then 1000 else 600 end;
     if char_length(v_text) > v_limit then raise exception 'The syllabus field "%" is too long.', v_key; end if;
     if v_text <> '' then v_syl := v_syl || jsonb_build_object(v_key, v_text); end if;
-  end loop;
-
-  foreach v_key in array array['overall', 'improvement_targets', 'personal_development'] loop
-    v_text := trim(coalesce(p -> 'performance' ->> v_key, ''));
-    v_limit := case v_key when 'overall' then 300 when 'improvement_targets' then 1000 else 500 end;
-    if char_length(v_text) > v_limit then raise exception 'Performance field % must be % characters or fewer.', v_key, v_limit; end if;
-    if v_text <> '' then v_performance := v_performance || jsonb_build_object(v_key, v_text); end if;
   end loop;
 
   foreach v_key in array array[
@@ -84,7 +76,6 @@ begin
     'scores', nullif(v_scores, '{}'::jsonb),
     'attendance', case when v_held is null then null else jsonb_build_object('held', v_held, 'attended', v_att) end,
     'syllabus', nullif(v_syl, '{}'::jsonb),
-    'performance', nullif(v_performance, '{}'::jsonb),
     'assessment_areas', nullif(v_areas, '{}'::jsonb)
   ));
 end $$;
