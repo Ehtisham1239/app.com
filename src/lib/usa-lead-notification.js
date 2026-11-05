@@ -166,6 +166,53 @@ ${rows.map(([label, value]) => `<tr><th scope="row" style="${cell}width:34%;colo
   return { subject, html, text };
 }
 
+
+
+// Internal notification for a saved review submission. Media files remain private
+// in the review-media bucket and are never attached to staff email.
+export function buildReviewEmail(review, { siteUrl = "https://www.onlinequrancollege.com" } = {}) {
+  const reference = oneLine(review.reference, 24);
+  const adminUrl = `${String(siteUrl).replace(/\/$/, "")}/admin/reviews`;
+  const rows = [
+    ["Reference", reference],
+    ["Received", `${formatLeadTime(review.created_at, STAFF_TIME_ZONE)} Pakistan time`],
+    ["Name", oneLine(review.name, 80)],
+    ["Email", oneLine(review.email, 254)],
+    ["Relation", oneLine(review.relation, 20)],
+    ["Country", oneLine(review.country, 80) || "Not provided"],
+    ["Rating", `${Math.max(1, Math.min(5, Number(review.rating) || 0))}/5`],
+    ["Website publication permission", review.publish_consent ? "Yes — optional checkbox selected" : "No — do not publish"],
+    ["Submitted from", oneLine(review.page_path, 300) || "Not recorded"],
+    ["Private media files", `${Math.max(0, Number(review.media_count) || 0)} attachment(s); not included in email`],
+  ];
+  const comment = oneLine(review.comment, 2000);
+  const subject = oneLine(`New OQC review submission ${reference} – ${rows[6][1]}`, 180);
+  const text = [
+    "A new review was saved in Online Quran College CMS.",
+    "",
+    ...rows.map(([label, value]) => `${label}: ${value}`),
+    "",
+    "Review comment:",
+    comment,
+    "",
+    `Open in Admin → Reviews: ${adminUrl}`,
+    "",
+    "Internal notification only. No email was sent to the reviewer. Review-media files remain private.",
+  ].join("\n");
+  const cell = "padding:7px 10px;border-bottom:1px solid #e3ead8;vertical-align:top;text-align:left;";
+  const html = `<!doctype html><html lang="en"><body style="margin:0;padding:16px;background:#f6f8f3;font-family:Arial,Helvetica,sans-serif;color:#1d2a1f;">
+<div style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #dfe7d6;border-radius:12px;overflow:hidden;">
+<div style="background:#0D4A1C;color:#ffffff;padding:14px 18px;font-size:17px;font-weight:bold;">New OQC review submission · ${escapeHtml(reference)}</div>
+<table role="presentation" style="width:100%;border-collapse:collapse;font-size:14px;">
+${rows.map(([label, value]) => `<tr><th scope="row" style="${cell}width:38%;color:#4a5a4c;font-weight:normal;">${escapeHtml(label)}</th><td style="${cell}font-weight:bold;">${escapeHtml(value)}</td></tr>`).join("\n")}
+</table>
+<div style="padding:14px 18px;font-size:14px;"><p style="margin:0 0 6px;color:#4a5a4c;">Review comment</p><p style="margin:0;white-space:pre-wrap;">${escapeHtml(comment)}</p></div>
+<div style="padding:4px 18px 18px;"><a href="${escapeHtml(adminUrl)}" style="display:inline-block;background:#0C6C0C;color:#ffffff;text-decoration:none;padding:10px 16px;border-radius:999px;font-weight:bold;">Open in Admin → Reviews</a></div>
+<div style="padding:10px 18px;background:#fbf6e8;color:#6b5a2a;font-size:12px;">Internal notification only. Media attachments are not included and remain private.</div>
+</div></body></html>`;
+  return { subject, html, text };
+}
+
 // Same lead reference and same sender/recipients → same key, so Resend returns the
 // first result instead of sending again (keys are kept for 24 hours; the database
 // only matches a lead for 30 minutes after it was saved).
@@ -180,7 +227,7 @@ export async function sendLeadEmail({ config, message, reference, source = "usa_
     response = await fetchImpl(RESEND_ENDPOINT, {
       method: "POST",
       headers: { Authorization: `Bearer ${config.apiKey}`, "Content-Type": "application/json", "Idempotency-Key": idempotencyKey(reference, config) },
-      body: JSON.stringify({ from: config.from, to: config.to, subject: message.subject, html: message.html, text: message.text, tags: [{ name: "source", value: ["usa_landing_page", "website_trial", "website_contact"].includes(source) ? source : "website_trial" }] }),
+      body: JSON.stringify({ from: config.from, to: config.to, subject: message.subject, html: message.html, text: message.text, tags: [{ name: "source", value: ["usa_landing_page", "website_trial", "website_contact", "website_review"].includes(source) ? source : "website_trial" }] }),
       signal: AbortSignal.timeout(timeoutMs),
     });
   } catch (error) {
