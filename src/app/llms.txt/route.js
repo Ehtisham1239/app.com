@@ -14,6 +14,10 @@ export async function GET() {
   // These are website-configured outbound links, not independent proof of account ownership.
   const profiles = Object.entries(settings?.["site.social"] || {}).filter(([, url]) => typeof url === "string" && /^https:\/\/[^\s]+$/.test(url));
   const identityProfiles = organizationIdentityProfiles(settings?.["site.social"]);
+  const familyDiscount = settings?.["site.family_discount"];
+  const familyDiscountCopy = familyDiscount?.enabled && Number(familyDiscount?.percent) > 0
+    ? `Each additional child from the same family receives ${Number(familyDiscount.percent)}% off their monthly fee.`
+    : "Ask the coordinator whether a sibling discount is available for your selected plan.";
   const PROFILE_NAMES = { x: "X (Twitter)", facebook: "Facebook", instagram: "Instagram", trustpilot: "Trustpilot", youtube: "YouTube", tiktok: "TikTok", linkedin: "LinkedIn" };
   const eligible = (collection, prefix) => new Set(collection.filter(row => shouldIncludeInSitemap(row, `${prefix}/${row.slug}`, SITE_URL)).map(row => row.slug));
   const courseSlugs = eligible(published.courses, "/courses"), postSlugs = eligible(published.posts, "/blog");
