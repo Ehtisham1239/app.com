@@ -12,12 +12,6 @@ export function TopBar({ announcement }) {
       <div className="page-wrap flex min-h-9 items-center justify-center gap-3 py-1.5 text-center">
         <span className="hidden size-1.5 rotate-45 bg-gold-400 sm:inline-block" aria-hidden="true" />
         <span className="text-white/85">{announcement.text}</span>
-        {announcement.link && (
-          <Link href={announcement.link} className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap font-semibold text-leaf-200 hover:text-gold-100">
-            {announcement.link_label || "Learn more"}
-            <ArrowRight className="size-3.5" aria-hidden="true" />
-          </Link>
-        )}
       </div>
     </div>
   );
