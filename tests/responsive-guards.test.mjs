@@ -38,6 +38,8 @@ test("floating support and review controls stay off contact and free-trial forms
   const reviews = read("src/components/site/reviews-button.jsx");
   assert.ok(support.includes('const HIDDEN_ON = ["/contact", "/free-trial"];'));
   assert.ok(support.includes("pathname.startsWith(`${path}/`)"));
+  assert.match(support, /window\\.scrollY > window\\.innerHeight \\* 0\\.8/);
   assert.ok(reviews.includes('pathname === "/contact" || pathname.startsWith("/contact/")'));
+  assert.match(reviews, /window\\.scrollY > window\\.innerHeight \\* 0\\.8/);
   assert.ok(reviews.includes('pathname === "/free-trial" || pathname.startsWith("/free-trial/")'));
 });
