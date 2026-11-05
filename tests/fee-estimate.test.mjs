@@ -12,9 +12,9 @@ test("per-class estimate divides the monthly fee across a 4-week month", () => {
   assert.equal(perClassEstimate({ ...plan, classes_per_week: 0 }), null);
 });
 
-test("family estimate charges the first learner in full and discounts each sibling by 15%", () => {
+test("multi-learner estimate multiplies published tuition without assuming a discount", () => {
   assert.deepEqual(familyMonthlyEstimate(4000, 1), { learners: 1, total: 4000, saving: 0 });
-  assert.deepEqual(familyMonthlyEstimate(4000, 3), { learners: 3, total: 4000 + 3400 * 2, saving: 1200 });
+  assert.deepEqual(familyMonthlyEstimate(4000, 3), { learners: 3, total: 12000, saving: 0 });
   assert.equal(familyMonthlyEstimate(4000, 99).learners, 10);
   assert.equal(familyMonthlyEstimate(null, 2), null);
 });
