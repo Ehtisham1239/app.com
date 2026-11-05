@@ -477,58 +477,18 @@ html:not(.ty-confirmed):not(.ty-generic) [data-ty="confirmed"] { display: none; 
  */
 window.OQC_LP_CONFIG = {
   mode: 'production',
-
-  // US admissions number, supplied by the CEO on 3 Nov 2026.
-  // The display string must match the number exactly as Google Ads
-  // "Calls from website" is configured, or number swapping will not work.
-  phone: { e164: '+17869645678', display: '(786) 964-5678' },
-
-  // Call-back switch. null = the number and call buttons always show (CEO, 3 Nov 2026).
-  // The line is answered Monday 8 pm to Saturday 7 am PKT, nightly (Irfan; Hadia as back-up).
-  // To swap call buttons for "Request a call back" outside those hours, set:
-  //   callHours: { days: [1, 2, 3, 4, 5], start: '20:00', end: '07:00' },
+  phone: null,
   callHours: null,
-
-  // Live-site WhatsApp line (seen on onlinequrancollege.com, 3 Nov 2026).
-  // It is a UK number. Set enabled:false to remove WhatsApp from this page.
-  whatsapp: {
-    enabled: true,
-    number: '447864710821',
-    text: 'Assalamu alaikum, I would like to book the free 3-day Quran trial (USA).'
-  },
-
-  // Leads are saved in the website CMS (Admin > Trials) through the same
-  // database function as the site's own free-trial form
-  // (public.submit_trial_application). The browser calls it directly, as the
-  // site form does, so the per-visitor rate limit and honeypot keep working.
-  // The public Supabase URL and publishable key come from /api/public-form-config.
+  whatsapp: { enabled: false, number: '', text: '' },
   endpoint: '',
   leadBackend: 'oqc-cms',
   leadConfigUrl: '/api/public-form-config',
-
   thankYouUrl: '/usa-quran-classes/thank-you',
-
-  // Google Tag Manager: the website's own container (AGENTS.md, owner decision
-  // 26 Oct 2026). It is loaded with the site's cookieless settings and only on
-  // the live domain, so previews and local tests send nothing to Google.
   gtmId: 'GTM-W7CMZS53',
   analyticsHosts: ['www.onlinequrancollege.com', 'onlinequrancollege.com'],
-
-  // Optional value sent with the lead conversion (USD). Leave null to omit.
   leadValueUSD: null,
-
-  // Campaign attribution (gclid, utm_*) is kept for this browser session only,
-  // as on the rest of the website, and saved with the lead.
   attributionDays: 1,
-
-  // Content approval switches. In production, a section whose switch is
-  // false is hidden — it is never published as fact.
-  approved: {
-    pricing: false,      // packages currently mirror the live /pricing page
-    teachers: false,     // needs real, consented teacher profiles
-    testimonials: false, // needs genuine reviews OQC approves for this page
-    stats: false         // needs a verified student/teacher figure
-  }
+  approved: { pricing: false, teachers: false, testimonials: false, stats: false }
 };
 </script>
 <script>(function () {
@@ -627,19 +587,19 @@ window.OQC_LP_CONFIG = {
     <div class="ty-card">
       <span class="ty-badge" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
       <div data-ty="confirmed">
-        <h1>Your free trial request is in</h1>
-        <p>Jazakallah khair. Our admissions team will contact you within 24 hours by phone, email or WhatsApp to confirm your teacher and first class time.</p>
+        <h1>Your trial request has been received</h1>
+        <p>Jazakallah khair. Our admissions team will review your request and contact you using the details you provided. SMS reminders are sent only if you opted in.</p>
       </div>
       <div data-ty="generic">
         <h1>Thank you for contacting Online Quran College</h1>
-        <p>If you have sent a trial request, our admissions team will contact you within 24 hours. If you have not, you can request a free trial on the previous page.</p>
+        <p>If you have sent a trial request, our admissions team will review it and contact you using the details you provided. If you have not, you can request a trial on the previous page.</p>
       </div>
 
       <section class="ty-next" aria-labelledby="steps-title">
         <h2 id="steps-title">What happens next</h2>
         <ol class="ty-steps">
-          <li><h3>We contact you</h3><p>Our admissions team calls or WhatsApps you within 24 hours to confirm a teacher and a time that suits your family.</p></li>
-          <li><h3>Three free classes</h3><p>Your child joins three days of free live 1-on-1 classes. No credit card is needed.</p></li>
+          <li><h3>We contact you</h3><p>Our admissions team reviews your request and confirms an available teacher and a suitable time using the contact details you provided.</p></li>
+          <li><h3>3-day trial on eligible plans</h3><p>A 3-day free trial is available on eligible plans. The Weekend plan is excluded; no card is needed on eligible plans.</p></li>
           <li><h3>Choose a schedule</h3><p>If you are happy, pick a package and weekly times, and regular classes begin.</p></li>
         </ol>
       </section>
@@ -654,9 +614,9 @@ window.OQC_LP_CONFIG = {
       </section>
 
       <div class="ty-actions">
-        <a class="btn btn-primary btn-lg js-phone-link" href="tel:+17869645678" data-cta="call" data-cta-location="thank-you" data-requires="phone" data-when="open">
+        <a class="btn btn-primary btn-lg js-phone-link" href="#" data-cta="call" data-cta-location="thank-you" data-requires="phone" data-when="open">
           <svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>
-          <span class="btn-stack"><span>Call <span class="js-phone-text">(786) 964-5678</span></span><small>Speak with admissions now</small></span>
+          <span class="btn-stack"><span>Call <span class="js-phone-text"></span></span><small>Speak with admissions now</small></span>
         </a>
         <a class="btn btn-outline btn-lg js-wa-link" href="#" target="_blank" rel="noopener" data-cta="whatsapp" data-cta-location="thank-you" data-requires="whatsapp">
           <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>Message us on WhatsApp
@@ -892,7 +852,7 @@ window.OQC_LP_CONFIG = {
       if (!desc) { el.textContent = ''; return; }
       el.textContent = open || page !== 'landing'
         ? 'Phone line: ' + desc + '.'
-        : 'Our phone line is open ' + desc + '. Request a call back any time and we’ll call you within 24 hours, by phone or WhatsApp.';
+        : 'Our phone line is open ' + desc + '. Request a call back any time and our admissions team will review your request and contact you using the details you provided.';
     });
   }
   if (phoneOK) {
@@ -955,7 +915,7 @@ window.OQC_LP_CONFIG = {
 
   var lede = card.querySelector('.lede');
   function markCallback() {
-    if (lede) lede.textContent = 'Send this form and we’ll call you back within 24 hours, by phone or WhatsApp.';
+    if (lede) lede.textContent = 'Our admissions team will review your request and contact you using the details you provided.';
   }
 
   function checkRadio(name, value) {
