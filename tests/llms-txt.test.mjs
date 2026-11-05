@@ -52,3 +52,10 @@ test("llms.txt turns its site links into absolute URLs before serving", () => {
   const sample = "- [Fees](/pricing)\n- [Trustpilot](https://www.trustpilot.com/review/x)".replaceAll("](/", "](https://www.onlinequrancollege.com/");
   assert.equal(sample, "- [Fees](https://www.onlinequrancollege.com/pricing)\n- [Trustpilot](https://www.trustpilot.com/review/x)");
 });
+
+test("llms.txt exposes country-specific official references without calling them endorsements", () => {
+  assert.match(route, /MARKET_GUIDES/);
+  assert.match(route, /## Market guidance and primary references/);
+  assert.match(route, /independent public guidance, not endorsements of OQC/);
+  assert.match(route, /guide\.sources\.map\(source =>/);
+});
