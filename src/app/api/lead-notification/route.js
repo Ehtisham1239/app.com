@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { publicDb } from "@/lib/supabase/public";
 import { permitsMutation } from "@/lib/request-origin";
 import { SITE_URL } from "@/lib/config";
-import { buildContactEmail, buildLeadEmail, notificationConfig, sendLeadEmail } from "@/lib/usa-lead-notification";
+import { buildContactEmail, buildLeadEmail, buildReviewEmail, notificationConfig, sendLeadEmail } from "@/lib/usa-lead-notification";
 
 // Staff-only notification sent after CMS persistence; never send this message to the form submitter.
 export const dynamic = "force-dynamic";
@@ -16,7 +16,7 @@ function parseRequest(body) {
   if (!body || typeof body !== "object" || Array.isArray(body)) return null;
   const reference = typeof body.reference === "string" ? body.reference.trim() : "";
   const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
-  if (!/^(?:TR|MSG)-\d{4}-\d{5,7}$/.test(reference) || !email || email.length > 254 || !EMAIL.test(email)) return null;
+  if (!/^(?:TR|MSG|REV)-\d{4}-\d{5,7}$/.test(reference) || !email || email.length > 254 || !EMAIL.test(email)) return null;
   return { reference, email };
 }
 
@@ -50,19 +50,22 @@ export async function POST(request) {
     log("error", "lookup_failed", parsed.reference);
     return reply({ ok: false, error: "unavailable" }, 503);
   }
-  if (!lead || lead.reference !== parsed.reference || !["trial", "contact"].includes(lead.lead_type)) {
+  if (!lead || lead.reference !== parsed.reference || !["trial", "contact", "review"].includes(lead.lead_type)) {
     return reply({ ok: false, error: "not_found" }, 404);
   }
 
   const isContact = lead.lead_type === "contact";
+  const isReview = lead.lead_type === "review";
   const message = isContact
     ? buildContactEmail(lead, { siteUrl: SITE_URL })
-    : buildLeadEmail(lead, { siteUrl: SITE_URL, sourceLabel: "website form" });
+    : isReview
+      ? buildReviewEmail(lead, { siteUrl: SITE_URL })
+      : buildLeadEmail(lead, { siteUrl: SITE_URL, sourceLabel: "website form" });
   const sent = await sendLeadEmail({
     config,
     message,
     reference: lead.reference,
-    source: isContact ? "website_contact" : "website_trial",
+    source: isContact ? "website_contact" : isReview ? "website_review" : "website_trial",
   });
   if (!sent.ok) {
     log("error", sent.reason, lead.reference);
