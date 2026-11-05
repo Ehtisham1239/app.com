@@ -1,7 +1,7 @@
 "use client";
 
 import { Field } from "@/components/admin/ui";
-import { CATEGORIES, SCORE_MAX } from "@/lib/progress/constants";
+import { ASSESSMENT_AREAS, CATEGORIES, COURSE_STANDARD_OPTIONS, EFFORT_OPTIONS, SCORE_MAX } from "@/lib/progress/constants";
 
 // Marks, attendance and syllabus inputs shared by the teacher form and the admin edit.
 // `details` is the string form from detailsForm(); onChange(group, key, value).
