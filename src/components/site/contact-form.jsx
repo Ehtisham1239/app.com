@@ -2,6 +2,7 @@
 import { announceLeadSaved } from "@/lib/conversion-events";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { captureAttribution } from "@/lib/attribution";
 import { useEffect, useRef, useState } from "react";
 import { CheckCircle2, Loader2, Send } from "@/components/site/icons";
@@ -10,6 +11,7 @@ import { COUNTRIES } from "@/lib/constants";
 const SUBJECTS = ["Course enquiry", "Fees and payment", "Class timings", "Teacher request", "Existing student support", "Partnership", "Other"];
 
 export function ContactForm({ id, consentText, successText }) {
+  const router = useRouter();
   const formRef = useRef(null);
   const successRef = useRef(null);
   const [form, setForm] = useState({ name: "", email: "", phone: "", country: "", subject: SUBJECTS[0], message: "", consent: false, website: "" });
@@ -40,7 +42,9 @@ export function ContactForm({ id, consentText, successText }) {
     } catch (cause) { error = cause; }
     if (error) return setState({ sending: false, error: error.message || "Could not send. Please try WhatsApp instead.", done: null });
     announceLeadSaved({ formType: "contact", country: form.country, reference: data?.reference, honeypot: form.website });
-    setState({ sending: false, error: "", done: data?.reference ?? "sent" });
+    setState({ sending: false, error: "", done: null });
+    const reference = typeof data?.reference === "string" && /^MSG-[A-Z0-9-]{4,32}$/.test(data.reference) && data.reference !== "MSG-RECEIVED" ? data.reference : "";
+    router.push("/contact/thank-you" + (reference ? "?ref=" + encodeURIComponent(reference) : ""));
   }
 
   if (state.done) {
