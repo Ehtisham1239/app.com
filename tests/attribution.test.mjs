@@ -73,3 +73,21 @@ test("unknown, internal, spoofed, malformed and absent referrers do not fabricat
     assert.equal(captureAttribution().utm_medium, "organic");
   } finally { delete global.window; delete global.document; }
 });
+
+
+test("Google Ads click identifiers gclid, gbraid and wbraid are retained for offline attribution", () => {
+  const data = new Map();
+  global.window = { location: { hostname: "www.onlinequrancollege.com", pathname: "/usa-quran-classes", search: "?gclid=QA-GCLID&gbraid=QA-GBRAID&wbraid=QA-WBRAID&utm_source=google&utm_medium=cpc" }, sessionStorage: { getItem: k => data.get(k), setItem: (k,v) => data.set(k,v) } };
+  try {
+    const attribution = captureAttribution();
+    assert.equal(attribution.gclid, "QA-GCLID");
+    assert.equal(attribution.gbraid, "QA-GBRAID");
+    assert.equal(attribution.wbraid, "QA-WBRAID");
+    window.location.pathname = "/free-trial";
+    window.location.search = "";
+    const retained = captureAttribution();
+    assert.equal(retained.gclid, "QA-GCLID");
+    assert.equal(retained.gbraid, "QA-GBRAID");
+    assert.equal(retained.wbraid, "QA-WBRAID");
+  } finally { delete global.window; }
+});
