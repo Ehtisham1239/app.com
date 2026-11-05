@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { buildContactEmail, buildLeadEmail, notificationConfig, sendLeadEmail } from "../src/lib/usa-lead-notification.js";
+import { buildContactEmail, buildLeadEmail, buildReviewEmail, notificationConfig, sendLeadEmail } from "../src/lib/usa-lead-notification.js";
 
 const config = notificationConfig({
   RESEND_API_KEY: "re_test_0123456789abcdef",
@@ -54,6 +54,53 @@ test("generic website trial email is distinct from the USA landing notification"
   };
   assert.match(buildLeadEmail(lead, { sourceLabel: "website form" }).subject, /New website trial request/);
   assert.match(buildLeadEmail(lead).subject, /New USA trial request/);
+});
+
+
+
+test("review notifications use the review source tag and never send to the reviewer", async () => {
+  const sent = [];
+  const result = await sendLeadEmail({
+    config,
+    message: buildReviewEmail({
+      reference: "REV-2026-00019", created_at: "2026-11-05T10:12:00.000Z",
+      name: "Test Parent", email: "parent@example.test", relation: "Parent", rating: 5,
+      comment: "A synthetic review used only for this test.", publish_consent: false,
+      page_path: "/reviews", media_count: 0,
+    }),
+    reference: "REV-2026-00019",
+    source: "website_review",
+    fetchImpl: async (_url, init) => {
+      sent.push(JSON.parse(init.body));
+      return Response.json({ id: "email_review_1" });
+    },
+  });
+  assert.equal(result.ok, true);
+  assert.deepEqual(sent[0].tags, [{ name: "source", value: "website_review" }]);
+  assert.deepEqual(sent[0].to, ["admissions@example.test", "marketing@example.test"]);
+  assert.ok(!sent[0].to.includes("parent@example.test"));
+});
+
+test("review notification includes consent state but never includes private media files", () => {
+  const email = buildReviewEmail({
+    reference: "REV-2026-00019",
+    created_at: "2026-11-05T10:12:00.000Z",
+    name: "Test Parent",
+    email: "parent@example.test",
+    relation: "Parent",
+    country: "United Kingdom",
+    rating: 5,
+    comment: "<img src=x onerror=alert(1)> Excellent teacher and clear feedback.",
+    publish_consent: false,
+    page_path: "/reviews",
+    media_count: 2,
+  });
+  assert.match(email.subject, /REV-2026-00019/);
+  assert.match(email.text, /Website publication permission: No — do not publish/);
+  assert.match(email.text, /2 attachment\(s\); not included in email/);
+  assert.match(email.html, /&lt;img src=x onerror=alert\(1\)&gt;/);
+  assert.doesNotMatch(email.html, /onerror=alert\(1\)"/);
+  assert.doesNotMatch(email.text, /review-media|pending\//);
 });
 
 test("contact and trial notifications use only the configured internal recipients", async () => {
