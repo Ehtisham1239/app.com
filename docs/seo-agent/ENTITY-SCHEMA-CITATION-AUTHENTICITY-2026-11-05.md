@@ -14,7 +14,7 @@ The shared site layout emits one JSON-LD graph containing:
 - A postal address only if a complete street address and a two-letter country code are explicitly configured.
 
 ### Authenticity correction in this release
-The prior layout conditionally emitted `foundingDate` from the CMS `site.identity.established` field. The CMS currently contains 2018, while public company-record search results identify ONLINE QURAN COLLEGE LTD as incorporated in 2026. A brand's operating history and the legal entity's incorporation date are different facts and must not be conflated. The schema therefore no longer emits `foundingDate` from this field.
+The prior layout conditionally emitted `foundingDate` from the CMS `site.identity.established` field. The CMS currently contains 2018. Public records show a dissolved company with the same legal name (company number 13629654; incorporated 17 September 2021; dissolved 20 February 2024), while a secondary register aggregator reports a separate active same-name company (number 17075457; incorporated 6 March 2026). The official Companies House page for the latter could not be directly retrieved in this audit. These records must not be conflated, and neither proves that the CMS 2018 value is the legal entity's founding date. The schema therefore no longer emits `foundingDate` from this field pending owner-confirmed documentary evidence.
 
 The public About page CMS content inspected for this closeout contains no founding-year, student-count or country-count claim. The unused CMS `established` value remains an administrative field and must not be reintroduced into structured data without documentary evidence and owner approval.
 
