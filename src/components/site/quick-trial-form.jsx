@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { clsx } from "clsx";
 import { announceLeadSaved } from "@/lib/conversion-events";
 import { isTrialEligible } from "@/lib/trial-eligibility";
@@ -53,6 +53,7 @@ function FieldError({ id, children }) {
 // One short step: only what the coordinator needs to call back and book a slot.
 export function QuickTrialForm({ courses = [], plans = [], currencies = [], consentText, successText, whatsappHref }) {
   const params = useSearchParams();
+  const router = useRouter();
   // Booking preferences chosen on a country page (currency, lesson date/time) arrive in the
   // URL; they are summarised here in the browser so the page itself can stay cached.
   const [initialPreferenceNotes, setInitialPreferenceNotes] = useState("");
@@ -157,11 +158,9 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       return;
     }
     announceLeadSaved({ formType: "trial", country: form.country, reference: data?.reference, honeypot: form.website });
-    setState({ sending: false, error: "", reference: data?.reference ?? "sent" });
-    requestAnimationFrame(() => {
-      topRef.current?.scrollIntoView({ block: "start" });
-      successHeading.current?.focus({ preventScroll: true });
-    });
+    setState({ sending: false, error: "", reference: null });
+    const reference = typeof data?.reference === "string" && /^TR-[A-Z0-9-]{4,32}$/.test(data.reference) && data.reference !== "TR-RECEIVED" ? data.reference : "";
+    router.push("/free-trial/thank-you" + (reference ? "?ref=" + encodeURIComponent(reference) : ""));
   }
 
   if (state.reference) {
