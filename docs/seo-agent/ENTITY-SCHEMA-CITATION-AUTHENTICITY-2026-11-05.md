@@ -4,32 +4,36 @@
 **Production domain:** https://www.onlinequrancollege.com
 
 ## Organization JSON-LD
-The shared site layout already emits a stable WebSite and EducationalOrganization/Organization graph with:
+The shared site layout emits a stable WebSite and EducationalOrganization/Organization graph with:
 - Stable `/#website` and `/#organization` identifiers.
 - Public brand name, alternate name, canonical URL and logo imagery.
-- CMS-configured legal name, description, contact email/telephone and Admissions contact point.
+- Description, public email/telephone and Admissions contact point.
 - Online service coverage across the five indexed markets and the subjects visible on the website.
-- CMS-linked public profile URLs in `sameAs`.
+- A claimed Trustpilot profile as the only currently verified `sameAs` identity link.
 - A postal address only when a complete street address and two-letter country code are explicitly configured.
 
-### Authenticity correction
-The CMS has an `identity.established` value of 2018, but the available evidence does not establish that this is the legal entity's incorporation date. Brand trading history and company incorporation are different facts. This release removes the CMS value from Organization `foundingDate`; no founding date is emitted until the owner supplies documentary evidence and approves the exact public wording.
+The graph intentionally omits `legalName`, `foundingDate`, company number and postal address until the owner confirms the current contracting legal entity and supplies documentary evidence. The CMS legal-name and established-year fields are not sufficient on their own to reconcile the public company history.
 
-Do not add a company number, registered office, LocalBusiness, virtual office, country branch or physical address without an official source and owner confirmation. OQC's public positioning is online-only with no walk-in office.
-
-## Structured data guardrails
-- Mark up only facts visible to users and supported by the page.
-- Do not add AggregateRating/Review schema for third-party Trustpilot reviews or unsupported ratings.
-- Do not add foundingDate, employee counts, student counts, awards, licences or credential claims unless documented and publicly visible.
-- Country/city service schema represents remote tuition availability; it does not imply a local branch.
-- Structured data may help search engines interpret a page, but does not guarantee rich results or ranking gains.
+## Identity evidence requiring owner reconciliation
+- CMS currently contains legal name text “Online Quran College Ltd” and a residual `established=2018` value.
+- A LinkedIn page for Online Quran College LTD surfaced with “Trusted since 2014” wording; the profile's ownership and claim basis were not independently verified.
+- Companies House directly confirms a same-name company 13629654 was incorporated on 17 September 2021 and dissolved on 20 February 2024: https://find-and-update.company-information.service.gov.uk/company/13629654
+- A secondary company index lists a current same-name company 17075457, incorporated 6 March 2026, but the corresponding official Companies House page could not be retrieved in this audit: https://companystack.co.uk/company/17075457
+- These records may represent different entities or brand-history periods. Do not infer that they are the same legal entity. Owner/legal confirmation is required before publishing a founding year, legal name, company number or registered office.
 
 ## Citation and review evidence
-- Existing website-linked Facebook, Instagram, X and Trustpilot URLs are present in the citation tracker; profile admin ownership and third-party profile edits have not been verified in this review.
-- A read-only CMS count on 5 November 2026 returned six public teacher records (all six active) and zero published testimonial records, including zero published records with a consent timestamp.
-- Teacher records include owner-confirmation notes dated 3 November 2026 for the six public profiles. Preserve those records and publish only the verified individual fields.
-- Do not publish testimonial cards, review aggregate schema, review counts or average ratings until genuine review records and explicit publication consent are recorded.
+- Trustpilot public profile is marked claimed and, in the latest search snapshot, shows 9 reviews and a 4.3 TrustScore, with one review in the last 12 months. This is a small sample and not a basis for Review/AggregateRating structured data.
+- Facebook, Instagram and X URLs are configured in CMS but direct profile retrieval and account-admin ownership were not verified. They remain normal outbound links, not Organization `sameAs` entries, until confirmed by the owner.
+- Read-only CMS aggregates on 5 November show six public active teacher records. Each has qualification text, language entries, years-of-experience values and a verification note; none has a public photo URL. The existence of a note is not independent proof of credentials. Publish only evidence that Admissions/Academics can substantiate and that the teacher has consented to share.
+- The public testimonials table has zero published rows and zero published rows with a consent timestamp. Do not invent on-site reviews or create Review/AggregateRating schema from third-party reviews.
 - Government/regulator links on market hubs are reader references, not endorsements, inbound backlinks or business directory citations.
+
+## Structured data guardrails
+- Mark up only facts visible to users and supported by evidence.
+- Do not add foundingDate, legalName, employee counts, student counts, awards, licences, teacher credentials, ratings or testimonials without documentation and approval.
+- Country/city Service schema represents remote tuition availability; it does not imply a local branch.
+- Do not add LocalBusiness or a physical address for the online-only model.
+- Structured data may help search engines interpret a page, but does not guarantee rich results, knowledge panels, AI citations or ranking gains.
 
 ## Official references
 - Google Organization structured data: https://developers.google.com/search/docs/appearance/structured-data/organization
@@ -38,4 +42,4 @@ Do not add a company number, registered office, LocalBusiness, virtual office, c
 - Companies House public register: https://find-and-update.company-information.service.gov.uk/
 
 ## Release checks
-The PR includes a regression test that fails if `foundingDate` is reintroduced into the shared Organization graph. After deployment, validate the homepage JSON-LD with Google's Rich Results Test and Search Console URL Inspection. A successful syntax test does not guarantee a rich result or ranking change.
+Regression tests ensure the Organization graph does not publish an unsupported `foundingDate` or `legalName`, and only the claimed Trustpilot URL is included in `sameAs`. After deployment, validate the homepage JSON-LD with Google's Rich Results Test and Search Console URL Inspection. A successful syntax test does not guarantee a rich result or ranking change.

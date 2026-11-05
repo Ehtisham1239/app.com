@@ -10,8 +10,7 @@ export const revalidate = 3600;
 const label = value => String(value || "").replace(/[\[\]\r\n]/g, " ").trim();
 export async function GET() {
   const [courses, posts, published, settings] = await Promise.all([getCourses(), getPosts(50), getPublishedSlugs(), getSettings()]);
-  // Official profiles = the same CMS list as the footer and Organization sameAs, so every
-  // citation source names one consistent entity (https only; empty entries skipped).
+  // CMS profile links are listed for readers, but only independently checked identity matches enter Organization sameAs.
   const profiles = Object.entries(settings?.["site.social"] || {}).filter(([, url]) => typeof url === "string" && /^https:\/\/[^\s]+$/.test(url));
   const PROFILE_NAMES = { x: "X (Twitter)", facebook: "Facebook", instagram: "Instagram", trustpilot: "Trustpilot", youtube: "YouTube", tiktok: "TikTok", linkedin: "LinkedIn" };
   const eligible = (collection, prefix) => new Set(collection.filter(row => shouldIncludeInSitemap(row, `${prefix}/${row.slug}`, SITE_URL)).map(row => row.slug));
@@ -41,8 +40,8 @@ export async function GET() {
     "- Each additional child from the same family receives 15% off their monthly fee.",
     "- Fees can be shown converted into the visitor's currency for guidance; the coordinator confirms the fee and payment currency before enrolment.",
     "- Lessons are arranged in the learner's time zone. Country pages describe online coverage, not physical offices.", "",
-    "## Official profiles", "",
-    "Online Quran College has one global identity (online-only, no walk-in office). These are its only official profiles:",
+    "## Public profiles linked from this website", "",
+    "Online Quran College has one global identity (online-only, no walk-in office). The links below are configured on this website; a website link alone does not verify account ownership or the current accuracy of a social profile. Only the claimed Trustpilot profile is currently used as a verified sameAs identity link in Organization structured data:",
     ...profiles.map(([key, url]) => `- [${label(PROFILE_NAMES[key] || key)}](${url})`), "",
     "## Reviews", "",
     "- [Independent reviews on Trustpilot](https://www.trustpilot.com/review/onlinequrancollege.com)",

@@ -101,3 +101,19 @@ export function organizationPostalAddress(contact = {}) {
     addressCountry,
   };
 }
+
+
+// Only a claimed, public OQC profile whose domain and exact company path were
+// checked is asserted as an Organization identity match. Other CMS social links
+// remain ordinary outbound links until the owner confirms each account.
+export function verifiedOrganizationProfiles(social = {}) {
+  const value = social?.trustpilot;
+  if (typeof value !== "string") return [];
+  try {
+    const url = new URL(value);
+    if (url.protocol !== "https:" || url.hostname !== "www.trustpilot.com" || url.pathname.replace(/\/+$/, "") !== "/review/onlinequrancollege.com") return [];
+    return [url.href.replace(/\/+$/, "")];
+  } catch {
+    return [];
+  }
+}

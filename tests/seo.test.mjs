@@ -189,7 +189,20 @@ test("entity names and market hubs carry the 3 Nov keyword and schema updates", 
 test("organization JSON-LD does not publish an unverified CMS founding year", async () => {
   const { readFile } = await import("node:fs/promises");
   const source = await readFile(new URL("../src/app/(site)/layout.jsx", import.meta.url), "utf8");
-  assert.match(source, /legalName: identity\.legal_name/);
+  assert.doesNotMatch(source, /legalName:/, "omit legalName until the current contracting entity is verified");
   assert.match(source, /organizationPostalAddress\(contact\)/);
   assert.doesNotMatch(source, /foundingDate/);
+});
+
+
+test("Organization sameAs contains only the claimed OQC Trustpilot profile", async () => {
+  const { verifiedOrganizationProfiles } = await import("../src/lib/seo.js");
+  assert.deepEqual(verifiedOrganizationProfiles({
+    trustpilot: "https://www.trustpilot.com/review/onlinequrancollege.com",
+    facebook: "https://www.facebook.com/OnlineQuranCollegeLtdUK",
+    instagram: "https://www.instagram.com/online_quran_college",
+    x: "https://x.com/OnlineQuranClg",
+  }), ["https://www.trustpilot.com/review/onlinequrancollege.com"]);
+  assert.deepEqual(verifiedOrganizationProfiles({ trustpilot: "https://www.trustpilot.com/review/another-company.com" }), []);
+  assert.deepEqual(verifiedOrganizationProfiles({ trustpilot: "http://www.trustpilot.com/review/onlinequrancollege.com" }), []);
 });
