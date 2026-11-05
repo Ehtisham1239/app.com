@@ -1,7 +1,7 @@
 import { contentMetadata } from "@/lib/seo-metadata";
 import { CurrencyPricing } from "@/components/site/currency-pricing";
 import { FeeCompare } from "@/components/site/fee-compare";
-import { BadgePercent, CreditCard, ShieldCheck } from "@/components/site/icons";
+import { CreditCard, ShieldCheck } from "@/components/site/icons";
 import { PageHero, SectionHeading } from "@/components/site/chrome";
 import { CtaBand, FaqList } from "@/components/site/sections";
 import { getFaqs, getPlans, getSettings } from "@/lib/site-data";
@@ -47,7 +47,6 @@ export default async function PricingPage() {
         {packages.length > 0 && <CurrencyPricing plans={packages} fx={fx} />}
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {[
-            { icon: BadgePercent, title: "15% sibling discount", text: "Each additional child from the same family receives 15% off their monthly fee." },
             { icon: ShieldCheck, title: "Free trial on eligible plans", text: "Try 3 days of classes before choosing an eligible package. The Weekend plan is excluded; confirm your plan with the coordinator." },
             { icon: CreditCard, title: "Easy payment", text: `Pay monthly by card, PayPal or bank transfer${currencies.length ? ` — prices shown in ${currencies.join(", ")}` : ""}.` },
           ].map(({ icon: Icon, title, text }) => (
