@@ -12,7 +12,7 @@ OQC already has more of the expected technical and content architecture than a s
 - Five indexed market hubs with local currency/time-zone planning and explicit online-only disclosure.
 - Course, audience, pricing, FAQ, free-trial and learning-guide routes.
 - A defined OQC learning cycle: Learn → Practice → Assessment → Feedback → Improve.
-- Teacher cards and permission-based family testimonials on the homepage.
+- Public teacher profiles and a consent-gated testimonials component. A read-only CMS check on 5 November 2026 returned **0 published testimonials and 0 published testimonials with a consent record**; therefore no family-review cards or review aggregate claims should be published until genuine entries and explicit consent exist.
 - Article BlogPosting/Breadcrumb schema, internal related-content links and conversion CTAs.
 - Existing country-level source/reference sections and an external-citation opportunity register.
 
@@ -165,7 +165,7 @@ The following are monitoring sets, not a top-ten ranking. Some businesses serve 
 ### 5.3 Backlinks, citations and entity authority
 
 **Confirmed / needs owner verification**
-- The citation register records current public social/Trustpilot URLs, but account-admin ownership is not verified.
+- The citation register records current public social/Trustpilot URLs, but account-admin ownership is not verified. A read-only CMS count on 5 November returned zero published testimonials and zero published testimonials with consent recorded; do not publish review cards or aggregate rating markup until authentic, consented records exist.
 - A public LinkedIn company result for “Online Quran College LTD” surfaced with “Trusted since 2014”, a 5-day trial and 1,000+ student claims. This conflicts with the current site’s 3-day eligible-plan trial and is not in the verified citation register. Treat it as an unverified/possibly stale profile until the owner confirms control and corrects its public facts; do not add it to Organization `sameAs` yet.
 - RISE and ISRE resource opportunities are researched; ISLA contribution eligibility is conditional. No outreach or submission is recorded as sent or accepted.
 - No acquired backlink is claimed by the reviewed register.
@@ -183,7 +183,7 @@ The following are monitoring sets, not a top-ten ranking. Some businesses serve 
 **Confirmed from current public/source evidence**
 - OQC promotes a 3-day trial on eligible plans; Weekend plan is excluded.
 - The form collects learner/audience details, country/time zone, teacher preference, contact details and consent.
-- The site has a visible trial CTA, pricing information, FAQs, reviews, teacher profiles and country discovery.
+- The site has a visible trial CTA, pricing information, FAQs, teacher profiles and country discovery. The testimonials component is present but the CMS currently has no published, consent-recorded testimonial entries.
 - Competitors more explicitly explain what happens in the trial, show progress-report examples and/or provide a placement tool.
 
 **Implementation recommendations**
