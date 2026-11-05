@@ -1,12 +1,12 @@
-export function calculateHifzPlan({ remainingPages, studyDaysPerWeek, revisionPages, revisionDaysPerWeek }) {
-  const values = [remainingPages, studyDaysPerWeek, revisionPages, revisionDaysPerWeek];
+export function calculateHifzPlan({ remainingPages, studyDaysPerWeek, newPagesPerStudyDay, revisionPages, revisionDaysPerWeek }) {
+  const values = [remainingPages, studyDaysPerWeek, newPagesPerStudyDay, revisionPages, revisionDaysPerWeek];
   if (!values.every(Number.isInteger)) return { error: "Enter whole numbers for every field." };
   if (remainingPages < 1 || remainingPages > 10000) return { error: "Remaining pages must be between 1 and 10,000." };
   if (studyDaysPerWeek < 1 || studyDaysPerWeek > 7) return { error: "Choose 1–7 study days per week." };
+  if (newPagesPerStudyDay < 1 || newPagesPerStudyDay > 100) return { error: "Choose 1–100 new pages per study day." };
   if (revisionPages < 0 || revisionPages > 10000) return { error: "Revision pages must be between 0 and 10,000." };
-  if (revisionDaysPerWeek < 1 || revisionDaysPerWeek > 7) return { error: "Choose 1–7 revision days per week." };
+  if (revisionDaysPerWeek < 1 || revisionDaysPerWeek > 7) return { error: "Choose 1–7 revision days per week." }
 
-  const newPagesPerStudyDay = Math.ceil(remainingPages / studyDaysPerWeek);
   const estimatedStudyDays = Math.ceil(remainingPages / newPagesPerStudyDay);
   const estimatedWeeks = Math.ceil(estimatedStudyDays / studyDaysPerWeek);
   const revisionPagesPerDay = revisionPages === 0 ? 0 : Math.ceil(revisionPages / revisionDaysPerWeek);
