@@ -1,6 +1,6 @@
 -- Global website lead notification lookup.
 -- Returns only the just-submitted row for the matching reference + email,
--- within 30 minutes. It is read-only and does not grant table access.
+-- within 30 minutes. It is read-only and does not grant direct table access.
 create or replace function public.lead_for_notification(p_reference text, p_email text)
 returns jsonb
 language sql
@@ -63,11 +63,7 @@ as $$
         and m.status <> 'spam'
       limit 1
     )
-    when p_reference ~ '^REV-[0-9]{4}-[0-9]{5,7}
-
-revoke execute on function public.lead_for_notification(text, text) from public, anon, authenticated;
-grant execute on function public.lead_for_notification(text, text) to anon, authenticated, service_role;
- then (
+    when p_reference ~ '^REV-[0-9]{4}-[0-9]{5,7}$' then (
       select jsonb_build_object(
         'lead_type', 'review',
         'id', r.id,
@@ -94,7 +90,7 @@ grant execute on function public.lead_for_notification(text, text) to anon, auth
     )
     else null
   end
-$;
+$$;
 
 revoke execute on function public.lead_for_notification(text, text) from public, anon, authenticated;
 grant execute on function public.lead_for_notification(text, text) to anon, authenticated, service_role;
