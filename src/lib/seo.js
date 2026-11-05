@@ -110,8 +110,8 @@ export function organizationIdentityProfiles(social = {}) {
   if (typeof value !== "string") return [];
   try {
     const url = new URL(value);
-    if (url.protocol !== "https:" || url.hostname !== "www.trustpilot.com" || url.pathname.replace(/\\/+$/, "") !== "/review/onlinequrancollege.com") return [];
-    return [url.href.replace(/\\/+$/, "")];
+    if (url.protocol !== "https:" || url.hostname !== "www.trustpilot.com" || url.pathname.replace(/\/+$/, "") !== "/review/onlinequrancollege.com") return [];
+    return [url.href.replace(/\/+$/, "")];
   } catch {
     return [];
   }
