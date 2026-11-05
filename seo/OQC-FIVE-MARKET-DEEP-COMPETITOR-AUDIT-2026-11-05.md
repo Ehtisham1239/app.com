@@ -92,7 +92,7 @@ Existing register records Facebook, Instagram, X and Trustpilot URLs as website-
 **Safe experiments:** measure start → validation error → successful submit → coordinator contact → trial scheduled → trial attended → paid enrolment. Use consent-compliant analytics and do not send child personal data to ad platforms. Test one CTA/form change at a time. Show approved local fee values only; label FX estimates as approximate. Add a “what happens after you submit” SLA only after Admissions confirms it.
 
 ### E. AEO/GEO and AI discovery
-**Confirmed:** robots policy allows relevant search/answer crawlers; the site has direct answers, FAQs, course pages, market explanations, teacher entities and article metadata. Organization schema authenticity is handled separately in PR #111.
+**Confirmed:** robots policy allows relevant search/answer crawlers; the site has direct answers, FAQs, course pages, market explanations, teacher entities and article metadata. Organization schema authenticity is included in this consolidated release PR (#115).
 
 **Improve:** keep answers visible in HTML, concise, source-backed and consistent with actual delivery. Publish author/reviewer qualifications only when documented. Attach primary government/regulator sources to privacy, time-zone, marketing and consumer claims. Build original methodology pages and practice resources after academic review. Do not use Review/AggregateRating markup for unverified or third-party ratings. Measure AI referrals/citations only where analytics/referrer evidence exists; do not invent an “AI ranking” score.
 
@@ -101,7 +101,7 @@ Existing register records Facebook, Instagram, X and Trustpilot URLs as website-
 | Priority | Action | Evidence owner | Acceptance |
 |---|---|---|---|
 | P0 | Parent pre-enrolment checklist on teacher page | Web implementation; non-claiming copy | CI, mobile layout and link checks pass |
-| P0 | Complete PR #111 Organization schema correction | CI + Vercel | No unverified foundingDate; live schema validates |
+| P0 | Complete the Organization schema correction in this release PR (#115) | CI + Vercel | No unverified foundingDate; live schema validates |
 | P1 | Teacher evidence register/profile review | HR + Academic + consent | Every public claim has evidence and permission |
 | P1 | Document actual student progress feedback SOP | Academic + Operations | Cadence/channel/sample approved before copy |
 | P1 | Test country trial conversion funnel | GSC/GA4/CRM access | Landing → trial → attendance → admission events reconciled |
@@ -111,7 +111,7 @@ Existing register records Facebook, Instagram, X and Trustpilot URLs as website-
 
 ## 5. PR and test plan
 
-This audit is paired with an implementation PR that:
+This audit is paired with consolidated implementation PR #115 that:
 - adds the parent pre-enrolment checklist to src/app/(site)/teachers/page.jsx;
 - adds regression assertions in tests/seo.test.mjs;
 - includes this report as the decision record.
