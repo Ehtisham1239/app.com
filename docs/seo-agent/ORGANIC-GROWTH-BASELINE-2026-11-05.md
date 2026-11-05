@@ -32,7 +32,7 @@ Connected GA4 property: `560748871`.
 - USA `/free-trial`: 41 direct sessions, 0% engagement, 0 seconds average engagement.
 - USA `/pricing`: 34 direct sessions, 0% engagement, 0 seconds average engagement.
 - USA `/locations/united-kingdom`: 36 direct sessions, 0% engagement, 0 seconds average engagement.
-- The report contains 198 USA `first_visit` and 198 `session_start` events, but only one USA `generate_lead` event. The connected report currently shows zero configured conversions.
+- The report contains 198 USA `first_visit` and 198 `session_start` events, but only one USA `generate_lead` event. The connected report returned zero conversions in this 90-day data pull.
 - Treat this as a measurement/traffic-quality anomaly, not proof of bot traffic. Verify GTM consent behaviour, internal traffic filters, referral exclusions, session quality and event firing with a safe synthetic submission. Never submit a real parent/learner lead as a test.
 
 ### Measurement actions
