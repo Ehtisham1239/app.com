@@ -53,6 +53,22 @@ export const DEFAULT_SETTINGS = {
     { title: "Start regular classes", text: "Meet your teacher live online on your chosen days and track progress every month." },
   ],
   "site.announcement": { enabled: true, text: "3-day free trial on eligible plans. Weekend plan excluded. No card needed on eligible plans.", link_label: "Book now", link: "/free-trial" },
+  "site.family_discount": {
+    enabled: true,
+    name: "Sibling Discount",
+    percent: 15,
+    applies_to: "each_additional_child",
+    max_learners: 5,
+    billing_period: "monthly",
+    eligible_plan_ids: [
+      "9f191bbd-42de-4fa6-8b34-613e60925d44",
+      "cec03624-ecdf-4287-bc99-6c4fea2f813e",
+      "7af44c20-9142-4502-a0a3-640a1fea0be7",
+      "70b36488-a881-4499-8d49-026ddb17231f",
+      "b7f3114c-e499-4621-a6e3-cd45062bb2b6",
+      "a89c9944-595f-4599-8d49-026ddb17231f",
+    ],
+  },
   "site.reviews_button": { ...REVIEWS_BUTTON_DEFAULTS },
   "site.forms": {
     consent_version: "2026-10-13",
