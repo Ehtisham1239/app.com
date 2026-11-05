@@ -101,3 +101,18 @@ export function organizationPostalAddress(contact = {}) {
     addressCountry,
   };
 }
+
+
+// Only include the exact Trustpilot profile linked by OQC's public website.
+// Social profile URLs stay ordinary footer links until account identity is confirmed.
+export function organizationIdentityProfiles(social = {}) {
+  const value = social?.trustpilot;
+  if (typeof value !== "string") return [];
+  try {
+    const url = new URL(value);
+    if (url.protocol !== "https:" || url.hostname !== "www.trustpilot.com" || url.pathname.replace(/\\/+$/, "") !== "/review/onlinequrancollege.com") return [];
+    return [url.href.replace(/\\/+$/, "")];
+  } catch {
+    return [];
+  }
+}
