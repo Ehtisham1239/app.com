@@ -202,5 +202,5 @@ export function formToDetails(d) {
     const item = d.assessment_areas[a.key] || {};
     return [a.key, Object.fromEntries(Object.entries(item).filter(([, v]) => String(v).trim()).map(([k, v]) => [k, String(v).trim()]))];
   }).filter(([, item]) => Object.keys(item).length));
-  return { scores, attendance, syllabus, assessment_areas, performance, ...() };
+  return { scores, attendance, syllabus, assessment_areas, performance };
 }
