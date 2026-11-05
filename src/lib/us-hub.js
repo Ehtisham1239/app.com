@@ -10,7 +10,7 @@ export const US_HUB = {
   steps: [
     { title: "Tell us the learner and the time", text: "Request a free trial with the learner's age, current reading level and the US time zone and days that suit you: Eastern, Central, Mountain or Pacific." },
     { title: "Meet the teacher online", text: "A coordinator agrees the class time, records any teacher preference and confirms who is available for your course. Lessons are live and one-to-one, so the teacher hears every letter." },
-    { title: "Choose a monthly package", text: "After the 3-day trial on an eligible plan (the Weekend plan is excluded), pick the number of classes a week that fits school and work." },
+    { title: "Choose a monthly package", text: "After your 3-day trial on Package 1, Package 2, Package 3, Package 4 or Leisure (the Weekend plan has no free trial), choose the weekly class schedule that fits school and work." },
   ],
   pathsHeading: "Learn Quran online in the USA: kids, adults and new Muslims",
   paths: [
