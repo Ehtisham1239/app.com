@@ -6,11 +6,12 @@ import { calculateHifzPlan } from "@/lib/hifz-planner";
 const FIELDS = [
   { key: "remainingPages", label: "Pages still to memorise", min: 1, max: 10000, hint: "Use the page count in your own Mushaf." },
   { key: "studyDaysPerWeek", label: "New memorisation days each week", min: 1, max: 7, hint: "How many days your teacher has agreed you can study." },
+  { key: "newPagesPerStudyDay", label: "New pages to memorise per study day", min: 1, max: 100, hint: "Agree a realistic daily target with your Quran teacher." },
   { key: "revisionPages", label: "Pages in your current revision cycle", min: 0, max: 10000, hint: "Enter 0 if you are not setting a revision target yet." },
   { key: "revisionDaysPerWeek", label: "Revision days each week", min: 1, max: 7, hint: "Days available for your existing revision." },
 ];
 
-const EMPTY = { remainingPages: "", studyDaysPerWeek: "", revisionPages: "", revisionDaysPerWeek: "" };
+const EMPTY = { remainingPages: "", studyDaysPerWeek: "", newPagesPerStudyDay: "", revisionPages: "", revisionDaysPerWeek: "" };
 
 export function HifzPlanner() {
   const [values, setValues] = useState(EMPTY);
