@@ -10,7 +10,7 @@ test("public teacher profiles are described as Person data without private field
   assert.equal(p["@type"], "Person");
   assert.equal(p.url, "https://www.onlinequrancollege.com/teachers/amina");
   assert.deepEqual(p.knowsLanguage, ["English", "Urdu"]);
-  assert.deepEqual(p.hasCredential.map((c) => c.name), ["Ijazah in Hafs", "BA Islamic Studies"]);
+  assert.equal(p.hasCredential, undefined, "unverified qualification text is not emitted as formal credential markup");
   assert.deepEqual(p.worksFor, { "@id": "https://www.onlinequrancollege.com/#organization" });
   const text = JSON.stringify(p);
   for (const secret of ["x@example.test", "+440000", "E1"]) assert.ok(!text.includes(secret), secret);
