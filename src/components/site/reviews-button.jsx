@@ -15,8 +15,15 @@ export function ReviewsButton({ config, consentText }) {
   const pathname = usePathname();
   const dialogRef = useRef(null);
   const [open, setOpen] = useState(false);
+  const [shown, setShown] = useState(false);
   const [Form, setForm] = useState(null);
   const [loadError, setLoadError] = useState(false);
+  useEffect(() => {
+    const update = () => setShown(window.scrollY > window.innerHeight * 0.8);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
+  }, []);
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
@@ -30,6 +37,7 @@ export function ReviewsButton({ config, consentText }) {
   if (pathname.startsWith("/admin") || pathname.startsWith("/parents") || pathname === "/reviews") return null;
   // Keep conversion forms unobstructed on small screens; those pages already expose direct support actions.
   if (pathname === "/contact" || pathname.startsWith("/contact/") || pathname === "/free-trial" || pathname.startsWith("/free-trial/")) return null;
+  if (!shown) return null;
 
   const prefetch = () => { loadForm().catch(() => {}); };
   const openForm = () => {
