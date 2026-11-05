@@ -137,6 +137,21 @@ export function ReviewForm({ open, config, consentText, onClose, inline = false 
         payload: { ...form, name: form.name.trim(), email: form.email.trim().toLowerCase(), comment: form.comment.trim(), upload_token: token, media, page_path: window.location.pathname },
       });
       if (error) throw error;
+      const reference = typeof data?.reference === "string" && /^REV-[A-Z0-9-]{4,32}$/.test(data.reference) && data.reference !== "REV-RECEIVED" ? data.reference : "";
+      if (reference) {
+        try {
+          const notification = await fetch("/api/lead-notification", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ reference, email: form.email.trim().toLowerCase() }),
+            cache: "no-store",
+            signal: AbortSignal.timeout(6000),
+          });
+          if (!notification.ok) console.warn("OQC internal review notification was not confirmed", reference, notification.status);
+        } catch {
+          console.warn("OQC internal review notification request failed", reference);
+        }
+      }
       setState({ sending: false, progress: "", error: "", done: data?.reference ?? "sent" });
     } catch (cause) {
       setState({ sending: false, progress: "", error: cause?.message || "Your review was not sent. Check your connection and send again.", done: null });
