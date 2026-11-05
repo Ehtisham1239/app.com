@@ -13,12 +13,15 @@ test("the /learn trial button wraps inside its column", () => {
 test("CMS hero and image-text sections use responsive AVIF/WebP image variants", () => {
   const sections = read("src/components/site/page-sections.jsx");
   const image = read("src/components/site/content-image.jsx");
+  const hero = read("src/components/site/hero.jsx");
   assert.match(sections, /import \{ ContentImage \} from "@\/components\/site\/content-image";/);
   assert.equal((sections.match(/<ContentImage /g) || []).length, 2);
   assert.match(sections, /sizes="\(max-width: 1023px\) calc\(100vw - 2\.5rem\), \(max-width: 1599px\) 42vw, 42rem"/);
   assert.match(image, /<source type="image\/avif"/);
   assert.match(image, /srcSet=\{asset \? asset\.variants/);
   assert.match(image, /loading=\{priority \? "eager" : "lazy"\}/);
+  assert.match(hero, /max-w-\[440px\]/);
+  assert.match(hero, /const HERO_SIZES = "\(max-width: 639px\) 90vw, 440px"/);
 });
 
 test("the responsive audit covers phone to desktop widths and the market pages", () => {
