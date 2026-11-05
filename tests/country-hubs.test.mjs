@@ -64,3 +64,14 @@ test("the reviews button is icon-only on phones and keeps its accessible text", 
   assert.match(btn, /flex min-w-0 flex-col leading-tight max-lg:sr-only/);
   assert.match(btn, /pr-1\.5 text-left lg:pr-4/);
 });
+
+test("each country landing explains the verified parent progress portal without promising unpublished reports", () => {
+  const component = read("src/components/site/country-landing.jsx");
+  const portal = read("src/app/parents/page.jsx");
+  assert.match(component, /hub-parent-progress/);
+  assert.match(component, /href="\/parents"/);
+  assert.match(component, /href="\/blog\/parent-teacher-quran-progress-review"/);
+  assert.match(component, /only after staff review and publication/);
+  assert.match(portal, /Only reports and results that Online Quran College has checked and published are shown here/);
+  assert.match(portal, /parent_progress/);
+});
