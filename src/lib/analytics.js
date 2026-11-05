@@ -178,7 +178,7 @@ export function createAnalyticsController(win, config) {
     if (channel) emit("contact_click", { contact_channel: channel });
     const path = href.split(/[?#]/, 1)[0];
     const placement = anchor?.getAttribute?.("data-oqc-cta") || "";
-    if (path === "/free-trial" || path === "/usa-quran-classes" || placement) {
+    if (path === "/free-trial" || path === "/usa-quran-classes") {
       emit("trial_cta_click", {
         cta_placement: /^[a-z0-9_-]{1,48}$/i.test(placement) ? placement : "internal_link",
         destination: path === "/usa-quran-classes" ? "usa_landing_page" : "free_trial",
