@@ -28,6 +28,14 @@ test("all five indexed hubs get a landing block in their own currency", () => {
   assert.match(COUNTRY_HUBS["united-arab-emirates"].steps[0].text, /Gulf Standard Time/);
 });
 
+test("all market and city landing pages disclose the exact free-trial conditions", () => {
+  const page = read("src/components/site/location-page.jsx");
+  assert.match(page, /3-day free trial on eligible plans/);
+  assert.match(page, /No card is needed; the Weekend plan is excluded/);
+  assert.match(page, /Is the 3-day free trial available on every plan/);
+  assert.match(page, /No card is needed for an eligible trial/);
+});
+
 test("hub copy makes no price, office, credential, guarantee or response-time claims", () => {
   const text = JSON.stringify(Object.values(COUNTRY_HUBS).map((h) => ({ ...h, faqs: h.faqs ? h.faqs() : [] })));
   assert.doesNotMatch(text, /[£$€]\d|\d+\s*(?:USD|GBP|CAD|AUD|AED)|office|branch|licen[cs]e|certified|guarantee|within \d+ (?:hours?|minutes?|days?)/i);
