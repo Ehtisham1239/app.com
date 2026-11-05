@@ -7,9 +7,9 @@
 - Markets served online: USA, UK, Canada, Australia, UAE (and others on request).
 - Contact: info@onlinequrancollege.com, +44 7864 710821 (WhatsApp).
 - Trial: 3 days on eligible plans; Weekend plan excluded.
-- Founded: 2019 (CMS identity). An older page said 2018 (29 Oct citation audit) — resolve in favour of the CMS value.
+- Founding date: **omit from public entity facts and Organization JSON-LD** until the owner supplies documentary evidence for the brand's start date and separately verifies the legal entity's incorporation record. The CMS `site.identity.established` value (2018) is not sufficient evidence and must not be presented as the company's incorporation date.
 
-Inconsistency found today: the London GBP listing is titled "Onlinequrancollege" with a London street address the website does not publish — another reason to resolve the GBP listings.
+OQC is an online-only provider and must not publish a customer-facing office address or create/optimise an ineligible Google Business Profile. Any historical GBP record or third-party listing must be reviewed by the owner against Google's current eligibility rules; this framework does not assert that a specific listing is live or verified.
 
 ## AI-answer test protocol
 Not run this session: no external AI assistants are connected, so **no AI citation results are reported**. Run monthly and log in the table below.
