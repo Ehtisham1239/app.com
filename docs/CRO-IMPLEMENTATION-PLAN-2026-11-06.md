@@ -37,6 +37,10 @@ Before enabling Google Ads offline conversion import, verify:
 
 No synthetic paid-conversion event should be generated from a click or form submission.
 
+## Connected CMS database check (read-only, 6 November 2026)
+
+The connected Supabase project contains the required base tables for a manually recorded payment trail: trial applications, students, enrollments, invoices and payments. The current read-only aggregate check returned 8 non-deleted trial applications (6 new, 1 reviewed, 1 cancelled), 0 invoice rows, 0 enrollment rows and 0 payment rows. The payments table has no payment-provider webhook/event identifier or provider transaction status field; its current fields record amount, currency, method, reference, received timestamp and staff recorder. Therefore there is no verified historical paid-conversion baseline in this database yet. A payment row can be treated as a staff-recorded receipt only after the college confirms that staff enter it only after funds are actually received and reconciled. The current schema does not prove an online payment gateway is connected.
+
 ## Landing-page/CRO redesign direction
 
 The redesign should preserve the OQC identity (emerald/forest, ivory, restrained gold) and current CMS content model while improving clarity, speed, trust and form completion.
