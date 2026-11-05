@@ -36,8 +36,8 @@ test("the responsive audit covers phone to desktop widths and the market pages",
 test("floating support and review controls stay off contact and free-trial forms", () => {
   const support = read("src/components/site/contact-support-button.jsx");
   const reviews = read("src/components/site/reviews-button.jsx");
-  assert.match(support, /const HIDDEN_ON = \["\\/contact", "\\/free-trial"\];/);
-  assert.match(support, /pathname\.startsWith\(\`\$\{path\}\\/\`\)/);
-  assert.match(reviews, /pathname === "\\/contact" \|\| pathname\.startsWith\("\\/contact\/"\)/);
-  assert.match(reviews, /pathname === "\\/free-trial" \|\| pathname\.startsWith\("\\/free-trial\/"\)/);
+  assert.ok(support.includes('const HIDDEN_ON = ["/contact", "/free-trial"];'));
+  assert.ok(support.includes("pathname.startsWith(`${path}/`)"));
+  assert.ok(reviews.includes('pathname === "/contact" || pathname.startsWith("/contact/")'));
+  assert.ok(reviews.includes('pathname === "/free-trial" || pathname.startsWith("/free-trial/")'));
 });
