@@ -165,6 +165,8 @@ jobs:
           OQC_PERF_PATHS: /,/pricing,/free-trial,/locations/united-kingdom,/locations/united-states
         run: npm run audit:performance -- https://www.onlinequrancollege.com
       - name: Read-only SEO crawl of the sitemap (E-16)
+        env:
+          OQC_KEYWORD_COVERAGE_REPORT_ONLY: ${{ github.event_name == 'pull_request' && '1' || '0' }}
         run: npm run seo:agent -- https://www.onlinequrancollege.com artifacts/seo-agent/ci
       - name: Upload audit reports
         if: always()

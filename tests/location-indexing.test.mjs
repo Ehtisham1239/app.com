@@ -3,8 +3,8 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { LOCATIONS, INDEXED_MARKETS, locationIndexRecord } from "../src/lib/locations.js";
 
-// Pathway decision 26–28 Oct 2026: only approved country hubs are indexed by default.
-test("without a CMS row only the four approved country hubs are indexable", () => {
+// Pathway decision 26–28 Oct 2026: only the five approved country hubs are indexed by default.
+test("without a CMS row only the five approved country hubs are indexable", () => {
   const indexable = LOCATIONS.flatMap((country) => [null, ...country.cities].filter((city) => !locationIndexRecord(undefined, country, city).seo_noindex).map((city) => city ? `${country.slug}/${city.slug}` : country.slug));
   assert.deepEqual(indexable.sort(), [...INDEXED_MARKETS].sort());
 });

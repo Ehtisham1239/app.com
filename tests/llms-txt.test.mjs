@@ -16,8 +16,10 @@ test("llms.txt lists every learning guide and indexed country page", () => {
 
 test("llms.txt key facts repeat what public pages already state", () => {
   const pricing = read("src/app/(site)/pricing/page.jsx");
-  assert.match(route, /Each additional child from the same family receives 15% off their monthly fee\./);
-  assert.match(pricing, /Each additional child from the same family receives 15% off their monthly fee\./);
+  assert.match(route, /familyDiscountCopy/);
+  assert.match(route, /familyDiscount/);
+  assert.match(pricing, /familyDiscountCopy/);
+  assert.match(pricing, /familyDiscount/);
   assert.match(route, /the Weekend plan is excluded/);
   assert.doesNotMatch(route, /24 hours|guarantee|best |#1|founded|since 20/i, "no unverified claims");
 });

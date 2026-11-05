@@ -161,6 +161,11 @@
     padding-inline: 1.25rem;
   }
   @media (min-width: 768px) { .page-wrap { padding-inline: 2rem; } }
+  /* Give ultra-wide displays more usable canvas without stretching text lines
+     or card content indefinitely. Breakpoints follow viewport width, not brand. */
+  @media (min-width: 1600px) { .page-wrap { max-width: 88rem; padding-inline: clamp(2rem, 3vw, 4rem); } }
+  @media (min-width: 1920px) { .page-wrap { max-width: 96rem; } }
+  @media (min-width: 2560px) { .page-wrap { max-width: 112rem; padding-inline: 4rem; } }
 
   /* Buttons */
   .btn {

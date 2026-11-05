@@ -38,4 +38,6 @@ const summary = { checkedAt: new Date().toISOString(), base: base.origin, declar
 writeFileSync(output + '/map.json', JSON.stringify({ checkedAt: summary.checkedAt, evidence: summary.evidence, rows }, null, 2) + '\n');
 writeFileSync(output + '/summary.json', JSON.stringify(summary, null, 2) + '\n');
 console.log(JSON.stringify(summary, null, 2));
-if (failures.length || rows.length !== paths.length) process.exitCode = 1;
+const reportOnly = process.env.OQC_KEYWORD_COVERAGE_REPORT_ONLY === '1';
+if (reportOnly && failures.length) console.warn('Report-only mode: live-production keyword findings are recorded but do not fail a pull-request audit; re-check after deployment.');
+if ((failures.length || rows.length !== paths.length) && !reportOnly) process.exitCode = 1;

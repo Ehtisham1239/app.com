@@ -18,6 +18,7 @@ test("answer gives the published USD range and an approximate pounds range", () 
   assert.match(result.answer, /US\$30 to US\$50 for 2 to 4 live one-to-one 30-minute classes a week/);
   assert.match(result.answer, /about £23 to £38 a month at today's exchange rate/);
   assert.match(result.answer, /Weekend plan is excluded/);
+  assert.doesNotMatch(result.answer, /sibling discount|family discount|15% off/i);
 });
 
 test("approved pounds prices win and are not called approximate", () => {
@@ -37,4 +38,11 @@ test("without exchange rates the pounds sentence is left out, not guessed", () =
 test("no published prices means no answer block", () => {
   assert.equal(feeAnswer([], fx), null);
   assert.equal(feeAnswer([{ name: "Package 1", prices: [] }], fx), null);
+});
+
+test("fee answer uses the configured sibling discount from backend settings", () => {
+  const result = feeAnswer(plans, fx, "GBP", "the UK", { enabled: true, percent: 15 });
+  assert.match(result.answer, /15% off each additional child/);
+  const disabled = feeAnswer(plans, fx, "GBP", "the UK", { enabled: false, percent: 15 });
+  assert.doesNotMatch(disabled.answer, /sibling discount/i);
 });

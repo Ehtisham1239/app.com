@@ -14,6 +14,10 @@ export async function GET() {
   // These are website-configured outbound links, not independent proof of account ownership.
   const profiles = Object.entries(settings?.["site.social"] || {}).filter(([, url]) => typeof url === "string" && /^https:\/\/[^\s]+$/.test(url));
   const identityProfiles = organizationIdentityProfiles(settings?.["site.social"]);
+  const familyDiscount = settings?.["site.family_discount"];
+  const familyDiscountCopy = familyDiscount?.enabled && Number(familyDiscount?.percent) > 0
+    ? `Each additional child from the same family receives ${Number(familyDiscount.percent)}% off their monthly fee.`
+    : "Ask the coordinator whether a sibling discount is available for your selected plan.";
   const PROFILE_NAMES = { x: "X (Twitter)", facebook: "Facebook", instagram: "Instagram", trustpilot: "Trustpilot", youtube: "YouTube", tiktok: "TikTok", linkedin: "LinkedIn" };
   const eligible = (collection, prefix) => new Set(collection.filter(row => shouldIncludeInSitemap(row, `${prefix}/${row.slug}`, SITE_URL)).map(row => row.slug));
   const courseSlugs = eligible(published.courses, "/courses"), postSlugs = eligible(published.posts, "/blog");
@@ -39,7 +43,7 @@ export async function GET() {
     "- Lessons are live, one-to-one and online, for children and adults.",
     "- Learners can ask for a female or male teacher when booking.",
     "- A three-day free trial is available on eligible plans; the Weekend plan is excluded.",
-    "- Each additional child from the same family receives 15% off their monthly fee.",
+    `- ${familyDiscountCopy}`,
     "- Fees can be shown converted into the visitor's currency for guidance; the coordinator confirms the fee and payment currency before enrolment.",
     "- Lessons are arranged in the learner's time zone. Country pages describe online coverage, not physical offices.", "",
     "## Profile links configured on this website", "",

@@ -30,8 +30,8 @@ What competitors do instead: a search on 3 Nov 2026 for online Quran academy lis
 These come from the CMS identity and the existing approved draft, with no new claims.
 
 - **Short (≤ 80):** Live one-to-one online Quran classes for children and adults.
-- **Medium (≤ 160):** Live one-to-one online Quran, Tajweed, Hifz, Arabic and Islamic studies classes for children and adults, with male and female teachers and flexible timings.
-- **Long (≈ 450):** Online Quran College provides live, one-to-one online Quran and Islamic learning for children and adults. Courses include Noorani Qaida, Quran reading with Tajweed, Hifz, Arabic language, Quran translation and Islamic studies. Families can ask for a male or female teacher, and lessons are arranged in the learner's own time zone. A three-day free trial is available on eligible plans (the Weekend plan is excluded). Visit the website to compare courses and request a trial.
+- **Medium (≤ 160):** Live one-to-one online Quran classes for children and adults. Discuss teacher preferences and confirm availability before enrolment.
+- **Long (≈ 450):** Online Quran College provides live, one-to-one online Quran and Islamic learning for children and adults. Courses include Noorani Qaida, Quran reading with Tajweed, Hifz, Arabic language, Quran translation and Islamic studies. Families can discuss teacher preferences and lesson times with the coordinator; availability is confirmed before enrolment. A three-day free trial is available on eligible plans (the Weekend plan is excluded); no card is needed for an eligible trial. Visit the website to compare courses and request a trial.
 
 Do not add: accredited, certified, best, #1, student counts, country counts, response times or guarantees.
 
@@ -68,4 +68,4 @@ These are averages of event values, not the 75th-percentile field values used fo
 
 By page: `/locations` had the highest INP (≈ 346 ms over 16 events). This PR fixes it: the search input stays instant, the country grid renders from a deferred value, and the search text is built once. `/courses/hifz-quran` had the slowest LCP (≈ 1.74 s), still "good", and its cover image is already pre-encoded WebP. The public pages do not run through the proxy/CSP layer (that layer covers admin and parent pages only), so they stay statically cached.
 
-These averages are encouraging, but they do not establish a Core Web Vitals pass/fail result or prove that speed is not limiting performance. Obtain page/device-level p75 field data from CrUX/Search Console or an authorized real-user source before making that claim. Authority, relevant editorial references, useful query coverage and conversion quality remain important workstreams, but their impact must be measured rather than assumed.
+These averages are encouraging, but they do not establish a Core Web Vitals pass/fail result or prove that speed is not limiting performance. The current public CMS wording was subsequently tightened: use the revised descriptions in §3 and do not reuse older teacher-gender availability claims from this historical pack. Obtain page/device-level p75 field data from CrUX/Search Console or an authorized real-user source before making that claim. Authority, relevant editorial references, useful query coverage and conversion quality remain important workstreams, but their impact must be measured rather than assumed.
