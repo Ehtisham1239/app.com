@@ -10,7 +10,7 @@
 - **32/32** have a non-empty SEO title and meta description. No duplicate `seo_focus_keyword` values were returned by the duplicate-keyword query.
 - All 32 have a cover image URL and non-empty cover alt text in the CMS fields queried. Article-body `<img>` elements were not found in the structural scan.
 - **15/32** contain the internal HTML marker `<!-- learning-revision-2026-10 -->` followed by additional article sections. This is not automatically bad content, but a manual consolidation review is required because several pages repeat the same decision advice in multiple sections.
-- Four articles have no contextual course or market-hub link. Thirteen have no explicit `/free-trial` link; this is a relevance review, not a rule that every article must carry a sales CTA.
+- Four articles have no contextual course or market-hub link. Nine have no explicit `/free-trial` link; this is a relevance review, not a rule that every article must carry a sales CTA.
 - Priority factual update: the Canada time-zone guide should explicitly account for the 2026 permanent time changes in British Columbia and Alberta. Official provincial sources confirm these changes.
 - Priority editorial cleanup: the Australia time-zone article contains repeated sections and a hidden revision comment; consolidate before considering any expansion.
 - Islamic/Tajweed/Hifz material requires qualified academic review. No scholar/reviewer identity or approval record was present in the CMS fields returned by this audit.
@@ -70,7 +70,7 @@ Author field for all 32 records returned as “Online Quran College”. The audi
   - `online-quran-lesson-setup-accessibility`
   - `questions-before-quran-course-enrolment`
   - `ramadan-quran-plan-for-families`
-- Thirteen without an explicit `/free-trial` link:
+- Nine without an explicit `/free-trial` link:
   - `adult-quran-beginner-first-month`
   - `family-quran-learning-multiple-children`
   - `help-your-kids-learn-quran-online`
@@ -80,7 +80,7 @@ Author field for all 32 records returned as “Online Quran College”. The audi
   - `parent-teacher-quran-progress-review`
   - `quran-lessons-australia-time-zones`
   - `tajweed-practice-with-feedback`
-  - plus the remaining pages checked in the CMS scan are enumerated by the query output; CTA presence is a contextual recommendation, not a mandatory SEO field.
+  - CTA presence is a contextual recommendation, not a mandatory SEO field.
 
 ## Priority issue register
 
@@ -92,7 +92,7 @@ Author field for all 32 records returned as “Online Quran College”. The audi
 | BLOG-004 | /blog/online-tafseer-classes-what-you-learn | 299 words; discusses tafseer, context of revelation and scholarly interpretation; no external reference in the body returned. | Sensitive religious interpretation topic with minimal attribution and no visible reviewer evidence. | P0 | Have qualified scholar review definitions, scope, claims and any examples; identify approved source(s), named reviewer and review date before publication. Do not add a fabricated reviewer or fatwa. | Academic Excellence / qualified scholar. | High religious-integrity risk; scholar approval required. | BLOCKED pending academic review. |
 | BLOG-005 | Tajweed/Hifz instructional articles | Relevant posts include common-tajweed-mistakes, makharij-explained-for-beginners, tajweed-rules-for-beginners, sabaq-sabqi-manzil-explained, how-long-does-hifz-take-online, how-long-to-learn-noorani-qaida, tajweed-practice-with-feedback, importance-of-reciting-quran-with-tajweed, memorization-techniques-for-beginners. | Precise Arabic/Tajweed terminology, counts, recitation examples and memorisation advice need qualified verification; a CMS author label is not proof of academic review. | P0 | Review Arabic spellings, makharij groupings, rule descriptions, Qur’an examples, translations and Hifz terminology against recognized Tajweed references; record scholar name, qualification evidence, date and approved changes. | Academic Excellence / qualified Tajweed reviewer. | High; do not silently rewrite religious content. | BLOCKED pending qualified review. |
 | BLOG-006 | Four articles without course/market internal link | family-quran-learning-weekly-routine; online-quran-lesson-setup-accessibility; questions-before-quran-course-enrolment; ramadan-quran-plan-for-families. | Readers may not find the relevant course or country planning page. | P2 | Add one or two contextually relevant links where they genuinely help; avoid forced keyword anchors. | SEO/content editor. | Low; no URL changes. | DRAFT REQUIRED; verify destination status and link relevance. |
-| BLOG-007 | Thirteen articles without trial link | See structural-check list above. | Potential conversion path gap on articles with high enrolment intent; informational content does not all need a CTA. | P2 | Review intent individually. Add a natural CTA to high-intent articles; leave purely educational pages without a sales CTA if it harms usefulness. | SEO + Admissions. | Low; trial eligibility wording must stay accurate. | RECOMMENDED; owner approval for copy changes. |
+| BLOG-007 | Nine articles without trial link | See structural-check list above. | Potential conversion path gap on articles with high enrolment intent; informational content does not all need a CTA. | P2 | Review intent individually. Add a natural CTA to high-intent articles; leave purely educational pages without a sales CTA if it harms usefulness. | SEO + Admissions. | Low; trial eligibility wording must stay accurate. | RECOMMENDED; owner approval for copy changes. |
 | BLOG-008 | Public archive, sitemap and CMS reconciliation | CMS query returns 32 published posts. Public archive and sitemap could not be independently fetched by the web inspection session; Google search snapshot shows selected latest articles only. | Public URL count, pagination completeness and Google-indexed URL count are not proven by the CMS count. | P0 | Crawl `/blog`, all pagination pages, RSS/feed if enabled, sitemap post URLs and Search Console Page Indexing/URL Inspection. Reconcile 32 CMS rows against public canonical URLs and index coverage. | Technical SEO + GSC access. | Low; no content changes until reconciled. | REQUIRES ACCESS / LIVE CRAWL. |
 | BLOG-009 | Homepage and older search snapshots | A current search snippet shows the online-only homepage and 3-day eligible-plan offer; a separate stale cached open snapshot showed legacy 5,000+ students, 25+ countries, 24/7 support, named tutor credentials and testimonials. | Search cache may be stale; do not treat the cached page as proof that current production HTML contains these claims. | P1 | Fetch canonical production HTML directly and compare with CMS; if old text is only cached, use Search Console URL Inspection and request recrawl after access is granted. If live HTML contains unsupported claims, remove or substantiate them with owner evidence first. | Owner + web/SEO + GSC access. | High trust/reputation risk; no silent claim selection. | UNKNOWN live HTML; REQUIRES ACCESS to GSC. |
 
