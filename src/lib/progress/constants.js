@@ -144,7 +144,9 @@ export function detailsForm(details) {
     scores: Object.fromEntries(CATEGORIES.map((c) => [c.key, String(d.scores?.[c.key] ?? "")])),
     attendance: { held: String(d.attendance?.held ?? ""), attended: String(d.attendance?.attended ?? "") },
     syllabus: { stage: d.syllabus?.stage || "", level: d.syllabus?.level || "", covered: d.syllabus?.covered || "", memorised: d.syllabus?.memorised || "" },
-    lessons_completed: String(d.lessons_completed ?? ""),\n    performance: { overall: String(d.performance?.overall || ""), improvement_targets: String(d.performance?.improvement_targets || ""), personal_development: String(d.performance?.personal_development || "") },\n    assessment_areas: Object.fromEntries(ASSESSMENT_AREAS.map((a) => [a.key, {
+    lessons_completed: String(d.lessons_completed ?? ""),
+    performance: { overall: String(d.performance?.overall || ""), improvement_targets: String(d.performance?.improvement_targets || ""), personal_development: String(d.performance?.personal_development || "") },
+    assessment_areas: Object.fromEntries(ASSESSMENT_AREAS.map((a) => [a.key, {
       summary: String(d.assessment_areas?.[a.key]?.summary || ""),
       effort: String(d.assessment_areas?.[a.key]?.effort || ""),
       standard: String(d.assessment_areas?.[a.key]?.standard || ""),
@@ -174,7 +176,11 @@ export function detailsProblem(details) {
     const v = String(details?.scores?.[c.key] ?? "").trim();
     if (v !== "" && !(/^\d{1,2}(\.[05])?$/.test(v) && Number(v) <= SCORE_MAX)) return `Marks for ${c.label} must be 0–${SCORE_MAX}.`;
   }
-  if (String(details?.lessons_completed ?? "").length > 100) return "Lessons completed must be 100 characters or fewer.";\n  for (const [key, limit] of [["overall", 300], ["improvement_targets", 1000], ["personal_development", 500]]) {\n    if (String(details?.performance?.[key] || "").length > limit) return `Performance field ${key} must be ${limit} characters or fewer.`;\n  }\n  for (const area of ASSESSMENT_AREAS) {
+  if (String(details?.lessons_completed ?? "").length > 100) return "Lessons completed must be 100 characters or fewer.";
+  for (const [key, limit] of [["overall", 300], ["improvement_targets", 1000], ["personal_development", 500]]) {
+    if (String(details?.performance?.[key] || "").length > limit) return `Performance field ${key} must be ${limit} characters or fewer.`;
+  }
+  for (const area of ASSESSMENT_AREAS) {
     const item = details?.assessment_areas?.[area.key] || {};
     if (String(item.summary || "").length > 500) return `${area.label} summary must be 500 characters or fewer.`;
     if (item.effort && !EFFORT_OPTIONS.some((o) => o.value === item.effort)) return `Choose a valid effort rating for ${area.label}.`;
@@ -191,7 +197,8 @@ export function detailsProblem(details) {
 export function formToDetails(d) {
   const scores = Object.fromEntries(Object.entries(d.scores).filter(([, v]) => v !== "" && Number.isFinite(Number(v))).map(([k, v]) => [k, Number(v)]));
   const attendance = d.attendance.held !== "" ? { held: Number(d.attendance.held), ...(d.attendance.attended === "" ? {} : { attended: Number(d.attendance.attended) }) } : undefined;
-  const syllabus = Object.fromEntries(Object.entries(d.syllabus).filter(([, v]) => String(v).trim()).map(([k, v]) => [k, String(v).trim()]));\n  const performance = Object.fromEntries(Object.entries(d.performance || {}).filter(([, v]) => String(v).trim()).map(([k, v]) => [k, String(v).trim()]));
+  const syllabus = Object.fromEntries(Object.entries(d.syllabus).filter(([, v]) => String(v).trim()).map(([k, v]) => [k, String(v).trim()]));
+  const performance = Object.fromEntries(Object.entries(d.performance || {}).filter(([, v]) => String(v).trim()).map(([k, v]) => [k, String(v).trim()]));
   const assessment_areas = Object.fromEntries(ASSESSMENT_AREAS.map((a) => {
     const item = d.assessment_areas[a.key] || {};
     return [a.key, Object.fromEntries(Object.entries(item).filter(([, v]) => String(v).trim()).map(([k, v]) => [k, String(v).trim()]))];
