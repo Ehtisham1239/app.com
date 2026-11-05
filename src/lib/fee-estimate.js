@@ -16,9 +16,13 @@ export function perClassEstimate(plan, currency = "USD") {
   return Math.round(monthly / (perWeek * WEEKS_PER_MONTH));
 }
 
-// Combined monthly tuition estimate. No unverified family discount is assumed.
-export function familyMonthlyEstimate(monthlyMinor, learners) {
-  const n = Math.max(1, Math.min(10, Math.floor(Number(learners) || 1)));
+// First learner pays the published fee; each additional learner receives the
+// backend-configured sibling discount. Amounts are rounded in currency minor units.
+export function familyMonthlyEstimate(monthlyMinor, learners, discountPercent = 0, maxLearners = 5) {
+  const n = Math.max(1, Math.min(maxLearners, Math.floor(Number(learners) || 1)));
   if (monthlyMinor === null || monthlyMinor === undefined) return null;
-  return { learners: n, total: monthlyMinor * n, saving: 0 };
+  const percent = Math.max(0, Math.min(100, Number(discountPercent) || 0));
+  const discountedLearner = Math.round(monthlyMinor * (1 - percent / 100));
+  const saving = (monthlyMinor - discountedLearner) * (n - 1);
+  return { learners: n, total: monthlyMinor * n - saving, saving, discountPercent: percent };
 }
