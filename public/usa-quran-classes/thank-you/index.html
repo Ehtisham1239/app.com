@@ -477,7 +477,8 @@ html:not(.ty-confirmed):not(.ty-generic) [data-ty="confirmed"] { display: none; 
  */
 window.OQC_LP_CONFIG = {
   mode: 'production',
-  phone: null,
+  // US admissions number (CEO, 3 Nov 2026; confirmed for this page 5 Nov 2026).
+  phone: { e164: '+17869645678', display: '(786) 964-5678' },
   callHours: null,
   whatsapp: { enabled: false, number: '', text: '' },
   endpoint: '',
@@ -599,7 +600,7 @@ window.OQC_LP_CONFIG = {
         <h2 id="steps-title">What happens next</h2>
         <ol class="ty-steps">
           <li><h3>We contact you</h3><p>Our admissions team reviews your request and confirms an available teacher and a suitable time using the contact details you provided.</p></li>
-          <li><h3>3-day trial on eligible plans</h3><p>A 3-day free trial is available on eligible plans. The Weekend plan is excluded; no card is needed on eligible plans.</p></li>
+          <li><h3>3-day free trial</h3><p>Join three days of free live classes with your teacher. No card needed.</p></li>
           <li><h3>Choose a schedule</h3><p>If you are happy, pick a package and weekly times, and regular classes begin.</p></li>
         </ol>
       </section>
@@ -614,9 +615,9 @@ window.OQC_LP_CONFIG = {
       </section>
 
       <div class="ty-actions">
-        <a class="btn btn-primary btn-lg js-phone-link" href="#" data-cta="call" data-cta-location="thank-you" data-requires="phone" data-when="open">
+        <a class="btn btn-primary btn-lg js-phone-link" href="tel:+17869645678" data-cta="call" data-cta-location="thank-you" data-requires="phone" data-when="open">
           <svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>
-          <span class="btn-stack"><span>Call <span class="js-phone-text"></span></span><small>Speak with admissions now</small></span>
+          <span class="btn-stack"><span>Call <span class="js-phone-text">(786) 964-5678</span></span><small>Speak with admissions now</small></span>
         </a>
         <a class="btn btn-outline btn-lg js-wa-link" href="#" target="_blank" rel="noopener" data-cta="whatsapp" data-cta-location="thank-you" data-requires="whatsapp">
           <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>Message us on WhatsApp

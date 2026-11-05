@@ -1,6 +1,6 @@
 # USA Google Ads landing page — integration (3 Nov 2026)
 
-Status: **implemented on branch `claude/usa-landing-page-integration`, preview only.** Not on production until the owner approves.
+Status: page **on production since 3 Nov 2026** (owner approval). The admissions email added on 5 Nov 2026 (section below) is on branch `claude/usa-landing-resend-email`, preview only, until the owner approves it.
 
 ## What it is
 
@@ -11,6 +11,7 @@ A dedicated paid-traffic page for US families, kept out of search (`noindex`), w
 | `/usa-quran-classes` | `public/usa-quran-classes/index.html` |
 | `/usa-quran-classes/thank-you` | `public/usa-quran-classes/thank-you/index.html` |
 | `/api/public-form-config` | `src/app/api/public-form-config/route.js` |
+| `/api/usa-lead-notification` (POST) | `src/app/api/usa-lead-notification/route.js`, `src/lib/usa-lead-notification.js` |
 
 Two `beforeFiles` rewrites in `next.config.mjs` serve the static files at the clean URLs. Nothing else on the site changes: no shared layout, header, CSS or existing route is touched, and the page is not in the sitemap. Its design is the CEO-reviewed v9 preview; production copies were made with design and copy unchanged.
 
@@ -34,6 +35,28 @@ Field mapping (tested in `tests/usa-landing.test.mjs`):
 | SMS reminders checkbox | notes, with the exact consent text |
 
 Leads are not forwarded to GoHighLevel: like every other website form, they stay in the CMS.
+
+## Admissions email (5 Nov 2026)
+
+Each lead saved from this page sends exactly one internal email to admissions through Resend. Nothing is emailed to the parent; there are no reminders or follow-ups.
+
+1. The browser saves the lead as above and receives its reference (`TR-YYYY-NNNNN`).
+2. The browser posts only `{ reference, email }` to `/api/usa-lead-notification`. The visitor sees success only after this step finishes (two attempts at most; if the email cannot be sent the lead is still in Admin → Trials and the failure is in the Vercel logs).
+3. The route accepts same-site JSON only, then calls `public.usa_lead_for_notification(reference, email)` (`supabase/migrations/20261105100000_usa_lead_notification.sql`) with the publishable key. The function returns the row only for the matching email, within 30 minutes of the save, and only for leads from `/usa-quran-classes`; otherwise nothing.
+4. The email is built from that database row (name, email, phone, course, age group, teacher, time zone, campaign and click ID, the form details, the timestamp in Pakistan and US time, a link to the record) and sent with `Idempotency-Key: oqc-usa-lead/<reference>/<hash of sender and recipients>`. Resend keeps keys for 24 hours, so a retry, a refresh or a replayed call returns the first result instead of sending again.
+5. A repeat request from the same tab with identical details (Back button, second click) reuses the saved reference: no second lead, conversion or email. A genuine repeat from the same parent later is saved by the database as a flagged duplicate and its email says "(repeat)" with the earlier reference.
+
+Logs record only the outcome and the lead reference (`{"event":"usa_lead_notification","outcome":…}`), never the email address, phone, request body, provider response or key.
+
+Server-only environment variables (Vercel → Settings → Environment Variables; never `NEXT_PUBLIC_`):
+
+| Variable | Value |
+| --- | --- |
+| `RESEND_API_KEY` | Resend API key with sending access only |
+| `LEAD_NOTIFICATION_FROM` | Sender on a domain verified in Resend, e.g. `OQC Website <leads@onlinequrancollege.com>` |
+| `LEAD_NOTIFICATION_TO` | Internal recipients, comma-separated |
+
+If any is missing the route answers 503 `not_configured` and the lead is still saved.
 
 ## Analytics
 

@@ -98,19 +98,37 @@ test("lead mapping matches the database function's rules", () => {
 
 
 test("USA campaign publishes only verified contact and content claims", () => {
-  assert.match(landing, /phone: null/);
+  // Owner decision, 5 Nov 2026: the CEO-supplied US number is shown and clickable.
+  assert.match(landing, /phone: \{ e164: '\+17869645678', display: '\(786\) 964-5678' \}/);
   assert.match(landing, /whatsapp: \{ enabled: false, number: '', text: '' \}/);
   assert.match(landing, /approved: \{\s*pricing: false,\s*teachers: false,\s*testimonials: false,\s*stats: false/s);
-  assert.doesNotMatch(landing, /786-964-5678|17869645678|447864710821|telephone/);
+  assert.doesNotMatch(landing, /447864710821|"telephone"/);
   assert.doesNotMatch(landing, /within 24 hours|qualified Quran teachers|1,000\+ students/i);
   assert.doesNotMatch(landing, /Teacher details supplied by the CEO|Reviews 2, 4 and 6 chosen by the CEO/);
+  assert.doesNotMatch(landing, /no business phone or WhatsApp number is configured/);
 });
 
-test("USA campaign trial copy states eligibility and the Weekend exclusion", () => {
-  assert.match(landing, /3-day free trial on eligible plans/i);
-  assert.match(landing, /Weekend plan is excluded/i);
-  assert.match(landing, /no card is needed on eligible plans/i);
-  assert.doesNotMatch(landing, /3 days of free classes|no credit card required/i);
+test("every call button is a working tel: link to the US number, even before JavaScript runs", () => {
+  const calls = [...landing.matchAll(/<a [^>]*class="[^"]*js-phone-link[^"]*"[^>]*>/g)].map((m) => m[0]);
+  assert.equal(calls.length, 4, "header, hero, final and mobile sticky call buttons");
+  for (const tag of calls) assert.match(tag, /href="tel:\+17869645678"/, tag);
+  assert.equal((landing.match(/class="(?:num )?js-phone-text">\(786\) 964-5678</g) || []).length, 3);
+  const tyCall = thankYou.match(/<a [^>]*class="[^"]*js-phone-link[^"]*"[^>]*>/)[0];
+  assert.match(tyCall, /href="tel:\+17869645678"/);
+});
+
+test("USA campaign trial copy: no eligible-plans wording, 'No card needed' kept (owner, 5 Nov 2026)", () => {
+  for (const [name, html] of Object.entries(pages)) {
+    assert.doesNotMatch(html, /eligible/i, `${name}: eligible-plans wording removed`);
+    assert.match(html, /No card needed/, `${name}: keeps "No card needed"`);
+  }
+  assert.match(landing, /<p class="form-kicker"><span class="chip chip-gold">No card needed<\/span><\/p>/);
+  // The Weekend exclusion (owner decision, 26 Oct 2026) stays in one FAQ answer only, and the
+  // FAQ structured data matches the visible answer.
+  const faq = "Yes. You get a 3-day free trial and no card is needed. The Weekend plan is not part of the free trial.";
+  assert.ok(landing.includes(`<p>${faq}</p>`));
+  assert.ok(landing.includes(`"text":"${faq}"`));
+  assert.equal((landing.match(/Weekend plan/g) || []).length, 2);
 });
 
 
@@ -123,12 +141,23 @@ test("standalone USA landing and thank-you pages include the single-label suppor
 
 
 test("USA thank-you page uses verified contact and trial terms", () => {
-  assert.doesNotMatch(thankYou, /786-964-5678|17869645678|447864710821|telephone|within 24 hours/i);
-  assert.match(thankYou, /phone: null/);
+  assert.doesNotMatch(thankYou, /447864710821|"telephone"|within 24 hours/i);
+  assert.match(thankYou, /phone: \{ e164: '\+17869645678', display: '\(786\) 964-5678' \}/);
   assert.match(thankYou, /whatsapp: \{ enabled: false, number: '', text: '' \}/);
-  assert.match(thankYou, /3-day free trial is available on eligible plans/i);
-  assert.match(thankYou, /Weekend plan is excluded/i);
-  assert.match(thankYou, /no card is needed on eligible plans/i);
+  assert.match(thankYou, /<h3>3-day free trial<\/h3><p>Join three days of free live classes with your teacher\. No card needed\.<\/p>/);
+});
+
+test("the landing page emails admissions only after the lead is saved, and never twice from one tab", () => {
+  assert.match(landing, /notifyUrl: '\/api\/usa-lead-notification'/);
+  // Order: save → (spam stops here) → remember → notify → success.
+  const flow = landing.slice(landing.indexOf("submitToCms(p).then(function (r) {"), landing.indexOf("/* ---------- mobile sticky CTA"));
+  const at = (s) => { const i = flow.indexOf(s); assert.ok(i > -1, s); return i; };
+  assert.ok(at("if (b.reference === 'TR-RECEIVED')") < at("setJSON(SS, SENT_KEY") && at("setJSON(SS, SENT_KEY") < at("notifyAdmissions(b.reference, p.email).then") && at("notifyAdmissions(b.reference, p.email).then") < at("succeed({ ok: true, lead_id: b.reference })"));
+  assert.match(landing, /if \(prior\) \{ setBusy\(true\); succeed\(\{ ok: true, lead_id: prior\.ref, repeat: true \}\); return; \}/);
+  assert.match(landing, /if \(!res\.test && !res\.spam && !res\.repeat\) oqcEmit\('generate_lead'/);
+  // Only the reference and the typed email go to the server; the hash is all that is kept.
+  assert.match(landing, /\{ reference: reference, email: email \}/);
+  assert.doesNotMatch(landing, /setJSON\(SS, SENT_KEY, \{[^}]*email/);
 });
 
 test("USA campaign copy has no duplicated trial or card wording", () => {
