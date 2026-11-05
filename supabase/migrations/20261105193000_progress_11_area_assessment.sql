@@ -18,6 +18,7 @@ declare
   v_effort text;
   v_standard text;
   v_limit int;
+  v_assessment_version text;
 begin
   if p is null or jsonb_typeof(p) <> 'object' then return '{}'::jsonb; end if;
 
@@ -44,10 +45,14 @@ begin
     if v_att > v_held then raise exception 'Classes attended cannot be more than classes held.'; end if;
   end if;
 
+  v_assessment_version := nullif(trim(coalesce(p ->> 'assessment_version', '')), '');
+  if v_assessment_version is not null and v_assessment_version <> '1' then raise exception 'Unsupported monthly assessment version.'; end if;
+
   foreach v_key in array array['stage', 'level', 'covered', 'memorised', 'lessons_completed'] loop
     v_text := trim(coalesce(p -> 'syllabus' ->> v_key, ''));
     v_limit := case v_key when 'stage' then 40 when 'level' then 120 when 'covered' then 1000 when 'lessons_completed' then 100 else 600 end;
     if char_length(v_text) > v_limit then raise exception 'The syllabus field "%" is too long.', v_key; end if;
+    if v_key = 'stage' and v_text <> '' and v_text not in ('foundations_qaida', 'quran_reading', 'tajweed', 'hifz_revision', 'translation', 'tafseer', 'islamic_studies') then raise exception 'Choose a valid curriculum stage.'; end if;
     if v_text <> '' then v_syl := v_syl || jsonb_build_object(v_key, v_text); end if;
   end loop;
 
@@ -85,7 +90,8 @@ begin
     'attendance', case when v_held is null then null else jsonb_build_object('held', v_held, 'attended', v_att) end,
     'syllabus', nullif(v_syl, '{}'::jsonb),
     'performance', nullif(v_performance, '{}'::jsonb),
-    'assessment_areas', nullif(v_areas, '{}'::jsonb)
+    'assessment_areas', nullif(v_areas, '{}'::jsonb),
+    'assessment_version', case when v_assessment_version = '1' then 1 else null end
   ));
 end $$;
 
@@ -100,6 +106,10 @@ begin
     return new;
   end if;
   if new.status not in ('submitted', 'published') then return new; end if;
+
+  -- Enforce the 11-area rubric for current-form submissions only.
+  -- Legacy reports retain their original six-category submission path.
+  if new.details ->> 'assessment_version' <> '1' then return new; end if;
 
   foreach v_key in array array[
     'qaida_reading', 'tajweed', 'makharij', 'fluency', 'hifz_revision',
