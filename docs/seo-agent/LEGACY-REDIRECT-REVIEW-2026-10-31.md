@@ -1,6 +1,6 @@
 # Two recovered legacy articles — approval-ready redirect proposal
 
-Status: draft proposal, not merged or verified live. The operating specification requires specific approval for URL changes. This branch prepares the exact change without republishing old religious claims or assuming approval.
+Status reconciled5November: owner explicitly authorized live release on31October; PR38 is merged as3621f3d0518ab1ef3729eacd507eb77174e6f6e6. Both reviewed redirects are verified live with query preservation; destinations return200, self-canonical and index/follow. Evidence: evidence/2026-11-05/verification.json.
 
 Archived original HTML was retrieved successfully (HTTP 200) for all three legacy URLs. The basic Islamic education page addressed broad educational foundations and learners, so a child-only destination is not justified and no mapping is added for it.
 
@@ -13,4 +13,4 @@ Snapshots: 20240229094015 and 20260513100607 respectively. Response/locator evid
 
 Implementation: two exact permanent rules in next.config.mjs; existing targets remain indexable canonical pages. No homepage catch-all, new pages or price changes. Next.js uses 308 and preserves queries. Five redirect regression tests pass, including unique sources, no chains/self/external redirects and relevant exact targets. The basic education path deliberately stays outside this proposal.
 
-After specific owner URL approval, merge, verify deployment, then GET each old path with a harmless query and confirm one-hop 308 to the expected 200 canonical target. Until that evidence exists, these two migration issues are ready for review, not complete. Rollback removes only these two entries and their dedicated assertion; preserve later redirects and content.
+After specific owner URL approval, merge, verify deployment, then GET each old path with a harmless query and confirm one-hop 308 to the expected 200 canonical target. These two migration mappings are verified complete; the broad basic-education path remains outside their scope. Rollback removes only these two entries and their dedicated assertion; preserve later redirects and content.
