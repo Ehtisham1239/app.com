@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { formatMoney } from "@/lib/format";
 import { isTrialEligible } from "@/lib/trial-eligibility";
-import { familyMonthlyEstimate, SIBLING_DISCOUNT, WEEKS_PER_MONTH } from "@/lib/fee-estimate";
+import { WEEKS_PER_MONTH } from "@/lib/fee-estimate";
 import { currencyOptions, displayPrice } from "@/lib/fx";
 import { LOCATIONS } from "@/lib/locations";
 import { useVisitorCurrency } from "@/lib/use-visitor-currency";
@@ -20,7 +20,7 @@ export function FeeCompare({ plans, fx = null, defaultCurrency = "USD", explicit
   if (!all.length) return null;
   const money = (price, minor) => `${price.approximate ? "≈ " : ""}${formatMoney(minor, price.currency)}`;
   const selectedRow = priced.find((row) => row.plan.id === planId) ?? priced[0];
-  const estimate = selectedRow ? familyMonthlyEstimate(selectedRow.price.amount_minor, learners) : null;
+  const estimate = selectedRow ? { total: selectedRow.price.amount_minor * learners } : null;
   const perClass = (row) => (row.plan.billing_period === "monthly" && row.plan.classes_per_week > 0 ? Math.round(row.price.amount_minor / (row.plan.classes_per_week * WEEKS_PER_MONTH)) : null);
   const anyApprox = priced.some((row) => row.price.approximate);
 
@@ -70,8 +70,8 @@ export function FeeCompare({ plans, fx = null, defaultCurrency = "USD", explicit
           </div>
 
           <div className="surface p-5 sm:p-6">
-            <h3 className="font-sans text-lg font-bold text-mushaf-900">Family fee estimator</h3>
-            <p className="mt-1 text-sm text-ink-soft">Each additional child from the same family receives {Math.round(SIBLING_DISCOUNT * 100)}% off.</p>
+            <h3 className="font-sans text-lg font-bold text-mushaf-900">Multi-learner fee estimator</h3>
+            <p className="mt-1 text-sm text-ink-soft">Estimate the combined monthly amount for the selected plan and number of learners.</p>
             <label htmlFor="fee-plan" className="field-label mt-5">Plan</label>
             <select id="fee-plan" className="input" value={selectedRow.plan.id} onChange={(e) => setPlanId(e.target.value)}>
               {priced.map((row) => <option key={row.plan.id} value={row.plan.id}>{row.plan.name} — {money(row.price, row.price.amount_minor)} / month</option>)}
@@ -88,7 +88,7 @@ export function FeeCompare({ plans, fx = null, defaultCurrency = "USD", explicit
             <div className="mt-6 rounded-2xl bg-leaf-50 p-4" aria-live="polite">
               <p className="text-sm text-ink-soft">Estimated monthly total</p>
               <p className="mt-1 font-display text-3xl font-bold text-mushaf-900">{money(selectedRow.price, estimate?.total)}</p>
-              {estimate?.saving > 0 && <p className="mt-1 text-sm font-semibold text-leaf-700">You save {money(selectedRow.price, estimate.saving)} a month with the sibling discount</p>}
+              
             </div>
             <Link href={`/free-trial?${new URLSearchParams({ plan: selectedRow.plan.id, currency })}`} className="btn btn-primary mt-5 w-full">
               {isTrialEligible(selectedRow.plan) ? "Book a free trial for this plan" : "Ask about this plan"}
