@@ -138,8 +138,8 @@ The following are monitoring sets, not a top-ten ranking. Some businesses serve 
 
 **P0 authenticity correction in this PR**
 - CMS `site.identity.established` currently contains 2018 and the shared layout was emitting it as Organization `foundingDate`.
-- Public company-record search results identify ONLINE QURAN COLLEGE LTD as incorporated in 2026. A brand's historical start and a legal company's incorporation are distinct facts.
-- Remove the unverified CMS year from JSON-LD until documentary evidence and owner approval establish what it represents. Do not infer the company incorporation date or legal registration details from the brand year.
+- Companies House directly shows an older same-name company (13629654) incorporated 17 September 2021 and dissolved 20 February 2024. A secondary aggregator reports a separate active same-name company (17075457) incorporated 6 March 2026, but its official Companies House page could not be directly retrieved in this audit.
+- This name/record collision means neither date can safely be assumed to describe the CMS brand history or the current contracting entity. Remove the unverified CMS year from JSON-LD until the owner confirms the exact company number and supplies evidence for the brand's 2018 start. Do not add either company's incorporation date or address based on name matching alone.
 - Do not add LocalBusiness or a street address while the service remains online-only and no eligible in-person customer-facing location is verified.
 
 **Remaining technical evidence gates**
@@ -164,8 +164,9 @@ The following are monitoring sets, not a top-ten ranking. Some businesses serve 
 
 ### 5.3 Backlinks, citations and entity authority
 
-**Confirmed**
+**Confirmed / needs owner verification**
 - The citation register records current public social/Trustpilot URLs, but account-admin ownership is not verified.
+- A public LinkedIn company result for “Online Quran College LTD” surfaced with “Trusted since 2014”, a 5-day trial and 1,000+ student claims. This conflicts with the current site’s 3-day eligible-plan trial and is not in the verified citation register. Treat it as an unverified/possibly stale profile until the owner confirms control and corrects its public facts; do not add it to Organization `sameAs` yet.
 - RISE and ISRE resource opportunities are researched; ISLA contribution eligibility is conditional. No outreach or submission is recorded as sent or accepted.
 - No acquired backlink is claimed by the reviewed register.
 - Google Business Profile and generic location directories are excluded for the online-only model. No false NAP, virtual office or market-specific local phone should be created.
