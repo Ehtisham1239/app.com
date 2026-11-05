@@ -224,12 +224,14 @@ The following are monitoring sets, not a top-ten ranking. Some businesses serve 
 1. Remove the unverified CMS-established year from Organization JSON-LD `foundingDate`.
 2. Add a regression test that prevents reintroducing an unverified founding date into the Organization schema.
 3. Add this competitor reverse-engineering and implementation audit to the repository for an auditable record.
+4. Add a factual parent-progress panel to each of the five market hubs, linking to the existing protected parent portal and progress guide. The wording is limited to staff-reviewed/published records and explicitly states that monthly reports may not exist for every month.
 
-No public content, prices, teacher credentials, third-party profiles, links, redirects, DNS, analytics accounts or external outreach are changed by this PR.
+No prices, teacher credentials, third-party profiles, redirects, DNS, analytics accounts or external outreach are changed by this PR. The market-hub panel is an original on-site navigation/content improvement that exposes an already implemented parent portal.
 
 ## 8. Test and deployment gates
 
 - Automated tests, lint and production build must pass on the exact PR SHA.
+- The new market-hub panel test must verify the portal URL, existing progress guide URL and staff-publication limitation.
 - Responsive audit and live performance/crawl jobs must finish or be clearly recorded as blocked.
 - Preview deployment must return READY and pass route/form smoke checks.
 - Owner approval is required before merge and production deployment.
@@ -252,3 +254,42 @@ Do not declare “top 1” or “top 3” based on a crawl, a search snippet, a 
 - Companies House register: https://find-and-update.company-information.service.gov.uk/
 
 Competitor sources are linked inline in Section 3. All claims about competitor pricing/features are a dated public-page snapshot, not independent verification.
+
+
+## 11. Implementation addendum — 5 November 2026
+
+A focused re-check of current competitor pages and OQC's live market pages confirms the following patterns:
+- Learn Quran Academy publicly describes a student web portal and monthly assessment, alongside its three-step enrolment journey.
+- UK Quran Academy emphasises weekly parent progress logs, flexible UK slots and an interactive Makharij explorer.
+- IQRA Network presents tiered pricing with academic coaching, dashboard access, e-syllabus, recordings and periodic progress reports.
+- Canadian Quran Academy exposes class frequency, lesson duration and CAD package amounts; Australia/UAE competitor pages similarly foreground local currency.
+- Her Quran Academy's Australia/UAE pages explain daylight-saving or Gulf Standard Time handling and explicitly disclose online-only delivery.
+- OQC's Canada hub currently requests a CAD quote; Australia requests an AUD quote; the UAE page can show an approximate AED equivalent where there is no approved AED amount. These should not be replaced with guessed local prices.
+
+### Parent-progress discoverability change
+The five OQC market hubs now receive a new, original section with:
+- A link to the protected parent portal at /parents.
+- A link to the existing parent–teacher progress review article.
+- Clear wording that only reports/results checked and published by OQC are shown.
+- Clear wording that monthly progress reports are optional and may not be available for every month.
+
+This is a safe conversion improvement because the parent portal and publication workflow already exist. It does not create new student records, expose private learner data, promise that every family has a report, or alter portal permissions.
+
+### Current live/index evidence
+The current indexed OQC homepage and market pages describe the five target markets and online-only delivery. Some older cached/indexed OQC results still expose legacy student totals, teacher biographies and outdated pricing/trial copy. This audit does not treat those cached results as proof that the current production HTML still contains the old claims. Recheck the exact URLs in Search Console after the approved release and request recrawl only after the canonical/redirect response is confirmed.
+
+### Additional public sources reviewed
+- Learn Quran Academy homepage: https://learnquraan.co.uk/
+- UK Quran Academy homepage: https://ukquranacademy.com/
+- IQRA Network pricing: https://iqranetwork.com/pricing/
+- Canadian Quran Academy pricing: https://canadianquranacademy.com/pricing/
+- EQuran School Canada: https://www.equranschool.com/ca/
+- Australian Quran Academy pricing: https://australianquranacademy.com/pricing/
+- Khan Quran Academy Australia: https://khanquranacademy.com/quran-classes-australia
+- Her Quran Academy Australia: https://herquranacademy.com/online-quran-classes-australia/
+- Her Quran Academy UAE: https://herquranacademy.com/online-quran-classes-uae/
+- Salam Campus UAE: https://salamcampus.com/online-quran-classes-uae/
+- Learn Quran UAE pricing: https://learnquranuae.com/pricing/
+- FQE Academy pricing: https://www.fqeacademy.com/pricing/
+- Google people-first content: https://developers.google.com/search/docs/fundamentals/creating-helpful-content
+- Google spam policies: https://developers.google.com/search/docs/essentials/spam-policies
