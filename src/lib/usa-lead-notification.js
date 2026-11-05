@@ -58,7 +58,7 @@ export function formatLeadTime(iso, timeZone) {
 
 // Subject, HTML and plain-text bodies for one lead. Pure and deterministic, so a
 // retry produces exactly the same request (required by Resend idempotency).
-export function buildLeadEmail(lead, { siteUrl = "https://www.onlinequrancollege.com" } = {}) {
+export function buildLeadEmail(lead, { siteUrl = "https://www.onlinequrancollege.com", sourceLabel = "USA landing page" } = {}) {
   const reference = oneLine(lead.reference, 20);
   const utm = lead.utm && typeof lead.utm === "object" ? lead.utm : {};
   const adult = lead.age_band === "adult";
@@ -90,9 +90,10 @@ export function buildLeadEmail(lead, { siteUrl = "https://www.onlinequrancollege
   ];
   const details = String(lead.notes ?? "").split(/\r?\n/).map((line) => oneLine(line, 400)).filter(Boolean).slice(0, 30);
 
-  const subject = oneLine(`New USA trial request ${reference}${lead.repeat_of ? " (repeat)" : ""} – ${course}`, 180);
+  const subjectPrefix = sourceLabel === "USA landing page" ? "New USA trial request" : "New website trial request";
+  const subject = oneLine(`${subjectPrefix} ${reference}${lead.repeat_of ? " (repeat)" : ""} – ${course}`, 180);
   const text = [
-    "New trial request from the USA landing page (/usa-quran-classes).",
+    sourceLabel === "USA landing page" ? "New trial request from the USA landing page (/usa-quran-classes)." : `New trial request from the ${oneLine(sourceLabel, 60)}.`,
     "",
     ...rows.map(([label, value]) => `${label}: ${value}`),
     "",
@@ -106,13 +107,61 @@ export function buildLeadEmail(lead, { siteUrl = "https://www.onlinequrancollege
   const cell = "padding:6px 10px;border-bottom:1px solid #e3ead8;vertical-align:top;text-align:left;";
   const html = `<!doctype html><html lang="en"><body style="margin:0;padding:16px;background:#f6f8f3;font-family:Arial,Helvetica,sans-serif;color:#1d2a1f;">
 <div style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #dfe7d6;border-radius:12px;overflow:hidden;">
-<div style="background:#0D4A1C;color:#ffffff;padding:14px 18px;font-size:17px;font-weight:bold;">New USA trial request · ${escapeHtml(reference)}</div>
+<div style="background:#0D4A1C;color:#ffffff;padding:14px 18px;font-size:17px;font-weight:bold;">${escapeHtml(subjectPrefix)} · ${escapeHtml(reference)}</div>
 <table role="presentation" style="width:100%;border-collapse:collapse;font-size:14px;">
 ${rows.map(([label, value]) => `<tr><th scope="row" style="${cell}width:34%;color:#4a5a4c;font-weight:normal;">${escapeHtml(label)}</th><td style="${cell}font-weight:bold;">${escapeHtml(value)}</td></tr>`).join("\n")}
 </table>
 <div style="padding:12px 18px;font-size:14px;"><p style="margin:0 0 6px;color:#4a5a4c;">Details from the form</p><ul style="margin:0;padding-left:18px;">${details.map((line) => `<li style="margin:3px 0;">${escapeHtml(line)}</li>`).join("")}</ul></div>
 <div style="padding:4px 18px 18px;"><a href="${escapeHtml(adminUrl)}" style="display:inline-block;background:#0C6C0C;color:#ffffff;text-decoration:none;padding:10px 16px;border-radius:999px;font-weight:bold;">Open in Admin → Trials</a></div>
 <div style="padding:10px 18px;background:#fbf6e8;color:#6b5a2a;font-size:12px;">Internal notification from onlinequrancollege.com. Nothing was sent to the parent.</div>
+</div></body></html>`;
+  return { subject, html, text };
+}
+
+
+
+// Internal notification for a saved contact enquiry. The message is loaded from
+// the database by the reference/email RPC; never trust browser-supplied content.
+export function buildContactEmail(lead, { siteUrl = "https://www.onlinequrancollege.com" } = {}) {
+  const reference = oneLine(lead.reference, 24);
+  const adminUrl = `${String(siteUrl).replace(/\\/$/, "")}/admin/contacts`;
+  const utm = lead.utm && typeof lead.utm === "object" ? lead.utm : {};
+  const rows = [
+    ["Reference", reference],
+    ["Received", `${formatLeadTime(lead.created_at, STAFF_TIME_ZONE)} Pakistan time`],
+    ["Name", oneLine(lead.name, 120)],
+    ["Email", oneLine(lead.email, 254)],
+    ["Phone", oneLine(lead.phone, 32) || "Not provided"],
+    ["Country", oneLine(lead.country, 80) || "Not provided"],
+    ["City", oneLine(lead.city, 80) || "Not provided"],
+    ["Subject", oneLine(lead.subject, 160) || "General enquiry"],
+    ["Source", oneLine(lead.source, 80) || "website"],
+    ["Campaign", oneLine(utm.utm_campaign, 120) || "Not attributed"],
+  ];
+  const message = oneLine(lead.message, 5000);
+  const subject = oneLine(`New OQC website enquiry ${reference} – ${rows[7][1]}`, 180);
+  const text = [
+    "A new contact enquiry was saved in Online Quran College CMS.",
+    "",
+    ...rows.map(([label, value]) => `${label}: ${value}`),
+    "",
+    "Message:",
+    message,
+    "",
+    `Open in Admin → Contacts: ${adminUrl}`,
+    "",
+    "Internal notification only. No email was sent to the person who submitted the form.",
+  ].join("\\n");
+  const cell = "padding:7px 10px;border-bottom:1px solid #e3ead8;vertical-align:top;text-align:left;";
+  const html = `<!doctype html><html lang="en"><body style="margin:0;padding:16px;background:#f6f8f3;font-family:Arial,Helvetica,sans-serif;color:#1d2a1f;">
+<div style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #dfe7d6;border-radius:12px;overflow:hidden;">
+<div style="background:#0D4A1C;color:#ffffff;padding:14px 18px;font-size:17px;font-weight:bold;">New OQC website enquiry · ${escapeHtml(reference)}</div>
+<table role="presentation" style="width:100%;border-collapse:collapse;font-size:14px;">
+${rows.map(([label, value]) => `<tr><th scope="row" style="${cell}width:34%;color:#4a5a4c;font-weight:normal;">${escapeHtml(label)}</th><td style="${cell}font-weight:bold;">${escapeHtml(value)}</td></tr>`).join("\\n")}
+</table>
+<div style="padding:14px 18px;font-size:14px;"><p style="margin:0 0 6px;color:#4a5a4c;">Message</p><p style="margin:0;white-space:pre-wrap;">${escapeHtml(message)}</p></div>
+<div style="padding:4px 18px 18px;"><a href="${escapeHtml(adminUrl)}" style="display:inline-block;background:#0C6C0C;color:#ffffff;text-decoration:none;padding:10px 16px;border-radius:999px;font-weight:bold;">Open in Admin → Contacts</a></div>
+<div style="padding:10px 18px;background:#fbf6e8;color:#6b5a2a;font-size:12px;">Internal notification from onlinequrancollege.com. Nothing was sent to the parent or learner.</div>
 </div></body></html>`;
   return { subject, html, text };
 }
@@ -125,13 +174,13 @@ export function idempotencyKey(reference, config) {
   return `oqc-usa-lead/${reference}/${route}`;
 }
 
-export async function sendLeadEmail({ config, message, reference, fetchImpl = fetch, timeoutMs = 10000 }) {
+export async function sendLeadEmail({ config, message, reference, source = "usa_landing_page", fetchImpl = fetch, timeoutMs = 10000 }) {
   let response;
   try {
     response = await fetchImpl(RESEND_ENDPOINT, {
       method: "POST",
       headers: { Authorization: `Bearer ${config.apiKey}`, "Content-Type": "application/json", "Idempotency-Key": idempotencyKey(reference, config) },
-      body: JSON.stringify({ from: config.from, to: config.to, subject: message.subject, html: message.html, text: message.text, tags: [{ name: "source", value: "usa_landing_page" }] }),
+      body: JSON.stringify({ from: config.from, to: config.to, subject: message.subject, html: message.html, text: message.text, tags: [{ name: "source", value: ["usa_landing_page", "website_trial", "website_contact"].includes(source) ? source : "website_trial" }] }),
       signal: AbortSignal.timeout(timeoutMs),
     });
   } catch (error) {
