@@ -184,3 +184,41 @@ test("entity names and market hubs carry the 3 Nov keyword and schema updates", 
     assert.ok(qs.some((q) => /suitable for kids/.test(q)) && qs.some((q) => /online Hifz classes/.test(q)), slug);
   }
 });
+
+test("teacher page includes a factual parent pre-enrolment checklist", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const source = await readFile(new URL("../src/app/(site)/teachers/page.jsx", import.meta.url), "utf8");
+  assert.match(source, /Questions parents can confirm before regular lessons/);
+  assert.match(source, /These are questions to ask, not claims that every arrangement is automatically included/);
+  assert.match(source, /whether sessions are recorded/);
+  assert.match(source, /The Weekend plan is excluded/);
+});
+
+test("organization JSON-LD does not publish an unverified CMS founding year", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const source = await readFile(new URL("../src/app/(site)/layout.jsx", import.meta.url), "utf8");
+  assert.doesNotMatch(source, /legalName:/);
+  assert.match(source, /organizationPostalAddress\(contact\)/);
+  assert.doesNotMatch(source, /foundingDate/);
+});
+
+
+test("Organization sameAs includes only the exact OQC Trustpilot profile", async () => {
+  const { organizationIdentityProfiles } = await import("../src/lib/seo.js");
+  assert.deepEqual(organizationIdentityProfiles({
+    trustpilot: "https://www.trustpilot.com/review/onlinequrancollege.com",
+    facebook: "https://www.facebook.com/OnlineQuranCollegeLtdUK",
+    instagram: "https://www.instagram.com/online_quran_college",
+    x: "https://x.com/OnlineQuranClg",
+  }), ["https://www.trustpilot.com/review/onlinequrancollege.com"]);
+  assert.deepEqual(organizationIdentityProfiles({ trustpilot: "https://www.trustpilot.com/review/onlinequrancollege.com/" }), ["https://www.trustpilot.com/review/onlinequrancollege.com"]);
+  assert.deepEqual(organizationIdentityProfiles({ trustpilot: "https://www.trustpilot.com/review/another-company.com" }), []);
+  assert.deepEqual(organizationIdentityProfiles({ trustpilot: "http://www.trustpilot.com/review/onlinequrancollege.com" }), []);
+  assert.deepEqual(organizationIdentityProfiles({}), []);
+});
+
+test("UAE advertiser guidance points to the official Media Council guidelines", async () => {
+  const { MARKET_GUIDES } = await import("../src/lib/market-guides.js");
+  const source = MARKET_GUIDES["united-arab-emirates"].sources.find((item) => item.name.includes("Advertiser Permit"));
+  assert.equal(source.url, "https://uaemc.gov.ae/en/guidelines/");
+});

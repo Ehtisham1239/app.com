@@ -75,6 +75,33 @@ export default async function TeachersPage() {
           </div>
         )}
       </section>
+      <section aria-labelledby="parent-checklist" className="page-wrap max-w-5xl pb-16">
+        <div className="rounded-3xl border border-line bg-paper p-6 sm:p-8">
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-leaf-700">A clear decision before enrolment</p>
+          <h2 id="parent-checklist" className="mt-2 text-2xl text-mushaf-900">Questions parents can confirm before regular lessons</h2>
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-soft">A teacher profile is a starting point, not a substitute for discussing the learner’s needs. Before accepting a regular timetable, ask Admissions to confirm the details below for the proposed teacher and package.</p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <article className="surface p-5">
+              <h3 className="font-semibold text-mushaf-900">Teacher fit and qualifications</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-soft">Which qualification and teaching experience are relevant to this course? Which languages can the teacher use for explanations, and is the teacher available at the requested time?</p>
+            </article>
+            <article className="surface p-5">
+              <h3 className="font-semibold text-mushaf-900">Learning and progress feedback</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-soft">What will the learner practise? How will recitation or memorisation be checked, what feedback is provided, and how can a parent discuss progress or request an academic review?</p>
+            </article>
+            <article className="surface p-5">
+              <h3 className="font-semibold text-mushaf-900">Child participation and privacy</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-soft">Who should submit and manage a child’s enquiry? Can a parent join the lesson? Ask whether sessions are recorded, who can access any recording, how long it is kept, and how concerns are raised.</p>
+            </article>
+            <article className="surface p-5">
+              <h3 className="font-semibold text-mushaf-900">Timetable, trial and fees</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-soft">Confirm the lesson duration, weekly frequency, local time zone, monthly fee and currency, cancellation or rescheduling terms, and whether the chosen plan is eligible for the three-day trial. The Weekend plan is excluded.</p>
+            </article>
+          </div>
+          <p className="mt-5 text-sm text-ink-soft">These are questions to ask, not claims that every arrangement is automatically included. Get the answers that matter to your family before confirming regular classes.</p>
+          <Link href="/free-trial" className="mt-5 inline-flex items-center gap-2 font-semibold text-leaf-700 underline underline-offset-4">Discuss your learner’s needs with Admissions <ArrowRight className="size-4" aria-hidden="true" /></Link>
+        </div>
+      </section>
       <section aria-labelledby="teacher-questions" className="page-wrap max-w-3xl pb-16">
         <h2 id="teacher-questions" className="text-2xl">Questions about teachers</h2>
         <div className="mt-6"><FaqList faqs={TEACHER_FAQS} defaultOpen={0} /></div>

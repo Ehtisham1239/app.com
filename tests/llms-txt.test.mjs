@@ -29,11 +29,13 @@ test("Organization data names the five online markets and the subjects taught", 
   assert.equal(INDEXED_MARKETS.length, 5);
 });
 
-test("llms.txt lists the official profiles from the same CMS setting as the footer and sameAs", () => {
+test("llms.txt distinguishes configured profile links from Organization identity references", () => {
   assert.match(route, /getSettings\(\)/);
   assert.match(route, /settings\?\.\["site\.social"\]/);
-  assert.match(route, /## Official profiles/);
-  assert.match(route, /one global identity \(online-only, no walk-in office\)/);
+  assert.match(route, /## Profile links configured on this website/);
+  assert.match(route, /does not independently verify account ownership/);
+  assert.match(route, /organizationIdentityProfiles\(settings\?\.\["site\.social"\]\)/);
+  assert.match(route, /exact OQC Trustpilot profile URL linked by this website/);
   assert.match(route, /\^https:\\\/\\\/\[\^\\s\]\+\$/, "only https profile URLs are listed");
 });
 
@@ -51,4 +53,11 @@ test("llms.txt turns its site links into absolute URLs before serving", () => {
   assert.match(route, /lines\.join\("\\n"\)\.replaceAll\("\]\(\/", `\]\(\$\{SITE_URL\}\/`\)/);
   const sample = "- [Fees](/pricing)\n- [Trustpilot](https://www.trustpilot.com/review/x)".replaceAll("](/", "](https://www.onlinequrancollege.com/");
   assert.equal(sample, "- [Fees](https://www.onlinequrancollege.com/pricing)\n- [Trustpilot](https://www.trustpilot.com/review/x)");
+});
+
+test("llms.txt exposes country-specific official references without calling them endorsements", () => {
+  assert.match(route, /MARKET_GUIDES/);
+  assert.match(route, /## Market guidance and primary references/);
+  assert.match(route, /independent public guidance, not endorsements of OQC/);
+  assert.match(route, /guide\.sources\.map\(source =>/);
 });
