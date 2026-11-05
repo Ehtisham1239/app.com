@@ -1,6 +1,6 @@
 import { Award, CalendarCheck } from "lucide-react";
 import { formatDate } from "@/lib/format";
-import { CATEGORIES, SCORE_MAX, attendancePercent, marksSummary, periodLabel, ratingLabel } from "@/lib/progress/constants";
+import { ASSESSMENT_AREAS, CATEGORIES, COURSE_STANDARD_OPTIONS, EFFORT_OPTIONS, SCORE_MAX, attendancePercent, marksSummary, periodLabel, ratingLabel } from "@/lib/progress/constants";
 
 const PILL = {
   excellent: "bg-leaf-700 text-white",
@@ -85,6 +85,31 @@ export function ProgressDmc({ report, studentName, clientId, clientName, student
           </table>
         </div>
 
+        {d.assessment_areas && Object.keys(d.assessment_areas).length > 0 && (
+          <section className="mt-5 overflow-hidden rounded-xl border border-mushaf-900/20">
+            <div className="bg-mushaf-900 px-4 py-3 text-white">
+              <h3 className="font-semibold">Monthly learning assessment · 11 areas</h3>
+              <p className="text-xs text-white/75">Effort and course standard are shown as recorded by the teacher and approved by OQC.</p>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse text-left text-sm">
+                <thead className="bg-paper text-xs uppercase tracking-wide text-ink-soft"><tr><th className="px-3 py-2">Learning area</th><th className="px-3 py-2">What was covered</th><th className="px-3 py-2">Effort</th><th className="px-3 py-2">Course standard</th></tr></thead>
+                <tbody>
+                  {ASSESSMENT_AREAS.map((area) => {
+                    const item = d.assessment_areas?.[area.key] || {};
+                    const effort = EFFORT_OPTIONS.find((o) => o.value === item.effort)?.label || "—";
+                    const standard = COURSE_STANDARD_OPTIONS.find((o) => o.value === item.standard)?.label || "—";
+                    return <tr key={area.key} className="border-t border-line odd:bg-white even:bg-leaf-50/50">
+                      <th scope="row" className="px-3 py-2.5 font-semibold text-mushaf-900">{area.label}</th>
+                      <td className="max-w-[20rem] whitespace-pre-line break-words px-3 py-2.5 text-ink-soft">{item.summary || "—"}</td>
+                      <td className="px-3 py-2.5">{effort}</td><td className="px-3 py-2.5">{standard}</td>
+                    </tr>;
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        )}
         <div className="mt-5 grid gap-4 sm:grid-cols-[auto_1fr] sm:items-stretch">
           <div className="flex min-w-44 flex-col items-center justify-center rounded-xl border border-line bg-white/85 px-4 py-3 text-center">
             <CalendarCheck className="size-5 text-leaf-700" aria-hidden="true" />
