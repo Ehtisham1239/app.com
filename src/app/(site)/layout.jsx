@@ -4,7 +4,7 @@ import { MobileActionBar } from "@/components/site/mobile-action-bar";
 import { ReviewsButton } from "@/components/site/reviews-button";
 import { reviewsButtonConfig } from "@/lib/reviews-button";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { safeJsonLd, organizationPostalAddress } from "@/lib/seo";
+import { safeJsonLd, organizationPostalAddress, verifiedOrganizationProfiles } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
 import { CampaignAttribution } from "@/components/site/campaign-attribution";
 import { SiteHeader } from "@/components/site/header";
@@ -52,7 +52,7 @@ export default async function SiteLayout({ children }) {
         Skip to content
       </a>
       <TopBar announcement={settings["site.announcement"]} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", "@graph": [{ "@type": "WebSite", "@id": `${SITE_URL}/#website`, name: brandName, alternateName: "OQC", url: SITE_URL, inLanguage: "en-GB", publisher: { "@id": `${SITE_URL}/#organization` } }, { "@type": ["EducationalOrganization", "Organization"], "@id": `${SITE_URL}/#organization`, name: brandName, alternateName: "OQC", legalName: identity.legal_name, url: SITE_URL, logo: `${SITE_URL}/brand/logo.webp`, image: [`${SITE_URL}/brand/logo.webp`, `${SITE_URL}/brand/hero.webp`], ...(organizationPostalAddress(contact) ? { address: organizationPostalAddress(contact) } : {}), description: identity.description, email: contact.email, telephone: contact.phone, ...((contact.email || contact.phone) ? { contactPoint: { "@type": "ContactPoint", contactType: "Admissions enquiries", email: contact.email, telephone: contact.phone, url: `${SITE_URL}/contact` } } : {}), areaServed: AREA_SERVED, knowsAbout: KNOWS_ABOUT, publishingPrinciples: `${SITE_URL}/editorial-standards`, sameAs: Object.values(settings["site.social"] || {}).filter(u => typeof u === "string" && u.startsWith("http")) }] }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", "@graph": [{ "@type": "WebSite", "@id": `${SITE_URL}/#website`, name: brandName, alternateName: "OQC", url: SITE_URL, inLanguage: "en-GB", publisher: { "@id": `${SITE_URL}/#organization` } }, { "@type": ["EducationalOrganization", "Organization"], "@id": `${SITE_URL}/#organization`, name: brandName, alternateName: "OQC", legalName: identity.legal_name, url: SITE_URL, logo: `${SITE_URL}/brand/logo.webp`, image: [`${SITE_URL}/brand/logo.webp`, `${SITE_URL}/brand/hero.webp`], ...(organizationPostalAddress(contact) ? { address: organizationPostalAddress(contact) } : {}), description: identity.description, email: contact.email, telephone: contact.phone, ...((contact.email || contact.phone) ? { contactPoint: { "@type": "ContactPoint", contactType: "Admissions enquiries", email: contact.email, telephone: contact.phone, url: `${SITE_URL}/contact` } } : {}), areaServed: AREA_SERVED, knowsAbout: KNOWS_ABOUT, publishingPrinciples: `${SITE_URL}/editorial-standards`, sameAs: verifiedOrganizationProfiles(settings["site.social"]) }] }) }} />
       <CampaignAttribution />
       <SiteHeader menu={header} courses={courseLinks} brandName={brandName} />
       <main id="main">{children}</main>
