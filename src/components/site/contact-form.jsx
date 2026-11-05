@@ -41,9 +41,23 @@ export function ContactForm({ id, consentText, successText }) {
       ({ data, error } = await (await import("@/lib/supabase/public")).getPublicBrowserClient().rpc("submit_contact_message", { payload: { ...form, email: form.email.trim().toLowerCase(), utm, source: utm.utm_source || "website" } }));
     } catch (cause) { error = cause; }
     if (error) return setState({ sending: false, error: error.message || "Could not send. Please try WhatsApp instead.", done: null });
+    const reference = typeof data?.reference === "string" && /^MSG-[A-Z0-9-]{4,32}$/.test(data.reference) && data.reference !== "MSG-RECEIVED" ? data.reference : "";
+    if (reference) {
+      try {
+        const notification = await fetch("/api/lead-notification", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ reference, email: form.email.trim().toLowerCase() }),
+          cache: "no-store",
+          signal: AbortSignal.timeout(6000),
+        });
+        if (!notification.ok) console.warn("OQC internal contact notification was not confirmed", reference, notification.status);
+      } catch {
+        console.warn("OQC internal contact notification request failed", reference);
+      }
+    }
     announceLeadSaved({ formType: "contact", country: form.country, reference: data?.reference, honeypot: form.website });
     setState({ sending: false, error: "", done: null });
-    const reference = typeof data?.reference === "string" && /^MSG-[A-Z0-9-]{4,32}$/.test(data.reference) && data.reference !== "MSG-RECEIVED" ? data.reference : "";
     router.push("/contact/thank-you" + (reference ? "?ref=" + encodeURIComponent(reference) : ""));
   }
 
