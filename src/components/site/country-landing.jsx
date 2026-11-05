@@ -55,8 +55,8 @@ export function CountryLanding({ hub, fee, teachers = [], trialHref, trustpilotP
       <section aria-labelledby="hub-parent-progress" className="rounded-3xl border border-line bg-white p-6 sm:p-8">
         <div className="max-w-3xl">
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-leaf-700">For enrolled families</p>
-          <h2 id="hub-parent-progress" className="mt-2 text-2xl">See the learning progress that has been reviewed and published</h2>
-          <p className="mt-3 leading-relaxed text-ink-soft">Parents and guardians can sign in to view their linked learner’s published results, certificates and any monthly progress reports made available by the college. Reports are shown only after staff review and publication; a report may not be available for every month.</p>
+          <h2 id="hub-parent-progress" className="mt-2 text-2xl">Parent portal for approved results and certificates</h2>
+          <p className="mt-3 leading-relaxed text-ink-soft">Parents and guardians can sign in to view results and certificates published for their linked learner. A monthly progress report appears only if the college has completed its review and published it; reports are not currently available for every learner or month.</p>
           <div className="mt-5 flex flex-wrap gap-3">
             <Link className="btn btn-outline" href="/parents">Open the parent portal</Link>
             <Link className="inline-flex items-center gap-1.5 py-2 font-semibold text-leaf-700 underline underline-offset-4" href="/blog/parent-teacher-quran-progress-review">How to review learning progress <ArrowRight className="size-4" aria-hidden="true" /></Link>
