@@ -8,7 +8,7 @@ The shared site layout emits one JSON-LD graph containing:
 - WebSite with a stable `/#website` identifier and publisher reference.
 - EducationalOrganization with a stable `/#organization` identifier.
 - Brand name and alternate name, canonical website, logo and representative site imagery.
-- CMS-configured legal name, description, public email and phone/contact point.
+- Brand name, description, public email and phone/contact point. The optional `legalName` property is withheld until the exact active Companies House entity is confirmed.
 - Online service areas for the five indexed markets and a list of the education topics shown on the site.
 - Public profile URLs configured in CMS social settings as `sameAs` references.
 - A postal address only if a complete street address and a two-letter country code are explicitly configured.
@@ -37,7 +37,7 @@ No new third-party profile was created, no editorial outreach was sent, and no e
 
 ## Remaining verification gates
 1. Owner/admin should verify each existing social and Trustpilot account and confirm public contact details before editing third-party profiles.
-2. Verify the legal entity directly on the official Companies House record before adding a company number, registry URL, registered-office address or incorporation date to structured data.
+2. Confirm the exact active Companies House entity and its connection to OQC; then verify the legal name, company number and registered office directly on the official record before adding any of them to structured data.
 3. Keep the CMS `established` field out of JSON-LD until the 2018 brand-start claim has documentary evidence and owner approval.
 4. Use Google's Rich Results Test and Search Console URL Inspection on the deployed homepage. A syntactically valid schema graph does not guarantee a knowledge panel, rich result or ranking improvement.
 5. Obtain owner approval before any external publisher submission or outreach.
