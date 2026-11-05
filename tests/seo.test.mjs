@@ -197,7 +197,20 @@ test("teacher page includes a factual parent pre-enrolment checklist", async () 
 test("organization JSON-LD does not publish an unverified CMS founding year", async () => {
   const { readFile } = await import("node:fs/promises");
   const source = await readFile(new URL("../src/app/(site)/layout.jsx", import.meta.url), "utf8");
-  assert.match(source, /legalName: identity\.legal_name/);
+  assert.doesNotMatch(source, /legalName:/);
   assert.match(source, /organizationPostalAddress\(contact\)/);
   assert.doesNotMatch(source, /foundingDate/);
+});
+
+
+test("Organization sameAs includes only the exact OQC Trustpilot profile", async () => {
+  const { organizationIdentityProfiles } = await import("../src/lib/seo.js");
+  assert.deepEqual(organizationIdentityProfiles({
+    trustpilot: "https://www.trustpilot.com/review/onlinequrancollege.com",
+    facebook: "https://www.facebook.com/OnlineQuranCollegeLtdUK",
+    instagram: "https://www.instagram.com/online_quran_college",
+    x: "https://x.com/OnlineQuranClg",
+  }), ["https://www.trustpilot.com/review/onlinequrancollege.com"]);
+  assert.deepEqual(organizationIdentityProfiles({ trustpilot: "https://www.trustpilot.com/review/another-company.com" }), []);
+  assert.deepEqual(organizationIdentityProfiles({ trustpilot: "http://www.trustpilot.com/review/onlinequrancollege.com" }), []);
 });
