@@ -1,11 +1,10 @@
 // Person data for public teacher profiles. Only fields the teacher's public profile already
 // shows are used; private ones (email, phone, employee code, timezone, shift) never are.
-// Teachers appear only after Admissions marks them public in the CMS.
+// Teachers appear only after Admissions marks them public in the CMS. Qualification text stays visible on profile pages; it is not emitted as formal credential markup until evidence-backed verification is available.
 const list = (v) => (Array.isArray(v) ? v : String(v || "").split(/[,\n]/)).map((x) => String(x).trim()).filter(Boolean);
 
 export function teacherPerson(t, siteUrl) {
   if (!t?.slug || !t?.display_name) return null;
-  const quals = list(t.qualifications);
   return {
     "@type": "Person",
     "@id": `${siteUrl}/teachers/${t.slug}#person`,
@@ -16,7 +15,6 @@ export function teacherPerson(t, siteUrl) {
     ...(t.photo_url ? { image: t.photo_url } : {}),
     ...(list(t.languages).length ? { knowsLanguage: list(t.languages) } : {}),
     ...(list(t.specialties).length ? { knowsAbout: list(t.specialties) } : {}),
-    ...(quals.length ? { hasCredential: quals.map((name) => ({ "@type": "EducationalOccupationalCredential", name })) } : {}),
   };
 }
 
