@@ -10,7 +10,7 @@ OQC already has a stronger technical and conversion foundation than a generic SE
 - Country/city route generation, canonical/noindex-aware sitemap inclusion, explicit search-agent robots policy, local time-zone scheduling and currency-aware fee guidance.
 - Country hubs with locally relevant planning guidance, official regulator/government references, FAQ and Service JSON-LD, course paths, trial CTAs and further reading.
 - A short trial form with country/time-zone capture, age band, teacher preference, explicit enquiry consent, marketing opt-in defaulting to false, attribution capture and a server-side RPC.
-- Teacher profiles, consented on-site testimonials, Trustpilot outbound review link and a public editorial-standards page.
+- Teacher profiles, CMS support for consent-recorded testimonials, Trustpilot outbound review link and a public editorial-standards page.
 
 The highest-value competitor gap is therefore not “add more country keywords.” It is to make OQC's claimed learning process independently visible and verifiable: actual learner progression evidence, parent-facing progress communication, course-level milestones, teacher evidence and original practice resources. Do not claim a parent dashboard or per-lesson progress reports until the operational product really provides them.
 
@@ -97,7 +97,7 @@ A public web-index/open snapshot of the OQC homepage returned an older page vers
 
 **Required action:** after the PR deployment, fetch the live homepage and old UK landing URLs directly, compare rendered HTML to the CMS, inspect canonical/redirect headers, then use verified Search Console URL Inspection to request recrawl of the canonical URLs. If the old claims still appear in the current HTML, remove or substantiate them before requesting indexing. If only stale index cache remains, do not change correct page copy to chase the stale snapshot; request recrawl and monitor. Prioritise the canonical /pricing URL and any parameterised currency URLs so stale seven-day-trial text is not left as a competing search snippet. Do not publish any of the legacy statistics/claims unless the owner supplies supporting records.
 
-The current teacher records contain owner-confirmation notes dated 3 November 2026 for the six public teacher profiles, including qualifications and consent to publish. Preserve that audit trail; do not broaden those individual confirmations into blanket claims that every tutor has the same credential.
+The live CMS aggregate query found six active/public teacher records; all six contain qualification text and a non-empty verification-note field. This is internal record metadata, not independent credential verification or proof of public-display consent. HR must inspect the underlying evidence and consent for each profile before stronger public claims. The live CMS aggregate query found zero published testimonials and zero published testimonials with a consent timestamp; therefore do not state that OQC currently displays a published consented testimonial set.
 
 ## Content / AEO / GEO implementation plan
 1. **Progress evidence centre:** Publish an accurate explanation of how a learner is assessed, what feedback families receive, how practice is assigned and how progress is reviewed. Add anonymised examples only with explicit parent/student permission and no identifying details.
@@ -148,3 +148,31 @@ The current teacher records contain owner-confirmation notes dated 3 November 20
 **Ready for controlled implementation:** schema authenticity correction and this evidence-based audit document.  
 **Not authorised/verified by this audit:** external profile edits, GBP creation, paid/editorial link placement, unsupported claims, new country office/address, or public claims about unverified dashboards, tutor credentials, student counts or response-time SLAs.  
 **Pause condition:** after approved PR changes are merged, production deployment is READY, and live smoke/SEO checks are recorded, provide a final release report and stop. No recurring monitoring is started by this document.
+
+
+---
+
+## 5 November 2026 verification addendum
+
+### New direct-page competitor observations
+- Learn Quran Academy's accessible homepage describes monthly child progress assessment, a student web portal, parent supervision, and a three-day trial. Its own site claims are not independently verified by this audit: https://learnquraan.co.uk/
+- QuraanClasses.us describes monthly progress assessments, reports and parent-facing course/teacher information: https://www.quraanclasses.us/
+- Nouf's country page presents country/time-zone-specific scheduling and local currency, and its fees page explains price by weekly lesson frequency and lesson length: https://www.noufquranacademy.com/online-quran-classes and https://www.noufquranacademy.com/fees
+- Canada-specific pages reviewed include a fee table by lesson length/frequency and province/time-zone messaging: https://canadianquranacademy.com/pricing/ and https://herquranacademy.com/online-quran-classes-canada/
+- UAE-specific pages reviewed include Asia/Dubai scheduling and AED pricing: https://salamcampus.com/online-quran-classes-uae/ and https://herquranacademy.com/online-quran-classes-uae/
+
+### OQC live CMS checks performed for this addendum
+- `site.analytics` currently has GTM `GTM-W7CMZS53` and GA4 `G-57TGPTDNT4` enabled in settings. This proves configuration only, not successful live event delivery or correct conversion attribution.
+- Six active/public teacher records exist; all six have non-empty qualification text, biography and language data, and all six have a non-empty internal verification-note field. The contents and supporting certificates still require HR review; no public claim of Ijazah, Al-Azhar, DBS, background checks or other credential status is authorised by these aggregate counts.
+- Zero testimonials are currently published; zero published testimonials have a consent timestamp. The testimonial system's schema supports consent records, but no published testimonial count/rating should be advertised from this snapshot.
+- The public About page content reviewed in CMS does not state a founding year. The CMS identity setting still contains `established=2018`; the schema fix in this PR deliberately stops turning that field into `foundingDate`.
+
+### Citation correction in source
+The UAE market guide previously linked to the UAE Media Council generic news index for its Advertiser Permit reference. This PR replaces that destination with the official Advertiser Guide PDF:
+https://uaemc.gov.ae/wp-content/uploads/2025/08/Advertiser-Guide.pdf
+A regression test asserts the official host and document path. This source is regulatory guidance, not an endorsement of OQC and not a backlink.
+
+### Search policy and claims
+- Google says Organization structured data can help it understand and disambiguate an organization; relevant properties should be accurate and are not a ranking guarantee. The guidance recommends Rich Results Test and URL Inspection after deployment: https://developers.google.com/search/docs/appearance/structured-data/organization
+- ACCC guidance says online reviews must be genuine and not fake or misleading: https://www.accc.gov.au/consumers/advertising-and-promotions/online-reviews-for-product-and-services
+- UAE advertiser permit guide: https://uaemc.gov.ae/wp-content/uploads/2025/08/Advertiser-Guide.pdf
