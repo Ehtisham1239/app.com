@@ -28,4 +28,6 @@ test("teacher preference is presented as a request with availability confirmatio
   assert.match(trialPage, /request a female teacher[\s\S]*Admissions confirms whether a suitable female teacher is available/i);
   assert.match(llms, /share a teacher preference when booking[\s\S]*Admissions confirms availability/i);
   assert.match(learningGuide, /share a teacher preference[\s\S]*Admissions confirms whether a suitable teacher is available/i);
+  assert.match(usaLanding, /Teacher preference[\s\S]*Admissions confirms whether a suitable teacher is available/i);
+  assert.doesNotMatch(usaLanding, /Morning, afternoon and evening slots are available across US time zones/i);
 });
