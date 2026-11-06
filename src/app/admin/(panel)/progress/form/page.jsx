@@ -161,7 +161,7 @@ function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChang
                 </Field>
                 <ProgressDetailsFields details={details} onChange={setDetail} idPrefix="teacher" />
                 <Field label="Next month target & home practice" hint={`${plan.length}/2000 · shown to parents only after admin publication`}>
-                  <div className="mb-2 flex flex-wrap items-center justify-between gap-2"><span className="text-xs text-ink-faint">Use a structured template, then tailor it to the student's approved syllabus.</span><button type="button" className="btn btn-outline btn-sm" disabled={locked || !!busy} onClick={() => { if (!plan.trim() || window.confirm("Replace the current plan text with the blank monthly teaching-plan template?")) setPlan(MONTHLY_PLAN_TEMPLATE); }}>Insert monthly plan template</button></div>
+                  <div className="mb-2 flex flex-wrap items-center justify-between gap-2"><span className="text-xs text-ink-faint">Use a structured template, then tailor it to the learner’s approved syllabus.</span><button type="button" className="btn btn-outline btn-sm" disabled={locked || !!busy} onClick={() => { if (!plan.trim() || window.confirm("Replace the current plan text with the blank monthly teaching-plan template?")) setPlan(MONTHLY_PLAN_TEMPLATE); }}>Insert monthly plan template</button></div>
                   <textarea className="adm-input" rows={10} maxLength={2000} value={plan} onChange={(e) => setPlan(e.target.value)} placeholder="Teacher-assigned next steps, lesson focus and manageable home practice" />
                 </Field>
                 {detailProblem && <p role="alert" className="rounded-xl bg-rose-50 px-4 py-2.5 text-sm text-rose-800">{detailProblem}</p>}
