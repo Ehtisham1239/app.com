@@ -110,6 +110,8 @@ function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChang
   const client = current.clients?.[0];
   const missing = missingForSubmit(ratings, remarks, details);
   if (!client?.client_id) missing.push("Linked Client ID/name");
+  const requiredCount = CATEGORIES.length + 1 + (ASSESSMENT_AREAS.length * 2) + 1;
+  const completedCount = Math.max(0, requiredCount - missing.length);
   const detailProblem = detailsProblem(details);
   const save = async (submit) => {
     if (!current) return toast.error("Choose a student.");
@@ -149,7 +151,7 @@ function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChang
                   <p className="text-sm font-bold text-mushaf-900">Monthly ratings</p>
                   <p className="text-xs font-semibold text-ink-faint" aria-live="polite">{completedCount} of {requiredCount} required checks complete</p>
                 </div>
-                <div className="h-1.5 overflow-hidden rounded-full bg-line" aria-hidden="true"><div className="h-full rounded-full bg-leaf-600 transition-all" style={{ width: `${((7 - missingForSubmit(ratings, remarks).length) / 7) * 100}%` }} /></div>
+                <div className="h-1.5 overflow-hidden rounded-full bg-line" aria-hidden="true"><div className="h-full rounded-full bg-leaf-600 transition-all" style={{ width: `${(completedCount / requiredCount) * 100}%` }} /></div>
                 {CATEGORIES.map((c) => (
                   <RatingPicker key={c.key} name={`rating-${c.key}`} label={c.label} hint={c.hint} value={ratings[c.key]} onChange={(v) => setRatings((r) => ({ ...r, [c.key]: v }))} disabled={locked || !!busy} />
                 ))}
