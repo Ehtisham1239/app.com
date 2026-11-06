@@ -20,6 +20,13 @@ async function as(name, id = "") {
 }
 const one = async (text, params = []) => (await db.query(text, params)).rows[0];
 const full = { adab: "excellent", qaida: "good", dua: "good", tajweed: "satisfactory", engagement: "excellent", outcome: "good" };
+const assessmentDetails = {
+  assessment_version: 1,
+  assessment_areas: Object.fromEntries([
+    "qaida_reading", "tajweed", "makharij", "fluency", "hifz_revision",
+    "duas", "daily_sunnah", "surahs", "hadith", "namaz", "islamic_knowledge",
+  ].map((key) => [key, { effort: "not_applicable", standard: "not_applicable" }])),
+};
 const period = "2026-10-01";
 let studentA, studentB, guardian, reportId, token;
 
@@ -71,7 +78,7 @@ test("drafts allow gaps, submit needs all six ratings and remarks, repeats never
   await assert.rejects(db.query("select public.progress_save($1,$2,$3,'',true)", [studentA.id, period, full]), /all six ratings/);
   await assert.rejects(db.query("select public.progress_save($1,$2,$3,'Fine',false)", [studentA.id, period, { ...full, adab: "perfect" }]), /rating from the list/);
   await assert.rejects(db.query("select public.progress_save($1,$2,$3,'Fine',false)", [studentA.id, "2099-01-01", full]), /current or a past month/);
-  const again = (await one("select public.progress_save($1,$2,$3,'Steady progress in recitation.',true) id", [studentA.id, "2026-10-17", full])).id;
+  const again = (await one("select public.progress_save($1,$2,$3,'Steady progress in recitation.',true,null,$4) id", [studentA.id, "2026-10-17", full, assessmentDetails])).id;
   assert.equal(again, reportId, "same student and month is the same report");
   assert.equal((await one("select count(*)::int n from public.monthly_reports")).n, 1);
   await assert.rejects(db.query("select public.progress_save($1,$2,$3,'Changed',false)", [studentA.id, period, full]), /waiting for review/);
@@ -88,7 +95,7 @@ test("admin can request changes with a reason the teacher sees", async () => {
   await as("authenticated", ids.teacher);
   const r = await one("select status, change_note from public.monthly_reports where id=$1", [reportId]);
   assert.deepEqual(r, { status: "changes_requested", change_note: "Please add a note on dua practice." });
-  await db.query("select public.progress_save($1,$2,$3,'Steady progress. Practise duas daily at home.',true)", [studentA.id, period, full]);
+  await db.query("select public.progress_save($1,$2,$3,'Steady progress. Practise duas daily at home.',true,null,$4)", [studentA.id, period, full, assessmentDetails]);
   assert.equal((await one("select status from public.monthly_reports where id=$1", [reportId])).status, "submitted");
 });
 
