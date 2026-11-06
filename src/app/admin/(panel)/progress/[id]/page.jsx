@@ -27,7 +27,9 @@ function EditReport({ report, onDone }) {
   const [reason, setReason] = useState("");
   const [busy, setBusy] = useState(false);
   const problem = detailsProblem(details);
+  const missing = missingForSubmit(ratings, remarks, details);
   const save = async () => {
+    if (missing.length) return toast.error(`Complete the required report fields first: ${missing.join(", ")}.`);
     if (problem) return toast.error(problem);
     setBusy(true);
     const { error } = await db().rpc("progress_admin_update", { p_report_id: report.id, p_ratings: ratings, p_remarks: remarks, p_reason: reason, p_plan: plan, p_details: details });
