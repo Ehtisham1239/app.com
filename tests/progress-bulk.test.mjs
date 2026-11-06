@@ -58,6 +58,7 @@ test("Excel CSV UTF-8 BOM is stripped from the first heading", () => {
 test("bulk template includes all 11 areas and the current required selectors", () => {
   const template = progressBulkTemplateRows();
   assert.equal(template.length, 1);
+  assert.equal(template[0].remarks, "", "template must not prefill an unverified teacher remark");
   for (const area of ASSESSMENT_AREAS) {
     assert.ok(Object.hasOwn(template[0], area.key + "_effort"));
     assert.ok(Object.hasOwn(template[0], area.key + "_standard"));
