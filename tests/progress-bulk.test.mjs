@@ -40,11 +40,14 @@ test("all 11 areas require both selectors, and Not applicable satisfies each sel
   assert.equal(saved.assessment_areas.islamic_knowledge.standard, "not_applicable");
 });
 
-test("legacy reports stay distinguishable from new assessment-version reports", () => {
-  const legacy = detailsForm({ scores: { adab: 8 } });
-  assert.equal(legacy.assessment_version, null);
-  assert.deepEqual(missingForSubmit(ratings, "Teacher remark", legacy, false), []);
-  assert.equal(missingForSubmit(ratings, "Teacher remark", legacy, true).length, 22);
+test("older draft details are upgraded to the required 11-area assessment before submission", () => {
+  const legacyDraft = detailsForm({ scores: { adab: 8 } });
+  assert.equal(legacyDraft.assessment_version, 1);
+  assert.equal(missingForSubmit(ratings, "Teacher remark", legacyDraft).length, 22);
+  const areas = Object.fromEntries(ASSESSMENT_AREAS.map((area) => [area.key, {
+    effort: "not_applicable", standard: "not_applicable",
+  }]));
+  assert.deepEqual(missingForSubmit(ratings, "Teacher remark", { ...legacyDraft, assessment_areas: areas }), []);
 });
 
 test("Excel CSV UTF-8 BOM is stripped from the first heading", () => {
