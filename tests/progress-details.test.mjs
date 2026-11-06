@@ -18,6 +18,11 @@ const one = async (text, params = []) => (await db.query(text, params)).rows[0];
 const full = { adab: "excellent", qaida: "good", dua: "good", tajweed: "satisfactory", engagement: "excellent", outcome: "good" };
 const period = "2026-10-01";
 const details = {
+  assessment_version: 1,
+  assessment_areas: Object.fromEntries([
+    "qaida_reading", "tajweed", "makharij", "fluency", "hifz_revision",
+    "duas", "daily_sunnah", "surahs", "hadith", "namaz", "islamic_knowledge",
+  ].map((key) => [key, { effort: "not_applicable", standard: "not_applicable" }])),
   scores: { adab: "10", qaida: 8, dua: "8.5", tajweed: 6, engagement: 9, outcome: "" },
   attendance: { held: "12", attended: 11 },
   syllabus: { level: "  Noorani Qaida lesson 12 ", covered: "Lessons 10-12; Surah Al-Asr", memorised: "" },
@@ -58,6 +63,11 @@ test("details are validated and normalised on save", async () => {
   reportId = (await one("select public.progress_save($1,$2,$3,'Good month',false,'Next: Surah Al-Kawthar',$4) id", [student.id, period, full, details])).id;
   const saved = (await one("select details from public.monthly_reports where id=$1", [reportId])).details;
   assert.deepEqual(saved, {
+    assessment_version: 1,
+    assessment_areas: Object.fromEntries([
+      "qaida_reading", "tajweed", "makharij", "fluency", "hifz_revision",
+      "duas", "daily_sunnah", "surahs", "hadith", "namaz", "islamic_knowledge",
+    ].map((key) => [key, { effort: "not_applicable", standard: "not_applicable" }])),
     scores: { adab: 10, qaida: 8, dua: 8.5, tajweed: 6, engagement: 9 },
     attendance: { held: 12, attended: 11 },
     syllabus: { level: "Noorani Qaida lesson 12", covered: "Lessons 10-12; Surah Al-Asr" },
