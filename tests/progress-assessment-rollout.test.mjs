@@ -15,6 +15,8 @@ test("the production migration requires all 11 areas, accepts Not applicable, an
   assert.match(migration, /not_applicable/);
   assert.match(migration, /before insert or update of status, details on public\\.monthly_reports/i);
   assert.match(migration, /new\\.details is not distinct from old\\.details/i);
+  assert.match(migration, /new\\.status = 'changes_requested'/i);
+  assert.match(migration, /new\\.published is null/i);
   assert.match(migration, /Complete effort and course-standard selectors for all 11 learning areas/i);
   assert.match(migration, /Invalid effort rating/);
   assert.match(migration, /Invalid course standard/);
