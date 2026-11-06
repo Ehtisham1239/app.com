@@ -1,13 +1,14 @@
 import { NextResponse } from "next/server";
 import { getServerClient } from "@/lib/supabase/server";
 import { SITE_URL } from "@/lib/config";
+import { fetchWithoutRedirect, readBoundedText } from "@/lib/site-health-fetch";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
-
+const MAX_SITEMAP_BYTES = 2 * 1024 * 1024;
+const MAX_PAGE_BYTES = 1024 * 1024;
 const response = (body, status = 200) => NextResponse.json(body, {
-  status,
-  headers: { "Cache-Control": "private, no-store", "X-Robots-Tag": "noindex" },
+  status, headers: { "Cache-Control": "private, no-store", "X-Robots-Tag": "noindex" },
 });
 const clean = (value = "") => value.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').trim();
 const tag = (html, pattern) => clean(html.match(pattern)?.[1] || "");
@@ -17,26 +18,25 @@ async function inspectPage(url, origin) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 5000);
   try {
-    const res = await fetch(url, {
-      redirect: "follow",
+    if (new URL(url).origin !== origin || new URL(url).protocol !== "https:") {
+      return { url, status: 0, findings: ["URL is outside the configured OQC HTTPS origin."] };
+    }
+    const request = await fetchWithoutRedirect(url, {
       signal: controller.signal,
       headers: { "user-agent": "OQC-SiteHealth/1.0 (+https://www.onlinequrancollege.com/)" },
       cache: "no-store",
     });
-    const finalUrl = new URL(res.url);
-    if (finalUrl.origin !== origin) return { url, status: res.status, findings: ["Redirect leaves the OQC website; review manually."] };
-    if (!res.ok) {
-      findings.push(`HTTP response ${res.status}`);
-      return { url, status: res.status, findings };
-    }
-    const html = await res.text();
-    const title = tag(html, /<title[^>]*>([\s\S]*?)<\/title>/i);
-    const description = tag(html, /<meta\s+[^>]*name=["']description["'][^>]*content=["']([^"']*)["'][^>]*>/i)
-      || tag(html, /<meta\s+[^>]*content=["']([^"']*)["'][^>]*name=["']description["'][^>]*>/i);
-    const canonical = tag(html, /<link\s+[^>]*rel=["']canonical["'][^>]*href=["']([^"']*)["'][^>]*>/i)
-      || tag(html, /<link\s+[^>]*href=["']([^"']*)["'][^>]*rel=["']canonical["'][^>]*>/i);
-    const viewport = /<meta\s+[^>]*name=["']viewport["']/i.test(html);
-    const robots = tag(html, /<meta\s+[^>]*name=["']robots["'][^>]*content=["']([^"']*)["'][^>]*>/i);
+    const res = request.response;
+    if (request.redirected) return { url, status: res.status, findings: ["Redirect response; not followed for security. Review manually."] };
+    if (!res.ok) return { url, status: res.status, findings: [`HTTP response ${res.status}`] };
+    const html = await readBoundedText(res, MAX_PAGE_BYTES);
+    const title = tag(html, /<title[^>]*>([\\s\\S]*?)<\\/title>/i);
+    const description = tag(html, /<meta\\s+[^>]*name=["']description["'][^>]*content=["']([^"']*)["'][^>]*>/i)
+      || tag(html, /<meta\\s+[^>]*content=["']([^"']*)["'][^>]*name=["']description["'][^>]*>/i);
+    const canonical = tag(html, /<link\\s+[^>]*rel=["']canonical["'][^>]*href=["']([^"']*)["'][^>]*>/i)
+      || tag(html, /<link\\s+[^>]*href=["']([^"']*)["'][^>]*rel=["']canonical["'][^>]*>/i);
+    const viewport = /<meta\\s+[^>]*name=["']viewport["']/i.test(html);
+    const robots = tag(html, /<meta\\s+[^>]*name=["']robots["'][^>]*content=["']([^"']*)["'][^>]*>/i);
     if (!title) findings.push("Missing page title");
     if (!description) findings.push("Missing meta description");
     if (!canonical) findings.push("Missing canonical link");
@@ -44,11 +44,9 @@ async function inspectPage(url, origin) {
     if (/noindex/i.test(robots)) findings.push("Page declares noindex (verify intended indexing)");
     return { url, status: res.status, title: title.slice(0, 180), findings };
   } catch (error) {
-    findings.push(error?.name === "AbortError" ? "Request timed out" : "Could not fetch page");
+    findings.push(error?.name === "AbortError" ? "Request timed out" : error instanceof RangeError ? "Page response exceeds the 1 MiB safety limit" : "Could not fetch page");
     return { url, status: 0, findings };
-  } finally {
-    clearTimeout(timer);
-  }
+  } finally { clearTimeout(timer); }
 }
 
 export async function GET() {
@@ -63,33 +61,29 @@ export async function GET() {
   if (root.protocol !== "https:" && root.hostname !== "localhost") return response({ error: "The public site URL must use HTTPS." }, 503);
 
   try {
-    const sitemapResponse = await fetch(new URL("/sitemap.xml", root), { cache: "no-store", signal: AbortSignal.timeout(10000) });
+    const sitemapRequest = await fetchWithoutRedirect(new URL("/sitemap.xml", root), {
+      cache: "no-store", signal: AbortSignal.timeout(10000),
+    });
+    const sitemapResponse = sitemapRequest.response;
+    if (sitemapRequest.redirected) return response({ error: "The sitemap redirected; redirects are not followed by this security scanner." }, 502);
     if (!sitemapResponse.ok) return response({ error: `Sitemap returned HTTP ${sitemapResponse.status}.` }, 502);
-    const xml = await sitemapResponse.text();
-    const urls = [...xml.matchAll(/<loc>([\s\S]*?)<\/loc>/gi)]
+    const xml = await readBoundedText(sitemapResponse, MAX_SITEMAP_BYTES);
+    const urls = [...xml.matchAll(/<loc>([\\s\\S]*?)<\\/loc>/gi)]
       .map((match) => clean(match[1]))
       .map((value) => { try { return new URL(value, root); } catch { return null; } })
-      .filter((url) => url && url.origin === root.origin && ["http:", "https:"].includes(url.protocol))
+      .filter((url) => url && url.origin === root.origin && url.protocol === "https:")
       .map((url) => url.href);
     const unique = [...new Set(urls)];
-    if (!unique.length) return response({ error: "The sitemap did not contain any valid same-site URLs." }, 502);
-    const limit = 40;
-    const selected = unique.slice(0, limit);
+    if (!unique.length) return response({ error: "The sitemap did not contain any valid same-site HTTPS URLs." }, 502);
+    const selected = unique.slice(0, 40);
     const pages = [];
     for (let i = 0; i < selected.length; i += 6) {
-      const batch = await Promise.all(selected.slice(i, i + 6).map((url) => inspectPage(url, root.origin)));
-      pages.push(...batch);
+      pages.push(...await Promise.all(selected.slice(i, i + 6).map((url) => inspectPage(url, root.origin))));
     }
     const issues = pages.flatMap((page) => page.findings.map((finding) => ({ url: page.url, status: page.status, finding })));
     return response({
-      ok: true,
-      scannedAt: new Date().toISOString(),
-      sitemapUrl: new URL("/sitemap.xml", root).href,
-      totalUrls: unique.length,
-      scannedUrls: pages.length,
-      partial: unique.length > pages.length,
-      pages,
-      issues,
+      ok: true, scannedAt: new Date().toISOString(), sitemapUrl: new URL("/sitemap.xml", root).href,
+      totalUrls: unique.length, scannedUrls: pages.length, partial: unique.length > pages.length, pages, issues,
       summary: {
         pagesWithIssues: pages.filter((page) => page.findings.length).length,
         issueCount: issues.length,
@@ -99,7 +93,7 @@ export async function GET() {
         missingCanonicals: issues.filter((issue) => issue.finding === "Missing canonical link").length,
       },
     });
-  } catch {
-    return response({ error: "The site audit could not complete. Check the public sitemap and retry." }, 502);
+  } catch (error) {
+    return response({ error: error instanceof RangeError ? "The public sitemap exceeds the 2 MiB safety limit." : "The site audit could not complete. Check the public sitemap and retry." }, 502);
   }
 }
