@@ -107,11 +107,21 @@ declare
   v_standard text;
 begin
   -- Preserve unchanged historic submissions/published snapshots only.
-  if TG_OP = 'UPDATE'
-     and old.status in ('submitted', 'published')
-     and new.status = old.status
-     and new.details is not distinct from old.details then
-    return new;
+  if TG_OP = 'UPDATE' and new.details is not distinct from old.details then
+    -- No new submission is taking place when an unchanged legacy report is
+    -- returned to the teacher for corrections or withdrawn from the parent portal.
+    if old.status in ('submitted', 'published') and new.status = old.status then
+      return new;
+    end if;
+    if old.status = 'submitted' and new.status = 'changes_requested' then
+      return new;
+    end if;
+    if old.status = 'published'
+       and new.status = 'submitted'
+       and old.published is not null
+       and new.published is null then
+      return new;
+    end if;
   end if;
 
   if new.status not in ('submitted', 'published') then
