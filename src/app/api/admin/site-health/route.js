@@ -18,7 +18,8 @@ async function inspectPage(url, origin) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 5000);
   try {
-    if (new URL(url).origin !== origin || new URL(url).protocol !== "https:") {
+    const parsedUrl = new URL(url);
+    if (parsedUrl.origin !== origin || parsedUrl.protocol !== "https:") {
       return { url, status: 0, findings: ["URL is outside the configured OQC HTTPS origin."] };
     }
     const request = await fetchWithoutRedirect(url, {
@@ -28,15 +29,15 @@ async function inspectPage(url, origin) {
     });
     const res = request.response;
     if (request.redirected) return { url, status: res.status, findings: ["Redirect response; not followed for security. Review manually."] };
-    if (!res.ok) return { url, status: res.status, findings: [`HTTP response ${res.status}`] };
+    if (!res.ok) return { url, status: res.status, findings: [\`HTTP response \${res.status}\`] };
     const html = await readBoundedText(res, MAX_PAGE_BYTES);
-    const title = tag(html, /<title[^>]*>([\\s\\S]*?)<\\/title>/i);
-    const description = tag(html, /<meta\\s+[^>]*name=["']description["'][^>]*content=["']([^"']*)["'][^>]*>/i)
-      || tag(html, /<meta\\s+[^>]*content=["']([^"']*)["'][^>]*name=["']description["'][^>]*>/i);
-    const canonical = tag(html, /<link\\s+[^>]*rel=["']canonical["'][^>]*href=["']([^"']*)["'][^>]*>/i)
-      || tag(html, /<link\\s+[^>]*href=["']([^"']*)["'][^>]*rel=["']canonical["'][^>]*>/i);
-    const viewport = /<meta\\s+[^>]*name=["']viewport["']/i.test(html);
-    const robots = tag(html, /<meta\\s+[^>]*name=["']robots["'][^>]*content=["']([^"']*)["'][^>]*>/i);
+    const title = tag(html, /<title[^>]*>([\s\S]*?)<\/title>/i);
+    const description = tag(html, /<meta\s+[^>]*name=["']description["'][^>]*content=["']([^"']*)["'][^>]*>/i)
+      || tag(html, /<meta\s+[^>]*content=["']([^"']*)["'][^>]*name=["']description["'][^>]*>/i);
+    const canonical = tag(html, /<link\s+[^>]*rel=["']canonical["'][^>]*href=["']([^"']*)["'][^>]*>/i)
+      || tag(html, /<link\s+[^>]*href=["']([^"']*)["'][^>]*rel=["']canonical["'][^>]*>/i);
+    const viewport = /<meta\s+[^>]*name=["']viewport["']/i.test(html);
+    const robots = tag(html, /<meta\s+[^>]*name=["']robots["'][^>]*content=["']([^"']*)["'][^>]*>/i);
     if (!title) findings.push("Missing page title");
     if (!description) findings.push("Missing meta description");
     if (!canonical) findings.push("Missing canonical link");
@@ -66,9 +67,9 @@ export async function GET() {
     });
     const sitemapResponse = sitemapRequest.response;
     if (sitemapRequest.redirected) return response({ error: "The sitemap redirected; redirects are not followed by this security scanner." }, 502);
-    if (!sitemapResponse.ok) return response({ error: `Sitemap returned HTTP ${sitemapResponse.status}.` }, 502);
+    if (!sitemapResponse.ok) return response({ error: \`Sitemap returned HTTP \${sitemapResponse.status}.\` }, 502);
     const xml = await readBoundedText(sitemapResponse, MAX_SITEMAP_BYTES);
-    const urls = [...xml.matchAll(/<loc>([\\s\\S]*?)<\\/loc>/gi)]
+    const urls = [...xml.matchAll(/<loc>([\s\S]*?)<\/loc>/gi)]
       .map((match) => clean(match[1]))
       .map((value) => { try { return new URL(value, root); } catch { return null; } })
       .filter((url) => url && url.origin === root.origin && url.protocol === "https:")
