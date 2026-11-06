@@ -52,8 +52,8 @@ export const SEARCH_INTENTS = {
   },
   "/teachers": {
     "phrase": "female Quran teacher online",
-    "heading": "Female and male Quran teachers",
-    "intro": "Request a female Quran teacher online for your preferred learning language and class time. The coordinator confirms which online Quran teacher is available before lessons are arranged."
+    "heading": "Meet our Quran teachers",
+    "intro": "Explore current public teacher profiles and share any preference with Admissions. The team confirms suitability, teaching language and availability before lessons are arranged."
   },
   "/locations/united-arab-emirates": {
     "phrase": "online Quran classes in the UAE",
