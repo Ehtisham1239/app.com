@@ -137,4 +137,15 @@ test("lookup function is stable, security definer, and executable only by servic
   assert.equal(fn.anon_exec, false);
   assert.equal(fn.authenticated_exec, false);
   assert.equal(fn.service_exec, true);
+
+  const legacy = await one(`select
+    has_function_privilege('anon', p.oid, 'execute') as anon_exec,
+    has_function_privilege('authenticated', p.oid, 'execute') as authenticated_exec,
+    has_function_privilege('service_role', p.oid, 'execute') as service_exec
+    from pg_proc p join pg_namespace n on n.oid=p.pronamespace
+    where n.nspname='public' and p.proname='usa_lead_for_notification'`);
+  assert.ok(legacy, "legacy USA lookup remains identifiable for privilege verification");
+  assert.equal(legacy.anon_exec, false);
+  assert.equal(legacy.authenticated_exec, false);
+  assert.equal(legacy.service_exec, false);
 });
