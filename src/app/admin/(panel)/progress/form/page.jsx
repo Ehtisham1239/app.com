@@ -110,7 +110,7 @@ function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChang
   const client = current.clients?.[0];
   const missing = missingForSubmit(ratings, remarks, details);
   if (!client?.client_id) missing.push("Linked Client ID/name");
-  const detailProblem = detailsProblem(details);\n  const requiredCount = CATEGORIES.length + 1 + (ASSESSMENT_AREAS.length * 2);\n  const completedCount = Math.max(0, requiredCount - missing.length);
+  const detailProblem = detailsProblem(details);
   const save = async (submit) => {
     if (!current) return toast.error("Choose a student.");
     if (submit && missing.length) return toast.error(`Still needed: ${missing.join(", ")}.`);
