@@ -79,7 +79,7 @@ test("drafts allow gaps, submit needs all six ratings and remarks, repeats never
   await assert.rejects(db.query("select public.progress_save($1,$2,$3,'',true)", [studentA.id, period, full]), /all six ratings/);
   await assert.rejects(db.query("select public.progress_save($1,$2,$3,'Fine',false)", [studentA.id, period, { ...full, adab: "perfect" }]), /rating from the list/);
   await assert.rejects(db.query("select public.progress_save($1,$2,$3,'Fine',false)", [studentA.id, "2099-01-01", full]), /current or a past month/);
-  const again = (await one("select public.progress_save($1,$2,$3,'Steady progress in recitation.',true) id", [studentA.id, "2026-10-17", full])).id;
+  const again = (await one("select public.progress_save($1,$2,$3,'Steady progress in recitation.',true,null,$4) id", [studentA.id, "2026-10-17", full, validAssessment])).id;
   assert.equal(again, reportId, "same student and month is the same report");
   assert.equal((await one("select count(*)::int n from public.monthly_reports")).n, 1);
   await assert.rejects(db.query("select public.progress_save($1,$2,$3,'Changed',false)", [studentA.id, period, full]), /waiting for review/);
