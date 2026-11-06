@@ -12,11 +12,11 @@ import { SITE_URL } from "@/lib/config";
 
 export const revalidate = 300;
 
-export const metadata = contentMetadata({ title: "Our Teachers", seo_noindex: false }, { path: "/teachers", description: "Request a female or male Quran teacher for live one-to-one online lessons. Admissions confirms the teacher\u2019s qualifications, language and availability before enrolment." });
+export const metadata = contentMetadata({ title: "Our Teachers", seo_noindex: false }, { path: "/teachers", description: "Explore current public Quran teacher profiles and share any preference with Admissions. Suitability, language and availability are confirmed before enrolment." });
 
 const STANDARDS = [
   { icon: BadgeCheck, title: "Discuss teacher qualifications", text: "Before enrolment, ask Admissions to confirm the proposed teacher’s relevant qualifications, experience and suitability for your learner." },
-  { icon: HeartHandshake, title: "Female and male teachers", text: "Request a female or male teacher on the trial form. Admissions confirms which teacher is available for your time slot and teaching language." },
+  { icon: HeartHandshake, title: "Teacher preferences", text: "Share any teacher preference on the trial form. Admissions confirms whether a suitable teacher is available for your course, time slot and teaching language." },
   { icon: Languages, title: "Teaching language", text: "Tell Admissions which language helps the learner understand explanations. The team confirms the proposed teacher’s language availability before enrolment." },
   { icon: ShieldCheck, title: "Progress and feedback", text: "Ask how lesson feedback, progress updates and academic concerns are handled before regular classes begin." },
 ];
@@ -106,7 +106,7 @@ export default async function TeachersPage() {
         <h2 id="teacher-questions" className="text-2xl">Questions about teachers</h2>
         <div className="mt-6"><FaqList faqs={TEACHER_FAQS} defaultOpen={0} /></div>
       </section>
-      <CtaBand title="Meet your teacher in a free class" text="Tell us your preference for a female or male teacher and the times that suit you." whatsappHref={wa} />
+      <CtaBand title="Meet your teacher in a free class" text="Share any teacher preference and your preferred times. Admissions confirms availability before lessons are arranged." whatsappHref={wa} />
     </>
   );
 }
