@@ -32,7 +32,6 @@ const contact = async (email = "contact@example.test") => {
   };
   return (await one("select public.submit_contact_message($1::jsonb) as r", [payload])).r.reference;
 };
-
 const review = async (email = "reviewer@example.test") => {
   await as("anon");
   const payload = {
@@ -42,9 +41,8 @@ const review = async (email = "reviewer@example.test") => {
   };
   return (await one("select public.submit_review($1::jsonb) as r", [payload])).r.reference;
 };
-
 const lookup = async (reference, email) => {
-  await as("anon");
+  await as("service_role");
   return (await one("select public.lead_for_notification($1, $2) as r", [reference, email])).r;
 };
 
@@ -60,31 +58,40 @@ before(async () => {
 });
 after(async () => { await db.close(); });
 
-test("the just-submitted trial is available only to its matching email and reference", async () => {
+test("the just-submitted trial is available only to the server role and matching email/reference", async () => {
   const reference = await trial();
+  await as("anon");
+  await assert.rejects(db.query("select public.lead_for_notification($1, $2)", [reference, "parent@example.test"]), /permission denied/);
+  await as("authenticated");
+  await assert.rejects(db.query("select public.lead_for_notification($1, $2)", [reference, "parent@example.test"]), /permission denied/);
   const row = await lookup(reference, "PARENT@example.test");
   assert.equal(row.lead_type, "trial");
   assert.equal(row.reference, reference);
   assert.equal(row.email, "parent@example.test");
   assert.equal(row.learner_name, "Test Learner");
   assert.equal(await lookup(reference, "other@example.test"), null);
+  await as("anon");
   await assert.rejects(db.query("select * from public.trial_applications"), /permission denied/);
 });
 
 test("the just-submitted contact enquiry is available only to its matching email and reference", async () => {
   const reference = await contact();
+  await as("anon");
+  await assert.rejects(db.query("select public.lead_for_notification($1, $2)", [reference, "contact@example.test"]), /permission denied/);
   const row = await lookup(reference, "CONTACT@example.test");
   assert.equal(row.lead_type, "contact");
   assert.equal(row.reference, reference);
   assert.equal(row.email, "contact@example.test");
   assert.equal(row.message, "Please explain online class times.");
   assert.equal(await lookup(reference, "other@example.test"), null);
+  await as("anon");
   await assert.rejects(db.query("select * from public.contact_messages"), /permission denied/);
 });
 
-
 test("the just-submitted review is available only to its matching email and reference", async () => {
   const reference = await review();
+  await as("anon");
+  await assert.rejects(db.query("select public.lead_for_notification($1, $2)", [reference, "reviewer@example.test"]), /permission denied/);
   const row = await lookup(reference, "REVIEWER@example.test");
   assert.equal(row.lead_type, "review");
   assert.equal(row.reference, reference);
@@ -93,6 +100,7 @@ test("the just-submitted review is available only to its matching email and refe
   assert.equal(row.publish_consent, true);
   assert.equal(row.media_count, 0);
   assert.equal(await lookup(reference, "other@example.test"), null);
+  await as("anon");
   await assert.rejects(db.query("select * from public.review_submissions"), /permission denied/);
 });
 
@@ -115,14 +123,18 @@ test("notification lookup rejects honeypots, made-up references, spam, deleted a
   assert.equal(await lookup(deleted, "deleted@example.test"), null);
 });
 
-test("lookup function is stable, security definer, and executable for anonymous form submitters", async () => {
+test("lookup function is stable, security definer, and executable only by service_role", async () => {
   await as("postgres");
   const fn = await one(`select p.provolatile, p.prosecdef, array_to_string(p.proconfig, ',') as config,
-    has_function_privilege('anon', p.oid, 'execute') as anon_exec
+    has_function_privilege('anon', p.oid, 'execute') as anon_exec,
+    has_function_privilege('authenticated', p.oid, 'execute') as authenticated_exec,
+    has_function_privilege('service_role', p.oid, 'execute') as service_exec
     from pg_proc p join pg_namespace n on n.oid=p.pronamespace
     where n.nspname='public' and p.proname='lead_for_notification'`);
   assert.equal(fn.provolatile, "s");
   assert.equal(fn.prosecdef, true);
   assert.equal(fn.config, 'search_path=""');
-  assert.equal(fn.anon_exec, true);
+  assert.equal(fn.anon_exec, false);
+  assert.equal(fn.authenticated_exec, false);
+  assert.equal(fn.service_exec, true);
 });
