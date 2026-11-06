@@ -19,7 +19,7 @@ test("public teacher copy does not imply both teacher genders are currently avai
     ["learning guide", learningGuide],
     ["USA campaign landing page", usaLanding],
   ]) {
-    assert.doesNotMatch(source, /female and male teachers|female or male teacher|male teachers for brothers/i, name);
+    assert.doesNotMatch(source, /female and male teachers|male and female teachers|female or male teacher|male teachers for brothers/i, name);
   }
 });
 
