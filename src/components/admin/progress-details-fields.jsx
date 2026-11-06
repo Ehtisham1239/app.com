@@ -58,6 +58,40 @@ export function ProgressDetailsFields({ details, onChange, idPrefix = "details" 
           <Field label="Memorised" hint={`${details.syllabus.memorised.length}/600`}><textarea className="adm-input" rows={2} maxLength={600} value={details.syllabus.memorised} onChange={(e) => onChange("syllabus", "memorised", e.target.value)} placeholder="Surahs or duas learnt by heart this month" /></Field>
         </div>
       </section>
+      <section className="rounded-2xl border border-line bg-paper/60 p-4" aria-labelledby={`${idPrefix}-assessment-areas`}>
+        <h3 id={`${idPrefix}-assessment-areas`} className="text-sm font-bold text-mushaf-900">11 learning-area assessment <span className="font-normal text-ink-faint">(all areas required)</span></h3>
+        <p className="mt-1 text-xs text-ink-faint">Complete both selectors for every area. Choose “Not applicable” where an area is not part of this learner’s current course or was not assessed this month. Do not leave either selector blank.</p>
+        <div className="mt-3 space-y-4">
+          {ASSESSMENT_AREAS.map((area) => {
+            const item = details.assessment_areas?.[area.key] || { summary: "", effort: "", standard: "" };
+            return (
+              <div key={area.key} className="rounded-xl border border-line bg-white p-3">
+                <div className="mb-2">
+                  <p className="text-sm font-semibold text-ink">{area.label} <span className="text-rose-700">*</span></p>
+                  <p className="text-xs text-ink-faint">{area.hint}</p>
+                </div>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <Field label="Effort" required>
+                    <select className="adm-input" value={item.effort || ""} onChange={(e) => onChange("assessment_areas", area.key, { ...item, effort: e.target.value })}>
+                      <option value="">Select effort</option>
+                      {EFFORT_OPTIONS.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
+                    </select>
+                  </Field>
+                  <Field label="Course standard" required>
+                    <select className="adm-input" value={item.standard || ""} onChange={(e) => onChange("assessment_areas", area.key, { ...item, standard: e.target.value })}>
+                      <option value="">Select course standard</option>
+                      {COURSE_STANDARD_OPTIONS.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
+                    </select>
+                  </Field>
+                </div>
+                <Field label="Teacher note (optional)" hint={`${(item.summary || "").length}/500`}>
+                  <textarea className="adm-input" rows={2} maxLength={500} value={item.summary || ""} onChange={(e) => onChange("assessment_areas", area.key, { ...item, summary: e.target.value })} placeholder="Brief evidence or topic covered, if relevant" />
+                </Field>
+              </div>
+            );
+          })}
+        </div>
+      </section>
     </>
   );
 }
