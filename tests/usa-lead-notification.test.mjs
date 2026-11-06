@@ -103,7 +103,7 @@ const valid = { reference: "TR-2026-00042", email: "parent@example.test" };
 before(async () => {
   const bundle = await build({ entryPoints: ["src/app/api/usa-lead-notification/route.js"], bundle: true, write: false, format: "esm", platform: "node",
     plugins: [{ name: "isolated-route-boundaries", setup(builder) {
-      builder.onResolve({ filter: /^next\/server$|^@\/lib\/supabase\/public$/ }, (args) => ({ path: args.path, namespace: "fixture" }));
+      builder.onResolve({ filter: /^next\/server$|^@\/lib\/supabase\/admin$/ }, (args) => ({ path: args.path, namespace: "fixture" }));
       builder.onLoad({ filter: /.*/, namespace: "fixture" }, (args) => ({ contents: args.path === "next/server"
         ? "export const NextResponse={json:(value,init)=>Response.json(value,init)};"
         : "export function getServiceClient(){return globalThis.__leadRoute.serviceClient;}" }));
