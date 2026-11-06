@@ -72,13 +72,13 @@ export function ProgressDetailsFields({ details, onChange, idPrefix = "details" 
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2">
                   <Field label="Effort" required>
-                    <select className="adm-input" value={item.effort || ""} onChange={(e) => onChange("assessment_areas", area.key, { ...item, effort: e.target.value })}>
+                    <select className="adm-input" required aria-label={`${area.label} effort`} value={item.effort || ""} onChange={(e) => onChange("assessment_areas", area.key, { ...item, effort: e.target.value })}>
                       <option value="">Select effort</option>
                       {EFFORT_OPTIONS.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
                     </select>
                   </Field>
                   <Field label="Course standard" required>
-                    <select className="adm-input" value={item.standard || ""} onChange={(e) => onChange("assessment_areas", area.key, { ...item, standard: e.target.value })}>
+                    <select className="adm-input" required aria-label={`${area.label} course standard`} value={item.standard || ""} onChange={(e) => onChange("assessment_areas", area.key, { ...item, standard: e.target.value })}>
                       <option value="">Select course standard</option>
                       {COURSE_STANDARD_OPTIONS.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
                     </select>
