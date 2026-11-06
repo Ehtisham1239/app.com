@@ -5,7 +5,7 @@
 // import it from client components or static pages.
 //
 // The email is built from the database row returned by
-// public.usa_lead_for_notification, never from what the browser sent, and every
+// public.lead_for_notification, never from what the browser sent, and every
 // send carries an Idempotency-Key tied to the lead reference, so retries and
 // repeated calls cannot produce a second email for the same lead.
 import { createHash } from "node:crypto";
