@@ -127,7 +127,7 @@ export function missingForSubmit(ratings, remarks, details = null) {
   const missing = CATEGORIES.filter((c) => !ratings?.[c.key]).map((c) => c.label);
   if (!String(remarks || "").trim()) missing.push("Teacher remarks");
   for (const area of ASSESSMENT_AREAS) {
-    const item = details.assessment_areas?.[area.key] || {};
+    const item = details?.assessment_areas?.[area.key] || {};
     if (!item.effort) missing.push(`${area.label} · effort`);
     if (!item.standard) missing.push(`${area.label} · course standard`);
   }
