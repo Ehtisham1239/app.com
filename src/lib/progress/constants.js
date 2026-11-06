@@ -126,7 +126,7 @@ export function emptyRatings() {
 export function missingForSubmit(ratings, remarks, details = null) {
   const missing = CATEGORIES.filter((c) => !ratings?.[c.key]).map((c) => c.label);
   if (!String(remarks || "").trim()) missing.push("Teacher remarks");
-  if (details?.assessment_version === 1) for (const area of ASSESSMENT_AREAS) {
+  for (const area of ASSESSMENT_AREAS) {
     const item = details.assessment_areas?.[area.key] || {};
     if (!item.effort) missing.push(`${area.label} · effort`);
     if (!item.standard) missing.push(`${area.label} · course standard`);
@@ -141,7 +141,7 @@ export const SCORE_MAX = 10;
 export function detailsForm(details) {
   const d = details || {};
   return {
-    assessment_version: details == null ? 1 : (d.assessment_version === 1 ? 1 : null),
+    assessment_version: 1,
     scores: Object.fromEntries(CATEGORIES.map((c) => [c.key, String(d.scores?.[c.key] ?? "")])),
     attendance: { held: String(d.attendance?.held ?? ""), attended: String(d.attendance?.attended ?? "") },
     syllabus: { stage: d.syllabus?.stage || "", level: d.syllabus?.level || "", covered: d.syllabus?.covered || "", memorised: d.syllabus?.memorised || "", lessons_completed: d.syllabus?.lessons_completed || "" },
@@ -207,5 +207,5 @@ export function formToDetails(d) {
     const item = d.assessment_areas[a.key] || {};
     return [a.key, Object.fromEntries(Object.entries(item).filter(([, v]) => String(v).trim()).map(([k, v]) => [k, String(v).trim()]))];
   }).filter(([, item]) => Object.keys(item).length));
-  return { assessment_version: d.assessment_version === 1 ? 1 : null, scores, attendance, syllabus, assessment_areas, performance };
+  return { assessment_version: 1, scores, attendance, syllabus, assessment_areas, performance };
 }
