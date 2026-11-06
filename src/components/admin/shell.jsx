@@ -43,6 +43,7 @@ export const NAV = [
       { href: "/admin/testimonials", label: "Testimonials", icon: MessageSquareQuote, perm: "testimonials:read" },
       { href: "/admin/menus", label: "Menus", icon: Menu, perm: "menus:read" },
       { href: "/admin/seo", label: "SEO tools", icon: Search, perm: "pages:read" },
+      { href: "/admin/technical-health", label: "Technical health", icon: Activity, perm: "pages:read" },
       { href: "/admin/growth", label: "SEO growth", icon: LineChart, perm: "pages:read" },
       { href: "/admin/growth-tasks", label: "Growth plan", icon: FileText, perm: "pages:read" },
       { href: "/admin/growth-metrics", label: "SEO baselines", icon: LineChart, perm: "pages:read" },
