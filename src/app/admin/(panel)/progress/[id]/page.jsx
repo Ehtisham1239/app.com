@@ -43,7 +43,7 @@ function EditReport({ report, onDone }) {
     <>
       <button type="button" className="btn btn-outline btn-sm" onClick={() => setOpen(true)}><Pencil className="size-4" /> Edit</button>
       <Modal open={open} onClose={() => !busy && setOpen(false)} title="Edit before publishing" size="lg"
-        footer={<><button type="button" className="btn btn-ghost btn-sm" onClick={() => setOpen(false)} disabled={busy}>Cancel</button><button type="button" className="btn btn-primary btn-sm" onClick={save} disabled={busy || reason.trim().length < 3 || !!problem}>{busy && <Loader2 className="size-4 animate-spin" />} Save changes</button></>}>
+        footer={<><button type="button" className="btn btn-ghost btn-sm" onClick={() => setOpen(false)} disabled={busy}>Cancel</button><button type="button" className="btn btn-primary btn-sm" onClick={save} disabled={busy || reason.trim().length < 3 || !!problem || missing.length > 0}>{busy && <Loader2 className="size-4 animate-spin" />} Save changes</button></>}>
         <div className="grid gap-3 sm:grid-cols-2">
           {CATEGORIES.map((c) => (
             <div key={c.key} className="sm:col-span-2"><RatingPicker name={`edit-${c.key}`} label={c.label} hint={c.hint} value={ratings[c.key]} onChange={(value) => setRatings((r) => ({ ...r, [c.key]: value }))} disabled={busy} /></div>
