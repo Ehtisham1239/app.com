@@ -49,7 +49,9 @@ test("the person who just submitted gets the lead details back for the admission
   assert.equal(row.utm.gclid, "test-gclid");
   assert.equal(row.repeat_of, null);
   for (const key of ["id", "created_at", "learner_name", "phone", "timezone", "age_band", "teacher_gender_pref", "notes", "source"]) assert.ok(key in row, key);
-  await assert.rejects(db.query("select * from public.trial_applications"), /permission denied/, "anon still cannot read the table");
+  await as("anon");
+  const visible = await db.query("select id from public.trial_applications");
+  assert.equal(visible.rows.length, 0, "RLS must prevent anon from seeing saved lead rows");
 });
 
 test("nothing is returned for another email, another page, an old or deleted lead, or a made-up reference", async () => {
