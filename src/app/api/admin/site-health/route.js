@@ -29,7 +29,7 @@ async function inspectPage(url, origin) {
     });
     const res = request.response;
     if (request.redirected) return { url, status: res.status, findings: ["Redirect response; not followed for security. Review manually."] };
-    if (!res.ok) return { url, status: res.status, findings: [\`HTTP response \${res.status}\`] };
+    if (!res.ok) return { url, status: res.status, findings: [`HTTP response ${res.status}`] };
     const html = await readBoundedText(res, MAX_PAGE_BYTES);
     const title = tag(html, /<title[^>]*>([\s\S]*?)<\/title>/i);
     const description = tag(html, /<meta\s+[^>]*name=["']description["'][^>]*content=["']([^"']*)["'][^>]*>/i)
@@ -67,7 +67,7 @@ export async function GET() {
     });
     const sitemapResponse = sitemapRequest.response;
     if (sitemapRequest.redirected) return response({ error: "The sitemap redirected; redirects are not followed by this security scanner." }, 502);
-    if (!sitemapResponse.ok) return response({ error: \`Sitemap returned HTTP \${sitemapResponse.status}.\` }, 502);
+    if (!sitemapResponse.ok) return response({ error: `Sitemap returned HTTP ${sitemapResponse.status}.` }, 502);
     const xml = await readBoundedText(sitemapResponse, MAX_SITEMAP_BYTES);
     const urls = [...xml.matchAll(/<loc>([\s\S]*?)<\/loc>/gi)]
       .map((match) => clean(match[1]))
