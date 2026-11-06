@@ -28,7 +28,6 @@ const normal = (s) => String(s ?? "").trim().toLowerCase().replace(/[\s-]+/g, "_
 export function progressBulkTemplateRows() {
   const example = Object.fromEntries(PROGRESS_BULK_COLUMNS.map((c) => [c.key, ""]));
   example.student_code = "REPLACE_WITH_ASSIGNED_STUDENT_CODE";
-  example.remarks = "Add a factual teacher remark before saving";
   return [example];
 }
 
