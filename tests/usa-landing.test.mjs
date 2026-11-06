@@ -152,7 +152,9 @@ test("the landing page emails admissions only after the lead is saved and uses a
   // Order: save → (spam stops here) → remember → notify → success.
   const flow = landing.slice(landing.indexOf("submitToCms(p).then(function (r) {"), landing.indexOf("/* ---------- mobile sticky CTA"));
   const at = (s) => { const i = flow.indexOf(s); assert.ok(i > -1, s); return i; };
-  assert.ok(at("if (b.reference === 'TR-RECEIVED')") < at("b.notification_token") && at("b.notification_token") < at("setJSON(SS, SENT_KEY") && at("setJSON(SS, SENT_KEY") < at("notifyAdmissions(b.reference, p.email, b.notification_token).then") && at("notifyAdmissions(b.reference, p.email, b.notification_token).then") < at("succeed({ ok: true, lead_id: b.reference })"));
+  const notifyAt = at("notifyAdmissions(b.reference, p.email, b.notification_token).then");
+  const successAfterNotify = landing.indexOf("succeed({ ok: true, lead_id: b.reference });", notifyAt);
+  assert.ok(at("if (b.reference === 'TR-RECEIVED')") < at("b.notification_token") && at("b.notification_token") < at("setJSON(SS, SENT_KEY") && at("setJSON(SS, SENT_KEY") < notifyAt && notifyAt < successAfterNotify);
   assert.match(landing, /notifyAdmissions\(prior\.ref, p\.email, prior\.token\)/);
   assert.match(landing, /if \(!res\.test && !res\.spam && !res\.repeat\) oqcEmit\('generate_lead'/);
   // Only the reference, typed email and short-lived notification token go to the server; no lead PII is stored in session state.
