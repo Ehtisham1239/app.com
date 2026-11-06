@@ -175,6 +175,52 @@ test("learning plans use the same draft and published snapshot boundary as resul
   await as("anon");assert.equal((await one("select public.parent_progress($1) d",[token])).d[0].reports[0].learning_plan,'Ask the teacher about the next section');
 });
 
+
+test("all 11 learning areas are required for new submissions; Not applicable is accepted and legacy published reports remain readable", async () => {
+  await as("authenticated", ids.teacher);
+  const missingAreas = { assessment_version: 1, assessment_areas: {} };
+  await assert.rejects(
+    db.query("select public.progress_save($1,$2,$3,'Complete remarks',true,null,$4)", [studentA.id, "2026-11-01", full, missingAreas]),
+    /Complete effort and course-standard selectors for all 11 learning areas/
+  );
+
+  // An older draft without assessment_version must also complete all 11 areas before submission.
+  const legacyDraftDetails = { scores: { adab: 8 }, attendance: { held: 10, attended: 9 } };
+  await assert.rejects(
+    db.query("select public.progress_save($1,$2,$3,'Complete remarks',true,null,$4)", [studentA.id, "2026-11-01", full, legacyDraftDetails]),
+    /Complete effort and course-standard selectors for all 11 learning areas/
+  );
+
+  const assessmentAreas = Object.fromEntries([
+    "qaida_reading", "tajweed", "makharij", "fluency", "hifz_revision",
+    "duas", "daily_sunnah", "surahs", "hadith", "namaz", "islamic_knowledge"
+  ].map((key) => [key, key === "qaida_reading" || key === "hifz_revision"
+    ? { effort: "not_applicable", standard: "not_applicable" }
+    : { effort: "good", standard: "at_expected" }]));
+  const partialAreas = structuredClone(assessmentAreas);
+  partialAreas.makharij.effort = "";
+  await assert.rejects(
+    db.query("select public.progress_save($1,$2,$3,'Complete remarks',true,null,$4)", [studentA.id, "2026-11-01", full, { assessment_version: 1, assessment_areas: partialAreas }]),
+    /Complete effort and course-standard selectors for all 11 learning areas/
+  );
+  await assert.rejects(
+    db.query("select public.progress_save($1,$2,$3,'Complete remarks',true,null,$4)", [studentA.id, "2026-11-01", full, { assessment_version: 1, assessment_areas: { ...assessmentAreas, tajweed: { effort: "invalid", standard: "at_expected" } } }]),
+    /Invalid effort rating for tajweed/
+  );
+
+  const details = { assessment_version: 1, assessment_areas: assessmentAreas, syllabus: { stage: "tajweed" } };
+  const id = (await one(
+    "select public.progress_save($1,$2,$3,'Complete remarks',true,'Monthly practice plan',$4) id",
+    [studentA.id, "2026-11-01", full, details]
+  )).id;
+  const saved = await one("select details from public.monthly_reports where id=$1", [id]);
+  assert.equal(saved.details.assessment_version, 1);
+  assert.equal(saved.details.assessment_areas.tajweed.standard, "at_expected");
+  assert.equal(saved.details.assessment_areas.qaida_reading.effort, "not_applicable");
+  assert.equal(saved.details.assessment_areas.qaida_reading.standard, "not_applicable");
+  assert.equal(saved.details.assessment_areas.hifz_revision.effort, "not_applicable");
+  assert.equal(saved.details.syllabus.stage, "tajweed");
+});
 test("public recovery is non-enumerating, deduplicated and cannot reveal credentials",async()=>{
   await as("postgres");await db.query("update public.guardians set email='parent@example.test' where id=$1",[guardian]);
   await as("anon");
