@@ -94,7 +94,7 @@ test("a repeat request names the earlier reference so staff do not handle it twi
   assert.ok(row.repeat_of_created_at);
 });
 
-test("the legacy two-argument RPC is a non-definer null-returning compatibility stub", async () => {
+test("lookup is read-only and the legacy two-argument RPC cannot expose lead details", async () => {
   await as("anon");
   assert.equal((await one("select public.usa_lead_for_notification($1,$2) as r", ["TR-2026-00001", "parent@example.test"])).r, null);
   await as("postgres");
