@@ -26,7 +26,7 @@ export function ProgressDetailsFields({ details, onChange, idPrefix = "details" 
       </section>
       <section className="rounded-2xl border border-line bg-paper/60 p-4" aria-labelledby={`${idPrefix}-curriculum`}>
         <h3 id={`${idPrefix}-curriculum`} className="text-sm font-bold text-mushaf-900">Curriculum pathway · Qaida to Tafseer</h3>
-        <p className="mt-1 text-xs text-ink-faint">Choose Choose the learner’s current strand. These are flexible pathways, not a fixed sequence; follow the approved syllabus and learner’s level.</p>
+        <p className="mt-1 text-xs text-ink-faint">Choose the learner’s current strand. These are flexible pathways, not a fixed sequence; follow the approved syllabus and learner’s level.</p>
         <div className="mt-3 grid gap-3">
           <Field label="Current curriculum stage">
             <select className="adm-input" value={details.syllabus.stage || ""} onChange={(e) => onChange("syllabus", "stage", e.target.value)}>
