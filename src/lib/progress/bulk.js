@@ -1,5 +1,3 @@
-export const normalizeProgressBulkHeader = (value) => String(value || "").replace(/^\uFEFF/, "").trim().toLowerCase().replace(/[\s-]+/g, "_");
-
 import { CATEGORIES, ASSESSMENT_AREAS, EFFORT_OPTIONS, COURSE_STANDARD_OPTIONS } from "./constants.js";
 
 export const PROGRESS_BULK_COLUMNS = [
@@ -92,3 +90,6 @@ export function progressBulkPayload(row) {
     details: { assessment_version: 1, assessment_areas, syllabus, ...(attendance ? { attendance } : {}), performance },
   };
 }
+
+
+export const normalizeProgressBulkHeader = (value) => String(value || "").replace(/^\uFEFF/, "").trim().toLowerCase().replace(/[\s-]+/g, "_");
