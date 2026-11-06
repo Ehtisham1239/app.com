@@ -27,13 +27,12 @@ function EditReport({ report, onDone }) {
   const [reason, setReason] = useState("");
   const [busy, setBusy] = useState(false);
   const problem = detailsProblem(details);
-  const requireAssessment = ["draft", "changes_requested"].includes(report.status) || details.assessment_version === 1;
-  const missing = missingForSubmit(ratings, remarks, details, requireAssessment);
+  const missing = missingForSubmit(ratings, remarks, details);
   const save = async () => {
     if (missing.length) return toast.error(`Complete the required report fields first: ${missing.join(", ")}.`);
     if (problem) return toast.error(problem);
     setBusy(true);
-    const { error } = await db().rpc("progress_admin_update", { p_report_id: report.id, p_ratings: ratings, p_remarks: remarks, p_reason: reason, p_plan: plan, p_details: formToDetails({ ...details, assessment_version: requireAssessment ? 1 : details.assessment_version }) });
+    const { error } = await db().rpc("progress_admin_update", { p_report_id: report.id, p_ratings: ratings, p_remarks: remarks, p_reason: reason, p_plan: plan, p_details: formToDetails({ ...details, assessment_version: 1 }) });
     setBusy(false);
     if (error) return notifyError(error);
     toast.success("Changes saved. Publish when you are happy with the certificate.");
