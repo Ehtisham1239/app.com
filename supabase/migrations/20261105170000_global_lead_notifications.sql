@@ -60,5 +60,9 @@ as $$
   end
 $$;
 
+-- Retire the older browser-callable lookup that returned the USA trial PII.
+-- The new server route uses lead_for_notification through service_role only.
+revoke all on function public.usa_lead_for_notification(text, text) from public, anon, authenticated, service_role;
+
 revoke all on function public.lead_for_notification(text, text) from public, anon, authenticated;
 grant execute on function public.lead_for_notification(text, text) to service_role;
