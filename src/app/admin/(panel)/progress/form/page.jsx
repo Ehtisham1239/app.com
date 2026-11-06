@@ -108,8 +108,7 @@ function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChang
   }, [dirty]);
   const locked = report?.status === "submitted" && !can("progress:review");
   const client = current.clients?.[0];
-  const requireAssessment = !report || ["draft", "changes_requested"].includes(report.status) || details.assessment_version === 1;
-  const missing = missingForSubmit(ratings, remarks, details, requireAssessment);
+  const missing = missingForSubmit(ratings, remarks, details);
   if (!client?.client_id) missing.push("Linked Client ID/name");
   const detailProblem = detailsProblem(details);
   const requiredCount = CATEGORIES.length + 1 + (ASSESSMENT_AREAS.length * 2) + 1;
@@ -121,7 +120,7 @@ function TeacherRatingsForm({ current, report, period, can, onSaved, onBusyChang
     onBusyChange(true);
     setBusy(submit ? "submit" : "draft");
     try {
-      const { error } = await db().rpc("progress_save", { p_student_id: current.student_id, p_period: period, p_ratings: ratings, p_remarks: remarks, p_submit: submit, p_plan: plan, p_details: formToDetails({ ...details, assessment_version: requireAssessment ? 1 : details.assessment_version }) });
+      const { error } = await db().rpc("progress_save", { p_student_id: current.student_id, p_period: period, p_ratings: ratings, p_remarks: remarks, p_submit: submit, p_plan: plan, p_details: formToDetails({ ...details, assessment_version: 1 }) });
       if (error) throw error;
       toast.success(submit ? "Submitted to Results → Monthly reports for admin review." : "Draft saved");
       onSaved();
