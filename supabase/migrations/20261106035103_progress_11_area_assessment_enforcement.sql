@@ -1,6 +1,6 @@
--- Add the 11-area monthly assessment from OQC_Monthly_Assessment_Prototype.
--- Additive JSONB extension: historical six-dimension ratings and published snapshots
--- remain unchanged. The new selector wording is provisional pending Academic approval.
+-- Re-enable the approved 11-area monthly assessment after the temporary rollout deferral.
+-- Update the JSONB parser and require both selectors for all 11 areas.
+-- Existing submitted/published legacy records without assessment_version remain compatible.
 
 create or replace function private.progress_details(p jsonb) returns jsonb
 language plpgsql immutable set search_path = '' as $$
@@ -13,10 +13,12 @@ declare
   v_held int; v_att int;
   v_text text;
   v_syl jsonb := '{}'::jsonb;
+  v_performance jsonb := '{}'::jsonb;
   v_item jsonb;
   v_effort text;
   v_standard text;
   v_limit int;
+  v_assessment_version text;
 begin
   if p is null or jsonb_typeof(p) <> 'object' then return '{}'::jsonb; end if;
 
@@ -43,11 +45,22 @@ begin
     if v_att > v_held then raise exception 'Classes attended cannot be more than classes held.'; end if;
   end if;
 
-  foreach v_key in array array['level', 'covered', 'memorised'] loop
+  v_assessment_version := nullif(trim(coalesce(p ->> 'assessment_version', '')), '');
+  if v_assessment_version is not null and v_assessment_version <> '1' then raise exception 'Unsupported monthly assessment version.'; end if;
+
+  foreach v_key in array array['stage', 'level', 'covered', 'memorised', 'lessons_completed'] loop
     v_text := trim(coalesce(p -> 'syllabus' ->> v_key, ''));
-    v_limit := case v_key when 'level' then 120 when 'covered' then 1000 else 600 end;
+    v_limit := case v_key when 'stage' then 40 when 'level' then 120 when 'covered' then 1000 when 'lessons_completed' then 100 else 600 end;
     if char_length(v_text) > v_limit then raise exception 'The syllabus field "%" is too long.', v_key; end if;
+    if v_key = 'stage' and v_text <> '' and v_text not in ('foundations_qaida', 'quran_reading', 'tajweed', 'hifz_revision', 'translation', 'tafseer', 'islamic_studies') then raise exception 'Choose a valid curriculum stage.'; end if;
     if v_text <> '' then v_syl := v_syl || jsonb_build_object(v_key, v_text); end if;
+  end loop;
+
+  foreach v_key in array array['overall', 'improvement_targets', 'personal_development'] loop
+    v_text := trim(coalesce(p -> 'performance' ->> v_key, ''));
+    v_limit := case v_key when 'overall' then 300 when 'improvement_targets' then 1000 else 500 end;
+    if char_length(v_text) > v_limit then raise exception 'Performance field % must be % characters or fewer.', v_key, v_limit; end if;
+    if v_text <> '' then v_performance := v_performance || jsonb_build_object(v_key, v_text); end if;
   end loop;
 
   foreach v_key in array array[
@@ -76,35 +89,71 @@ begin
     'scores', nullif(v_scores, '{}'::jsonb),
     'attendance', case when v_held is null then null else jsonb_build_object('held', v_held, 'attended', v_att) end,
     'syllabus', nullif(v_syl, '{}'::jsonb),
-    'assessment_areas', nullif(v_areas, '{}'::jsonb)
+    'performance', nullif(v_performance, '{}'::jsonb),
+    'assessment_areas', nullif(v_areas, '{}'::jsonb),
+    'assessment_version', case when v_assessment_version = '1' then 1 else null end
   ));
 end $$;
 
+
 create or replace function private.progress_require_assessment_on_submit() returns trigger
-language plpgsql set search_path = '' as $$
+language plpgsql
+set search_path = ''
+as $$
 declare
   v_key text;
   v_item jsonb;
+  v_effort text;
+  v_standard text;
 begin
-  -- Preserve pre-existing reports until a new submission or publication transition.
-  if TG_OP = 'UPDATE' and old.status in ('submitted', 'published') and new.status = old.status then
+  -- Preserve unchanged historic submissions/published snapshots only.
+  if TG_OP = 'UPDATE' and new.details is not distinct from old.details then
+    -- No new submission is taking place when an unchanged legacy report is
+    -- returned to the teacher for corrections or withdrawn from the parent portal.
+    if old.status in ('submitted', 'published') and new.status = old.status then
+      return new;
+    end if;
+    if old.status = 'submitted' and new.status = 'changes_requested' then
+      return new;
+    end if;
+    if old.status = 'published'
+       and new.status = 'submitted'
+       and old.published is not null
+       and new.published is null then
+      return new;
+    end if;
+  end if;
+
+  if new.status not in ('submitted', 'published') then
     return new;
   end if;
-  if new.status not in ('submitted', 'published') then return new; end if;
 
   foreach v_key in array array[
     'qaida_reading', 'tajweed', 'makharij', 'fluency', 'hifz_revision',
     'duas', 'daily_sunnah', 'surahs', 'hadith', 'namaz', 'islamic_knowledge'
   ] loop
     v_item := new.details -> 'assessment_areas' -> v_key;
-    if v_item is null
-      or nullif(trim(coalesce(v_item ->> 'effort', '')), '') is null
-      or nullif(trim(coalesce(v_item ->> 'standard', '')), '') is null then
-      raise exception 'Complete effort and course-standard selectors for all 11 learning areas before submission or publication.';
+    if v_item is null or jsonb_typeof(v_item) <> 'object' then
+      raise exception 'Complete effort and course-standard selectors for all 11 learning areas before submission or publication. Missing: %.', v_key;
+    end if;
+
+    v_effort := nullif(trim(coalesce(v_item ->> 'effort', '')), '');
+    v_standard := nullif(trim(coalesce(v_item ->> 'standard', '')), '');
+    if v_effort is null or v_standard is null then
+      raise exception 'Complete effort and course-standard selectors for all 11 learning areas before submission or publication. Missing: %.', v_key;
+    end if;
+
+    if v_effort not in ('excellent', 'good', 'satisfactory', 'needs_improvement', 'not_applicable') then
+      raise exception 'Invalid effort rating for %.', v_key;
+    end if;
+    if v_standard not in ('above_expected', 'at_expected', 'working_towards', 'not_applicable') then
+      raise exception 'Invalid course standard for %.', v_key;
     end if;
   end loop;
+
   return new;
-end $$;
+end
+$$;
 
 drop trigger if exists monthly_reports_require_assessment_on_submit on public.monthly_reports;
 create trigger monthly_reports_require_assessment_on_submit
@@ -112,4 +161,5 @@ before insert or update of status, details on public.monthly_reports
 for each row execute function private.progress_require_assessment_on_submit();
 
 revoke all on function private.progress_require_assessment_on_submit() from public, anon, authenticated;
+
 revoke execute on function private.progress_details(jsonb) from public, anon, authenticated;
