@@ -33,7 +33,7 @@ test("all 11 areas require both selectors, and Not applicable satisfies each sel
   const areas = Object.fromEntries(ASSESSMENT_AREAS.map((area) => [area.key, {
     effort: "not_applicable", standard: "not_applicable",
   }]));
-  const details = { assessment_version: 1, assessment_areas: areas };
+  const details = { ...blank, assessment_version: 1, assessment_areas: areas };
   assert.deepEqual(missingForSubmit(ratings, "Teacher remark", details, true), []);
   const saved = formToDetails(details);
   assert.equal(saved.assessment_areas.qaida_reading.effort, "not_applicable");
