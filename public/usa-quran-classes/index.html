@@ -1610,9 +1610,9 @@ window.OQC_LP_CONFIG = {
   // and emails admissions. The server sends at most one email per reference, so a
   // retry here is safe. Success is shown only once this step has finished.
   function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
-  function notifyAdmissions(reference, email) {
+  function notifyAdmissions(reference, email, token) {
     function attempt(n) {
-      return postJSON(C.notifyUrl || '/api/usa-lead-notification', { reference: reference, email: email }, 10000).then(function (r) {
+      return postJSON(C.notifyUrl || '/api/usa-lead-notification', { reference: reference, email: email, notification_token: token }, 10000).then(function (r) {
         if (r.ok && r.body && r.body.ok === true) return true;
         if (n < 2 && (r.status >= 500 || r.status === 429)) return wait(1200).then(function () { return attempt(n + 1); });
         return false;
@@ -1624,7 +1624,7 @@ window.OQC_LP_CONFIG = {
   }
   // The same details sent again from this tab within 30 minutes (Back button, a
   // second click after the page reloaded) reuse the saved request: no second lead,
-  // conversion or email. Only a short hash is kept, never the details themselves.
+  // conversion or duplicate email. A 30-minute notification token is kept in session storage; form details are not.
   var SENT_KEY = 'oqc_lp_sent';
   function fingerprint(p) {
     var s = [String(p.email).toLowerCase(), p.phone, p.student_age, p.course, p.teacher_pref, String(p.timing).toLowerCase(), p.time_zone].join('|');
@@ -1652,14 +1652,30 @@ window.OQC_LP_CONFIG = {
     var p = payload();
     if (C.leadBackend === 'oqc-cms') {
       var fp = fingerprint(p), prior = previousRequest(fp);
-      if (prior) { setBusy(true); succeed({ ok: true, lead_id: prior.ref, repeat: true }); return; }
+      if (prior) {
+        setBusy(true);
+        if (typeof prior.token === 'string' && /^[0-9a-f]{64}$/.test(prior.token)) {
+          notifyAdmissions(prior.ref, p.email, prior.token).then(function (sent) {
+            if (!sent) note('admissions email not confirmed for ' + prior.ref + '; the lead is saved in Admin > Trials.');
+            succeed({ ok: true, lead_id: prior.ref, repeat: true });
+          });
+        } else {
+          succeed({ ok: true, lead_id: prior.ref, repeat: true });
+        }
+        return;
+      }
       setBusy(true);
       submitToCms(p).then(function (r) {
         var b = r.body || {};
         if (r.ok && b.ok === true && typeof b.reference === 'string' && /^TR-/.test(b.reference)) {
           if (b.reference === 'TR-RECEIVED') { succeed({ ok: true, lead_id: b.reference, spam: true }); return; }
-          setJSON(SS, SENT_KEY, { fp: fp, ref: b.reference, ts: Date.now() });
-          notifyAdmissions(b.reference, p.email).then(function (sent) {
+          if (typeof b.notification_token !== 'string' || !/^[0-9a-f]{64}$/.test(b.notification_token)) {
+            note('Your request is saved in Admin > Trials; admissions email could not be confirmed.');
+            succeed({ ok: true, lead_id: b.reference });
+            return;
+          }
+          setJSON(SS, SENT_KEY, { fp: fp, ref: b.reference, token: b.notification_token, ts: Date.now() });
+          notifyAdmissions(b.reference, p.email, b.notification_token).then(function (sent) {
             if (!sent) note('admissions email not confirmed for ' + b.reference + '; the lead is saved in Admin > Trials.');
             succeed({ ok: true, lead_id: b.reference });
           });
