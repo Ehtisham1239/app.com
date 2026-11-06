@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
-import { Award, ClipboardList, Hourglass, Loader2, PenLine, Users } from "lucide-react";
+import { Award, ClipboardList, Download, FileSpreadsheet, Hourglass, Loader2, PenLine, Users } from "lucide-react";
 import { useAccess } from "@/lib/admin/access";
-import { db, notifyError, useLoad } from "@/lib/admin/db";
+import { db, downloadCsv, notifyError, useLoad } from "@/lib/admin/db";
 import { ResultsNav } from "@/components/admin/results-nav";
 import { REPORT_STATUSES, monthInput, monthToPeriod, periodLabel } from "@/lib/progress/constants";
 import { Card, EmptyState, ErrorState, Loading, PageHeader, StatCard, StatusBadge, Tabs } from "@/components/admin/ui";
@@ -62,6 +62,24 @@ export default function ProgressReviewPage() {
   const teachers = [...new Map(all.filter((r) => r.teacher_profile_id).map((r) => [r.teacher_profile_id, r.profiles?.full_name || "Teacher"])).entries()];
   const shown = all.filter((r) => (status === "all" || r.status === status) && (!teacher || r.teacher_profile_id === teacher));
   const count = (s) => all.filter((r) => r.status === s).length;
+  const exportTeacher = () => {
+    if (!teacher) return;
+    const rows = all.filter((r) => r.teacher_profile_id === teacher).map((r) => ({
+      student_name: r.students?.full_name || "", student_code: r.students?.student_code || "",
+      teacher_name: r.profiles?.full_name || "", reporting_month: period, status: r.status,
+      published_version: r.published_version || "", adab: r.adab || "", qaida: r.qaida || "",
+      dua: r.dua || "", tajweed: r.tajweed || "", engagement: r.engagement || "",
+      outcome: r.outcome || "", remarks: r.remarks || "", learning_plan: r.learning_plan || "",
+      attendance_held: r.details?.attendance?.held ?? "", attendance_attended: r.details?.attendance?.attended ?? "",
+      current_level: r.details?.syllabus?.level || "", covered: r.details?.syllabus?.covered || "",
+      lessons_completed: r.details?.syllabus?.lessons_completed || "",
+      assessment_areas: JSON.stringify(r.details?.assessment_areas || {}),
+    }));
+    const columns = ["student_name","student_code","teacher_name","reporting_month","status","published_version","adab","qaida","dua","tajweed","engagement","outcome","remarks","learning_plan","attendance_held","attendance_attended","current_level","covered","lessons_completed","assessment_areas"].map((key) => ({ key, label: key }));
+    downloadCsv(`oqc-teacher-${month}-monthly-reports.csv`, rows, columns);
+  };
+
+
   const published = all.filter((r) => r.status === "published" || r.published_at);
   const groups = [...new Set(published.map((r) => groupOf[r.student_id] || ""))].sort();
 
@@ -82,6 +100,8 @@ export default function ProgressReviewPage() {
             {teachers.map(([id, name]) => <option key={id} value={id}>{name}</option>)}
           </select>
         </label>
+        <button type="button" className="btn btn-outline btn-sm" disabled={!teacher || !all.some((r) => r.teacher_profile_id === teacher)} onClick={exportTeacher}><FileSpreadsheet className="size-4" /> Export teacher Excel/CSV</button>
+        {can("progress:submit") && <Link href="/admin/progress/bulk" className="btn btn-outline btn-sm"><Download className="size-4" /> Bulk upload</Link>}
       </div>
 
       <div className="mb-6 grid gap-4 sm:grid-cols-3">

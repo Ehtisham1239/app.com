@@ -20,6 +20,14 @@ async function as(name, id = "") {
 }
 const one = async (text, params = []) => (await db.query(text, params)).rows[0];
 const full = { adab: "excellent", qaida: "good", dua: "good", tajweed: "satisfactory", engagement: "excellent", outcome: "good" };
+const areaKeys = ["qaida_reading", "tajweed", "makharij", "fluency", "hifz_revision", "duas", "daily_sunnah", "surahs", "hadith", "namaz", "islamic_knowledge"];
+const validAssessment = {
+  assessment_version: 1,
+  assessment_areas: Object.fromEntries(areaKeys.map((key) => [key, {
+    effort: key === "qaida_reading" ? "not_applicable" : "good",
+    standard: key === "qaida_reading" ? "not_applicable" : "at_expected",
+  }])),
+};
 const period = "2026-10-01";
 let studentA, studentB, guardian, reportId, token;
 
@@ -71,7 +79,7 @@ test("drafts allow gaps, submit needs all six ratings and remarks, repeats never
   await assert.rejects(db.query("select public.progress_save($1,$2,$3,'',true)", [studentA.id, period, full]), /all six ratings/);
   await assert.rejects(db.query("select public.progress_save($1,$2,$3,'Fine',false)", [studentA.id, period, { ...full, adab: "perfect" }]), /rating from the list/);
   await assert.rejects(db.query("select public.progress_save($1,$2,$3,'Fine',false)", [studentA.id, "2099-01-01", full]), /current or a past month/);
-  const again = (await one("select public.progress_save($1,$2,$3,'Steady progress in recitation.',true) id", [studentA.id, "2026-10-17", full])).id;
+  const again = (await one("select public.progress_save($1,$2,$3,'Steady progress in recitation.',true,null,$4) id", [studentA.id, "2026-10-17", full, validAssessment])).id;
   assert.equal(again, reportId, "same student and month is the same report");
   assert.equal((await one("select count(*)::int n from public.monthly_reports")).n, 1);
   await assert.rejects(db.query("select public.progress_save($1,$2,$3,'Changed',false)", [studentA.id, period, full]), /waiting for review/);
@@ -88,7 +96,7 @@ test("admin can request changes with a reason the teacher sees", async () => {
   await as("authenticated", ids.teacher);
   const r = await one("select status, change_note from public.monthly_reports where id=$1", [reportId]);
   assert.deepEqual(r, { status: "changes_requested", change_note: "Please add a note on dua practice." });
-  await db.query("select public.progress_save($1,$2,$3,'Steady progress. Practise duas daily at home.',true)", [studentA.id, period, full]);
+  await db.query("select public.progress_save($1,$2,$3,'Steady progress. Practise duas daily at home.',true,null,$4)", [studentA.id, period, full, validAssessment]);
   assert.equal((await one("select status from public.monthly_reports where id=$1", [reportId])).status, "submitted");
 });
 
@@ -173,6 +181,31 @@ test("learning plans use the same draft and published snapshot boundary as resul
   assert.equal((await one("select public.parent_progress($1) d",[token])).d[0].reports[0].learning_plan,'Practise the assigned reading section');
   await as("authenticated",ids.admin);await db.query("select public.progress_publish($1)",[reportId]);
   await as("anon");assert.equal((await one("select public.parent_progress($1) d",[token])).d[0].reports[0].learning_plan,'Ask the teacher about the next section');
+});
+
+
+test("all 11 assessment areas are required for every new submission; Not applicable is valid for both selectors", async () => {
+  await as("authenticated", ids.teacher);
+  const missingAreas = { assessment_version: 1, assessment_areas: {} };
+  await assert.rejects(
+    db.query("select public.progress_save($1,$2,$3,'Complete remarks',true,null,$4)", [studentA.id, "2026-11-01", full, missingAreas]),
+    /Complete effort and course-standard selectors for all 11 learning areas/
+  );
+  // The server must not permit bypassing the rubric by omitting assessment_version.
+  await assert.rejects(
+    db.query("select public.progress_save($1,$2,$3,'Complete remarks',true)", [studentA.id, "2026-11-02", full]),
+    /Complete effort and course-standard selectors for all 11 learning areas/
+  );
+  const details = { ...validAssessment, syllabus: { stage: "tajweed" } };
+  const id = (await one(
+    "select public.progress_save($1,$2,$3,'Complete remarks',true,'Monthly practice plan',$4) id",
+    [studentA.id, "2026-11-01", full, details]
+  )).id;
+  const saved = await one("select details from public.monthly_reports where id=$1", [id]);
+  assert.equal(saved.details.assessment_areas.tajweed.standard, "at_expected");
+  assert.equal(saved.details.assessment_areas.qaida_reading.effort, "not_applicable");
+  assert.equal(saved.details.assessment_areas.qaida_reading.standard, "not_applicable");
+  assert.equal(saved.details.syllabus.stage, "tajweed");
 });
 
 test("public recovery is non-enumerating, deduplicated and cannot reveal credentials",async()=>{
