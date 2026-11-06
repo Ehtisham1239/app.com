@@ -6,7 +6,7 @@ import { CheckCircle2, EyeOff, History, Loader2, MessageSquareWarning, Pencil, P
 import { useAccess } from "@/lib/admin/access";
 import { db, notifyError, useLoad } from "@/lib/admin/db";
 import { formatDateTime } from "@/lib/format";
-import { CATEGORIES, REPORT_STATUSES, detailsForm, detailsProblem, missingForSubmit, periodLabel, ratingLabel } from "@/lib/progress/constants";
+import { CATEGORIES, MONTHLY_PLAN_TEMPLATE, REPORT_STATUSES, detailsForm, detailsProblem, formToDetails, missingForSubmit, periodLabel, ratingLabel } from "@/lib/progress/constants";
 import { ResultsNav } from "@/components/admin/results-nav";
 import { RatingPicker } from "@/components/admin/rating-picker";
 import { ProgressDetailsFields } from "@/components/admin/progress-details-fields";
@@ -27,10 +27,13 @@ function EditReport({ report, onDone }) {
   const [reason, setReason] = useState("");
   const [busy, setBusy] = useState(false);
   const problem = detailsProblem(details);
+  const requireAssessment = ["draft", "changes_requested"].includes(report.status) || details.assessment_version === 1;
+  const missing = missingForSubmit(ratings, remarks, details, requireAssessment);
   const save = async () => {
+    if (missing.length) return toast.error(`Complete the required report fields first: ${missing.join(", ")}.`);
     if (problem) return toast.error(problem);
     setBusy(true);
-    const { error } = await db().rpc("progress_admin_update", { p_report_id: report.id, p_ratings: ratings, p_remarks: remarks, p_reason: reason, p_plan: plan, p_details: details });
+    const { error } = await db().rpc("progress_admin_update", { p_report_id: report.id, p_ratings: ratings, p_remarks: remarks, p_reason: reason, p_plan: plan, p_details: formToDetails({ ...details, assessment_version: requireAssessment ? 1 : details.assessment_version }) });
     setBusy(false);
     if (error) return notifyError(error);
     toast.success("Changes saved. Publish when you are happy with the certificate.");
@@ -47,7 +50,7 @@ function EditReport({ report, onDone }) {
           ))}
           <Field label="Teacher remarks" className="sm:col-span-2" hint={`${remarks.length}/1000`}><textarea className="adm-input" rows={4} maxLength={1000} value={remarks} onChange={(e) => setRemarks(e.target.value)} /></Field>
           <div className="space-y-3 sm:col-span-2"><ProgressDetailsFields details={details} idPrefix="edit" onChange={(group, key, value) => setDetails((d) => ({ ...d, [group]: { ...d[group], [key]: value } }))} /></div>
-          <Field label="Next month target & home practice" className="sm:col-span-2" hint={`${plan.length}/2000`}><textarea className="adm-input" rows={4} maxLength={2000} value={plan} onChange={(e) => setPlan(e.target.value)} /></Field>
+          <Field label="Next month target & home practice" className="sm:col-span-2" hint={`${plan.length}/2000`}><button type="button" className="btn btn-outline btn-sm mb-2" onClick={() => { if (!plan.trim() || window.confirm("Replace the current plan with the blank monthly teaching-plan template?")) setPlan(MONTHLY_PLAN_TEMPLATE); }}>Insert monthly plan template</button><textarea className="adm-input" rows={10} maxLength={2000} value={plan} onChange={(e) => setPlan(e.target.value)} /></Field>
           {problem && <p role="alert" className="rounded-xl bg-rose-50 px-4 py-2.5 text-sm text-rose-800 sm:col-span-2">{problem}</p>}
           <Field label="Reason for the edit" required className="sm:col-span-2" hint="Kept in the report history"><input className="adm-input" maxLength={500} value={reason} onChange={(e) => setReason(e.target.value)} placeholder="e.g. Corrected the Tajweed rating after speaking to the teacher" /></Field>
         </div>
@@ -98,7 +101,7 @@ export default function ProgressReportPage({ params }) {
     toast.success(ok); refresh();
   };
   const working = { ...r, teacher: r.profiles?.full_name || "", published_at: r.published_at };
-  const missing = missingForSubmit(r, r.remarks);
+  const missing = missingForSubmit(r, r.remarks, detailsForm(r.details), r.details?.assessment_version === 1);
   const canPublish = can("progress:publish") && r.status === "submitted";
 
   return (
