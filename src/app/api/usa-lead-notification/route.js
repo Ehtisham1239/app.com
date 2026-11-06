@@ -38,7 +38,7 @@ export async function POST(request) {
 
   let lead = null;
   try {
-    const { data, error } = await publicDb.rpc("usa_lead_for_notification", { p_reference: parsed.reference, p_email: parsed.email });
+    const { data, error } = await publicDb.rpc("usa_lead_for_notification", { p_reference: parsed.reference, p_email: parsed.email, p_notification_token: parsed.notificationToken });
     if (error) throw error;
     lead = data;
   } catch {

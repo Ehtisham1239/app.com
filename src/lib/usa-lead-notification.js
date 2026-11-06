@@ -22,8 +22,9 @@ export function parseNotificationRequest(body) {
   if (!body || typeof body !== "object" || Array.isArray(body)) return null;
   const reference = typeof body.reference === "string" ? body.reference.trim() : "";
   const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
-  if (!REFERENCE.test(reference) || !email || email.length > 254 || !EMAIL.test(email)) return null;
-  return { reference, email };
+  const notificationToken = typeof body.notification_token === "string" ? body.notification_token.trim().toLowerCase() : "";
+  if (!REFERENCE.test(reference) || !email || email.length > 254 || !EMAIL.test(email) || !/^[0-9a-f]{64}$/.test(notificationToken)) return null;
+  return { reference, email, notificationToken };
 }
 
 // RESEND_API_KEY, LEAD_NOTIFICATION_FROM and LEAD_NOTIFICATION_TO (comma-separated)
