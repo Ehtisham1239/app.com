@@ -8,6 +8,7 @@ const trialPage = read("../src/app/(site)/free-trial/page.jsx");
 const searchIntent = read("../src/lib/search-intent.js");
 const llms = read("../src/app/llms.txt/route.js");
 const learningGuide = read("../src/app/(site)/learn/page.jsx");
+const usaLanding = read("../public/usa-quran-classes/index.html");
 
 test("public teacher copy does not imply both teacher genders are currently available", () => {
   for (const [name, source] of [
@@ -16,6 +17,7 @@ test("public teacher copy does not imply both teacher genders are currently avai
     ["search intent", searchIntent],
     ["LLM summary", llms],
     ["learning guide", learningGuide],
+    ["USA campaign landing page", usaLanding],
   ]) {
     assert.doesNotMatch(source, /female and male teachers|female or male teacher|male teachers for brothers/i, name);
   }
