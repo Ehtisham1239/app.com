@@ -11,7 +11,7 @@ const log = (level, outcome, reference) => console[level](JSON.stringify({ event
 
 export async function POST(request) {
   if (!permitsMutation(request)) return reply({ ok: false, error: "forbidden" }, 403);
-  if (!/^application\\/json\\b/i.test(request.headers.get("content-type") || "")) return reply({ ok: false, error: "bad_request" }, 415);
+  if (!/^application\/json\b/i.test(request.headers.get("content-type") || "")) return reply({ ok: false, error: "bad_request" }, 415);
   if (Number(request.headers.get("content-length") || 0) > MAX_BODY_BYTES) return reply({ ok: false, error: "bad_request" }, 413);
 
   let parsed = null;
