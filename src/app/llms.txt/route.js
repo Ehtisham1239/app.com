@@ -33,7 +33,7 @@ export async function GET() {
     "- [Trial request](/free-trial)",
     "- [Countries, cities and time-zone planning](/locations)",
     "- [Learning guides](/learn)",
-    "- [Teachers](/teachers): female and male teachers; the coordinator confirms the proposed teacher's qualifications, language and availability.",
+    "- [Teachers](/teachers): current public teacher profiles and a preference-request process; Admissions confirms suitability, language and availability.",
     "- [About the college](/about)",
     "- [Free printable Quran trackers](/free-quran-learning-resources): 30-day Ramadan tracker, weekly Hifz tracker, Noorani Qaida log and Makharij pairs, free for non-commercial teaching.",
     "- [Editorial standards](/editorial-standards): who writes the articles, how Quran and hadith references are checked, AI use, reviews and corrections.",
@@ -41,7 +41,7 @@ export async function GET() {
     // Facts the public pages already state, so an assistant can answer without guessing.
     "## Key facts", "",
     "- Lessons are live, one-to-one and online, for children and adults.",
-    "- Learners can ask for a female or male teacher when booking.",
+    "- Learners can share a teacher preference when booking; Admissions confirms availability for the requested course, language and time.",
     "- A three-day free trial is available on eligible plans; the Weekend plan is excluded.",
     `- ${familyDiscountCopy}`,
     "- Fees can be shown converted into the visitor's currency for guidance; the coordinator confirms the fee and payment currency before enrolment.",
