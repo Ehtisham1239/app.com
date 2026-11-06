@@ -20,7 +20,7 @@ const lead = (extra = {}) => ({
   repeat_of: null, repeat_of_created_at: null, ...extra,
 });
 
-test("the browser may send only a database reference and an email address", () => {
+test("the browser must send a database reference, matching email and 256-bit notification token", () => {
   assert.deepEqual(parseNotificationRequest({ reference: " TR-2026-00042 ", email: " Parent@Example.TEST ", notification_token: "A".repeat(64) }), { reference: "TR-2026-00042", email: "parent@example.test", notificationToken: "a".repeat(64) });
   for (const bad of [null, [], "x", {}, { reference: "TR-RECEIVED", email: "a@b.co" }, { reference: "TR-2026-42", email: "a@b.co" },
     { reference: "TR-2026-00042", email: "not-an-email", notification_token: "a".repeat(64) },
@@ -197,5 +197,5 @@ test("outages and missing configuration fail clearly and are logged without pers
   assert.match(consoleLines.join("\n"), /"outcome":"resend_500_application_error"/);
   setup(); fakeResend(); await route.POST(request(valid));
   assert.match(consoleLines.join("\n"), /"outcome":"sent","reference":"TR-2026-00042"/);
-  for (const secret of [KEY, "parent@example.test", "+15552345678", "Test Parent", "database unavailable"]) assert.ok(!allConsoleLines.join("\n").includes(secret), secret);
+  for (const secret of [KEY, "parent@example.test", "+15552345678", "Test Parent", "database unavailable", "a".repeat(64)]) assert.ok(!allConsoleLines.join("\n").includes(secret), secret);
 });
