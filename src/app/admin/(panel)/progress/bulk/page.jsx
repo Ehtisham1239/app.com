@@ -20,7 +20,7 @@ export default function ProgressBulkPage() {
   const [busy, setBusy] = useState(false);
   const period = monthToPeriod(month);
   const roster = useLoad(() => period ? db().rpc("progress_my_students", { p_period: period }) : { data: [] }, [period]);
-  const students = roster.data || [];
+  const students = useMemo(() => roster.data || [], [roster.data]);
 
   const read = async (file) => {
     setParsed(null); setError("");
