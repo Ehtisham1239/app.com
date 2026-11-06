@@ -12,7 +12,7 @@ import {
 const KEY = "re_test_0123456789abcdef";
 const ENV = { RESEND_API_KEY: KEY, LEAD_NOTIFICATION_FROM: "OQC Website <leads@example.test>", LEAD_NOTIFICATION_TO: "admissions@example.test, ceo@example.test" };
 const lead = (extra = {}) => ({
-  id: "6f1d2c3b-1111-4222-8333-444455556666", reference: "TR-2026-00042", created_at: "2026-11-05T10:12:00.000Z",
+  lead_type: "trial", id: "6f1d2c3b-1111-4222-8333-444455556666", reference: "TR-2026-00042", created_at: "2026-11-05T10:12:00.000Z",
   learner_name: "Child of Test Parent", guardian_name: "Test Parent", email: "parent@example.test", phone: "+15552345678",
   country: "United States", timezone: "America/Chicago", age_band: "child_8_12", course: "Hifz-ul-Quran", teacher_gender_pref: "female",
   notes: "Source: USA landing page (/usa-quran-classes).\nStudent age: 9–12 years.\nPreferred days and time (in the parent’s words): Mon & Wed after 5 pm",
@@ -106,7 +106,7 @@ before(async () => {
       builder.onResolve({ filter: /^next\/server$|^@\/lib\/supabase\/public$/ }, (args) => ({ path: args.path, namespace: "fixture" }));
       builder.onLoad({ filter: /.*/, namespace: "fixture" }, (args) => ({ contents: args.path === "next/server"
         ? "export const NextResponse={json:(value,init)=>Response.json(value,init)};"
-        : "export const publicDb={rpc:(...args)=>globalThis.__leadRoute.rpc(...args)};" }));
+        : "export function getServiceClient(){return globalThis.__leadRoute.serviceClient;}" }));
       builder.onResolve({ filter: /^@\// }, (args) => ({ path: resolve("src", args.path.slice(2) + ".js") }));
     } }],
   });
@@ -138,7 +138,7 @@ function fakeResend({ status = 200, delay = 0 } = {}) {
 function setup({ data = lead(), error = null, env = ENV } = {}) {
   process.env = { ...realEnv, ...env };
   consoleLines.length = 0;
-  fixture = { calls: [], rpc: async (...args) => { fixture.calls.push(args); return { data, error }; } };
+  fixture = { calls: [], serviceClient: { rpc: async (...args) => { fixture.calls.push(args); return { data, error }; } } };
   globalThis.__leadRoute = fixture;
 }
 beforeEach(() => { globalThis.fetch = async () => { throw new Error("unexpected network call"); }; });
@@ -147,7 +147,7 @@ test("a confirmed lead produces exactly one admissions email", async () => {
   setup(); const resend = fakeResend();
   const response = await route.POST(request(valid));
   assert.equal(response.status, 200); assert.deepEqual(await response.json(), { ok: true });
-  assert.deepEqual(fixture.calls, [["usa_lead_for_notification", { p_reference: "TR-2026-00042", p_email: "parent@example.test" }]]);
+  assert.deepEqual(fixture.calls, [["lead_for_notification", { p_reference: "TR-2026-00042", p_email: "parent@example.test" }]]);
   assert.equal(resend.delivered.length, 1);
   assert.match(resend.delivered[0].subject, /TR-2026-00042/);
   assert.match(response.headers.get("cache-control"), /no-store/); assert.match(response.headers.get("x-robots-tag"), /noindex/);
