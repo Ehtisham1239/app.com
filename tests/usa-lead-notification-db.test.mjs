@@ -1,4 +1,4 @@
-// Database checks for public.usa_lead_for_notification (supabase/migrations/20261105104232_usa_lead_notification.sql),
+// Database checks for public.lead_for_notification (server-only; legacy USA lookup revoked),
 // run in PGlite with synthetic data only.
 import { before, after, test } from "node:test";
 import assert from "node:assert/strict";
@@ -23,8 +23,8 @@ const submit = async (extra = {}) => {
   return (await one("select public.submit_trial_application($1::jsonb) as r", [payload])).r.reference;
 };
 const lookup = async (reference, email = "parent@example.test") => {
-  await as("anon");
-  return (await one("select public.usa_lead_for_notification($1, $2) as r", [reference, email])).r;
+  await as("service_role");
+  return (await one("select public.lead_for_notification($1, $2) as r", [reference, email])).r;
 };
 
 before(async () => {
@@ -59,7 +59,8 @@ test("nothing is returned for another email, another page, an old or deleted lea
   assert.equal(await lookup("TR-2026-99999", "second@example.test"), null);
   assert.equal(await lookup(`${reference}' or '1'='1`, "second@example.test"), null);
   const sitewide = await submit({ email: "site@example.test", phone: "+15552340003", utm: { landing_page: "/free-trial", gclid: "x" } });
-  assert.equal(await lookup(sitewide, "site@example.test"), null, "main-site leads are not exposed");
+  const sitewideRow = await lookup(sitewide, "site@example.test");
+  assert.equal(sitewideRow.utm.landing_page, "/free-trial", "the server lookup is global; the USA route applies its own landing-page restriction");
   await as("postgres");
   await db.query("update public.trial_applications set created_at = now() - interval '31 minutes' where reference = $1", [reference]);
   assert.equal(await lookup(reference, "second@example.test"), null, "older than 30 minutes");
@@ -80,10 +81,23 @@ test("a repeat request names the earlier reference so staff do not handle it twi
 test("the function is read-only and callable only through its declared grants", async () => {
   await as("postgres");
   const fn = await one(`select p.provolatile, p.prosecdef, array_to_string(p.proconfig, ',') as config,
-    has_function_privilege('anon', p.oid, 'execute') as anon_exec
-    from pg_proc p join pg_namespace n on n.oid = p.pronamespace where n.nspname = 'public' and p.proname = 'usa_lead_for_notification'`);
+    has_function_privilege('anon', p.oid, 'execute') as anon_exec,
+    has_function_privilege('authenticated', p.oid, 'execute') as auth_exec,
+    has_function_privilege('service_role', p.oid, 'execute') as service_exec
+    from pg_proc p join pg_namespace n on n.oid = p.pronamespace where n.nspname = 'public' and p.proname = 'lead_for_notification'`);
   assert.equal(fn.provolatile, "s"); assert.equal(fn.prosecdef, true); assert.equal(fn.config, "search_path=\"\"");
-  assert.equal(fn.anon_exec, true);
+  assert.equal(fn.anon_exec, false); assert.equal(fn.auth_exec, false); assert.equal(fn.service_exec, true);
+
+  const legacy = await one(`select
+    has_function_privilege('anon', p.oid, 'execute') as anon_exec,
+    has_function_privilege('authenticated', p.oid, 'execute') as auth_exec,
+    has_function_privilege('service_role', p.oid, 'execute') as service_exec
+    from pg_proc p join pg_namespace n on n.oid = p.pronamespace
+    where n.nspname = 'public' and p.proname = 'usa_lead_for_notification'`);
+  assert.ok(legacy);
+  assert.equal(legacy.anon_exec, false);
+  assert.equal(legacy.auth_exec, false);
+  assert.equal(legacy.service_exec, false);
   const before = await one("select count(*)::int as n from public.trial_applications");
   await lookup("TR-2026-00001");
   await as("postgres");
