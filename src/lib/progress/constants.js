@@ -141,6 +141,7 @@ export const SCORE_MAX = 10;
 export function detailsForm(details) {
   const d = details || {};
   return {
+    assessment_version: 1,
     scores: Object.fromEntries(CATEGORIES.map((c) => [c.key, String(d.scores?.[c.key] ?? "")])),
     attendance: { held: String(d.attendance?.held ?? ""), attended: String(d.attendance?.attended ?? "") },
     syllabus: { stage: d.syllabus?.stage || "", level: d.syllabus?.level || "", covered: d.syllabus?.covered || "", memorised: d.syllabus?.memorised || "", lessons_completed: d.syllabus?.lessons_completed || "" },
