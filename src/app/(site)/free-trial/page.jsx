@@ -26,7 +26,7 @@ export const metadata = contentMetadata({
 const TRIAL_FAQS = [
   { question: "Is the free trial really free?", answer: "Yes. The trial gives 3 days of live one-to-one classes on eligible plans and no card is needed. The Weekend plan is excluded from the free trial." },
   { question: "What happens after I send the form?", answer: "A coordinator contacts you by WhatsApp or email to agree a class time, your course and your teacher preference before the trial lessons begin online." },
-  { question: "Can I ask for a female teacher?", answer: "Yes. Choose a female or male teacher on the form; the coordinator confirms which teacher is available for your language and class time." },
+  { question: "Can I ask for a female teacher?", answer: "Yes. You can request a female teacher on the form. Admissions confirms whether a suitable female teacher is available for your course, teaching language and requested time before lessons are arranged." },
   { question: "What happens after the 3 days?", answer: "If you would like to continue, the coordinator agrees timings, teacher preference and a monthly package with you." },
 ];
 
