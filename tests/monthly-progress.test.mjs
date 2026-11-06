@@ -186,7 +186,9 @@ test("versioned 11-area assessment is required for current-form submission while
   const assessmentAreas = Object.fromEntries([
     "qaida_reading", "tajweed", "makharij", "fluency", "hifz_revision",
     "duas", "daily_sunnah", "surahs", "hadith", "namaz", "islamic_knowledge"
-  ].map((key) => [key, { effort: "good", standard: "at_expected" }]));
+  ].map((key) => [key, key === "qaida_reading"
+    ? { effort: "not_applicable", standard: "not_applicable" }
+    : { effort: "good", standard: "at_expected" }]));
   const details = { assessment_version: 1, assessment_areas: assessmentAreas, syllabus: { stage: "tajweed" } };
   const id = (await one(
     "select public.progress_save($1,$2,$3,'Complete remarks',true,'Monthly practice plan',$4) id",
@@ -195,6 +197,8 @@ test("versioned 11-area assessment is required for current-form submission while
   const saved = await one("select details from public.monthly_reports where id=$1", [id]);
   assert.equal(saved.details.assessment_version, 1);
   assert.equal(saved.details.assessment_areas.tajweed.standard, "at_expected");
+  assert.equal(saved.details.assessment_areas.qaida_reading.effort, "not_applicable");
+  assert.equal(saved.details.assessment_areas.qaida_reading.standard, "not_applicable");
   assert.equal(saved.details.syllabus.stage, "tajweed");
 });
 
