@@ -1,7 +1,7 @@
 import { ClientIdentity } from "./client-identity";
 import { Award } from "lucide-react";
 import { formatDate } from "@/lib/format";
-import { ASSESSMENT_AREAS, CATEGORIES, COURSE_STANDARD_OPTIONS, EFFORT_OPTIONS, periodLabel, ratingLabel, ratingStars } from "@/lib/progress/constants";
+import { CATEGORIES, periodLabel, ratingLabel, ratingStars } from "@/lib/progress/constants";
 
 const PILL = {
   excellent: "bg-leaf-700 text-white",
@@ -77,29 +77,6 @@ export function ProgressCertificate({ report, studentName, studentCode, clientId
           </tbody>
         </table>
 
-        {r.details?.assessment_areas && Object.keys(r.details.assessment_areas).length > 0 && (
-          <section className="mt-6">
-            <h3 className="mb-2 font-display text-lg text-mushaf-900">Monthly learning assessment · 11 areas</h3>
-            <div className="overflow-x-auto rounded-xl border border-gold-300 bg-white/90">
-              <table className="w-full border-collapse text-left text-xs sm:text-sm">
-                <thead className="bg-mushaf-900 text-white"><tr><th className="px-3 py-2">Learning area</th><th className="px-3 py-2">Effort</th><th className="px-3 py-2">Course standard</th></tr></thead>
-                <tbody>
-                  {ASSESSMENT_AREAS.map((area, i) => {
-                    const item = r.details.assessment_areas?.[area.key] || {};
-                    const effort = EFFORT_OPTIONS.find((o) => o.value === item.effort)?.label || "—";
-                    const standard = COURSE_STANDARD_OPTIONS.find((o) => o.value === item.standard)?.label || "—";
-                    return <tr key={area.key} className={i % 2 ? "bg-paper/60" : ""}>
-                      <th scope="row" className="border-t border-line px-3 py-2 font-semibold text-mushaf-900">{area.label}</th>
-                      <td className="border-t border-line px-3 py-2">{effort}</td>
-                      <td className="border-t border-line px-3 py-2">{standard}</td>
-                    </tr>;
-                  })}
-                </tbody>
-              </table>
-            </div>
-            <p className="mt-1 text-xs text-ink-faint">Learning summaries are available in the detailed e-DMC view.</p>
-          </section>
-        )}
         <figure className="mt-6 rounded-xl border border-gold-300/70 bg-white/90 px-5 py-4">
           <figcaption className="text-xs font-bold uppercase tracking-[0.16em] text-gold-700">Teacher’s remarks</figcaption>
           <blockquote className="mt-1.5 whitespace-pre-line break-words leading-relaxed text-ink">{r.remarks || "—"}</blockquote>
