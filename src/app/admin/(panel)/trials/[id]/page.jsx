@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { use, useEffect, useState } from "react";
+import { use, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { CalendarClock, CheckCircle2, Clock, GraduationCap, Loader2, Mail, MessageCircle, Phone, Save, Send, Trash2 } from "lucide-react";
@@ -99,11 +99,13 @@ function EnrolCard({ trial, onDone }) {
   const [fee, setFee] = useState("");
   const [start, setStart] = useState(new Date().toLocaleDateString("en-CA"));
   const [busy, setBusy] = useState(false);
-  useEffect(() => {
-    const plan = (plans.data || []).find((p) => p.id === planId);
-    const price = plan?.pricing_plan_prices?.find((p) => p.currency === currency);
-    if (price) setFee(String(price.amount_minor / 100));
-  }, [planId, currency, plans.data]);
+  const plan = plans.data?.find((item) => item.id === planId);
+  const price = plan?.pricing_plan_prices?.find((item) => item.currency === currency);
+  const [previousPrice, setPreviousPrice] = useState(price);
+  if (previousPrice !== price) {
+    setPreviousPrice(price);
+    setFee(price ? String(price.amount_minor / 100) : "");
+  }
   const enrol = async () => {
     if (!courseId) return toast.error("Choose the course.");
     setBusy(true);
@@ -240,7 +242,12 @@ export default function TrialPage({ params }) {
   const staff = useLoad(() => db().from("profiles").select("id, full_name, role").eq("is_active", true).order("full_name"), []);
   const [outcome, setOutcome] = useState("");
   const [busy, setBusy] = useState("");
-  useEffect(() => setOutcome(trial.data?.outcome_note || ""), [trial.data?.outcome_note]);
+  const savedOutcome = trial.data?.outcome_note || "";
+  const [previousOutcome, setPreviousOutcome] = useState(savedOutcome);
+  if (previousOutcome !== savedOutcome) {
+    setPreviousOutcome(savedOutcome);
+    setOutcome(savedOutcome);
+  }
 
   if (trial.loading && !trial.data) return <Loading rows={8} />;
   if (trial.error) return <ErrorState error={trial.error} onRetry={trial.reload} />;

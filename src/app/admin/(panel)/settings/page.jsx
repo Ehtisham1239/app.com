@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 import { Loader2, Plus, Save, Trash2 } from "lucide-react";
 import { clsx } from "clsx";
@@ -55,12 +55,13 @@ export default function SettingsPage() {
   const [value, setValue] = useState(null);
   const [busy, setBusy] = useState(false);
   const section = SECTIONS.find((s) => s.key === active);
-  useEffect(() => {
-    if (!rows.data) return;
-    const stored = rows.data.find((r) => r.key === active)?.value;
+  const [previous, setPrevious] = useState({ active, data: rows.data });
+  if (previous.active !== active || previous.data !== rows.data) {
+    setPrevious({ active, data: rows.data });
+    const stored = rows.data?.find((r) => r.key === active)?.value;
     const fallback = structuredClone(DEFAULT_SETTINGS[active] ?? (section.list ? [] : {}));
-    setValue(active === "site.seo" ? normalizeSeoSettings(stored) : stored ?? fallback);
-  }, [active, rows.data, section]);
+    setValue(rows.data ? (active === "site.seo" ? normalizeSeoSettings(stored) : stored ?? fallback) : null);
+  }
 
   const save = async () => {
     if (active === "site.analytics") {
