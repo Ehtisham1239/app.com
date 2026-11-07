@@ -35,3 +35,21 @@
 - Quran In Depth: a direct commercial competitor with its own contributor route; not selected for OQC link outreach.
 
 **Verification rule:** an editor acknowledgement is not a backlink. Count a placement only after the public referring page is live, the visible OQC link points to the intended canonical URL, context and `rel` attribute are recorded, and the page is accessible. Indexation and ranking benefit must not be assumed.
+
+## Draft pitch for human approval — IslamiCity
+
+**Not sent.** This draft must be reviewed by the Academic lead and approved by the owner. The sender's name and bio must be supplied by the owner; none is invented here.
+
+**Subject:** Article proposal — A parent's checklist for evaluating an online Quran lesson
+
+Hello IslamiCity Editorial Team,
+
+We would like to propose a short, practical article for parents who are considering online Quran lessons for their children. The piece would offer a neutral checklist covering learner level, lesson structure, audio and connection quality, teacher feedback, parent involvement, safeguarding questions and privacy.
+
+The article would be educational rather than promotional, avoid unverifiable outcome or qualification claims, and include sources for any factual statements. If suitable, we would submit it under a named academic contributor after internal review.
+
+Could you please confirm whether this topic fits your editorial scope, and advise your requirements for named authorship, AI-assisted drafting/disclosure, external resource links and any preferred submission format?
+
+Thank you for considering the proposal.
+
+**Approval state:** Draft only. No recipient address, sender identity, or submission has been supplied or used.
