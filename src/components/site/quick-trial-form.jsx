@@ -184,13 +184,16 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
 
   const err = (k) => (errors[k] ? { "aria-invalid": true, "aria-describedby": `q-${k}-error` } : {});
   return (
-    <form ref={topRef} onSubmit={submit} noValidate aria-busy={state.sending} aria-label={eligible ? "Book a free trial" : "Package enquiry"} className="surface scroll-mt-28 space-y-5 p-6 shadow-[var(--shadow-lift)] sm:p-8">
+    <form ref={topRef} onSubmit={submit} noValidate aria-busy={state.sending} aria-label={eligible ? "Book a free trial" : "Package enquiry"} className="surface scroll-mt-28 space-y-5 p-5 shadow-[var(--shadow-lift)] sm:p-8">
       <div className="absolute -left-[9999px]" aria-hidden="true"><label>Website<input tabIndex={-1} autoComplete="off" value={form.website} onChange={(e) => set("website", e.target.value)} /></label></div>
-      <div>
-        <h2 className="text-[1.55rem] text-mushaf-900">{eligible ? "Book your free 3-day trial" : `Enquire about ${selectedPlan.name}`}</h2>
-        <p className="mt-1 text-[0.92rem] text-ink-soft">{eligible ? "Takes under a minute. No payment or card needed." : "The Weekend plan is excluded from the free trial. The coordinator will confirm the schedule and terms."}</p>
+      <div className="flex items-start gap-3">
+        <img src="/brand/mark-v2-64.png" alt="" width={64} height={64} className="size-10 shrink-0 rounded-xl bg-white p-1 ring-1 ring-leaf-100" />
+        <div>
+          <h2 className="text-[1.55rem] text-mushaf-900">{eligible ? "Book your free 3-day trial" : `Enquire about ${selectedPlan.name}`}</h2>
+          <p className="mt-1 text-[0.92rem] text-ink-soft">{eligible ? "No card needed. Admissions will contact you to arrange a time." : "The Weekend plan is excluded from the free trial. The coordinator will confirm the schedule and terms."}</p>
+        </div>
       </div>
-      {(selectedPlan || initialPreferenceNotes) && <div className="rounded-xl border border-leaf-100 bg-leaf-50 p-4 text-sm text-ink-soft" aria-label="Your enquiry preferences">{selectedPlan && <p>Selected package: <strong>{selectedPlan.name}</strong></p>}{initialPreferenceNotes && <p className="mt-1 whitespace-pre-line">{initialPreferenceNotes}</p>}</div>}
+      {(selectedPlan || initialPreferenceNotes) && <div className="rounded-xl border border-leaf-100 bg-leaf-50 p-4 text-sm text-ink-soft" role="group" aria-label="Your enquiry preferences">{selectedPlan && <p>Selected package: <strong>{selectedPlan.name}</strong></p>}{initialPreferenceNotes && <p className="mt-1 whitespace-pre-line">{initialPreferenceNotes}</p>}</div>}
 
       <div>
         <label htmlFor="q-learner_name" className="field-label">Learner’s name</label>
@@ -211,35 +214,13 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
         <FieldError id="q-age_band-error">{errors.age_band}</FieldError>
       </fieldset>
 
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div>
-          <label htmlFor="q-country" className="field-label">Country</label>
-          <select id="q-country" className="select" value={form.country} onChange={(e) => setForm((f) => ({ ...f, country: e.target.value, zone_choice: "" }))} autoComplete="country-name" required {...err("country")}>
-            <option value="">Choose your country</option>
-            {COUNTRIES.map(([n]) => <option key={n}>{n}</option>)}
-          </select>
-          <FieldError id="q-country-error">{errors.country}</FieldError>
-        </div>
-        <div>
-          <label htmlFor="q-course_id" className="field-label">Course <span className="font-normal text-ink-faint">(optional)</span></label>
-          <select id="q-course_id" className="select" value={form.course_id} onChange={(e) => set("course_id", e.target.value)}>
-            <option value="">Not sure yet</option>
-            {courses.map((c) => <option key={c.id} value={c.id}>{c.title}</option>)}
-          </select>
-        </div>
-      </div>
-      {form.country && zoneOptions.length > 1 && (
-        <div className="-mt-1">
-          <label htmlFor="q-zone" className="field-label">Your time zone</label>
-          <select id="q-zone" className="select" value={timezone} onChange={(e) => set("zone_choice", e.target.value)}>
-            {[...new Set([timezone, ...zoneOptions])].map((zone) => <option key={zone} value={zone}>{zoneLabel(zone, Boolean(form.browser_tz))}</option>)}
-          </select>
-        </div>
-      )}
       <div>
-        <label htmlFor="q-teacher_preference" className="field-label">Teacher preference <span className="font-normal text-ink-faint">(optional)</span></label>
-        <select id="q-teacher_preference" className="select" value={form.teacher_preference} onChange={e => set("teacher_preference", e.target.value)}><option value="">Choose a preference</option>{["Female teacher", "Male teacher", "No preference"].map(value => <option key={value}>{value}</option>)}</select>
-        <p className="mt-1 text-xs text-ink-faint">The coordinator confirms availability and teaching language.</p>
+        <label htmlFor="q-country" className="field-label">Country</label>
+        <select id="q-country" className="select" value={form.country} onChange={(e) => setForm((f) => ({ ...f, country: e.target.value, zone_choice: "" }))} autoComplete="country-name" required {...err("country")}>
+          <option value="">Choose your country</option>
+          {COUNTRIES.map(([n]) => <option key={n}>{n}</option>)}
+        </select>
+        <FieldError id="q-country-error">{errors.country}</FieldError>
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
@@ -257,6 +238,32 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       </div>
       <p className="-mt-2 text-[0.82rem] text-ink-faint">For a child, please give a parent or guardian’s contact details.</p>
 
+      <details className="rounded-xl border border-leaf-100 bg-leaf-50 px-4">
+        <summary className="min-h-11 cursor-pointer rounded-lg py-3 font-semibold text-leaf-800">{form.course_id ? courses.find((course) => course.id === form.course_id)?.title || "Class preferences" : "Add class preferences"} <span className="text-sm font-normal">(optional)</span></summary>
+        <div className="space-y-4 pb-4">
+          <div>
+            <label htmlFor="q-course_id" className="field-label">Course <span className="font-normal text-ink-faint">(optional)</span></label>
+            <select id="q-course_id" className="select" value={form.course_id} onChange={(e) => set("course_id", e.target.value)}>
+              <option value="">Not sure yet</option>
+              {courses.map((c) => <option key={c.id} value={c.id}>{c.title}</option>)}
+            </select>
+          </div>
+          {form.country && zoneOptions.length > 1 && (
+            <div className="-mt-1">
+              <label htmlFor="q-zone" className="field-label">Your time zone</label>
+              <select id="q-zone" className="select" value={timezone} onChange={(e) => set("zone_choice", e.target.value)}>
+                {[...new Set([timezone, ...zoneOptions])].map((zone) => <option key={zone} value={zone}>{zoneLabel(zone, Boolean(form.browser_tz))}</option>)}
+              </select>
+            </div>
+          )}
+          <div>
+            <label htmlFor="q-teacher_preference" className="field-label">Teacher preference <span className="font-normal text-ink-faint">(optional)</span></label>
+            <select id="q-teacher_preference" className="select" value={form.teacher_preference} onChange={e => set("teacher_preference", e.target.value)}><option value="">Choose a preference</option>{["Female teacher", "Male teacher", "No preference"].map(value => <option key={value}>{value}</option>)}</select>
+            <p className="mt-1 text-xs text-ink-faint">The coordinator confirms availability and teaching language.</p>
+          </div>
+        </div>
+      </details>
+
       <div>
         <label className="flex items-start gap-3 text-[0.88rem] leading-relaxed text-ink-soft">
           <input id="q-consent" type="checkbox" className="check mt-0.5 shrink-0" checked={form.consent} onChange={(e) => set("consent", e.target.checked)} required {...err("consent")} />
@@ -268,7 +275,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       {state.error && <p className="rounded-xl bg-rose-600/10 px-4 py-3 text-[0.92rem] font-medium text-rose-600" role="alert">{state.error}</p>}
       <button type="submit" className="btn btn-primary btn-lg w-full" disabled={state.sending}>
         {state.sending ? <Loader2 className="size-5 animate-spin" aria-hidden="true" /> : <CheckCircle2 className="size-5" aria-hidden="true" />}
-        {state.sending ? "Sending…" : eligible ? "Book my free trial" : "Send package enquiry"}
+        {state.sending ? "Sending…" : eligible ? "Request my free trial" : "Send package enquiry"}
       </button>
     </form>
   );

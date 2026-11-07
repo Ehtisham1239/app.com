@@ -5,6 +5,8 @@ import { PageHero } from "@/components/site/chrome";
 import { ContactForm } from "@/components/site/contact-form";
 import { getSettings } from "@/lib/site-data";
 import { whatsappLink } from "@/lib/format";
+import { SITE_URL } from "@/lib/config";
+import { safeJsonLd } from "@/lib/seo";
 import { heroArt } from "@/lib/hero-art";
 
 export const revalidate = 300;
@@ -22,7 +24,7 @@ export default async function ContactPage() {
   const wa = whatsappLink(contact.whatsapp, "Assalamu alaikum, I have a question about Online Quran College.");
   const cards = [
     wa && { icon: MessageCircle, label: "WhatsApp", value: "Chat with an advisor", href: wa, external: true, highlight: true, detail: "A convenient way to ask a quick question" },
-    contact.phone && { icon: Phone, label: "Call us", value: contact.phone, href: `tel:${contact.phone.replace(/\\s/g, "")}`, detail: "Speak with our college team" },
+    contact.phone && { icon: Phone, label: "Call us", value: contact.phone, href: `tel:${contact.phone.replace(/[^+\d]/g, "")}`, detail: "Speak with our college team" },
     contact.email && { icon: Mail, label: "Email", value: contact.email, href: `mailto:${contact.email}`, detail: "Send a detailed enquiry" },
     { icon: BookOpen, label: "Learning model", value: "Online-only Quran academy", detail: "No walk-in office or in-person branch" },
     contact.hours && { icon: Clock3, label: "Class scheduling", value: contact.hours, detail: "Live lesson times are agreed around availability and time zones" },
@@ -30,7 +32,12 @@ export default async function ContactPage() {
 
   return (
     <>
-      <PageHero immersive features={false} path="/contact" eyebrow="Personal guidance, wherever you are" title="Let’s find the right way forward" intro="Whether you are choosing a first Quran course or need help with an existing class, tell us what you need. Our coordinator can guide you on learning options, teacher preferences and suitable lesson times.">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({
+        "@context": "https://schema.org", "@type": "ContactPage",
+        "@id": `${SITE_URL}/contact#webpage`, url: `${SITE_URL}/contact`, name: "Contact Online Quran College",
+        isPartOf: { "@id": `${SITE_URL}/#website` }, mainEntity: { "@id": `${SITE_URL}/#organization` },
+      }) }} />
+      <PageHero immersive features={false} path="/contact" eyebrow="Personal guidance, wherever you are" title="Contact Online Quran College" intro="Whether you are choosing a first Quran course or need help with an existing class, tell us what you need. Our coordinator can guide you on learning options, teacher preferences and suitable lesson times.">
         <div className="mt-7 flex flex-wrap gap-3">
           {wa && <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-gold btn-lg"><MessageCircle className="size-5" />Chat on WhatsApp<ArrowRight className="size-4" /></a>}
           <a href="#send-message" className="btn btn-outline-light btn-lg"><Send className="size-4" />Send an enquiry</a>
@@ -87,7 +94,7 @@ export default async function ContactPage() {
 
         <div className="min-w-0">
           <ContactForm id="send-message" consentText={forms.consent_text} successText={forms.contact_success} />
-          <p className="mt-4 px-1 text-xs leading-relaxed text-ink-faint">For existing student support, select “Existing student support” and include the learner’s name and registered email. Please do not send passwords or full payment-card details.</p>
+          <p className="mt-4 px-1 text-xs leading-relaxed text-ink-faint">For existing student support, open “Add contact details” and select “Existing student support” and include the learner’s name and registered email. Please do not send passwords or full payment-card details.</p>
         </div>
       </section>
 
