@@ -5,7 +5,7 @@ import { isTrialEligible } from "@/lib/trial-eligibility";
 
 const PROMISES = [
   { icon: Clock3, title: "Admissions follow-up", text: "A coordinator contacts you by WhatsApp or email to discuss a suitable time." },
-  { icon: HeartHandshake, title: "Share your teacher preference", text: "Request a female or male teacher; the coordinator confirms availability and language." },
+  { icon: HeartHandshake, title: "Share your teacher preference", text: "Share any teacher preference. Admissions confirms teacher availability and the teaching language." },
   { icon: CalendarCheck2, title: "3 days free on eligible plans", text: "No card needed for the free Quran trial classes. The Weekend plan is excluded." },
   { icon: ShieldCheck, title: "Your details are safe", text: "Read our privacy policy to understand how enquiry details are collected and used." },
 ];
