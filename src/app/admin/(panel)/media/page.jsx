@@ -60,7 +60,7 @@ export default function MediaPage() {
     <>
       <PageHeader
         title="Media library"
-        subtitle="Images and PDFs used on the website. Upload here, then pick them in any page, course or article."
+        subtitle="Website media library. Upload images and PDFs here. Upload MP4 videos from a CMS page’s Video section."
         actions={
           can("media:create") && (
             <>
@@ -90,7 +90,7 @@ export default function MediaPage() {
                   {m.mime_type?.startsWith("image/") ? (
                     <img src={m.public_url} alt={m.alt_text || ""} className="aspect-[4/3] w-full bg-paper object-cover" loading="lazy" />
                   ) : (
-                    <span className="flex aspect-[4/3] items-center justify-center bg-paper text-sm font-bold text-ink-soft">PDF</span>
+                    <span className="flex aspect-[4/3] items-center justify-center bg-paper text-sm font-bold text-ink-soft">{m.mime_type === "video/mp4" ? "MP4" : "PDF"}</span>
                   )}
                   <span className="block truncate px-3 py-2 text-xs text-ink-soft">{m.file_name}</span>
                 </button>

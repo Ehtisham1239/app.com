@@ -14,6 +14,7 @@ import { CONTENT_STATUSES, CURRENCIES } from "@/lib/constants";
 import { fromMinor, slugify, toMinor, validPriceAmount } from "@/lib/format";
 import { ContentIcon } from "@/components/icon";
 import { RichText } from "@/components/admin/rich-text";
+import { PageVideoField } from "@/components/admin/page-video-field";
 import { ImageField } from "@/components/admin/media";
 import { Card, ConfirmButton, ErrorState, Field, Loading, PageHeader, StatusBadge, TagInput, Toggle, When } from "@/components/admin/ui";
 
@@ -31,7 +32,7 @@ function RelationSelect({ id, table, labelField, value, onChange }) {
   );
 }
 
-function Input({ id, field, value, onChange, form, setSlugTouched, canPublish, userId }) {
+function Input({ id, field, value, onChange, form, setSlugTouched, canPublish, userId, canUpload }) {
   switch (field.type) {
     case "slug":
       return (
@@ -99,6 +100,8 @@ function Input({ id, field, value, onChange, form, setSlugTouched, canPublish, u
       return <TagInput id={id} value={value} onChange={onChange} />;
     case "datetime":
       return <input id={id} type="datetime-local" className="adm-input" value={toLocalInput(value)} onChange={(e) => onChange(fromLocalInput(e.target.value))} />;
+    case "page-video":
+      return <PageVideoField value={value} onChange={onChange} userId={userId} canUpload={canUpload} />;
     case "image":
       return <ImageField id={id} value={value} onChange={onChange} userId={userId} />;
     case "status":
@@ -237,7 +240,7 @@ export function ResourceForm({ rkey, id }) {
   const viewUrl = !isNew && cfg.publicPath && (!cfg.statusField || form.status === "published") ? cfg.publicPath(form) : null;
   const field = (f) => (
     <Field key={f.name} label={f.label} hint={f.hint} required={f.required} className={clsx(f.half ? "sm:col-span-1" : "sm:col-span-2")}>
-      <Input field={f} value={form[f.name]} onChange={(v) => set(f.name, v)} form={form} setSlugTouched={setSlugTouched} canPublish={canPublish} userId={access?.id} />
+      <Input field={f} value={form[f.name]} onChange={(v) => set(f.name, v)} form={form} setSlugTouched={setSlugTouched} canPublish={canPublish} userId={access?.id} canUpload={can("media:create")} />
     </Field>
   );
   const statusField = cfg.fields.find((f) => f.type === "status");

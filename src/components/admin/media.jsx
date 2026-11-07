@@ -20,16 +20,16 @@ function imageSize(file) {
       resolve({ width: img.naturalWidth, height: img.naturalHeight });
       URL.revokeObjectURL(url);
     };
-    img.onerror = () => resolve({});
+    img.onerror = () => { URL.revokeObjectURL(url); resolve({}); };
     img.src = url;
   });
 }
 
 // Uploads a file to the public "media" bucket and records it in the media library.
-export async function uploadMedia(file, userId) {
-  if (!ALLOWED.includes(file.type)) throw new Error("Only JPG, PNG, WebP, GIF, AVIF images or PDF files can be uploaded.");
+export async function uploadMedia(file, userId, { video = false } = {}) {
+  if (video ? file.type !== "video/mp4" : !ALLOWED.includes(file.type)) throw new Error(video ? "Choose an MP4 video." : "Only JPG, PNG, WebP, GIF, AVIF images or PDF files can be uploaded.");
   if (file.size > 10 * 1024 * 1024) throw new Error("Files must be smaller than 10 MB.");
-  const ext = (file.name.split(".").pop() || "bin").toLowerCase().replace(/[^a-z0-9]/g, "");
+  const ext = video ? "mp4" : (file.name.split(".").pop() || "bin").toLowerCase().replace(/[^a-z0-9]/g, "");
   const base = slugify(file.name.replace(/\.[^.]+$/, "")) || "file";
   const now = new Date();
   const path = `uploads/${now.getFullYear()}/${String(now.getMonth() + 1).padStart(2, "0")}/${base}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
@@ -43,7 +43,10 @@ export async function uploadMedia(file, userId) {
     .insert({ bucket: MEDIA_BUCKET, path, public_url: pub.publicUrl, file_name: file.name, mime_type: file.type, size_bytes: file.size, uploaded_by: userId, alt_text: base.replace(/-/g, " "), ...dims })
     .select()
     .single();
-  if (error) throw error;
+  if (error) {
+    await supabase.storage.from(MEDIA_BUCKET).remove([path]).catch(() => {});
+    throw error;
+  }
   return data;
 }
 
@@ -51,7 +54,7 @@ export function MediaPicker({ open, onClose, onPick, userId }) {
   const [busy, setBusy] = useState(false);
   const inputRef = useRef(null);
   const media = useLoad(
-    () => (open ? db().from("media_assets").select("id, public_url, file_name, mime_type, alt_text").order("created_at", { ascending: false }).limit(60) : { data: [] }),
+    () => (open ? db().from("media_assets").select("id, public_url, file_name, mime_type, alt_text").like("mime_type", "image/%").order("created_at", { ascending: false }).limit(60) : { data: [] }),
     [open],
   );
   const onFiles = async (files) => {
