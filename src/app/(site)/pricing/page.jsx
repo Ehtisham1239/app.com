@@ -21,7 +21,6 @@ export default async function PricingPage() {
   const other = plans.filter((p) => !/^package/i.test(p.name));
   // General fee, payment and missed-class questions; country-specific answers stay on their country pages.
   const feeFaqs = faqs.filter((f) => !/^Market:/i.test(f.category || "") && /fee|pay|cancel|discount|reschedul|miss/i.test(`${f.category} ${f.question}`));
-  const currencies = [...new Set(plans.flatMap((p) => p.prices.map((x) => x.currency)))];
   const wa = whatsappLink(settings["site.contact"]?.whatsapp, "Assalamu alaikum, I have a question about your fees.");
   // Direct answer for the most-searched fee question; built from the same published plans as the cards.
   const quickAnswer = feeAnswer(plans, fx, "GBP", "the UK", settings["site.family_discount"]);
@@ -53,7 +52,7 @@ export default async function PricingPage() {
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {[
             { icon: ShieldCheck, title: "Free trial on eligible plans", text: "Try 3 days of classes before choosing an eligible package. The Weekend plan is excluded; confirm your plan with the coordinator." },
-            { icon: CreditCard, title: "Easy payment", text: `Pay monthly by card, PayPal or bank transfer${currencies.length ? ` — prices shown in ${currencies.join(", ")}` : ""}.` },
+            { icon: CreditCard, title: "Easy payment", text: "Pay monthly by card, PayPal or bank transfer. The coordinator confirms your payment currency." },
           ].map(({ icon: Icon, title, text }) => (
             <div key={title} className="flex gap-4 rounded-[var(--radius-card)] border border-line bg-white p-5">
               <Icon className="mt-0.5 size-6 shrink-0 text-gold-600" aria-hidden="true" />

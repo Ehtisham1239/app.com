@@ -25,7 +25,10 @@ export function PricingCards({ plans, compact = false, currency, fx }) {
         // An approved price in the chosen currency wins; otherwise show an approximate conversion.
         const price = mainPrice(p.prices, currency) ?? (currency ? displayPrice(p.prices, currency, fx) : null);
         const others = currency ? [] : (p.prices ?? []).filter((x) => x !== price);
-        const features = (Array.isArray(p.features) ? p.features : []).slice(0, compact ? 4 : 12);
+        // The structured lesson count also drives the fee comparison and per-class estimate.
+        const features = (Array.isArray(p.features) ? p.features : [])
+          .filter((feature) => !p.classes_per_week || !/^\s*\d+\s+(?:classes?|lessons?|days?)\s+(?:a|per)\s+week[.!]?\s*$/i.test(feature))
+          .slice(0, compact ? 4 : 12);
         const featured = Boolean(p.is_featured);
         return (
           <div
@@ -54,7 +57,7 @@ export function PricingCards({ plans, compact = false, currency, fx }) {
             <p className="mt-4 flex flex-wrap gap-2">
               {p.classes_per_week ? (
                 <span className="chip">
-                  {p.classes_per_week} {p.classes_per_week === 1 ? "day" : "days"} a week
+                  {p.classes_per_week} {p.classes_per_week === 1 ? "class" : "classes"} a week
                 </span>
               ) : null}
               {p.duration_min ? <span className="chip">{p.duration_min}-minute classes</span> : null}
