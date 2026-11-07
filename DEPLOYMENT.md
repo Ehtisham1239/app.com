@@ -191,7 +191,7 @@ verification; Chromium's separate trust store did not contain the current cloud 
 
 ## App hosting
 
-Use Node 24 (Node >=20.9 supported). Copy `.env.example` to `.env.local` for local development;
+Use Node 24 (Node >=20.9 and <25 supported). Copy `.env.example` to `.env.local` for local development;
 set the target project's **public** publishable key, URL, and canonical website URL in hosting settings.
 The public key provided in chat is installed in this current machine's ignored `.env.local` and saved
 as an environment configuration draft; it is not bundled as a hardcoded credential in source.
