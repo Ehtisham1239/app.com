@@ -98,10 +98,10 @@
       "id": "OPS-10",
       "priority": "P2",
       "workstream": "Mobile/field CWV",
-      "status": "Mobile functional blocker resolved; local lab measured; production/field measurement unavailable",
-      "result": "48 live page/viewport cases at 320/390/768/1440px, four menu/form journeys, no-JavaScript article, zero browser errors/writes. Local Lighthouse 13.6.0: mobile performance 93, desktop 100; accessibility/best-practices/SEO 100 both. Remote Lighthouse failed ERR_EMPTY_RESPONSE before a valid measurement.",
-      "next": "Measure production through an authorized working environment and obtain actual field p75/device/window evidence. Local mobile LCP 3.17s warrants production verification; do not infer field CWV from lab results.",
-      "evidence": "docs/seo-agent/evidence/2026-10-28/",
+      "status": "Remote lab measurement available7November; field evidence pending",
+      "result": "Five live pages tested in mobile/desktop Lighthouse from CI. Mobile performance95–99; desktop100. Homepage/UK/USA accessibility97 with ARIA findings. Pricing/trial accessibility100.",
+      "next": "Resolve element-level ARIA findings from the full Lighthouse artifacts; obtain actual field p75/device/window data.",
+      "evidence": "docs/seo-agent/evidence/2026-11-07/release-and-lab.json",
       "latest_attempt": {
         "date": "2026-10-31",
         "tool": "PageSpeed Insights API mobile",
@@ -121,9 +121,9 @@
       "id": "OPS-12",
       "priority": "P2",
       "workstream": "External registers and private hosting logs",
-      "status": "Repository registers available; production connection resolved; external editing/private-log freshness limited",
-      "result": "29 October production release verified; 30 October GitHub Vercel status for cbb2b088 is success. No fresh private-log inspection or external Pathway update claimed.",
-      "next": "Continue independent work and reconcile when authorized capability becomes available."
+      "status": "Vercel project/deployment reads work; current functional release verified",
+      "result": "Production source cdf6d71 is READY and live trial text/assets verified. External Claude Docs pathway remains unavailable.",
+      "next": "Use current repository and private owner registers while preserving the separate external pathway dependency."
     }
   ],
   "master_sections": [
@@ -269,11 +269,11 @@
     }
   ],
   "last_daily_review": {
-    "date": "2026-11-05",
-    "source_reviewed": "de24bddbf9ebbf351e447939050ab0ac0c1d5be1",
-    "report": "docs/SEO-DAILY-2026-11-05.md",
-    "evidence": "docs/seo-agent/evidence/2026-11-05/verification.json",
-    "result": "32 CMS/live article checks;49 contextual destinations;12 new mobile plus12 desktop cases;two existing redirects verified;no production content changes"
+    "date": "2026-11-07",
+    "source_reviewed": "6590592166c33c309a8cb597f81675a5485bafa8",
+    "report": "docs/SEO-DAILY-2026-11-07.md",
+    "result": "32 CMS posts unchanged; teacher promise correction deployed and verified;83 sitemap pages checked by CI; remote Lighthouse lab results extracted",
+    "evidence": "docs/seo-agent/evidence/2026-11-07/release-and-lab.json"
   },
   "last_implementation": {
     "date": "2026-10-29",
@@ -345,5 +345,34 @@
     "evidence": "docs/seo-agent/evidence/2026-11-05/verification.json",
     "result": "Both reviewed mappings return308 and preserve query; targets among current32 passing article checks",
     "remaining": "basic-islamic-education requires justified equivalent scope"
+  },
+  "last_claim_fix": {
+    "date": "2026-11-07",
+    "status": "Verified live",
+    "pull_request": 136,
+    "source_commit": "cdf6d71e697827338ce59238eb32270fc9747400",
+    "deployment_id": "dpl_7Jzc1MYaPNpLhgyJMk4uKYY9t2WN",
+    "result": "Shared trial promises ask for preference and Admissions confirms availability and language",
+    "tests": "Seven targeted tests passed; final sentence claim tests passed; CI test/lint/build/dependency, responsive and lab/SEO jobs passed",
+    "next": "Verify receipt of the three new trial funnel events in the existing GTM/GA4 account"
+  },
+  "city_indexing_review": {
+    "date": "2026-11-07",
+    "status": "Awaiting reconciliation",
+    "approved_in_inspected_decision_log": [
+      "Houston",
+      "Perth",
+      "Melbourne"
+    ],
+    "additional_live_opt_ins": [
+      "New York",
+      "Los Angeles",
+      "Chicago",
+      "Dallas",
+      "Sydney",
+      "Brisbane",
+      "Adelaide"
+    ],
+    "next": "Locate any later explicit approval and local evidence before changing current CMS flags"
   }
 }
