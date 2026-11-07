@@ -130,9 +130,11 @@ export function ResourceForm({ rkey, id }) {
   const [dirty, setDirty] = useState(false);
   const record = useLoad(() => (isNew ? { data: null } : db().from(cfg.table).select("*").eq("id", id).maybeSingle()), [rkey, id]);
 
-  useEffect(() => {
-    if (!isNew && record.data) setForm(record.data);
-  }, [isNew, record.data]);
+  const [previousRecord, setPreviousRecord] = useState(record.data);
+  if (previousRecord !== record.data) {
+    setPreviousRecord(record.data);
+    if (!isNew) setForm(record.data);
+  }
   useEffect(() => {
     const warn = (e) => {
       if (dirty) {
@@ -336,7 +338,11 @@ function ChildRows({ title, rows, render, onAdd, canEdit, addLabel, empty }) {
 function ModulesEditor({ courseId, canEdit }) {
   const mods = useLoad(() => db().from("course_modules").select("*").eq("course_id", courseId).order("sort_order"), [courseId]);
   const [rows, setRows] = useState([]);
-  useEffect(() => setRows(mods.data || []), [mods.data]);
+  const [previousModules, setPreviousModules] = useState(mods.data);
+  if (previousModules !== mods.data) {
+    setPreviousModules(mods.data);
+    setRows(mods.data || []);
+  }
   const update = (i, k, v) => setRows((r) => r.map((x, j) => (j === i ? { ...x, [k]: v, _dirty: true } : x)));
   const saveRow = async (row) => {
     const payload = { course_id: courseId, title: row.title, objectives: row.objectives || "", topics: row.topics || [], sort_order: Number(row.sort_order) || 0 };
@@ -393,7 +399,11 @@ function ModulesEditor({ courseId, canEdit }) {
 function PricesEditor({ planId, canEdit }) {
   const prices = useLoad(() => db().from("pricing_plan_prices").select("*").eq("plan_id", planId).order("currency"), [planId]);
   const [rows, setRows] = useState([]);
-  useEffect(() => setRows((prices.data || []).map((p) => ({ ...p, amount: fromMinor(p.amount_minor) }))), [prices.data]);
+  const [previousPrices, setPreviousPrices] = useState(prices.data);
+  if (previousPrices !== prices.data) {
+    setPreviousPrices(prices.data);
+    setRows((prices.data || []).map((p) => ({ ...p, amount: fromMinor(p.amount_minor) })));
+  }
   const update = (i, k, v) => setRows((r) => r.map((x, j) => (j === i ? { ...x, [k]: v, _dirty: true } : x)));
   const saveRow = async (row) => {
     if (!validPriceAmount(row.amount, row.currency)) return toast.error("Enter a valid non-negative amount with the currency’s supported decimal places.");

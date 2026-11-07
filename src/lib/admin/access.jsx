@@ -26,11 +26,12 @@ export function AccessProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    load();
+    let active = true;
+    void Promise.resolve().then(() => { if (active) return load(); });
     const { data: sub } = db().auth.onAuthStateChange((event) => {
       if (event === "SIGNED_OUT") router.replace("/admin/login");
     });
-    return () => sub.subscription.unsubscribe();
+    return () => { active = false; sub.subscription.unsubscribe(); };
   }, [load, router]);
 
   const value = useMemo(

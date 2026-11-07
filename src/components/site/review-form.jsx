@@ -39,12 +39,6 @@ function StarRating({ value, onChange, invalid }) {
 
 function MediaPicker({ files, setFiles, error, setError }) {
   const inputRef = useRef(null);
-  const [previews, setPreviews] = useState([]);
-  useEffect(() => {
-    const urls = files.map((file) => (file.type.startsWith("image/") ? URL.createObjectURL(file) : null));
-    setPreviews(urls);
-    return () => urls.forEach((url) => url && URL.revokeObjectURL(url));
-  }, [files]);
 
   function add(list) {
     const picked = [...list];
@@ -61,9 +55,13 @@ function MediaPicker({ files, setFiles, error, setError }) {
       <div className="flex flex-wrap items-center gap-2">
         {files.map((file, i) => (
           <span key={`${file.name}-${file.size}-${i}`} className="relative size-14 overflow-hidden rounded-xl border border-leaf-100 bg-leaf-50">
-            {previews[i]
-              // eslint-disable-next-line @next/next/no-img-element
-              ? <img src={previews[i]} alt="" className="size-full object-cover" />
+            {file.type.startsWith("image/")
+              ? <img ref={(node) => {
+                if (!node) return;
+                const url = URL.createObjectURL(file);
+                node.src = url;
+                return () => URL.revokeObjectURL(url);
+              }} alt="" width={56} height={56} className="size-full object-cover" />
               : <span className="flex size-full items-center justify-center text-leaf-700"><Video className="size-5" /></span>}
             <button type="button" onClick={() => { setFiles((list) => list.filter((_, j) => j !== i)); setError(""); }} aria-label={`Remove ${file.name}`}
               className="absolute right-0.5 top-0.5 flex size-6 items-center justify-center rounded-full bg-white/90 text-ink shadow-sm">
@@ -103,9 +101,7 @@ export function ReviewForm({ open, config, consentText, onClose, inline = false 
   }, [errors]);
   useEffect(() => { if (state.done) doneRef.current?.focus(); }, [state.done]);
   // After a review has been sent, the next opening starts a fresh form.
-  useEffect(() => {
-    if (!open && state.done) { setForm(EMPTY); setFiles([]); setShowMedia(false); setErrors({}); setMediaError(""); setState({ sending: false, progress: "", error: "", done: null }); }
-  }, [open, state.done]);
+  if (!open && state.done) reset();
 
   function addStarter(word) {
     const current = form.comment.trim();
@@ -159,7 +155,6 @@ export function ReviewForm({ open, config, consentText, onClose, inline = false 
   ) : (
     <div className="review-dialog-head relative flex shrink-0 items-center gap-3 overflow-hidden bg-mushaf-900 px-5 py-4 text-white">
       <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.08]" aria-hidden="true" />
-      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src="/brand/mark-v2-64.png" alt="" width={44} height={44} className="relative size-11 shrink-0 rounded-xl bg-white p-1 shadow-sm" />
       <div className="relative min-w-0 flex-1">
         <p className="text-[0.72rem] font-semibold text-gold-300">Online Quran College</p>

@@ -56,15 +56,16 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
   const router = useRouter();
   // Booking preferences chosen on a country page (currency, lesson date/time) arrive in the
   // URL; they are summarised here in the browser so the page itself can stay cached.
-  const [initialPreferenceNotes, setInitialPreferenceNotes] = useState("");
+  const [preferences, setPreferences] = useState(null);
   const preferenceKey = ["currency", "lesson_date", "lesson_time", "lesson_timezone"].map((key) => params.get(key) || "").join("|");
   useEffect(() => {
-    if (!preferenceKey.replace(/\|/g, "")) { setInitialPreferenceNotes(""); return undefined; }
+    if (!preferenceKey.replace(/\|/g, "")) return undefined;
     let live = true;
-    import("@/lib/booking-preferences").then((m) => { if (live) setInitialPreferenceNotes(m.bookingPreferenceNotes(params, currencies)); }).catch(() => {});
+    import("@/lib/booking-preferences").then((m) => { if (live) setPreferences({ key: preferenceKey, notes: m.bookingPreferenceNotes(params, currencies) }); }).catch(() => {});
     return () => { live = false; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preferenceKey]);
+  const initialPreferenceNotes = preferences?.key === preferenceKey ? preferences.notes : "";
   const selectedPlan = plans.find(p => p.id === params.get("plan"));
   const eligible = isTrialEligible(selectedPlan);
   const topRef = useRef(null);

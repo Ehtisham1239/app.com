@@ -102,7 +102,6 @@ export default function ReviewPage({ params }) {
                 {files.map((f) => f.url ? (
                   isVideo(f.path)
                     ? <video key={f.path} src={f.url} controls preload="metadata" className="w-full rounded-xl bg-black" />
-                    // eslint-disable-next-line @next/next/no-img-element
                     : <a key={f.path} href={f.url} target="_blank" rel="noopener noreferrer"><img src={f.url} alt={`Attachment to review ${r.reference}`} className="w-full rounded-xl object-cover" /></a>
                 ) : <p key={f.path} className="text-sm text-rose-700">{f.path.split("/").pop()} could not be loaded.</p>)}
               </div>

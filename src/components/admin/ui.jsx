@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Fragment, cloneElement, isValidElement, useEffect, useId, useState } from "react";
+import { Fragment, cloneElement, isValidElement, useEffect, useId, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { AlertTriangle, ArrowLeft, ChevronLeft, ChevronRight, Inbox, Loader2, Search, X } from "lucide-react";
 import { clsx } from "clsx";
@@ -94,9 +94,12 @@ export function ErrorState({ error, onRetry }) {
   );
 }
 
+const subscribeToHydration = () => () => {};
+const clientSnapshot = () => true;
+const serverSnapshot = () => false;
+
 export function Modal({ open, onClose, title, children, footer, size = "md" }) {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  const mounted = useSyncExternalStore(subscribeToHydration, clientSnapshot, serverSnapshot);
   useEffect(() => {
     if (!open) return;
     const onKey = (e) => e.key === "Escape" && onClose?.();
@@ -197,7 +200,11 @@ export function Tabs({ tabs, value, onChange }) {
 
 export function SearchInput({ value, onChange, placeholder = "Search…", className }) {
   const [text, setText] = useState(value ?? "");
-  useEffect(() => setText(value ?? ""), [value]);
+  const [previousValue, setPreviousValue] = useState(value);
+  if (previousValue !== value) {
+    setPreviousValue(value);
+    setText(value ?? "");
+  }
   useEffect(() => {
     const t = setTimeout(() => text !== (value ?? "") && onChange(text), 350);
     return () => clearTimeout(t);
