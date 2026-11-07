@@ -1,4 +1,5 @@
 "use client";
+import { requestLeadNotification } from "@/lib/request-lead-notification";
 import { announceLeadSaved } from "@/lib/conversion-events";
 
 import Link from "next/link";
@@ -38,9 +39,10 @@ export function ContactForm({ id, consentText, successText }) {
     const utm = captureAttribution();
     let data, error;
     try {
-      ({ data, error } = await (await import("@/lib/supabase/public")).getPublicBrowserClient().rpc("submit_contact_message", { payload: { ...form, email: form.email.trim().toLowerCase(), utm, source: utm.utm_source || "website" } }));
+      ({ data, error } = await (await import("@/lib/supabase/public")).getPublicBrowserClient().rpc("submit_contact_message_with_notification", { payload: { ...form, email: form.email.trim().toLowerCase(), utm, source: utm.utm_source || "website" } }));
     } catch (cause) { error = cause; }
     if (error) return setState({ sending: false, error: error.message || "Could not send. Please try WhatsApp instead.", done: null });
+    requestLeadNotification(data, form.email.trim().toLowerCase());
     announceLeadSaved({ formType: "contact", country: form.country, reference: data?.reference, honeypot: form.website });
     setState({ sending: false, error: "", done: null });
     const reference = typeof data?.reference === "string" && /^MSG-[A-Z0-9-]{4,32}$/.test(data.reference) && data.reference !== "MSG-RECEIVED" ? data.reference : "";

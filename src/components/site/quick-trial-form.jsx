@@ -1,4 +1,5 @@
 "use client";
+import { requestLeadNotification } from "@/lib/request-lead-notification";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
@@ -158,6 +159,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       setState({ sending: false, error: error.message || "We could not send your request. Please try again or message us on WhatsApp.", reference: null });
       return;
     }
+    requestLeadNotification(data, form.email.trim().toLowerCase());
     announceLeadSaved({ formType: "trial", country: form.country, reference: data?.reference, honeypot: form.website });
     setState({ sending: false, error: "", reference: null });
     const reference = typeof data?.reference === "string" && /^TR-[A-Z0-9-]{4,32}$/.test(data.reference) && data.reference !== "TR-RECEIVED" ? data.reference : "";
