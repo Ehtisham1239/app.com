@@ -25,15 +25,15 @@ The [50-domain register](CITATION-QUALIFICATION-2026-11-07.csv) remains the scre
 | Candidate | Public evidence | Gate before submission |
 |---|---|---|
 | [MuslimMap](https://muslimmap.co.uk/for-businesses) | Advertises a free standard listing and a Quran Classes category | Confirm address-free eligibility in the current listing form |
-| [The Ummah Directory](https://theummah.io/resources/businesses/submit/) | Accepts submissions from service brands and organizations | Confirm free listing, eligibility and whether the public profile has a website link |
+| [The Ummah Directory](https://theummah.io/resources/businesses/submit/) | Accepts submissions from service brands and organizations | Submitted as an online-only education service. Confirm the published profile and website link after approval |
 | [Support Muslim](https://www.supportmuslim.com/directory/faq.aspx) | Free registration and listing described | Instructions ask for a business address. Hold unless the operator supports an accurate online-only listing |
 
-No listings, link placements or paid activity were executed. Third-party backlinks are counted only after a public referring page is verified. The 130-domain and 5,000-new-link targets remain open. Search ranking and organic traffic outcomes require post-release evidence.
+One free listing was submitted to The Ummah Directory and is awaiting review. Third-party backlinks are counted only after a public referring page is verified. The 130-domain and 5,000-new-link targets remain open. Search ranking and organic traffic outcomes require post-release evidence.
 
 ## Production sequence and evidence
 
 1. Review the video schema and MP4 MIME migration. Apply it to the intended Supabase project before enabling CMS video saves and uploads. Existing page reads fall back when the optional column is absent.
 2. Deploy the reviewed commit and verify the production domain, public video playback, thumbnail response, video sitemap, canonical and mobile layout. Sign in as an authorized page editor to verify draft, upload and publish workflows.
-3. Connect the authorized YouTube channel only if cross-posting is wanted. Use Search Console and GA4 to measure indexed watch pages, impressions, clicks and enquiry outcomes. Use the existing test and read-only SEO audit commands before and after release. No external account, new production migration, new citation submission or authenticated CMS publish was performed in this pass.
+3. Connect the authorized YouTube channel only if cross-posting is wanted. Use Search Console and GA4 to measure indexed watch pages, impressions, clicks and enquiry outcomes. Use the existing test and read-only SEO audit commands before and after release. The production migration and public playback checks are complete. Staff upload and publishing still require an authorized login.
 
 References: [Google video SEO](https://developers.google.com/search/docs/appearance/video), [Google video structured data](https://developers.google.com/search/docs/appearance/structured-data/video), [Google search spam policies](https://developers.google.com/search/docs/essentials/spam-policies).
