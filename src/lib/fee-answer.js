@@ -29,7 +29,7 @@ export function feeAnswer(plans, fx, localCurrency = "GBP", place = "the UK", fa
   const lessons = perWeek && length ? ` for ${perWeek} live one-to-one ${length} classes a week` : " for live one-to-one classes";
   const sentences = [
     `Monthly fees at Online Quran College range from ${fmtRange(usd, "USD")}${lessons}.`,
-    ...(local ? [`In ${place} that is ${approximate ? "about " : ""}${fmtRange(local, localCurrency)} a month${approximate ? " at today's exchange rate" : ""}.`] : []),
+    ...(local ? [`In ${place} that is ${approximate ? "about " : ""}${fmtRange(local, localCurrency)} a month${approximate ? " at the latest available exchange rate" : ""}.`] : []),
     "Eligible plans start with a free 3-day trial (the Weekend plan is excluded).",
     ...(familyDiscount?.enabled && Number(familyDiscount.percent) > 0 ? ["Families with more than one learner can receive " + Number(familyDiscount.percent) + "% off each additional child monthly fee through the sibling discount."] : []),
     "The coordinator confirms the exact fee and payment currency before you enrol.",
