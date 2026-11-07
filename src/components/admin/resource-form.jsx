@@ -195,7 +195,8 @@ export function ResourceForm({ rkey, id }) {
     const payload = {};
     for (const f of cfg.fields) {
       if (form[f.name] === undefined) continue;
-      payload[f.name] = form[f.name] === "" && f.type !== "text" ? null : form[f.name];
+      const preserveEmpty = f.type === "text" || f.preserveEmpty;
+      payload[f.name] = form[f.name] === "" && !preserveEmpty ? null : form[f.name];
     }
     if (cfg.statusField) payload.scheduled_at = form.status === "scheduled" ? form.scheduled_at : null;
     if (cfg.defaults.locale) payload.locale = form.locale || cfg.defaults.locale;
