@@ -3,6 +3,7 @@
 // Loaded on demand by the reviews button, and inline on /reviews.
 // Every reviewer, whatever their rating, is offered the public Trustpilot/Google links:
 // inviting only happy reviewers ("review gating") breaks Google and Trustpilot rules.
+import { requestLeadNotification } from "@/lib/request-lead-notification";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, CheckCircle2, Loader2, Plus, Send, Star, Video, X } from "@/components/site/icons";
@@ -129,10 +130,11 @@ export function ReviewForm({ open, config, consentText, onClose, inline = false 
         media.push(path);
       }
       setState((s) => ({ ...s, progress: "Sending…" }));
-      const { data, error } = await client.rpc("submit_review", {
+      const { data, error } = await client.rpc("submit_review_with_notification", {
         payload: { ...form, name: form.name.trim(), email: form.email.trim().toLowerCase(), comment: form.comment.trim(), upload_token: token, media, page_path: window.location.pathname },
       });
       if (error) throw error;
+      requestLeadNotification(data, form.email.trim().toLowerCase());
       setState({ sending: false, progress: "", error: "", done: data?.reference ?? "sent" });
     } catch (cause) {
       setState({ sending: false, progress: "", error: cause?.message || "Your review was not sent. Check your connection and send again.", done: null });
