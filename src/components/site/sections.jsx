@@ -217,11 +217,11 @@ export function Testimonials({ items }) {
         <figure key={t.id ?? t.name} className="flex h-full flex-col rounded-[var(--radius-card)] border border-line bg-white p-7">
           <Quote className="size-8 text-gold-400" aria-hidden="true" />
           {t.rating ? (
-            <p className="mt-4 flex gap-0.5 text-gold-500" aria-label={`Rated ${t.rating} out of 5`}>
+            <div role="img" aria-label={`Rated ${t.rating} out of 5`} className="mt-4 flex gap-0.5 text-gold-500">
               {Array.from({ length: 5 }).map((_, i) => (
                 <Star key={i} className={clsx("size-4", i < t.rating ? "fill-current" : "opacity-30")} aria-hidden="true" />
               ))}
-            </p>
+            </div>
           ) : null}
           <blockquote className="mt-4 flex-1 whitespace-pre-line text-[1rem] leading-relaxed text-ink">“{t.quote}”</blockquote>
           <figcaption className="mt-6 flex items-center gap-3 border-t border-line pt-5">
