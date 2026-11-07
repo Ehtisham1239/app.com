@@ -1,5 +1,5 @@
 {
-  "reviewed": "2026-10-28",
+  "reviewed": "2026-11-07",
   "policy": "Owner requested AI-assisted ethical backlink acquisition. No third-party message, submission, payment or acquired backlink performed. Ahrefs was declined and must not be suggested again in this request. Verify channel-specific authorization, sender identity, eligibility and editorial acceptance before sending.",
   "prospects": [
     {
@@ -62,6 +62,21 @@
       "source": "https://dreamforwardbooks.com/lesson-plan-unit-study-submission-guidelines",
       "observed": "Direct guideline verification redirected to an inaccessible identity page. Search snippets alone are insufficient for qualification.",
       "status": "Held; guideline access unavailable",
+      "acquired_backlink": false
+    },
+    {
+      "id": "LINK-06",
+      "organization": "IslamiCity — Write for Us",
+      "source": "https://www.islamicity.org/write-for-us/",
+      "market": "Global English / US",
+      "observed": "Official page accepts article submissions from contributors with relevant content across broad topics including Quran, family and youth. Submission form is embedded; no backlink guarantee, link attribute policy or AI-content policy is stated on the page.",
+      "contact_route": "Embedded submission form linked from the official Write for Us page; not submitted.",
+      "proposed_value": "A practical, non-promotional parent checklist for evaluating an online Quran lesson and supporting home practice, with clear questions about learner level, audio, teacher feedback, parent involvement and privacy.",
+      "target_oqc_url": "https://www.onlinequrancollege.com/learn/quran-for-kids",
+      "evidence_level": "Direct official editorial invitation observed; acceptance, attribution and link inclusion are unverified.",
+      "risk": "Confirm editorial fit, authorship and AI policy before submission. The article needs a named human author and Academic review; no endorsement, affiliation or backlink should be implied.",
+      "approval": "No message or submission sent. Owner-approved sender and Academic reviewer pending.",
+      "status": "Research only; not sent",
       "acquired_backlink": false
     }
   ],
