@@ -172,3 +172,19 @@ test("visitors can send a review only with a comment; reviews and media stay sta
   assert.deepEqual(row, { email: "amina@example.test", status: "new", media_paths: [] });
   assert.equal((await db.query("select public from storage.buckets where id='review-media'")).rows[0].public, false);
 });
+
+test("CMS video metadata inherits page visibility and rejects non-object data", async () => {
+  const video = { url: "https://youtu.be/a1B2c3D4e5F", title: "Draft fixture" };
+  await role();
+  const makePage = (slug, status) => db.query("insert into public.pages (slug,title,status,video) values ($1,$1,$2,$3) returning id", [slug, status, video]);
+  const draft = (await makePage("draft-video-fixture", "draft")).rows[0].id;
+  const live = (await makePage("live-video-fixture", "published")).rows[0].id;
+  await assert.rejects(db.query("update public.pages set video='[]'::jsonb where id=$1", [live]), /check constraint/);
+  const bucket = (await db.query("select file_size_limit, allowed_mime_types from storage.buckets where id='media'")).rows[0];
+  assert.equal(Number(bucket.file_size_limit), 10485760);
+  assert.ok(bucket.allowed_mime_types.includes("video/mp4"));
+  await role("anon");
+  const publicRows = (await db.query("select id, video from public.pages where id in ($1,$2)", [draft, live])).rows;
+  assert.deepEqual(publicRows, [{ id: live, video }]);
+  await role();
+});

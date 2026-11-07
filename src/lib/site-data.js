@@ -188,6 +188,23 @@ export const getPage = cache(async (slug) =>
   ),
 );
 
+// Keep the optional video column from affecting existing page reads before migration.
+async function optionalVideo(query, fallback, label) {
+  if (!publicDb) return fallback;
+  const { data, error } = await query();
+  if (["42703", "PGRST204", "PGRST205"].includes(error?.code)) return fallback;
+  if (error) throw new Error(`Public content temporarily unavailable: ${label}`, { cause: error });
+  return data ?? fallback;
+}
+
+export const getPageVideo = cache(async (id) =>
+  optionalVideo(() => publicDb.from("pages").select("video").eq("id", id).eq("status", "published").is("deleted_at", null).maybeSingle(), null, "page video"),
+);
+
+export const getPublishedPageVideos = cache(async () =>
+  optionalVideo(() => publicDb.from("pages").select("slug, video, template").eq("status", "published").eq("locale", "en").is("deleted_at", null).not("video", "is", null), [], "sitemap videos"),
+);
+
 export const getPublishedSlugs = cache(async () => {
   const [courses, posts, pages, teachers] = await Promise.all([
     safe(() => publicDb.from("courses").select("slug, updated_at, seo_noindex, canonical_url, cover_url").eq("status", "published").is("deleted_at", null), [], "slugs courses"),

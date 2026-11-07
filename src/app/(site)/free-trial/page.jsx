@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { quoteCurrencies } from "@/lib/booking-preferences";
 import { TrialHeading, TrialHeadingView, TrialPromises, TrialPromisesView } from "@/components/site/trial-intro";
 import { FaqList } from "@/components/site/sections";
@@ -56,7 +57,8 @@ export default async function FreeTrialPage() {
             <QuickTrialForm currencies={quoteCurrencies(plans)} courses={courses.map(({ id, title }) => ({ id, title }))} plans={planList} consentText={forms.consent_text} successText={forms.trial_success} whatsappHref={wa} />
           </Suspense>
         </div>
-        <div className="lg:col-start-1 lg:row-start-2">
+        <div className="space-y-4 lg:col-start-1 lg:row-start-2">
+          <Link className="inline-flex min-h-11 items-center rounded-xl border border-white/25 px-4 font-semibold text-white hover:bg-white/10" href="/trial-video">Watch the 15-second trial guide</Link>
           <Suspense fallback={<TrialPromisesView className="grid gap-4 sm:grid-cols-2" />}><TrialPromises plans={planList} className="grid gap-4 sm:grid-cols-2" /></Suspense>
         </div>
       </div>
