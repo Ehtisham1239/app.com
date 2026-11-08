@@ -1,11 +1,11 @@
-import { env } from "node:process";
+import process from "node:process";
 
 const CONTACT_UPSERT_URL = "https://services.leadconnectorhq.com/contacts/upsert";
 const EMAIL = /^[^@\s<>]+@[^@\s<>]+\.[^@\s<>]+$/;
 const INTERNATIONAL_PHONE = /^\+[1-9]\d{6,14}$/;
 const trim = (value) => typeof value === "string" ? value.trim() : "";
 
-export function highLevelConfig(environment = env) {
+export function highLevelConfig(environment = process.env) {
   const token = trim(environment.GHL_PRIVATE_INTEGRATION_TOKEN);
   const locationId = trim(environment.GHL_LOCATION_ID);
   return token && locationId ? { token, locationId } : null;
@@ -53,4 +53,17 @@ export async function upsertHighLevelContact(contact, {
   } catch {
     return { ok: false, reason: "provider_unavailable", retryable: true };
   }
+}
+
+// Only call this after the submission proof has been validated by the database.
+export async function syncHighLevelAdmission(lead, kind, options = {}) {
+  if (kind !== "trial" && kind !== "contact") return { ok: false, reason: "not_an_admission" };
+  const name = kind === "contact"
+    ? lead.name
+    : trim(lead.guardian_name) || (lead.age_band === "18+" ? lead.learner_name : undefined);
+  return upsertHighLevelContact({ email: lead.email, phone: lead.phone, name }, options);
+}
+
+export function enabledHighLevelConfig(environment = process.env) {
+  return environment.GHL_ADMISSIONS_SYNC === "true" ? highLevelConfig(environment) : null;
 }

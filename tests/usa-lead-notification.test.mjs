@@ -199,3 +199,27 @@ test("outages and missing configuration fail clearly and are logged without pers
   assert.match(consoleLines.join("\n"), /"outcome":"sent","reference":"TR-2026-00042"/);
   for (const secret of [KEY, "parent@example.test", "+15552345678", "Test Parent", "database unavailable", "a".repeat(64)]) assert.ok(!allConsoleLines.join("\n").includes(secret), secret);
 });
+
+test("verified USA trial syncs to HighLevel even when email delivery is unconfigured", async () => {
+  const env = {
+    RESEND_API_KEY: "", LEAD_NOTIFICATION_FROM: "", LEAD_NOTIFICATION_TO: "",
+    GHL_ADMISSIONS_SYNC: "true", GHL_LOCATION_ID: "fixture-location",
+    GHL_PRIVATE_INTEGRATION_TOKEN: "fixture-highlevel-token",
+  };
+  const calls = [];
+  globalThis.fetch = async (url, request) => {
+    calls.push({ url, body: JSON.parse(request.body) });
+    return Response.json({ contact: { id: "fixture-contact" } });
+  };
+  setup({ data: null, env });
+  assert.equal((await route.POST(request(valid))).status, 404);
+  assert.equal(calls.length, 0);
+
+  setup({ env });
+  assert.equal((await route.POST(request(valid))).status, 200);
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].url, "https://services.leadconnectorhq.com/contacts/upsert");
+  assert.equal(calls[0].body.email, valid.email);
+  assert.equal(calls[0].body.locationId, env.GHL_LOCATION_ID);
+  assert.equal(Object.hasOwn(calls[0].body, "learner_name"), false);
+});

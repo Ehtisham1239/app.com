@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { highLevelConfig, upsertHighLevelContact } from "../src/lib/server/highlevel.js";
+import { enabledHighLevelConfig, highLevelConfig, syncHighLevelAdmission, upsertHighLevelContact } from "../src/lib/server/highlevel.js";
 
 const config = { token: "test-token", locationId: "test-location" };
 const contact = { email: " GUARDIAN@example.com ", name: "Test Guardian", phone: "+1 (202) 555-0100" };
@@ -43,4 +43,21 @@ test("HighLevel failures return retry information without leaking provider paylo
     throw new Error("Private transport error");
   } });
   assert.deepEqual(result, { ok: false, reason: "provider_unavailable", retryable: true });
+});
+
+test("admissions sync requires explicit activation and excludes reviews and child names", async () => {
+  const environment = { GHL_PRIVATE_INTEGRATION_TOKEN: config.token, GHL_LOCATION_ID: config.locationId };
+  assert.equal(enabledHighLevelConfig(environment), null);
+  assert.deepEqual(enabledHighLevelConfig({ ...environment, GHL_ADMISSIONS_SYNC: "true" }), config);
+  const payloads = [];
+  const options = { config, fetchImpl: async (_url, request) => {
+    payloads.push(JSON.parse(request.body));
+    return Response.json({ contact: { id: "contact-1" } });
+  } };
+  const lead = { email: "parent@example.com", learner_name: "Child Name", notes: "Private" };
+  assert.equal((await syncHighLevelAdmission(lead, "review", options)).reason, "not_an_admission");
+  await syncHighLevelAdmission(lead, "trial", options);
+  await syncHighLevelAdmission({ ...lead, guardian_name: "Parent Name" }, "trial", options);
+  await syncHighLevelAdmission({ ...lead, name: "Contact Name" }, "contact", options);
+  assert.deepEqual(payloads.map((payload) => payload.name), [undefined, "Parent Name", "Contact Name"]);
 });
