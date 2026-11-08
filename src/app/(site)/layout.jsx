@@ -1,4 +1,5 @@
 import { HatchiumChat } from "@/components/site/hatchium-chat";
+import { SiteMotion } from "@/components/site/site-motion";
 import { MobileActionBar } from "@/components/site/mobile-action-bar";
 import { ReviewsButton } from "@/components/site/reviews-button";
 import { reviewsButtonConfig } from "@/lib/reviews-button";
@@ -54,7 +55,7 @@ export default async function SiteLayout({ children }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", "@graph": [{ "@type": "WebSite", "@id": `${SITE_URL}/#website`, name: brandName, alternateName: "OQC", url: SITE_URL, inLanguage: "en-GB", publisher: { "@id": `${SITE_URL}/#organization` } }, { "@type": ["EducationalOrganization", "Organization"], "@id": `${SITE_URL}/#organization`, name: brandName, alternateName: "OQC", url: SITE_URL, logo: `${SITE_URL}/brand/logo.webp`, image: [`${SITE_URL}/brand/logo.webp`, `${SITE_URL}/brand/hero.webp`], ...(organizationPostalAddress(contact) ? { address: organizationPostalAddress(contact) } : {}), description: identity.description, email: contact.email, telephone: contact.phone, ...((contact.email || contact.phone) ? { contactPoint: { "@type": "ContactPoint", contactType: "Admissions enquiries", email: contact.email, telephone: contact.phone, url: `${SITE_URL}/contact` } } : {}), areaServed: AREA_SERVED, knowsAbout: KNOWS_ABOUT, publishingPrinciples: `${SITE_URL}/editorial-standards`, sameAs: organizationIdentityProfiles(settings["site.social"]) }] }) }} />
       <CampaignAttribution />
       <SiteHeader menu={header} courses={courseLinks} brandName={brandName} />
-      <main id="main">{children}</main>
+      <main id="main" data-site-motion><SiteMotion />{children}</main>
       <SiteFooter settings={settings} menus={footerMenus} />
       <MobileActionBar chatEnabled={chatEnabled} />
       <ReviewsButton config={reviewsButtonConfig(settings["site.reviews_button"], settings["site.social"])} consentText={settings["site.forms"]?.consent_text} />
