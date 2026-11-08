@@ -51,6 +51,9 @@ const nextConfig = {
       // www.onlinequrancollege.com. Keep every *.vercel.app host out of search indexes so only the
       // canonical domain is indexed; links stay followable. (From #65, 3 Nov 2026.)
       { source: "/:path*", has: [{ type: "host", value: "(?<vercelhost>.+\\.vercel\\.app)" }], headers: [{ key: "X-Robots-Tag", value: "noindex, follow" }] },
+      // The Hostinger mirror (*.hostingersite.com) is the same site on a temporary host; keep it out
+      // of search indexes too so Google only ranks www.onlinequrancollege.com.
+      { source: "/:path*", has: [{ type: "host", value: "(?<hostingerhost>.+\\.hostingersite\\.com)" }], headers: [{ key: "X-Robots-Tag", value: "noindex, follow" }] },
     ];
   },
   // /blog stays static; only filtered or paged lists render per request, at the same address.
