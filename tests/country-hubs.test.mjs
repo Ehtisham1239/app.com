@@ -15,7 +15,7 @@ const guides = new Set(LEARNING_GUIDES.map((g) => g.path));
 
 test("all five indexed hubs get a landing block in their own currency", () => {
   assert.deepEqual(Object.keys(COUNTRY_HUBS).sort(), ["australia", "canada", "united-arab-emirates", "united-kingdom", "united-states"]);
-  assert.deepEqual(Object.fromEntries(Object.entries(COUNTRY_HUBS).map(([k, h]) => [k, h.currency])), { "united-states": "USD", "united-kingdom": "GBP", canada: "CAD", australia: "AUD", "united-arab-emirates": "AED" });
+  assert.deepEqual(Object.fromEntries(Object.entries(COUNTRY_HUBS).map(([k, h]) => [k, h.currency])), { "united-states": "USD", "united-kingdom": "GBP", canada: "USD", australia: "AUD", "united-arab-emirates": "AED" });
   assert.equal(COUNTRY_HUBS["united-states"].stepsHeading, US_HUB.stepsHeading);
   assert.equal(COUNTRY_HUBS["united-kingdom"].feeQuestion, UK_HUB.feeQuestion);
   assert.equal(COUNTRY_HUBS["united-kingdom"].paths, null, "the UK keeps its own learning-paths section");

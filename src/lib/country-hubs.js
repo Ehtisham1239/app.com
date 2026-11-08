@@ -57,7 +57,7 @@ export const COUNTRY_HUBS = {
   "united-states": { ...US_HUB, place: "the USA", currency: "USD", faqs: () => [...KIDS_HIFZ_FAQS("the USA"), ...usHubFaqs()] },
   // The UK hub already has its own learning-paths section and FAQs (uk-hub.js).
   "united-kingdom": { ...hub("united-kingdom", { place: "the UK", currency: "GBP", zone: "UK time" }), feeQuestion: UK_HUB.feeQuestion, paths: null, faqs: null },
-  canada: hub("canada", { place: "Canada", currency: "CAD", zone: "your Canadian time zone (Eastern, Central, Mountain, Pacific or Atlantic)" }),
+  canada: hub("canada", { place: "Canada", currency: "USD", zone: "your Canadian time zone (Eastern, Central, Mountain, Pacific or Atlantic)" }),
   australia: (() => { const h = hub("australia", { place: "Australia", currency: "AUD", zone: "your Australian time zone (Sydney, Melbourne, Brisbane, Adelaide or Perth time)" }); return { ...h, faqs: () => [...KIDS_HIFZ_FAQS("Australia"), ...h.faqs()] }; })(),
   "united-arab-emirates": hub("united-arab-emirates", { place: "the UAE", currency: "AED", zone: "Gulf Standard Time", languages: "English, Arabic or Urdu" }),
 };

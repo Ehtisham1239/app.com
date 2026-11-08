@@ -19,3 +19,9 @@ test("USA phone links use their visible text as accessible names", () => {
   assert.match(locationPage, /href="tel:\+17869645678">Call our US team · \+1 \(786\) 964-5678/);
   assert.match(locationPage, /href="tel:\+17869645678">Call \+1 \(786\) 964-5678/);
 });
+
+test("home hero has no gold 3-day free trial badge (owner decision, 8 Nov 2026)", () => {
+  const hero = read("src/components/site/hero.jsx");
+  assert.doesNotMatch(hero, /chip-gold/);
+  assert.doesNotMatch(hero, /hero-trial-note/);
+});

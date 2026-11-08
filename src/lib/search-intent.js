@@ -69,7 +69,7 @@ export const SEARCH_INTENTS = {
   "/locations/canada": {
     "phrase": "online Quran classes in Canada",
     "heading": "Online Quran classes in Canada",
-    "intro": "Live one-to-one online Quran lessons for children and adults across Canadian provinces and time zones. Choose the learner's city and lesson date, explore Noorani Qaida, Tajweed and Hifz, and request a written CAD fee quote. Lessons are delivered online; no Canadian office or local branch is represented."
+    "intro": "Live one-to-one online Quran lessons for children and adults across Canadian provinces and time zones. Choose the learner's city and lesson date, explore Noorani Qaida, Tajweed and Hifz, and request a written fee quote in USD. Lessons are delivered online; no Canadian office or local branch is represented."
   },
   "/locations/australia": {
     "phrase": "online Quran classes in Australia",

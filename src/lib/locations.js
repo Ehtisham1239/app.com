@@ -102,7 +102,7 @@ export const LOCATIONS = [
   {
     "name": "Canada",
     "slug": "canada",
-    "currency": "CAD",
+    "currency": "USD",
     "timezone": "America/Toronto",
     "cities": [
       {
@@ -134,7 +134,7 @@ export const LOCATIONS = [
   {
     "name": "France",
     "slug": "france",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Paris",
     "cities": [
       {
@@ -158,7 +158,7 @@ export const LOCATIONS = [
   {
     "name": "Germany",
     "slug": "germany",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Berlin",
     "cities": [
       {
@@ -182,7 +182,7 @@ export const LOCATIONS = [
   {
     "name": "Ireland",
     "slug": "ireland",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Dublin",
     "cities": [
       {
@@ -198,7 +198,7 @@ export const LOCATIONS = [
   {
     "name": "Netherlands",
     "slug": "netherlands",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Amsterdam",
     "cities": [
       {
@@ -214,7 +214,7 @@ export const LOCATIONS = [
   {
     "name": "Belgium",
     "slug": "belgium",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Brussels",
     "cities": [
       {
@@ -230,7 +230,7 @@ export const LOCATIONS = [
   {
     "name": "Spain",
     "slug": "spain",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Madrid",
     "cities": [
       {
@@ -246,7 +246,7 @@ export const LOCATIONS = [
   {
     "name": "Portugal",
     "slug": "portugal",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Lisbon",
     "cities": [
       {
@@ -262,7 +262,7 @@ export const LOCATIONS = [
   {
     "name": "Italy",
     "slug": "italy",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Rome",
     "cities": [
       {
@@ -278,7 +278,7 @@ export const LOCATIONS = [
   {
     "name": "Austria",
     "slug": "austria",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Vienna",
     "cities": [
       {
@@ -294,7 +294,7 @@ export const LOCATIONS = [
   {
     "name": "Switzerland",
     "slug": "switzerland",
-    "currency": "CHF",
+    "currency": "USD",
     "timezone": "Europe/Zurich",
     "cities": [
       {
@@ -310,7 +310,7 @@ export const LOCATIONS = [
   {
     "name": "Sweden",
     "slug": "sweden",
-    "currency": "SEK",
+    "currency": "USD",
     "timezone": "Europe/Stockholm",
     "cities": [
       {
@@ -326,7 +326,7 @@ export const LOCATIONS = [
   {
     "name": "Norway",
     "slug": "norway",
-    "currency": "NOK",
+    "currency": "USD",
     "timezone": "Europe/Oslo",
     "cities": [
       {
@@ -342,7 +342,7 @@ export const LOCATIONS = [
   {
     "name": "Denmark",
     "slug": "denmark",
-    "currency": "DKK",
+    "currency": "USD",
     "timezone": "Europe/Copenhagen",
     "cities": [
       {
@@ -358,7 +358,7 @@ export const LOCATIONS = [
   {
     "name": "Finland",
     "slug": "finland",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Helsinki",
     "cities": [
       {
@@ -374,7 +374,7 @@ export const LOCATIONS = [
   {
     "name": "Iceland",
     "slug": "iceland",
-    "currency": "ISK",
+    "currency": "USD",
     "timezone": "Atlantic/Reykjavik",
     "cities": [
       {
@@ -390,7 +390,7 @@ export const LOCATIONS = [
   {
     "name": "Poland",
     "slug": "poland",
-    "currency": "PLN",
+    "currency": "USD",
     "timezone": "Europe/Warsaw",
     "cities": [
       {
@@ -406,7 +406,7 @@ export const LOCATIONS = [
   {
     "name": "Czechia",
     "slug": "czechia",
-    "currency": "CZK",
+    "currency": "USD",
     "timezone": "Europe/Prague",
     "cities": [
       {
@@ -422,7 +422,7 @@ export const LOCATIONS = [
   {
     "name": "Slovakia",
     "slug": "slovakia",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Bratislava",
     "cities": [
       {
@@ -438,7 +438,7 @@ export const LOCATIONS = [
   {
     "name": "Hungary",
     "slug": "hungary",
-    "currency": "HUF",
+    "currency": "USD",
     "timezone": "Europe/Budapest",
     "cities": [
       {
@@ -454,7 +454,7 @@ export const LOCATIONS = [
   {
     "name": "Romania",
     "slug": "romania",
-    "currency": "RON",
+    "currency": "USD",
     "timezone": "Europe/Bucharest",
     "cities": [
       {
@@ -470,7 +470,7 @@ export const LOCATIONS = [
   {
     "name": "Bulgaria",
     "slug": "bulgaria",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Sofia",
     "cities": [
       {
@@ -486,7 +486,7 @@ export const LOCATIONS = [
   {
     "name": "Greece",
     "slug": "greece",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Athens",
     "cities": [
       {
@@ -502,7 +502,7 @@ export const LOCATIONS = [
   {
     "name": "Croatia",
     "slug": "croatia",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Zagreb",
     "cities": [
       {
@@ -518,7 +518,7 @@ export const LOCATIONS = [
   {
     "name": "Slovenia",
     "slug": "slovenia",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Ljubljana",
     "cities": [
       {
@@ -534,7 +534,7 @@ export const LOCATIONS = [
   {
     "name": "Estonia",
     "slug": "estonia",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Tallinn",
     "cities": [
       {
@@ -550,7 +550,7 @@ export const LOCATIONS = [
   {
     "name": "Latvia",
     "slug": "latvia",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Riga",
     "cities": [
       {
@@ -566,7 +566,7 @@ export const LOCATIONS = [
   {
     "name": "Lithuania",
     "slug": "lithuania",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Vilnius",
     "cities": [
       {
@@ -582,7 +582,7 @@ export const LOCATIONS = [
   {
     "name": "Luxembourg",
     "slug": "luxembourg",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Luxembourg",
     "cities": [
       {
@@ -598,7 +598,7 @@ export const LOCATIONS = [
   {
     "name": "Malta",
     "slug": "malta",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Malta",
     "cities": [
       {
@@ -614,7 +614,7 @@ export const LOCATIONS = [
   {
     "name": "Cyprus",
     "slug": "cyprus",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Asia/Nicosia",
     "cities": [
       {
@@ -630,7 +630,7 @@ export const LOCATIONS = [
   {
     "name": "Albania",
     "slug": "albania",
-    "currency": "ALL",
+    "currency": "USD",
     "timezone": "Europe/Tirane",
     "cities": [
       {
@@ -646,7 +646,7 @@ export const LOCATIONS = [
   {
     "name": "Bosnia and Herzegovina",
     "slug": "bosnia-and-herzegovina",
-    "currency": "BAM",
+    "currency": "USD",
     "timezone": "Europe/Sarajevo",
     "cities": [
       {
@@ -662,7 +662,7 @@ export const LOCATIONS = [
   {
     "name": "Serbia",
     "slug": "serbia",
-    "currency": "RSD",
+    "currency": "USD",
     "timezone": "Europe/Belgrade",
     "cities": [
       {
@@ -678,7 +678,7 @@ export const LOCATIONS = [
   {
     "name": "Montenegro",
     "slug": "montenegro",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Podgorica",
     "cities": [
       {
@@ -694,7 +694,7 @@ export const LOCATIONS = [
   {
     "name": "North Macedonia",
     "slug": "north-macedonia",
-    "currency": "MKD",
+    "currency": "USD",
     "timezone": "Europe/Skopje",
     "cities": [
       {
@@ -710,7 +710,7 @@ export const LOCATIONS = [
   {
     "name": "Kosovo",
     "slug": "kosovo",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Belgrade",
     "cities": [
       {
@@ -726,7 +726,7 @@ export const LOCATIONS = [
   {
     "name": "Moldova",
     "slug": "moldova",
-    "currency": "MDL",
+    "currency": "USD",
     "timezone": "Europe/Chisinau",
     "cities": [
       {
@@ -742,7 +742,7 @@ export const LOCATIONS = [
   {
     "name": "Ukraine",
     "slug": "ukraine",
-    "currency": "UAH",
+    "currency": "USD",
     "timezone": "Europe/Kyiv",
     "cities": [
       {
@@ -758,7 +758,7 @@ export const LOCATIONS = [
   {
     "name": "Belarus",
     "slug": "belarus",
-    "currency": "BYN",
+    "currency": "USD",
     "timezone": "Europe/Minsk",
     "cities": [
       {
@@ -774,7 +774,7 @@ export const LOCATIONS = [
   {
     "name": "Turkey",
     "slug": "turkey",
-    "currency": "TRY",
+    "currency": "USD",
     "timezone": "Europe/Istanbul",
     "cities": [
       {
@@ -790,7 +790,7 @@ export const LOCATIONS = [
   {
     "name": "Russia",
     "slug": "russia",
-    "currency": "RUB",
+    "currency": "USD",
     "timezone": "Europe/Moscow",
     "cities": [
       {
@@ -806,7 +806,7 @@ export const LOCATIONS = [
   {
     "name": "Andorra",
     "slug": "andorra",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Andorra",
     "cities": [
       {
@@ -822,7 +822,7 @@ export const LOCATIONS = [
   {
     "name": "Liechtenstein",
     "slug": "liechtenstein",
-    "currency": "CHF",
+    "currency": "USD",
     "timezone": "Europe/Vaduz",
     "cities": [
       {
@@ -838,7 +838,7 @@ export const LOCATIONS = [
   {
     "name": "Monaco",
     "slug": "monaco",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Monaco",
     "cities": [
       {
@@ -850,7 +850,7 @@ export const LOCATIONS = [
   {
     "name": "San Marino",
     "slug": "san-marino",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/San_Marino",
     "cities": [
       {
@@ -862,7 +862,7 @@ export const LOCATIONS = [
   {
     "name": "Vatican City",
     "slug": "vatican-city",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Vatican",
     "cities": [
       {

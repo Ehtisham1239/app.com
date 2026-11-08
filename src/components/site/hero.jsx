@@ -26,10 +26,6 @@ export function HomeHero({ hero, stats }) {
       {h.subtitle && <p className="hero-intro mt-6 max-w-xl text-[1.05rem] leading-relaxed text-ink-soft">{h.subtitle.length > 150 ? SEARCH_INTENTS["/"].intro : h.subtitle}</p>}
 
       <div className="hero-actions mt-8 grid grid-cols-1 gap-3 sm:flex sm:flex-wrap"><Link href="/free-trial" className="btn btn-primary btn-lg" data-oqc-cta="home_hero_primary">{h.primary_label || "Book a free trial"}<ArrowRight className="size-5" aria-hidden="true" /></Link><Link href="/courses" className="btn btn-outline btn-lg">{h.secondary_label || "Explore courses"}</Link></div>
-      <div className="hero-trial-note mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm">
-        <span className="chip chip-gold">3-day free trial</span>
-        <span className="text-ink-soft">No card on eligible packages</span>
-      </div>
       <ul className="hero-proof mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-ink-soft" aria-label="Class features">
         <li className="flex items-center gap-2"><Check className="size-4 shrink-0 text-leaf-600" aria-hidden="true" />One-to-one live lessons</li>
         <li className="flex items-center gap-2"><Check className="size-4 shrink-0 text-leaf-600" aria-hidden="true" />Flexible class times</li>

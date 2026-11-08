@@ -60,3 +60,9 @@ test('known CMS aliases redirect before rendering with one unique mapping per so
  for(const g of LEARNING_GUIDES)assert.equal(rules.find(r=>r.source==='/'+g.slug).destination,g.path);
  assert.equal(rules.find(r=>r.source==='/locations-united-kingdom-london').destination,'/locations/united-kingdom/london');
 });
+
+test("every location and the admin price list use only GBP, USD, AUD or AED", () => {
+  const allowed = ["USD", "GBP", "AUD", "AED"];
+  assert.deepEqual([...CURRENCIES].sort(), [...allowed].sort());
+  for (const country of LOCATIONS) assert.ok(allowed.includes(country.currency), `${country.name}: ${country.currency}`);
+});
