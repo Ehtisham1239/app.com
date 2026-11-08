@@ -18,8 +18,14 @@ const securityHeaders = [
   { key: "Origin-Agent-Cluster", value: "?1" },
 ];
 
+// Hostinger's shared Node.js hosting caps threads and processes per account. Its
+// webpack build (`npm run build:hostinger`) sets OQC_BUILD_CPUS so page-data
+// collection starts a few workers instead of one per host CPU. Unset on Vercel.
+const hostBuildCpus = Number.parseInt(process.env.OQC_BUILD_CPUS ?? "", 10);
+
 const nextConfig = {
   poweredByHeader: false,
+  ...(hostBuildCpus > 0 ? { experimental: { cpus: hostBuildCpus } } : {}),
   // experimental.inlineCss was tried (26 Oct 2026) and rejected: Next 16 embeds
   // the CSS three times per page (style tag plus flight data), tripling HTML.
   // Only CMS uploads from this project's public storage bucket are optimised.
