@@ -13,7 +13,7 @@
       "final_url": "https://www.onlinequrancollege.com/blog/arabic-for-quran-readers",
       "status": 200,
       "title": [
-        "Learning Arabic as a Quran Reader: Where to Start \u00b7 OQC"
+        "Learning Arabic as a Quran Reader: Where to Start · OQC"
       ],
       "description": "How Arabic language study differs from Quran reading practice and translation, and what to ask before choosing where to begin.",
       "canonical": [
@@ -84,7 +84,7 @@
       "schema_errors": [],
       "issues": [],
       "title_matches_formatter": true,
-      "expected_rendered_title": "Learning Arabic as a Quran Reader: Where to Start \u00b7 OQC",
+      "expected_rendered_title": "Learning Arabic as a Quran Reader: Where to Start · OQC",
       "noindex_matches_current_cms": true,
       "inclusive_words": 407
     },
@@ -94,7 +94,7 @@
       "final_url": "https://www.onlinequrancollege.com/blog/is-my-child-ready-for-hifz",
       "status": 200,
       "title": [
-        "Is My Child Ready for Hifz? Questions to Ask \u00b7 OQC"
+        "Is My Child Ready for Hifz? Questions to Ask · OQC"
       ],
       "description": "Practical questions about reading level, routine and home support to discuss with a teacher before a child starts Quran memorisation.",
       "canonical": [
@@ -165,7 +165,7 @@
       "schema_errors": [],
       "issues": [],
       "title_matches_formatter": true,
-      "expected_rendered_title": "Is My Child Ready for Hifz? Questions to Ask \u00b7 OQC",
+      "expected_rendered_title": "Is My Child Ready for Hifz? Questions to Ask · OQC",
       "noindex_matches_current_cms": true,
       "inclusive_words": 453
     },
@@ -175,9 +175,9 @@
       "final_url": "https://www.onlinequrancollege.com/blog/quran-translation-tafseer-beginners",
       "status": 200,
       "title": [
-        "Quran Translation and Tafseer for Beginners \u00b7 OQC"
+        "Quran Translation and Tafseer for Beginners · OQC"
       ],
-      "description": "A beginner\u2019s approach to studying Quran translation and tafseer with a teacher, using a notebook and context rather than isolated phrases.",
+      "description": "A beginner’s approach to studying Quran translation and tafseer with a teacher, using a notebook and context rather than isolated phrases.",
       "canonical": [
         "https://www.onlinequrancollege.com/blog/quran-translation-tafseer-beginners"
       ],
@@ -212,7 +212,7 @@
         "@type": "BlogPosting",
         "@id": "https://www.onlinequrancollege.com/blog/quran-translation-tafseer-beginners#article",
         "headline": "Starting Quran translation and tafseer study as a beginner",
-        "description": "A beginner\u2019s approach to studying Quran translation and tafseer with a teacher, using a notebook and context rather than isolated phrases.",
+        "description": "A beginner’s approach to studying Quran translation and tafseer with a teacher, using a notebook and context rather than isolated phrases.",
         "inLanguage": "en-GB",
         "articleSection": "Adult learning",
         "keywords": "Adult learning",
@@ -245,7 +245,7 @@
       "schema_errors": [],
       "issues": [],
       "title_matches_formatter": true,
-      "expected_rendered_title": "Quran Translation and Tafseer for Beginners \u00b7 OQC",
+      "expected_rendered_title": "Quran Translation and Tafseer for Beginners · OQC",
       "noindex_matches_current_cms": true,
       "inclusive_words": 413
     }
@@ -309,5 +309,119 @@
     "status": "Awaiting qualified review",
     "result": "Three new public articles retain explicit CMS noindex=true and are omitted from sitemap. No qualified Academics sign-off was found in inspected repository records. No indexing or religious-text change performed."
   },
-  "evidence": "docs/seo-agent/evidence/2026-11-08/verification.json"
+  "evidence": "docs/seo-agent/evidence/2026-11-08/verification.json",
+  "follow_up_read_only_audit": {
+    "reviewed_at": "2026-11-08T08:47:26+05:00",
+    "timezone": "Asia/Karachi",
+    "source_commit": "b8f98159fffe313a7d9093412ffdec232dfbe197",
+    "scope": "Read-only CMS recheck, sitemap/robots/source inspection, and public archive observation. No CMS, site-code, production, analytics, or external-account writes.",
+    "cms_inventory": {
+      "published_total": 35,
+      "published_indexable_flag": 32,
+      "published_noindex_flag": 3,
+      "in_review_status_count": 0,
+      "body_word_count_method": "Postgres regexp_count over body_html after stripping HTML tags; counts alphanumeric sequences; excludes title, excerpt, navigation and footer.",
+      "body_word_count_min": 302,
+      "body_word_count_max": 943,
+      "body_word_count_over_1000": 0,
+      "articles_without_h2": 0,
+      "seo_title_lengths_outside_30_to_60": 0,
+      "seo_description_lengths_outside_100_to_160": 0,
+      "missing_seo_title_description_or_focus_keyword": 0,
+      "cms_cover_url_or_alt_missing": 3,
+      "rendered_fallback_cover_verified_for_three_new_articles": true,
+      "author_id_null_count": 35,
+      "organization_byline_count": 35,
+      "exact_duplicate_focus_keyword_groups": 0,
+      "body_level_free_trial_path_count": 26,
+      "body_level_free_trial_path_missing_count": 9,
+      "shared_article_template_cta_band": true,
+      "note": "The nine articles without a body-level /free-trial link still receive the shared article-template CTA band; this was not classified as a missing CTA defect."
+    },
+    "archive_and_indexing": {
+      "published_archive_query_filters": [
+        "status = published",
+        "deleted_at IS NULL"
+      ],
+      "published_archive_query_excludes_seo_noindex": false,
+      "blog_index_uses_published_archive_query": true,
+      "archive_page_size": 9,
+      "expected_pages_for_35_published_articles": 4,
+      "sitemap_uses_shouldIncludeInSitemap": true,
+      "sitemap_excludes_seo_noindex": true,
+      "current_sitemap_blog_urls": 32,
+      "three_new_articles_return_http_200": true,
+      "three_new_articles_robots": "noindex, follow",
+      "public_visibility_risk": "CONFIRMED: noindex controls search-result inclusion, not direct/public access. Because the archive query does not filter seo_noindex, published noindex posts can appear in the public blog archive after cache revalidation.",
+      "public_archive_crawl_limit": "Web cache showed pages 1–3 last crawled four days earlier; page 4 returned a cache miss. Fresh rendered archive count was not independently confirmed in this run."
+    },
+    "issue_register": [
+      {
+        "id": "BLOG-VIS-001",
+        "url": [
+          "https://www.onlinequrancollege.com/blog/arabic-for-quran-readers",
+          "https://www.onlinequrancollege.com/blog/is-my-child-ready-for-hifz",
+          "https://www.onlinequrancollege.com/blog/quran-translation-tafseer-beginners"
+        ],
+        "exact_evidence": "CMS has status=published and seo_noindex=true for all three; there are zero rows with status=in_review. The 8 Nov register records HTTP 200 and noindex,follow for each. getPostPage filters only status=published and deleted_at IS NULL; it does not exclude seo_noindex. Qualified academic review remains pending.",
+        "issue": "Articles awaiting qualified academic review are already publicly reachable and eligible for public archive listing despite noindex.",
+        "impact": "Readers can access and share material before the intended academic approval gate; noindex only affects search-result inclusion.",
+        "priority": "P1",
+        "proposed_change": "Owner decision: if academic review is a publication gate, change the three CMS records to draft/unpublished or implement an explicit reviewed-and-approved publication state that excludes them from public archive and direct article routes until sign-off.",
+        "owner_access_needed": "Owner decision, qualified Academic reviewer, and authorized CMS writer.",
+        "risk": "Editorial/religious-governance risk; no private student data exposure identified.",
+        "approval_status": "REQUIRES OWNER DECISION AND QUALIFIED ACADEMIC REVIEW",
+        "implementation_status": "NOT IMPLEMENTED",
+        "verification_method": "Record reviewer name, qualification, date and approved scope; then verify CMS status, archive omission, direct-route behavior, robots metadata and sitemap inclusion only after authorized change."
+      },
+      {
+        "id": "BLOG-IMG-001",
+        "url": [
+          "https://www.onlinequrancollege.com/blog/arabic-for-quran-readers",
+          "https://www.onlinequrancollege.com/blog/is-my-child-ready-for-hifz",
+          "https://www.onlinequrancollege.com/blog/quran-translation-tafseer-beginners"
+        ],
+        "exact_evidence": "The three CMS records have no cover_url or cover_alt. The 8 Nov live HTML register confirms a shared fallback library image with alt text, 1200x800 dimensions and responsive srcset.",
+        "issue": "All three new articles reuse the same generic fallback cover instead of article-specific imagery.",
+        "impact": "Reduced visual specificity and weaker image relevance; not a missing-alt defect because rendered fallback alt is present.",
+        "priority": "P2",
+        "proposed_change": "After academic approval, assign distinct, accurate, licensed/owned article covers and descriptive alt text; retain responsive delivery.",
+        "owner_access_needed": "Content owner and authorized CMS writer; image ownership/licensing evidence.",
+        "risk": "Low; avoid misleading or decorative imagery presented as factual.",
+        "approval_status": "DRAFT RECOMMENDATION",
+        "implementation_status": "NOT IMPLEMENTED",
+        "verification_method": "Verify CMS cover URL/alt, rendered image dimensions/srcset, licensing record, mobile decode and no layout shift."
+      },
+      {
+        "id": "BLOG-AUTH-001",
+        "url": "All 35 published blog articles",
+        "exact_evidence": "Read-only CMS query: author_id is NULL for 35/35 and author_name is 'Online Quran College' for 35/35; blog_posts schema has no reviewer field.",
+        "issue": "All posts use an organizational byline; no named individual author or academic reviewer is represented in the current CMS fields.",
+        "impact": "Limits visible subject-matter accountability and reviewer transparency, especially for Quran/Tajweed/Hifz/Tafseer guidance.",
+        "priority": "P2",
+        "proposed_change": "Where genuine and consented, record the real content author and qualified academic reviewer with role, review date and scope. Do not invent names, qualifications or approval.",
+        "owner_access_needed": "Academic leadership and owner; CMS/schema owner if a reviewer field is approved.",
+        "risk": "Misrepresentation if credentials or reviewer approval are fabricated.",
+        "approval_status": "REQUIRES VERIFIED OWNER/ACADEMIC DATA",
+        "implementation_status": "NOT IMPLEMENTED",
+        "verification_method": "Check public byline/reviewer disclosure against signed-off internal evidence and current CMS version."
+      }
+    ],
+    "access_and_measurement": {
+      "supabase_seo_growth_metrics_rows": 0,
+      "ga4_gsc_connector_tools_found_in_current_session": false,
+      "latest_prior_gsc_evidence": "7 Nov report says authenticated GSC page reports were retrieved for 22–28 Oct and 29 Oct–4 Nov; the detailed figures were in a private owner report not available in this run.",
+      "current_run_metrics": "No fresh GA4/GSC metrics or event-receipt data retrieved."
+    },
+    "source_evidence": [
+      "docs/seo-agent/evidence/2026-11-08/verification.json",
+      "docs/seo-agent/SEO-DAILY-2026-11-08.md",
+      "src/lib/site-data.js",
+      "src/components/site/blog-index.jsx",
+      "src/app/(site)/blog/[slug]/page.jsx",
+      "src/app/sitemap.js",
+      "src/lib/seo.js",
+      "public CMS read-only SQL aggregates"
+    ]
+  }
 }
