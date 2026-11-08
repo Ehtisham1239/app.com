@@ -5,17 +5,12 @@
 export const FX_SOURCE = { name: "ExchangeRate-API", url: "https://www.exchangerate-api.com" };
 const FX_URL = "https://open.er-api.com/v6/latest/USD";
 
+// Owner decision (8 Nov 2026): prices are shown only in GBP, USD, AUD and AED.
+// Visitors from every other country see USD.
+export const DISPLAY_CURRENCIES = ["AED", "AUD", "GBP", "USD"];
+
 // Visitor country (ISO 3166-1 alpha-2) to the currency shown by default.
-export const COUNTRY_CURRENCY = {
-  US: "USD", GB: "GBP", AU: "AUD", CA: "CAD", NZ: "NZD", IE: "EUR", FR: "EUR", DE: "EUR", NL: "EUR", BE: "EUR",
-  IT: "EUR", ES: "EUR", PT: "EUR", AT: "EUR", FI: "EUR", GR: "EUR", LU: "EUR", MT: "EUR", CY: "EUR", SK: "EUR",
-  SI: "EUR", EE: "EUR", LV: "EUR", LT: "EUR", HR: "EUR", AD: "EUR", MC: "EUR", SM: "EUR", VA: "EUR", XK: "EUR", ME: "EUR",
-  CH: "CHF", LI: "CHF", SE: "SEK", NO: "NOK", DK: "DKK", IS: "ISK", PL: "PLN", CZ: "CZK", HU: "HUF", RO: "RON",
-  BG: "BGN", AL: "ALL", BA: "BAM", RS: "RSD", MK: "MKD", MD: "MDL", UA: "UAH", BY: "BYN", TR: "TRY", RU: "RUB",
-  PK: "PKR", IN: "INR", BD: "BDT", AE: "AED", SA: "SAR", QA: "QAR", KW: "KWD", BH: "BHD", OM: "OMR",
-  MY: "MYR", SG: "SGD", ID: "IDR", HK: "HKD", JP: "JPY", CN: "CNY", ZA: "ZAR", NG: "NGN", KE: "KES", EG: "EGP",
-  BR: "BRL", MX: "MXN",
-};
+export const COUNTRY_CURRENCY = { US: "USD", GB: "GBP", AU: "AUD", AE: "AED" };
 
 export function currencyForCountry(country) {
   return COUNTRY_CURRENCY[String(country || "").toUpperCase()] ?? null;
@@ -57,11 +52,12 @@ export function displayPrice(prices, currency, fx) {
   return converted === null ? null : { amount_minor: converted, currency, approximate: true, from: source };
 }
 
-// Currencies offered in a selector: USD, any currency with an approved price, and
-// visitor/location currencies that have a live rate (all of them when rates are unavailable).
+// Currencies offered in a selector: only the four display currencies. USD is always
+// offered; the others need an approved price or a live rate (all four when rates are
+// unavailable, so the page can still ask for a quote). The extra argument is kept for
+// existing callers but cannot add a currency outside the four.
 export function currencyOptions(plans, fx, extra = []) {
   const approved = new Set((plans || []).flatMap((p) => (p.prices || []).map((x) => x.currency)));
-  return [...new Set(["USD", ...approved, ...extra, ...Object.values(COUNTRY_CURRENCY)])]
-    .filter((code) => code === "USD" || approved.has(code) || !fx || fx.rates?.[code])
-    .sort();
+  void extra;
+  return DISPLAY_CURRENCIES.filter((code) => code === "USD" || approved.has(code) || !fx || fx.rates?.[code]);
 }

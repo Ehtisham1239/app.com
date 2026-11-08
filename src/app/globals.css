@@ -385,7 +385,6 @@ main input:not([type="checkbox"]):not([type="radio"]), main select, main textare
   .home-hero .hero-intro { margin: 16px auto 0; font-size: 14px; line-height: 1.75; color: #535b61; }
   .home-hero .hero-actions, .home-hero .hero-badges, .home-hero .hero-proof { justify-content: center; }
   .home-hero .hero-eyebrow { margin-inline: auto; font-size: .68rem; letter-spacing: .1em; }
-  .home-hero .hero-trial-note { justify-content: center; }
   .home-hero .hero-proof { max-width: 27rem; margin-inline: auto; gap: .65rem 1rem; font-size: .8rem; }
   .home-hero .hero-areas { margin-top: 1rem; }
 }

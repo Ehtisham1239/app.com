@@ -23,16 +23,22 @@ test("an approved price wins over a converted one, which is marked approximate",
 
 test("visitor country maps to a display currency", () => {
   assert.equal(currencyForCountry("gb"), "GBP");
-  assert.equal(currencyForCountry("PK"), "PKR");
+  assert.equal(currencyForCountry("us"), "USD");
+  assert.equal(currencyForCountry("AU"), "AUD");
+  assert.equal(currencyForCountry("AE"), "AED");
+  // Owner decision (8 Nov 2026): every other country falls back to USD on the page.
+  assert.equal(currencyForCountry("PK"), null);
+  assert.equal(currencyForCountry("CA"), null);
   assert.equal(currencyForCountry("ZZ"), null);
   assert.equal(currencyForCountry(""), null);
 });
 
-test("currency options keep USD and approved currencies and drop codes without a live rate", async () => {
-  const { currencyOptions } = await import("../src/lib/fx.js");
+test("currency options are limited to GBP, USD, AUD and AED", async () => {
+  const { currencyOptions, DISPLAY_CURRENCIES } = await import("../src/lib/fx.js");
+  assert.deepEqual(DISPLAY_CURRENCIES, ["AED", "AUD", "GBP", "USD"]);
   const plans = [{ prices: [{ currency: "USD" }, { currency: "ISK" }] }];
-  const options = currencyOptions(plans, { rates: { USD: 1, GBP: 0.79, PKR: 278 } }, ["GBP"]);
-  assert.ok(options.includes("USD") && options.includes("ISK") && options.includes("GBP") && options.includes("PKR"));
-  assert.ok(!options.includes("NOK"));
-  assert.ok(currencyOptions(plans, null, ["NOK"]).includes("NOK"));
+  const live = { rates: { USD: 1, GBP: 0.79, AUD: 1.5, AED: 3.67, PKR: 278, CAD: 1.4 } };
+  assert.deepEqual(currencyOptions(plans, live, ["CAD", "PKR"]), ["AED", "AUD", "GBP", "USD"]);
+  assert.deepEqual(currencyOptions(plans, { rates: { USD: 1, GBP: 0.79 } }), ["GBP", "USD"]);
+  assert.deepEqual(currencyOptions(plans, null, ["NOK"]), ["AED", "AUD", "GBP", "USD"]);
 });
