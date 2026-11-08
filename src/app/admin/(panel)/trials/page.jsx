@@ -10,7 +10,7 @@ import { formatDateTime } from "@/lib/format";
 import { Badge, Card, EmptyState, ErrorState, Loading, PageHeader, Pagination, SearchInput, StatusBadge, Tabs, When } from "@/components/admin/ui";
 
 const PAGE = 25;
-const FIELDS = "id, reference, learner_name, guardian_name, email, phone, country, timezone, age_band, status, created_at, trial_at, duplicate_of_id, source, preferred_days, preferred_times, courses(title), teachers(display_name)";
+const FIELDS = "id, reference, learner_name, guardian_name, email, phone, phone_is_whatsapp, country, timezone, age_band, status, created_at, trial_at, duplicate_of_id, source, preferred_days, preferred_times, courses(title), teachers(display_name)";
 
 function TrialsList() {
   const router = useRouter();
@@ -42,6 +42,7 @@ function TrialsList() {
       { label: "Parent / guardian", key: "guardian_name" },
       { label: "Email", key: "email" },
       { label: "Phone", key: "phone" },
+      { label: "WhatsApp", value: (r) => (r.phone_is_whatsapp ? "Yes" : "No") },
       { label: "Country", key: "country" },
       { label: "City", key: "city" },
       { label: "Time zone", key: "timezone" },

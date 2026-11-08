@@ -79,12 +79,14 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
     const planName = plans.find((p) => p.id === plan)?.name;
     return {
       learner_name: "",
+      guardian_name: "",
       age_band: "",
-      country: params.get("country") || "",
+      country: COUNTRIES.some(([name]) => name === params.get("country")) ? params.get("country") : "",
       city: params.get("city") || "",
       browser_tz: "",
       zone_choice: "",
       phone: "",
+      phone_is_whatsapp: false,
       email: "",
       course_id: course && courses.some((c) => c.id === course) ? course : "",
       teacher_preference: "",
@@ -107,9 +109,12 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
   const detected = useMemo(() => detectZone(form.country, form.browser_tz, form.city), [form.country, form.browser_tz, form.city]);
   const timezone = zoneOptions.includes(form.zone_choice) ? form.zone_choice : detected;
 
+  const isChild = Boolean(form.age_band && form.age_band !== "adult");
+
   function validate() {
     const e = {};
     if (form.learner_name.trim().length < 2) e.learner_name = "Please enter the learner’s name.";
+    if (isChild && form.guardian_name.trim().length < 2) e.guardian_name = "Please enter the parent or guardian’s name.";
     if (!form.age_band) e.age_band = "Please choose an age group.";
     if (!form.country) e.country = "Please choose your country.";
     const digits = form.phone.replace(/[^0-9]/g, "");
@@ -117,7 +122,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
     if (!EMAIL.test(form.email.trim())) e.email = "Please enter a valid email address.";
     if (!form.consent) e.consent = "Please agree so we can contact you about your enquiry.";
     setErrors(e);
-    const first = ["learner_name", "age_band", "country", "phone", "email", "consent"].find((k) => e[k]);
+    const first = ["age_band", "learner_name", "guardian_name", "country", "phone", "email", "consent"].find((k) => e[k]);
     if (first) requestAnimationFrame(() => document.getElementById(first === "age_band" ? "q-age-0" : `q-${first}`)?.focus());
     return !first;
   }
@@ -136,9 +141,10 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
     }
     const payload = {
       learner_name: form.learner_name.trim(),
+      guardian_name: isChild ? form.guardian_name.trim() : "",
       email: form.email.trim().toLowerCase(),
       phone: form.phone.trim(),
-      phone_is_whatsapp: true,
+      phone_is_whatsapp: form.phone_is_whatsapp,
       country: form.country,
       city: form.city.trim(),
       timezone,
@@ -195,12 +201,6 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       </div>
       {(selectedPlan || initialPreferenceNotes) && <div className="rounded-xl border border-leaf-100 bg-leaf-50 p-4 text-sm text-ink-soft" role="group" aria-label="Your enquiry preferences">{selectedPlan && <p>Selected package: <strong>{selectedPlan.name}</strong></p>}{initialPreferenceNotes && <p className="mt-1 whitespace-pre-line">{initialPreferenceNotes}</p>}</div>}
 
-      <div>
-        <label htmlFor="q-learner_name" className="field-label">Learner’s name</label>
-        <input id="q-learner_name" className="input" value={form.learner_name} onChange={(e) => set("learner_name", e.target.value)} autoComplete="name" maxLength={120} required {...err("learner_name")} />
-        <FieldError id="q-learner_name-error">{errors.learner_name}</FieldError>
-      </div>
-
       <fieldset aria-describedby={errors.age_band ? "q-age_band-error" : undefined}>
         <legend className="field-label">Age group</legend>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
@@ -214,6 +214,19 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
         <FieldError id="q-age_band-error">{errors.age_band}</FieldError>
       </fieldset>
 
+      <div className={clsx("grid gap-5", isChild && "sm:grid-cols-2")}>
+        <div>
+          <label htmlFor="q-learner_name" className="field-label">{isChild ? "Student’s name" : "Your name"}</label>
+          <input id="q-learner_name" className="input" value={form.learner_name} onChange={(e) => set("learner_name", e.target.value)} autoComplete={isChild ? "section-student name" : "name"} maxLength={120} required {...err("learner_name")} />
+          <FieldError id="q-learner_name-error">{errors.learner_name}</FieldError>
+        </div>
+        {isChild && <div>
+          <label htmlFor="q-guardian_name" className="field-label">Parent or guardian’s name</label>
+          <input id="q-guardian_name" className="input" value={form.guardian_name} onChange={(e) => set("guardian_name", e.target.value)} autoComplete="section-guardian name" maxLength={120} required {...err("guardian_name")} />
+          <FieldError id="q-guardian_name-error">{errors.guardian_name}</FieldError>
+        </div>}
+      </div>
+
       <div>
         <label htmlFor="q-country" className="field-label">Country</label>
         <select id="q-country" className="select" value={form.country} onChange={(e) => setForm((f) => ({ ...f, country: e.target.value, zone_choice: "" }))} autoComplete="country-name" required {...err("country")}>
@@ -225,18 +238,21 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label htmlFor="q-phone" className="field-label">WhatsApp number</label>
+          <label htmlFor="q-phone" className="field-label">Phone or WhatsApp number</label>
           <input id="q-phone" className="input" type="tel" inputMode="tel" value={form.phone} onChange={(e) => set("phone", e.target.value)} autoComplete="tel" placeholder="Start with country code: +1, +44, +61…" maxLength={24} required {...err("phone")} aria-describedby={errors.phone ? "q-phone-hint q-phone-error" : "q-phone-hint"} />
-          <p id="q-phone-hint" className="mt-1 text-xs text-ink-faint">The number the coordinator can message on WhatsApp.</p>
+          <p id="q-phone-hint" className="mt-1 text-xs text-ink-faint">Include the country code. {isChild ? "Use the parent or guardian’s number." : "Use a number we can reach you on."}</p>
           <FieldError id="q-phone-error">{errors.phone}</FieldError>
+          <label className="mt-2 flex min-h-11 items-center gap-2 text-sm text-ink-soft">
+            <input type="checkbox" className="check shrink-0" checked={form.phone_is_whatsapp} onChange={(e) => set("phone_is_whatsapp", e.target.checked)} />
+            This number is on WhatsApp
+          </label>
         </div>
         <div>
-          <label htmlFor="q-email" className="field-label">Email</label>
+          <label htmlFor="q-email" className="field-label">{isChild ? "Parent or guardian’s email" : "Your email"}</label>
           <input id="q-email" className="input" type="email" inputMode="email" value={form.email} onChange={(e) => set("email", e.target.value)} autoComplete="email" maxLength={254} required {...err("email")} />
           <FieldError id="q-email-error">{errors.email}</FieldError>
         </div>
       </div>
-      <p className="-mt-2 text-[0.82rem] text-ink-faint">For a child, please give a parent or guardian’s contact details.</p>
 
       <details className="rounded-xl border border-leaf-100 bg-leaf-50 px-4">
         <summary className="min-h-11 cursor-pointer rounded-lg py-3 font-semibold text-leaf-800">{form.course_id ? courses.find((course) => course.id === form.course_id)?.title || "Class preferences" : "Add class preferences"} <span className="text-sm font-normal">(optional)</span></summary>

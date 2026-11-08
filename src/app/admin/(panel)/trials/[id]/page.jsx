@@ -314,7 +314,7 @@ export default function TrialPage({ params }) {
               </Row>
             </dl>
             <div className="mt-4 flex flex-wrap gap-2">
-              {wa && (
+              {t.phone_is_whatsapp && wa && (
                 <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-sm">
                   <MessageCircle className="size-4" /> WhatsApp
                 </a>
