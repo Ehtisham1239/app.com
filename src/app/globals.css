@@ -443,3 +443,33 @@ main input:not([type="checkbox"]):not([type="radio"]), main select, main textare
 /* Homepage jump links: one sideways-scrolling row on phones, no visible scrollbar. */
 .home-jump-row { scrollbar-width: none; overscroll-behavior-x: contain; }
 .home-jump-row::-webkit-scrollbar { display: none; }
+
+
+/* Site-wide motion for inner landing pages: reveal only after entering view.
+   Server-rendered content remains visible without JS; hero/LCP and forms are excluded. */
+@media (prefers-reduced-motion: no-preference) {
+  .site-reveal {
+    animation: home-arrive .55s cubic-bezier(.2,.65,.3,1) var(--site-reveal-delay, 0ms) both;
+  }
+  [data-site-motion] a.surface {
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  [data-site-motion] a.surface img {
+    transition: transform .45s ease;
+  }
+  [data-site-motion] .btn svg {
+    transition: transform .2s ease;
+  }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  [data-site-motion] a.surface:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lift);
+  }
+  [data-site-motion] a.surface:hover img {
+    transform: scale(1.025);
+  }
+  [data-site-motion] .btn:hover svg {
+    transform: translateX(2px);
+  }
+}
