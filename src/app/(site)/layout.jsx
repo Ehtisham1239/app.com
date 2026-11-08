@@ -59,8 +59,9 @@ export default async function SiteLayout({ children }) {
       <MobileActionBar chatEnabled={chatEnabled} />
       <ReviewsButton config={reviewsButtonConfig(settings["site.reviews_button"], settings["site.social"])} consentText={settings["site.forms"]?.consent_text} />
       <HatchiumChat enabled={chatEnabled} widgetKey={chat.widget_key} />
-      {/* Vercel Speed Insights: cookieless real-visit Core Web Vitals per route. */}
-      <SpeedInsights />
+      {/* Vercel Speed Insights: cookieless real-visit Core Web Vitals per route. Its script
+          only exists on Vercel, so other hosts (Hostinger) skip it instead of loading a 404. */}
+      {process.env.VERCEL === "1" && <SpeedInsights />}
       {analytics.enabled && <WebsiteAnalytics config={analytics} />}
     </>
   );

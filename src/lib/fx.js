@@ -12,6 +12,19 @@ export const DISPLAY_CURRENCIES = ["AED", "AUD", "GBP", "USD"];
 // Visitor country (ISO 3166-1 alpha-2) to the currency shown by default.
 export const COUNTRY_CURRENCY = { US: "USD", GB: "GBP", AU: "AUD", AE: "AED" };
 
+// Fallback when the host sends no visitor-country header (Hostinger sends none): the
+// browser's time zone picks the currency. Nothing leaves the browser. Unknown zones
+// return null so the page stays on USD.
+const UK_ZONES = new Set(["Europe/London", "Europe/Belfast", "Europe/Guernsey", "Europe/Jersey", "Europe/Isle_of_Man", "GB", "GB-Eire"]);
+export function currencyForTimeZone(timeZone) {
+  const zone = String(timeZone || "");
+  if (UK_ZONES.has(zone)) return "GBP";
+  if (zone.startsWith("Australia/")) return "AUD";
+  if (zone === "Asia/Dubai") return "AED";
+  if (zone.startsWith("America/") || zone.startsWith("US/") || zone === "Pacific/Honolulu") return "USD";
+  return null;
+}
+
 export function currencyForCountry(country) {
   return COUNTRY_CURRENCY[String(country || "").toUpperCase()] ?? null;
 }

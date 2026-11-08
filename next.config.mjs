@@ -72,6 +72,9 @@ const nextConfig = {
   async redirects() {
     const courses = ["noorani-qaida", "quran-nazara", "hifz-quran", "arabic-language", "quran-translation", "hadith-translation"];
     return [
+      // Canonical host: the bare domain always moves to www. Vercel did this at the domain
+      // level; on Hostinger both names reach the app, so the app does it (8 Nov 2026).
+      { source: "/:path*", has: [{ type: "host", value: "onlinequrancollege.com" }], destination: "https://www.onlinequrancollege.com/:path*", permanent: true },
       // Short customer-review link (/review). /copoloit was shared briefly on 2 Nov 2026; keep it working.
       { source: "/review", destination: "/reviews", permanent: true },
       { source: "/copoloit", destination: "/reviews", permanent: true },
