@@ -61,3 +61,54 @@ test("admissions sync requires explicit activation and excludes reviews and chil
   await syncHighLevelAdmission({ ...lead, name: "Contact Name" }, "contact", options);
   assert.deepEqual(payloads.map((payload) => payload.name), [undefined, "Parent Name", "Contact Name"]);
 });
+
+test("pipeline routing preserves an open opportunity or creates one in the intake stage", async () => {
+  const pipeline = { ...config, pipelineId: "pipeline-1", stageId: "stage-1" };
+  const lead = { email: "guardian@example.com", reference: "TR-2026-00042" };
+  for (const hasOpportunity of [true, false]) {
+    const calls = [];
+    const result = await syncHighLevelAdmission(lead, "trial", {
+      config: pipeline,
+      fetchImpl: async (url, request) => {
+        const target = new URL(url);
+        calls.push(target.pathname);
+        if (target.pathname === "/contacts/upsert") return Response.json({ contact: { id: "contact-1" } });
+        if (target.pathname === "/opportunities/search") {
+          assert.equal(target.searchParams.get("contactId"), "contact-1");
+          assert.equal(target.searchParams.get("pipelineId"), pipeline.pipelineId);
+          assert.equal(target.searchParams.get("status"), "open");
+          const existing = { id: "opp-1", contactId: "contact-1", pipelineId: pipeline.pipelineId, status: "open" };
+          return Response.json({ opportunities: hasOpportunity ? [existing] : [] });
+        }
+        assert.deepEqual(JSON.parse(request.body), {
+          locationId: pipeline.locationId, pipelineId: pipeline.pipelineId, contactId: "contact-1",
+          pipelineStageId: pipeline.stageId, status: "open", name: "OQC admissions TR-2026-00042",
+        });
+        return Response.json({ opportunity: { id: "opp-1" } });
+      },
+    });
+    assert.deepEqual(result, { ok: true, contactId: "contact-1", opportunityId: "opp-1" });
+    assert.equal(calls.includes("/opportunities/"), !hasOpportunity);
+  }
+});
+
+test("a concurrent opportunity conflict is accepted only after the matching open record is found", async () => {
+  const pipeline = { ...config, pipelineId: "pipeline-1", stageId: "stage-1" };
+  const lead = { email: "guardian@example.com", reference: "MSG-2026-00042" };
+  for (const found of [true, false]) {
+    let searches = 0;
+    const result = await syncHighLevelAdmission(lead, "contact", {
+      config: pipeline,
+      fetchImpl: async (url) => {
+        const path = new URL(url).pathname;
+        if (path === "/contacts/upsert") return Response.json({ contact: { id: "contact-1" } });
+        if (path === "/opportunities/") return new Response(null, { status: 409 });
+        searches++;
+        const existing = { id: "opp-1", contactId: "contact-1", pipelineId: pipeline.pipelineId, status: "open" };
+        return Response.json({ opportunities: searches === 2 && found ? [existing] : [] });
+      },
+    });
+    assert.equal(searches, 2);
+    assert.equal(result.ok, found);
+  }
+});
