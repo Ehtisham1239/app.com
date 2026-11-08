@@ -16,7 +16,7 @@ test("answer gives the published USD range and an approximate pounds range", () 
   assert.deepEqual(result.local, [2300, 3800]);
   assert.equal(result.approximate, true);
   assert.match(result.answer, /US\$30 to US\$50 for 2 to 4 live one-to-one 30-minute classes a week/);
-  assert.match(result.answer, /about £23 to £38 a month at today's exchange rate/);
+  assert.match(result.answer, /about £23 to £38 a month at the latest available exchange rate/);
   assert.match(result.answer, /Weekend plan is excluded/);
   assert.doesNotMatch(result.answer, /sibling discount|family discount|15% off/i);
 });
