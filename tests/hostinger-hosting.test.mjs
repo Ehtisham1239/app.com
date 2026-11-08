@@ -36,6 +36,13 @@ test("currency hook falls back to the time zone only when the host gives no coun
   assert.match(hook, /\.catch\(\(\) => apply\(fromTimeZone\(\)\)\)/);
 });
 
+test("Supabase works without env vars, using only the public publishable key", () => {
+  const config = read("src/lib/config.js");
+  assert.match(config, /\|\| "sb_publishable_[A-Za-z0-9_-]+";/);
+  // Never a secret/service key as a default.
+  assert.doesNotMatch(config, /sb_secret_|service_role/);
+});
+
 test("Vercel Speed Insights loads only on Vercel builds", () => {
   const layout = read("src/app/(site)/layout.jsx");
   assert.match(layout, /process\.env\.VERCEL === "1" && <SpeedInsights \/>/);
