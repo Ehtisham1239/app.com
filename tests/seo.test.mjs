@@ -222,3 +222,8 @@ test("UAE advertiser guidance points to the official Media Council guidelines", 
   const source = MARKET_GUIDES["united-arab-emirates"].sources.find((item) => item.name.includes("Advertiser Permit"));
   assert.equal(source.url, "https://uaemc.gov.ae/en/guidelines/");
 });
+
+test("CMS link counts distinguish internal routes, external references and unsafe placeholders", () => {
+  const body_html = '<a href="/pricing">Fees</a><a href="https://onlinequrancollege.com/courses">Courses</a><a href="https://example.test">Source</a><a href="#faq">FAQ</a><a href="mailto:info@example.test">Email</a><a href="javascript:bad()">Unsafe</a><a href="#">Empty</a>';
+  assert.deepEqual(analyzeSeo({ body_html }).linkCounts, { internal: 2, external: 1, anchors: 1, invalid: 2 });
+});

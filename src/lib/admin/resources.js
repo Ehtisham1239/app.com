@@ -1,3 +1,4 @@
+import { pageVideo, isVideoPageSlug } from "@/lib/page-video";
 import { guideForSlug } from "@/lib/learning-guides";
 import { LOCATIONS, locationPath, locationCmsSlug } from "@/lib/locations";
 // Website content managed with the generic list/edit screens in the admin panel.
@@ -229,6 +230,12 @@ export const RESOURCES = {
       { key: "updated_at", label: "Updated", type: "when" },
     ],
     defaults: { status: "draft", template: "standard", locale: "en", sort_order: 0, show_in_footer: false },
+    validate: (form) => {
+      if (!form.video) return null;
+      if (!isVideoPageSlug(form.slug) || guideForSlug(form.slug)) return "Use a standard CMS page with its own URL for a video.";
+      if (form.video.primary && form.template !== "standard") return "Choose the Standard page type for a dedicated video watch page.";
+      return pageVideo(form.video) ? null : "Enter a valid YouTube or OQC MP4 URL, title, description, real upload date and an MP4 thumbnail.";
+    },
     fields: [
       { name: "title", label: "Title", type: "text", required: true },
       { name: "slug", label: "Web address", type: "slug", source: "title", required: true, prefix: "/" },
@@ -244,10 +251,11 @@ export const RESOURCES = {
         ],
       },
       { name: "show_in_footer", label: "Link in footer", type: "bool", half: true },
-      { name: "excerpt", label: "Intro line", type: "textarea", rows: 2 },
-      { name: "body_html", label: "Page content", type: "rich" },
+      { name: "excerpt", label: "Intro line", type: "textarea", rows: 2, preserveEmpty: true },
+      { name: "body_html", label: "Page content", type: "rich", preserveEmpty: true },
       { name: "cover_url", label: "Cover image", type: "image" },
       { name: "cover_alt", label: "Cover image description (alt text)", type: "text", help: "Describe the visible scene for accessibility. Avoid keyword lists." },
+      { name: "video", label: "Video", type: "page-video", group: "Video" },
       ...publishing,
       ...seo,
     ],
@@ -276,8 +284,8 @@ export const RESOURCES = {
       { name: "slug", label: "Web address", type: "slug", source: "title", required: true, prefix: "/blog/" },
       { name: "category", label: "Category", type: "text", half: true },
       { name: "author_name", label: "Author", type: "text", half: true },
-      { name: "excerpt", label: "Summary", type: "textarea", rows: 2 },
-      { name: "body_html", label: "Article", type: "rich" },
+      { name: "excerpt", label: "Summary", type: "textarea", rows: 2, preserveEmpty: true },
+      { name: "body_html", label: "Article", type: "rich", preserveEmpty: true },
       { name: "cover_url", label: "Cover image", type: "image" },
       { name: "cover_alt", label: "Cover image description (alt text)", type: "text", help: "Describe the visible scene for accessibility. Avoid keyword lists." },
       { name: "tags", label: "Tags", type: "tags", half: true },

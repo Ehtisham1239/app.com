@@ -150,14 +150,18 @@ export const getTeacher = cache(async (slug) =>
 
 const POST_FIELDS = "id, slug, title, excerpt, cover_url, cover_alt, category, tags, author_name, reading_minutes, published_at, updated_at";
 
-export const getPosts = cache(async (limit = 50) =>
-  safe(() =>
-    publicDb.from("blog_posts").select(POST_FIELDS).eq("status", "published").is("deleted_at", null).order("published_at", { ascending: false }).limit(limit),
+export const getPosts = cache(async (limit = 50) => {
+  const posts = await safe(() =>
+    publicDb.from("blog_posts").select(POST_FIELDS).eq("status", "published").is("deleted_at", null)
+      .or("seo_noindex.is.null,seo_noindex.eq.false")
+      .order("published_at", { ascending: false }).limit(limit),
     [],
     "posts",
     limit,
-  ),
-);
+  );
+  // Keep explicitly noindexed drafts/review articles out of public discovery surfaces.
+  return posts.filter(post => !post.seo_noindex);
+});
 
 export const getPost = cache(async (slug) =>
   safe(() =>
@@ -188,6 +192,23 @@ export const getPage = cache(async (slug) =>
   ),
 );
 
+// Keep the optional video column from affecting existing page reads before migration.
+async function optionalVideo(query, fallback, label) {
+  if (!publicDb) return fallback;
+  const { data, error } = await query();
+  if (["42703", "PGRST204", "PGRST205"].includes(error?.code)) return fallback;
+  if (error) throw new Error(`Public content temporarily unavailable: ${label}`, { cause: error });
+  return data ?? fallback;
+}
+
+export const getPageVideo = cache(async (id) =>
+  optionalVideo(() => publicDb.from("pages").select("video").eq("id", id).eq("status", "published").is("deleted_at", null).maybeSingle(), null, "page video"),
+);
+
+export const getPublishedPageVideos = cache(async () =>
+  optionalVideo(() => publicDb.from("pages").select("slug, video, template").eq("status", "published").eq("locale", "en").is("deleted_at", null).not("video", "is", null), [], "sitemap videos"),
+);
+
 export const getPublishedSlugs = cache(async () => {
   const [courses, posts, pages, teachers] = await Promise.all([
     safe(() => publicDb.from("courses").select("slug, updated_at, seo_noindex, canonical_url, cover_url").eq("status", "published").is("deleted_at", null), [], "slugs courses"),
@@ -206,12 +227,16 @@ export const getRedirect = cache(async (path) =>
 export const getPostPage = cache(async (page = 1, category = "") => {
   const size = 9, offset = (page - 1) * size;
   const fallback = () => {
-    const all = seedFallback("posts", []).filter((p) => !category || p.category === category).sort((a, b) => String(b.published_at).localeCompare(String(a.published_at)));
+    const all = seedFallback("posts", [])
+      .filter((p) => !p.seo_noindex && (!category || p.category === category))
+      .sort((a, b) => String(b.published_at).localeCompare(String(a.published_at)));
     return { posts: all.slice(offset, offset + size), hasNext: all.length > offset + size };
   };
   if (!publicDb) return fallback();
   try {
-    let q = publicDb.from("blog_posts").select(POST_FIELDS).eq("status", "published").is("deleted_at", null).order("published_at", { ascending: false }).order("id").range(offset, offset + size);
+    let q = publicDb.from("blog_posts").select(POST_FIELDS).eq("status", "published").is("deleted_at", null)
+      .or("seo_noindex.is.null,seo_noindex.eq.false")
+      .order("published_at", { ascending: false }).order("id").range(offset, offset + size);
     if (category) q = q.eq("category", category);
     const { data, error } = await q;
     if (error) { if (error.code === "PGRST205") return fallback(); throw error; }

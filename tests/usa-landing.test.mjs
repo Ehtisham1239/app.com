@@ -147,16 +147,19 @@ test("USA thank-you page uses verified contact and trial terms", () => {
   assert.match(thankYou, /<h3>3-day free trial<\/h3><p>Join three days of free live classes with your teacher\. No card needed\.<\/p>/);
 });
 
-test("the landing page emails admissions only after the lead is saved, and never twice from one tab", () => {
+test("the landing page emails admissions only after the lead is saved and uses a short-lived token for safe retries", () => {
   assert.match(landing, /notifyUrl: '\/api\/usa-lead-notification'/);
   // Order: save → (spam stops here) → remember → notify → success.
   const flow = landing.slice(landing.indexOf("submitToCms(p).then(function (r) {"), landing.indexOf("/* ---------- mobile sticky CTA"));
   const at = (s) => { const i = flow.indexOf(s); assert.ok(i > -1, s); return i; };
-  assert.ok(at("if (b.reference === 'TR-RECEIVED')") < at("setJSON(SS, SENT_KEY") && at("setJSON(SS, SENT_KEY") < at("notifyAdmissions(b.reference, p.email).then") && at("notifyAdmissions(b.reference, p.email).then") < at("succeed({ ok: true, lead_id: b.reference })"));
-  assert.match(landing, /if \(prior\) \{ setBusy\(true\); succeed\(\{ ok: true, lead_id: prior\.ref, repeat: true \}\); return; \}/);
+  const notifyAt = at("notifyAdmissions(b.reference, p.email, b.notification_token).then");
+  const successAfterNotify = landing.indexOf("succeed({ ok: true, lead_id: b.reference });", notifyAt);
+  assert.ok(at("if (b.reference === 'TR-RECEIVED')") < at("b.notification_token") && at("b.notification_token") < at("setJSON(SS, SENT_KEY") && at("setJSON(SS, SENT_KEY") < notifyAt && notifyAt < successAfterNotify);
+  assert.match(landing, /notifyAdmissions\(prior\.ref, p\.email, prior\.token\)/);
   assert.match(landing, /if \(!res\.test && !res\.spam && !res\.repeat\) oqcEmit\('generate_lead'/);
-  // Only the reference and the typed email go to the server; the hash is all that is kept.
-  assert.match(landing, /\{ reference: reference, email: email \}/);
+  // Only the reference, typed email and short-lived notification token go to the server; no lead PII is stored in session state.
+  assert.match(landing, /\{ reference: reference, email: email, notification_token: token \}/);
+  assert.match(landing, /token: b\.notification_token/);
   assert.doesNotMatch(landing, /setJSON\(SS, SENT_KEY, \{[^}]*email/);
 });
 

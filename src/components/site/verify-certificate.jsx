@@ -11,15 +11,17 @@ export function VerifyCertificate() {
   const [number, setNumber] = useState(initial);
   const [state, setState] = useState({ loading: initial.length >= 4, checked: initial, result: undefined, error: "" });
 
-  const lookup = useCallback(async (n) => {
+  const lookup = useCallback(async (n, isCurrent = () => true) => {
     try {
       const { data, error } = await (await import("@/lib/supabase/public")).getPublicBrowserClient().rpc("verify_certificate", { p_number: n });
+      if (!isCurrent()) return;
       if (error) {
         setState({ loading: false, checked: n, result: undefined, error: "We could not check the certificate right now. Please try again in a moment." });
         return;
       }
       setState({ loading: false, checked: n, result: data ?? null, error: "" });
     } catch {
+      if (!isCurrent()) return;
       setState({ loading: false, checked: n, result: undefined, error: "We could not check the certificate right now. Please try again in a moment." });
     }
   }, []);
@@ -36,7 +38,10 @@ export function VerifyCertificate() {
 
   // A link like /verify-certificate?number=OQC-CERT-2026-0002-K7QM checks straight away.
   useEffect(() => {
-    if (initial.length >= 4) lookup(initial);
+    if (initial.length < 4) return;
+    let current = true;
+    void Promise.resolve().then(() => { if (current) return lookup(initial, () => current); });
+    return () => { current = false; };
   }, [initial, lookup]);
 
   const r = state.result;

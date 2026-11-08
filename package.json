@@ -5,7 +5,7 @@
   "description": "Online Quran College — public website and admin panel (Next.js + Supabase).",
   "type": "module",
   "engines": {
-    "node": ">=20.9.0"
+    "node": ">=20.9.0 <25"
   },
   "scripts": {
     "dev": "node scripts/prepare-responsive-learning.mjs && next dev",

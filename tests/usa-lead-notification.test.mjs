@@ -20,10 +20,11 @@ const lead = (extra = {}) => ({
   repeat_of: null, repeat_of_created_at: null, ...extra,
 });
 
-test("the browser may send only a database reference and an email address", () => {
-  assert.deepEqual(parseNotificationRequest({ reference: " TR-2026-00042 ", email: " Parent@Example.TEST " }), { reference: "TR-2026-00042", email: "parent@example.test" });
+test("the browser must send a database reference, matching email and 256-bit notification token", () => {
+  assert.deepEqual(parseNotificationRequest({ reference: " TR-2026-00042 ", email: " Parent@Example.TEST ", notification_token: "A".repeat(64) }), { reference: "TR-2026-00042", email: "parent@example.test", notificationToken: "a".repeat(64) });
   for (const bad of [null, [], "x", {}, { reference: "TR-RECEIVED", email: "a@b.co" }, { reference: "TR-2026-42", email: "a@b.co" },
-    { reference: "TR-2026-00042", email: "not-an-email" }, { reference: "TR-2026-00042", email: "a@b.co\r\nBcc: x@y.z" },
+    { reference: "TR-2026-00042", email: "not-an-email", notification_token: "a".repeat(64) },
+    { reference: "TR-2026-00042", email: "a@b.co" }, { reference: "TR-2026-00042", email: "a@b.co", notification_token: "short" }, { reference: "TR-2026-00042", email: "a@b.co\r\nBcc: x@y.z" },
     { reference: "TR-2026-00042; drop", email: "a@b.co" }, { reference: "TR-2026-00042", email: `${"a".repeat(250)}@b.co` }]) {
     assert.equal(parseNotificationRequest(bad), null, JSON.stringify(bad));
   }
@@ -98,7 +99,7 @@ const request = (body, headers = {}) => new Request("https://www.onlinequrancoll
   method: "POST", headers: { origin: "https://www.onlinequrancollege.com", "content-type": "application/json", ...headers },
   body: typeof body === "string" ? body : JSON.stringify(body),
 });
-const valid = { reference: "TR-2026-00042", email: "parent@example.test" };
+const valid = { reference: "TR-2026-00042", email: "parent@example.test", notification_token: "a".repeat(64) };
 
 before(async () => {
   const bundle = await build({ entryPoints: ["src/app/api/usa-lead-notification/route.js"], bundle: true, write: false, format: "esm", platform: "node",
@@ -147,7 +148,7 @@ test("a confirmed lead produces exactly one admissions email", async () => {
   setup(); const resend = fakeResend();
   const response = await route.POST(request(valid));
   assert.equal(response.status, 200); assert.deepEqual(await response.json(), { ok: true });
-  assert.deepEqual(fixture.calls, [["usa_lead_for_notification", { p_reference: "TR-2026-00042", p_email: "parent@example.test" }]]);
+  assert.deepEqual(fixture.calls, [["usa_lead_for_notification", { p_reference: "TR-2026-00042", p_email: "parent@example.test", p_notification_token: "a".repeat(64) }]]);
   assert.equal(resend.delivered.length, 1);
   assert.match(resend.delivered[0].subject, /TR-2026-00042/);
   assert.match(response.headers.get("cache-control"), /no-store/); assert.match(response.headers.get("x-robots-tag"), /noindex/);
@@ -196,5 +197,5 @@ test("outages and missing configuration fail clearly and are logged without pers
   assert.match(consoleLines.join("\n"), /"outcome":"resend_500_application_error"/);
   setup(); fakeResend(); await route.POST(request(valid));
   assert.match(consoleLines.join("\n"), /"outcome":"sent","reference":"TR-2026-00042"/);
-  for (const secret of [KEY, "parent@example.test", "+15552345678", "Test Parent", "database unavailable"]) assert.ok(!allConsoleLines.join("\n").includes(secret), secret);
+  for (const secret of [KEY, "parent@example.test", "+15552345678", "Test Parent", "database unavailable", "a".repeat(64)]) assert.ok(!allConsoleLines.join("\n").includes(secret), secret);
 });

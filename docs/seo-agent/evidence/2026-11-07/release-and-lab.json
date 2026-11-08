@@ -1,0 +1,739 @@
+{
+  "date": "2026-11-07",
+  "production_release": {
+    "route": {
+      "url": "https://www.onlinequrancollege.com/free-trial",
+      "final_url": "https://www.onlinequrancollege.com/free-trial",
+      "status": 200,
+      "new_copy": true,
+      "old_copy": false
+    },
+    "assets": [
+      {
+        "url": "https://www.onlinequrancollege.com/_next/static/immutable/chunks/00z4pmesk2f4f.js",
+        "status": 200,
+        "funnel_marker": false
+      },
+      {
+        "url": "https://www.onlinequrancollege.com/_next/static/immutable/chunks/05llew1hg7v6q.js",
+        "status": 200,
+        "funnel_marker": false
+      },
+      {
+        "url": "https://www.onlinequrancollege.com/_next/static/immutable/chunks/0c0hxoamwjsbw.js",
+        "status": 200,
+        "funnel_marker": false
+      },
+      {
+        "url": "https://www.onlinequrancollege.com/_next/static/immutable/chunks/0ykyzfd0mwwu3.js",
+        "status": 200,
+        "funnel_marker": false
+      },
+      {
+        "url": "https://www.onlinequrancollege.com/_next/static/immutable/chunks/14zoyxzjyo3ju.js",
+        "status": 200,
+        "funnel_marker": true
+      },
+      {
+        "url": "https://www.onlinequrancollege.com/_next/static/immutable/chunks/17ay4u-ai5444.js",
+        "status": 200,
+        "funnel_marker": false
+      },
+      {
+        "url": "https://www.onlinequrancollege.com/_next/static/immutable/chunks/1sqkihjlabbzn.js",
+        "status": 200,
+        "funnel_marker": false
+      },
+      {
+        "url": "https://www.onlinequrancollege.com/_next/static/immutable/chunks/22l36ojezv9h3.js",
+        "status": 200,
+        "funnel_marker": false
+      },
+      {
+        "url": "https://www.onlinequrancollege.com/_next/static/immutable/chunks/2vja0_zguykat.js",
+        "status": 200,
+        "funnel_marker": false
+      },
+      {
+        "url": "https://www.onlinequrancollege.com/_next/static/immutable/chunks/3t_9u70dx003d.js",
+        "status": 200,
+        "funnel_marker": false
+      },
+      {
+        "url": "https://www.onlinequrancollege.com/_next/static/immutable/chunks/turbopack-1byz1flvc-bu1.js",
+        "status": 200,
+        "funnel_marker": false
+      }
+    ],
+    "funnel_asset_served": true,
+    "source_commit": "cdf6d71e697827338ce59238eb32270fc9747400",
+    "writes": 0
+  },
+  "deployment_id": "dpl_7Jzc1MYaPNpLhgyJMk4uKYY9t2WN",
+  "state": "READY",
+  "production_domain": "www.onlinequrancollege.com",
+  "ci_run": 42332020428,
+  "lab_source": "GitHub Actions job128280766980, measured live pages before the copy correction deployment",
+  "remote_lab": [
+    {
+      "device": "mobile",
+      "url": "https://www.onlinequrancollege.com",
+      "fetchTime": "2026-11-07T03:03:53.196Z",
+      "lighthouseVersion": "13.6.0",
+      "mode": "remote lab",
+      "scores": {
+        "performance": 95,
+        "accessibility": 97,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 1071.479,
+        "largest-contentful-paint": 1071.479,
+        "total-blocking-time": 243,
+        "cumulative-layout-shift": 0.005337226671419965,
+        "speed-index": 1457.0586529077327
+      },
+      "diagnostics": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "value": "1.1\u00a0s"
+        },
+        {
+          "id": "total-blocking-time",
+          "title": "Total Blocking Time",
+          "value": "240\u00a0ms"
+        },
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "value": "250\u00a0ms"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "value": "3.1\u00a0s"
+        },
+        {
+          "id": "aria-prohibited-attr",
+          "title": "Elements use prohibited ARIA attributes"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "value": "Est savings of 27\u00a0KiB"
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "value": "Est savings of 97\u00a0KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "value": "Est savings of 14\u00a0KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ]
+    },
+    {
+      "device": "desktop",
+      "url": "https://www.onlinequrancollege.com",
+      "fetchTime": "2026-11-07T03:04:03.583Z",
+      "lighthouseVersion": "13.6.0",
+      "mode": "remote lab",
+      "scores": {
+        "performance": 100,
+        "accessibility": 97,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 306.3335,
+        "largest-contentful-paint": 560.3335,
+        "total-blocking-time": 18,
+        "cumulative-layout-shift": 0.004596671795624821,
+        "speed-index": 436.8660693811809
+      },
+      "diagnostics": [
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "value": "70\u00a0ms"
+        },
+        {
+          "id": "aria-prohibited-attr",
+          "title": "Elements use prohibited ARIA attributes"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "value": "Est savings of 53\u00a0KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "value": "Est savings of 14\u00a0KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ]
+    },
+    {
+      "device": "mobile",
+      "url": "https://www.onlinequrancollege.com/pricing",
+      "fetchTime": "2026-11-07T03:04:14.396Z",
+      "lighthouseVersion": "13.6.0",
+      "mode": "remote lab",
+      "scores": {
+        "performance": 95,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 1063.95,
+        "largest-contentful-paint": 2121.95,
+        "total-blocking-time": 215,
+        "cumulative-layout-shift": 0.0003349822669389545,
+        "speed-index": 1063.95
+      },
+      "diagnostics": [
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "value": "2.1\u00a0s"
+        },
+        {
+          "id": "total-blocking-time",
+          "title": "Total Blocking Time",
+          "value": "220\u00a0ms"
+        },
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "value": "220\u00a0ms"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "value": "2.9\u00a0s"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "value": "Est savings of 27\u00a0KiB"
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "value": "Est savings of 18\u00a0KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "value": "Est savings of 14\u00a0KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ]
+    },
+    {
+      "device": "desktop",
+      "url": "https://www.onlinequrancollege.com/pricing",
+      "fetchTime": "2026-11-07T03:04:23.538Z",
+      "lighthouseVersion": "13.6.0",
+      "mode": "remote lab",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 306.677,
+        "largest-contentful-paint": 560.677,
+        "total-blocking-time": 4.5,
+        "cumulative-layout-shift": 0.0002337981181185483,
+        "speed-index": 385.2505675000176
+      },
+      "diagnostics": [
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "value": "Est savings of 53\u00a0KiB"
+        },
+        {
+          "id": "forced-reflow-insight",
+          "title": "Forced reflow"
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "value": "Est savings of 18\u00a0KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "value": "Est savings of 14\u00a0KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ]
+    },
+    {
+      "device": "mobile",
+      "url": "https://www.onlinequrancollege.com/free-trial",
+      "fetchTime": "2026-11-07T03:04:43.072Z",
+      "lighthouseVersion": "13.6.0",
+      "mode": "remote lab",
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 916.62,
+        "largest-contentful-paint": 916.62,
+        "total-blocking-time": 129.5,
+        "cumulative-layout-shift": 0.001139586522945275,
+        "speed-index": 1079.5684564562619
+      },
+      "diagnostics": [
+        {
+          "id": "total-blocking-time",
+          "title": "Total Blocking Time",
+          "value": "130\u00a0ms"
+        },
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "value": "240\u00a0ms"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "value": "2.0\u00a0s"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "value": "Est savings of 50\u00a0KiB"
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "value": "Est savings of 8\u00a0KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "value": "Est savings of 14\u00a0KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests",
+          "value": "Est savings of 10\u00a0ms"
+        }
+      ]
+    },
+    {
+      "device": "desktop",
+      "url": "https://www.onlinequrancollege.com/free-trial",
+      "fetchTime": "2026-11-07T03:04:51.829Z",
+      "lighthouseVersion": "13.6.0",
+      "mode": "remote lab",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 270.3985,
+        "largest-contentful-paint": 530.3985,
+        "total-blocking-time": 8,
+        "cumulative-layout-shift": 0.004209743675578251,
+        "speed-index": 412.1611472391122
+      },
+      "diagnostics": [
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "value": "Est savings of 26\u00a0KiB"
+        },
+        {
+          "id": "forced-reflow-insight",
+          "title": "Forced reflow"
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "value": "Est savings of 21\u00a0KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "value": "Est savings of 14\u00a0KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ]
+    },
+    {
+      "device": "mobile",
+      "url": "https://www.onlinequrancollege.com/locations/united-kingdom",
+      "fetchTime": "2026-11-07T03:05:00.704Z",
+      "lighthouseVersion": "13.6.0",
+      "mode": "remote lab",
+      "scores": {
+        "performance": 99,
+        "accessibility": 97,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 1070.8425,
+        "largest-contentful-paint": 1070.8425,
+        "total-blocking-time": 129,
+        "cumulative-layout-shift": 0,
+        "speed-index": 1070.8425
+      },
+      "diagnostics": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "value": "1.1\u00a0s"
+        },
+        {
+          "id": "total-blocking-time",
+          "title": "Total Blocking Time",
+          "value": "130\u00a0ms"
+        },
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "value": "210\u00a0ms"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "value": "2.7\u00a0s"
+        },
+        {
+          "id": "aria-prohibited-attr",
+          "title": "Elements use prohibited ARIA attributes"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "value": "Est savings of 27\u00a0KiB"
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "value": "Est savings of 18\u00a0KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "value": "Est savings of 14\u00a0KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ]
+    },
+    {
+      "device": "desktop",
+      "url": "https://www.onlinequrancollege.com/locations/united-kingdom",
+      "fetchTime": "2026-11-07T03:05:09.848Z",
+      "lighthouseVersion": "13.6.0",
+      "mode": "remote lab",
+      "scores": {
+        "performance": 100,
+        "accessibility": 97,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 296.354,
+        "largest-contentful-paint": 522.354,
+        "total-blocking-time": 8.5,
+        "cumulative-layout-shift": 0.000163138176251715,
+        "speed-index": 382.06205733331535
+      },
+      "diagnostics": [
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "value": "70\u00a0ms"
+        },
+        {
+          "id": "aria-prohibited-attr",
+          "title": "Elements use prohibited ARIA attributes"
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "value": "Est savings of 29\u00a0KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "value": "Est savings of 14\u00a0KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ]
+    },
+    {
+      "device": "mobile",
+      "url": "https://www.onlinequrancollege.com/locations/united-states",
+      "fetchTime": "2026-11-07T03:05:19.466Z",
+      "lighthouseVersion": "13.6.0",
+      "mode": "remote lab",
+      "scores": {
+        "performance": 99,
+        "accessibility": 97,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 1110.05,
+        "largest-contentful-paint": 1110.05,
+        "total-blocking-time": 137,
+        "cumulative-layout-shift": 0,
+        "speed-index": 1110.05
+      },
+      "diagnostics": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "value": "1.1\u00a0s"
+        },
+        {
+          "id": "total-blocking-time",
+          "title": "Total Blocking Time",
+          "value": "140\u00a0ms"
+        },
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "value": "230\u00a0ms"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "value": "2.3\u00a0s"
+        },
+        {
+          "id": "aria-prohibited-attr",
+          "title": "Elements use prohibited ARIA attributes"
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "title": "Elements with visible text labels do not have matching accessible names."
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "value": "Est savings of 27\u00a0KiB"
+        },
+        {
+          "id": "forced-reflow-insight",
+          "title": "Forced reflow"
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "value": "Est savings of 16\u00a0KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "value": "Est savings of 14\u00a0KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ]
+    },
+    {
+      "device": "desktop",
+      "url": "https://www.onlinequrancollege.com/locations/united-states",
+      "fetchTime": "2026-11-07T03:05:28.567Z",
+      "lighthouseVersion": "13.6.0",
+      "mode": "remote lab",
+      "scores": {
+        "performance": 100,
+        "accessibility": 97,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 297.4285,
+        "largest-contentful-paint": 493.4285,
+        "total-blocking-time": 17,
+        "cumulative-layout-shift": 0.000163138176251715,
+        "speed-index": 344.49890716668165
+      },
+      "diagnostics": [
+        {
+          "id": "max-potential-fid",
+          "title": "Max Potential First Input Delay",
+          "value": "70\u00a0ms"
+        },
+        {
+          "id": "aria-prohibited-attr",
+          "title": "Elements use prohibited ARIA attributes"
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "title": "Elements with visible text labels do not have matching accessible names."
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "value": "Est savings of 29\u00a0KiB"
+        },
+        {
+          "id": "legacy-javascript-insight",
+          "title": "Legacy JavaScript",
+          "value": "Est savings of 14\u00a0KiB"
+        },
+        {
+          "id": "network-dependency-tree-insight",
+          "title": "Network dependency tree"
+        },
+        {
+          "id": "render-blocking-insight",
+          "title": "Render-blocking requests"
+        }
+      ]
+    },
+    {
+      "checkedAt": "2026-11-07T03:05:44.204Z",
+      "base": "https://www.onlinequrancollege.com",
+      "canonicalOrigin": "https://www.onlinequrancollege.com",
+      "declaredSitemapUrls": 83,
+      "uniqueSitemapUrls": 83,
+      "audited": 83,
+      "cap": 250,
+      "workers": 3,
+      "robotsStatus": 200,
+      "sitemapStatus": 200,
+      "robotsReferencesSitemap": true,
+      "robotsSkipped": [],
+      "errors": [],
+      "findings": 0,
+      "scope": "All declared sitemap URLs plus explicit probes; raw HTML, not Google index status or field CWV. External search and backlink metrics unavailable."
+    },
+    {
+      "checkedAt": "2026-11-07T03:05:50.428Z",
+      "base": "https://www.onlinequrancollege.com",
+      "pages": 83,
+      "declared": 83,
+      "topImagesChecked": 56,
+      "failures": [],
+      "robots": "static text/plain, public pages allowed, staff/API paths excluded",
+      "scope": "Public response/metadata/JSON-LD/hero-image checks; not a ranking or rich-result guarantee"
+    },
+    {
+      "checkedAt": "2026-11-07T03:05:52.961Z",
+      "base": "https://www.onlinequrancollege.com",
+      "declared": 83,
+      "mapped": 83,
+      "curatedTopics": 27,
+      "failures": [],
+      "stopped": false,
+      "evidence": "Topic relevance and visible placement only. Search volumes, top-ten rankings, difficulty and traffic are unverified. No meta-keywords tag or hidden keyword list added."
+    },
+    {
+      "checkedAt": "2026-11-07T03:05:53.275Z",
+      "timezone": "Asia/Karachi",
+      "mode": "READ_ONLY",
+      "base": "https://www.onlinequrancollege.com",
+      "canonicalOrigin": "https://www.onlinequrancollege.com",
+      "sitemapUrls": 83,
+      "audited": 83,
+      "technicalFindings": 0,
+      "qualityFailures": 0,
+      "keywordPages": 83,
+      "keywordFailures": 0,
+      "topImages": 56,
+      "requestMethods": [
+        "GET"
+      ],
+      "integrationMetrics": {
+        "gsc": "Not Checked: authenticated property/export required",
+        "ga4": "Not Checked: authenticated property/export required",
+        "semrush": "Not Checked: entitlement and fresh audit export required"
+      },
+      "limitations": [
+        "Raw HTML and response checks; not Google index status or Rich Results Test",
+        "No physical-device test, field CWV, actual keyword positions or organic attribution",
+        "Offer wording is observed, not documentary substantiation",
+        "No form submissions, authenticated staff operations or external messages"
+      ]
+    }
+  ],
+  "limitations": [
+    "Field Core Web Vitals evidence pending",
+    "GTM/GA4 receipt for newly deployed funnel events pending",
+    "Academic review and city approval reconciliation pending"
+  ]
+}

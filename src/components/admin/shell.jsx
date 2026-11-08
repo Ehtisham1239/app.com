@@ -139,17 +139,16 @@ function GlobalSearch() {
   const [open, setOpen] = useState(false);
   const [busy, setBusy] = useState(false);
   useEffect(() => {
-    if (q.trim().length < 2) {
-      setResults([]);
-      return;
-    }
+    if (q.trim().length < 2) return;
+    let canceled = false;
     const t = setTimeout(async () => {
       setBusy(true);
       const { data } = await db().rpc("global_search", { q });
+      if (canceled) return;
       setResults((data || []).filter((r) => ["trial", "teacher", "course"].includes(r.type)));
       setBusy(false);
     }, 300);
-    return () => clearTimeout(t);
+    return () => { canceled = true; clearTimeout(t); };
   }, [q]);
   const label = { trial: "Free trial", teacher: "Teacher", course: "Course" };
   return (
@@ -158,6 +157,8 @@ function GlobalSearch() {
       <input
         value={q}
         onChange={(e) => {
+          setResults([]);
+          setBusy(e.target.value.trim().length >= 2);
           setQ(e.target.value);
           setOpen(true);
         }}
@@ -200,9 +201,10 @@ function Notifications({ userId }) {
   const [items, setItems] = useState([]);
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
-  const load = useCallback(async () => {
-    const { data } = await db().from("notifications").select("id, title, body, link, read_at, created_at").order("created_at", { ascending: false }).limit(8);
-    setItems(data || []);
+  const load = useCallback(() => {
+    return db().from("notifications").select("id, title, body, link, read_at, created_at")
+      .order("created_at", { ascending: false }).limit(8)
+      .then(({ data }) => setItems(data || []));
   }, []);
   useEffect(() => {
     if (!userId) return;
@@ -313,7 +315,7 @@ export function Shell({ children }) {
   const { access, loading } = useAccess();
   const router = useRouter();
   const path = usePathname();
-  const [drawer, setDrawer] = useState(false);
+  const [drawerPath, setDrawerPath] = useState(null);
 
   useEffect(() => {
     if (access?.id) db().rpc("touch_last_seen").then(() => {});
@@ -321,7 +323,8 @@ export function Shell({ children }) {
   useEffect(() => {
     if (access?.must_change_password && path !== "/admin/account") router.replace("/admin/account?first=1");
   }, [access?.must_change_password, path, router]);
-  useEffect(() => setDrawer(false), [path]);
+  if (drawerPath !== null && drawerPath !== path) setDrawerPath(null);
+  const drawer = drawerPath === path;
 
   if (loading) {
     return (
@@ -351,10 +354,10 @@ export function Shell({ children }) {
       </aside>
       {drawer && (
         <div className="fixed inset-0 z-50 lg:hidden">
-          <div className="absolute inset-0 bg-mushaf-950/50" onClick={() => setDrawer(false)} />
+          <div className="absolute inset-0 bg-mushaf-950/50" onClick={() => setDrawerPath(null)} />
           <div className="absolute inset-y-0 left-0 w-72">
-            <Sidebar onNavigate={() => setDrawer(false)} />
-            <button type="button" onClick={() => setDrawer(false)} className="absolute right-3 top-5 rounded-lg p-1.5 text-white/70 hover:text-white" aria-label="Close menu">
+            <Sidebar onNavigate={() => setDrawerPath(null)} />
+            <button type="button" onClick={() => setDrawerPath(null)} className="absolute right-3 top-5 rounded-lg p-1.5 text-white/70 hover:text-white" aria-label="Close menu">
               <X className="size-5" />
             </button>
           </div>
@@ -363,7 +366,7 @@ export function Shell({ children }) {
       <div className="lg:pl-64">
         <header className="sticky top-0 z-20 flex h-16 items-center gap-3 border-b border-line bg-white/85 px-4 shadow-[0_6px_20px_-18px_rgb(13_74_28/0.6)] backdrop-blur sm:px-6">
           <span className="absolute inset-x-0 top-0 h-0.5 bg-linear-to-r from-leaf-700 via-gold-400 to-leaf-700" aria-hidden="true" />
-          <button type="button" onClick={() => setDrawer(true)} className="rounded-lg p-2 text-ink-soft hover:bg-paper lg:hidden" aria-label="Open menu">
+          <button type="button" onClick={() => setDrawerPath(path)} className="rounded-lg p-2 text-ink-soft hover:bg-paper lg:hidden" aria-label="Open menu">
             <Menu className="size-5" />
           </button>
           <GlobalSearch />

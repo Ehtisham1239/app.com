@@ -41,12 +41,12 @@ Leads are not forwarded to GoHighLevel: like every other website form, they stay
 Each lead saved from this page sends exactly one internal email to admissions through Resend. Nothing is emailed to the parent; there are no reminders or follow-ups.
 
 1. The browser saves the lead as above and receives its reference (`TR-YYYY-NNNNN`).
-2. The browser posts only `{ reference, email }` to `/api/usa-lead-notification`. The visitor sees success only after this step finishes (two attempts at most; if the email cannot be sent the lead is still in Admin → Trials and the failure is in the Vercel logs).
-3. The route accepts same-site JSON only, then calls `public.usa_lead_for_notification(reference, email)` (`supabase/migrations/20261105104232_usa_lead_notification.sql`, applied to the database on 5 Nov 2026 with owner approval) with the publishable key. The function returns the row only for the matching email, within 30 minutes of the save, and only for leads from `/usa-quran-classes`; otherwise nothing.
+2. The browser posts `{ reference, email, notification_token }` to `/api/usa-lead-notification`. The notification token is a 256-bit random bearer token returned only by the just-completed submission and kept in session storage for 30 minutes. The visitor sees success only after this step finishes (two attempts at most; if the email cannot be sent the lead is still in Admin → Trials and the failure is in the Vercel logs).
+3. The route accepts same-site JSON only, then calls `public.usa_lead_for_notification(reference, email, notification_token)` with the publishable key. The database stores only a SHA-256 hash of the token in a private table and returns the lead row only when the token hash, reference, email, 30-minute expiry and `/usa-quran-classes` source all match. The old two-argument function is a null-returning compatibility stub; it no longer returns PII.
 4. The email is built from that database row (name, email, phone, course, age group, teacher, time zone, campaign and click ID, the form details, the timestamp in Pakistan and US time, a link to the record) and sent with `Idempotency-Key: oqc-usa-lead/<reference>/<hash of sender and recipients>`. Resend keeps keys for 24 hours, so a retry, a refresh or a replayed call returns the first result instead of sending again.
 5. A repeat request from the same tab with identical details (Back button, second click) reuses the saved reference: no second lead, conversion or email. A genuine repeat from the same parent later is saved by the database as a flagged duplicate and its email says "(repeat)" with the earlier reference.
 
-Logs record only the outcome and the lead reference (`{"event":"usa_lead_notification","outcome":…}`), never the email address, phone, request body, provider response or key.
+The raw notification token is never stored in the database, placed in a URL, or written to logs. Logs record only the outcome and lead reference (`{"event":"usa_lead_notification","outcome":…}`), never the email address, phone, request body, provider response or key.
 
 Server-only environment variables (Vercel → Settings → Environment Variables; never `NEXT_PUBLIC_`):
 

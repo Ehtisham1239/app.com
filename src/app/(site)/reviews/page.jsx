@@ -34,7 +34,6 @@ export default async function ReviewsPage() {
         <div className="pointer-events-none absolute -right-24 -top-28 size-[24rem] rounded-full bg-leaf-600/25 blur-3xl" aria-hidden="true" />
         <div className="page-wrap relative max-w-5xl text-center lg:text-left">
           <div className="flex flex-col items-center gap-5 lg:flex-row lg:items-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/brand/mark-v2-128.png" alt="Online Quran College" width={88} height={88} className="size-[4.5rem] shrink-0 rounded-[1.4rem] bg-white p-2 shadow-[0_10px_30px_rgb(0_0_0/0.25)] sm:size-[5.5rem]" />
             <div>
               <p className="text-sm font-semibold text-gold-300">After your parent–teacher meeting</p>

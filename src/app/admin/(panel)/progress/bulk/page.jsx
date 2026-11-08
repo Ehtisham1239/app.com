@@ -7,13 +7,11 @@ import { useAccess } from "@/lib/admin/access";
 import { db, downloadCsv, useLoad } from "@/lib/admin/db";
 import { parseCsv } from "@/lib/results/import";
 import { monthInput, monthToPeriod, periodLabel } from "@/lib/progress/constants";
-import { PROGRESS_BULK_COLUMNS, progressBulkTemplateRows, progressBulkPayload, validateProgressBulkRows } from "@/lib/progress/bulk";
+import { PROGRESS_BULK_COLUMNS, normalizeProgressBulkHeader, progressBulkTemplateRows, progressBulkPayload, validateProgressBulkRows } from "@/lib/progress/bulk";
 import { ResultsNav } from "@/components/admin/results-nav";
 import { Card, EmptyState, ErrorState, Field, Loading, PageHeader } from "@/components/admin/ui";
 
 const MAX_BYTES = 2 * 1024 * 1024;
-const normalizeHeader = (value) => String(value || "").trim().toLowerCase().replace(/[\s-]+/g, "_");
-
 export default function ProgressBulkPage() {
   const { can } = useAccess();
   const [month, setMonth] = useState(monthInput());
@@ -22,7 +20,7 @@ export default function ProgressBulkPage() {
   const [busy, setBusy] = useState(false);
   const period = monthToPeriod(month);
   const roster = useLoad(() => period ? db().rpc("progress_my_students", { p_period: period }) : { data: [] }, [period]);
-  const students = roster.data || [];
+  const students = useMemo(() => roster.data || [], [roster.data]);
 
   const read = async (file) => {
     setParsed(null); setError("");
@@ -32,7 +30,7 @@ export default function ProgressBulkPage() {
       const raw = parseCsv(await file.text());
       if (raw.length < 2) throw new Error("Add at least one student row below the header.");
       if (raw.length > 2001) throw new Error("A file can contain up to 2,000 student rows.");
-      const headers = raw[0].map(normalizeHeader);
+      const headers = raw[0].map(normalizeProgressBulkHeader);
       const expected = PROGRESS_BULK_COLUMNS.map((c) => c.key);
       const missing = expected.filter((key) => !headers.includes(key));
       if (missing.length) throw new Error(`Template columns missing: ${missing.slice(0, 8).join(", ")}${missing.length > 8 ? "…" : ""}. Download the current template.`);

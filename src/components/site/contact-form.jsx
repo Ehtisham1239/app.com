@@ -1,4 +1,5 @@
 "use client";
+import { requestLeadNotification } from "@/lib/request-lead-notification";
 import { announceLeadSaved } from "@/lib/conversion-events";
 
 import Link from "next/link";
@@ -38,9 +39,10 @@ export function ContactForm({ id, consentText, successText }) {
     const utm = captureAttribution();
     let data, error;
     try {
-      ({ data, error } = await (await import("@/lib/supabase/public")).getPublicBrowserClient().rpc("submit_contact_message", { payload: { ...form, email: form.email.trim().toLowerCase(), utm, source: utm.utm_source || "website" } }));
+      ({ data, error } = await (await import("@/lib/supabase/public")).getPublicBrowserClient().rpc("submit_contact_message_with_notification", { payload: { ...form, email: form.email.trim().toLowerCase(), utm, source: utm.utm_source || "website" } }));
     } catch (cause) { error = cause; }
     if (error) return setState({ sending: false, error: error.message || "Could not send. Please try WhatsApp instead.", done: null });
+    requestLeadNotification(data, form.email.trim().toLowerCase());
     announceLeadSaved({ formType: "contact", country: form.country, reference: data?.reference, honeypot: form.website });
     setState({ sending: false, error: "", done: null });
     const reference = typeof data?.reference === "string" && /^MSG-[A-Z0-9-]{4,32}$/.test(data.reference) && data.reference !== "MSG-RECEIVED" ? data.reference : "";
@@ -69,9 +71,12 @@ export function ContactForm({ id, consentText, successText }) {
 
   return (
     <form id={id} tabIndex={id ? -1 : undefined} aria-labelledby={id ? `${id}-heading` : undefined} ref={formRef} onSubmit={submit} noValidate aria-busy={state.sending} className="surface min-w-0 scroll-mt-28 space-y-5 p-6 shadow-[var(--shadow-lift)] sm:p-8">
-      <div>
-        <h2 id={id ? `${id}-heading` : undefined} className="text-[1.8rem] text-mushaf-900">Send us a message</h2>
-        <p className="mt-2 text-sm leading-relaxed text-ink-soft">Your name, email and message are required. Phone and country are optional.</p>
+      <div className="flex items-start gap-3">
+        <img src="/brand/mark-v2-64.png" alt="" width={64} height={64} className="size-10 shrink-0 rounded-xl bg-white p-1 ring-1 ring-leaf-100" />
+        <div>
+          <h2 id={id ? `${id}-heading` : undefined} className="text-[1.8rem] text-mushaf-900">Send us a message</h2>
+          <p className="mt-2 text-sm leading-relaxed text-ink-soft">Tell us how we can help. We’ll reply by email.</p>
+        </div>
       </div>
       <div className="absolute -left-[9999px]" aria-hidden="true">
         <input tabIndex={-1} autoComplete="off" value={form.website} onChange={(e) => set("website", e.target.value)} />
@@ -92,42 +97,47 @@ export function ContactForm({ id, consentText, successText }) {
           {err("email")}
         </div>
       </div>
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div>
-          <label htmlFor="c-phone" className="field-label">
-            Phone / WhatsApp <span className="font-normal text-ink-faint">(optional)</span>
-          </label>
-          <input id="c-phone" type="tel" className="input" value={form.phone} onChange={(e) => set("phone", e.target.value)} autoComplete="tel" />
-        </div>
-        <div>
-          <label htmlFor="c-country" className="field-label">
-            Country <span className="font-normal text-ink-faint">(optional)</span>
-          </label>
-          <select id="c-country" className="select" value={form.country} onChange={(e) => set("country", e.target.value)}>
-            <option value="">Choose…</option>
-            {COUNTRIES.map(([n]) => (
-              <option key={n}>{n}</option>
-            ))}
-          </select>
-        </div>
-      </div>
-      <div>
-        <label htmlFor="c-subject" className="field-label">
-          Subject
-        </label>
-        <select id="c-subject" className="select" value={form.subject} onChange={(e) => set("subject", e.target.value)}>
-          {SUBJECTS.map((s) => (
-            <option key={s}>{s}</option>
-          ))}
-        </select>
-      </div>
       <div>
         <label htmlFor="c-message" className="field-label">
           Message
         </label>
-        <textarea id="c-message" className="textarea" rows={5} placeholder="Tell us the course you are interested in and your preferred class times." value={form.message} onChange={(e) => set("message", e.target.value)} required maxLength={5000} aria-describedby={errors.message ? "c-message-error" : undefined} aria-invalid={Boolean(errors.message)} />
+        <textarea id="c-message" className="textarea" rows={3} placeholder="How can we help?" value={form.message} onChange={(e) => set("message", e.target.value)} required maxLength={5000} aria-describedby={errors.message ? "c-message-error" : undefined} aria-invalid={Boolean(errors.message)} />
         {err("message")}
       </div>
+      <details className="rounded-xl border border-leaf-100 bg-leaf-50 px-4">
+        <summary className="min-h-11 cursor-pointer rounded-lg py-3 font-semibold text-leaf-800">Add contact details <span className="text-sm font-normal">(optional)</span></summary>
+        <div className="space-y-4 pb-4">
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label htmlFor="c-phone" className="field-label">
+                Phone / WhatsApp <span className="font-normal text-ink-faint">(optional)</span>
+              </label>
+              <input id="c-phone" type="tel" className="input" value={form.phone} onChange={(e) => set("phone", e.target.value)} autoComplete="tel" />
+            </div>
+            <div>
+              <label htmlFor="c-country" className="field-label">
+                Country <span className="font-normal text-ink-faint">(optional)</span>
+              </label>
+              <select id="c-country" className="select" value={form.country} onChange={(e) => set("country", e.target.value)}>
+                <option value="">Choose…</option>
+                {COUNTRIES.map(([n]) => (
+                  <option key={n}>{n}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div>
+            <label htmlFor="c-subject" className="field-label">
+              Subject
+            </label>
+            <select id="c-subject" className="select" value={form.subject} onChange={(e) => set("subject", e.target.value)}>
+              {SUBJECTS.map((s) => (
+                <option key={s}>{s}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+      </details>
       <label className="flex gap-3 text-[0.9rem] leading-relaxed text-ink">
         <input id="c-consent" type="checkbox" className="check mt-0.5 shrink-0" checked={form.consent} onChange={(e) => set("consent", e.target.checked)} required aria-invalid={Boolean(errors.consent)} aria-describedby={errors.consent ? "c-consent-error" : undefined} />
         <span>

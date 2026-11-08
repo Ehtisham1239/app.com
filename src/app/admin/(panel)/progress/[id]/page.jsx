@@ -6,7 +6,7 @@ import { CheckCircle2, EyeOff, History, Loader2, MessageSquareWarning, Pencil, P
 import { useAccess } from "@/lib/admin/access";
 import { db, notifyError, useLoad } from "@/lib/admin/db";
 import { formatDateTime } from "@/lib/format";
-import { CATEGORIES, MONTHLY_PLAN_TEMPLATE, REPORT_STATUSES, detailsForm, detailsProblem, missingForSubmit, periodLabel, ratingLabel } from "@/lib/progress/constants";
+import { CATEGORIES, MONTHLY_PLAN_TEMPLATE, REPORT_STATUSES, detailsForm, detailsProblem, formToDetails, missingForSubmit, periodLabel, ratingLabel } from "@/lib/progress/constants";
 import { ResultsNav } from "@/components/admin/results-nav";
 import { RatingPicker } from "@/components/admin/rating-picker";
 import { ProgressDetailsFields } from "@/components/admin/progress-details-fields";
@@ -32,7 +32,7 @@ function EditReport({ report, onDone }) {
     if (missing.length) return toast.error(`Complete the required report fields first: ${missing.join(", ")}.`);
     if (problem) return toast.error(problem);
     setBusy(true);
-    const { error } = await db().rpc("progress_admin_update", { p_report_id: report.id, p_ratings: ratings, p_remarks: remarks, p_reason: reason, p_plan: plan, p_details: details });
+    const { error } = await db().rpc("progress_admin_update", { p_report_id: report.id, p_ratings: ratings, p_remarks: remarks, p_reason: reason, p_plan: plan, p_details: formToDetails({ ...details, assessment_version: 1 }) });
     setBusy(false);
     if (error) return notifyError(error);
     toast.success("Changes saved. Publish when you are happy with the certificate.");
@@ -42,7 +42,7 @@ function EditReport({ report, onDone }) {
     <>
       <button type="button" className="btn btn-outline btn-sm" onClick={() => setOpen(true)}><Pencil className="size-4" /> Edit</button>
       <Modal open={open} onClose={() => !busy && setOpen(false)} title="Edit before publishing" size="lg"
-        footer={<><button type="button" className="btn btn-ghost btn-sm" onClick={() => setOpen(false)} disabled={busy}>Cancel</button><button type="button" className="btn btn-primary btn-sm" onClick={save} disabled={busy || reason.trim().length < 3 || !!problem}>{busy && <Loader2 className="size-4 animate-spin" />} Save changes</button></>}>
+        footer={<><button type="button" className="btn btn-ghost btn-sm" onClick={() => setOpen(false)} disabled={busy}>Cancel</button><button type="button" className="btn btn-primary btn-sm" onClick={save} disabled={busy || reason.trim().length < 3 || !!problem || missing.length > 0}>{busy && <Loader2 className="size-4 animate-spin" />} Save changes</button></>}>
         <div className="grid gap-3 sm:grid-cols-2">
           {CATEGORIES.map((c) => (
             <div key={c.key} className="sm:col-span-2"><RatingPicker name={`edit-${c.key}`} label={c.label} hint={c.hint} value={ratings[c.key]} onChange={(value) => setRatings((r) => ({ ...r, [c.key]: value }))} disabled={busy} /></div>
@@ -100,7 +100,7 @@ export default function ProgressReportPage({ params }) {
     toast.success(ok); refresh();
   };
   const working = { ...r, teacher: r.profiles?.full_name || "", published_at: r.published_at };
-  const missing = missingForSubmit(r, r.remarks, detailsForm(r.details));
+  const missing = missingForSubmit(r, r.remarks, detailsForm(r.details), r.details?.assessment_version === 1);
   const canPublish = can("progress:publish") && r.status === "submitted";
 
   return (

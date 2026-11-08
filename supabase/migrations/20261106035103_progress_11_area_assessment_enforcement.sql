@@ -1,6 +1,6 @@
--- Add the 11-area monthly assessment from OQC_Monthly_Assessment_Prototype.
--- Additive JSONB extension: historical six-dimension ratings and published snapshots
--- remain unchanged. The new selector wording is provisional pending Academic approval.
+-- Re-enable the approved 11-area monthly assessment after the temporary rollout deferral.
+-- Update the JSONB parser and require both selectors for all 11 areas.
+-- Existing submitted/published legacy records without assessment_version remain compatible.
 
 create or replace function private.progress_details(p jsonb) returns jsonb
 language plpgsql immutable set search_path = '' as $$
@@ -95,35 +95,65 @@ begin
   ));
 end $$;
 
+
 create or replace function private.progress_require_assessment_on_submit() returns trigger
-language plpgsql set search_path = '' as $$
+language plpgsql
+set search_path = ''
+as $$
 declare
   v_key text;
   v_item jsonb;
+  v_effort text;
+  v_standard text;
 begin
-  -- Preserve pre-existing reports until a new submission or publication transition.
-  if TG_OP = 'UPDATE' and old.status in ('submitted', 'published') and new.status = old.status then
+  -- Preserve unchanged historic submissions/published snapshots only.
+  if TG_OP = 'UPDATE' and new.details is not distinct from old.details then
+    -- No new submission is taking place when an unchanged legacy report is
+    -- returned to the teacher for corrections or withdrawn from the parent portal.
+    if old.status in ('submitted', 'published') and new.status = old.status then
+      return new;
+    end if;
+    if old.status = 'submitted' and new.status = 'changes_requested' then
+      return new;
+    end if;
+    if old.status = 'published'
+       and new.status = 'submitted'
+       and old.published is not null
+       and new.published is null then
+      return new;
+    end if;
+  end if;
+
+  if new.status not in ('submitted', 'published') then
     return new;
   end if;
-  if new.status not in ('submitted', 'published') then return new; end if;
-
-  -- Enforce the 11-area rubric for current-form submissions only.
-  -- Legacy reports retain their original six-category submission path.
-  if new.details ->> 'assessment_version' is distinct from '1' then return new; end if;
 
   foreach v_key in array array[
     'qaida_reading', 'tajweed', 'makharij', 'fluency', 'hifz_revision',
     'duas', 'daily_sunnah', 'surahs', 'hadith', 'namaz', 'islamic_knowledge'
   ] loop
     v_item := new.details -> 'assessment_areas' -> v_key;
-    if v_item is null
-      or nullif(trim(coalesce(v_item ->> 'effort', '')), '') is null
-      or nullif(trim(coalesce(v_item ->> 'standard', '')), '') is null then
-      raise exception 'Complete effort and course-standard selectors for all 11 learning areas before submission or publication.';
+    if v_item is null or jsonb_typeof(v_item) <> 'object' then
+      raise exception 'Complete effort and course-standard selectors for all 11 learning areas before submission or publication. Missing: %.', v_key;
+    end if;
+
+    v_effort := nullif(trim(coalesce(v_item ->> 'effort', '')), '');
+    v_standard := nullif(trim(coalesce(v_item ->> 'standard', '')), '');
+    if v_effort is null or v_standard is null then
+      raise exception 'Complete effort and course-standard selectors for all 11 learning areas before submission or publication. Missing: %.', v_key;
+    end if;
+
+    if v_effort not in ('excellent', 'good', 'satisfactory', 'needs_improvement', 'not_applicable') then
+      raise exception 'Invalid effort rating for %.', v_key;
+    end if;
+    if v_standard not in ('above_expected', 'at_expected', 'working_towards', 'not_applicable') then
+      raise exception 'Invalid course standard for %.', v_key;
     end if;
   end loop;
+
   return new;
-end $$;
+end
+$$;
 
 drop trigger if exists monthly_reports_require_assessment_on_submit on public.monthly_reports;
 create trigger monthly_reports_require_assessment_on_submit
@@ -131,4 +161,5 @@ before insert or update of status, details on public.monthly_reports
 for each row execute function private.progress_require_assessment_on_submit();
 
 revoke all on function private.progress_require_assessment_on_submit() from public, anon, authenticated;
+
 revoke execute on function private.progress_details(jsonb) from public, anon, authenticated;

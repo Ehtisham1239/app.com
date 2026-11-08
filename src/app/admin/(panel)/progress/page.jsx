@@ -73,9 +73,13 @@ export default function ProgressReviewPage() {
       attendance_held: r.details?.attendance?.held ?? "", attendance_attended: r.details?.attendance?.attended ?? "",
       current_level: r.details?.syllabus?.level || "", covered: r.details?.syllabus?.covered || "",
       lessons_completed: r.details?.syllabus?.lessons_completed || "",
+      curriculum_stage: r.details?.syllabus?.stage || "",
+      performance_overall: r.details?.performance?.overall || "",
+      performance_improvement_targets: r.details?.performance?.improvement_targets || "",
+      performance_personal_development: r.details?.performance?.personal_development || "",
       assessment_areas: JSON.stringify(r.details?.assessment_areas || {}),
     }));
-    const columns = ["student_name","student_code","teacher_name","reporting_month","status","published_version","adab","qaida","dua","tajweed","engagement","outcome","remarks","learning_plan","attendance_held","attendance_attended","current_level","covered","lessons_completed","assessment_areas"].map((key) => ({ key, label: key }));
+    const columns = ["student_name","student_code","teacher_name","reporting_month","status","published_version","adab","qaida","dua","tajweed","engagement","outcome","remarks","learning_plan","attendance_held","attendance_attended","curriculum_stage","current_level","covered","lessons_completed","performance_overall","performance_improvement_targets","performance_personal_development","assessment_areas"].map((key) => ({ key, label: key }));
     downloadCsv(`oqc-teacher-${month}-monthly-reports.csv`, rows, columns);
   };
 

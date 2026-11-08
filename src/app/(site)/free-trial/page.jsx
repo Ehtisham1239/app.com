@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { quoteCurrencies } from "@/lib/booking-preferences";
 import { TrialHeading, TrialHeadingView, TrialPromises, TrialPromisesView } from "@/components/site/trial-intro";
 import { FaqList } from "@/components/site/sections";
@@ -44,17 +45,22 @@ export default async function FreeTrialPage() {
     <section id="trial-form" aria-labelledby="trial-title" className="relative overflow-hidden bg-mushaf-900 pb-12 pt-7 sm:pt-10 lg:pb-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
       <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.07]" aria-hidden="true" />
-      <div className="page-wrap relative grid items-start gap-7 lg:grid-cols-[1fr_1.1fr] lg:gap-12">
+      <div className="page-wrap relative grid items-start gap-7 lg:grid-cols-[1fr_1.1fr] lg:grid-rows-[auto_1fr] lg:gap-x-12">
         <div className="text-white">
           <Suspense fallback={<TrialHeadingView />}><TrialHeading plans={planList} /></Suspense>
           <div data-hero-visual className="mt-6 hidden overflow-hidden rounded-[1.5rem] border border-white/15 lg:block">
             <ContentImage src={COVER.src} alt={COVER.alt} priority sizes="(max-width: 1024px) 0px, 560px" className="aspect-[16/9] w-full object-cover" />
           </div>
-          <Suspense fallback={<TrialPromisesView className="mt-6 grid gap-4 sm:grid-cols-2" />}><TrialPromises plans={planList} className="mt-6 grid gap-4 sm:grid-cols-2" /></Suspense>
         </div>
-        <Suspense fallback={<div className="surface h-[36rem] animate-pulse" aria-label="Loading trial form" />}>
-          <QuickTrialForm currencies={quoteCurrencies(plans)} courses={courses.map(({ id, title }) => ({ id, title }))} plans={planList} consentText={forms.consent_text} successText={forms.trial_success} whatsappHref={wa} />
-        </Suspense>
+        <div className="min-w-0 lg:col-start-2 lg:row-span-2 lg:row-start-1">
+          <Suspense fallback={<div className="surface h-[36rem] animate-pulse" aria-label="Loading trial form" />}>
+            <QuickTrialForm currencies={quoteCurrencies(plans)} courses={courses.map(({ id, title }) => ({ id, title }))} plans={planList} consentText={forms.consent_text} successText={forms.trial_success} whatsappHref={wa} />
+          </Suspense>
+        </div>
+        <div className="space-y-4 lg:col-start-1 lg:row-start-2">
+          <Link className="inline-flex min-h-11 items-center rounded-xl border border-white/25 px-4 font-semibold text-white hover:bg-white/10" href="/trial-video">Watch the 15-second trial guide</Link>
+          <Suspense fallback={<TrialPromisesView className="grid gap-4 sm:grid-cols-2" />}><TrialPromises plans={planList} className="grid gap-4 sm:grid-cols-2" /></Suspense>
+        </div>
       </div>
     </section>
     <section className="page-wrap max-w-3xl py-14" aria-labelledby="trial-faq">

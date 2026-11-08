@@ -91,7 +91,7 @@ export function CtaBand({ title, text, whatsappHref, primaryHref = "/free-trial"
           <h2 className="text-[2.1rem] text-white sm:text-[2.7rem]">{title}</h2>
           {text && <p className="mt-4 text-[1.06rem] leading-relaxed text-white/75">{text}</p>}
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={primaryHref} className="btn btn-gold btn-lg">
+            <Link href={primaryHref} className="btn btn-gold btn-lg" data-oqc-cta="section_cta_primary">
               {primaryLabel} <ArrowRight className="size-5" aria-hidden="true" />
             </Link>
             {whatsappHref && (
@@ -178,7 +178,7 @@ export function TeacherCard({ teacher: t }) {
     >
       {t.photo_url ? (
         <div className="relative aspect-[4/3] overflow-hidden bg-mushaf-900">
-          <img src={t.photo_url} alt={t.display_name} className="size-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+          <ContentImage src={t.photo_url} alt="" sizes="(max-width: 639px) 90vw, (max-width: 1023px) 45vw, 320px" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" />
           {gender && <span className="absolute left-4 top-4 rounded-full bg-mushaf-950/80 px-2.5 py-0.5 text-[0.72rem] font-semibold text-gold-300 backdrop-blur">{gender}</span>}
         </div>
       ) : (
@@ -217,7 +217,8 @@ export function Testimonials({ items }) {
         <figure key={t.id ?? t.name} className="flex h-full flex-col rounded-[var(--radius-card)] border border-line bg-white p-7">
           <Quote className="size-8 text-gold-400" aria-hidden="true" />
           {t.rating ? (
-            <p className="mt-4 flex gap-0.5 text-gold-500" aria-label={`Rated ${t.rating} out of 5`}>
+            <p className="mt-4 flex gap-0.5 text-gold-500">
+              <span className="sr-only">Rated {t.rating} out of 5</span>
               {Array.from({ length: 5 }).map((_, i) => (
                 <Star key={i} className={clsx("size-4", i < t.rating ? "fill-current" : "opacity-30")} aria-hidden="true" />
               ))}
@@ -226,7 +227,7 @@ export function Testimonials({ items }) {
           <blockquote className="mt-4 flex-1 whitespace-pre-line text-[1rem] leading-relaxed text-ink">“{t.quote}”</blockquote>
           <figcaption className="mt-6 flex items-center gap-3 border-t border-line pt-5">
             {t.avatar_url ? (
-              <img src={t.avatar_url} alt="" className="size-11 rounded-full object-cover" loading="lazy" />
+              <ContentImage src={t.avatar_url} alt="" sizes="44px" className="size-11 rounded-full object-cover" />
             ) : (
               <span className="flex size-11 items-center justify-center rounded-full bg-mushaf-900 font-display text-gold-300">{initials(t.name)}</span>
             )}

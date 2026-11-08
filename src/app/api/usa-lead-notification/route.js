@@ -7,7 +7,7 @@ import { buildLeadEmail, notificationConfig, parseNotificationRequest, sendLeadE
 // Emails admissions once for each lead saved from the USA landing page.
 // The browser saves the lead itself (public.submit_trial_application, so the
 // database's per-visitor rate limit sees the parent's address) and then sends
-// only { reference, email } here. The lead is confirmed in the database and the
+// only { reference, email, notification_token } here. The lead is confirmed in the database and the
 // email is built from the database row; Resend's Idempotency-Key makes repeated
 // calls for the same reference return the first result instead of sending again.
 export const dynamic = "force-dynamic";
@@ -38,7 +38,7 @@ export async function POST(request) {
 
   let lead = null;
   try {
-    const { data, error } = await publicDb.rpc("usa_lead_for_notification", { p_reference: parsed.reference, p_email: parsed.email });
+    const { data, error } = await publicDb.rpc("usa_lead_for_notification", { p_reference: parsed.reference, p_email: parsed.email, p_notification_token: parsed.notificationToken });
     if (error) throw error;
     lead = data;
   } catch {
