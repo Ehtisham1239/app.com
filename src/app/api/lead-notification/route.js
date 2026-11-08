@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { enabledHighLevelConfig, syncHighLevelAdmission } from "@/lib/server/highlevel";
 import { getServiceClient } from "@/lib/supabase/admin";
 import { permitsMutation } from "@/lib/request-origin";
 import { readBoundedText } from "@/lib/site-health-fetch";
@@ -34,8 +35,9 @@ export async function POST(request) {
   if (!parsed) return reply({ ok: false, error: "bad_request" }, 400);
 
   const config = notificationConfig();
+  const highLevel = enabledHighLevelConfig();
   const serviceDb = getServiceClient();
-  if (!config || !serviceDb) {
+  if ((!config && !highLevel) || !serviceDb) {
     log("error", "not_configured", parsed.reference);
     return reply({ ok: false, error: "not_configured" }, 503);
   }
@@ -49,6 +51,16 @@ export async function POST(request) {
     return reply({ ok: false, error: "unavailable" }, 503);
   }
   if (!lead || lead.reference !== parsed.reference || !["trial", "contact", "review"].includes(lead.lead_type)) return reply({ ok: false, error: "not_found" }, 404);
+
+  let crm = null;
+  if (highLevel && lead.lead_type !== "review") {
+    crm = await syncHighLevelAdmission(lead, lead.lead_type, { config: highLevel });
+    log(crm.ok ? "info" : "error", crm.ok ? "highlevel_synced" : `highlevel_${crm.reason}`, lead.reference);
+  }
+  if (!config) {
+    if (!crm) return reply({ ok: false, error: "not_configured" }, 503);
+    return crm.ok ? reply({ ok: true }) : reply({ ok: false, error: "crm_failed" }, 502);
+  }
 
   const isContact = lead.lead_type === "contact";
   const isReview = lead.lead_type === "review";

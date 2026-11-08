@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { enabledHighLevelConfig, syncHighLevelAdmission } from "@/lib/server/highlevel";
 import { publicDb } from "@/lib/supabase/public";
 import { permitsMutation } from "@/lib/request-origin";
 import { SITE_URL } from "@/lib/config";
@@ -31,7 +32,8 @@ export async function POST(request) {
   if (!parsed) return reply({ ok: false, error: "bad_request" }, 400);
 
   const config = notificationConfig();
-  if (!config || !publicDb) {
+  const highLevel = enabledHighLevelConfig();
+  if ((!config && !highLevel) || !publicDb) {
     log("error", "not_configured", parsed.reference);
     return reply({ ok: false, error: "not_configured" }, 503);
   }
@@ -47,6 +49,16 @@ export async function POST(request) {
   }
   // Unknown reference, different email, older than 30 minutes or not from this page.
   if (!lead || lead.reference !== parsed.reference) return reply({ ok: false, error: "not_found" }, 404);
+
+  let crm = null;
+  if (highLevel) {
+    crm = await syncHighLevelAdmission(lead, "trial", { config: highLevel });
+    log(crm.ok ? "info" : "error", crm.ok ? "highlevel_synced" : `highlevel_${crm.reason}`, lead.reference);
+  }
+  if (!config) {
+    if (!crm) return reply({ ok: false, error: "not_configured" }, 503);
+    return crm.ok ? reply({ ok: true }) : reply({ ok: false, error: "crm_failed" }, 502);
+  }
 
   const sent = await sendLeadEmail({ config, message: buildLeadEmail(lead, { siteUrl: SITE_URL }), reference: lead.reference });
   if (!sent.ok) {
