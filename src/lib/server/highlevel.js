@@ -108,7 +108,7 @@ export async function syncHighLevelAdmission(lead, kind, {
   if (kind !== "trial" && kind !== "contact") return { ok: false, reason: "not_an_admission" };
   const name = kind === "contact"
     ? lead.name
-    : trim(lead.guardian_name) || (lead.age_band === "18+" ? lead.learner_name : undefined);
+    : trim(lead.guardian_name) || (lead.age_band === "adult" ? lead.learner_name : undefined);
   const reference = trim(lead.reference);
   if (config?.pipelineId && !/^(TR|MSG)-\d{4}-\d{5,7}$/.test(reference)) {
     return { ok: false, reason: "invalid_reference", retryable: false };

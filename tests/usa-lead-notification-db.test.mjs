@@ -71,10 +71,15 @@ test("wrong token, email, source page, expiry, deletion or guessed reference ret
   assert.equal(await lookup({ ...submission, notification_token: "0".repeat(64) }, "second@example.test"), null);
   assert.equal(await lookup({ ...submission, reference: "TR-RECEIVED" }, "second@example.test"), null);
   assert.equal(await lookup({ ...submission, notification_token: "short" }, "second@example.test"), null);
-  const sitewide = await submit({ email: "site@example.test", phone: "+15552340003", utm: { landing_page: "/free-trial", gclid: "x" } });
+  const sitewide = await submit({ email: "site@example.test", phone: "+15552340003", phone_is_whatsapp: true, learner_name: "Test Student", utm: { landing_page: "/free-trial", gclid: "x" } });
   assert.equal(await lookup(sitewide, "site@example.test"), null, "main-site leads are not exposed");
 
   await as("postgres");
+  const saved = await one("select learner_name, guardian_name, email, phone, phone_is_whatsapp, country from public.trial_applications where reference = $1", [sitewide.reference]);
+  assert.deepEqual(saved, {
+    learner_name: "Test Student", guardian_name: "Test Parent", email: "site@example.test",
+    phone: "+15552340003", phone_is_whatsapp: true, country: "United States",
+  });
   await db.query("update public.trial_applications set created_at = now() - interval '31 minutes' where reference = $1", [submission.reference]);
   assert.equal(await lookup(submission, "second@example.test"), null, "older than 30 minutes");
   const deleted = await submit({ email: "third@example.test", phone: "+15552340004" });

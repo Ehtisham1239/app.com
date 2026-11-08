@@ -12,6 +12,7 @@
     "prebuild": "node scripts/prepare-production-build.mjs",
     "build": "node scripts/prepare-responsive-learning.mjs && next build",
     "postbuild": "node scripts/verify-build-assets.mjs",
+    "build:hostinger": "node scripts/prepare-production-build.mjs && node scripts/prepare-responsive-learning.mjs && OQC_BUILD_CPUS=2 TOKIO_WORKER_THREADS=2 RAYON_NUM_THREADS=2 next build --webpack && node scripts/verify-build-assets.mjs",
     "start": "next start",
     "lint": "eslint .",
     "test": "node scripts/prepare-responsive-learning.mjs && node --test tests/*.test.mjs",

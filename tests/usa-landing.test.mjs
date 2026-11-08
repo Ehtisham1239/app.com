@@ -79,6 +79,7 @@ test("lead mapping matches the database function's rules", () => {
   assert.equal(child.consent, true);
   assert.equal(child.marketing_opt_in, false);
   assert.equal(child.phone_is_whatsapp, false);
+  assert.equal(cmsPayload({ ...base, phone_is_whatsapp: true }, {}).phone_is_whatsapp, true);
   assert.ok(DB_TEACHER.includes(child.teacher_gender_pref));
   assert.equal(child.source, "google");
   assert.deepEqual(JSON.parse(JSON.stringify(child.utm)), { landing_page: "/usa-quran-classes", gclid: "test-gclid", utm_source: "google", utm_campaign: "usa" });

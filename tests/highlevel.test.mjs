@@ -58,8 +58,9 @@ test("admissions sync requires explicit activation and excludes reviews and chil
   assert.equal((await syncHighLevelAdmission(lead, "review", options)).reason, "not_an_admission");
   await syncHighLevelAdmission(lead, "trial", options);
   await syncHighLevelAdmission({ ...lead, guardian_name: "Parent Name" }, "trial", options);
+  await syncHighLevelAdmission({ ...lead, age_band: "adult", learner_name: "Adult Student" }, "trial", options);
   await syncHighLevelAdmission({ ...lead, name: "Contact Name" }, "contact", options);
-  assert.deepEqual(payloads.map((payload) => payload.name), [undefined, "Parent Name", "Contact Name"]);
+  assert.deepEqual(payloads.map((payload) => payload.name), [undefined, "Parent Name", "Adult Student", "Contact Name"]);
 });
 
 test("pipeline routing preserves an open opportunity or creates one in the intake stage", async () => {
