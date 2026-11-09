@@ -178,3 +178,17 @@ test("the Free Trial mapper covers the dropdown and omits absent or inferred val
     assert.deepEqual(fields.map(([key]) => key), ["age_group", "contact_consent", "form_name", "page_url"]);
   }
 });
+
+test("a package chosen on the fees page reaches HighLevel as a tag", async () => {
+  const { trialContact } = await import("../src/lib/server/highlevel-trial.js");
+  const site = "https://www.onlinequrancollege.com";
+  const base = { country: "United Kingdom", learner_name: "Test", age_band: "adult" };
+  const tags = (notes) => trialContact({ ...base, notes }, site).properties.tags;
+  assert.deepEqual(tags("Package of interest: Package 2\nTeacher preference: No preference."),
+    ["website lead", "form: free trial", "country: united kingdom", "region: uk ireland", "package: package 2"]);
+  assert.equal(tags("Package of interest: Weekend").at(-1), "package: weekend");
+  assert.equal(tags("").length, 4);
+  assert.equal(tags(undefined).length, 4);
+  assert.equal(tags("Package of interest: <script>").length, 4);
+  assert.equal(tags(`Package of interest: ${"x".repeat(41)}`).length, 4);
+});
