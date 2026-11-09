@@ -47,7 +47,7 @@ export function PricingCards({ plans, compact = false, currency, fx }) {
                 <>
                   <span className="font-display text-[2.6rem] leading-none text-mushaf-900">{price.approximate && <span className="mr-1 text-[1.6rem] text-ink-soft" title="Approximate">≈</span>}{formatMoney(price.amount_minor, price.currency)}</span>
                   <span className="text-[0.9rem] text-ink-faint">{PERIOD[p.billing_period] ?? ""}</span>
-                  {price.approximate && <span className="basis-full text-[0.8rem] text-ink-faint">Approx. from {formatMoney(price.from.amount_minor, price.from.currency)} at today’s rate</span>}
+                  {price.approximate && <span className="basis-full text-[0.8rem] text-ink-faint">Approx. from {formatMoney(price.from.amount_minor, price.from.currency)} at the latest available exchange rate</span>}
                 </>
               ) : (
                 <span className="font-display text-[1.6rem] text-mushaf-900">{currency ? `Ask for the fee in ${currency}` : "Ask for the fee"}</span>
