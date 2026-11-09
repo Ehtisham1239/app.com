@@ -42,18 +42,24 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Wait for the production deployment
+      - name: Wait for the current Australia hub content to reach production
         shell: bash
         run: |
           set -euo pipefail
           base="https://www.onlinequrancollege.com"
           ready=0
           for attempt in $(seq 1 60); do
-            status=$(curl -sS -o /tmp/oqc-home.html -w '%{http_code}' "$base/")
-            if [ "$status" = "200" ]; then ready=1; break; fi
+            home_status=$(curl -sS -o /tmp/oqc-home.html -w '%{http_code}' "$base/")
+            australia_status=$(curl -sS -o /tmp/oqc-australia.html -w '%{http_code}' "$base/locations/australia")
+            if [ "$home_status" = "200" ] && [ "$australia_status" = "200" ] \
+              && grep -Fq "Arrange online Quran classes from Perth" /tmp/oqc-australia.html \
+              && grep -Fq "city=Perth" /tmp/oqc-australia.html; then
+              ready=1
+              break
+            fi
             sleep 10
           done
-          test "$ready" = "1" || { echo "Production homepage did not become ready"; exit 1; }
+          test "$ready" = "1" || { echo "Production did not serve the Perth-specific Australia hub content after the main deployment"; exit 1; }
       - name: Smoke-test public routes
         shell: bash
         run: |
