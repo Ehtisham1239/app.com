@@ -113,16 +113,25 @@ export function organizationPostalAddress(contact = {}) {
 }
 
 
-// Only include the exact Trustpilot profile linked by OQC's public website.
-// Social profile URLs stay ordinary footer links until account identity is confirmed.
+// Organization sameAs lists only the exact OQC profiles the owner confirmed
+// OQC controls (Trustpilot; Facebook, Instagram and X on 9 Nov 2026). A CMS
+// edit pointing a key at any other page is ignored, not published.
+const IDENTITY_PROFILES = [
+  ["trustpilot", "www.trustpilot.com", "/review/onlinequrancollege.com"],
+  ["facebook", "www.facebook.com", "/OnlineQuranCollegeLtdUK"],
+  ["instagram", "www.instagram.com", "/online_quran_college"],
+  ["x", "x.com", "/OnlineQuranClg"],
+];
 export function organizationIdentityProfiles(social = {}) {
-  const value = social?.trustpilot;
-  if (typeof value !== "string") return [];
-  try {
-    const url = new URL(value);
-    if (url.protocol !== "https:" || url.hostname !== "www.trustpilot.com" || url.pathname.replace(/\/+$/, "") !== "/review/onlinequrancollege.com") return [];
-    return [url.href.replace(/\/+$/, "")];
-  } catch {
-    return [];
-  }
+  return IDENTITY_PROFILES.flatMap(([key, host, path]) => {
+    const value = social?.[key];
+    if (typeof value !== "string") return [];
+    try {
+      const url = new URL(value);
+      if (url.protocol !== "https:" || url.hostname !== host || url.search || url.hash || url.pathname.replace(/\/+$/, "") !== path) return [];
+      return [`https://${host}${path}`];
+    } catch {
+      return [];
+    }
+  });
 }

@@ -37,7 +37,7 @@ test("llms.txt distinguishes configured profile links from Organization identity
   assert.match(route, /## Profile links configured on this website/);
   assert.match(route, /does not independently verify account ownership/);
   assert.match(route, /organizationIdentityProfiles\(settings\?\.\["site\.social"\]\)/);
-  assert.match(route, /exact OQC Trustpilot profile URL linked by this website/);
+  assert.match(route, /exact OQC profile URLs that the college confirmed it controls/);
   assert.match(route, /\^https:\\\/\\\/\[\^\\s\]\+\$/, "only https profile URLs are listed");
 });
 

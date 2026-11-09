@@ -211,14 +211,23 @@ test("organization JSON-LD does not publish an unverified CMS founding year", as
 });
 
 
-test("Organization sameAs includes only the exact OQC Trustpilot profile", async () => {
+test("Organization sameAs includes only the exact owner-confirmed OQC profiles", async () => {
   const { organizationIdentityProfiles } = await import("../src/lib/seo.js");
   assert.deepEqual(organizationIdentityProfiles({
     trustpilot: "https://www.trustpilot.com/review/onlinequrancollege.com",
     facebook: "https://www.facebook.com/OnlineQuranCollegeLtdUK",
-    instagram: "https://www.instagram.com/online_quran_college",
+    instagram: "https://www.instagram.com/online_quran_college/",
     x: "https://x.com/OnlineQuranClg",
-  }), ["https://www.trustpilot.com/review/onlinequrancollege.com"]);
+    youtube: "https://www.youtube.com/@someone",
+  }), [
+    "https://www.trustpilot.com/review/onlinequrancollege.com",
+    "https://www.facebook.com/OnlineQuranCollegeLtdUK",
+    "https://www.instagram.com/online_quran_college",
+    "https://x.com/OnlineQuranClg",
+  ]);
+  assert.deepEqual(organizationIdentityProfiles({ facebook: "https://www.facebook.com/SomeoneElse" }), []);
+  assert.deepEqual(organizationIdentityProfiles({ x: "https://x.com/OnlineQuranClg?ref=spam" }), []);
+  assert.deepEqual(organizationIdentityProfiles({ instagram: "http://www.instagram.com/online_quran_college" }), []);
   assert.deepEqual(organizationIdentityProfiles({ trustpilot: "https://www.trustpilot.com/review/onlinequrancollege.com/" }), ["https://www.trustpilot.com/review/onlinequrancollege.com"]);
   assert.deepEqual(organizationIdentityProfiles({ trustpilot: "https://www.trustpilot.com/review/another-company.com" }), []);
   assert.deepEqual(organizationIdentityProfiles({ trustpilot: "http://www.trustpilot.com/review/onlinequrancollege.com" }), []);
