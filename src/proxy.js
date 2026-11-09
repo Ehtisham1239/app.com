@@ -7,6 +7,14 @@ const PUBLIC_ADMIN_PATHS = ["/admin/login", "/admin/forgot"];
 
 // Refreshes the admin session cookie and keeps the admin panel behind sign-in.
 export async function proxy(request) {
+  if (request.nextUrl.pathname === "/blog") {
+    // Next rewrites can collapse duplicate keys before the page validates them.
+    const params = request.nextUrl.searchParams;
+    if (params.getAll("page").length > 1 || params.getAll("category").length > 1) {
+      return new NextResponse("Not found", { status: 404, headers: { "X-Robots-Tag": "noindex", "Cache-Control": "no-store" } });
+    }
+    return NextResponse.next();
+  }
   const nonce = Buffer.from(crypto.getRandomValues(new Uint8Array(16))).toString("base64");
   const csp = staffContentSecurityPolicy(nonce, SUPABASE_URL, process.env.NODE_ENV === "development");
   const next = () => {
@@ -79,5 +87,9 @@ export async function proxy(request) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/auth/:path*", "/parents", "/parents/:path*"],
+  matcher: [
+    "/admin/:path*", "/auth/:path*", "/parents", "/parents/:path*",
+    { "source": "/blog", "has": [{ "type": "query", "key": "page" }] },
+    { "source": "/blog", "has": [{ "type": "query", "key": "category" }] }
+  ],
 };

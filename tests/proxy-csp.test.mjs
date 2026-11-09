@@ -43,3 +43,15 @@ test('signed-out protection and signed-in redirects retain refreshed cookies', a
   assert.equal(signedIn.cookies.get('test-session').value, 'refreshed');
   delete globalThis.__OQC_PROXY_TEST_USER;
 });
+
+test('duplicate blog filters return a noindex 404 before rewrites normalize them', async () => {
+  for (const query of ['page=1&page=2', 'category=Parents&category=Hifz']) {
+    const denied = await proxy(new NextRequest('https://college.test/blog?' + query));
+    assert.equal(denied.status, 404);
+    assert.equal(denied.headers.get('x-robots-tag'), 'noindex');
+    assert.equal(denied.cookies.get('test-session'), undefined);
+  }
+  const valid = await proxy(new NextRequest('https://college.test/blog?page=2&category=Hifz'));
+  assert.equal(valid.status, 200);
+  assert.equal(valid.headers.get('x-middleware-next'), '1');
+});

@@ -66,11 +66,11 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
     return () => { live = false; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preferenceKey]);
-  const initialPreferenceNotes = preferences?.key === preferenceKey ? preferences.notes : "";
   const selectedPlan = plans.find(p => p.id === params.get("plan"));
   const eligible = isTrialEligible(selectedPlan);
   const topRef = useRef(null);
   const successHeading = useRef(null);
+  const submitting = useRef(false);
   const [errors, setErrors] = useState({});
   const [state, setState] = useState({ sending: false, error: "", reference: null });
   const [form, setForm] = useState(() => {
@@ -105,6 +105,9 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
     return () => cancelAnimationFrame(frame);
   }, []);
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
+  const requestedCountry = params.get("country");
+  const matchingCountry = !requestedCountry || requestedCountry === form.country;
+  const initialPreferenceNotes = matchingCountry && preferences?.key === preferenceKey ? preferences.notes : "";
   const zoneOptions = useMemo(() => zonesFor(form.country), [form.country]);
   const detected = useMemo(() => detectZone(form.country, form.browser_tz, form.city), [form.country, form.browser_tz, form.city]);
   const timezone = zoneOptions.includes(form.zone_choice) ? form.zone_choice : detected;
@@ -129,14 +132,15 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
 
   async function submit(event) {
     event.preventDefault();
-    if (state.sending || !validate()) return;
+    if (submitting.current || !validate()) return;
+    submitting.current = true;
     setState({ sending: true, error: "", reference: null });
     const utm = captureAttribution();
     // The time-zone library is only needed when a visitor arrives with a
     // preferred lesson time or quote currency, so it loads on submit instead
     // of with the form (and every page that prefetches /free-trial).
     let preferenceNotes = "";
-    if (["currency", "lesson_date", "lesson_time", "lesson_timezone"].some((key) => params.get(key))) {
+    if (matchingCountry && ["currency", "lesson_date", "lesson_time", "lesson_timezone"].some((key) => params.get(key))) {
       try { preferenceNotes = (await import("@/lib/booking-preferences")).bookingPreferenceNotes(params, currencies); } catch { preferenceNotes = ""; }
     }
     const payload = {
@@ -161,13 +165,13 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
     try {
       ({ data, error } = await (await import("@/lib/supabase/public")).getPublicBrowserClient().rpc("submit_trial_application", { payload }));
     } catch (cause) { error = cause; }
-    if (error) {
-      setState({ sending: false, error: error.message || "We could not send your request. Please try again or message us on WhatsApp.", reference: null });
+    if (error || data?.ok !== true) {
+      submitting.current = false;
+      setState({ sending: false, error: error?.message || "We could not send your request. Please try again or message us on WhatsApp.", reference: null });
       return;
     }
     requestLeadNotification(data, form.email.trim().toLowerCase());
     announceLeadSaved({ formType: "trial", country: form.country, reference: data?.reference, honeypot: form.website });
-    setState({ sending: false, error: "", reference: null });
     const reference = typeof data?.reference === "string" && /^TR-[A-Z0-9-]{4,32}$/.test(data.reference) && data.reference !== "TR-RECEIVED" ? data.reference : "";
     router.push("/free-trial/thank-you" + (reference ? "?ref=" + encodeURIComponent(reference) : ""));
   }
@@ -229,7 +233,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
 
       <div>
         <label htmlFor="q-country" className="field-label">Country</label>
-        <select id="q-country" className="select" value={form.country} onChange={(e) => setForm((f) => ({ ...f, country: e.target.value, zone_choice: "" }))} autoComplete="country-name" required {...err("country")}>
+        <select id="q-country" className="select" value={form.country} onChange={(e) => setForm((f) => ({ ...f, country: e.target.value, city: "", zone_choice: "" }))} autoComplete="country-name" required {...err("country")}>
           <option value="">Choose your country</option>
           {COUNTRIES.map(([n]) => <option key={n}>{n}</option>)}
         </select>
