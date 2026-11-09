@@ -1,0 +1,501 @@
+id,market,workstream,question_or_check,target_path,action_or_acceptance,status
+OP-001,United States,Technical SEO,Can a crawler reach the relevant public market page?,/locations/united-states,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-002,United States,International SEO,Is there a published regional alternate for this market?,/locations/united-states,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-003,United States,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations/united-states,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-004,United States,On-page SEO,How can families in United States find live Quran lessons online?,/locations/united-states,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-005,United States,Internal links,Where do families in United States compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-006,United States,AEO,How much do online Quran lessons cost for a family in United States?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-007,United States,AEO,What is included in the free Quran trial for United States?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-008,United States,AEO,Can I request a female Quran teacher from United States?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-009,United States,AEO,Which Quran course should a beginner from United States start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-010,United States,AEO,How does a parent in United States prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-011,United States,AEO,Can an adult in United States start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-012,United States,GEO,Does Online Quran College have a physical branch in United States?,/locations/united-states,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-013,United States,GEO,How can I propose a Quran lesson time from United States?,/locations/united-states,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-014,United States,GEO,What should I confirm before paying for classes from United States?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-015,United States,Claude search,Which OQC source explains trial eligibility for families in United States?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-016,United States,ChatGPT search,Which OQC source helps families in United States compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-017,United States,Google AI,How are online Quran lessons arranged for learners in United States?,/locations/united-states,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-018,United States,Bing and Copilot,Where can someone in United States read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-019,United States,Conversion SEO,Can a visitor from United States complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-020,United States,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations/united-states,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-021,United Kingdom,Technical SEO,Can a crawler reach the relevant public market page?,/locations/united-kingdom,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-022,United Kingdom,International SEO,Is there a published regional alternate for this market?,/locations/united-kingdom,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-023,United Kingdom,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations/united-kingdom,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-024,United Kingdom,On-page SEO,How can families in United Kingdom find live Quran lessons online?,/locations/united-kingdom,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-025,United Kingdom,Internal links,Where do families in United Kingdom compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-026,United Kingdom,AEO,How much do online Quran lessons cost for a family in United Kingdom?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-027,United Kingdom,AEO,What is included in the free Quran trial for United Kingdom?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-028,United Kingdom,AEO,Can I request a female Quran teacher from United Kingdom?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-029,United Kingdom,AEO,Which Quran course should a beginner from United Kingdom start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-030,United Kingdom,AEO,How does a parent in United Kingdom prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-031,United Kingdom,AEO,Can an adult in United Kingdom start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-032,United Kingdom,GEO,Does Online Quran College have a physical branch in United Kingdom?,/locations/united-kingdom,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-033,United Kingdom,GEO,How can I propose a Quran lesson time from United Kingdom?,/locations/united-kingdom,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-034,United Kingdom,GEO,What should I confirm before paying for classes from United Kingdom?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-035,United Kingdom,Claude search,Which OQC source explains trial eligibility for families in United Kingdom?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-036,United Kingdom,ChatGPT search,Which OQC source helps families in United Kingdom compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-037,United Kingdom,Google AI,How are online Quran lessons arranged for learners in United Kingdom?,/locations/united-kingdom,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-038,United Kingdom,Bing and Copilot,Where can someone in United Kingdom read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-039,United Kingdom,Conversion SEO,Can a visitor from United Kingdom complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-040,United Kingdom,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations/united-kingdom,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-041,Australia,Technical SEO,Can a crawler reach the relevant public market page?,/locations/australia,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-042,Australia,International SEO,Is there a published regional alternate for this market?,/locations/australia,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-043,Australia,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations/australia,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-044,Australia,On-page SEO,How can families in Australia find live Quran lessons online?,/locations/australia,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-045,Australia,Internal links,Where do families in Australia compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-046,Australia,AEO,How much do online Quran lessons cost for a family in Australia?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-047,Australia,AEO,What is included in the free Quran trial for Australia?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-048,Australia,AEO,Can I request a female Quran teacher from Australia?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-049,Australia,AEO,Which Quran course should a beginner from Australia start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-050,Australia,AEO,How does a parent in Australia prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-051,Australia,AEO,Can an adult in Australia start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-052,Australia,GEO,Does Online Quran College have a physical branch in Australia?,/locations/australia,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-053,Australia,GEO,How can I propose a Quran lesson time from Australia?,/locations/australia,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-054,Australia,GEO,What should I confirm before paying for classes from Australia?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-055,Australia,Claude search,Which OQC source explains trial eligibility for families in Australia?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-056,Australia,ChatGPT search,Which OQC source helps families in Australia compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-057,Australia,Google AI,How are online Quran lessons arranged for learners in Australia?,/locations/australia,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-058,Australia,Bing and Copilot,Where can someone in Australia read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-059,Australia,Conversion SEO,Can a visitor from Australia complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-060,Australia,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations/australia,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-061,Canada,Technical SEO,Can a crawler reach the relevant public market page?,/locations/canada,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-062,Canada,International SEO,Is there a published regional alternate for this market?,/locations/canada,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-063,Canada,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations/canada,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-064,Canada,On-page SEO,How can families in Canada find live Quran lessons online?,/locations/canada,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-065,Canada,Internal links,Where do families in Canada compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-066,Canada,AEO,How much do online Quran lessons cost for a family in Canada?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-067,Canada,AEO,What is included in the free Quran trial for Canada?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-068,Canada,AEO,Can I request a female Quran teacher from Canada?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-069,Canada,AEO,Which Quran course should a beginner from Canada start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-070,Canada,AEO,How does a parent in Canada prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-071,Canada,AEO,Can an adult in Canada start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-072,Canada,GEO,Does Online Quran College have a physical branch in Canada?,/locations/canada,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-073,Canada,GEO,How can I propose a Quran lesson time from Canada?,/locations/canada,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-074,Canada,GEO,What should I confirm before paying for classes from Canada?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-075,Canada,Claude search,Which OQC source explains trial eligibility for families in Canada?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-076,Canada,ChatGPT search,Which OQC source helps families in Canada compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-077,Canada,Google AI,How are online Quran lessons arranged for learners in Canada?,/locations/canada,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-078,Canada,Bing and Copilot,Where can someone in Canada read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-079,Canada,Conversion SEO,Can a visitor from Canada complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-080,Canada,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations/canada,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-081,France,Technical SEO,Can a crawler reach the relevant public market page?,/locations,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-082,France,International SEO,Is there a published regional alternate for this market?,/locations,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-083,France,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-084,France,On-page SEO,How can families in France find live Quran lessons online?,/locations,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-085,France,Internal links,Where do families in France compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-086,France,AEO,How much do online Quran lessons cost for a family in France?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-087,France,AEO,What is included in the free Quran trial for France?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-088,France,AEO,Can I request a female Quran teacher from France?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-089,France,AEO,Which Quran course should a beginner from France start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-090,France,AEO,How does a parent in France prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-091,France,AEO,Can an adult in France start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-092,France,GEO,Does Online Quran College have a physical branch in France?,/locations,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-093,France,GEO,How can I propose a Quran lesson time from France?,/locations,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-094,France,GEO,What should I confirm before paying for classes from France?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-095,France,Claude search,Which OQC source explains trial eligibility for families in France?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-096,France,ChatGPT search,Which OQC source helps families in France compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-097,France,Google AI,How are online Quran lessons arranged for learners in France?,/locations,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-098,France,Bing and Copilot,Where can someone in France read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-099,France,Conversion SEO,Can a visitor from France complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-100,France,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-101,Germany,Technical SEO,Can a crawler reach the relevant public market page?,/locations,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-102,Germany,International SEO,Is there a published regional alternate for this market?,/locations,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-103,Germany,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-104,Germany,On-page SEO,How can families in Germany find live Quran lessons online?,/locations,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-105,Germany,Internal links,Where do families in Germany compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-106,Germany,AEO,How much do online Quran lessons cost for a family in Germany?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-107,Germany,AEO,What is included in the free Quran trial for Germany?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-108,Germany,AEO,Can I request a female Quran teacher from Germany?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-109,Germany,AEO,Which Quran course should a beginner from Germany start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-110,Germany,AEO,How does a parent in Germany prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-111,Germany,AEO,Can an adult in Germany start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-112,Germany,GEO,Does Online Quran College have a physical branch in Germany?,/locations,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-113,Germany,GEO,How can I propose a Quran lesson time from Germany?,/locations,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-114,Germany,GEO,What should I confirm before paying for classes from Germany?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-115,Germany,Claude search,Which OQC source explains trial eligibility for families in Germany?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-116,Germany,ChatGPT search,Which OQC source helps families in Germany compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-117,Germany,Google AI,How are online Quran lessons arranged for learners in Germany?,/locations,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-118,Germany,Bing and Copilot,Where can someone in Germany read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-119,Germany,Conversion SEO,Can a visitor from Germany complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-120,Germany,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-121,Ireland,Technical SEO,Can a crawler reach the relevant public market page?,/locations,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-122,Ireland,International SEO,Is there a published regional alternate for this market?,/locations,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-123,Ireland,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-124,Ireland,On-page SEO,How can families in Ireland find live Quran lessons online?,/locations,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-125,Ireland,Internal links,Where do families in Ireland compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-126,Ireland,AEO,How much do online Quran lessons cost for a family in Ireland?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-127,Ireland,AEO,What is included in the free Quran trial for Ireland?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-128,Ireland,AEO,Can I request a female Quran teacher from Ireland?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-129,Ireland,AEO,Which Quran course should a beginner from Ireland start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-130,Ireland,AEO,How does a parent in Ireland prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-131,Ireland,AEO,Can an adult in Ireland start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-132,Ireland,GEO,Does Online Quran College have a physical branch in Ireland?,/locations,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-133,Ireland,GEO,How can I propose a Quran lesson time from Ireland?,/locations,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-134,Ireland,GEO,What should I confirm before paying for classes from Ireland?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-135,Ireland,Claude search,Which OQC source explains trial eligibility for families in Ireland?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-136,Ireland,ChatGPT search,Which OQC source helps families in Ireland compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-137,Ireland,Google AI,How are online Quran lessons arranged for learners in Ireland?,/locations,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-138,Ireland,Bing and Copilot,Where can someone in Ireland read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-139,Ireland,Conversion SEO,Can a visitor from Ireland complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-140,Ireland,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-141,Netherlands,Technical SEO,Can a crawler reach the relevant public market page?,/locations,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-142,Netherlands,International SEO,Is there a published regional alternate for this market?,/locations,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-143,Netherlands,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-144,Netherlands,On-page SEO,How can families in Netherlands find live Quran lessons online?,/locations,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-145,Netherlands,Internal links,Where do families in Netherlands compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-146,Netherlands,AEO,How much do online Quran lessons cost for a family in Netherlands?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-147,Netherlands,AEO,What is included in the free Quran trial for Netherlands?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-148,Netherlands,AEO,Can I request a female Quran teacher from Netherlands?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-149,Netherlands,AEO,Which Quran course should a beginner from Netherlands start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-150,Netherlands,AEO,How does a parent in Netherlands prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-151,Netherlands,AEO,Can an adult in Netherlands start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-152,Netherlands,GEO,Does Online Quran College have a physical branch in Netherlands?,/locations,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-153,Netherlands,GEO,How can I propose a Quran lesson time from Netherlands?,/locations,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-154,Netherlands,GEO,What should I confirm before paying for classes from Netherlands?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-155,Netherlands,Claude search,Which OQC source explains trial eligibility for families in Netherlands?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-156,Netherlands,ChatGPT search,Which OQC source helps families in Netherlands compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-157,Netherlands,Google AI,How are online Quran lessons arranged for learners in Netherlands?,/locations,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-158,Netherlands,Bing and Copilot,Where can someone in Netherlands read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-159,Netherlands,Conversion SEO,Can a visitor from Netherlands complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-160,Netherlands,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-161,Belgium,Technical SEO,Can a crawler reach the relevant public market page?,/locations,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-162,Belgium,International SEO,Is there a published regional alternate for this market?,/locations,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-163,Belgium,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-164,Belgium,On-page SEO,How can families in Belgium find live Quran lessons online?,/locations,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-165,Belgium,Internal links,Where do families in Belgium compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-166,Belgium,AEO,How much do online Quran lessons cost for a family in Belgium?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-167,Belgium,AEO,What is included in the free Quran trial for Belgium?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-168,Belgium,AEO,Can I request a female Quran teacher from Belgium?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-169,Belgium,AEO,Which Quran course should a beginner from Belgium start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-170,Belgium,AEO,How does a parent in Belgium prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-171,Belgium,AEO,Can an adult in Belgium start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-172,Belgium,GEO,Does Online Quran College have a physical branch in Belgium?,/locations,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-173,Belgium,GEO,How can I propose a Quran lesson time from Belgium?,/locations,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-174,Belgium,GEO,What should I confirm before paying for classes from Belgium?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-175,Belgium,Claude search,Which OQC source explains trial eligibility for families in Belgium?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-176,Belgium,ChatGPT search,Which OQC source helps families in Belgium compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-177,Belgium,Google AI,How are online Quran lessons arranged for learners in Belgium?,/locations,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-178,Belgium,Bing and Copilot,Where can someone in Belgium read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-179,Belgium,Conversion SEO,Can a visitor from Belgium complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-180,Belgium,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-181,Spain,Technical SEO,Can a crawler reach the relevant public market page?,/locations,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-182,Spain,International SEO,Is there a published regional alternate for this market?,/locations,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-183,Spain,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-184,Spain,On-page SEO,How can families in Spain find live Quran lessons online?,/locations,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-185,Spain,Internal links,Where do families in Spain compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-186,Spain,AEO,How much do online Quran lessons cost for a family in Spain?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-187,Spain,AEO,What is included in the free Quran trial for Spain?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-188,Spain,AEO,Can I request a female Quran teacher from Spain?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-189,Spain,AEO,Which Quran course should a beginner from Spain start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-190,Spain,AEO,How does a parent in Spain prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-191,Spain,AEO,Can an adult in Spain start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-192,Spain,GEO,Does Online Quran College have a physical branch in Spain?,/locations,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-193,Spain,GEO,How can I propose a Quran lesson time from Spain?,/locations,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-194,Spain,GEO,What should I confirm before paying for classes from Spain?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-195,Spain,Claude search,Which OQC source explains trial eligibility for families in Spain?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-196,Spain,ChatGPT search,Which OQC source helps families in Spain compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-197,Spain,Google AI,How are online Quran lessons arranged for learners in Spain?,/locations,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-198,Spain,Bing and Copilot,Where can someone in Spain read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-199,Spain,Conversion SEO,Can a visitor from Spain complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-200,Spain,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-201,Portugal,Technical SEO,Can a crawler reach the relevant public market page?,/locations,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-202,Portugal,International SEO,Is there a published regional alternate for this market?,/locations,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-203,Portugal,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-204,Portugal,On-page SEO,How can families in Portugal find live Quran lessons online?,/locations,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-205,Portugal,Internal links,Where do families in Portugal compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-206,Portugal,AEO,How much do online Quran lessons cost for a family in Portugal?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-207,Portugal,AEO,What is included in the free Quran trial for Portugal?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-208,Portugal,AEO,Can I request a female Quran teacher from Portugal?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-209,Portugal,AEO,Which Quran course should a beginner from Portugal start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-210,Portugal,AEO,How does a parent in Portugal prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-211,Portugal,AEO,Can an adult in Portugal start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-212,Portugal,GEO,Does Online Quran College have a physical branch in Portugal?,/locations,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-213,Portugal,GEO,How can I propose a Quran lesson time from Portugal?,/locations,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-214,Portugal,GEO,What should I confirm before paying for classes from Portugal?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-215,Portugal,Claude search,Which OQC source explains trial eligibility for families in Portugal?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-216,Portugal,ChatGPT search,Which OQC source helps families in Portugal compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-217,Portugal,Google AI,How are online Quran lessons arranged for learners in Portugal?,/locations,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-218,Portugal,Bing and Copilot,Where can someone in Portugal read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-219,Portugal,Conversion SEO,Can a visitor from Portugal complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-220,Portugal,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-221,Italy,Technical SEO,Can a crawler reach the relevant public market page?,/locations,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-222,Italy,International SEO,Is there a published regional alternate for this market?,/locations,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-223,Italy,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-224,Italy,On-page SEO,How can families in Italy find live Quran lessons online?,/locations,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-225,Italy,Internal links,Where do families in Italy compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-226,Italy,AEO,How much do online Quran lessons cost for a family in Italy?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-227,Italy,AEO,What is included in the free Quran trial for Italy?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-228,Italy,AEO,Can I request a female Quran teacher from Italy?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-229,Italy,AEO,Which Quran course should a beginner from Italy start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-230,Italy,AEO,How does a parent in Italy prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-231,Italy,AEO,Can an adult in Italy start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-232,Italy,GEO,Does Online Quran College have a physical branch in Italy?,/locations,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-233,Italy,GEO,How can I propose a Quran lesson time from Italy?,/locations,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-234,Italy,GEO,What should I confirm before paying for classes from Italy?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-235,Italy,Claude search,Which OQC source explains trial eligibility for families in Italy?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-236,Italy,ChatGPT search,Which OQC source helps families in Italy compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-237,Italy,Google AI,How are online Quran lessons arranged for learners in Italy?,/locations,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-238,Italy,Bing and Copilot,Where can someone in Italy read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-239,Italy,Conversion SEO,Can a visitor from Italy complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-240,Italy,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-241,Austria,Technical SEO,Can a crawler reach the relevant public market page?,/locations,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-242,Austria,International SEO,Is there a published regional alternate for this market?,/locations,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-243,Austria,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-244,Austria,On-page SEO,How can families in Austria find live Quran lessons online?,/locations,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-245,Austria,Internal links,Where do families in Austria compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-246,Austria,AEO,How much do online Quran lessons cost for a family in Austria?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-247,Austria,AEO,What is included in the free Quran trial for Austria?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-248,Austria,AEO,Can I request a female Quran teacher from Austria?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-249,Austria,AEO,Which Quran course should a beginner from Austria start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-250,Austria,AEO,How does a parent in Austria prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-251,Austria,AEO,Can an adult in Austria start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-252,Austria,GEO,Does Online Quran College have a physical branch in Austria?,/locations,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-253,Austria,GEO,How can I propose a Quran lesson time from Austria?,/locations,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-254,Austria,GEO,What should I confirm before paying for classes from Austria?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-255,Austria,Claude search,Which OQC source explains trial eligibility for families in Austria?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-256,Austria,ChatGPT search,Which OQC source helps families in Austria compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-257,Austria,Google AI,How are online Quran lessons arranged for learners in Austria?,/locations,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-258,Austria,Bing and Copilot,Where can someone in Austria read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-259,Austria,Conversion SEO,Can a visitor from Austria complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-260,Austria,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-261,Switzerland,Technical SEO,Can a crawler reach the relevant public market page?,/locations,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-262,Switzerland,International SEO,Is there a published regional alternate for this market?,/locations,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-263,Switzerland,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-264,Switzerland,On-page SEO,How can families in Switzerland find live Quran lessons online?,/locations,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-265,Switzerland,Internal links,Where do families in Switzerland compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-266,Switzerland,AEO,How much do online Quran lessons cost for a family in Switzerland?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-267,Switzerland,AEO,What is included in the free Quran trial for Switzerland?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-268,Switzerland,AEO,Can I request a female Quran teacher from Switzerland?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-269,Switzerland,AEO,Which Quran course should a beginner from Switzerland start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-270,Switzerland,AEO,How does a parent in Switzerland prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-271,Switzerland,AEO,Can an adult in Switzerland start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-272,Switzerland,GEO,Does Online Quran College have a physical branch in Switzerland?,/locations,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-273,Switzerland,GEO,How can I propose a Quran lesson time from Switzerland?,/locations,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-274,Switzerland,GEO,What should I confirm before paying for classes from Switzerland?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-275,Switzerland,Claude search,Which OQC source explains trial eligibility for families in Switzerland?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-276,Switzerland,ChatGPT search,Which OQC source helps families in Switzerland compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-277,Switzerland,Google AI,How are online Quran lessons arranged for learners in Switzerland?,/locations,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-278,Switzerland,Bing and Copilot,Where can someone in Switzerland read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-279,Switzerland,Conversion SEO,Can a visitor from Switzerland complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-280,Switzerland,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-281,Sweden,Technical SEO,Can a crawler reach the relevant public market page?,/locations,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-282,Sweden,International SEO,Is there a published regional alternate for this market?,/locations,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-283,Sweden,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-284,Sweden,On-page SEO,How can families in Sweden find live Quran lessons online?,/locations,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-285,Sweden,Internal links,Where do families in Sweden compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-286,Sweden,AEO,How much do online Quran lessons cost for a family in Sweden?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-287,Sweden,AEO,What is included in the free Quran trial for Sweden?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-288,Sweden,AEO,Can I request a female Quran teacher from Sweden?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-289,Sweden,AEO,Which Quran course should a beginner from Sweden start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-290,Sweden,AEO,How does a parent in Sweden prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-291,Sweden,AEO,Can an adult in Sweden start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-292,Sweden,GEO,Does Online Quran College have a physical branch in Sweden?,/locations,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-293,Sweden,GEO,How can I propose a Quran lesson time from Sweden?,/locations,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-294,Sweden,GEO,What should I confirm before paying for classes from Sweden?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-295,Sweden,Claude search,Which OQC source explains trial eligibility for families in Sweden?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-296,Sweden,ChatGPT search,Which OQC source helps families in Sweden compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-297,Sweden,Google AI,How are online Quran lessons arranged for learners in Sweden?,/locations,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-298,Sweden,Bing and Copilot,Where can someone in Sweden read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-299,Sweden,Conversion SEO,Can a visitor from Sweden complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-300,Sweden,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-301,Norway,Technical SEO,Can a crawler reach the relevant public market page?,/locations,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-302,Norway,International SEO,Is there a published regional alternate for this market?,/locations,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-303,Norway,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-304,Norway,On-page SEO,How can families in Norway find live Quran lessons online?,/locations,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-305,Norway,Internal links,Where do families in Norway compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-306,Norway,AEO,How much do online Quran lessons cost for a family in Norway?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-307,Norway,AEO,What is included in the free Quran trial for Norway?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-308,Norway,AEO,Can I request a female Quran teacher from Norway?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-309,Norway,AEO,Which Quran course should a beginner from Norway start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-310,Norway,AEO,How does a parent in Norway prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-311,Norway,AEO,Can an adult in Norway start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-312,Norway,GEO,Does Online Quran College have a physical branch in Norway?,/locations,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-313,Norway,GEO,How can I propose a Quran lesson time from Norway?,/locations,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-314,Norway,GEO,What should I confirm before paying for classes from Norway?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-315,Norway,Claude search,Which OQC source explains trial eligibility for families in Norway?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-316,Norway,ChatGPT search,Which OQC source helps families in Norway compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-317,Norway,Google AI,How are online Quran lessons arranged for learners in Norway?,/locations,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-318,Norway,Bing and Copilot,Where can someone in Norway read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-319,Norway,Conversion SEO,Can a visitor from Norway complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-320,Norway,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-321,Denmark,Technical SEO,Can a crawler reach the relevant public market page?,/locations,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-322,Denmark,International SEO,Is there a published regional alternate for this market?,/locations,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-323,Denmark,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-324,Denmark,On-page SEO,How can families in Denmark find live Quran lessons online?,/locations,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-325,Denmark,Internal links,Where do families in Denmark compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-326,Denmark,AEO,How much do online Quran lessons cost for a family in Denmark?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-327,Denmark,AEO,What is included in the free Quran trial for Denmark?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-328,Denmark,AEO,Can I request a female Quran teacher from Denmark?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-329,Denmark,AEO,Which Quran course should a beginner from Denmark start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-330,Denmark,AEO,How does a parent in Denmark prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-331,Denmark,AEO,Can an adult in Denmark start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-332,Denmark,GEO,Does Online Quran College have a physical branch in Denmark?,/locations,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-333,Denmark,GEO,How can I propose a Quran lesson time from Denmark?,/locations,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-334,Denmark,GEO,What should I confirm before paying for classes from Denmark?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-335,Denmark,Claude search,Which OQC source explains trial eligibility for families in Denmark?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-336,Denmark,ChatGPT search,Which OQC source helps families in Denmark compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-337,Denmark,Google AI,How are online Quran lessons arranged for learners in Denmark?,/locations,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-338,Denmark,Bing and Copilot,Where can someone in Denmark read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-339,Denmark,Conversion SEO,Can a visitor from Denmark complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-340,Denmark,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-341,Finland,Technical SEO,Can a crawler reach the relevant public market page?,/locations,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-342,Finland,International SEO,Is there a published regional alternate for this market?,/locations,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-343,Finland,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-344,Finland,On-page SEO,How can families in Finland find live Quran lessons online?,/locations,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-345,Finland,Internal links,Where do families in Finland compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-346,Finland,AEO,How much do online Quran lessons cost for a family in Finland?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-347,Finland,AEO,What is included in the free Quran trial for Finland?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-348,Finland,AEO,Can I request a female Quran teacher from Finland?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-349,Finland,AEO,Which Quran course should a beginner from Finland start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-350,Finland,AEO,How does a parent in Finland prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-351,Finland,AEO,Can an adult in Finland start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-352,Finland,GEO,Does Online Quran College have a physical branch in Finland?,/locations,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-353,Finland,GEO,How can I propose a Quran lesson time from Finland?,/locations,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-354,Finland,GEO,What should I confirm before paying for classes from Finland?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-355,Finland,Claude search,Which OQC source explains trial eligibility for families in Finland?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-356,Finland,ChatGPT search,Which OQC source helps families in Finland compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-357,Finland,Google AI,How are online Quran lessons arranged for learners in Finland?,/locations,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-358,Finland,Bing and Copilot,Where can someone in Finland read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-359,Finland,Conversion SEO,Can a visitor from Finland complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-360,Finland,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-361,Iceland,Technical SEO,Can a crawler reach the relevant public market page?,/locations,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-362,Iceland,International SEO,Is there a published regional alternate for this market?,/locations,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-363,Iceland,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-364,Iceland,On-page SEO,How can families in Iceland find live Quran lessons online?,/locations,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-365,Iceland,Internal links,Where do families in Iceland compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-366,Iceland,AEO,How much do online Quran lessons cost for a family in Iceland?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-367,Iceland,AEO,What is included in the free Quran trial for Iceland?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-368,Iceland,AEO,Can I request a female Quran teacher from Iceland?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-369,Iceland,AEO,Which Quran course should a beginner from Iceland start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-370,Iceland,AEO,How does a parent in Iceland prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-371,Iceland,AEO,Can an adult in Iceland start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-372,Iceland,GEO,Does Online Quran College have a physical branch in Iceland?,/locations,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-373,Iceland,GEO,How can I propose a Quran lesson time from Iceland?,/locations,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-374,Iceland,GEO,What should I confirm before paying for classes from Iceland?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-375,Iceland,Claude search,Which OQC source explains trial eligibility for families in Iceland?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-376,Iceland,ChatGPT search,Which OQC source helps families in Iceland compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-377,Iceland,Google AI,How are online Quran lessons arranged for learners in Iceland?,/locations,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-378,Iceland,Bing and Copilot,Where can someone in Iceland read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-379,Iceland,Conversion SEO,Can a visitor from Iceland complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-380,Iceland,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-381,Poland,Technical SEO,Can a crawler reach the relevant public market page?,/locations,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-382,Poland,International SEO,Is there a published regional alternate for this market?,/locations,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-383,Poland,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-384,Poland,On-page SEO,How can families in Poland find live Quran lessons online?,/locations,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-385,Poland,Internal links,Where do families in Poland compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-386,Poland,AEO,How much do online Quran lessons cost for a family in Poland?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-387,Poland,AEO,What is included in the free Quran trial for Poland?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-388,Poland,AEO,Can I request a female Quran teacher from Poland?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-389,Poland,AEO,Which Quran course should a beginner from Poland start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-390,Poland,AEO,How does a parent in Poland prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-391,Poland,AEO,Can an adult in Poland start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-392,Poland,GEO,Does Online Quran College have a physical branch in Poland?,/locations,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-393,Poland,GEO,How can I propose a Quran lesson time from Poland?,/locations,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-394,Poland,GEO,What should I confirm before paying for classes from Poland?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-395,Poland,Claude search,Which OQC source explains trial eligibility for families in Poland?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-396,Poland,ChatGPT search,Which OQC source helps families in Poland compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-397,Poland,Google AI,How are online Quran lessons arranged for learners in Poland?,/locations,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-398,Poland,Bing and Copilot,Where can someone in Poland read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-399,Poland,Conversion SEO,Can a visitor from Poland complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-400,Poland,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-401,Czechia,Technical SEO,Can a crawler reach the relevant public market page?,/locations,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-402,Czechia,International SEO,Is there a published regional alternate for this market?,/locations,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-403,Czechia,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-404,Czechia,On-page SEO,How can families in Czechia find live Quran lessons online?,/locations,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-405,Czechia,Internal links,Where do families in Czechia compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-406,Czechia,AEO,How much do online Quran lessons cost for a family in Czechia?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-407,Czechia,AEO,What is included in the free Quran trial for Czechia?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-408,Czechia,AEO,Can I request a female Quran teacher from Czechia?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-409,Czechia,AEO,Which Quran course should a beginner from Czechia start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-410,Czechia,AEO,How does a parent in Czechia prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-411,Czechia,AEO,Can an adult in Czechia start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-412,Czechia,GEO,Does Online Quran College have a physical branch in Czechia?,/locations,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-413,Czechia,GEO,How can I propose a Quran lesson time from Czechia?,/locations,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-414,Czechia,GEO,What should I confirm before paying for classes from Czechia?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-415,Czechia,Claude search,Which OQC source explains trial eligibility for families in Czechia?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-416,Czechia,ChatGPT search,Which OQC source helps families in Czechia compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-417,Czechia,Google AI,How are online Quran lessons arranged for learners in Czechia?,/locations,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-418,Czechia,Bing and Copilot,Where can someone in Czechia read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-419,Czechia,Conversion SEO,Can a visitor from Czechia complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-420,Czechia,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-421,Slovakia,Technical SEO,Can a crawler reach the relevant public market page?,/locations,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-422,Slovakia,International SEO,Is there a published regional alternate for this market?,/locations,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-423,Slovakia,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-424,Slovakia,On-page SEO,How can families in Slovakia find live Quran lessons online?,/locations,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-425,Slovakia,Internal links,Where do families in Slovakia compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-426,Slovakia,AEO,How much do online Quran lessons cost for a family in Slovakia?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-427,Slovakia,AEO,What is included in the free Quran trial for Slovakia?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-428,Slovakia,AEO,Can I request a female Quran teacher from Slovakia?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-429,Slovakia,AEO,Which Quran course should a beginner from Slovakia start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-430,Slovakia,AEO,How does a parent in Slovakia prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-431,Slovakia,AEO,Can an adult in Slovakia start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-432,Slovakia,GEO,Does Online Quran College have a physical branch in Slovakia?,/locations,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-433,Slovakia,GEO,How can I propose a Quran lesson time from Slovakia?,/locations,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-434,Slovakia,GEO,What should I confirm before paying for classes from Slovakia?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-435,Slovakia,Claude search,Which OQC source explains trial eligibility for families in Slovakia?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-436,Slovakia,ChatGPT search,Which OQC source helps families in Slovakia compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-437,Slovakia,Google AI,How are online Quran lessons arranged for learners in Slovakia?,/locations,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-438,Slovakia,Bing and Copilot,Where can someone in Slovakia read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-439,Slovakia,Conversion SEO,Can a visitor from Slovakia complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-440,Slovakia,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-441,Hungary,Technical SEO,Can a crawler reach the relevant public market page?,/locations,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-442,Hungary,International SEO,Is there a published regional alternate for this market?,/locations,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-443,Hungary,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-444,Hungary,On-page SEO,How can families in Hungary find live Quran lessons online?,/locations,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-445,Hungary,Internal links,Where do families in Hungary compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-446,Hungary,AEO,How much do online Quran lessons cost for a family in Hungary?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-447,Hungary,AEO,What is included in the free Quran trial for Hungary?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-448,Hungary,AEO,Can I request a female Quran teacher from Hungary?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-449,Hungary,AEO,Which Quran course should a beginner from Hungary start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-450,Hungary,AEO,How does a parent in Hungary prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-451,Hungary,AEO,Can an adult in Hungary start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-452,Hungary,GEO,Does Online Quran College have a physical branch in Hungary?,/locations,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-453,Hungary,GEO,How can I propose a Quran lesson time from Hungary?,/locations,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-454,Hungary,GEO,What should I confirm before paying for classes from Hungary?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-455,Hungary,Claude search,Which OQC source explains trial eligibility for families in Hungary?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-456,Hungary,ChatGPT search,Which OQC source helps families in Hungary compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-457,Hungary,Google AI,How are online Quran lessons arranged for learners in Hungary?,/locations,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-458,Hungary,Bing and Copilot,Where can someone in Hungary read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-459,Hungary,Conversion SEO,Can a visitor from Hungary complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-460,Hungary,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-461,Romania,Technical SEO,Can a crawler reach the relevant public market page?,/locations,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-462,Romania,International SEO,Is there a published regional alternate for this market?,/locations,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-463,Romania,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-464,Romania,On-page SEO,How can families in Romania find live Quran lessons online?,/locations,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-465,Romania,Internal links,Where do families in Romania compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-466,Romania,AEO,How much do online Quran lessons cost for a family in Romania?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-467,Romania,AEO,What is included in the free Quran trial for Romania?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-468,Romania,AEO,Can I request a female Quran teacher from Romania?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-469,Romania,AEO,Which Quran course should a beginner from Romania start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-470,Romania,AEO,How does a parent in Romania prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-471,Romania,AEO,Can an adult in Romania start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-472,Romania,GEO,Does Online Quran College have a physical branch in Romania?,/locations,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-473,Romania,GEO,How can I propose a Quran lesson time from Romania?,/locations,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-474,Romania,GEO,What should I confirm before paying for classes from Romania?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-475,Romania,Claude search,Which OQC source explains trial eligibility for families in Romania?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-476,Romania,ChatGPT search,Which OQC source helps families in Romania compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-477,Romania,Google AI,How are online Quran lessons arranged for learners in Romania?,/locations,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-478,Romania,Bing and Copilot,Where can someone in Romania read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-479,Romania,Conversion SEO,Can a visitor from Romania complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-480,Romania,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-481,Bulgaria,Technical SEO,Can a crawler reach the relevant public market page?,/locations,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-482,Bulgaria,International SEO,Is there a published regional alternate for this market?,/locations,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-483,Bulgaria,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-484,Bulgaria,On-page SEO,How can families in Bulgaria find live Quran lessons online?,/locations,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-485,Bulgaria,Internal links,Where do families in Bulgaria compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-486,Bulgaria,AEO,How much do online Quran lessons cost for a family in Bulgaria?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-487,Bulgaria,AEO,What is included in the free Quran trial for Bulgaria?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-488,Bulgaria,AEO,Can I request a female Quran teacher from Bulgaria?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-489,Bulgaria,AEO,Which Quran course should a beginner from Bulgaria start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-490,Bulgaria,AEO,How does a parent in Bulgaria prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-491,Bulgaria,AEO,Can an adult in Bulgaria start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-492,Bulgaria,GEO,Does Online Quran College have a physical branch in Bulgaria?,/locations,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-493,Bulgaria,GEO,How can I propose a Quran lesson time from Bulgaria?,/locations,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-494,Bulgaria,GEO,What should I confirm before paying for classes from Bulgaria?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-495,Bulgaria,Claude search,Which OQC source explains trial eligibility for families in Bulgaria?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-496,Bulgaria,ChatGPT search,Which OQC source helps families in Bulgaria compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-497,Bulgaria,Google AI,How are online Quran lessons arranged for learners in Bulgaria?,/locations,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-498,Bulgaria,Bing and Copilot,Where can someone in Bulgaria read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-499,Bulgaria,Conversion SEO,Can a visitor from Bulgaria complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-500,Bulgaria,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued

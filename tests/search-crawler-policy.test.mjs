@@ -6,7 +6,7 @@ test("major search and answer-engine crawlers can discover public OQC pages", as
   const policy = await robots();
   const explicit = policy.rules.find(rule => Array.isArray(rule.userAgent));
   assert.ok(explicit, "explicit search crawler group exists");
-  for (const agent of ["Googlebot", "bingbot", "Applebot", "DuckDuckBot", "YandexBot", "OAI-SearchBot", "Claude-SearchBot"]) {
+  for (const agent of ["Googlebot", "bingbot", "Applebot", "DuckDuckBot", "YandexBot", "OAI-SearchBot", "Claude-SearchBot", "Claude-User"]) {
     assert.ok(explicit.userAgent.includes(agent), `${agent} is explicitly allowed`);
   }
   assert.equal(explicit.allow, "/");
