@@ -41,7 +41,7 @@ export function FeeCompare({ plans, fx = null, defaultCurrency = "USD", explicit
           <div className="surface overflow-hidden">
             <div className="border-b border-line bg-leaf-50/70 px-5 py-4">
               <h3 className="font-sans text-lg font-bold text-mushaf-900">Compare every plan</h3>
-              <p className="mt-1 text-sm text-ink-soft">All lessons are live and one-to-one. {anyApprox ? `Amounts marked ≈ are converted from US dollars at today’s rate.` : `Fees shown in ${currency}.`}</p>
+              <p className="mt-1 text-sm text-ink-soft">All lessons are live and one-to-one. {anyApprox ? `Amounts marked ≈ are converted from US dollars at the latest available exchange rate.` : `Fees shown in ${currency}.`}</p>
             </div>
             <div className="overflow-x-auto" role="region" aria-label="Plan comparison" tabIndex={0}>
               <table className="w-full min-w-[34rem] text-left text-sm">
