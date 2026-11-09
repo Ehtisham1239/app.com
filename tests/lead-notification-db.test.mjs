@@ -41,8 +41,8 @@ const review = async (email = "reviewer@example.test") => {
   };
   return (await one("select public.submit_review_with_notification($1::jsonb) as r", [payload])).r;
 };
-const lookup = async ({ reference, notification_token }, email) => {
-  await as("service_role");
+const lookup = async ({ reference, notification_token }, email, role = "anon") => {
+  await as(role);
   return (await one("select public.lead_for_notification($1, $2, $3) as r", [reference, email, notification_token])).r;
 };
 
@@ -58,12 +58,13 @@ before(async () => {
 });
 after(async () => { await db.close(); });
 
-test("the just-submitted trial is available only to the server role and matching email/reference", async () => {
+test("the just-submitted trial is available only with its proof token and matching email/reference", async () => {
   const submission = await trial();
   const { reference, notification_token } = submission;
   assert.match(notification_token, /^[0-9a-f]{64}$/);
-  await as("anon");
-  await assert.rejects(db.query("select public.lead_for_notification($1, $2, $3)", [reference, "parent@example.test", notification_token]), /permission denied/);
+  assert.equal(await lookup({ reference, notification_token: "0".repeat(64) }, "parent@example.test"), null);
+  assert.equal(await lookup({ reference, notification_token: null }, "parent@example.test"), null);
+  assert.equal((await lookup(submission, "parent@example.test", "service_role")).reference, reference);
   await as("authenticated");
   await assert.rejects(db.query("select public.lead_for_notification($1, $2, $3)", [reference, "parent@example.test", notification_token]), /permission denied/);
   const row = await lookup(submission, "PARENT@example.test");
@@ -80,8 +81,7 @@ test("the just-submitted contact enquiry is available only to its matching email
   const submission = await contact();
   const { reference, notification_token } = submission;
   assert.match(notification_token, /^[0-9a-f]{64}$/);
-  await as("anon");
-  await assert.rejects(db.query("select public.lead_for_notification($1, $2, $3)", [reference, "contact@example.test", notification_token]), /permission denied/);
+  assert.equal(await lookup({ reference, notification_token: "f".repeat(64) }, "contact@example.test"), null);
   const row = await lookup(submission, "CONTACT@example.test");
   assert.equal(row.lead_type, "contact");
   assert.equal(row.reference, reference);
@@ -96,8 +96,7 @@ test("the just-submitted review is available only to its matching email and refe
   const submission = await review();
   const { reference, notification_token } = submission;
   assert.match(notification_token, /^[0-9a-f]{64}$/);
-  await as("anon");
-  await assert.rejects(db.query("select public.lead_for_notification($1, $2, $3)", [reference, "reviewer@example.test", notification_token]), /permission denied/);
+  assert.equal(await lookup({ reference, notification_token: "f".repeat(64) }, "reviewer@example.test"), null);
   const row = await lookup(submission, "REVIEWER@example.test");
   assert.equal(row.lead_type, "review");
   assert.equal(row.reference, reference);

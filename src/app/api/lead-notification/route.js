@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { enabledHighLevelConfig, syncHighLevelAdmission } from "@/lib/server/highlevel";
-import { getServiceClient } from "@/lib/supabase/admin";
+import { publicDb } from "@/lib/supabase/public";
 import { permitsMutation } from "@/lib/request-origin";
 import { readBoundedText } from "@/lib/site-health-fetch";
 import { SITE_URL } from "@/lib/config";
@@ -36,14 +36,16 @@ export async function POST(request) {
 
   const config = notificationConfig();
   const highLevel = enabledHighLevelConfig();
-  const serviceDb = getServiceClient();
-  if ((!config && !highLevel) || !serviceDb) {
+  // The lookup is bound to the one-time proof token returned only to the
+  // submitter (see public.lead_for_notification), so it runs with the public
+  // key like the USA route; no server database secret is needed here.
+  if ((!config && !highLevel) || !publicDb) {
     log("error", "not_configured", parsed.reference);
     return reply({ ok: false, error: "not_configured" }, 503);
   }
   let lead = null;
   try {
-    const { data, error } = await serviceDb.rpc("lead_for_notification", { p_reference: parsed.reference, p_email: parsed.email, p_token: parsed.token });
+    const { data, error } = await publicDb.rpc("lead_for_notification", { p_reference: parsed.reference, p_email: parsed.email, p_token: parsed.token });
     if (error) throw error;
     lead = data;
   } catch {
