@@ -79,11 +79,14 @@ test("location pages describe online tuition for the place without claiming a lo
   assert.ok(us.sources.every((s) => new URL(s.url).hostname.endsWith(".gov")));
   assert.notEqual(us.title, guide.title);
 });
-test("location sitemap dates include the latest shared template change", async () => {
+test("location sitemap dates scope market-guide changes to the matching country hub", async () => {
   const { locationLastModified, LOCATION_TEMPLATE_UPDATED } = await import("../src/lib/locations.js");
-  assert.equal(locationLastModified({ updated_at: "2026-10-29T09:49:43Z" }), new Date(LOCATION_TEMPLATE_UPDATED).toISOString());
-  assert.equal(locationLastModified({ updated_at: "2099-01-02T03:04:05Z" }), "2099-01-02T03:04:05.000Z");
-  assert.equal(locationLastModified(null), new Date(LOCATION_TEMPLATE_UPDATED).toISOString());
+  const templateDate = new Date(LOCATION_TEMPLATE_UPDATED).toISOString();
+  assert.equal(locationLastModified({ updated_at: "2026-10-29T09:49:43Z" }, "canada"), templateDate);
+  assert.equal(locationLastModified(null, "australia"), "2026-11-09T00:00:00.000Z");
+  assert.equal(locationLastModified(null, "canada"), templateDate);
+  assert.equal(locationLastModified(null, "australia", true), templateDate);
+  assert.equal(locationLastModified({ updated_at: "2099-01-02T03:04:05Z" }, "australia"), "2099-01-02T03:04:05.000Z");
 });
 
 test("organization schema never turns a country-only setting into a postal address", () => {
