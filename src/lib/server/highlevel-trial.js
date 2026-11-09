@@ -116,6 +116,10 @@ const COURSES = new Map([
   ["Hadith Translation", "Hadith & Islamic Studies"],
 ]);
 const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content"];
+// The trial form records a package chosen on /pricing as the first notes line
+// ("Package of interest: Package 2"). It reaches HighLevel as a tag, so no new
+// custom field is needed in the CRM.
+const PACKAGE_NOTE = /^Package of interest: ([A-Za-z0-9 &'()-]{1,40})$/m;
 const string = value => typeof value === "string" ? value.trim() : "";
 
 export function trialContact(lead, siteUrl) {
@@ -123,6 +127,7 @@ export function trialContact(lead, siteUrl) {
   const name = string(lead.country).toLowerCase();
   const market = MARKETS.get(name) || MARKETS.get("other");
   const countryTag = MARKETS.has(name) ? name : "other";
+  const selectedPackage = PACKAGE_NOTE.exec(string(lead.notes))?.[1].trim().toLowerCase();
   const attribution = lead.utm;
   const page = new URL("/free-trial", siteUrl);
   const submittedQuery = new URLSearchParams(string(attribution?.ghl_trial_query));
@@ -148,7 +153,8 @@ export function trialContact(lead, siteUrl) {
       ...(last.length ? { lastName: last.join(" ") } : {}),
       ...(market.code ? { country: market.code } : {}),
       source: "Website: Free Trial Form",
-      tags: ["website lead", "form: free trial", `country: ${countryTag}`, `region: ${market.region}`],
+      tags: ["website lead", "form: free trial", `country: ${countryTag}`, `region: ${market.region}`,
+        ...(selectedPackage ? [`package: ${selectedPackage}`] : [])],
     },
     fields: Object.entries(fields).filter(([, value]) => value),
   };
