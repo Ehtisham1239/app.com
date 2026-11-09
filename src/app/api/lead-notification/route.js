@@ -22,6 +22,14 @@ function parseRequest(body) {
   return { reference, email, token };
 }
 
+// Staff see the outcome in Admin. Recording is best effort: a failure here
+// never changes the visitor's response or retries the CRM.
+async function recordCrmSync(reference, email, token, crm) {
+  try {
+    await publicDb.rpc("record_lead_crm_sync", { p_reference: reference, p_email: email, p_token: token, p_ok: crm.ok === true, p_detail: crm.ok ? null : crm.reason });
+  } catch { /* best effort */ }
+}
+
 export async function POST(request) {
   if (!permitsMutation(request)) return reply({ ok: false, error: "forbidden" }, 403);
   if (!/^application\/json\b/i.test(request.headers.get("content-type") || "")) return reply({ ok: false, error: "bad_request" }, 415);
@@ -56,8 +64,9 @@ export async function POST(request) {
 
   let crm = null;
   if (highLevel && lead.lead_type !== "review") {
-    crm = await syncHighLevelAdmission(lead, lead.lead_type, { config: highLevel, trialSiteUrl: SITE_URL });
+    crm = await syncHighLevelAdmission(lead, lead.lead_type, { config: highLevel, trialSiteUrl: SITE_URL, form: lead.lead_type === "contact" ? "contact" : undefined });
     log(crm.ok ? "info" : "error", crm.ok ? "highlevel_synced" : `highlevel_${crm.reason}`, lead.reference);
+    await recordCrmSync(parsed.reference, parsed.email, parsed.token, crm);
   }
   if (!config) {
     if (!crm) return reply({ ok: false, error: "not_configured" }, 503);

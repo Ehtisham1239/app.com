@@ -7,6 +7,7 @@ import { db, likeTerm, useLoad } from "@/lib/admin/db";
 import { CONTACT_STATUSES } from "@/lib/constants";
 import { truncate } from "@/lib/format";
 import { Card, EmptyState, ErrorState, Loading, PageHeader, Pagination, SearchInput, StatusBadge, Tabs, When } from "@/components/admin/ui";
+import { CrmBadge, useCrmStatus } from "@/components/admin/crm-status";
 
 const PAGE = 25;
 
@@ -21,6 +22,7 @@ export default function ContactsPage() {
     if (q) query = query.or(["name", "email", "subject", "reference", "message"].map((f) => `${f}.ilike.${likeTerm(q)}`).join(","));
     return query.order("created_at", { ascending: false }).range(page * PAGE, page * PAGE + PAGE - 1);
   }, [status, q, page]);
+  const crm = useCrmStatus(list.data?.map((m) => m.reference));
   const counts = useLoad(async () => {
     const res = await Promise.all(CONTACT_STATUSES.map((s) => db().from("contact_messages").select("id", { count: "exact", head: true }).is("deleted_at", null).eq("status", s.value)));
     return { data: Object.fromEntries(CONTACT_STATUSES.map((s, i) => [s.value, res[i].count ?? 0])) };
@@ -55,6 +57,7 @@ export default function ContactsPage() {
                   <div className="flex shrink-0 flex-col items-end gap-1.5 text-xs text-ink-faint">
                     <When value={m.created_at} />
                     <StatusBadge list={CONTACT_STATUSES} value={m.status} />
+                    <CrmBadge status={crm[m.reference]} />
                   </div>
                 </Link>
               </li>

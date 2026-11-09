@@ -8,11 +8,13 @@ import { db, notifyError, useLoad } from "@/lib/admin/db";
 import { CONTACT_STATUSES } from "@/lib/constants";
 import { formatDateTime, whatsappLink } from "@/lib/format";
 import { Card, ErrorState, Field, Loading, PageHeader, StatusBadge, When } from "@/components/admin/ui";
+import { CrmDetail, useCrmStatus } from "@/components/admin/crm-status";
 
 export default function ContactPage({ params }) {
   const { id } = use(params);
   const { can, access } = useAccess();
   const msg = useLoad(() => db().from("contact_messages").select("*, profiles!contact_messages_replied_by_fkey(full_name)").eq("id", id).maybeSingle(), [id]);
+  const crm = useCrmStatus(msg.data?.reference ? [msg.data.reference] : []);
   const [draft, setDraft] = useState({ id: null, value: "" });
   const m = msg.data;
   const note = draft.id === m?.id ? draft.value : m?.internal_note || "";
@@ -55,6 +57,7 @@ export default function ContactPage({ params }) {
               <div><dt className="text-ink-faint">Phone</dt><dd>{m.phone || "—"}</dd></div>
               <div><dt className="text-ink-faint">Location</dt><dd>{[m.city, m.country].filter(Boolean).join(", ") || "—"}</dd></div>
               <div><dt className="text-ink-faint">Received</dt><dd>{formatDateTime(m.created_at)}</dd></div>
+              <div className="sm:col-span-2"><dt className="text-ink-faint">GHL CRM</dt><dd><CrmDetail status={crm[m.reference]} /></dd></div>
             </dl>
             <div className="mt-5 flex flex-wrap gap-2">
               <a href={mailto} className="btn btn-primary btn-sm"><Mail className="size-4" /> Reply by email</a>

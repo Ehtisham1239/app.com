@@ -217,9 +217,17 @@ test("verified USA trial syncs to HighLevel even when email delivery is unconfig
 
   setup({ env });
   assert.equal((await route.POST(request(valid))).status, 200);
-  assert.equal(calls.length, 1);
+  assert.equal(calls.length, 2);
   assert.equal(calls[0].url, "https://services.leadconnectorhq.com/contacts/upsert");
   assert.equal(calls[0].body.email, valid.email);
   assert.equal(calls[0].body.locationId, env.GHL_LOCATION_ID);
+  assert.equal(calls[0].body.source, "Website: USA Landing Page");
   assert.equal(Object.hasOwn(calls[0].body, "learner_name"), false);
+  assert.equal(calls[1].url, "https://services.leadconnectorhq.com/contacts/fixture-contact/tags");
+  assert.deepEqual(calls[1].body.tags.slice(0, 2), ["website lead", "form: usa landing page"]);
+  // The outcome is recorded for Admin with the same one-time proof.
+  const recorded = fixture.calls.find(([name]) => name === "record_lead_crm_sync");
+  assert.ok(recorded);
+  assert.equal(recorded[1].p_ok, true);
+  assert.equal(recorded[1].p_reference, valid.reference);
 });

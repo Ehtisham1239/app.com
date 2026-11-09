@@ -1,5 +1,5 @@
 import process from "node:process";
-import { trialContact } from "./highlevel-trial.js";
+import { trialContact, websiteFormProperties } from "./highlevel-trial.js";
 
 const HIGHLEVEL_ORIGIN = "https://services.leadconnectorhq.com";
 const EMAIL = /^[^@\s<>]+@[^@\s<>]+\.[^@\s<>]+$/;
@@ -19,7 +19,7 @@ export function highLevelConfig(environment = process.env) {
 // Accept only the adult contact details needed for admissions. The caller owns
 // lead authorization, field selection, and durable delivery.
 export async function upsertHighLevelContact(contact, {
-  config = highLevelConfig(), fetchImpl = fetch, trial,
+  config = highLevelConfig(), fetchImpl = fetch, trial, website,
 } = {}) {
   if (!config) return { ok: false, reason: "not_configured", retryable: false };
   const email = trim(contact?.email).toLowerCase();
@@ -52,10 +52,14 @@ export async function upsertHighLevelContact(contact, {
     const tagged = await trialRequest(`/contacts/${encodeURIComponent(contactId)}/tags`, config, fetchImpl, { tags });
     return tagged.ok ? { ok: true, contactId } : tagged;
   }
+  if (website) payload.source = website.source;
   result = await highLevelRequest("/contacts/upsert", config, fetchImpl, payload);
   if (!result.ok) return result;
   const contactId = trim(result.data?.contact?.id);
-  return contactId ? { ok: true, contactId } : invalidResponse();
+  if (!contactId) return invalidResponse();
+  if (!website?.tags?.length) return { ok: true, contactId };
+  const tagged = await trialRequest(`/contacts/${encodeURIComponent(contactId)}/tags`, config, fetchImpl, { tags: website.tags });
+  return tagged.ok ? { ok: true, contactId } : tagged;
 }
 
 function invalidResponse() {
@@ -157,7 +161,7 @@ async function ensureOpenOpportunity(contactId, reference, config, fetchImpl) {
 
 // Only call this after the submission proof has been validated by the database.
 export async function syncHighLevelAdmission(lead, kind, {
-  config = highLevelConfig(), fetchImpl = fetch, trialSiteUrl,
+  config = highLevelConfig(), fetchImpl = fetch, trialSiteUrl, form,
 } = {}) {
   if (kind !== "trial" && kind !== "contact") return { ok: false, reason: "not_an_admission" };
   if (kind === "trial" && trialSiteUrl && typeof lead.utm?.ghl_trial_query === "string") {
@@ -172,7 +176,8 @@ export async function syncHighLevelAdmission(lead, kind, {
   if (config?.pipelineId && !/^(TR|MSG)-\d{4}-\d{5,7}$/.test(reference)) {
     return { ok: false, reason: "invalid_reference", retryable: false };
   }
-  const result = await upsertHighLevelContact({ email: lead.email, phone: lead.phone, name }, { config, fetchImpl });
+  const website = form ? websiteFormProperties(form, lead.country) : null;
+  const result = await upsertHighLevelContact({ email: lead.email, phone: lead.phone, name }, { config, fetchImpl, website });
   if (!result.ok || !config.pipelineId) return result;
   const opportunity = await ensureOpenOpportunity(result.contactId, reference, config, fetchImpl);
   return opportunity.ok ? { ...result, opportunityId: opportunity.opportunityId } : opportunity;

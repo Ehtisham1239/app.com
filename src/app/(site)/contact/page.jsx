@@ -49,7 +49,7 @@ export default async function ContactPage() {
         <div className="min-w-0">
           <div className="mb-6">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-leaf-700">Choose your channel</p>
-            <h2 className="mt-2 text-[1.8rem] text-mushaf-900">Contact Online Quran College</h2>
+            <h2 className="mt-2 text-[1.8rem] text-mushaf-900">Choose how to reach us</h2>
             <p className="mt-3 leading-relaxed text-ink-soft">You can contact Online Quran College using whichever method is most comfortable. For a quick question, WhatsApp is a convenient place to start; for a detailed request, use the form.</p>
           </div>
           <div className="space-y-3">
@@ -80,7 +80,7 @@ export default async function ContactPage() {
           <div className="mt-6 rounded-[var(--radius-card)] border border-leaf-100 bg-leaf-50 p-5">
             <h3 className="font-semibold text-mushaf-900">Enquiring about your first class?</h3>
             <p className="mt-2 text-sm leading-relaxed text-ink-soft">A free trial is a simple way to discuss the learner’s level, course goals and teacher preference before deciding on a suitable learning plan.</p>
-            <Link href="/free-trial" className="mt-3 inline-flex min-h-11 items-center gap-2 font-semibold text-leaf-700 underline underline-offset-4">Request a free trial<ArrowRight className="size-4" /></Link>
+            <Link href="/free-trial" className="btn btn-primary mt-4">Request a free trial<ArrowRight className="size-4" /></Link>
           </div>
           <div className="mt-6 rounded-2xl border border-line bg-white p-5">
             <h3 className="font-semibold text-mushaf-900">What happens next?</h3>
