@@ -2,6 +2,12 @@
 
 Prepared 9 November 2026 for Online Quran College. The five keyword CSVs are one ordered register of 5,000 distinct phrases. The first rows retain historical Search Console observations from the 5 November keyword map. Their impressions, clicks and position are site observations from that snapshot. New phrases are discovery candidates with no measured volume, difficulty or rank. The register covers configured markets and additional ISO country and territory labels for research. A keyword row does not establish lesson availability, language support, a physical branch, or a reason to publish a new landing page.
 
+## Overseas scope
+
+The revised 5,000-row register excludes Pakistan-specific entries and gives Australia, the United Kingdom, Canada, the United States, the United Arab Emirates and New Zealand priority. AUD and AED refer to Australia and the UAE respectively. Other overseas markets remain in the research set. The main locations page now links to the five existing indexed country guides and includes New Zealand lesson planning. The keyword files are research inputs for individual page improvements.
+
+The [citation screening register](../../docs/seo-agent/CITATION-QUALIFICATION-2026-11-07.csv) tracks distinct operators, official evidence, eligibility, submission and public placement separately. The seven new entries and one updated overseas entry are screening results, including candidates, holds and an exclusion. Count a citation only when the third-party listing is public and the OQC destination is verified.
+
 ## Free execution order
 
 1. In Search Console, export the latest query, country and page data. Compare current impressions and position with the historical observations before assigning a target. Keep one primary URL per intent. Verify the destination is canonical, useful and indexable before optimizing its content.
