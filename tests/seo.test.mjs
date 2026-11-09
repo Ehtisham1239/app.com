@@ -79,11 +79,18 @@ test("location pages describe online tuition for the place without claiming a lo
   assert.ok(us.sources.every((s) => new URL(s.url).hostname.endsWith(".gov")));
   assert.notEqual(us.title, guide.title);
 });
-test("location sitemap dates include the latest shared template change", async () => {
+test("location sitemap dates include country guide updates without refreshing city pages", async () => {
   const { locationLastModified, LOCATION_TEMPLATE_UPDATED } = await import("../src/lib/locations.js");
-  assert.equal(locationLastModified({ updated_at: "2026-10-29T09:49:43Z" }), new Date(LOCATION_TEMPLATE_UPDATED).toISOString());
+  const { MARKET_GUIDES } = await import("../src/lib/market-guides.js");
+  const templateDate = new Date(LOCATION_TEMPLATE_UPDATED).toISOString();
+  const australiaGuideDate = new Date(MARKET_GUIDES.australia.updatedAt).toISOString();
+
+  assert.equal(locationLastModified({ updated_at: "2026-10-29T09:49:43Z" }), templateDate);
   assert.equal(locationLastModified({ updated_at: "2099-01-02T03:04:05Z" }), "2099-01-02T03:04:05.000Z");
-  assert.equal(locationLastModified(null), new Date(LOCATION_TEMPLATE_UPDATED).toISOString());
+  assert.equal(locationLastModified(null), templateDate);
+  assert.equal(locationLastModified({ updated_at: "2026-10-29T09:49:43Z" }, MARKET_GUIDES.australia.updatedAt), australiaGuideDate);
+  assert.equal(locationLastModified(null, MARKET_GUIDES.australia.updatedAt), australiaGuideDate);
+  assert.equal(locationLastModified(null, undefined), templateDate);
 });
 
 test("organization schema never turns a country-only setting into a postal address", () => {
@@ -226,4 +233,10 @@ test("UAE advertiser guidance points to the official Media Council guidelines", 
 test("CMS link counts distinguish internal routes, external references and unsafe placeholders", () => {
   const body_html = '<a href="/pricing">Fees</a><a href="https://onlinequrancollege.com/courses">Courses</a><a href="https://example.test">Source</a><a href="#faq">FAQ</a><a href="mailto:info@example.test">Email</a><a href="javascript:bad()">Unsafe</a><a href="#">Empty</a>';
   assert.deepEqual(analyzeSeo({ body_html }).linkCounts, { internal: 2, external: 1, anchors: 1, invalid: 2 });
+});
+
+
+test("sitemap applies market-guide lastmod only to country hubs, not city pages", async () => {
+  const sitemap = readFileSync(new URL("../src/app/sitemap.js", import.meta.url), "utf8");
+  assert.match(sitemap, /locationLastModified\(page, city \? undefined : MARKET_GUIDES\[country\.slug\]\?\.updatedAt\)/);
 });
