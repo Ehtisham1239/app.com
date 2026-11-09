@@ -167,31 +167,50 @@
   @media (min-width: 1920px) { .page-wrap { max-width: 96rem; } }
   @media (min-width: 2560px) { .page-wrap { max-width: 112rem; padding-inline: 4rem; } }
 
-  /* Buttons */
+  /* Buttons: brand greens (white text stays at least 4.5:1 on every fill),
+     a soft depth shadow, a clear hover and a pressed state. Movement is added
+     only for visitors who allow motion (see the reduced-motion block below). */
   .btn {
+    position: relative; isolation: isolate;
     display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
-    min-height: 2.75rem; padding: 0.625rem 1.25rem;
-    border-radius: 999px; font-weight: 600; font-size: 0.975rem; line-height: 1.2;
-    transition: background-color .15s ease, color .15s ease, border-color .15s ease, box-shadow .15s ease;
-    white-space: nowrap; cursor: pointer;
+    min-height: 2.875rem; padding: 0.65rem 1.35rem;
+    border-radius: 999px; font-weight: 700; font-size: 0.975rem; line-height: 1.2; letter-spacing: 0.005em;
+    border: 1.5px solid transparent;
+    transition: background-color .18s ease, background-position .3s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease, transform .12s ease;
+    white-space: nowrap; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent;
   }
-  .btn:disabled { opacity: .55; cursor: not-allowed; }
-  .btn-primary { background: var(--color-leaf-700); color: #fff; }
-  .btn-primary:hover:not(:disabled) { background: var(--color-leaf-800); }
-  .btn-gold { background: var(--color-leaf-700); color: #fff; }
-  .btn-gold:hover:not(:disabled) { background: var(--color-leaf-800); }
-  .bg-mushaf-900 .btn-gold { background: #fff; color: var(--color-leaf-700); }
-  .bg-mushaf-900 .btn-gold:hover:not(:disabled) { background: var(--color-leaf-100); }
-  .btn-outline { border: 1.5px solid var(--color-mushaf-900); color: var(--color-mushaf-900); background: #fff; }
-  .btn-outline:hover:not(:disabled) { border-color: var(--color-leaf-700); color: var(--color-leaf-700); }
-  .btn-outline-light { border: 1.5px solid rgb(255 255 255 / .35); color: #fff; }
-  .btn-outline-light:hover:not(:disabled) { border-color: var(--color-gold-400); color: var(--color-gold-300); }
+  .btn:disabled, .btn[aria-disabled="true"] { opacity: .55; cursor: not-allowed; box-shadow: none; }
+  .btn:focus-visible { outline: 3px solid var(--color-gold-500); outline-offset: 3px; border-radius: 999px; }
+  .btn-primary, .btn-gold {
+    color: #fff;
+    background: linear-gradient(135deg, #0f7d0f 0%, var(--color-leaf-700) 55%, var(--color-leaf-800) 100%);
+    background-size: 160% 160%; background-position: 0% 50%;
+    box-shadow: 0 1px 0 rgb(255 255 255 / .18) inset, 0 6px 16px -6px rgb(12 108 12 / .55), 0 2px 4px rgb(13 74 28 / .12);
+  }
+  .btn-primary:hover:not(:disabled), .btn-gold:hover:not(:disabled) {
+    background-position: 100% 50%;
+    box-shadow: 0 1px 0 rgb(255 255 255 / .2) inset, 0 10px 22px -8px rgb(12 108 12 / .6), 0 0 0 3px rgb(219 185 96 / .35);
+  }
+  .bg-mushaf-900 .btn-gold { background: #fff; color: var(--color-leaf-700); box-shadow: 0 8px 20px -10px rgb(0 0 0 / .45); }
+  .bg-mushaf-900 .btn-gold:hover:not(:disabled) { background: var(--color-gold-300); color: var(--color-mushaf-900); box-shadow: 0 10px 24px -10px rgb(0 0 0 / .5); }
+  .btn-outline { border-color: var(--color-mushaf-900); color: var(--color-mushaf-900); background: #fff; box-shadow: 0 2px 6px rgb(13 74 28 / .06); }
+  .btn-outline:hover:not(:disabled) { border-color: var(--color-leaf-700); color: var(--color-leaf-800); background: var(--color-leaf-50); box-shadow: 0 6px 14px -8px rgb(12 108 12 / .4); }
+  .btn-outline-light { border-color: rgb(255 255 255 / .55); color: #fff; background: rgb(255 255 255 / .06); }
+  .btn-outline-light:hover:not(:disabled) { border-color: var(--color-gold-400); color: var(--color-gold-300); background: rgb(255 255 255 / .12); }
   .btn-ghost { color: var(--color-ink-soft); }
   .btn-ghost:hover:not(:disabled) { background: var(--color-leaf-50); color: var(--color-ink); }
-  .btn-danger { background: var(--color-rose-600); color: #fff; }
+  .btn-danger { background: var(--color-rose-600); color: #fff; box-shadow: 0 6px 14px -8px rgb(149 27 37 / .55); }
   .btn-danger:hover:not(:disabled) { background: #951b25; }
+  .btn:active:not(:disabled) { box-shadow: 0 1px 2px rgb(13 74 28 / .2) inset; }
   .btn-sm { min-height: 2.25rem; padding: 0.4rem 0.9rem; font-size: 0.875rem; }
-  .btn-lg { min-height: 3.25rem; padding: 0.8rem 1.6rem; font-size: 1.05rem; }
+  .btn-lg { min-height: 3.375rem; padding: 0.85rem 1.75rem; font-size: 1.06rem; }
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .btn-primary:hover:not(:disabled), .btn-gold:hover:not(:disabled),
+    .btn-outline:hover:not(:disabled), .btn-danger:hover:not(:disabled) { transform: translateY(-1px); }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .btn:active:not(:disabled) { transform: translateY(1px) scale(.985); }
+  }
 
   /* Form controls */
   .field-label { display: block; font-size: 0.875rem; font-weight: 600; color: var(--color-ink); margin-bottom: 0.375rem; }
