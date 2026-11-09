@@ -10,6 +10,7 @@ import { db, fromLocalInput, notifyError, toLocalInput, useLoad } from "@/lib/ad
 import { AGE_BANDS, CURRENCIES, LEVELS, TEACHER_PREFS, TIME_SLOTS, TRIAL_STATUSES, TRIAL_TRANSITIONS, labelFor } from "@/lib/constants";
 import { formatDateTime, toMinor, whatsappLink } from "@/lib/format";
 import { Badge, Card, ConfirmButton, ErrorState, Field, Loading, PageHeader, StatusBadge, When } from "@/components/admin/ui";
+import { CrmDetail, useCrmStatus } from "@/components/admin/crm-status";
 
 const SELECT = "*, courses(id, title), teachers(id, display_name), profiles(id, full_name), students!trial_applications_student_id_fkey(student_code, full_name)";
 const ACTION_LABEL = { reviewed: "Mark reviewed", completed: "Trial done", no_show: "No-show", cancelled: "Cancel request", reviewed_again: "Re-open" };
@@ -239,6 +240,7 @@ export default function TrialPage({ params }) {
   const router = useRouter();
   const { can, access } = useAccess();
   const trial = useLoad(() => db().from("trial_applications").select(SELECT).eq("id", id).maybeSingle(), [id]);
+  const crm = useCrmStatus(trial.data?.reference ? [trial.data.reference] : []);
   const staff = useLoad(() => db().from("profiles").select("id, full_name, role").eq("is_active", true).order("full_name"), []);
   const [outcome, setOutcome] = useState("");
   const [busy, setBusy] = useState("");
@@ -342,6 +344,9 @@ export default function TrialPage({ params }) {
               <Row label="Source">
                 {t.source}
                 {t.utm && Object.keys(t.utm).length > 0 && <span className="text-ink-faint"> · {Object.entries(t.utm).map(([k, v]) => `${k}=${v}`).join(" ")}</span>}
+              </Row>
+              <Row label="GHL CRM">
+                <CrmDetail status={crm[t.reference]} />
               </Row>
               <Row label="Consent">
                 Given {formatDateTime(t.consent_at)} {t.marketing_opt_in && <Badge tone="blue">Happy to receive news</Badge>}

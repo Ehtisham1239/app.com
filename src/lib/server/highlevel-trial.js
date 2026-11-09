@@ -122,6 +122,25 @@ const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content"];
 const PACKAGE_NOTE = /^Package of interest: ([A-Za-z0-9 &'()-]{1,40})$/m;
 const string = value => typeof value === "string" ? value.trim() : "";
 
+// Contact form and USA landing page leads reach HighLevel with a source and
+// the same website, form, country and region tags as the Free Trial Form, so
+// admissions can filter every website lead the same way. No custom fields are
+// written for these forms, so the CRM needs no new fields.
+const WEBSITE_FORMS = {
+  contact: { source: "Website: Contact Form", tag: "form: contact" },
+  usa: { source: "Website: USA Landing Page", tag: "form: usa landing page" },
+};
+export function websiteFormProperties(form, country) {
+  const known = WEBSITE_FORMS[form];
+  if (!known) return null;
+  const name = string(country).toLowerCase();
+  const market = MARKETS.get(name);
+  return {
+    source: known.source,
+    tags: ["website lead", known.tag, ...(market ? [`country: ${name}`, `region: ${market.region}`] : [])],
+  };
+}
+
 export function trialContact(lead, siteUrl) {
   const [firstName, ...last] = string(lead.learner_name).split(/\s+/);
   const name = string(lead.country).toLowerCase();
