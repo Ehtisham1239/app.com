@@ -6,28 +6,27 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { captureAttribution } from "@/lib/attribution";
 import { useEffect, useRef, useState } from "react";
-import { CheckCircle2, Loader2, Send } from "@/components/site/icons";
+import { Loader2, Send } from "@/components/site/icons";
 import { COUNTRIES } from "@/lib/constants";
 
 const SUBJECTS = ["Course enquiry", "Fees and payment", "Class timings", "Teacher request", "Existing student support", "Partnership", "Other"];
 
-export function ContactForm({ id, consentText, successText }) {
+export function ContactForm({ id, consentText, alternateContact }) {
   const router = useRouter();
   const formRef = useRef(null);
-  const successRef = useRef(null);
+  const submitting = useRef(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", country: "", subject: SUBJECTS[0], message: "", consent: false, website: "" });
   const [errors, setErrors] = useState({});
-  const [state, setState] = useState({ sending: false, error: "", done: null });
+  const [state, setState] = useState({ sending: false, error: "" });
   useEffect(() => {
     const first = Object.keys(errors)[0];
     if (first) formRef.current?.querySelector(`#c-${first}`)?.focus();
   }, [errors]);
-  useEffect(() => { if (state.done) successRef.current?.focus(); }, [state.done]);
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
 
   async function submit(e) {
     e.preventDefault();
-    if (state.sending) return;
+    if (submitting.current) return;
     const errs = {};
     if (form.name.trim().length < 2) errs.name = "Please enter your name.";
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(form.email.trim())) errs.email = "Please enter a valid email address.";
@@ -35,31 +34,22 @@ export function ContactForm({ id, consentText, successText }) {
     if (!form.consent) errs.consent = "Please agree so we can reply to you.";
     setErrors(errs);
     if (Object.keys(errs).length) return;
-    setState({ sending: true, error: "", done: null });
-    const utm = captureAttribution();
+    submitting.current = true;
+    setState({ sending: true, error: "" });
     let data, error;
     try {
+      const utm = captureAttribution();
       ({ data, error } = await (await import("@/lib/supabase/public")).getPublicBrowserClient().rpc("submit_contact_message_with_notification", { payload: { ...form, email: form.email.trim().toLowerCase(), utm, source: utm.utm_source || "website" } }));
     } catch (cause) { error = cause; }
-    if (error) return setState({ sending: false, error: error.message || "Could not send. Please try WhatsApp instead.", done: null });
+    if (error) {
+      submitting.current = false;
+      setState({ sending: false, error: "We couldn’t send your message. Your details are still here. Please try again." });
+      return;
+    }
     requestLeadNotification(data, form.email.trim().toLowerCase());
     announceLeadSaved({ formType: "contact", country: form.country, reference: data?.reference, honeypot: form.website });
-    setState({ sending: false, error: "", done: null });
     const reference = typeof data?.reference === "string" && /^MSG-[A-Z0-9-]{4,32}$/.test(data.reference) && data.reference !== "MSG-RECEIVED" ? data.reference : "";
     router.push("/contact/thank-you" + (reference ? "?ref=" + encodeURIComponent(reference) : ""));
-  }
-
-  if (state.done) {
-    return (
-      <div className="surface p-8 text-center sm:p-10" role="status">
-        <CheckCircle2 className="mx-auto size-14 text-leaf-600" aria-hidden="true" />
-        <h2 ref={successRef} tabIndex={-1} className="mt-4 text-[1.8rem] text-mushaf-900">Message sent</h2>
-        <p className="mx-auto mt-2 max-w-md text-ink-soft">{successText || "Thank you. Our coordinator will reply using the contact details you provided."}</p>
-        {state.done !== "MSG-RECEIVED" && state.done !== "sent" && (
-          <p className="mt-4 inline-flex rounded-full bg-gold-50 px-4 py-1.5 font-mono text-sm font-semibold text-gold-700 ring-1 ring-gold-100">Reference: {state.done}</p>
-        )}
-      </div>
-    );
   }
 
   const err = (k) =>
@@ -98,6 +88,16 @@ export function ContactForm({ id, consentText, successText }) {
         </div>
       </div>
       <div>
+        <label htmlFor="c-subject" className="field-label">
+          Topic
+        </label>
+        <select id="c-subject" className="select" value={form.subject} onChange={(e) => set("subject", e.target.value)}>
+          {SUBJECTS.map((s) => (
+            <option key={s}>{s}</option>
+          ))}
+        </select>
+      </div>
+      <div>
         <label htmlFor="c-message" className="field-label">
           Message
         </label>
@@ -126,16 +126,6 @@ export function ContactForm({ id, consentText, successText }) {
               </select>
             </div>
           </div>
-          <div>
-            <label htmlFor="c-subject" className="field-label">
-              Subject
-            </label>
-            <select id="c-subject" className="select" value={form.subject} onChange={(e) => set("subject", e.target.value)}>
-              {SUBJECTS.map((s) => (
-                <option key={s}>{s}</option>
-              ))}
-            </select>
-          </div>
         </div>
       </details>
       <label className="flex gap-3 text-[0.9rem] leading-relaxed text-ink">
@@ -151,6 +141,7 @@ export function ContactForm({ id, consentText, successText }) {
       {state.error && (
         <p className="rounded-xl bg-rose-600/10 px-4 py-3 text-[0.92rem] font-medium text-rose-600" role="alert">
           {state.error}
+          {alternateContact && <>{" "}<a href={alternateContact.href} className="font-semibold underline">{alternateContact.label}</a></>}
         </p>
       )}
       <button type="submit" className="btn btn-primary btn-lg w-full sm:w-auto" disabled={state.sending}>

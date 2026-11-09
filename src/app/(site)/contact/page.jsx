@@ -37,8 +37,8 @@ export default async function ContactPage() {
         "@id": `${SITE_URL}/contact#webpage`, url: `${SITE_URL}/contact`, name: "Contact Online Quran College",
         isPartOf: { "@id": `${SITE_URL}/#website` }, mainEntity: { "@id": `${SITE_URL}/#organization` },
       }) }} />
-      <PageHero immersive features={false} path="/contact" eyebrow="Personal guidance, wherever you are" title="Contact Online Quran College" intro="Whether you are choosing a first Quran course or need help with an existing class, tell us what you need. Our coordinator can guide you on learning options, teacher preferences and suitable lesson times.">
-        <div className="mt-7 flex flex-wrap gap-3">
+      <PageHero immersive features={false} art="/contact" eyebrow="Personal guidance, wherever you are" title="Contact Online Quran College" intro="Whether you are choosing a first Quran course or need help with an existing class, tell us what you need. Our coordinator can guide you on learning options, teacher preferences and suitable lesson times.">
+        <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           {wa && <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-gold btn-lg"><MessageCircle className="size-5" />Chat on WhatsApp<ArrowRight className="size-4" /></a>}
           <a href="#send-message" className="btn btn-outline-light btn-lg"><Send className="size-4" />Send an enquiry</a>
         </div>
@@ -49,8 +49,8 @@ export default async function ContactPage() {
         <div className="min-w-0">
           <div className="mb-6">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-leaf-700">Choose your channel</p>
-            <h2 className="mt-2 text-[1.8rem] text-mushaf-900">Contact Online Quran College</h2>
-            <p className="mt-3 leading-relaxed text-ink-soft">You can contact Online Quran College using whichever method is most comfortable. For a quick question, WhatsApp is a convenient place to start; for a detailed request, use the form.</p>
+            <h2 className="mt-2 text-[1.8rem] text-mushaf-900">Choose how to reach us</h2>
+            <p className="mt-3 leading-relaxed text-ink-soft">Use WhatsApp for a quick question, or send the form if you need to explain what you’re looking for.</p>
           </div>
           <div className="space-y-3">
             {cards.map(({ icon: Icon, label, value, href, external, highlight, detail }) => {
@@ -93,8 +93,8 @@ export default async function ContactPage() {
         </div>
 
         <div className="min-w-0">
-          <ContactForm id="send-message" consentText={forms.consent_text} successText={forms.contact_success} />
-          <p className="mt-4 px-1 text-xs leading-relaxed text-ink-faint">For existing student support, open “Add contact details” and select “Existing student support” and include the learner’s name and registered email. Please do not send passwords or full payment-card details.</p>
+          <ContactForm id="send-message" consentText={forms.consent_text} alternateContact={wa ? { href: wa, label: "Chat on WhatsApp" } : contact.email ? { href: `mailto:${contact.email}`, label: "Email the college" } : undefined} />
+          <p className="mt-4 px-1 text-xs leading-relaxed text-ink-faint">For existing student support, choose “Existing student support” and include the learner’s name and registered email. Please do not send passwords or full payment-card details.</p>
         </div>
       </section>
 

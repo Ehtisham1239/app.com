@@ -1,5 +1,5 @@
 const ART = {
-  contact: { src: "/images/learning/contact-learning-desk-v4-1200.webp", alt: "Illustration of an online learning desk with a laptop, headset and closed book on a wooden reading stand" },
+  contact: { src: "/images/learning/contact-admissions-desk-v5-1200.webp", alt: "Laptop, headphones and a closed green book on a wooden reading stand in an online learning setup" },
   maleLesson: { src: "/images/learning/online-lesson-male-v4-1200.webp", alt: "Illustrative scene of a boy reading at home with a male Quran teacher guiding him over a laptop video call" },
   femaleLesson: { src: "/images/learning/online-lesson-female-v4-1200.webp", alt: "Illustrative scene of a girl following her lesson at home with a female Quran teacher on a laptop video call" },
   study: { src: "/images/islamic/online-lesson-adult-v1-1200.webp", alt: "A woman studies the Quran at home while a female teacher guides her over a live video lesson" },
