@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { contentMetadata } from "@/lib/seo-metadata";
 import { CurrencyPricing } from "@/components/site/currency-pricing";
 import { FeeCompare } from "@/components/site/fee-compare";
@@ -9,10 +10,11 @@ import { whatsappLink } from "@/lib/format";
 import { faqSchema, safeJsonLd } from "@/lib/seo";
 import { getUsdRates } from "@/lib/fx";
 import { feeAnswer } from "@/lib/fee-answer";
+import { INDEXED_MARKETS, getLocation, locationPath } from "@/lib/locations";
 
 export const revalidate = 300;
 
-export const metadata = contentMetadata({ title: "Online Quran Class Fees & Packages", seo_noindex: false }, { path: "/pricing", description: "Compare monthly packages for live one-to-one Quran classes, with a 3-day free trial on eligible plans. The Weekend plan is excluded from the trial." });
+export const metadata = contentMetadata({ title: "Online Quran Class Fees & Packages", seo_noindex: false }, { path: "/pricing", description: "Compare monthly Quran lesson fees, class length and lessons per week. See published packages in GBP, USD, AUD and AED, plus eligible free-trial options." });
 
 // No searchParams here: the page stays statically cached; ?currency= is read in the browser.
 export default async function PricingPage() {
@@ -46,6 +48,16 @@ export default async function PricingPage() {
           </div>
         </section>
       )}
+      <section className="page-wrap mt-8" aria-labelledby="fees-by-country">
+        <div className="mx-auto max-w-3xl rounded-[var(--radius-card)] border border-line bg-leaf-50 p-6 sm:p-7">
+          <h2 id="fees-by-country" className="text-xl text-mushaf-900">Quran lesson fees and schedules by country</h2>
+          <p className="mt-2 text-ink-soft">Use your country guide to check lesson times and fee guidance. Admissions confirms the exact fee, payment currency and teacher availability before enrolment.</p>
+          <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+            {INDEXED_MARKETS.map(getLocation).map(country => <li key={country.slug}><Link href={locationPath(country)} className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">{country.name} fees and scheduling</Link></li>)}
+            <li><Link href="/locations#new-zealand-lessons" className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">New Zealand lesson planning</Link></li>
+          </ul>
+        </div>
+      </section>
       <section className="page-wrap py-16 sm:py-20" aria-labelledby="monthly-packages">
         <h2 id="monthly-packages" className="sr-only">Monthly class packages</h2>
         {packages.length > 0 && <CurrencyPricing plans={packages} fx={fx} />}
