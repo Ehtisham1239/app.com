@@ -23,7 +23,7 @@ export default async function sitemap() {
   const locationPages = new Map(pages.map((p) => [p.slug, p]));
   const locations = LOCATIONS.flatMap((country) => [null, ...country.cities.filter((city) => !isCityState(country, city))].flatMap((city) => {
     const path = locationPath(country, city), page = locationPages.get(locationCmsSlug(country, city));
-    return shouldIncludeInSitemap(locationIndexRecord(page, country, city), path, SITE_URL) ? [{ url: `${SITE_URL}${path}`, lastModified: locationLastModified(page), ...(page?.cover_url ? { images: [imageUrl(page.cover_url)] } : {}), changeFrequency: "monthly", priority: city ? 0.6 : 0.7 }] : [];
+    return shouldIncludeInSitemap(locationIndexRecord(page, country, city), path, SITE_URL) ? [{ url: `${SITE_URL}${path}`, lastModified: locationLastModified(page, country.slug, Boolean(city)), ...(page?.cover_url ? { images: [imageUrl(page.cover_url)] } : {}), changeFrequency: "monthly", priority: city ? 0.6 : 0.7 }] : [];
   }));
   const content = (rows, prefix, priority) => rows.flatMap((row) => {
     const path = prefix === "" && guideForSlug(row.slug) ? guideForSlug(row.slug).path : `${prefix}/${row.slug}`;
