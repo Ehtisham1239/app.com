@@ -1,4 +1,5 @@
 import process from "node:process";
+import { trialContact } from "./highlevel-trial.js";
 
 const HIGHLEVEL_ORIGIN = "https://services.leadconnectorhq.com";
 const EMAIL = /^[^@\s<>]+@[^@\s<>]+\.[^@\s<>]+$/;
@@ -18,7 +19,7 @@ export function highLevelConfig(environment = process.env) {
 // Accept only the adult contact details needed for admissions. The caller owns
 // lead authorization, field selection, and durable delivery.
 export async function upsertHighLevelContact(contact, {
-  config = highLevelConfig(), fetchImpl = fetch,
+  config = highLevelConfig(), fetchImpl = fetch, trial,
 } = {}) {
   if (!config) return { ok: false, reason: "not_configured", retryable: false };
   const email = trim(contact?.email).toLowerCase();
@@ -32,7 +33,26 @@ export async function upsertHighLevelContact(contact, {
   if (name) payload.name = name;
   if (INTERNATIONAL_PHONE.test(phone)) payload.phone = phone;
 
-  const result = await highLevelRequest("/contacts/upsert", config, fetchImpl, payload);
+  let result;
+  if (trial) {
+    const fieldIds = await trialFieldIds(config, fetchImpl);
+    if (!fieldIds.ok) return fieldIds;
+    if (trial.fields.some(([key]) => !fieldIds.ids.has(key))) {
+      return { ok: false, reason: "missing_custom_fields", retryable: false };
+    }
+    const { tags, ...properties } = trial.properties;
+    Object.assign(payload, properties, {
+      customFields: trial.fields.map(([key, value]) => ({ id: fieldIds.ids.get(key), fieldValue: value })),
+    });
+    result = await trialRequest("/contacts/upsert", config, fetchImpl, payload);
+    if (!result.ok) return result;
+    const contactId = trim(result.data?.contact?.id);
+    if (!contactId) return invalidResponse();
+    // Upsert replaces all existing tags. Add these separately to preserve CRM history.
+    const tagged = await trialRequest(`/contacts/${encodeURIComponent(contactId)}/tags`, config, fetchImpl, { tags });
+    return tagged.ok ? { ok: true, contactId } : tagged;
+  }
+  result = await highLevelRequest("/contacts/upsert", config, fetchImpl, payload);
   if (!result.ok) return result;
   const contactId = trim(result.data?.contact?.id);
   return contactId ? { ok: true, contactId } : invalidResponse();
@@ -42,19 +62,19 @@ function invalidResponse() {
   return { ok: false, reason: "invalid_provider_response", retryable: true };
 }
 
-async function highLevelRequest(path, config, fetchImpl, payload) {
+async function highLevelRequest(path, config, fetchImpl, payload, { version = "v3", timeout = 8000 } = {}) {
   try {
     const response = await fetchImpl(HIGHLEVEL_ORIGIN + path, {
       method: payload ? "POST" : "GET",
       headers: {
         Authorization: `Bearer ${config.token}`,
-        Version: "v3",
+        Version: version,
         Accept: "application/json",
         ...(payload ? { "Content-Type": "application/json" } : {}),
       },
       body: payload ? JSON.stringify(payload) : undefined,
       redirect: "error",
-      signal: AbortSignal.timeout(8000),
+      signal: AbortSignal.timeout(timeout),
     });
     if (!response.ok) {
       const retryable = response.status === 408 || response.status === 429 || response.status >= 500;
@@ -64,6 +84,40 @@ async function highLevelRequest(path, config, fetchImpl, payload) {
   } catch {
     return { ok: false, reason: "provider_unavailable", retryable: true };
   }
+}
+
+async function trialRequest(path, config, fetchImpl, payload) {
+  const options = { version: "2021-07-28", timeout: 10000 };
+  const result = await highLevelRequest(path, config, fetchImpl, payload, options);
+  return result.retryable ? highLevelRequest(path, config, fetchImpl, payload, options) : result;
+}
+
+// Share a successful lookup across requests within this server instance. A
+// provider error or incomplete field set is checked again on the next lead.
+const fieldCache = new WeakMap();
+async function trialFieldIds(config, fetchImpl) {
+  const key = config.locationId;
+  const locations = fieldCache.get(fetchImpl) || new Map();
+  fieldCache.set(fetchImpl, locations);
+  const previous = locations.get(key);
+  if (previous?.token === config.token && previous.expires > Date.now()) return previous.result;
+  const pending = (async () => {
+    const result = await trialRequest(`/locations/${encodeURIComponent(key)}/customFields?model=contact`, config, fetchImpl);
+    if (!result.ok) return result;
+    if (!Array.isArray(result.data?.customFields)) return invalidResponse();
+    const ids = new Map();
+    for (const field of result.data.customFields) {
+      if (typeof field?.fieldKey === "string" && field.fieldKey.startsWith("contact.") && trim(field.id)) {
+        ids.set(field.fieldKey.slice("contact.".length), field.id);
+      }
+    }
+    return { ok: true, ids };
+  })();
+  const entry = { token: config.token, expires: Date.now() + 300000, result: pending };
+  locations.set(key, entry);
+  const result = await pending;
+  if ((!result.ok || result.ids.size < 10) && locations.get(key) === entry) locations.delete(key);
+  return result;
 }
 
 async function ensureOpenOpportunity(contactId, reference, config, fetchImpl) {
@@ -103,9 +157,14 @@ async function ensureOpenOpportunity(contactId, reference, config, fetchImpl) {
 
 // Only call this after the submission proof has been validated by the database.
 export async function syncHighLevelAdmission(lead, kind, {
-  config = highLevelConfig(), fetchImpl = fetch,
+  config = highLevelConfig(), fetchImpl = fetch, trialSiteUrl,
 } = {}) {
   if (kind !== "trial" && kind !== "contact") return { ok: false, reason: "not_an_admission" };
+  if (kind === "trial" && trialSiteUrl && typeof lead.utm?.ghl_trial_query === "string") {
+    return upsertHighLevelContact({ email: lead.email, phone: lead.phone }, {
+      config, fetchImpl, trial: trialContact(lead, trialSiteUrl),
+    });
+  }
   const name = kind === "contact"
     ? lead.name
     : trim(lead.guardian_name) || (lead.age_band === "adult" ? lead.learner_name : undefined);
