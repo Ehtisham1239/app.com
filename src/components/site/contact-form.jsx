@@ -11,7 +11,7 @@ import { COUNTRIES } from "@/lib/constants";
 
 const SUBJECTS = ["Course enquiry", "Fees and payment", "Class timings", "Teacher request", "Existing student support", "Partnership", "Other"];
 
-export function ContactForm({ id, consentText, alternateContact }) {
+export function ContactForm({ id, consentText, alternateContact, branded = false }) {
   const router = useRouter();
   const formRef = useRef(null);
   const submitting = useRef(false);
@@ -61,8 +61,8 @@ export function ContactForm({ id, consentText, alternateContact }) {
 
   return (
     <form id={id} tabIndex={id ? -1 : undefined} aria-labelledby={id ? `${id}-heading` : undefined} ref={formRef} onSubmit={submit} noValidate aria-busy={state.sending} className="surface min-w-0 scroll-mt-28 space-y-5 p-6 shadow-[var(--shadow-lift)] sm:p-8">
-      <div className="flex items-start gap-3">
-        <img src="/brand/mark-v2-64.png" alt="" width={64} height={64} className="size-10 shrink-0 rounded-xl bg-white p-1 ring-1 ring-leaf-100" />
+      <div className={branded ? "flex items-center gap-4 rounded-2xl border border-leaf-100 bg-leaf-50 p-4 sm:gap-5" : "flex items-start gap-3"}>
+        <img src={branded ? "/brand/oqc-contact-logo.webp" : "/brand/mark-v2-64.png"} alt={branded ? "Online Quran College Ltd" : ""} width={branded ? 240 : 64} height={branded ? 240 : 64} className={branded ? "size-16 shrink-0 rounded-xl bg-white ring-1 ring-leaf-100 sm:size-20" : "size-10 shrink-0 rounded-xl bg-white p-1 ring-1 ring-leaf-100"} />
         <div>
           <h2 id={id ? `${id}-heading` : undefined} className="text-[1.8rem] text-mushaf-900">Send us a message</h2>
           <p className="mt-2 text-sm leading-relaxed text-ink-soft">Tell us how we can help. We’ll reply by email.</p>

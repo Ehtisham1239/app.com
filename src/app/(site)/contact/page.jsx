@@ -37,7 +37,7 @@ export default async function ContactPage() {
         "@id": `${SITE_URL}/contact#webpage`, url: `${SITE_URL}/contact`, name: "Contact Online Quran College",
         isPartOf: { "@id": `${SITE_URL}/#website` }, mainEntity: { "@id": `${SITE_URL}/#organization` },
       }) }} />
-      <PageHero immersive features={false} art="/contact" eyebrow="Personal guidance, wherever you are" title="Contact Online Quran College" intro="Whether you are choosing a first Quran course or need help with an existing class, tell us what you need. Our coordinator can guide you on learning options, teacher preferences and suitable lesson times.">
+      <PageHero immersive features={false} art="/contact" eyebrow="Admissions and student support" title="Contact Online Quran College" intro="Whether you are choosing a first Quran course or need help with an existing class, tell us what you need. Our coordinator can guide you on learning options, teacher preferences and suitable lesson times.">
         <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           {wa && <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-gold btn-lg"><MessageCircle className="size-5" />Chat on WhatsApp<ArrowRight className="size-4" /></a>}
           <a href="#send-message" className="btn btn-outline-light btn-lg"><Send className="size-4" />Send an enquiry</a>
@@ -93,7 +93,7 @@ export default async function ContactPage() {
         </div>
 
         <div className="min-w-0">
-          <ContactForm id="send-message" consentText={forms.consent_text} alternateContact={wa ? { href: wa, label: "Chat on WhatsApp" } : contact.email ? { href: `mailto:${contact.email}`, label: "Email the college" } : undefined} />
+          <ContactForm id="send-message" branded consentText={forms.consent_text} alternateContact={wa ? { href: wa, label: "Chat on WhatsApp" } : contact.email ? { href: `mailto:${contact.email}`, label: "Email the college" } : undefined} />
           <p className="mt-4 px-1 text-xs leading-relaxed text-ink-faint">For existing student support, choose “Existing student support” and include the learner’s name and registered email. Please do not send passwords or full payment-card details.</p>
         </div>
       </section>
@@ -105,8 +105,8 @@ export default async function ContactPage() {
             <h2 id="contact-help-heading" className="mt-2 text-[1.7rem] text-mushaf-900">Explore before you decide</h2>
             <p className="mt-2 leading-relaxed text-ink-soft">Compare course options or find answers about lessons, teacher requests and scheduling.</p>
           </div>
-          <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            {[{ href: "/courses", icon: BookOpen, title: "Explore Quran courses", text: "Compare Quran reading, Noorani Qaida, Tajweed, Hifz and other learning paths." }, { href: "/faq", icon: HelpCircle, title: "Read common questions", text: "Learn how online lessons, teacher preferences and class scheduling work." }].map(({ href, icon: Icon, title, text }) => <Link key={href} href={href} className="group flex min-w-0 items-start gap-4 rounded-2xl border border-line bg-white p-5 transition-colors hover:border-leaf-500"><Icon className="mt-1 size-6 shrink-0 text-leaf-700" /><span className="min-w-0 flex-1"><span className="block font-semibold text-mushaf-900">{title}</span><span className="mt-1 block text-sm leading-relaxed text-ink-soft">{text}</span></span><ArrowRight className="mt-1 size-5 shrink-0 text-leaf-700" /></Link>)}
+          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {[{ href: "/courses", icon: BookOpen, title: "Explore Quran courses", text: "Compare Quran reading, Noorani Qaida, Tajweed, Hifz and other learning paths." }, { href: "/pricing", icon: Clock3, title: "Compare fees and packages", text: "See lesson frequency, prices and which plans include a free trial." }, { href: "/faq", icon: HelpCircle, title: "Read common questions", text: "Learn how online lessons, teacher preferences and class scheduling work." }].map(({ href, icon: Icon, title, text }) => <Link key={href} href={href} className="group flex min-w-0 items-start gap-4 rounded-2xl border border-line bg-white p-5 transition-colors hover:border-leaf-500"><Icon className="mt-1 size-6 shrink-0 text-leaf-700" /><span className="min-w-0 flex-1"><span className="block font-semibold text-mushaf-900">{title}</span><span className="mt-1 block text-sm leading-relaxed text-ink-soft">{text}</span></span><ArrowRight className="mt-1 size-5 shrink-0 text-leaf-700" /></Link>)}
           </div>
           <div className="mt-8 flex flex-col items-start justify-between gap-4 rounded-2xl bg-mushaf-900 p-6 text-white sm:flex-row sm:items-center sm:p-8">
             <div><h3 className="text-xl text-white">Ready to explore a first lesson?</h3><p className="mt-1 max-w-xl text-sm leading-relaxed text-white/75">Tell us about the learner and request a free trial to discuss a suitable starting point.</p></div>
