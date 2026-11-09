@@ -1,4 +1,6 @@
 // Country-specific guidance for online learners. Fees, offers and teacher availability are coordinator-confirmed.
+// Per-market content dates keep sitemap lastmod accurate without refreshing unrelated location pages.
+export const MARKET_GUIDE_UPDATED = { australia: "2026-11-09" };
 export const MARKET_GUIDES = {
   "united-kingdom": {
     title: "Planning online Quran lessons around UK family life",
