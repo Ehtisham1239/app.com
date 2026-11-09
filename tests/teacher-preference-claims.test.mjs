@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 
 const read = (path) => readFileSync(new URL(path, import.meta.url), "utf8");
+const homePage = read("../src/app/(site)/page.jsx");
 const teacherPage = read("../src/app/(site)/teachers/page.jsx");
 const trialPage = read("../src/app/(site)/free-trial/page.jsx");
 const trialIntro = read("../src/components/site/trial-intro.jsx");
@@ -33,4 +34,10 @@ test("teacher preference is presented as a request with availability confirmatio
   assert.match(learningGuide, /share a teacher preference[\s\S]*Admissions confirms whether a suitable teacher is available/i);
   assert.match(usaLanding, /Teacher preference[\s\S]*Admissions confirms whether a suitable teacher is available/i);
   assert.doesNotMatch(usaLanding, /Morning, afternoon and evening slots are available across US time zones/i);
+});
+
+
+test("homepage trial CTA confirms availability instead of promising a teacher or start date", () => {
+  assert.match(homePage, /Request a 3-day free trial\. Admissions will discuss your course and teacher preferences, confirm availability and agree a suitable time/i);
+  assert.doesNotMatch(homePage, /journey this week|We will match you with a teacher/i);
 });
