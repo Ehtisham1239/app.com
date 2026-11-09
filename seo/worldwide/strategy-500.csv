@@ -1,6 +1,6 @@
 id,market,workstream,question_or_check,target_path,action_or_acceptance,status
 OP-001,United States,Technical SEO,Can a crawler reach the relevant public market page?,/locations/united-states,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
-OP-002,United States,International SEO,Is there a published regional alternate for this market?,/locations/united-states,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-002,United States,International SEO,Is there a published regional alternate for this market?,/locations/united-states,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Reciprocal hreflang and x-default checked
 OP-003,United States,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations/united-states,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
 OP-004,United States,On-page SEO,How can families in United States find live Quran lessons online?,/locations/united-states,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
 OP-005,United States,Internal links,Where do families in United States compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
@@ -20,7 +20,7 @@ OP-018,United States,Bing and Copilot,Where can someone in United States read OQ
 OP-019,United States,Conversion SEO,Can a visitor from United States complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
 OP-020,United States,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations/united-states,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
 OP-021,United Kingdom,Technical SEO,Can a crawler reach the relevant public market page?,/locations/united-kingdom,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
-OP-022,United Kingdom,International SEO,Is there a published regional alternate for this market?,/locations/united-kingdom,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-022,United Kingdom,International SEO,Is there a published regional alternate for this market?,/locations/united-kingdom,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Reciprocal hreflang and x-default checked
 OP-023,United Kingdom,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations/united-kingdom,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
 OP-024,United Kingdom,On-page SEO,How can families in United Kingdom find live Quran lessons online?,/locations/united-kingdom,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
 OP-025,United Kingdom,Internal links,Where do families in United Kingdom compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
@@ -40,7 +40,7 @@ OP-038,United Kingdom,Bing and Copilot,Where can someone in United Kingdom read 
 OP-039,United Kingdom,Conversion SEO,Can a visitor from United Kingdom complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
 OP-040,United Kingdom,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations/united-kingdom,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
 OP-041,Australia,Technical SEO,Can a crawler reach the relevant public market page?,/locations/australia,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
-OP-042,Australia,International SEO,Is there a published regional alternate for this market?,/locations/australia,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-042,Australia,International SEO,Is there a published regional alternate for this market?,/locations/australia,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Reciprocal hreflang and x-default checked
 OP-043,Australia,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations/australia,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
 OP-044,Australia,On-page SEO,How can families in Australia find live Quran lessons online?,/locations/australia,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
 OP-045,Australia,Internal links,Where do families in Australia compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
@@ -60,7 +60,7 @@ OP-058,Australia,Bing and Copilot,Where can someone in Australia read OQC teache
 OP-059,Australia,Conversion SEO,Can a visitor from Australia complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
 OP-060,Australia,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations/australia,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
 OP-061,Canada,Technical SEO,Can a crawler reach the relevant public market page?,/locations/canada,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
-OP-062,Canada,International SEO,Is there a published regional alternate for this market?,/locations/canada,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
+OP-062,Canada,International SEO,Is there a published regional alternate for this market?,/locations/canada,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Reciprocal hreflang and x-default checked
 OP-063,Canada,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations/canada,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
 OP-064,Canada,On-page SEO,How can families in Canada find live Quran lessons online?,/locations/canada,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
 OP-065,Canada,Internal links,Where do families in Canada compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
@@ -359,26 +359,26 @@ OP-357,Finland,Google AI,How are online Quran lessons arranged for learners in F
 OP-358,Finland,Bing and Copilot,Where can someone in Finland read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
 OP-359,Finland,Conversion SEO,Can a visitor from Finland complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
 OP-360,Finland,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
-OP-361,Iceland,Technical SEO,Can a crawler reach the relevant public market page?,/locations,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
-OP-362,Iceland,International SEO,Is there a published regional alternate for this market?,/locations,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
-OP-363,Iceland,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
-OP-364,Iceland,On-page SEO,How can families in Iceland find live Quran lessons online?,/locations,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
-OP-365,Iceland,Internal links,Where do families in Iceland compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
-OP-366,Iceland,AEO,How much do online Quran lessons cost for a family in Iceland?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
-OP-367,Iceland,AEO,What is included in the free Quran trial for Iceland?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
-OP-368,Iceland,AEO,Can I request a female Quran teacher from Iceland?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
-OP-369,Iceland,AEO,Which Quran course should a beginner from Iceland start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
-OP-370,Iceland,AEO,How does a parent in Iceland prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
-OP-371,Iceland,AEO,Can an adult in Iceland start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
-OP-372,Iceland,GEO,Does Online Quran College have a physical branch in Iceland?,/locations,Check that remote coverage is clear and no office or local licence is implied.,Queued
-OP-373,Iceland,GEO,How can I propose a Quran lesson time from Iceland?,/locations,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
-OP-374,Iceland,GEO,What should I confirm before paying for classes from Iceland?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
-OP-375,Iceland,Claude search,Which OQC source explains trial eligibility for families in Iceland?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
-OP-376,Iceland,ChatGPT search,Which OQC source helps families in Iceland compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
-OP-377,Iceland,Google AI,How are online Quran lessons arranged for learners in Iceland?,/locations,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
-OP-378,Iceland,Bing and Copilot,Where can someone in Iceland read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
-OP-379,Iceland,Conversion SEO,Can a visitor from Iceland complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
-OP-380,Iceland,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-361,United Arab Emirates,Technical SEO,Can a crawler reach the relevant public market page?,/locations/united-arab-emirates,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-362,United Arab Emirates,International SEO,Is there a published regional alternate for this market?,/locations/united-arab-emirates,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Reciprocal hreflang and x-default checked
+OP-363,United Arab Emirates,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations/united-arab-emirates,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-364,United Arab Emirates,On-page SEO,How can families in the United Arab Emirates find live Quran lessons online?,/locations/united-arab-emirates,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-365,United Arab Emirates,Internal links,Where do families in the United Arab Emirates compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-366,United Arab Emirates,AEO,How much do online Quran lessons cost for a family in the United Arab Emirates?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-367,United Arab Emirates,AEO,What is included in the free Quran trial for United Arab Emirates?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-368,United Arab Emirates,AEO,Can I request a female Quran teacher from the United Arab Emirates?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-369,United Arab Emirates,AEO,Which Quran course should a beginner from the United Arab Emirates start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-370,United Arab Emirates,AEO,How does a parent in the United Arab Emirates prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-371,United Arab Emirates,AEO,Can an adult in the United Arab Emirates start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-372,United Arab Emirates,GEO,Does Online Quran College have a physical branch in the United Arab Emirates?,/locations/united-arab-emirates,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-373,United Arab Emirates,GEO,How can I propose a Quran lesson time from the United Arab Emirates?,/locations/united-arab-emirates,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-374,United Arab Emirates,GEO,What should I confirm before paying for classes from the United Arab Emirates?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-375,United Arab Emirates,Claude search,Which OQC source explains trial eligibility for families in the United Arab Emirates?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-376,United Arab Emirates,ChatGPT search,Which OQC source helps families in the United Arab Emirates compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-377,United Arab Emirates,Google AI,How are online Quran lessons arranged for learners in the United Arab Emirates?,/locations/united-arab-emirates,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-378,United Arab Emirates,Bing and Copilot,Where can someone in the United Arab Emirates read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-379,United Arab Emirates,Conversion SEO,Can a visitor from the United Arab Emirates complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-380,United Arab Emirates,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations/united-arab-emirates,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
 OP-381,Poland,Technical SEO,Can a crawler reach the relevant public market page?,/locations,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
 OP-382,Poland,International SEO,Is there a published regional alternate for this market?,/locations,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
 OP-383,Poland,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
@@ -479,23 +479,23 @@ OP-477,Romania,Google AI,How are online Quran lessons arranged for learners in R
 OP-478,Romania,Bing and Copilot,Where can someone in Romania read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
 OP-479,Romania,Conversion SEO,Can a visitor from Romania complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
 OP-480,Romania,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
-OP-481,Bulgaria,Technical SEO,Can a crawler reach the relevant public market page?,/locations,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
-OP-482,Bulgaria,International SEO,Is there a published regional alternate for this market?,/locations,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",Queued
-OP-483,Bulgaria,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
-OP-484,Bulgaria,On-page SEO,How can families in Bulgaria find live Quran lessons online?,/locations,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
-OP-485,Bulgaria,Internal links,Where do families in Bulgaria compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
-OP-486,Bulgaria,AEO,How much do online Quran lessons cost for a family in Bulgaria?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
-OP-487,Bulgaria,AEO,What is included in the free Quran trial for Bulgaria?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
-OP-488,Bulgaria,AEO,Can I request a female Quran teacher from Bulgaria?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
-OP-489,Bulgaria,AEO,Which Quran course should a beginner from Bulgaria start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
-OP-490,Bulgaria,AEO,How does a parent in Bulgaria prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
-OP-491,Bulgaria,AEO,Can an adult in Bulgaria start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
-OP-492,Bulgaria,GEO,Does Online Quran College have a physical branch in Bulgaria?,/locations,Check that remote coverage is clear and no office or local licence is implied.,Queued
-OP-493,Bulgaria,GEO,How can I propose a Quran lesson time from Bulgaria?,/locations,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
-OP-494,Bulgaria,GEO,What should I confirm before paying for classes from Bulgaria?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
-OP-495,Bulgaria,Claude search,Which OQC source explains trial eligibility for families in Bulgaria?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
-OP-496,Bulgaria,ChatGPT search,Which OQC source helps families in Bulgaria compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
-OP-497,Bulgaria,Google AI,How are online Quran lessons arranged for learners in Bulgaria?,/locations,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
-OP-498,Bulgaria,Bing and Copilot,Where can someone in Bulgaria read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
-OP-499,Bulgaria,Conversion SEO,Can a visitor from Bulgaria complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
-OP-500,Bulgaria,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
+OP-481,New Zealand,Technical SEO,Can a crawler reach the relevant public market page?,/locations,"Verify HTTP 200, intended indexability and one canonical.","HTTP, canonical and index directive checked"
+OP-482,New Zealand,International SEO,Is there a published regional alternate for this market?,/locations,"For indexed hubs, check reciprocal hreflang and x-default; otherwise use the global locations hub.",New Zealand section verified on global hub
+OP-483,New Zealand,Technical SEO,Is the relevant canonical URL present in the XML sitemap?,/locations,Compare sitemap URL and canonical; inspect coverage only after confirming both.,Listed in live sitemap
+OP-484,New Zealand,On-page SEO,How can families in New Zealand find live Quran lessons online?,/locations,"Compare visible title, H1 and opening paragraph against the online-only offer.",Queued
+OP-485,New Zealand,Internal links,Where do families in New Zealand compare courses before booking?,/courses,Verify the relevant market page or global hub links to the course comparison.,Queued
+OP-486,New Zealand,AEO,How much do online Quran lessons cost for a family in New Zealand?,/pricing,Check published package prices and currency wording; avoid unconfirmed conversion claims.,Queued
+OP-487,New Zealand,AEO,What is included in the free Quran trial for New Zealand?,/free-trial,Verify the three-day eligible-plan offer and the Weekend exclusion.,Queued
+OP-488,New Zealand,AEO,Can I request a female Quran teacher from New Zealand?,/teachers,Check the page distinguishes a teacher request from confirmed availability.,Queued
+OP-489,New Zealand,AEO,Which Quran course should a beginner from New Zealand start with?,/courses/noorani-qaida,Verify a short answer distinguishes alphabet foundations from connected reading.,Queued
+OP-490,New Zealand,AEO,How does a parent in New Zealand prepare a child for the first Quran lesson?,/learn/quran-for-kids,"Check parent preparation guidance, age-appropriate wording and next step.",Queued
+OP-491,New Zealand,AEO,Can an adult in New Zealand start learning Quran reading from scratch?,/learn/quran-for-adults,Verify adult guidance and a link to the appropriate starting course.,Queued
+OP-492,New Zealand,GEO,Does Online Quran College have a physical branch in New Zealand?,/locations,Check that remote coverage is clear and no office or local licence is implied.,Queued
+OP-493,New Zealand,GEO,How can I propose a Quran lesson time from New Zealand?,/locations,Verify the public scheduler or country guidance and avoid a fixed availability promise.,Queued
+OP-494,New Zealand,GEO,What should I confirm before paying for classes from New Zealand?,/pricing,"Check the contact route, fee confirmation and published refund terms.",Queued
+OP-495,New Zealand,Claude search,Which OQC source explains trial eligibility for families in New Zealand?,/free-trial,"In Claude web search, record whether a citation appears, the exact URL and answer accuracy.",Queued
+OP-496,New Zealand,ChatGPT search,Which OQC source helps families in New Zealand compare Quran courses?,/courses,"In ChatGPT Search, record citation URL, answer accuracy and missing context.",Queued
+OP-497,New Zealand,Google AI,How are online Quran lessons arranged for learners in New Zealand?,/locations,"If an AI feature appears, record citation and claims; otherwise record feature absent.",Queued
+OP-498,New Zealand,Bing and Copilot,Where can someone in New Zealand read OQC teacher information?,/teachers,Compare Bing indexing and any Copilot citation; record dates and URLs separately.,Queued
+OP-499,New Zealand,Conversion SEO,Can a visitor from New Zealand complete the trial form on mobile?,/free-trial,"Test validation, country selection and consent with synthetic data in staging.",Queued
+OP-500,New Zealand,Performance SEO,Is the relevant market landing page usable on a slow mobile connection?,/locations,Record mobile Lighthouse LCP and CLS; distinguish lab data from field data.,Queued
