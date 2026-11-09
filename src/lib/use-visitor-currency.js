@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { currencyForTimeZone } from "@/lib/fx";
 
 // Starts from USD (or the given default). On load, a ?currency= in the URL wins;
 // otherwise it switches once to the currency for the visitor's country. A later manual
@@ -16,10 +17,15 @@ export function useVisitorCurrency(options, defaultCurrency = "USD", explicit = 
       return () => { canceled = true; };
     }
     const controller = new AbortController();
+    const apply = (value) => { if (!controller.signal.aborted && !manualChoice.current && value && options.includes(value)) setCurrency(value); };
+    const fromTimeZone = () => {
+      try { return currencyForTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone); } catch { return null; }
+    };
+    // The host's visitor-country header wins; without one (Hostinger), the browser time zone decides.
     fetch("/api/geo", { signal: controller.signal, cache: "no-store" })
       .then((r) => (r.ok ? r.json() : null))
-      .then((geo) => { if (!controller.signal.aborted && !manualChoice.current && geo?.currency && options.includes(geo.currency)) setCurrency(geo.currency); })
-      .catch(() => {});
+      .then((geo) => apply(geo?.country ? geo.currency : fromTimeZone()))
+      .catch(() => apply(fromTimeZone()));
     return () => controller.abort();
     // Run once on load so the visitor's later choice is not overridden.
     // eslint-disable-next-line react-hooks/exhaustive-deps

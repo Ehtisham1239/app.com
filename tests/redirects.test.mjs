@@ -5,8 +5,20 @@ import nextConfig from '../next.config.mjs';
 import {LOCATIONS,locationCmsSlug,locationPath} from '../src/lib/locations.js';
 import {LEARNING_GUIDES} from '../src/lib/learning-guides.js';
 
-const redirects=await nextConfig.redirects();
+const allRedirects=await nextConfig.redirects();
+// Host-canonical rules (bare domain -> www) are the only absolute targets; path rules stay internal.
+const hostRules=allRedirects.filter(r=>r.has?.some(h=>h.type==='host'));
+const redirects=allRedirects.filter(r=>!hostRules.includes(r));
 const bySource=new Map(redirects.map(r=>[r.source,r]));
+
+test('host rules only send the bare domain to the canonical www origin',()=>{
+  assert.equal(hostRules.length,1);
+  for(const rule of hostRules){
+    assert.deepEqual(rule.has,[{type:'host',value:'onlinequrancollege.com'}]);
+    assert.equal(rule.destination,'https://www.onlinequrancollege.com/:path*');
+    assert.equal(rule.permanent,true);
+  }
+});
 
 test('homepage and canonical learning/location pages are not redirect sources',()=>{
   for(const path of ['/','/courses','/blog','/pricing','/free-trial','/locations',...LOCATIONS.flatMap(c=>[null,...c.cities].map(city=>locationPath(c,city)))])assert.equal(bySource.has(path),false,path);
