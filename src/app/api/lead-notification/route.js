@@ -54,7 +54,7 @@ export async function POST(request) {
 
   let crm = null;
   if (highLevel && lead.lead_type !== "review") {
-    crm = await syncHighLevelAdmission(lead, lead.lead_type, { config: highLevel });
+    crm = await syncHighLevelAdmission(lead, lead.lead_type, { config: highLevel, trialSiteUrl: SITE_URL });
     log(crm.ok ? "info" : "error", crm.ok ? "highlevel_synced" : `highlevel_${crm.reason}`, lead.reference);
   }
   if (!config) {

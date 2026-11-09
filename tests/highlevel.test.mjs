@@ -113,3 +113,68 @@ test("a concurrent opportunity conflict is accepted only after the matching open
     assert.equal(result.ok, found);
   }
 });
+
+test("the Free Trial specification maps approved values and adds tags without replacing CRM tags", async () => {
+  const keys = ["age_group", "course_interested_in", "teacher_preference_mf", "contact_consent", "form_name", "page_url", "utm_source", "utm_medium", "utm_campaign", "utm_content"];
+  const calls = [];
+  let upserts = 0;
+  const fetchImpl = async (url, request) => {
+    assert.equal(request.headers.Version, "2021-07-28");
+    const target = new URL(url);
+    calls.push(target.pathname);
+    if (target.pathname.endsWith("/customFields")) {
+      assert.equal(target.searchParams.get("model"), "contact");
+      return Response.json({ customFields: keys.map(key => ({ fieldKey: `contact.${key}`, id: key })) });
+    }
+    const body = JSON.parse(request.body);
+    if (target.pathname === "/contacts/upsert") {
+      assert.deepEqual(body, {
+        locationId: "test-location", email: "parent@example.com", phone: "+447700900123",
+        firstName: "Test", lastName: "Ahmed Khan", country: "GB", source: "Website: Free Trial Form",
+        customFields: [
+          { id: "age_group", fieldValue: "Child (8 to 12)" },
+          { id: "course_interested_in", fieldValue: "Noorani Qaida" },
+          { id: "teacher_preference_mf", fieldValue: "Female teacher" },
+          { id: "contact_consent", fieldValue: ["Yes, agreed to be contacted"] },
+          { id: "form_name", fieldValue: "Free Trial Form" },
+          { id: "page_url", fieldValue: "https://www.onlinequrancollege.com/free-trial?utm_medium=paid_social" },
+          { id: "utm_source", fieldValue: "facebook" },
+        ],
+      });
+      if (++upserts === 1) return new Response(null, { status: 503 });
+      return Response.json({ contact: { id: "contact-1" } });
+    }
+    assert.deepEqual(body, { tags: ["website lead", "form: free trial", "country: united kingdom", "region: uk ireland"] });
+    return Response.json({});
+  };
+  const lead = {
+    learner_name: "Test Ahmed Khan", guardian_name: "Test Parent", age_band: "child_8_12", email: "parent@example.com",
+    phone: "+44 7700 900123", country: "United Kingdom", course: "Noorani Qaida", teacher_gender_pref: "female",
+    utm: { ghl_trial_query: "utm_medium=paid_social&email=should-not-transfer", ghl_teacher_selected: true, utm_source: "facebook" },
+  };
+  const options = {
+    config: { ...config, pipelineId: "unused", stageId: "unused" },
+    fetchImpl,
+    trialSiteUrl: "https://www.onlinequrancollege.com",
+  };
+  for (let i = 0; i < 2; i++) assert.deepEqual(await syncHighLevelAdmission(lead, "trial", options), { ok: true, contactId: "contact-1" });
+  assert.deepEqual(calls, ["/locations/test-location/customFields", "/contacts/upsert", "/contacts/upsert", "/contacts/contact-1/tags", "/contacts/upsert", "/contacts/contact-1/tags"]);
+});
+
+test("the Free Trial mapper covers the dropdown and omits absent or inferred values", async () => {
+  const { COUNTRIES } = await import("../src/lib/constants.js");
+  const { trialContact } = await import("../src/lib/server/highlevel-trial.js");
+  const site = "https://www.onlinequrancollege.com";
+  for (const [country] of COUNTRIES) {
+    const { properties, fields } = trialContact({
+      country, learner_name: "Test", age_band: "adult", teacher_gender_pref: "any",
+      utm: { attribution_method: "search_referrer", utm_source: "google" },
+    }, site);
+    assert.equal(properties.tags[2], `country: ${country.toLowerCase()}`);
+    assert.equal(properties.firstName, "Test");
+    assert.equal(properties.lastName, undefined);
+    if (["Other", "Kosovo"].includes(country)) assert.equal(properties.country, undefined);
+    else assert.match(properties.country, /^[A-Z]{2}$/);
+    assert.deepEqual(fields.map(([key]) => key), ["age_group", "contact_consent", "form_name", "page_url"]);
+  }
+});

@@ -136,6 +136,12 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
     submitting.current = true;
     setState({ sending: true, error: "", reference: null });
     const utm = captureAttribution();
+    const teacherGender = { "Female teacher": "female", "Male teacher": "male", "No preference": "any" }[form.teacher_preference];
+    const trialQuery = new URLSearchParams();
+    for (const key of ["utm_source", "utm_medium", "utm_campaign", "utm_content"]) {
+      const value = params.get(key)?.trim().slice(0, 120);
+      if (value) trialQuery.set(key, value);
+    }
     // The time-zone library is only needed when a visitor arrives with a
     // preferred lesson time or quote currency, so it loads on submit instead
     // of with the form (and every page that prefetches /free-trial).
@@ -154,11 +160,12 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       timezone,
       age_band: form.age_band,
       course_id: form.course_id || null,
+      teacher_gender_pref: teacherGender,
       notes: [form.notes.trim(), preferenceNotes, ["Female teacher", "Male teacher", "No preference"].includes(form.teacher_preference) ? `Teacher preference: ${form.teacher_preference}. Availability to be confirmed.` : ""].filter(Boolean).join("\n"),
       consent: form.consent,
       marketing_opt_in: false,
       source: utm.utm_source || "website",
-      utm,
+      utm: { ...utm, ghl_trial_query: trialQuery.toString(), ghl_teacher_selected: Boolean(teacherGender) },
       website: form.website,
     };
     let data, error;
@@ -287,7 +294,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       <div>
         <label className="flex items-start gap-3 text-[0.88rem] leading-relaxed text-ink-soft">
           <input id="q-consent" type="checkbox" className="check mt-0.5 shrink-0" checked={form.consent} onChange={(e) => set("consent", e.target.checked)} required {...err("consent")} />
-          <span>{(eligible && consentText) || "I agree that Online Quran College may contact me about this enquiry."} <Link href="/privacy-policy" className="font-medium text-leaf-700 underline underline-offset-2">Privacy notice</Link></span>
+          <span>{(eligible && consentText) || "I agree that Online Quran College may contact me about this enquiry."} We may use our admissions CRM to manage the learner’s details and this enquiry. <Link href="/privacy-policy" className="font-medium text-leaf-700 underline underline-offset-2">Privacy notice</Link></span>
         </label>
         <FieldError id="q-consent-error">{errors.consent}</FieldError>
       </div>
