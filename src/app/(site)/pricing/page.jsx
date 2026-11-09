@@ -14,7 +14,7 @@ import { INDEXED_MARKETS, getLocation, locationPath } from "@/lib/locations";
 
 export const revalidate = 300;
 
-export const metadata = contentMetadata({ title: "Online Quran Class Fees & Packages", seo_noindex: false }, { path: "/pricing", description: "Compare monthly Quran lesson fees, class length and lessons per week. See published packages in GBP, USD, AUD and AED, plus eligible free-trial options." });
+export const metadata = contentMetadata({ title: "Online Quran Class Fees & Packages", seo_noindex: false }, { path: "/pricing", description: "Compare monthly Quran lesson fees, class length and lessons per week. View fees in GBP, USD, AUD or AED and check which plans include a free trial." });
 
 // No searchParams here: the page stays statically cached; ?currency= is read in the browser.
 export default async function PricingPage() {
