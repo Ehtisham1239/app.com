@@ -1,4 +1,5 @@
 import { test } from "node:test";
+import { readFileSync } from "node:fs";
 import assert from "node:assert/strict";
 import { analyzeSeo, validCanonical, canonicalUrl, duplicateMetadata, shouldIncludeInSitemap, safeJsonLd, organizationPostalAddress } from "../src/lib/seo.js";
 import { locationFromCmsSlug, locationPath, getLocation, defaultLocationNoindex, locationIndexRecord } from "../src/lib/locations.js";
