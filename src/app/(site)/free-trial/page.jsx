@@ -20,7 +20,7 @@ export const metadata = contentMetadata({
   seo_title: "Free Online Quran Trial Classes | Online Quran College",
   cover_url: COVER.src,
   cover_alt: COVER.alt,
-}, { path: "/free-trial", description: "Request a free 3-day trial of live one-to-one Quran classes on eligible plans. The Weekend plan is excluded; Admissions confirms teacher and timetable availability." });
+}, { path: "/free-trial", description: "Request a 3-day free trial of one-to-one online Quran lessons for children or adults. No card needed on eligible plans. The Weekend plan is excluded." });
 
 // What families ask before booking; every answer restates what the page and the
 // steps already promise (no new claims). Shown below the form and as FAQPage data.
@@ -49,7 +49,7 @@ export default async function FreeTrialPage() {
         <div className="text-white">
           <Suspense fallback={<TrialHeadingView />}><TrialHeading plans={planList} /></Suspense>
           <div data-hero-visual className="mt-6 hidden overflow-hidden rounded-[1.5rem] border border-white/15 lg:block">
-            <ContentImage src={COVER.src} alt={COVER.alt} priority sizes="(max-width: 1024px) 0px, 560px" className="aspect-[16/9] w-full object-cover" />
+            <ContentImage src={COVER.src} alt={COVER.alt} sizes="560px" className="aspect-[16/9] w-full object-cover" />
           </div>
         </div>
         <div className="min-w-0 lg:col-start-2 lg:row-span-2 lg:row-start-1">
@@ -66,6 +66,7 @@ export default async function FreeTrialPage() {
     <section className="page-wrap max-w-3xl py-14" aria-labelledby="trial-faq">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema(TRIAL_FAQS)) }} />
       <h2 id="trial-faq" className="text-2xl text-mushaf-900 sm:text-3xl">Questions about the free trial</h2>
+      <p className="mt-3 text-ink-soft">Before booking, you can <Link href="/courses" className="font-semibold text-leaf-700 underline underline-offset-4">compare Quran courses</Link>, <Link href="/pricing" className="font-semibold text-leaf-700 underline underline-offset-4">check class fees and packages</Link> or <Link href="/locations" className="font-semibold text-leaf-700 underline underline-offset-4">plan a lesson in your local time</Link>.</p>
       <div className="mt-6"><FaqList faqs={TRIAL_FAQS.map((f, i) => ({ id: `trial-${i}`, ...f }))} defaultOpen={-1} /></div>
     </section>
     </>

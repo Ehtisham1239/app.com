@@ -14,6 +14,7 @@ const SEARCH_AGENTS = [
   "YandexBot",
   "OAI-SearchBot",
   "Claude-SearchBot",
+  "Claude-User",
 ];
 
 // Match the sitemap/metadata origin in production and isolated QA builds.

@@ -30,18 +30,18 @@
       "id": "OPS-02",
       "priority": "P1",
       "workstream": "Existing blogs",
-      "status": "35 CMS published articles; 32 prior checks retained and 3 new HTML audits verified8November",
-      "result": "32 selected public-field records unchanged; three new public articles match CMS and retain noindex. Inclusive new-article words407\u2013453; eight contextual destinations200.",
-      "evidence": "docs/seo-agent/BLOG-ACTION-REGISTER-2026-11-08.json",
-      "next": "Audit changed/new articles and confirm qualified review for three noindex articles. Fresh mobile checks remain blocked by local Chromium startup SIGSEGV."
+      "status": "35 published articles;32 unchanged;3 indexing changes verified9November",
+      "result": "Three existing article bodies unchanged. Live HTML, title formatter and1363px desktop rendering pass. All35 blogs are now in sitemap. Three review articles changed from noindex to index; sign-off reconciliation is P1.",
+      "evidence": "docs/seo-agent/BLOG-ACTION-REGISTER-2026-11-09.json",
+      "next": "Reconcile qualified academic and indexing authorization for three articles. Continue390px verification when a supported runtime is available."
     },
     {
       "id": "OPS-03",
       "priority": "P1",
       "workstream": "Technical SEO",
-      "status": "84 declared public sitemap URLs audited by CI8November",
-      "result": "Remote read-only crawl reports84 audited, zero technical findings, quality failures or keyword-placement failures.",
-      "evidence": "docs/seo-agent/evidence/2026-11-08/verification.json",
+      "status": "Changed-route sample verified9November; prior84-page crawl retained with original date",
+      "result": "Current sitemap has87 pages including35 blogs. Trial/locations/USA and trial thank-you responses/directives pass. Ambiguous duplicate blog filter/page parameters return404. No whole-site recrawl today.",
+      "evidence": "docs/seo-agent/evidence/2026-11-09/verification.json",
       "next": "Monitor changed routes and unresolved issues; do not repeat unchanged checks without a reason."
     },
     {
@@ -92,7 +92,7 @@
       "workstream": "Image SEO/accessibility",
       "status": "Rating correction retained and USA call accessible-name correction verified live8November",
       "next": "Keep new-article mobile verification separate from the passing representative CI responsive audit.",
-      "result": "Current rating paragraphs have screen-reader text. PR146 removes two redundant USA call aria-label attributes. Both corrected links verified in public HTML on READY production c30c4968."
+      "result": "Current rating paragraphs have screen-reader text. PR146 removes two redundant USA call aria-label attributes. Both corrected links verified in public HTML on READY production c30c4968. Three changed articles now pass1363px desktop cover/H1/TOC/overflow checks on9November. Trial form child/adult field transitions verified without submission."
     },
     {
       "id": "OPS-10",
@@ -113,16 +113,16 @@
       "id": "OPS-11",
       "priority": "P2",
       "workstream": "Religious review",
-      "status": "Qualified review pending",
-      "result": "Source references checked; no Academics sign-off fabricated.",
-      "next": "Academics reviews existing religious explanations and chosen translations."
+      "status": "Qualified review evidence and article indexing reconciliation pending",
+      "result": "Three reviewed draft bodies are now public/indexable. No qualified sign-off found in inspected records; approval elsewhere remains unknown.",
+      "next": "Locate academic reviewer sign-off and owner publishing/indexing decision for Arabic, Hifz-readiness and Translation/Tafseer articles."
     },
     {
       "id": "OPS-12",
       "priority": "P2",
       "workstream": "External registers and private hosting logs",
       "status": "Vercel project/deployment access works; current functional correction verified live",
-      "result": "Production c30c4968 is READY at dpl_DqcE8bmmzHcvE32hymFE8V8siU1v and assigned to the canonical domain. Both USA call links verified live.",
+      "result": "Current source2043e3f is READY at dpl_4tzNfXcBXxMPUBsbN9QcuoQw5opr. Latest host-neutral, form and market updates retained. Public samples and desktop browser verified9November.",
       "next": "Preserve the separate external Claude Docs pathway dependency."
     }
   ],
@@ -269,11 +269,11 @@
     }
   ],
   "last_daily_review": {
-    "date": "2026-11-08",
-    "source_reviewed": "4d44bdb57277c3f2d9496c18485ffa654a076b7f",
-    "report": "docs/SEO-DAILY-2026-11-08.md",
-    "result": "35 published articles,3 new audited with noindex retained; staff rating fix retained; PR146 call accessibility correction deployed and verified;84-page CI audit passes",
-    "evidence": "docs/seo-agent/evidence/2026-11-08/verification.json"
+    "date": "2026-11-09",
+    "source_reviewed": "2043e3fbfe2a1ac7b93c516bb902b4e9cc41aac7",
+    "report": "docs/SEO-DAILY-2026-11-09.md",
+    "result": "35 CMS posts;3 indexing changes reconciled against live sitemap/HTML; desktop article and trial conditional-field checks pass; academic/indexing approval gap recorded",
+    "evidence": "docs/seo-agent/evidence/2026-11-09/verification.json"
   },
   "last_implementation": {
     "date": "2026-10-29",
@@ -382,5 +382,16 @@
     "source_commit": "c30c4968ec9e7d7fe794fd2d44746ea0016f1b52",
     "deployment_id": "dpl_DqcE8bmmzHcvE32hymFE8V8siU1v",
     "evidence": "docs/seo-agent/evidence/2026-11-08/verification.json"
+  },
+  "article_indexing_review": {
+    "priority": "P1",
+    "status": "Awaiting approval evidence",
+    "previous_flags": "seo_noindex=true on8November",
+    "current_flags": "seo_noindex=false, version4",
+    "cms_updated_utc": "2026-11-08T15:37:13.882913Z",
+    "live_directive": "index, follow",
+    "sitemap_inclusion": true,
+    "academic_review": "No matching qualified sign-off found in inspected repository and private report. This does not establish absence of approval elsewhere.",
+    "action": "Preserve current settings. Reconcile human academic sign-off and publishing/indexing authorization before any change."
   }
 }
