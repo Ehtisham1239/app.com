@@ -1,6 +1,7 @@
 // Read-only release gate for every declared public page. No account or form mutations.
 import assert from "node:assert/strict";
 import {mkdirSync,writeFileSync} from "node:fs";
+import { isWebPageIdentity } from "./lib/page-schema.mjs";
 const base=(process.argv[2]||"http://localhost:3012").replace(/\/$/,"");
 const out=process.argv[3]||"artifacts/page-quality";mkdirSync(out,{recursive:true});
 const decode=s=>String(s||"").replace(/&amp;/g,"&").replace(/&quot;/g,'"').replace(/&#x([0-9a-f]+);/gi,(_,v)=>String.fromCodePoint(parseInt(v,16))).replace(/&#(\d+);/g,(_,v)=>String.fromCodePoint(+v));
@@ -14,7 +15,7 @@ await Promise.all(Array.from({length:3},async()=>{while(cursor<urls.length){cons
  const title=decode(body.match(/<title>(.*?)<\/title>/s)?.[1]),description=metas.find(m=>m.name==="description")?.content;
  const canonical=[...body.matchAll(/<link\b[^>]*>/g)].map(m=>attrs(m[0])).find(m=>m.rel==="canonical")?.href;
  const graph=[...body.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].flatMap(m=>{const value=JSON.parse(m[1]);return value["@graph"]||[value];});
- const web=graph.find(x=>x["@type"]==="WebPage"),org=graph.find(x=>[].concat(x["@type"]).includes("EducationalOrganization")&&x["@id"]===canonicalOrigin+"/#organization");
+ const web=graph.find(x=>isWebPageIdentity(x,url.href)),org=graph.find(x=>[].concat(x["@type"]).includes("EducationalOrganization")&&x["@id"]===canonicalOrigin+"/#organization");
  const visual=body.match(/data-hero-visual[^>]*>([\s\S]*?)<\/section>/)?.[1]||body.match(/<picture class="hero-immersive-media">([\s\S]*?)<\/picture>/)?.[1]||(path==="/free-trial"?body.match(/<main[^>]*>([\s\S]*?)<\/main>/)?.[1]:"")||"",heroImages=[...visual.matchAll(/<img\b[^>]*>/g)].map(m=>attrs(m[0]));
  const video=graph.find(x=>x["@type"]==="VideoObject");
  const player=[...body.matchAll(/<(?:video|iframe)\b[^>]*>/g)].map(m=>attrs(m[0])).find(x=>video&&(x.src===video.embedUrl||x.src===video.contentUrl));
