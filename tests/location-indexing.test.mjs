@@ -9,11 +9,20 @@ test("without a CMS row only the five approved country hubs are indexable", () =
   assert.deepEqual(indexable.sort(), [...INDEXED_MARKETS].sort());
 });
 
-test("an explicit CMS choice always wins over the default", () => {
-  const uk = LOCATIONS.find((c) => c.slug === "united-kingdom");
-  const london = uk.cities.find((c) => c.slug === "london");
-  assert.equal(locationIndexRecord({ seo_noindex: false }, uk, london).seo_noindex, false, "city page re-indexed after local proof");
-  assert.equal(locationIndexRecord({ seo_noindex: true }, uk, null).seo_noindex, true);
+test("legacy CMS index opt-in cannot bypass the local-proof gate for city pages", () => {
+  for (const country of LOCATIONS) {
+    for (const city of country.cities) {
+      assert.equal(locationIndexRecord({ seo_noindex: false }, country, city).seo_noindex, true, `${country.slug}/${city.slug} stays noindex until local proof is approved`);
+    }
+  }
+});
+
+test("approved country hubs remain indexable unless CMS explicitly sets noindex", () => {
+  for (const slug of INDEXED_MARKETS) {
+    const country = LOCATIONS.find((c) => c.slug === slug);
+    assert.equal(locationIndexRecord({ seo_noindex: false }, country, null).seo_noindex, false, slug);
+    assert.equal(locationIndexRecord({ seo_noindex: true }, country, null).seo_noindex, true, slug);
+  }
 });
 
 test("a city page shows its own CMS guidance open, so re-indexed city pages lead with local content", () => {
