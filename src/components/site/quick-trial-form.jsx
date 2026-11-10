@@ -203,8 +203,8 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
   return (
     <form ref={topRef} onSubmit={submit} noValidate aria-busy={state.sending} aria-label={eligible ? "Book a free trial" : "Package enquiry"} className="surface scroll-mt-28 space-y-5 p-5 shadow-[var(--shadow-lift)] sm:p-8">
       <div className="absolute -left-[9999px]" aria-hidden="true"><label>Website<input tabIndex={-1} autoComplete="off" value={form.website} onChange={(e) => set("website", e.target.value)} /></label></div>
-      <div className="flex items-start gap-3">
-        <img src="/brand/mark-v2-64.png" alt="" width={64} height={64} className="size-10 shrink-0 rounded-xl bg-white p-1 ring-1 ring-leaf-100" />
+      <div className="flex items-center gap-4 rounded-2xl border border-leaf-100 bg-leaf-50 p-4 sm:gap-5">
+        <img src="/brand/oqc-contact-logo.webp" alt="Online Quran College Ltd" width={240} height={240} className="size-16 shrink-0 rounded-xl bg-white ring-1 ring-leaf-100 sm:size-20" />
         <div>
           <h2 className="text-[1.55rem] text-mushaf-900">{eligible ? "Book your free 3-day trial" : `Enquire about ${selectedPlan.name}`}</h2>
           <p className="mt-1 text-[0.92rem] text-ink-soft">{eligible ? "No card needed. Admissions will contact you to arrange a time." : "The Weekend plan is excluded from the free trial. The coordinator will confirm the schedule and terms."}</p>
