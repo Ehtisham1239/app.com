@@ -70,7 +70,7 @@ export async function POST(request) {
   }
   if (!config) {
     if (!crm) return reply({ ok: false, error: "not_configured" }, 503);
-    return crm.ok ? reply({ ok: true }) : reply({ ok: false, error: "crm_failed" }, 502);
+    return crm.ok ? reply({ ok: true }) : reply({ ok: false, error: "notification_failed" }, 502);
   }
 
   const isContact = lead.lead_type === "contact";
