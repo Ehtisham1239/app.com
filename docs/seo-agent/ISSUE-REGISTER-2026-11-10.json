@@ -1,0 +1,197 @@
+{
+  "reviewed": "2026-11-10",
+  "timezone": "Asia/Karachi",
+  "site": "https://www.onlinequrancollege.com",
+  "source_reviewed": "27ef9a85779179569c3cc2cc9449c0feb093bcbe",
+  "latest_docs_commit": "c6b0ca731f6f18c72a18b5b5fc370ed8892b9881",
+  "status": "Draft register on an unmerged documentation branch; no production changes",
+  "blog_inventory": {
+    "published_articles": 35,
+    "body_word_count_method": "CMS body_html; strip HTML tags and entities, collapse whitespace, count whitespace-separated words",
+    "body_word_count_min": 299,
+    "body_word_count_max": 920,
+    "over_owner_1000_word_limit": 0,
+    "changed_since_prior_run": 20,
+    "changed_article_audit": "All 20 current register entries report HTTP 200, self-canonical, index/follow, body_matches_cms=true, zero schema errors and zero recorded issues; all have cover alt text and responsive 400/800/1200 sources.",
+    "inclusive_word_count_max": 951
+  },
+  "measurement_snapshot": {
+    "period": "2026-10-12 to 2026-11-08",
+    "search_console": {
+      "clicks": 36,
+      "impressions": 1266,
+      "notes": "Stored Windsor.ai snapshot read 2026-11-09 and row refreshed 2026-11-10. 22 clicks were to the homepage; 8 were the brand query from Pakistan; non-brand UK/USA/Canada/Australia queries mostly below position 20. Not a fresh authenticated query export."
+    },
+    "ga4": {
+      "organic_sessions": 93,
+      "generate_lead_events": 9,
+      "contact_click_events": 27,
+      "notes": "Stored Windsor.ai snapshot read 2026-11-09. Cookieless mode issues a new client_id on each page load; session/user counts are inflated. Events are more useful for directional trend, not proof of qualified leads or admissions."
+    },
+    "access": "Fresh GA4 event report unavailable in this run because the connected-account limit was exceeded. No direct Search Console URL Inspection data available."
+  },
+  "lead_delivery": {
+    "crm_sync_status": "Two application-side lead_crm_sync rows have status=synced.",
+    "runtime_errors": "One lead_notification lookup_failed event in the last 24 hours; no error/warning logs in the latest 50-minute query.",
+    "limitation": "Application-side sync status is not independent GHL UI readback. Email delivery receipt was not verified. Vercel Hobby runtime log retention prevented a 24-hour raw-log query."
+  },
+  "issues": [
+    {
+      "id": "OQC-TZ-CA-001",
+      "url": "https://www.onlinequrancollege.com/locations/canada",
+      "related_url": "https://www.onlinequrancollege.com/blog/online-quran-lessons-canada-time-zones",
+      "exact_evidence": [
+        "src/lib/market-timezones.js includes Winnipeg with IANA zone America/Winnipeg.",
+        "src/lib/location-schedule.js only applies explicit permanent offsets for America/Vancouver (-420) and America/Edmonton (-360) from 2026-11-01; America/Winnipeg is not in the override map.",
+        "tests/market-planning.test.mjs covers Vancouver, Edmonton, Toronto, St. John's and Regina but has no Winnipeg post-2026-11-01 regression case.",
+        "The Supabase task 'Treat America/Winnipeg as permanent UTC-5 in lesson planner' remains blocked.",
+        "Manitoba's official source confirms permanent UTC-5 from 2026-11-01: https://www.gov.mb.ca/timechange/"
+      ],
+      "issue": "The Canada lesson planner lacks an explicit Winnipeg permanent-time compatibility override for browsers with stale IANA time-zone data.",
+      "impact": "If a visitor's browser time-zone database has not received Manitoba's 2026 change, the planner may apply the former fall-back rule and display a lesson conversion one hour out. This is a compatibility risk, not proof that every browser is wrong.",
+      "priority": "P1",
+      "proposed_change": "Add America/Winnipeg: -300 to the permanentOffset map for dates on/after 2026-11-01. Add tests for 2026-11-10 18:00 -> 2026-11-10T23:00:00.000Z and for 2026-11-01 01:30 being unambiguous. Preserve historical-date behavior.",
+      "owner_access_needed": "Developer code change and owner approval before production deployment.",
+      "risk": "Medium; incorrect local-time conversion could cause missed or mistimed lessons.",
+      "approval_status": "Requires owner approval for code change.",
+      "implementation_status": "Not implemented; draft recommendation only.",
+      "verification_method": "Unit tests; browser planner at 390px and desktop; verify Winnipeg local time, UTC and Asia/Karachi conversion; no form submission; production smoke only after approval."
+    },
+    {
+      "id": "OQC-CONTENT-CA-002",
+      "url": "https://www.onlinequrancollege.com/blog/online-quran-lessons-canada-time-zones",
+      "exact_evidence": [
+        "The current CMS body and 2026-11-10 verification register include BC, Alberta, Manitoba, Saskatchewan and Yukon changes.",
+        "The current body does not mention the Northwest Territories permanent UTC-6 rule or Ontario Regulation 333/26 for the area west of 90 degrees W.",
+        "Government of Northwest Territories confirms UTC-6 year-round from 2026-11-01: https://www.gov.nt.ca/en/newsroom/northwest-territories-ends-seasonal-time-change",
+        "Ontario Regulation 333/26 sets year-round UTC-5 west of the 90th meridian: https://www.ontario.ca/laws/regulation/r26333",
+        "BC's official page notes local mountain-time exceptions in eastern communities: https://news.gov.bc.ca/releases/2026AG0013-000209"
+      ],
+      "issue": "The updated Canada time-zone article is materially better but does not yet summarize all newly effective 2026 jurisdiction changes and local exceptions.",
+      "impact": "Families in the Northwest Territories or northwestern Ontario may not see their exact local rule; broad province-level wording can still be incomplete.",
+      "priority": "P2",
+      "proposed_change": "Add a short sourced paragraph for Northwest Territories Time (UTC-6), Ontario west of 90 degrees W (UTC-5 year-round), and the BC East Kootenay/Golden local exceptions. Keep the city/date confirmation instruction.",
+      "owner_access_needed": "Content editor and qualified factual review; owner approval before CMS publication.",
+      "risk": "Low-to-medium factual freshness risk.",
+      "approval_status": "Requires editorial and owner approval.",
+      "implementation_status": "Draft recommendation only; no CMS change.",
+      "verification_method": "Recheck primary provincial/territorial sources, keep article under 1,000 words, confirm internal planner links and rendered body after approval."
+    },
+    {
+      "id": "OQC-ACA-001",
+      "url": "https://www.onlinequrancollege.com/blog/arabic-for-quran-readers",
+      "related_urls": [
+        "https://www.onlinequrancollege.com/blog/is-my-child-ready-for-hifz",
+        "https://www.onlinequrancollege.com/blog/quran-translation-tafseer-beginners"
+      ],
+      "exact_evidence": [
+        "All three CMS records are published, seo_noindex=false, version 5, and updated 2026-11-09 04:28:30 UTC.",
+        "The 2026-11-10 report and inspected decision records contain no matching qualified academic sign-off; approval elsewhere remains unknown."
+      ],
+      "issue": "Academic review and owner indexing approval have not been reconciled in the inspected records for three recently indexable articles.",
+      "impact": "Religious education content needs clear qualified review and publishing accountability; no conclusion is drawn that the content is inaccurate.",
+      "priority": "P1",
+      "proposed_change": "Obtain named qualified academic review, record the review date and decision, and reconcile the owner's indexation approval. Preserve current text and flags until a decision is documented.",
+      "owner_access_needed": "Academic lead/reviewer and owner approval record.",
+      "risk": "Medium trust and governance risk.",
+      "approval_status": "Approval not found in inspected records; approval elsewhere unknown.",
+      "implementation_status": "Blocked pending review evidence; no settings changed.",
+      "verification_method": "Signed review record, owner decision, CMS version/flags, rendered robots metadata and sitemap inclusion."
+    },
+    {
+      "id": "OQC-LEAD-001",
+      "url": "https://www.onlinequrancollege.com/free-trial",
+      "related_url": "https://www.onlinequrancollege.com/contact",
+      "exact_evidence": [
+        "Supabase lead_crm_sync contains two records with status=synced.",
+        "Vercel aggregated runtime errors show one lead_notification lookup_failed event in the last 24 hours.",
+        "No errors or warnings appeared in the latest 50-minute production log query.",
+        "The current lead route performs a proof-bound lead lookup before CRM/email notification."
+      ],
+      "issue": "CRM sync has two successful application-side records, but one notification lookup failure remains and email delivery has not been independently verified.",
+      "impact": "A saved enquiry may not trigger the expected follow-up notification; this is not evidence that the underlying lead was lost.",
+      "priority": "P1",
+      "proposed_change": "Reconcile the lookup failure through the authorized staff workflow; run an approved test enquiry only after owner authorization; verify saved record, GHL record and email receipt separately.",
+      "owner_access_needed": "Authorized Admissions test lead, Vercel/Resend configuration owner, and read-only GHL access for independent verification.",
+      "risk": "High conversion/follow-up risk if recurring.",
+      "approval_status": "Requires owner authorization for test submission and any configuration change.",
+      "implementation_status": "Partially evidenced; two sync statuses recorded, one lookup error remains.",
+      "verification_method": "Approved test lead; verify database save, GHL contact/tags, email receipt and staff-only CRM status; never expose PII in reports."
+    },
+    {
+      "id": "OQC-ANALYTICS-001",
+      "url": "https://www.onlinequrancollege.com/",
+      "exact_evidence": [
+        "Stored GA4 snapshot for 2026-10-12 to 2026-11-08 records 93 organic sessions, 9 generate_lead events and 27 contact_click events.",
+        "Stored notes warn that cookieless mode assigns a new client_id on each page load, inflating sessions/users.",
+        "Owner-approved setting in AGENTS.md uses cookieless analytics with analytics_storage granted, advertising signals denied and no banner.",
+        "The 2026-11-10 report records a Windsor.ai connected-account limit error for fresh GA4 reporting."
+      ],
+      "issue": "Organic measurement is directionally available but session counts are inflated and fresh event-level reporting is blocked; consent configuration has not received independent legal review.",
+      "impact": "Do not use session/user totals as a reliable baseline or claim legal compliance; event counts are not qualified leads or admissions.",
+      "priority": "P2",
+      "proposed_change": "Retain the owner-approved technical configuration unchanged; obtain a privacy/legal review for UK/EEA and other relevant markets; resolve reporting-account capacity or provide dated GA4/GSC exports. Define qualified enquiry, trial attendance and admission events with authorized CRM reconciliation.",
+      "owner_access_needed": "Owner/legal reviewer and authorized analytics reporting access or dated exports.",
+      "risk": "Medium measurement and compliance-assurance risk.",
+      "approval_status": "Technical setting is owner-approved; no change authorized; legal review pending.",
+      "implementation_status": "Open; no analytics settings changed.",
+      "verification_method": "Dated GA4/GSC exports, consent implementation review, event QA without PII, and CRM-stage reconciliation."
+    },
+    {
+      "id": "OQC-MOBILE-001",
+      "url": "https://www.onlinequrancollege.com/",
+      "exact_evidence": [
+        "The 2026-11-10 report records Chromium failing before navigation with a process-singleton socket permission error and SIGABRT.",
+        "A separate native browser returned ERR_CONNECTION_REFUSED and DevTools access was blocked by organization policy.",
+        "No fresh 390px mobile pass or post-deployment field Core Web Vitals measurement was obtained."
+      ],
+      "issue": "Current mobile usability and field CWV remain unverified after recent public-site changes.",
+      "impact": "Build success and older remote lab scores do not prove current mobile experience or field CWV.",
+      "priority": "P2",
+      "proposed_change": "Run an authorized 390px/desktop browser smoke test and collect field p75 LCP/INP/CLS when a supported browser and data source are available.",
+      "owner_access_needed": "Supported browser session and PageSpeed/Search Console field data.",
+      "risk": "Unknown until measured.",
+      "approval_status": "No production changes required for the test.",
+      "implementation_status": "Blocked by browser/network tooling limitation.",
+      "verification_method": "390px/desktop layout, keyboard/focus, reduced motion, form labels, image loading and field p75 CWV."
+    }
+  ],
+  "backlink_pipeline": {
+    "overall_status": "Research only; no outreach, submission, payment or backlink placement",
+    "prospects": [
+      {
+        "name": "RISE",
+        "stage": "IDENTIFIED",
+        "note": "Resource pitch drafted; owner submission authorization and sender not confirmed."
+      },
+      {
+        "name": "IslamiCity",
+        "stage": "IDENTIFIED",
+        "note": "Official submission route found; named author, academic review and AI/authorship policy remain unverified."
+      },
+      {
+        "name": "ISRA Academy",
+        "stage": "IDENTIFIED",
+        "note": "Publications confirmed; open contribution route not confirmed."
+      },
+      {
+        "name": "ISRE",
+        "stage": "IDENTIFIED",
+        "note": "Resource recommendation route observed; relevance and acceptance unconfirmed."
+      }
+    ]
+  },
+  "public_archive_reconciliation": {
+    "cms_published_articles": 35,
+    "sitemap_blog_urls_in_internal_register": 35,
+    "public_archive_pages_observed": [
+      1,
+      2,
+      3
+    ],
+    "public_article_cards_observed": 27,
+    "page_4": "Cache miss in web retrieval; not treated as a site failure.",
+    "rss_feed": "Fetch rejected by retrieval tool because application/rss+xml is unsupported; not treated as a broken feed.",
+    "robots_and_sitemap_direct_fetch": "Not independently retrievable through the web tool in this run."
+  }
+}
