@@ -71,6 +71,18 @@ const nextConfig = {
   // Keep links from the previous WordPress site working
   async redirects() {
     const courses = ["noorani-qaida", "quran-nazara", "hifz-quran", "arabic-language", "quran-translation", "hadith-translation"];
+    const uk = getLocation("united-kingdom");
+    const ukAliases = ["london", "birmingham", "manchester", "leeds", "bradford", "leicester"].map((slug) => {
+      const city = uk.cities.find((entry) => entry.slug === slug);
+      return [`online-quran-classes-${slug}`, defaultLocationNoindex(uk, city) ? locationPath(uk) : locationPath(uk, city)];
+    });
+    const oldRelativeLinks = [
+      ...["about", "contact", "pricing", "careers"].map((slug) => [slug, `/${slug}`]),
+      ...courses.map((slug) => [slug, `/courses/${slug}`]),
+      ...ukAliases,
+      ["online-quran-classes-uk", "/locations/united-kingdom"],
+      ["terms-conditions", "/terms-and-conditions"],
+    ];
     return [
       // Canonical host: the bare domain always moves to www. Vercel did this at the domain
       // level; on Hostinger both names reach the app, so the app does it (8 Nov 2026).
@@ -88,10 +100,15 @@ const nextConfig = {
       { source: "/online-quran-classes-uk", destination: "/locations/united-kingdom", permanent: true },
       // Old WordPress city URLs still rank in Search Console. Send them to an indexable
       // page so that standing is not passed to a noindex city page.
-      ...["london", "birmingham", "manchester", "leeds", "bradford", "leicester"].map((slug) => {
-        const uk = getLocation("united-kingdom"), city = uk.cities.find((c) => c.slug === slug);
-        return { source: `/online-quran-classes-${slug}`, destination: defaultLocationNoindex(uk, city) ? locationPath(uk) : locationPath(uk, city), permanent: true };
-      }),
+      ...ukAliases.map(([slug, destination]) => ({ source: `/${slug}`, destination, permanent: true })),
+      // Recover relative links from the old public pages reported as 404 in Search Console.
+      ...oldRelativeLinks.map(([slug, destination]) => ({ source: `/:section(about|contact|pricing|privacy-policy)/${slug}`, destination, permanent: true })),
+      { source: "/book-now", destination: "/free-trial", permanent: true },
+      { source: "/op/book-now-online-quran-free-classes", destination: "/free-trial", permanent: true },
+      { source: "/noorani-qaida-course", destination: "/courses/noorani-qaida", permanent: true },
+      { source: "/hadith-translation-course", destination: "/courses/hadith-translation", permanent: true },
+      { source: "/our-blogs", destination: "/blog", permanent: true },
+      { source: "/faqs", destination: "/faq", permanent: true },
       ...courses.map((slug) => ({ source: `/${slug}`, destination: `/courses/${slug}`, permanent: true })),
       { source: "/hifz-ul-quran-course", destination: "/courses/hifz-quran", permanent: true },
       // Old WordPress pages still in the search index (2 Nov 2026 site: check) that now 404.
