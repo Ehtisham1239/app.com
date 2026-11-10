@@ -2,8 +2,8 @@
 
 **Reporting time:** 08:20 PKT (Asia/Karachi)  
 **Repository:** [Ehtisham1239/app.com](https://github.com/Ehtisham1239/app.com)  
-**Code reviewed:** `27ef9a85779179569c3cc2cc9449c0feb093bcbe`  
-**Latest docs-only production deployment:** `dpl_D5Uwv2DWPP1nxXYmiPRMaHnNqEfh` — READY  
+**Latest production source:** `7406ec03f680a514ec83cdc78cb4491aa2ef9f09` (PR #183; logo-only changes; the three Canadian time-zone files are unchanged from `27ef9a85779179569c3cc2cc9449c0feb093bcbe`)  
+**Latest production deployment:** `dpl_5QZztrfZt9UrmpicE6J3x7bQKNwW` — READY (PR #183, commit `7406ec03f680a514ec83cdc78cb4491aa2ef9f09`)  
 **Status:** Read-only research and a draft documentation PR. No application code, CMS, DNS, account settings, analytics configuration, pricing, or production content changed.
 
 ## Work plan
@@ -68,7 +68,7 @@ Keep the city/date confirmation instruction and verify the planner for Winnipeg 
 
 ## 3. Technical SEO, deployment and accessibility
 
-- Latest production deployment for the documentation commit is Vercel READY with aliases on the OQC domain. The application code deployment from PR #182 is also READY.
+- Latest production deployment from PR #183 is Vercel READY with OQC production aliases. PR #183 changes only the supplied logo on public forms/footer and its review test. The time-zone source files are byte-for-byte unchanged from the code reviewed in PR #182; the Winnipeg gap remains present.
 - The latest code deployment is not a fresh browser/mobile pass. The 10 November report records Chromium failing before navigation (socket permission/SIGABRT) and a separate browser returning `ERR_CONNECTION_REFUSED`; no bypass was attempted.
 - No new 390px mobile verification or post-deployment field p75 Core Web Vitals data is available.
 - Public archive pages 1–3 were observed; page 4 and feed/robots/sitemap could not be retrieved through this web tool. No HTTP failure is inferred.
