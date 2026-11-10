@@ -52,8 +52,11 @@ export async function POST(request) {
 
   let crm = null;
   if (highLevel) {
-    crm = await syncHighLevelAdmission(lead, "trial", { config: highLevel });
+    crm = await syncHighLevelAdmission(lead, "trial", { config: highLevel, form: "usa" });
     log(crm.ok ? "info" : "error", crm.ok ? "highlevel_synced" : `highlevel_${crm.reason}`, lead.reference);
+    try {
+      await publicDb.rpc("record_lead_crm_sync", { p_reference: parsed.reference, p_email: parsed.email, p_token: parsed.notificationToken, p_ok: crm.ok === true, p_detail: crm.ok ? null : crm.reason });
+    } catch { /* best effort: staff status only */ }
   }
   if (!config) {
     if (!crm) return reply({ ok: false, error: "not_configured" }, 503);

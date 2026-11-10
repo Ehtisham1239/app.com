@@ -8,6 +8,7 @@ import { db, downloadCsv, likeTerm, notifyError, useLoad } from "@/lib/admin/db"
 import { AGE_BANDS, TRIAL_STATUSES, labelFor } from "@/lib/constants";
 import { formatDateTime } from "@/lib/format";
 import { Badge, Card, EmptyState, ErrorState, Loading, PageHeader, Pagination, SearchInput, StatusBadge, Tabs, When } from "@/components/admin/ui";
+import { CrmBadge, useCrmStatus } from "@/components/admin/crm-status";
 
 const PAGE = 25;
 const FIELDS = "id, reference, learner_name, guardian_name, email, phone, phone_is_whatsapp, country, timezone, age_band, status, created_at, trial_at, duplicate_of_id, source, preferred_days, preferred_times, courses(title), teachers(display_name)";
@@ -26,6 +27,7 @@ function TrialsList() {
     return query;
   };
   const list = useLoad(() => filtered(db().from("trial_applications").select(FIELDS, { count: "exact" })).order("created_at", { ascending: false }).range(page * PAGE, page * PAGE + PAGE - 1), [status, q, page]);
+  const crm = useCrmStatus(list.data?.map((t) => t.reference));
   const counts = useLoad(async () => {
     const res = await Promise.all(TRIAL_STATUSES.map((s) => db().from("trial_applications").select("id", { count: "exact", head: true }).is("deleted_at", null).eq("status", s.value)));
     return { data: Object.fromEntries(TRIAL_STATUSES.map((s, i) => [s.value, res[i].count ?? 0])) };
@@ -128,7 +130,10 @@ function TrialsList() {
                     </td>
                     <td className="whitespace-nowrap text-ink-soft">{t.trial_at ? formatDateTime(t.trial_at) : "—"}</td>
                     <td>
-                      <StatusBadge list={TRIAL_STATUSES} value={t.status} />
+                      <div className="flex flex-col items-start gap-1">
+                        <StatusBadge list={TRIAL_STATUSES} value={t.status} />
+                        <CrmBadge status={crm[t.reference]} />
+                      </div>
                     </td>
                   </tr>
                 ))}

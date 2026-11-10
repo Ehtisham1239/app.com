@@ -192,3 +192,26 @@ test("a package chosen on the fees page reaches HighLevel as a tag", async () =>
   assert.equal(tags("Package of interest: <script>").length, 4);
   assert.equal(tags(`Package of interest: ${"x".repeat(41)}`).length, 4);
 });
+
+test("contact form and USA landing leads reach HighLevel with a source and website tags", async () => {
+  const { websiteFormProperties } = await import("../src/lib/server/highlevel-trial.js");
+  assert.deepEqual(websiteFormProperties("contact", "United Kingdom"), {
+    source: "Website: Contact Form", tags: ["website lead", "form: contact", "country: united kingdom", "region: uk ireland"],
+  });
+  assert.deepEqual(websiteFormProperties("usa", "United States").tags, ["website lead", "form: usa landing page", "country: united states", "region: north america"]);
+  assert.deepEqual(websiteFormProperties("contact", "").tags, ["website lead", "form: contact"]);
+  assert.equal(websiteFormProperties("unknown", "United Kingdom"), null);
+
+  const calls = [];
+  const fetchImpl = async (url, request) => {
+    const path = new URL(url).pathname;
+    calls.push([path, request.headers.Version, JSON.parse(request.body)]);
+    return path === "/contacts/upsert" ? Response.json({ contact: { id: "contact-9" } }) : Response.json({});
+  };
+  const lead = { email: "parent@example.com", name: "Test Parent", phone: "+44 7700 900123", country: "United Kingdom", message: "Private" };
+  assert.deepEqual(await syncHighLevelAdmission(lead, "contact", { config, fetchImpl, form: "contact" }), { ok: true, contactId: "contact-9" });
+  assert.deepEqual(calls[0], ["/contacts/upsert", "v3", { locationId: "test-location", email: "parent@example.com", name: "Test Parent", phone: "+447700900123", source: "Website: Contact Form" }]);
+  assert.deepEqual(calls[1], ["/contacts/contact-9/tags", "2021-07-28", { tags: ["website lead", "form: contact", "country: united kingdom", "region: uk ireland"] }]);
+  assert.equal(calls.length, 2);
+  assert.doesNotMatch(JSON.stringify(calls), /Private/, "the message text never leaves the website");
+});

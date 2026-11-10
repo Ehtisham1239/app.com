@@ -131,3 +131,23 @@ test("USA trials are handled only by the existing USA notification route", async
   const legacy = await one("select public.usa_lead_for_notification($1,$2,$3) as r", [result.reference, email, result.notification_token]);
   assert.equal(legacy.r.reference, result.reference);
 });
+
+test("only the just-submitted lead's proof can record its CRM status, and only staff can read it", async () => {
+  const submission = await contact("crm@example.test");
+  const record = async (token, ok = true) => {
+    await as("anon");
+    return (await one("select public.record_lead_crm_sync($1, $2, $3, $4, $5) as r", [submission.reference, "crm@example.test", token, ok, ok ? null : "Provider Rejected!"])).r;
+  };
+  assert.equal(await record("0".repeat(64)), false);
+  assert.equal(await record(submission.notification_token, false), true);
+  await as("postgres");
+  let row = await one("select status, detail from public.lead_crm_sync where reference = $1", [submission.reference]);
+  assert.deepEqual({ ...row }, { status: "failed", detail: "providerrejected" });
+  assert.equal(await record(submission.notification_token, true), true);
+  await as("postgres");
+  row = await one("select status, detail from public.lead_crm_sync where reference = $1", [submission.reference]);
+  assert.deepEqual({ ...row }, { status: "synced", detail: null });
+  await as("anon");
+  await assert.rejects(db.query("select * from public.lead_crm_sync"), /permission denied/);
+  await assert.rejects(db.query("insert into public.lead_crm_sync (reference, status) values ('MSG-2026-99999', 'synced')"), /permission denied/);
+});
