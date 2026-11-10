@@ -2,7 +2,7 @@
   "reviewed": "2026-11-10",
   "timezone": "Asia/Karachi",
   "site": "https://www.onlinequrancollege.com",
-  "source_reviewed": "27ef9a85779179569c3cc2cc9449c0feb093bcbe",
+  "source_reviewed": "7406ec03f680a514ec83cdc78cb4491aa2ef9f09",
   "latest_docs_commit": "c6b0ca731f6f18c72a18b5b5fc370ed8892b9881",
   "status": "Draft register on an unmerged documentation branch; no production changes",
   "blog_inventory": {
@@ -193,5 +193,12 @@
     "page_4": "Cache miss in web retrieval; not treated as a site failure.",
     "rss_feed": "Fetch rejected by retrieval tool because application/rss+xml is unsupported; not treated as a broken feed.",
     "robots_and_sitemap_direct_fetch": "Not independently retrievable through the web tool in this run."
+  },
+  "previous_time_zone_source": "27ef9a85779179569c3cc2cc9449c0feb093bcbe",
+  "latest_production_deployment": {
+    "id": "dpl_5QZztrfZt9UrmpicE6J3x7bQKNwW",
+    "state": "READY",
+    "commit": "7406ec03f680a514ec83cdc78cb4491aa2ef9f09",
+    "note": "PR #183 logo-only files; Canadian time-zone source/test files are unchanged."
   }
 }
