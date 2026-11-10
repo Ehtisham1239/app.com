@@ -22,6 +22,13 @@ test("Australia market copy avoids promising a same-day exchange rate", () => {
   assert.match(migration, /at the latest available exchange rate/);
 });
 
+test("Sydney's example converts AEDT and AEST to Pakistan correctly", () => {
+  assert.match(migration, /slug = 'locations-australia-sydney'/);
+  assert.match(migration, /5:00 pm Sydney lesson corresponds to 12:00 pm in Pakistan during AEDT/);
+  assert.match(migration, /11:00 am in Pakistan during AEDT and 12:00 pm during AEST/);
+  assert.match(migration, /nsw\.gov\.au\/about-nsw\/daylight-saving/);
+});
+
 test("market copy migration does not change indexation, prices, discounts or trial eligibility", () => {
   assert.doesNotMatch(migration, /seo_noindex\s*=|pricing_plan_prices|sibling discount|free trial/i);
 });

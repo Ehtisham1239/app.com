@@ -1,7 +1,5 @@
--- Correct two public market-guide copy issues against the approved pricing configuration.
--- Canada is currently quoted in USD; do not imply an approved CAD package.
--- Australia may show an approximate AUD conversion, so describe the source as the
--- latest available exchange rate rather than promising a same-day rate.
+-- Correct public market-guide copy against the approved pricing configuration
+-- and authoritative time-zone rules. No prices, discounts or indexation settings change.
 update public.pages
 set body_html = replace(
   replace(
@@ -37,3 +35,17 @@ where slug = 'locations-australia'
   and status = 'published'
   and deleted_at is null
   and body_html like '%at today’s exchange rate%';
+
+-- Sydney is currently on AEDT (UTC+11); Pakistan stays on PKT (UTC+5).
+-- Therefore 5:00 pm Sydney is 11:00 am Pakistan during AEDT and 12:00 pm during AEST.
+-- Link the time-change explanation to the NSW Government's current schedule.
+update public.pages
+set body_html = replace(
+  body_html,
+  'For example, a 5:00 pm Sydney lesson corresponds to 12:00 pm in Pakistan during AEDT and 12:00 pm? Please confirm the date with the time planner because seasonal clock changes alter the offset.',
+  'For example, a 5:00 pm Sydney lesson corresponds to 11:00 am in Pakistan during AEDT and 12:00 pm during AEST. Choose the actual date in the time planner to confirm the offset. For current NSW daylight-saving dates, see the <a href="https://www.nsw.gov.au/about-nsw/daylight-saving">NSW Government daylight-saving guide</a>.'
+)
+where slug = 'locations-australia-sydney'
+  and status = 'published'
+  and deleted_at is null
+  and body_html like '%12:00 pm? Please confirm the date with the time planner%';
