@@ -30,10 +30,10 @@
       "id": "OPS-02",
       "priority": "P1",
       "workstream": "Existing blogs",
-      "status": "35 published articles;32 unchanged;3 indexing changes verified9November",
-      "result": "Three existing article bodies unchanged. Live HTML, title formatter and1363px desktop rendering pass. All35 blogs are now in sitemap. Three review articles changed from noindex to index; sign-off reconciliation is P1.",
-      "evidence": "docs/seo-agent/BLOG-ACTION-REGISTER-2026-11-09.json",
-      "next": "Reconcile qualified academic and indexing authorization for three articles. Continue390px verification when a supported runtime is available."
+      "status": "20 changed articles live-verified10November;35 published total",
+      "result": "20 CMS/live HTML agreements and source-formatted titles pass.31 contextual destinations pass. Changed20 max792 inclusive words; all35 max951 using tag-spaced whitespace method.",
+      "evidence": "docs/seo-agent/BLOG-ACTION-REGISTER-2026-11-10.json",
+      "next": "Preserve staff edits. Obtain qualified approval records for three version5 articles and supported390px verification."
     },
     {
       "id": "OPS-03",
@@ -65,9 +65,9 @@
       "id": "OPS-06",
       "priority": "P2",
       "workstream": "Analytics and organic funnel",
-      "status": "Fresh authenticated GA4/GSC reporting available5November; business qualification pending",
-      "result": "Correct GA4 property/stream and GSC domain connected; aggregate reports refreshed privately; reporting is not a qualified admissions record",
-      "next": "Verify future saved enquiries carry inferred organic source, then qualify real enquiries/trial attendance/admissions in the operational CRM. Historical rows cannot be retroactively attributed."
+      "status": "Reporting reads blocked by account limit; CRM aggregate delivery status observed10November",
+      "result": "Windsor account discovery succeeds but GA4 read returns account-cap error and no metrics. Current CMS lead_crm_sync table exists and records successful sync attempts. This does not establish organic qualification/admissions.",
+      "next": "Owner-managed reporting-account selection or dated GA4/GSC exports needed. Obtain business qualification through authorized operational workflow; no automatic account disconnection."
     },
     {
       "id": "OPS-07",
@@ -91,7 +91,7 @@
       "priority": "P2",
       "workstream": "Image SEO/accessibility",
       "status": "Rating correction retained and USA call accessible-name correction verified live8November",
-      "next": "Keep new-article mobile verification separate from the passing representative CI responsive audit.",
+      "next": "New mobile attempts blocked by local socket permissions and native browser connection/DevTools policy. Preserve dated desktop evidence; do not claim fresh mobile checks.",
       "result": "Current rating paragraphs have screen-reader text. PR146 removes two redundant USA call aria-label attributes. Both corrected links verified in public HTML on READY production c30c4968. Three changed articles now pass1363px desktop cover/H1/TOC/overflow checks on9November. Trial form child/adult field transitions verified without submission."
     },
     {
@@ -122,8 +122,8 @@
       "priority": "P2",
       "workstream": "External registers and private hosting logs",
       "status": "Vercel project/deployment access works; current functional correction verified live",
-      "result": "Current source2043e3f is READY at dpl_4tzNfXcBXxMPUBsbN9QcuoQw5opr. Latest host-neutral, form and market updates retained. Public samples and desktop browser verified9November.",
-      "next": "Preserve the separate external Claude Docs pathway dependency."
+      "result": "Current source27ef9a8 is READY at dpl_EtBKYY1gWsNgUHEbqC7HykveCbDW. Staff GHL/form, button and social-identity changes retained.",
+      "next": "External Claude Docs pathway remains unavailable. Verify actual business outcomes separately from deployment/source delivery."
     }
   ],
   "master_sections": [
@@ -269,11 +269,11 @@
     }
   ],
   "last_daily_review": {
-    "date": "2026-11-09",
-    "source_reviewed": "2043e3fbfe2a1ac7b93c516bb902b4e9cc41aac7",
-    "report": "docs/SEO-DAILY-2026-11-09.md",
-    "result": "35 CMS posts;3 indexing changes reconciled against live sitemap/HTML; desktop article and trial conditional-field checks pass; academic/indexing approval gap recorded",
-    "evidence": "docs/seo-agent/evidence/2026-11-09/verification.json"
+    "date": "2026-11-10",
+    "source_reviewed": "27ef9a85779179569c3cc2cc9449c0feb093bcbe",
+    "report": "docs/SEO-DAILY-2026-11-10.md",
+    "result": "20 changed article audits passed; Canada scheduling statements verified against provincial sources; analytics account-limit blocker identified; CRM delivery-status aggregate observed",
+    "evidence": "docs/seo-agent/evidence/2026-11-10/verification.json"
   },
   "last_implementation": {
     "date": "2026-10-29",
@@ -387,11 +387,12 @@
     "priority": "P1",
     "status": "Awaiting approval evidence",
     "previous_flags": "seo_noindex=true on8November",
-    "current_flags": "seo_noindex=false, version4",
-    "cms_updated_utc": "2026-11-08T15:37:13.882913Z",
+    "current_flags": "seo_noindex=false, version5 for all three",
+    "cms_updated_utc": "2026-11-09T04:28:30.137163Z",
     "live_directive": "index, follow",
     "sitemap_inclusion": true,
     "academic_review": "No matching qualified sign-off found in inspected repository and private report. This does not establish absence of approval elsewhere.",
-    "action": "Preserve current settings. Reconcile human academic sign-off and publishing/indexing authorization before any change."
+    "action": "Preserve current settings. Reconcile human academic sign-off and publishing/indexing authorization before any change.",
+    "last_reviewed": "2026-11-10"
   }
 }
