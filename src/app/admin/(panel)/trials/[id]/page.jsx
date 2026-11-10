@@ -53,6 +53,20 @@ function ScheduleCard({ trial, onDone, canEdit }) {
   };
   return (
     <Card title={["new", "reviewed"].includes(trial.status) ? "Schedule the trial class" : "Trial class"}>
+      {canEdit && trial.status === "reviewed" && (
+        <div className="mb-4 space-y-2 rounded-xl border border-line p-3 text-sm text-ink-soft">
+          <p>Confirm the family’s plan and teacher preference before sharing this three-day booking calendar. The Weekend plan is excluded.</p>
+          <a
+            href="https://api.leadconnectorhq.com/widget/booking/bze6bj5nt4ttPJikEp7f"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-outline"
+          >
+            Open GHL trial calendar (new tab)
+          </a>
+          <p>Once the family books, record the agreed time below so it appears in this portal.</p>
+        </div>
+      )}
       {!open ? (
         <div className="space-y-1 text-sm text-ink-soft">
           <p>{trial.trial_at ? formatDateTime(trial.trial_at) : "No trial time recorded."}</p>
