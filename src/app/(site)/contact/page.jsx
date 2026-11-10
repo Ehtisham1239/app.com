@@ -93,7 +93,7 @@ export default async function ContactPage() {
         </div>
 
         <div className="min-w-0">
-          <ContactForm id="send-message" branded consentText={forms.consent_text} alternateContact={wa ? { href: wa, label: "Chat on WhatsApp" } : contact.email ? { href: `mailto:${contact.email}`, label: "Email the college" } : undefined} />
+          <ContactForm id="send-message" consentText={forms.consent_text} alternateContact={wa ? { href: wa, label: "Chat on WhatsApp" } : contact.email ? { href: `mailto:${contact.email}`, label: "Email the college" } : undefined} />
           <p className="mt-4 px-1 text-xs leading-relaxed text-ink-faint">For existing student support, choose “Existing student support” and include the learner’s name and registered email. Please do not send passwords or full payment-card details.</p>
         </div>
       </section>

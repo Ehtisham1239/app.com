@@ -157,7 +157,7 @@ export function ReviewForm({ open, config, consentText, onClose, inline = false 
   ) : (
     <div className="review-dialog-head relative flex shrink-0 items-center gap-3 overflow-hidden bg-mushaf-900 px-5 py-4 text-white">
       <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.08]" aria-hidden="true" />
-      <img src="/brand/mark-v2-64.png" alt="" width={44} height={44} className="relative size-11 shrink-0 rounded-xl bg-white p-1 shadow-sm" />
+      <img src="/brand/oqc-contact-logo.webp" alt="" width={240} height={240} className="relative size-12 shrink-0 rounded-xl bg-white shadow-sm" />
       <div className="relative min-w-0 flex-1">
         <p className="text-[0.72rem] font-semibold text-gold-300">Online Quran College</p>
         <h2 id="review-dialog-title" className="text-[1.25rem] leading-tight text-white">{title}</h2>
