@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-11",
+  "source_reviewed": "4e74108d5353c085a1f7b0331194905d65631dcc",
+  "changed_commit": "094ff40c14389e772ac9814d4c567edfe6f0706b",
+  "status": "Locally verified",
+  "files": [
+    "src/app/api/lead-notification/route.js",
+    "src/app/api/usa-lead-notification/route.js"
+  ],
+  "change": "Public error uses notification_failed when CRM fails and email config is absent",
+  "command": "node --test tests/lead-notification.test.mjs tests/lead-notification-db.test.mjs tests/usa-lead-notification.test.mjs tests/usa-lead-notification-db.test.mjs",
+  "tests": 25,
+  "passed": 25,
+  "failed": 0,
+  "exit_code": 0,
+  "environment": "Local PGlite SQL fixtures and mocked external delivery",
+  "initial_setup_failure": "SQL fixture directory omitted from temporary archive, 10 ENOENT failures. Restored current repository supabase fixtures and reran successfully.",
+  "deployment_id": "dpl_CvvArAJBQ8RTbUPC77BKTbYJmp2i",
+  "deployment_status": "READY, production domain alias confirmed",
+  "production_enquiries_submitted": 0,
+  "outbound_messages": 0,
+  "limitation": "Production error-path delivery remains unverified",
+  "live_get_checks": [
+    {
+      "path": "/free-trial",
+      "method": "GET",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/contact",
+      "method": "GET",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/usa-quran-classes",
+      "method": "GET",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/api/lead-notification",
+      "method": "GET",
+      "status": 405,
+      "content_type": null
+    },
+    {
+      "path": "/api/usa-lead-notification",
+      "method": "GET",
+      "status": 405,
+      "content_type": null
+    }
+  ]
+}
