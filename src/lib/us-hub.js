@@ -20,6 +20,7 @@ export const US_HUB = {
     { title: "Learning with a female teacher", text: "Sisters, girls and young children can ask for a female teacher when booking.", href: "/learn/female-quran-teacher", link: "Female teacher guide" },
   ],
   reading: [
+    { label: "Planning online Quran lessons across US time zones", href: "/blog/online-quran-lessons-usa-time-zones" },
     { label: "Choosing an online Quran teacher in the USA", href: "/blog/choose-online-quran-teacher-usa" },
     { label: "Tajweed rules for beginners, with examples", href: "/blog/tajweed-rules-for-beginners" },
     { label: "Online Tafseer classes: what you learn", href: "/blog/online-tafseer-classes-what-you-learn" },
