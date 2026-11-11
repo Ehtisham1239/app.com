@@ -43,7 +43,7 @@ export async function CmsPage({ page }) {
   const watch = video?.primary && page.template === "standard";
   const isPolicy = page.template === "policy";
   const isAbout = page.slug === "about";
-  const aboutParts = isAbout ? html.split(/(?=<h2\\b)/) : [];
+  const aboutParts = isAbout ? html.split(/(?=<h2\b)/) : [];
   const aboutLead = aboutParts[0]?.startsWith("<h2") ? "" : aboutParts.shift();
   const aboutIcons = [Compass, BookOpen, Heart, Users];
 
@@ -78,6 +78,7 @@ export async function CmsPage({ page }) {
         </div>
       )}
       {video && !watch && <PageVideo video={{ ...video, primary: false }} />}
+      <PageSections sections={sections} data={{ courses, plans, faqs, teachers, testimonials, whatsappHref: wa }} />
       {!isPolicy && !needs.has("cta") && (
         <CtaBand title="Learn the Quran with a teacher who cares" text="Request a free 3-day trial on eligible plans; the Weekend plan is excluded. Admissions will confirm a suitable time and teacher availability." whatsappHref={wa} />
       )}
