@@ -19,7 +19,9 @@ export const PAGES = [
   "/locations/united-states/houston", "/locations/australia/perth", "/locations/australia/melbourne",
 ];
 const HUBS = ["/locations/united-kingdom", "/locations/united-states", "/locations/canada", "/locations/australia", "/locations/united-arab-emirates"];
-const CITY_PAGES = ["/locations/united-states/houston", "/locations/australia/perth", "/locations/australia/melbourne"];
+const CITY_PAGES = ["/locations/united-states/houston", "/locations/australia/perth", "/locations/australia/melbourne", "/locations/united-states/new-york", "/locations/australia/sydney"];
+// A city outside the owner-approved list must stay noindex.
+const NOINDEX_CITY_PAGES = ["/locations/united-kingdom/london", "/locations/canada/toronto"];
 
 // Runs in the page: elements that stick out past the right edge and are not
 // inside a box that scrolls or clips horizontally.
@@ -95,6 +97,12 @@ async function main() {
     const robots = await page.$eval('meta[name="robots"]', (m) => m.content).catch(() => "");
     checks++;
     if (!/^noindex\b/.test(robots) || !/\bfollow\b/.test(robots) || /\bnofollow\b/.test(robots)) failures.push(`${path}: robots "${robots}" (expected noindex, follow)`);
+  }
+  for (const path of NOINDEX_CITY_PAGES) {
+    await page.goto(`${base}${path}`, { waitUntil: "load" });
+    const robots = await page.$eval('meta[name="robots"]', (m) => m.content).catch(() => "");
+    checks++;
+    if (!/^noindex/.test(robots)) failures.push(`${path}: expected noindex, got "${robots}"`);
   }
   await browser.close();
   console.log(`Responsive audit: ${checks} checks on ${base} (${PAGES.length} pages × ${WIDTHS.length} widths, ${DEVICE_PROFILES.length} device profiles, hreflang on ${HUBS.length} hubs, robots on ${CITY_PAGES.length} city pages)`);
