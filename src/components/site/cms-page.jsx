@@ -80,7 +80,7 @@ export async function CmsPage({ page }) {
       {video && !watch && <PageVideo video={{ ...video, primary: false }} />}
       <PageSections sections={sections} data={{ courses, plans, faqs, teachers, testimonials, whatsappHref: wa }} />
       {!isPolicy && !needs.has("cta") && (
-        <CtaBand title="Learn the Quran with a teacher who cares" text="Book a free 3-day trial and meet your teacher this week." whatsappHref={wa} />
+        <CtaBand title="Learn the Quran with a teacher who cares" text="Request a free 3-day trial on eligible plans; the Weekend plan is excluded. Admissions will confirm a suitable time and teacher availability." whatsappHref={wa} />
       )}
     </>
   );
