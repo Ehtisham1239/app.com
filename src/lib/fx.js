@@ -4,6 +4,8 @@
 
 export const FX_SOURCE = { name: "ExchangeRate-API", url: "https://www.exchangerate-api.com" };
 const FX_URL = "https://open.er-api.com/v6/latest/USD";
+const MAX_FX_AGE_MS = 36 * 60 * 60 * 1000;
+const FUTURE_CLOCK_SKEW_MS = 5 * 60 * 1000;
 
 // Owner decision (8 Nov 2026): prices are shown only in GBP, USD, AUD and AED.
 // Visitors from every other country see USD.
@@ -29,18 +31,30 @@ export function currencyForCountry(country) {
   return COUNTRY_CURRENCY[String(country || "").toUpperCase()] ?? null;
 }
 
-// Daily USD-based rates, cached for six hours. Returns null when unavailable so
-// pages fall back to "ask for a quote" instead of showing a guessed figure.
+// Reject missing, invalid, future-dated and stale upstream snapshots. The daily
+// endpoint gets a 36-hour grace window; beyond it, pages ask for an approved quote
+// instead of displaying an outdated conversion as current.
+export function isFreshRateTimestamp(value, now = Date.now()) {
+  if (typeof value !== "string") return false;
+  const updatedAt = Date.parse(value);
+  return Number.isFinite(updatedAt)
+    && updatedAt <= now + FUTURE_CLOCK_SKEW_MS
+    && now - updatedAt <= MAX_FX_AGE_MS;
+}
+
+// Daily USD-based rates, cached for six hours. Returns null when unavailable or stale
+// so pages fall back to approved prices or "ask for a quote" instead of stale figures.
 export async function getUsdRates() {
   try {
     const response = await fetch(FX_URL, { next: { revalidate: 21600 }, signal: AbortSignal.timeout(5000) });
     if (!response.ok) return null;
     const data = await response.json();
     if (data?.result !== "success" || !data.rates || typeof data.rates !== "object") return null;
+    if (!isFreshRateTimestamp(data.time_last_update_utc)) return null;
     const rates = {};
     for (const [code, value] of Object.entries(data.rates)) if (/^[A-Z]{3}$/.test(code) && Number.isFinite(value) && value > 0) rates[code] = value;
     if (rates.USD !== 1) return null;
-    return { base: "USD", rates, updated: typeof data.time_last_update_utc === "string" ? data.time_last_update_utc.slice(5, 16) : null };
+    return { base: "USD", rates, updated: data.time_last_update_utc.slice(5, 16) };
   } catch {
     return null;
   }
@@ -66,7 +80,7 @@ export function displayPrice(prices, currency, fx) {
 }
 
 // Currencies offered in a selector: only the four display currencies. USD is always
-// offered; the others need an approved price or a live rate (all four when rates are
+// offered; the others need an approved price or a fresh rate (all four when rates are
 // unavailable, so the page can still ask for a quote). The extra argument is kept for
 // existing callers but cannot add a currency outside the four.
 export function currencyOptions(plans, fx, extra = []) {
