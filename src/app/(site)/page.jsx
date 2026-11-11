@@ -122,6 +122,9 @@ export default async function HomePage() {
           <div className="mt-12">
             <PricingCards plans={homePlans} compact />
           </div>
+          <p className="mx-auto mt-4 max-w-2xl text-center text-sm text-ink-soft">
+            Homepage package prices are shown in US dollars. See the pricing page or your country guide for local fee guidance; Admissions confirms the final fee and payment currency before enrolment.
+          </p>
           <p className="mt-8 text-center">
             <Link href="/pricing" className="inline-flex items-center gap-1.5 font-semibold text-leaf-700 hover:text-leaf-800">
               See all packages and fees in your currency <ArrowRight className="size-4" aria-hidden="true" />
