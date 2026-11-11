@@ -11,6 +11,7 @@ const searchIntent = read("../src/lib/search-intent.js");
 const llms = read("../src/app/llms.txt/route.js");
 const learningGuide = read("../src/app/(site)/learn/page.jsx");
 const usaLanding = read("../public/usa-quran-classes/index.html");
+const cmsPage = read("../src/components/site/cms-page.jsx");
 
 test("public teacher copy does not imply both teacher genders are currently available", () => {
   for (const [name, source] of [
@@ -40,4 +41,9 @@ test("teacher preference is presented as a request with availability confirmatio
 test("homepage trial CTA confirms availability instead of promising a teacher or start date", () => {
   assert.match(homePage, /Request a 3-day free trial\. Admissions will discuss your course and teacher preferences, confirm availability and agree a suitable time/i);
   assert.doesNotMatch(homePage, /journey this week|We will match you with a teacher/i);
+});
+
+test("default CMS-page CTA does not promise same-week teacher availability", () => {
+  assert.match(cmsPage, /Request a free 3-day trial on eligible plans; the Weekend plan is excluded\. Admissions will confirm a suitable time and teacher availability\./);
+  assert.doesNotMatch(cmsPage, /meet your teacher this week|start this week/i);
 });
