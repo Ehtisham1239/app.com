@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { convertMinor, currencyForCountry, displayPrice } from "../src/lib/fx.js";
+import { convertMinor, currencyForCountry, displayPrice, isFreshRateTimestamp } from "../src/lib/fx.js";
 
 const fx = { base: "USD", rates: { USD: 1, GBP: 0.79, PKR: 278.4, JPY: 151.2 } };
 
@@ -19,6 +19,19 @@ test("an approved price wins over a converted one, which is marked approximate",
   assert.equal(gbp.amount_minor, 2400);
   assert.equal(gbp.from.currency, "USD");
   assert.equal(displayPrice(prices, "GBP", null), null);
+});
+
+test("daily FX snapshots are accepted only within the 36-hour freshness window", () => {
+  const now = Date.parse("2026-11-11T00:00:00.000Z");
+  const fresh = new Date(now - 24 * 60 * 60 * 1000).toUTCString();
+  const stale = new Date(now - 37 * 60 * 60 * 1000).toUTCString();
+  const future = new Date(now + 10 * 60 * 1000).toUTCString();
+
+  assert.equal(isFreshRateTimestamp(fresh, now), true);
+  assert.equal(isFreshRateTimestamp(stale, now), false);
+  assert.equal(isFreshRateTimestamp(future, now), false);
+  assert.equal(isFreshRateTimestamp("not-a-date", now), false);
+  assert.equal(isFreshRateTimestamp(null, now), false);
 });
 
 test("visitor country maps to a display currency", () => {
