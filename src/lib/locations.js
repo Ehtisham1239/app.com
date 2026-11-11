@@ -952,4 +952,9 @@ export function marketHreflang(siteUrl) {
   return { ...languages, "x-default": `${siteUrl}/locations` };
 }
 export const defaultLocationNoindex = (country, city) => Boolean(city) || !INDEXED_MARKETS.includes(country.slug);
-export const locationIndexRecord = (page, country, city) => ({ ...(page || {}), seo_noindex: page?.seo_noindex ?? defaultLocationNoindex(country, city) });
+// City indexation requires an explicit local-proof approval workflow. Until that
+// workflow exists, a legacy CMS seo_noindex=false must not override the owner rule.
+export const locationIndexRecord = (page, country, city) => ({
+  ...(page || {}),
+  seo_noindex: Boolean(city) ? true : page?.seo_noindex ?? defaultLocationNoindex(country, city),
+});
