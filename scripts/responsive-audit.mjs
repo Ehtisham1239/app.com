@@ -1,9 +1,10 @@
 // Responsive audit of the live site (or SMOKE_BASE_URL): opens the main public
 // pages at phone, tablet and desktop widths and fails when a page scrolls
 // sideways, i.e. something is wider than the screen outside a scrollable box.
-// Also checks the country-hub hreflang cluster and that city pages stay
-// noindex,follow until local proof is approved (owner rule, 11 Nov 2026;
-// locationIndexRecord in src/lib/locations.js, pinned by tests/location-indexing.test.mjs). Screenshots at 390px go to RESPONSIVE_SHOTS_DIR when set.
+// Also checks the country-hub hreflang cluster, that the owner-approved city
+// pages are indexable and that other cities stay noindex,follow (owner decision,
+// 11 Nov 2026: APPROVED_CITY_PAGES in src/lib/locations.js, pinned by
+// tests/location-indexing.test.mjs). Screenshots at 390px go to RESPONSIVE_SHOTS_DIR when set.
 import { chromium, devices } from "playwright";
 import { mkdirSync } from "node:fs";
 
@@ -19,7 +20,9 @@ export const PAGES = [
   "/locations/united-states/houston", "/locations/australia/perth", "/locations/australia/melbourne",
 ];
 const HUBS = ["/locations/united-kingdom", "/locations/united-states", "/locations/canada", "/locations/australia", "/locations/united-arab-emirates"];
-const CITY_PAGES = ["/locations/united-states/houston", "/locations/australia/perth", "/locations/australia/melbourne"];
+const CITY_PAGES = ["/locations/united-states/houston", "/locations/australia/perth", "/locations/australia/melbourne", "/locations/united-states/new-york", "/locations/australia/sydney"];
+// A city outside the owner-approved list must stay noindex.
+const NOINDEX_CITY_PAGES = ["/locations/united-kingdom/london", "/locations/canada/toronto"];
 
 // Runs in the page: elements that stick out past the right edge and are not
 // inside a box that scrolls or clips horizontally.
@@ -94,12 +97,18 @@ async function main() {
     await page.goto(`${base}${path}`, { waitUntil: "load" });
     const robots = await page.$eval('meta[name="robots"]', (m) => m.content).catch(() => "");
     checks++;
-    if (!/^noindex\b/.test(robots) || !/\bfollow\b/.test(robots) || /\bnofollow\b/.test(robots)) failures.push(`${path}: robots "${robots}" (expected noindex, follow)`);
+    if (!/^index\b/.test(robots) || /\bnofollow\b/.test(robots)) failures.push(`${path}: robots "${robots}" (approved city: expected index, follow)`);
+  }
+  for (const path of NOINDEX_CITY_PAGES) {
+    await page.goto(`${base}${path}`, { waitUntil: "load" });
+    const robots = await page.$eval('meta[name="robots"]', (m) => m.content).catch(() => "");
+    checks++;
+    if (!/^noindex\b/.test(robots) || !/\bfollow\b/.test(robots) || /\bnofollow\b/.test(robots)) failures.push(`${path}: robots "${robots}" (unapproved city: expected noindex, follow)`);
   }
   await browser.close();
-  console.log(`Responsive audit: ${checks} checks on ${base} (${PAGES.length} pages × ${WIDTHS.length} widths, ${DEVICE_PROFILES.length} device profiles, hreflang on ${HUBS.length} hubs, robots on ${CITY_PAGES.length} city pages)`);
+  console.log(`Responsive audit: ${checks} checks on ${base} (${PAGES.length} pages × ${WIDTHS.length} widths, ${DEVICE_PROFILES.length} device profiles, hreflang on ${HUBS.length} hubs, robots on ${CITY_PAGES.length + NOINDEX_CITY_PAGES.length} city pages)`);
   if (failures.length) { console.log(`FAIL (${failures.length}):\n- ${failures.join("\n- ")}`); process.exit(1); }
-  console.log("PASS: no sideways scrolling at any width; hreflang as expected; city pages noindex,follow");
+  console.log("PASS: no sideways scrolling at any width; hreflang as expected; approved city pages indexable, other cities noindex,follow");
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) await main();
