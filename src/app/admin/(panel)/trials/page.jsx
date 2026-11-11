@@ -9,24 +9,28 @@ import { AGE_BANDS, TRIAL_STATUSES, labelFor } from "@/lib/constants";
 import { formatDateTime } from "@/lib/format";
 import { Badge, Card, EmptyState, ErrorState, Loading, PageHeader, Pagination, SearchInput, StatusBadge, Tabs, When } from "@/components/admin/ui";
 import { CrmBadge, useCrmStatus } from "@/components/admin/crm-status";
+import { ShiftBadge, ShiftFilter, ShiftQueueBanner, applyShiftFilter } from "@/components/admin/lead-shift";
+import { shiftLabel } from "@/lib/lead-shift";
 
 const PAGE = 25;
-const FIELDS = "id, reference, learner_name, guardian_name, email, phone, phone_is_whatsapp, country, timezone, age_band, status, created_at, trial_at, duplicate_of_id, source, preferred_days, preferred_times, courses(title), teachers(display_name)";
+const FIELDS = "id, reference, learner_name, guardian_name, email, phone, phone_is_whatsapp, country, timezone, age_band, status, created_at, lead_shift, shift_date, trial_at, duplicate_of_id, source, preferred_days, preferred_times, courses(title), teachers(display_name)";
 
 function TrialsList() {
   const router = useRouter();
   const params = useSearchParams();
   const [status, setStatus] = useState(params.get("status") || "all");
+  const [shift, setShift] = useState(params.get("shift") || "all");
   const [q, setQ] = useState("");
   const [page, setPage] = useState(0);
 
   const filtered = (query) => {
     query = query.is("deleted_at", null);
     if (status !== "all") query = query.eq("status", status);
+    query = applyShiftFilter(query, "trial_applications", shift);
     if (q) query = query.or(["learner_name", "guardian_name", "email", "phone", "reference"].map((f) => `${f}.ilike.${likeTerm(q)}`).join(","));
     return query;
   };
-  const list = useLoad(() => filtered(db().from("trial_applications").select(FIELDS, { count: "exact" })).order("created_at", { ascending: false }).range(page * PAGE, page * PAGE + PAGE - 1), [status, q, page]);
+  const list = useLoad(() => filtered(db().from("trial_applications").select(FIELDS, { count: "exact" })).order("created_at", { ascending: false }).range(page * PAGE, page * PAGE + PAGE - 1), [status, shift, q, page]);
   const crm = useCrmStatus(list.data?.map((t) => t.reference));
   const counts = useLoad(async () => {
     const res = await Promise.all(TRIAL_STATUSES.map((s) => db().from("trial_applications").select("id", { count: "exact", head: true }).is("deleted_at", null).eq("status", s.value)));
@@ -39,6 +43,8 @@ function TrialsList() {
     downloadCsv(`free-trials-${new Date().toISOString().slice(0, 10)}.csv`, data, [
       { label: "Reference", key: "reference" },
       { label: "Requested", value: (r) => formatDateTime(r.created_at, "Asia/Karachi") },
+      { label: "Shift", value: (r) => shiftLabel(r.lead_shift) },
+      { label: "Shift date (PKT)", key: "shift_date" },
       { label: "Status", value: (r) => labelFor(TRIAL_STATUSES, r.status) },
       { label: "Learner", key: "learner_name" },
       { label: "Parent / guardian", key: "guardian_name" },
@@ -75,6 +81,7 @@ function TrialsList() {
           </button>
         }
       />
+      <ShiftQueueBanner table="trial_applications" />
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <Tabs
           value={status}
@@ -84,7 +91,10 @@ function TrialsList() {
           }}
           tabs={[{ value: "all", label: "All", count: total }, ...TRIAL_STATUSES.map((s) => ({ value: s.value, label: s.label, count: counts.data?.[s.value] }))]}
         />
-        <SearchInput value={q} onChange={(v) => { setQ(v); setPage(0); }} placeholder="Name, email, phone or TR-…" className="w-full sm:w-72" />
+        <div className="flex w-full flex-wrap gap-2 sm:w-auto">
+          <ShiftFilter value={shift} onChange={(v) => { setShift(v); setPage(0); }} />
+          <SearchInput value={q} onChange={(v) => { setQ(v); setPage(0); }} placeholder="Name, email, phone or TR-…" className="w-full sm:w-72" />
+        </div>
       </div>
       <Card bodyClass="">
         {list.loading ? (
@@ -92,7 +102,7 @@ function TrialsList() {
         ) : list.error ? (
           <ErrorState error={list.error} onRetry={list.reload} />
         ) : !list.data?.length ? (
-          <EmptyState title={q || status !== "all" ? "No requests match" : "No free-trial requests yet"} text="Bookings from the website’s free-trial form appear here automatically." />
+          <EmptyState title={q || status !== "all" || shift !== "all" ? "No requests match" : "No free-trial requests yet"} text="Bookings from the website’s free-trial form appear here automatically." />
         ) : (
           <div className="overflow-x-auto">
             <table className="adm-table">
@@ -127,6 +137,7 @@ function TrialsList() {
                     </td>
                     <td className="text-ink-soft">
                       <When value={t.created_at} />
+                      <div className="mt-1"><ShiftBadge shift={t.lead_shift} /></div>
                     </td>
                     <td className="whitespace-nowrap text-ink-soft">{t.trial_at ? formatDateTime(t.trial_at) : "—"}</td>
                     <td>

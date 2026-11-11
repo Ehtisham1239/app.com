@@ -9,6 +9,7 @@ import { CONTACT_STATUSES } from "@/lib/constants";
 import { formatDateTime, whatsappLink } from "@/lib/format";
 import { Card, ErrorState, Field, Loading, PageHeader, StatusBadge, When } from "@/components/admin/ui";
 import { CrmDetail, useCrmStatus } from "@/components/admin/crm-status";
+import { ShiftBadge } from "@/components/admin/lead-shift";
 
 export default function ContactPage({ params }) {
   const { id } = use(params);
@@ -46,6 +47,7 @@ export default function ContactPage({ params }) {
         <div className="mt-2 flex flex-wrap items-center gap-2 text-sm text-ink-faint">
           <StatusBadge list={CONTACT_STATUSES} value={m.status} />
           <span>{m.reference}</span>·<When value={m.created_at} />
+          <ShiftBadge shift={m.lead_shift} date={m.shift_date} />
         </div>
       </PageHeader>
       <div className="grid gap-6 lg:grid-cols-[1fr_20rem]">
