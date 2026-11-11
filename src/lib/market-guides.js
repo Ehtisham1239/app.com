@@ -84,10 +84,10 @@ export const MARKET_GUIDES = {
 };
 
 // One published planning article per primary market, linked visibly from its country hub.
-// Slugs must exist as published CMS blog posts (checked 3 Nov 2026).
+// Slugs must exist as published CMS blog posts (checked 3 Nov 2026; USA guide 11 Nov 2026).
 export const MARKET_ARTICLES = {
   "united-kingdom": { path: "/blog/online-quran-class-fees-uk-comparison", label: "Compare online Quran class fees in the UK" },
-  "united-states": { path: "/blog/choose-online-quran-teacher-usa", label: "Choosing an online Quran teacher in the USA" },
+  "united-states": { path: "/blog/online-quran-lessons-usa-time-zones", label: "Planning lessons across US time zones" },
   canada: { path: "/blog/online-quran-lessons-canada-time-zones", label: "Planning lessons across Canadian time zones" },
   australia: { path: "/blog/quran-lessons-australia-time-zones", label: "Planning lessons across Australian time zones" },
   "united-arab-emirates": { path: "/blog/online-quran-lessons-uae-families", label: "Online Quran lessons for UAE families" },
