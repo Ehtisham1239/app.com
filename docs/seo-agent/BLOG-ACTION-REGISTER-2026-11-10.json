@@ -936,5 +936,12 @@
     }
   ],
   "status": "20 changed articles pass live HTML/source/title/schema/image/TOC/link checks; all35 under1000 inclusive words. Mobile and academic approval verification remain separate unresolved items.",
-  "evidence": "docs/seo-agent/evidence/2026-11-10/verification.json"
+  "evidence": "docs/seo-agent/evidence/2026-11-10/verification.json",
+  "latest_cms_inventory_check": {
+    "date": "2026-11-11",
+    "published": 35,
+    "changed_records": 0,
+    "result": "Selected public fields match the 10 November snapshot. Live article audit evidence retains its earlier verification dates.",
+    "evidence": "docs/seo-agent/evidence/2026-11-11/verification.json"
+  }
 }
