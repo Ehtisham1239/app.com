@@ -1,0 +1,45 @@
+name: OQC IndexNow weekly notification
+
+# Tells IndexNow search engines (Bing, Yandex, Seznam, Naver) about public pages
+# changed in the last 7 days, using scripts/indexnow.mjs and all its checks
+# (sitemap-listed, 200, indexable, self-canonical). Google does not use IndexNow.
+on:
+  schedule:
+    - cron: "17 3 * * 1" # Mondays 03:17 UTC (08:17 PKT)
+  workflow_dispatch:
+    inputs:
+      submit:
+        description: "Send to IndexNow (unticked = dry run)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: oqc-indexnow
+  cancel-in-progress: false
+
+jobs:
+  notify:
+    name: Notify recently changed pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+
+      - name: Send changed pages (scheduled) or dry run (manual default)
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ inputs.submit }}" = "true" ]; then
+            node scripts/indexnow.mjs --recent-days=7 --submit
+          else
+            node scripts/indexnow.mjs --recent-days=7
+          fi

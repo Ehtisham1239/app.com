@@ -9,7 +9,18 @@ assert.match(config.keyPath, /^\/indexnow-[a-f0-9]{32}\.txt$/);
 const key = readFileSync(new URL(`../public${config.keyPath}`, import.meta.url), "utf8").trim();
 assert.match(key, /^[a-f0-9]{32}$/);
 const submit = process.argv.includes("--submit");
-const args = process.argv.slice(2).filter(arg => arg !== "--submit");
+const recentFlag = process.argv.find(arg => arg.startsWith("--recent-days="));
+let args = process.argv.slice(2).filter(arg => arg !== "--submit" && !arg.startsWith("--recent-days="));
+if (recentFlag) {
+  // Weekly mode: only sitemap URLs whose lastmod falls in the last N days (1–14), never the whole site.
+  const days = Number(recentFlag.split("=")[1]);
+  assert.ok(Number.isInteger(days) && days >= 1 && days <= 14, "--recent-days must be 1–14.");
+  const { recentSitemapUrls } = await import("./indexnow-select.mjs");
+  const live = await fetch(config.origin + "/sitemap.xml", { signal: AbortSignal.timeout(20000) });
+  assert.equal(live.status, 200);
+  args = recentSitemapUrls(await live.text(), { days });
+  if (args.length === 0) { console.log(JSON.stringify({ checkedAt: new Date().toISOString(), mode: submit ? "SUBMIT" : "DRY_RUN", checkedUrls: 0, note: `No sitemap URL changed in the last ${days} days; nothing sent.` }, null, 2)); process.exit(0); }
+}
 assert.ok(args.length > 0 && args.length <= 250, "Supply 1–250 changed canonical public URLs/paths; no automatic full-site resubmission.");
 const urls = [...new Set(args.map(path => {
   const url = new URL(path, config.origin);
