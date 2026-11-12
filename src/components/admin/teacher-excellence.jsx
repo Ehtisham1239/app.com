@@ -14,6 +14,51 @@ const RUBRIC = {
   communication: { weight: 5, label: "Communication and class management" },
   punctuality: { weight: 5, label: "Punctuality and responsibility" },
 };
+const rubricForSubject = (name) => {
+  const subject = String(name || "").toLowerCase();
+  if (subject.includes("tajweed") || subject.includes("recitation")) return {
+    quran_accuracy: { weight: 35, label: "Quranic recitation accuracy" },
+    makharij_sifaat: { weight: 25, label: "Makharij and sifaat" },
+    tajweed_rules: { weight: 20, label: "Applied Tajweed rules" },
+    teaching_effectiveness: { weight: 10, label: "Teaching and correction method" },
+    student_progress: { weight: 5, label: "Student progress" },
+    islamic_adab: { weight: 5, label: "Adab and responsibility" },
+  };
+  if (subject.includes("hifz") || subject.includes("memor")) return {
+    memorisation_accuracy: { weight: 30, label: "Memorisation accuracy" },
+    revision_retention: { weight: 25, label: "Revision and retention" },
+    tajweed_application: { weight: 15, label: "Tajweed application" },
+    teaching_effectiveness: { weight: 10, label: "Teaching and prompting" },
+    student_progress: { weight: 10, label: "Student progress" },
+    lesson_planning: { weight: 5, label: "Revision planning" },
+    islamic_adab: { weight: 5, label: "Adab and responsibility" },
+  };
+  if (subject.includes("qaida") || subject.includes("qaaida")) return {
+    letter_recognition: { weight: 25, label: "Letter recognition and sounds" },
+    makharij: { weight: 25, label: "Correct makharij" },
+    blending: { weight: 20, label: "Joining and reading fluency" },
+    teaching_method: { weight: 15, label: "Step-by-step teaching method" },
+    student_progress: { weight: 10, label: "Student progress" },
+    islamic_adab: { weight: 5, label: "Adab and responsibility" },
+  };
+  if (subject.includes("arabic")) return {
+    language_accuracy: { weight: 30, label: "Arabic language accuracy" },
+    vocabulary_grammar: { weight: 25, label: "Vocabulary and grammar" },
+    communication_practice: { weight: 15, label: "Speaking and comprehension practice" },
+    teaching_effectiveness: { weight: 15, label: "Teaching effectiveness" },
+    student_progress: { weight: 10, label: "Student progress" },
+    islamic_adab: { weight: 5, label: "Adab and responsibility" },
+  };
+  if (subject.includes("islamic")) return {
+    subject_knowledge: { weight: 30, label: "Islamic studies knowledge" },
+    source_accuracy: { weight: 25, label: "Quran and Hadith source accuracy" },
+    age_appropriate_teaching: { weight: 15, label: "Age-appropriate explanation" },
+    teaching_effectiveness: { weight: 15, label: "Teaching effectiveness" },
+    student_development: { weight: 10, label: "Student development" },
+    adab: { weight: 5, label: "Adab and responsibility" },
+  };
+  return RUBRIC;
+};
 const TABS = ["Overview", "Teacher mapping", "Assessments", "Issues", "Training", "Weekly plans"];
 const inputClass = "adm-input w-full";
 const labelClass = "mb-1 block text-sm font-semibold text-ink-soft";
@@ -76,7 +121,7 @@ export function TeacherExcellence() {
 
   useEffect(() => { if (canRead) void load(); }, [canRead, load]);
 
-  const subjectMap = useMemo(() => Object.fromEntries(data.subjects.map(s => [s.id, s])), [data.subjects]);
+  const subjectMap = useMemo(() => Object.fromEntries(data.subjects.map(s => [s.id, s])), [data.subjects]);\n  const selectedAssessmentSubject = subjectMap[assessmentForm.subject_assignment_id];\n  const activeRubric = selectedAssessmentSubject?.rubric || RUBRIC;
   const activeTeachers = data.teachers.filter(t => t.is_active);
   const openIssues = data.issues.filter(i => !["resolved"].includes(i.status));
   const criticalIssues = data.issues.filter(i => i.priority === "P1" && !["resolved"].includes(i.status));
@@ -102,7 +147,7 @@ export function TeacherExcellence() {
   function addSubject(e) {
     e.preventDefault();
     if (!subjectForm.teacher_id || !subjectForm.subject_name.trim()) return;
-    void save("teacher_subject_assignments", { ...subjectForm, rubric: RUBRIC, assigned_by: access?.id || null }, () => setSubjectForm({ teacher_id: "", subject_name: "", teaching_level: "All levels" }));
+    void save("teacher_subject_assignments", { ...subjectForm, rubric: rubricForSubject(subjectForm.subject_name), assigned_by: access?.id || null }, () => setSubjectForm({ teacher_id: "", subject_name: "", teaching_level: "All levels" }));
   }
   function addAssessment(e) {
     e.preventDefault();
@@ -184,7 +229,7 @@ export function TeacherExcellence() {
             <Card><SectionTitle title="Subject assignments and rubric" />{data.subjects.length ? data.subjects.map(x => <div key={x.id} className="border-b border-line py-2 last:border-0"><strong>{x.teachers?.display_name || "Teacher"} · {x.subject_name}</strong><p className="text-xs text-ink-faint">{x.teaching_level} · {Object.entries(x.rubric || {}).map(([k,v]) => `${v.label}: ${v.weight}%`).join(" · ")}</p></div>) : <EmptyState title="No subject assignments yet" />}</Card>
           </div>}
           {tab === "Assessments" && <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
-            {canWrite && <div className={panelClass}><SectionTitle title="Record subject-specific assessment" note="Rate each dimension from 1 (critical) to 5 (outstanding). Weighted score follows the subject assignment rubric." /><form onSubmit={addAssessment} className="space-y-3"><Field label="Teacher · subject"><select className={inputClass} value={assessmentForm.subject_assignment_id} onChange={e => setAssessmentForm({ ...assessmentForm, subject_assignment_id: e.target.value })} required><option value="">Select assigned subject</option>{data.subjects.filter(x => x.is_active).map(x => <option key={x.id} value={x.id}>{x.teachers?.display_name} · {x.subject_name}</option>)}</select></Field>{Object.entries(RUBRIC).map(([key, item]) => <Field key={key} label={`${item.label} (1–5)`}><select className={inputClass} value={assessmentForm.scores[key]} onChange={e => setAssessmentForm({ ...assessmentForm, scores: { ...assessmentForm.scores, [key]: e.target.value } })}>{[1,2,3,4,5].map(n => <option key={n} value={n}>{n}</option>)}</select></Field>)}<Field label="Evidence / observation"><textarea className={inputClass} rows="3" value={assessmentForm.evidence_notes} onChange={e => setAssessmentForm({ ...assessmentForm, evidence_notes: e.target.value })} /></Field><Field label="Strengths"><textarea className={inputClass} rows="2" value={assessmentForm.strengths} onChange={e => setAssessmentForm({ ...assessmentForm, strengths: e.target.value })} /></Field><Field label="Improvement actions"><textarea className={inputClass} rows="2" value={assessmentForm.improvement_actions} onChange={e => setAssessmentForm({ ...assessmentForm, improvement_actions: e.target.value })} /></Field><label className="flex items-start gap-2 text-sm font-semibold text-red-800"><input type="checkbox" checked={assessmentForm.critical_quran_accuracy_issue} onChange={e => setAssessmentForm({ ...assessmentForm, critical_quran_accuracy_issue: e.target.checked })} /> Critical Quran accuracy issue — escalate separately from the average score</label><button className={buttonClass} disabled={busy || !data.subjects.length}>Save assessment</button></form></div>}
+            {canWrite && <div className={panelClass}><SectionTitle title="Record subject-specific assessment" note="Rate each dimension from 1 (critical) to 5 (outstanding). Weighted score follows the subject assignment rubric." /><form onSubmit={addAssessment} className="space-y-3"><Field label="Teacher · subject"><select className={inputClass} value={assessmentForm.subject_assignment_id} onChange={e => { const assignment = subjectMap[e.target.value]; const rubric = assignment?.rubric || RUBRIC; setAssessmentForm({ ...assessmentForm, subject_assignment_id: e.target.value, scores: Object.fromEntries(Object.keys(rubric).map(k => [k, "3"])) }); }} required><option value="">Select assigned subject</option>{data.subjects.filter(x => x.is_active).map(x => <option key={x.id} value={x.id}>{x.teachers?.display_name} · {x.subject_name}</option>)}</select></Field>{Object.entries(activeRubric).map(([key, item]) => <Field key={key} label={`${item.label} (1–5)`}><select className={inputClass} value={assessmentForm.scores[key]} onChange={e => setAssessmentForm({ ...assessmentForm, scores: { ...assessmentForm.scores, [key]: e.target.value } })}>{[1,2,3,4,5].map(n => <option key={n} value={n}>{n}</option>)}</select></Field>)}<Field label="Evidence / observation"><textarea className={inputClass} rows="3" value={assessmentForm.evidence_notes} onChange={e => setAssessmentForm({ ...assessmentForm, evidence_notes: e.target.value })} /></Field><Field label="Strengths"><textarea className={inputClass} rows="2" value={assessmentForm.strengths} onChange={e => setAssessmentForm({ ...assessmentForm, strengths: e.target.value })} /></Field><Field label="Improvement actions"><textarea className={inputClass} rows="2" value={assessmentForm.improvement_actions} onChange={e => setAssessmentForm({ ...assessmentForm, improvement_actions: e.target.value })} /></Field><label className="flex items-start gap-2 text-sm font-semibold text-red-800"><input type="checkbox" checked={assessmentForm.critical_quran_accuracy_issue} onChange={e => setAssessmentForm({ ...assessmentForm, critical_quran_accuracy_issue: e.target.checked })} /> Critical Quran accuracy issue — escalate separately from the average score</label><button className={buttonClass} disabled={busy || !data.subjects.length}>Save assessment</button></form></div>}
             <Card><SectionTitle title="Assessment history" />{data.assessments.length ? data.assessments.map(x => <div key={x.id} className="border-b border-line py-3 last:border-0"><div className="flex flex-wrap items-center justify-between gap-2"><strong>{x.teachers?.display_name} · {x.teacher_subject_assignments?.subject_name}</strong><strong>{x.critical_quran_accuracy_issue ? "P1 · Critical accuracy" : x.overall_score == null ? "—" : `${x.overall_score}/100`}</strong></div><p className="text-xs text-ink-faint">{x.assessment_date} · {x.status}</p><p className="mt-1 text-sm">{x.evidence_notes}</p></div>) : <EmptyState title="No assessments recorded" />}</Card>
           </div>}
           {tab === "Issues" && <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
