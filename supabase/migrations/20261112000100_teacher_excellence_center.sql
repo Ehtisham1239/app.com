@@ -189,6 +189,25 @@ create table public.teacher_parent_feedback (
 );
 create index teacher_parent_feedback_teacher_idx on public.teacher_parent_feedback(teacher_id, received_on desc);
 
+-- Starter curriculum: topic and practical task only; detailed Islamic references/content require scholarly review.
+insert into public.teacher_training_modules (title, category, description, learning_outcomes, practical_task, sequence_no)
+select v.title, v.category, v.description, v.outcomes, v.task, v.sequence_no
+from (values
+  (1, 'Ikhlas and teaching intention', 'islamic_tarbiyah', 'Reflect on sincerity, responsibility and consistency in Quran teaching.', array['Explain the purpose of the teacher role','Set a practical personal improvement intention'], 'Write a short reflective plan and discuss one observable improvement with the trainer.'),
+  (2, 'Amanah and respect for the Quran', 'islamic_tarbiyah', 'Understand the responsibility of accurate, careful Quran instruction.', array['Recognise the duty to teach accurately','Know when to pause and seek qualified correction'], 'Demonstrate a lesson segment and identify any point that needs scholarly or subject-specialist verification.'),
+  (3, 'Teacher adab and professional conduct', 'professional_ethics', 'Build respectful conduct, reliability, confidentiality and professional boundaries.', array['Apply respectful communication','Protect student and family confidentiality'], 'Complete a scenario-based conduct review and action checklist.'),
+  (4, 'Mercy, patience and learner dignity', 'islamic_tarbiyah', 'Use patient, age-appropriate and encouraging teaching practices.', array['Respond calmly to repeated mistakes','Avoid humiliation and harmful comparison'], 'Role-play a supportive correction for a learner who is struggling.'),
+  (5, 'Correcting mistakes with wisdom', 'teaching_method', 'Give clear, accurate and proportionate feedback without discouraging learners.', array['Identify the learning gap','Model, practise and check understanding'], 'Record a short correction cycle: model, learner practice, check and feedback.'),
+  (6, 'Trust, honesty and accountability', 'professional_ethics', 'Maintain honest records, punctuality and clear accountability.', array['Record lesson outcomes accurately','Escalate concerns without concealment'], 'Complete a sample class record and explain the escalation route for a serious concern.'),
+  (7, 'Student character and learner development', 'islamic_tarbiyah', 'Support student confidence, good habits and responsible learning.', array['Set an age-appropriate development goal','Encourage learner independence'], 'Prepare a four-week learner development goal with observable indicators.'),
+  (8, 'Respectful parent communication', 'professional_ethics', 'Communicate progress and concerns with clarity and appropriate boundaries.', array['Share evidence-based progress updates','Keep parent feedback proportionate and respectful'], 'Draft one balanced progress update using verified class observations.'),
+  (9, 'Islamic conflict resolution and teamwork', 'mentoring', 'Resolve routine disagreements respectfully and escalate serious concerns.', array['Listen before responding','Use the correct escalation pathway'], 'Work through a case study and document the agreed resolution steps.'),
+  (10, 'Mentor leadership and teacher motivation', 'mentoring', 'Support colleagues through coaching, encouragement and measurable goals.', array['Set a realistic coaching goal','Give actionable feedback'], 'Conduct a practice mentoring conversation with a clear follow-up date.'),
+  (11, 'Class observation and evidence-based feedback', 'teaching_method', 'Observe lessons fairly and separate evidence from assumptions.', array['Use a role- and subject-relevant observation rubric','Agree specific next steps'], 'Complete a supervised class observation and submit evidence-based feedback.'),
+  (12, 'Practical mentoring capstone', 'mentoring', 'Integrate subject expertise, teaching skill, adab and reflective improvement.', array['Demonstrate improved practice','Present evidence of progress'], 'Deliver a reviewed lesson demonstration and a personal development plan.')
+) as v(sequence_no,title,category,description,outcomes,task)
+where not exists (select 1 from public.teacher_training_modules m where m.title = v.title);
+
 -- All records remain staff-only. Public/anonymous roles receive no access.
 do $$
 declare t text;
