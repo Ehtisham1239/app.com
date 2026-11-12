@@ -107,7 +107,7 @@ create table public.teacher_issues (
   updated_at timestamptz not null default now()
 );
 create or replace function private.tg_escalate_critical_teacher_assessment() returns trigger
-language plpgsql security definer set search_path = '' as $
+language plpgsql security definer set search_path = '' as $$
 begin
   if new.critical_quran_accuracy_issue then
     insert into public.teacher_issues (
@@ -121,7 +121,7 @@ begin
     ) on conflict (assessment_id) do nothing;
   end if;
   return new;
-end $;
+end $$;
 create trigger teacher_assessment_critical_escalation
   after insert or update of critical_quran_accuracy_issue on public.teacher_assessments
   for each row execute function private.tg_escalate_critical_teacher_assessment();
