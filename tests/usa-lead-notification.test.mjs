@@ -173,7 +173,7 @@ test("requests that are not a just-saved landing-page lead never reach Resend", 
   assert.equal((await route.POST(request(valid, { "content-type": "text/plain" }))).status, 415);
   assert.equal((await route.POST(request("{not json"))).status, 400);
   assert.equal((await route.POST(request({ reference: "TR-RECEIVED", email: "parent@example.test" }))).status, 400);
-  assert.equal((await route.POST(request(JSON.stringify({ ...valid, pad: "x".repeat(3000) })))).status, 400);
+  assert.equal((await route.POST(request(JSON.stringify({ ...valid, pad: "x".repeat(3000) })))).status, 413);
   assert.equal(fixture.calls.length, 0);
   setup({ data: null });
   const missing = await route.POST(request(valid));
