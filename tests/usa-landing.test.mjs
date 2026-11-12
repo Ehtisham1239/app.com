@@ -101,7 +101,8 @@ test("lead mapping matches the database function's rules", () => {
 test("USA campaign publishes only verified contact and content claims", () => {
   // Owner decision, 5 Nov 2026: the CEO-supplied US number is shown and clickable.
   assert.match(landing, /phone: \{ e164: '\+17869645678', display: '\(786\) 964-5678' \}/);
-  assert.match(landing, /whatsapp: \{ enabled: false, number: '', text: '' \}/);
+  assert.match(landing, /whatsapp: \{ enabled: true, number: '17869645678', text: '' \}/);
+  assert.match(landing, /href="https:\/\/wa\.me\/17869645678"/);
   assert.match(landing, /approved: \{\s*pricing: false,\s*teachers: false,\s*testimonials: false,\s*stats: false/s);
   assert.doesNotMatch(landing, /447864710821|"telephone"/);
   assert.doesNotMatch(landing, /within 24 hours|qualified Quran teachers|1,000\+ students/i);
