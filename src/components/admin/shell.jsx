@@ -52,6 +52,12 @@ export const NAV = [
     ],
   },
   {
+    group: "Teacher development",
+    items: [
+      { href: "/admin/teacher-excellence", label: "Teacher Excellence Center", icon: GraduationCap, perm: ["teacher_excellence:read", "teacher_excellence:self"] },
+    ],
+  },
+  {
     group: "Monthly progress",
     items: [
       { href: "/admin/progress/form", label: "Teacher form", icon: PenLine, perm: ["progress:submit", "progress:review"] },
