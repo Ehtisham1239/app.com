@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { enabledHighLevelConfig, syncHighLevelAdmission } from "@/lib/server/highlevel";
 import { publicDb } from "@/lib/supabase/public";
 import { permitsMutation } from "@/lib/request-origin";
+import { readBoundedText } from "@/lib/site-health-fetch";
 import { SITE_URL } from "@/lib/config";
 import { buildLeadEmail, notificationConfig, parseNotificationRequest, sendLeadEmail } from "@/lib/usa-lead-notification";
 
@@ -26,9 +27,10 @@ export async function POST(request) {
 
   let parsed = null;
   try {
-    const raw = await request.text();
-    if (raw.length <= MAX_BODY_BYTES) parsed = parseNotificationRequest(JSON.parse(raw));
-  } catch { parsed = null; }
+    parsed = parseNotificationRequest(JSON.parse(await readBoundedText(request, MAX_BODY_BYTES)));
+  } catch (error) {
+    if (error instanceof RangeError) return reply({ ok: false, error: "bad_request" }, 413);
+  }
   if (!parsed) return reply({ ok: false, error: "bad_request" }, 400);
 
   const config = notificationConfig();
