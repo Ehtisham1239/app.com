@@ -118,7 +118,7 @@ begin
       'Critical Quran accuracy issue — assessment follow-up',
       'A critical Quran accuracy concern was flagged in a subject assessment. Immediate academic review is required.',
       new.evidence_notes, new.improvement_actions, new.assessed_by, 'escalated'
-    ) on conflict (assessment_id) where assessment_id is not null do nothing;
+    ) on conflict (assessment_id) do nothing;
   end if;
   return new;
 end $;
