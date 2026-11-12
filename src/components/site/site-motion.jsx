@@ -17,10 +17,20 @@ export function SiteMotion() {
 
     const candidates = [
       ...root.querySelectorAll(
-        "section h1, section h2, section > .page-wrap > h3, section a.surface, section figure"
+        "section h1, section h2, section > .page-wrap > h3, section a.surface, section div.surface, section article.surface, section li.surface, section figure"
       ),
     ];
-    const targets = candidates.filter((node) => !node.closest("form, a.surface *"));
+    const targets = candidates.filter(
+      (node) => !node.closest("form, a.surface *, [role='dialog'], [aria-live]") && !node.querySelector("form")
+    );
+    // Cards that share a parent (a grid or list row) arrive in a short stagger.
+    const siblingIndex = new Map();
+    targets.forEach((node) => {
+      const parent = node.parentElement;
+      const index = siblingIndex.get(parent) ?? 0;
+      siblingIndex.set(parent, index + 1);
+      node.dataset.siteRevealStep = String(Math.min(index, 5));
+    });
     if (!targets.length) return;
 
     const observer = new IntersectionObserver(
@@ -33,7 +43,8 @@ export function SiteMotion() {
             observer.unobserve(element);
             return;
           }
-          element.style.setProperty("--site-reveal-delay", "0ms");
+          const step = Number(element.dataset.siteRevealStep || 0);
+          element.style.setProperty("--site-reveal-delay", `${step * 70}ms`);
           element.classList.add("site-reveal");
           observer.unobserve(element);
         });
