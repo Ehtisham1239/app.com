@@ -952,15 +952,11 @@ export function marketHreflang(siteUrl) {
   return { ...languages, "x-default": `${siteUrl}/locations` };
 }
 export const defaultLocationNoindex = (country, city) => Boolean(city) || !INDEXED_MARKETS.includes(country.slug);
-// City indexation (owner decision, 11 Nov 2026): only city pages the owner has
-// approved by name may be indexed, and only while their CMS row explicitly says
-// seo_noindex=false. These ten have their own local scheduling content and make
-// no local-office claims. Every other city stays noindex,follow, whatever the CMS
-// says, until the owner approves it here.
-export const APPROVED_CITY_PAGES = [
-  "united-states/new-york", "united-states/los-angeles", "united-states/chicago", "united-states/houston", "united-states/dallas",
-  "australia/sydney", "australia/melbourne", "australia/brisbane", "australia/perth", "australia/adelaide",
-];
+// City indexation policy (12 Nov 2026): no city page currently has both
+// independently verifiable unique local value and a documented owner approval.
+// Keep every city noindex,follow and out of the sitemap until both are recorded.
+// Country hubs retain their existing indexability rules.
+export const APPROVED_CITY_PAGES = [];
 export const isApprovedCityPage = (country, city) => Boolean(city) && APPROVED_CITY_PAGES.includes(`${country.slug}/${city.slug}`);
 export const locationIndexRecord = (page, country, city) => ({
   ...(page || {}),
