@@ -26,6 +26,7 @@ const articleTopics = {
   "choose-online-quran-teacher-usa": "international",
   "quran-lessons-australia-time-zones": "international",
   "online-quran-lessons-canada-time-zones": "international",
+  "online-quran-lessons-usa-time-zones": "international",
   "online-quran-lessons-uae-families": "international",
   "noorani-qaida-or-quran-reading": "reading",
   "adult-quran-beginner-first-month": "adults",

@@ -52,3 +52,17 @@ test("pricing cards show the published weekly count once and preserve schedule d
   assert.match(render({ classes_per_week: 1 }), /1 class a week/);
   assert.match(render({ features: ["2 classes a week"] }), /2 classes a week/);
 });
+test("pricing metadata covers all priority markets and states the eligible trial accurately", () => {
+  const pricing = read("src/app/(site)/pricing/page.jsx");
+  const description = pricing.match(/description: "([^"]+)"/)?.[1] || "";
+  assert.match(description, /UK, USA, Canada, Australia and UAE/);
+  assert.match(description, /3-day trial eligibility/);
+  assert.doesNotMatch(description, /CAD/, "Canada is currently quoted in USD; do not imply an approved CAD price");
+});
+
+test("homepage clarifies that its package cards are displayed in USD and points visitors to local fee guidance", () => {
+  const home = read("src/app/(site)/page.jsx");
+  assert.match(home, /Homepage package prices are shown in US dollars/);
+  assert.match(home, /your country guide for local fee guidance/);
+  assert.match(home, /Admissions confirms the final fee and payment currency/);
+});

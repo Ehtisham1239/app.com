@@ -30,7 +30,7 @@
       "id": "OPS-02",
       "priority": "P1",
       "workstream": "Existing blogs",
-      "status": "20 changed articles live-verified10November;35 published total",
+      "status": "35 published CMS records unchanged on 11 November. Prior live audit evidence retained.",
       "result": "20 CMS/live HTML agreements and source-formatted titles pass.31 contextual destinations pass. Changed20 max792 inclusive words; all35 max951 using tag-spaced whitespace method.",
       "evidence": "docs/seo-agent/BLOG-ACTION-REGISTER-2026-11-10.json",
       "next": "Preserve staff edits. Obtain qualified approval records for three version5 articles and supported390px verification."
@@ -39,9 +39,9 @@
       "id": "OPS-03",
       "priority": "P1",
       "workstream": "Technical SEO",
-      "status": "Changed-route sample verified9November; prior84-page crawl retained with original date",
-      "result": "Current sitemap has87 pages including35 blogs. Trial/locations/USA and trial thank-you responses/directives pass. Ambiguous duplicate blog filter/page parameters return404. No whole-site recrawl today.",
-      "evidence": "docs/seo-agent/evidence/2026-11-09/verification.json",
+      "status": "24 sampled legacy redirects and 19 live pages verified on 11 November",
+      "result": "All sampled redirects return 308 to their intended destinations with the query retained. All 19 pages return 200 with self-canonicals, one H1 and parseable JSON-LD. Sitemap lists 87 pages and 35 blogs.",
+      "evidence": "docs/seo-agent/evidence/2026-11-11/verification.json",
       "next": "Monitor changed routes and unresolved issues; do not repeat unchanged checks without a reason."
     },
     {
@@ -73,10 +73,10 @@
       "id": "OPS-07",
       "priority": "P2",
       "workstream": "Editorial relationships/backlinks",
-      "status": "RISE pitch retained; later staff50-domain screening register retained; zero new acquired links",
+      "status": "RISE route and OQC resource rechecked on 11 November",
       "evidence": "content/seo-agent/link-prospects-2026-10-28.json; content/seo-agent/resource-pitch-2026-10-28.md; docs/seo-agent/CITATION-QUALIFICATION-2026-11-07.csv",
-      "next": "Ask owner for a verified OQC sender and explicit RISE submission authorization or existing partner/directory publishing access. Do not suggest Ahrefs again.",
-      "result": "No outreach/submission in this run. Existing verified public-profile evidence and potential free candidates remain separate from newly acquired placements."
+      "next": "Use the prepared eligibility enquiry once verified sender access and authorization for this named submission are available.",
+      "result": "Current RISE form invites education resources across countries and curricula. The OQC checklist returns 200 and serves index/follow. AI acceptance remains unconfirmed. Zero submissions and acquired links."
     },
     {
       "id": "OPS-08",
@@ -92,14 +92,14 @@
       "workstream": "Image SEO/accessibility",
       "status": "Rating correction retained and USA call accessible-name correction verified live8November",
       "next": "New mobile attempts blocked by local socket permissions and native browser connection/DevTools policy. Preserve dated desktop evidence; do not claim fresh mobile checks.",
-      "result": "Current rating paragraphs have screen-reader text. PR146 removes two redundant USA call aria-label attributes. Both corrected links verified in public HTML on READY production c30c4968. Three changed articles now pass1363px desktop cover/H1/TOC/overflow checks on9November. Trial form child/adult field transitions verified without submission."
+      "result": "Current rating paragraphs have screen-reader text. PR146 removes two redundant USA call aria-label attributes. Both corrected links verified in public HTML on READY production c30c4968. Three changed articles now pass1363px desktop cover/H1/TOC/overflow checks on9November. Trial form child/adult field transitions verified without submission. Contact hero exposes AVIF and WebP variants at 400, 800 and 1200px. All six asset headers return 200 with the expected image type."
     },
     {
       "id": "OPS-10",
       "priority": "P2",
       "workstream": "Mobile/field CWV",
       "status": "Remote lab refreshed8November; field evidence pending",
-      "result": "Ten remote observations across five live pages. Mobile performance92–99, desktop100; accessibility scores100. USA label/name diagnostics were still present before the call-link release. Post-release HTML verifies both overrides removed.",
+      "result": "Ten remote observations across five live pages. Mobile performance92\u201399, desktop100; accessibility scores100. USA label/name diagnostics were still present before the call-link release. Post-release HTML verifies both overrides removed.",
       "next": "Obtain actual field p75/device/window data; retain the separate scopes and dates of remote lab and release HTML evidence.",
       "evidence": "docs/seo-agent/evidence/2026-11-08/verification.json",
       "latest_attempt": {
@@ -122,26 +122,8 @@
       "priority": "P2",
       "workstream": "External registers and private hosting logs",
       "status": "Vercel project/deployment access works; current functional correction verified live",
-      "result": "Current source27ef9a8 is READY at dpl_EtBKYY1gWsNgUHEbqC7HykveCbDW. Staff GHL/form, button and social-identity changes retained.",
+      "result": "Source b50fff0 is READY at dpl_GJLsdRA67gpC7Y2cxxa3QsitDRR3. Staff changes verified through sampled live redirects, learning links and contact HTML.",
       "next": "External Claude Docs pathway remains unavailable. Verify actual business outcomes separately from deployment/source delivery."
-    },
-    {
-      "id": "OPS-13",
-      "priority": "P1",
-      "workstream": "Canada local-time accuracy / conversion",
-      "status": "Article correction complete; Winnipeg planner compatibility override blocked pending owner approval",
-      "result": "market-timezones.js includes America/Winnipeg, but location-schedule.js only overrides Vancouver and Edmonton from 2026-11-01. No Winnipeg post-change regression test exists. Official Manitoba source confirms UTC-5 year-round. Northwest Territories and northwestern Ontario rules also need a concise article addendum.",
-      "evidence": "docs/seo-agent/ISSUE-REGISTER-2026-11-10.json; https://www.gov.mb.ca/timechange/; https://www.gov.nt.ca/en/newsroom/northwest-territories-ends-seasonal-time-change; https://www.ontario.ca/laws/regulation/r26333",
-      "next": "Obtain owner approval for America/Winnipeg -300 override and tests; approve the sourced Canada article addendum. Do not change production before approval."
-    },
-    {
-      "id": "OPS-14",
-      "priority": "P1",
-      "workstream": "Lead delivery / analytics baseline",
-      "status": "Two application-side CRM sync records marked synced; one lead_notification lookup_failed event; independent email/GHL verification pending",
-      "result": "The 50-minute Vercel error/warning query returned no logs. Stored Search Console baseline is 36 clicks / 1,266 impressions and stored GA4 baseline is 93 organic sessions, 9 generate_lead and 27 contact_click events for 2026-10-12 to 2026-11-08. Cookieless random client_id inflates sessions/users; fresh GA4 event read is blocked by Windsor account capacity.",
-      "evidence": "docs/seo-agent/ISSUE-REGISTER-2026-11-10.json; Supabase lead_crm_sync aggregate; Supabase seo_growth_metrics",
-      "next": "Verify an approved test enquiry through saved record, GHL and email receipt; resolve reporting-account capacity or provide dated exports. Preserve owner-approved analytics settings pending legal review."
     }
   ],
   "master_sections": [
@@ -157,7 +139,7 @@
     },
     {
       "section": 3,
-      "title": "OPERATING MODEL: STANDARDIZE → AUTOMATE → OPTIMIZE",
+      "title": "OPERATING MODEL: STANDARDIZE \u2192 AUTOMATE \u2192 OPTIMIZE",
       "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
     },
     {
@@ -167,7 +149,7 @@
     },
     {
       "section": 5,
-      "title": "EXISTING BLOG AUDIT — MANDATORY FIRST WORKSTREAM",
+      "title": "EXISTING BLOG AUDIT \u2014 MANDATORY FIRST WORKSTREAM",
       "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
     },
     {
@@ -192,12 +174,12 @@
     },
     {
       "section": 10,
-      "title": "AEO — ANSWER ENGINE OPTIMIZATION",
+      "title": "AEO \u2014 ANSWER ENGINE OPTIMIZATION",
       "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
     },
     {
       "section": 11,
-      "title": "GEO — GENERATIVE ENGINE OPTIMIZATION",
+      "title": "GEO \u2014 GENERATIVE ENGINE OPTIMIZATION",
       "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
     },
     {
@@ -217,7 +199,7 @@
     },
     {
       "section": 15,
-      "title": "CRO — CONVERSION RATE OPTIMIZATION",
+      "title": "CRO \u2014 CONVERSION RATE OPTIMIZATION",
       "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
     },
     {
@@ -287,12 +269,21 @@
     }
   ],
   "last_daily_review": {
-    "date": "2026-11-10",
-    "time": "08:20 PKT",
-    "source_reviewed": "7406ec03f680a514ec83cdc78cb4491aa2ef9f09",
-    "report": "docs/SEO-DAILY-2026-11-10-FOLLOWUP.md",
-    "result": "35 CMS articles remain within 1,000-word owner limit; 20 updated article audits pass; Canada article correction and Australia consolidation are recorded complete; new Winnipeg planner compatibility gap and NWT/northwestern Ontario article gap identified; two CRM sync records are synced with one notification lookup failure; stored GA4/GSC baseline and reporting limits reconciled. Latest production PR #183 is READY; its logo-only changes leave the Canadian time-zone code/test gap unchanged.",
-    "evidence": "docs/seo-agent/ISSUE-REGISTER-2026-11-10.json"
+    "date": "2026-11-11",
+    "source_reviewed": "b50fff04ca65b22915f642510cba41f67986cbbd",
+    "report": "docs/SEO-DAILY-2026-11-11.md",
+    "result": "CMS inventory unchanged. Verified 24 redirects, 19 public pages, contact image variants, 15 source tests and RISE eligibility preflight.",
+    "evidence": "docs/seo-agent/evidence/2026-11-11/verification.json",
+    "follow_up": {
+      "date": "2026-11-11",
+      "source_reviewed": "4e74108d5353c085a1f7b0331194905d65631dcc",
+      "scope": "Staff lead notification error-code change",
+      "tests": 25,
+      "failures": 0,
+      "deployment_status": "READY, production domain alias confirmed",
+      "verification": "docs/seo-agent/evidence/2026-11-11/notification-follow-up.json",
+      "next": "Production release and public page availability verified. Delivery failure remains locally verified with mocked providers; real delivery requires authorized staff evidence."
+    }
   },
   "last_implementation": {
     "date": "2026-10-29",
@@ -305,7 +296,7 @@
     "deployment": "Earlier API creation attempts returned 403; owner-authorized GitHub/Vercel setup resolved access. Existing production project is Ready at dpl_BUcSc8RHF9yAePAUp3UCyzKo6TQe and the public domain was verified.",
     "remaining_frontier": "58/58 public URLs return 200; no new parser findings. Combined same-day inventory 208.",
     "browser_release": {
-      "status": "Resolved — existing project connected; production verified",
+      "status": "Resolved \u2014 existing project connected; production verified",
       "evidence": "docs/seo-agent/evidence/2026-10-29-report-fixes/browser-release-blocker.json",
       "production_commit": "807d5969c32e0430e344467179c8153e1e71cb2e",
       "next": "Connection blocker resolved by 29 October release; inspect private logs only when needed and available. Preserve existing project/repository access.",

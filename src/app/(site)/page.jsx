@@ -122,6 +122,9 @@ export default async function HomePage() {
           <div className="mt-12">
             <PricingCards plans={homePlans} compact />
           </div>
+          <p className="mx-auto mt-4 max-w-2xl text-center text-sm text-ink-soft">
+            Homepage package prices are shown in US dollars. See the pricing page or your country guide for local fee guidance; Admissions confirms the final fee and payment currency before enrolment.
+          </p>
           <p className="mt-8 text-center">
             <Link href="/pricing" className="inline-flex items-center gap-1.5 font-semibold text-leaf-700 hover:text-leaf-800">
               See all packages and fees in your currency <ArrowRight className="size-4" aria-hidden="true" />
@@ -175,7 +178,7 @@ export default async function HomePage() {
           { href: "/locations/united-kingdom", image: "oqc-learning-united-kingdom-v3", alt: "A teenage boy wearing headphones, with a parent nearby, following a teacher on a laptop in a calm home study with Quran learning materials", title: "Quran classes in the UK", text: "UK local times, courses and GBP quotes." },
           { href: "/locations/united-states", image: "usa-online-quran-learning", alt: "Child and parent reviewing an Arabic workbook beside a laptop", title: "Quran classes in the USA", text: "US time zones, courses and USD packages." },
           { href: "/locations/canada", image: "oqc-learning-canada-v3", alt: "A father and daughter calmly reviewing their online Quran lesson at a small study table in a calm home study with Quran learning materials", title: "Quran classes in Canada", text: "Canadian time zones, courses and USD fee guide." },
-          { href: "/locations/australia", image: "australia-online-quran-learning", alt: "Young learner studying an Arabic workbook beside a laptop", title: "Quran classes in Australia", text: "Plan around your city and request approved AUD fees." },
+          { href: "/locations/australia", image: "australia-online-quran-learning", alt: "Young learner studying an Arabic workbook beside a laptop", title: "Quran classes in Australia", text: "City-aware lesson times and approximate AUD fee guidance." },
           { href: "/locations/united-arab-emirates", image: "family-online-quran-study-r2", alt: "Mother and son looking towards a laptop teacher with an open beginner workbook between them", title: "Quran classes in the UAE", text: "Gulf Standard Time, courses and AED quotes." },
           { href: "/learn", image: "home-learning-paths", alt: "Young learner with headphones using a workbook and laptop beside a closed book on a stand", title: "Find your learning path", text: "Guides for parents, adults and recitation learners." },
         ].map(item => <Link key={item.href} href={item.href} data-card-tone={cardTone(item.href)} className="surface editorial-card card-tinted group flex flex-col"><div className="mx-2 mt-2 aspect-[3/2] overflow-hidden rounded-[1.15rem]"><ContentImage src={`/images/learning/${item.image}-1200.webp`} alt={item.alt} sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 300px" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" /></div><div className="flex flex-1 flex-col p-6"><h3 className="text-xl">{item.title}</h3><p className="mt-3 flex-1 text-sm text-ink-soft">{item.text}</p><span className="card-action mt-5">Explore <span className="card-arrow"><ArrowRight className="size-4" aria-hidden="true" /></span></span></div></Link>)}

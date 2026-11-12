@@ -4,7 +4,7 @@
   "prospects": [
     {
       "id": "LINK-01",
-      "organization": "ISRE – Islamic Special Religious Education",
+      "organization": "ISRE \u2013 Islamic Special Religious Education",
       "source": "https://www.isre.org.au/resources/",
       "market": "Australia",
       "observed": "Recommendation invitation appears in a video-resources section beside a 2020 syllabus; the same page also lists 2026 curriculum materials. This does not establish acceptance of general commercial articles.",
@@ -24,7 +24,7 @@
       "market": "USA",
       "observed": "Official individual-membership FAQ expressly describes blog contributions as a membership benefit. A guest-blog example is visible. OQC membership and non-member eligibility are unverified.",
       "contact_route": "Organization website contact navigation; contribution policy not established",
-      "proposed_value": "A reviewed, original parent–teacher progress-conversation checklist, using real approved experience if a contribution is invited.",
+      "proposed_value": "A reviewed, original parent\u2013teacher progress-conversation checklist, using real approved experience if a contribution is invited.",
       "target_oqc_url": "https://www.onlinequrancollege.com/blog/parent-teacher-quran-progress-review",
       "evidence_level": "Publication examples observed; acceptance of an OQC contribution is unverified.",
       "risk": "Do not buy membership or a placement for ranking credit. Confirm unpaid editorial eligibility and any required qualification before outreach.",
@@ -45,7 +45,19 @@
       "evidence_level": "Direct invitation to submit resources; editorial fit and AI policy require confirmation.",
       "approval": "Concrete eligibility pitch prepared for owner review; sender identity/channel authorization pending.",
       "status": "Prepared, not sent or accepted",
-      "acquired_backlink": false
+      "acquired_backlink": false,
+      "latest_preflight": {
+        "reviewed": "2026-11-11",
+        "source": "https://resourcesforislamicschools.com/connect",
+        "terms": "https://resourcesforislamicschools.com/privacy",
+        "observed": "The current form invites useful resources for Muslim educators and families across countries and curricula, and requests audience and authorship with curriculum context where applicable.",
+        "editorial_fit": "Potential family-resource fit. The original eligibility enquiry and truthful authorship disclosure remain appropriate.",
+        "ai_policy": "No AI rule found on inspected public submission and terms pages. Publisher acceptance remains unconfirmed.",
+        "target_oqc_url": "https://www.onlinequrancollege.com/blog/online-quran-lesson-setup-accessibility",
+        "status": "Prepared. Verified sender and explicit authorization for the named RISE enquiry pending.",
+        "outreach_sent": false,
+        "acquired_backlink": false
+      }
     },
     {
       "id": "LINK-04",
@@ -66,7 +78,7 @@
     },
     {
       "id": "LINK-06",
-      "organization": "IslamiCity — Write for Us",
+      "organization": "IslamiCity \u2014 Write for Us",
       "source": "https://www.islamicity.org/write-for-us/",
       "market": "Global English / US",
       "observed": "Official page accepts article submissions from contributors with relevant content across broad topics including Quran, family and youth. Submission form is embedded; no backlink guarantee, link attribute policy or AI-content policy is stated on the page.",

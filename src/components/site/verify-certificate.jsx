@@ -108,9 +108,10 @@ export function VerifyCertificate() {
             </div>
           </div>
           <dl className="relative grid gap-5 px-6 py-6 sm:grid-cols-2">
-            <div className="sm:col-span-2">
-              <dt className="text-xs font-bold uppercase tracking-[0.16em] text-ink-faint">Awarded to</dt>
-              <dd className="mt-1 font-display text-[2rem] leading-tight text-mushaf-900">{r.student}</dd>
+            <div className="sm:col-span-2 rounded-xl bg-leaf-50 px-4 py-3">
+              <dt className="text-xs font-bold uppercase tracking-[0.16em] text-ink-faint">Learner identity</dt>
+              <dd className="mt-1 font-semibold text-mushaf-900">Withheld for privacy</dd>
+              <p className="mt-1 text-sm text-ink-soft">The certificate number confirms issuance without displaying the learner’s personal details.</p>
             </div>
             <div>
               <dt className="text-xs font-bold uppercase tracking-[0.16em] text-ink-faint">Certificate</dt>

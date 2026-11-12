@@ -63,3 +63,16 @@ test('indexed legacy WordPress course and services pages map to their exact curr
   }
   assert.equal(bySource.has('/ramzan-course'),false,'No current Ramadan course: keep the legacy URL a 404 rather than a soft-404 redirect');
 });
+
+test('legacy relative contact, course and location URLs reach the intended public pages', () => {
+  for (const [source, destination] of [
+    ['/book-now', '/free-trial'],
+    ['/op/book-now-online-quran-free-classes', '/free-trial'],
+    ['/:section(about|contact|pricing|privacy-policy)/pricing', '/pricing'],
+    ['/:section(about|contact|pricing|privacy-policy)/hadith-translation', '/courses/hadith-translation'],
+    ['/:section(about|contact|pricing|privacy-policy)/online-quran-classes-leeds', '/locations/united-kingdom'],
+  ]) {
+    assert.equal(bySource.get(source)?.destination, destination, source);
+    assert.equal(bySource.get(source)?.permanent, true, source);
+  }
+});

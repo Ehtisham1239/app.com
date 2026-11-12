@@ -11,6 +11,7 @@ import { AGE_BANDS, CURRENCIES, LEVELS, TEACHER_PREFS, TIME_SLOTS, TRIAL_STATUSE
 import { formatDateTime, toMinor, whatsappLink } from "@/lib/format";
 import { Badge, Card, ConfirmButton, ErrorState, Field, Loading, PageHeader, StatusBadge, When } from "@/components/admin/ui";
 import { CrmDetail, useCrmStatus } from "@/components/admin/crm-status";
+import { ShiftBadge } from "@/components/admin/lead-shift";
 
 const SELECT = "*, courses(id, title), teachers(id, display_name), profiles(id, full_name), students!trial_applications_student_id_fkey(student_code, full_name)";
 const ACTION_LABEL = { reviewed: "Mark reviewed", completed: "Trial done", no_show: "No-show", cancelled: "Cancel request", reviewed_again: "Re-open" };
@@ -53,6 +54,20 @@ function ScheduleCard({ trial, onDone, canEdit }) {
   };
   return (
     <Card title={["new", "reviewed"].includes(trial.status) ? "Schedule the trial class" : "Trial class"}>
+      {canEdit && trial.status === "reviewed" && (
+        <div className="mb-4 space-y-2 rounded-xl border border-line p-3 text-sm text-ink-soft">
+          <p>Confirm the family’s plan and teacher preference before sharing this three-day booking calendar. The Weekend plan is excluded.</p>
+          <a
+            href="https://api.leadconnectorhq.com/widget/booking/bze6bj5nt4ttPJikEp7f"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-outline"
+          >
+            Open GHL trial calendar (new tab)
+          </a>
+          <p>Once the family books, record the agreed time below so it appears in this portal.</p>
+        </div>
+      )}
       {!open ? (
         <div className="space-y-1 text-sm text-ink-soft">
           <p>{trial.trial_at ? formatDateTime(trial.trial_at) : "No trial time recorded."}</p>
@@ -289,6 +304,7 @@ export default function TrialPage({ params }) {
           <span>
             Requested <When value={t.created_at} />
           </span>
+          <ShiftBadge shift={t.lead_shift} date={t.shift_date} />
           {t.duplicate_of_id && (
             <Link href={`/admin/trials/${t.duplicate_of_id}`}>
               <Badge tone="amber">Possible repeat — see earlier request</Badge>

@@ -8,20 +8,23 @@ import { CONTACT_STATUSES } from "@/lib/constants";
 import { truncate } from "@/lib/format";
 import { Card, EmptyState, ErrorState, Loading, PageHeader, Pagination, SearchInput, StatusBadge, Tabs, When } from "@/components/admin/ui";
 import { CrmBadge, useCrmStatus } from "@/components/admin/crm-status";
+import { ShiftBadge, ShiftFilter, ShiftQueueBanner, applyShiftFilter } from "@/components/admin/lead-shift";
 
 const PAGE = 25;
 
 export default function ContactsPage() {
   const router = useRouter();
   const [status, setStatus] = useState("new");
+  const [shift, setShift] = useState("all");
   const [q, setQ] = useState("");
   const [page, setPage] = useState(0);
   const list = useLoad(() => {
-    let query = db().from("contact_messages").select("id, reference, name, email, subject, message, status, created_at", { count: "exact" }).is("deleted_at", null);
+    let query = db().from("contact_messages").select("id, reference, name, email, subject, message, status, created_at, lead_shift, shift_date", { count: "exact" }).is("deleted_at", null);
     if (status !== "all") query = query.eq("status", status);
+    query = applyShiftFilter(query, "contact_messages", shift);
     if (q) query = query.or(["name", "email", "subject", "reference", "message"].map((f) => `${f}.ilike.${likeTerm(q)}`).join(","));
     return query.order("created_at", { ascending: false }).range(page * PAGE, page * PAGE + PAGE - 1);
-  }, [status, q, page]);
+  }, [status, shift, q, page]);
   const crm = useCrmStatus(list.data?.map((m) => m.reference));
   const counts = useLoad(async () => {
     const res = await Promise.all(CONTACT_STATUSES.map((s) => db().from("contact_messages").select("id", { count: "exact", head: true }).is("deleted_at", null).eq("status", s.value)));
@@ -30,9 +33,13 @@ export default function ContactsPage() {
   return (
     <>
       <PageHeader title="Messages" subtitle="Questions sent through the website’s contact form." />
+      <ShiftQueueBanner table="contact_messages" />
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <Tabs value={status} onChange={(v) => { setStatus(v); setPage(0); }} tabs={[...CONTACT_STATUSES.map((s) => ({ value: s.value, label: s.label, count: counts.data?.[s.value] })), { value: "all", label: "All" }]} />
-        <SearchInput value={q} onChange={(v) => { setQ(v); setPage(0); }} placeholder="Name, email or subject…" className="w-full sm:w-72" />
+        <div className="flex w-full flex-wrap gap-2 sm:w-auto">
+          <ShiftFilter value={shift} onChange={(v) => { setShift(v); setPage(0); }} />
+          <SearchInput value={q} onChange={(v) => { setQ(v); setPage(0); }} placeholder="Name, email or subject…" className="w-full sm:w-72" />
+        </div>
       </div>
       <Card bodyClass="">
         {list.loading ? (
@@ -56,6 +63,7 @@ export default function ContactsPage() {
                   </div>
                   <div className="flex shrink-0 flex-col items-end gap-1.5 text-xs text-ink-faint">
                     <When value={m.created_at} />
+                    <ShiftBadge shift={m.lead_shift} />
                     <StatusBadge list={CONTACT_STATUSES} value={m.status} />
                     <CrmBadge status={crm[m.reference]} />
                   </div>
