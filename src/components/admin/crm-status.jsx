@@ -35,7 +35,7 @@ export function CrmBadge({ status }) {
 }
 
 export function CrmDetail({ status }) {
-  if (!status) return <span className="text-ink-faint">Not recorded (leads before 9 Nov 2026, or GHL sync was off)</span>;
+  if (!status) return <span className="text-ink-faint">GHL delivery unverified</span>;
   const when = formatDateTime(status.updated_at, "Asia/Karachi");
   return status.status === "synced"
     ? <span><Badge tone="green">In GHL</Badge> <span className="text-ink-faint">sent {when} PKT</span></span>
