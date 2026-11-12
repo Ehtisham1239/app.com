@@ -58,6 +58,13 @@ export default async function PricingPage() {
           </ul>
         </div>
       </section>
+      <section className="page-wrap pb-10" aria-labelledby="international-course-options">
+        <div className="mx-auto max-w-3xl space-y-3">
+          <h2 id="international-course-options" className="text-xl text-mushaf-900">Choosing a Quran course from abroad?</h2>
+          <p className="text-ink-soft">Compare <Link href="/courses" className="text-leaf-700 underline">online Quran courses</Link> before selecting a package. Students in the UK, Europe, the USA, Canada and Australia can request lessons matched to their learning level and preferred local time, subject to teacher availability. Country guides explain scheduling; the coordinator confirms actual fees and currencies.</p>
+          <p><Link href="/free-trial" className="font-semibold text-leaf-700 underline">Ask about an eligible free trial</Link> before enrolling.</p>
+        </div>
+      </section>
       <section className="page-wrap py-16 sm:py-20" aria-labelledby="monthly-packages">
         <h2 id="monthly-packages" className="sr-only">Monthly class packages</h2>
         {packages.length > 0 && <CurrencyPricing plans={packages} fx={fx} />}
