@@ -21,14 +21,16 @@ test("only owner-approved city pages can be indexed, and only with an explicit C
   }
 });
 
-test("the approved city list is the ten US and Australian cities the owner approved on 11 Nov 2026", () => {
-  assert.deepEqual([...APPROVED_CITY_PAGES].sort(), [
-    "australia/adelaide", "australia/brisbane", "australia/melbourne", "australia/perth", "australia/sydney",
-    "united-states/chicago", "united-states/dallas", "united-states/houston", "united-states/los-angeles", "united-states/new-york",
-  ]);
-  for (const key of APPROVED_CITY_PAGES) {
-    const [c, slug] = key.split("/");
-    assert.ok(LOCATIONS.find((x) => x.slug === c)?.cities.some((x) => x.slug === slug), `${key} exists`);
+test("no city page is approved for indexing without unique local value and documented owner approval", () => {
+  assert.deepEqual([...APPROVED_CITY_PAGES], []);
+  for (const country of LOCATIONS) {
+    for (const city of country.cities) {
+      assert.equal(
+        locationIndexRecord({ seo_noindex: false }, country, city).seo_noindex,
+        true,
+        `${country.slug}/${city.slug} remains noindex until both requirements are documented`,
+      );
+    }
   }
 });
 
@@ -40,7 +42,7 @@ test("approved country hubs remain indexable unless CMS explicitly sets noindex"
   }
 });
 
-test("a city page shows its own CMS guidance open, so re-indexed city pages lead with local content", () => {
+test("city-specific CMS guidance remains visible to visitors even while the page is noindex", () => {
   const src = readFileSync(new URL("../src/components/site/location-page.jsx", import.meta.url), "utf8");
   assert.match(src, /<details className="surface p-6" open=\{Boolean\(city\)\}>/);
 });
