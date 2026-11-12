@@ -30,18 +30,18 @@
       "id": "OPS-02",
       "priority": "P1",
       "workstream": "Existing blogs",
-      "status": "35 published CMS records unchanged on 11 November. Prior live audit evidence retained.",
-      "result": "20 CMS/live HTML agreements and source-formatted titles pass.31 contextual destinations pass. Changed20 max792 inclusive words; all35 max951 using tag-spaced whitespace method.",
-      "evidence": "docs/seo-agent/BLOG-ACTION-REGISTER-2026-11-10.json",
+      "status": "36 published CMS records on 12 November, one new and one updated guide verified in live HTML",
+      "result": "701 and 550 inclusive words, 15 passing contextual links. Mobile browser startup blocked.",
+      "evidence": "docs/seo-agent/evidence/2026-11-12/verification.json",
       "next": "Preserve staff edits. Obtain qualified approval records for three version5 articles and supported390px verification."
     },
     {
       "id": "OPS-03",
       "priority": "P1",
       "workstream": "Technical SEO",
-      "status": "24 sampled legacy redirects and 19 live pages verified on 11 November",
+      "status": "88 sitemap URLs, ten approved cities verified live and 32 IndexNow dry-run URLs pass",
       "result": "All sampled redirects return 308 to their intended destinations with the query retained. All 19 pages return 200 with self-canonicals, one H1 and parseable JSON-LD. Sitemap lists 87 pages and 35 blogs.",
-      "evidence": "docs/seo-agent/evidence/2026-11-11/verification.json",
+      "evidence": "docs/seo-agent/evidence/2026-11-12/verification.json",
       "next": "Monitor changed routes and unresolved issues; do not repeat unchanged checks without a reason."
     },
     {
@@ -121,9 +121,10 @@
       "id": "OPS-12",
       "priority": "P2",
       "workstream": "External registers and private hosting logs",
-      "status": "Vercel project/deployment access works; current functional correction verified live",
+      "status": "Production Vercel alias verified on 12 November. Three newer source commits have no observed deployment records.",
       "result": "Source b50fff0 is READY at dpl_GJLsdRA67gpC7Y2cxxa3QsitDRR3. Staff changes verified through sampled live redirects, learning links and contact HTML.",
-      "next": "External Claude Docs pathway remains unavailable. Verify actual business outcomes separately from deployment/source delivery."
+      "next": "External Claude Docs pathway remains unavailable. Verify actual business outcomes separately from deployment/source delivery.",
+      "evidence": "docs/seo-agent/evidence/2026-11-12/verification.json"
     }
   ],
   "master_sections": [
@@ -269,21 +270,11 @@
     }
   ],
   "last_daily_review": {
-    "date": "2026-11-11",
-    "source_reviewed": "b50fff04ca65b22915f642510cba41f67986cbbd",
-    "report": "docs/SEO-DAILY-2026-11-11.md",
-    "result": "CMS inventory unchanged. Verified 24 redirects, 19 public pages, contact image variants, 15 source tests and RISE eligibility preflight.",
-    "evidence": "docs/seo-agent/evidence/2026-11-11/verification.json",
-    "follow_up": {
-      "date": "2026-11-11",
-      "source_reviewed": "4e74108d5353c085a1f7b0331194905d65631dcc",
-      "scope": "Staff lead notification error-code change",
-      "tests": 25,
-      "failures": 0,
-      "deployment_status": "READY, production domain alias confirmed",
-      "verification": "docs/seo-agent/evidence/2026-11-11/notification-follow-up.json",
-      "next": "Production release and public page availability verified. Delivery failure remains locally verified with mocked providers; real delivery requires authorized staff evidence."
-    }
+    "date": "2026-11-12",
+    "source_reviewed": "54c658a1b4495b0c06c3dce42216f41e08b6da62",
+    "report": "docs/SEO-DAILY-2026-11-12.md",
+    "result": "One new and one updated article pass HTML and link checks. City approvals reconciled, all ten live signals pass. IndexNow dry run passes 32 URLs. Twelve source tests pass.",
+    "evidence": "docs/seo-agent/evidence/2026-11-12/verification.json"
   },
   "last_implementation": {
     "date": "2026-10-29",
@@ -367,8 +358,8 @@
     "next": "Verify receipt of the three new trial funnel events in the existing GTM/GA4 account"
   },
   "city_indexing_review": {
-    "date": "2026-11-07",
-    "status": "Awaiting reconciliation",
+    "date": "2026-11-12",
+    "status": "Owner approval reconciled and live sitemap/robots verified",
     "approved_in_inspected_decision_log": [
       "Houston",
       "Perth",
@@ -383,7 +374,21 @@
       "Brisbane",
       "Adelaide"
     ],
-    "next": "Locate any later explicit approval and local evidence before changing current CMS flags"
+    "next": "Confirm deployment of the current source guard and review Search Console when reporting access is restored.",
+    "owner_decision": "AGENTS.md owner decision dated 11 November, commit 4ee70b3",
+    "approved_paths": [
+      "/locations/united-states/new-york",
+      "/locations/united-states/los-angeles",
+      "/locations/united-states/chicago",
+      "/locations/united-states/houston",
+      "/locations/united-states/dallas",
+      "/locations/australia/sydney",
+      "/locations/australia/melbourne",
+      "/locations/australia/brisbane",
+      "/locations/australia/perth",
+      "/locations/australia/adelaide"
+    ],
+    "verification": "docs/seo-agent/evidence/2026-11-12/verification.json"
   },
   "last_accessibility_fix": {
     "date": "2026-11-08",
@@ -404,5 +409,22 @@
     "academic_review": "No matching qualified sign-off found in inspected repository and private report. This does not establish absence of approval elsewhere.",
     "action": "Preserve current settings. Reconcile human academic sign-off and publishing/indexing authorization before any change.",
     "last_reviewed": "2026-11-10"
+  },
+  "prior_daily_review": {
+    "date": "2026-11-11",
+    "source_reviewed": "b50fff04ca65b22915f642510cba41f67986cbbd",
+    "report": "docs/SEO-DAILY-2026-11-11.md",
+    "result": "CMS inventory unchanged. Verified 24 redirects, 19 public pages, contact image variants, 15 source tests and RISE eligibility preflight.",
+    "evidence": "docs/seo-agent/evidence/2026-11-11/verification.json",
+    "follow_up": {
+      "date": "2026-11-11",
+      "source_reviewed": "4e74108d5353c085a1f7b0331194905d65631dcc",
+      "scope": "Staff lead notification error-code change",
+      "tests": 25,
+      "failures": 0,
+      "deployment_status": "READY, production domain alias confirmed",
+      "verification": "docs/seo-agent/evidence/2026-11-11/notification-follow-up.json",
+      "next": "Production release and public page availability verified. Delivery failure remains locally verified with mocked providers; real delivery requires authorized staff evidence."
+    }
   }
 }
