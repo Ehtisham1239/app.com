@@ -11,7 +11,7 @@ import { safeJsonLd } from "@/lib/seo";
 
 export const revalidate = 300;
 
-export const metadata = contentMetadata({ title: "Online Quran Courses", seo_noindex: false }, { path: "/courses", description: "Noorani Qaida, Quran reading with Tajweed, Hifz, Arabic, translation & tafseer and Islamic studies \u2014 live one-to-one online classes for children and adults." });
+export const metadata = contentMetadata({ title: "Online Quran Courses", seo_noindex: false }, { path: "/courses", description: "Explore live one-to-one online Quran courses for children and adults: Noorani Qaida, Tajweed, Hifz, Arabic and Islamic studies. Compare lessons and request a trial." });
 
 export default async function CoursesPage() {
   const [courses, settings] = await Promise.all([getCourses(), getSettings()]);
@@ -44,6 +44,14 @@ export default async function CoursesPage() {
           <p>If the learner is still recognising Arabic letters or joining sounds, ask about Noorani Qaida. If they can read words but need help with accuracy and recitation rules, discuss Quran reading and Tajweed. Memorisation, Arabic and translation have different aims; explain what you want to learn before choosing a course.</p>
           <p>For a child, a parent or guardian can describe what the learner already reads and where they need support. Adults can explain whether they are starting from the alphabet or returning to study. The trial gives the teacher a chance to assess the starting point and discuss a suitable pace.</p>
           <p>Before regular lessons begin, confirm the class length, days, local time zone, teacher preference and approved fee with the coordinator. Read the <Link href="/pricing" className="text-leaf-700 underline">package details</Link> and <Link href="/refund-policy" className="text-leaf-700 underline">refund policy</Link>, and use the <Link href="/contact" className="text-leaf-700 underline">contact form</Link> for questions about your circumstances.</p>
+        </div>
+      </section>
+      <section className="page-wrap pb-12" aria-labelledby="international-quran-classes">
+        <div className="surface space-y-4 p-6 sm:p-8">
+          <h2 id="international-quran-classes" className="text-2xl">Online Quran classes for families abroad</h2>
+          <p>Families in the UK, Europe, the United States, Canada and Australia can ask about one-to-one online Quran lessons for children and adults. Classes take place online, not at a local branch. Tell admissions your country, time zone, learning level and preferred lesson times so they can check available options.</p>
+          <p>Explore our <Link href="/locations/united-kingdom" className="text-leaf-700 underline">UK Quran classes</Link>, <Link href="/locations/united-states" className="text-leaf-700 underline">USA lesson planning</Link>, <Link href="/locations/canada" className="text-leaf-700 underline">Canada class options</Link>, and <Link href="/locations/australia" className="text-leaf-700 underline">Australia schedules</Link>. For other European countries, browse the <Link href="/locations" className="text-leaf-700 underline">country guides</Link>. Teacher availability, lesson language, currency and fees are confirmed before enrolment.</p>
+          <p>Already know your course? <Link href="/free-trial" className="text-leaf-700 underline">Request a trial</Link> and share your preferred local class time.</p>
         </div>
       </section>
       <CtaBand
