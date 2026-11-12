@@ -91,7 +91,8 @@ export function TeacherExcellence() {
   const [planForm, setPlanForm] = useState({ teacher_id: "", week_start: "", focus: "", actions: "" });
 
   const canRead = can("teacher_excellence:read") || can("teacher_excellence:self");
-  const canWrite = can("teacher_excellence:create") || can("teacher_excellence:update");\n  const canUpdate = can("teacher_excellence:update");
+  const canWrite = can("teacher_excellence:create") || can("teacher_excellence:update");
+  const canUpdate = can("teacher_excellence:update");
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -121,7 +122,9 @@ export function TeacherExcellence() {
 
   useEffect(() => { if (canRead) void load(); }, [canRead, load]);
 
-  const subjectMap = useMemo(() => Object.fromEntries(data.subjects.map(s => [s.id, s])), [data.subjects]);\n  const selectedAssessmentSubject = subjectMap[assessmentForm.subject_assignment_id];\n  const activeRubric = selectedAssessmentSubject?.rubric || RUBRIC;
+  const subjectMap = useMemo(() => Object.fromEntries(data.subjects.map(s => [s.id, s])), [data.subjects]);
+  const selectedAssessmentSubject = subjectMap[assessmentForm.subject_assignment_id];
+  const activeRubric = selectedAssessmentSubject?.rubric || RUBRIC;
   const activeTeachers = data.teachers.filter(t => t.is_active);
   const openIssues = data.issues.filter(i => !["resolved"].includes(i.status));
   const criticalIssues = data.issues.filter(i => i.priority === "P1" && !["resolved"].includes(i.status));
