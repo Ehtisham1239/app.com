@@ -230,3 +230,16 @@ create policy "teacher own weekly plans read" on public.teacher_weekly_plans
   );
 
 -- Keep the critical accuracy flag visible as a separate escalation signal; it must not be averaged away.
+
+-- Teacher self-service: the authenticated teacher may see only their own public staff
+-- profile and training module content assigned to them.
+create policy "teacher own profile read" on public.teachers
+  for select to authenticated using (
+    exists (select 1 from public.profiles p where p.id = auth.uid() and p.is_active and p.teacher_id = teachers.id)
+  );
+create policy "teacher assigned module read" on public.teacher_training_modules
+  for select to authenticated using (
+    exists (select 1 from public.teacher_training_records tr
+      join public.profiles p on p.teacher_id = tr.teacher_id
+      where p.id = auth.uid() and p.is_active and tr.module_id = teacher_training_modules.id)
+  );
