@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 
 const page = readFileSync(new URL("../src/app/(site)/verify-certificate/page.jsx", import.meta.url), "utf8");
 const component = readFileSync(new URL("../src/components/site/verify-certificate.jsx", import.meta.url), "utf8");
-const migration = readFileSync(new URL("../supabase/migrations/20261110042500_public_certificate_privacy.sql", import.meta.url), "utf8");
+const migration = readFileSync(new URL("../supabase/migrations/20261112032025_public_certificate_privacy.sql", import.meta.url), "utf8");
 
 test("public certificate verification explains that learner identity is withheld", () => {
   assert.match(page, /Learner names are withheld on public verification pages for privacy/);
