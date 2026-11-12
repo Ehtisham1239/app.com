@@ -90,6 +90,7 @@ create table public.teacher_issues (
   id uuid primary key default gen_random_uuid(),
   teacher_id uuid not null references public.teachers(id) on delete cascade,
   subject_assignment_id uuid references public.teacher_subject_assignments(id) on delete set null,
+  assessment_id uuid unique references public.teacher_assessments(id) on delete set null,
   category text not null check (category in ('academic_accuracy','teaching_method','student_progress','communication','islamic_tarbiyah','technology','time_management','workload','professionalism','motivation','management_blocker','other')),
   priority text not null default 'P3' check (priority in ('P1','P2','P3','P4')),
   title text not null check (char_length(title) between 3 and 180),
@@ -105,6 +106,26 @@ create table public.teacher_issues (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+create or replace function private.tg_escalate_critical_teacher_assessment() returns trigger
+language plpgsql security definer set search_path = '' as $
+begin
+  if new.critical_quran_accuracy_issue then
+    insert into public.teacher_issues (
+      teacher_id, subject_assignment_id, assessment_id, category, priority, title,
+      description, evidence, action_plan, created_by, status
+    ) values (
+      new.teacher_id, new.subject_assignment_id, new.id, 'academic_accuracy', 'P1',
+      'Critical Quran accuracy issue — assessment follow-up',
+      'A critical Quran accuracy concern was flagged in a subject assessment. Immediate academic review is required.',
+      new.evidence_notes, new.improvement_actions, new.assessed_by, 'escalated'
+    ) on conflict (assessment_id) where assessment_id is not null do nothing;
+  end if;
+  return new;
+end $;
+create trigger teacher_assessment_critical_escalation
+  after insert or update of critical_quran_accuracy_issue on public.teacher_assessments
+  for each row execute function private.tg_escalate_critical_teacher_assessment();
+
 create index teacher_issues_queue_idx on public.teacher_issues(status, priority, due_date);
 create index teacher_issues_teacher_idx on public.teacher_issues(teacher_id, created_at desc);
 
