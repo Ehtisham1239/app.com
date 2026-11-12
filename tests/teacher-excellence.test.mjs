@@ -56,6 +56,9 @@ test("subject assessment preserves its own rubric and critical Quran accuracy fl
   assert.equal(row.rubric_snapshot.quran_accuracy.weight, 50);
   assert.equal(row.critical_quran_accuracy_issue, true);
   assert.equal(row.status, "action_required");
+  const escalated = (await db.query("select priority,status,assessment_id from public.teacher_issues where assessment_id=(select id from public.teacher_assessments where subject_assignment_id=$1)", [subject.id])).rows[0];
+  assert.equal(escalated.priority, "P1");
+  assert.equal(escalated.status, "escalated");
 });
 
 test("teacher self-service can read only their own subject assignments and assessments", async () => {
