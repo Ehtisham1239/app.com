@@ -196,7 +196,9 @@ test("parents see only their own children's published results and issued certifi
   assert.equal(data[0].code, studentA.student_code, "the parent sees their own child's student code");
   assert.ok(!JSON.stringify(data).includes("CLIENT-") && !JSON.stringify(data).includes(studentC.student_code));
 
-  assert.equal((await one("select public.parent_certificate($1,$2) as c", [globalThis.tokenA, issued])).c.title, "Certificate of Completion");
+  const parentCertificate = (await one("select public.parent_certificate($1,$2) as c", [globalThis.tokenA, issued])).c;
+  assert.equal(parentCertificate.title, "Certificate of Completion");
+  assert.equal(parentCertificate.student, "Test Learner A", "the authenticated parent portal retains the learner name");
   for (const id of [draft, revoked, otherFamily]) {
     assert.equal((await one("select public.parent_certificate($1,$2) as c", [globalThis.tokenA, id])).c, null);
   }
@@ -230,7 +232,7 @@ test("public certificate verification still returns only its fixed fields", asyn
   const cert = await one("select number from public.certificates where status='issued' and title='Certificate of Completion'");
   await as("anon");
   const result = (await one("select public.verify_certificate($1) as r", [cert.number])).r;
-  assert.deepEqual(Object.keys(result).sort(), ["course", "issued_on", "number", "signed_by", "student", "title"]);
+  assert.deepEqual(Object.keys(result).sort(), ["course", "issued_on", "number", "signed_by", "title"]);
 });
 
 test("new certificate numbers cannot be guessed and deleted students are not verified", async () => {
@@ -241,7 +243,9 @@ test("new certificate numbers cannot be guessed and deleted students are not ver
   assert.match(a, /^OQC-CERT-\d{4}-\d{4}-[A-HJKMNP-Z2-9]{4}$/);
   assert.match(b, /^OQC-CERT-\d{4}-\d{4}-[A-HJKMNP-Z2-9]{4}$/);
   await as("anon");
-  assert.equal((await one("select public.verify_certificate($1) as r", [a.toLowerCase()])).r.student, "Verify Test Learner", "lower-case input still verifies");
+  const publicResult = (await one("select public.verify_certificate($1) as r", [a.toLowerCase()])).r;
+  assert.equal(publicResult.number, a, "lower-case input still verifies");
+  assert.equal(Object.hasOwn(publicResult, "student"), false, "public verification never discloses the learner name");
   assert.equal((await one("select public.verify_certificate($1) as r", [a.slice(0, -5)])).r, null, "number without its suffix is not found");
   await as("postgres");
   await db.query("update public.students set deleted_at = now() where id = $1", [student]);

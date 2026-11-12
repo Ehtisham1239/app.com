@@ -8,7 +8,7 @@ export const metadata = contentMetadata({ title: "Verify a Certificate", seo_noi
 export default function VerifyPage() {
   return (
     <>
-      <PageHero path="/verify-certificate" eyebrow="Certificates" title="Verify a certificate" intro="Every certificate we issue carries a unique number. Enter it below to confirm the student’s name, course and issue date." />
+      <PageHero path="/verify-certificate" eyebrow="Certificates" title="Verify a certificate" intro="Every certificate we issue carries a unique number. Enter it below to confirm its issue status, course and date. Learner names are withheld on public verification pages for privacy." />
       <section className="page-wrap max-w-3xl py-16">
         <Suspense fallback={<div className="surface h-40 animate-pulse" />}>
           <VerifyCertificate />
