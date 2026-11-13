@@ -2,6 +2,15 @@
 import { useEffect, useRef, useState } from "react";
 import { currencyForTimeZone } from "@/lib/fx";
 
+let pendingVisitorGeo;
+
+function getVisitorGeo() {
+  pendingVisitorGeo ??= fetch("/api/geo", { cache: "no-store" })
+    .then((response) => (response.ok ? response.json() : null))
+    .finally(() => { pendingVisitorGeo = undefined; });
+  return pendingVisitorGeo;
+}
+
 // Starts from USD (or the given default). On load, a ?currency= in the URL wins;
 // otherwise it switches once to the currency for the visitor's country. A later manual
 // choice is kept. Reading the URL here (not on the server) keeps /pricing static and fast.
@@ -16,17 +25,16 @@ export function useVisitorCurrency(options, defaultCurrency = "USD", explicit = 
       queueMicrotask(() => { if (!canceled && !manualChoice.current) setCurrency(fromUrl); });
       return () => { canceled = true; };
     }
-    const controller = new AbortController();
-    const apply = (value) => { if (!controller.signal.aborted && !manualChoice.current && value && options.includes(value)) setCurrency(value); };
+    let canceled = false;
+    const apply = (value) => { if (!canceled && !manualChoice.current && value && options.includes(value)) setCurrency(value); };
     const fromTimeZone = () => {
       try { return currencyForTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone); } catch { return null; }
     };
     // The host's visitor-country header wins; without one (Hostinger), the browser time zone decides.
-    fetch("/api/geo", { signal: controller.signal, cache: "no-store" })
-      .then((r) => (r.ok ? r.json() : null))
+    getVisitorGeo()
       .then((geo) => apply(geo?.country ? geo.currency : fromTimeZone()))
       .catch(() => apply(fromTimeZone()));
-    return () => controller.abort();
+    return () => { canceled = true; };
     // Run once on load so the visitor's later choice is not overridden.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
