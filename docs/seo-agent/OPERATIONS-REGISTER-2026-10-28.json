@@ -30,10 +30,10 @@
       "id": "OPS-02",
       "priority": "P1",
       "workstream": "Existing blogs",
-      "status": "36 published CMS records; 14 existing migration changes verified on 13 November; all 36 indexable and below the 1,000-word limit",
-      "result": "Read-only CMS snapshot: 36 published, 36 indexable, zero noindex, no missing SEO title/description/cover/cover alt; inclusive count 453–969. The applied migration adds nine trial links (exactly one each) and five practical study sections; all 14 expected changes are present. No content edited by this run. Thirty-six 12 November audit snapshots show no tracked content/metadata/version changes; three later audit rows have empty snapshots, so their field delta is unknown.",
+      "status": "36 published CMS records; 14 existing migration changes verified; five study sections now visible in live HTML; nine trial CTAs verified in CMS only.",
+      "result": "Read-only CMS snapshot: 36 published and indexable, zero missing SEO title/description/cover/alt; inclusive count 453–969. The applied migration adds nine trial links (exactly one each) and five practical study sections. All 14 CMS additions are present. Five study-section pages now return live HTML showing the expected inserted heading and an Updated 13 Nov date. The nine CTA additions have not been refreshed in live HTML; sampled public-reader responses were stale or inaccessible. No content edited by this run.",
       "evidence": "docs/seo-agent/BLOG-ACTION-REGISTER-2026-11-13.json",
-      "next": "Preserve all current CMS edits. Await the CI-runner live/responsive audit; refresh live HTML for the 14 changed articles and reconcile the three unattributed audit events before any further content work."
+      "next": "Preserve all CMS edits. Refresh live HTML for the nine CTA articles after cache revalidation and run mobile checks for all 14 changed pages; reconcile the three unattributed audit events before further content work."
     },
     {
       "id": "OPS-03",
