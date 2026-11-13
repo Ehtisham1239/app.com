@@ -186,13 +186,28 @@ export default async function HomePage() {
         <p className="mt-6 text-center text-sm text-ink-soft">Somewhere else? <Link href="/locations" className="font-semibold text-leaf-700 underline underline-offset-4">See every country we plan classes for</Link></p>
       </section>
 
-      <section id="about" className="scroll-mt-24 bg-[#f5faf1] py-16 sm:py-24">
-        <div className="page-wrap grid items-center gap-10 lg:grid-cols-2">
-          <figure className="overflow-hidden rounded-[2rem] border border-leaf-100 bg-white">
-            <ContentImage src="/images/learning/home-college-welcome-r2-1200.webp" alt="Parents encouraging their daughter during a laptop lesson at a bright home desk" sizes="(max-width: 1024px) 100vw, 560px" className="aspect-[3/2] w-full object-cover" />
-            <figcaption className="px-6 py-5"><p className="font-bold text-leaf-700">Islamic mission. Global Quran access.</p><p className="mt-1 text-sm text-ink-soft">Traditional learning, connected to your home.</p></figcaption>
-          </figure>
-          <div><SectionHeading align="left" eyebrow="About our college" title="Welcome to Online Quran College" intro="Learn the Quran from home through personal, live one-to-one Quran classes." /><p className="mt-5 text-ink-soft">From the first Arabic letters to confident recitation, choose a course around your learner’s level and goals.</p><Link href="/about" className="btn btn-primary mt-6">About our college <ArrowRight className="size-4" aria-hidden="true" /></Link><Link href="/careers" className="btn btn-outline mt-3 sm:ms-3">Careers &amp; Opportunities</Link></div>
+      <section id="about" aria-labelledby="about-heading" className="scroll-mt-24 bg-[#f5faf1] py-14 sm:py-20">
+        <div className="page-wrap grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+          <div className="min-w-0">
+            <SectionHeading
+              align="left"
+              title={<span id="about-heading">About Online Quran College</span>}
+              intro="We teach live, one-to-one Quran classes online for children and adults."
+            />
+            <p className="mt-5 leading-relaxed text-ink-soft">Start with Arabic letters, improve your recitation with Tajweed, or work on memorisation. Our coordinator can help you choose a course that fits your level, goals and schedule.</p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Link href="/about" className="btn btn-primary">How the college works <ArrowRight className="size-4" aria-hidden="true" /></Link>
+              <Link href="/careers" className="btn btn-outline">Careers &amp; Opportunities</Link>
+            </div>
+          </div>
+          <div className="min-w-0 overflow-hidden rounded-[2rem] border border-leaf-100 bg-white">
+            <ContentImage
+              src="/images/learning/home-college-welcome-r2-1200.webp"
+              alt="Parents sitting with their daughter during an online Quran lesson"
+              sizes="(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) calc(100vw - 4rem), calc(min(100vw, 112rem) / 2 - 3.5rem)"
+              className="block aspect-[3/2] h-auto w-full object-cover"
+            />
+          </div>
         </div>
       </section>
 
