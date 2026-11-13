@@ -35,6 +35,7 @@ export default function ContactsPage() {
   return (
     <>
       <PageHeader title="Messages" subtitle="Website contact messages and careers enquiries." />
+      <Link href="/careers#careers-form" className="btn btn-outline mb-4">View careers registration form</Link>
       <ShiftQueueBanner table="contact_messages" />
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <Tabs value={status} onChange={(v) => { setStatus(v); setPage(0); }} tabs={[...CONTACT_STATUSES.map((s) => ({ value: s.value, label: s.label, count: counts.data?.[s.value] })), { value: "all", label: "All" }]} />
