@@ -1,0 +1,101 @@
+{
+  "reviewed": "2026-11-13",
+  "timezone": "Asia/Karachi",
+  "policy": "Research and preparation only. No third-party message, submission, payment, membership purchase or backlink acquisition is authorized by this register. A verified OQC sender and explicit authorization for the named recipient/channel are required before any recipient-directed action.",
+  "summary": {
+    "editorial_candidates_reviewed": 6,
+    "prepared_submissions": 1,
+    "submissions_sent": 0,
+    "confirmed_placements": 0,
+    "verified_backlinks_acquired": 0
+  },
+  "prospects": [
+    {
+      "id": "LINK-03",
+      "organization": "Resources for Islamic School Educators (RISE)",
+      "source": "https://resourcesforislamicschools.com/connect",
+      "terms": "https://resourcesforislamicschools.com/privacy",
+      "last_reviewed": "2026-11-13",
+      "market": "Canada / North American educators and families; international contributors also invited",
+      "current_evidence": "The official Connect page states open submissions and invites useful learning resources for Muslim educators and families, including work from other countries or different curricula. It asks for intended audience, curriculum reference where relevant, and authorship. The October 2026 Terms of Use describe the platform and work-specific licensing but no AI-content rule was found on the inspected public pages.",
+      "proposed_resource": "Practical family checklist for preparing an accessible online Quran lesson",
+      "target_oqc_url": "https://www.onlinequrancollege.com/blog/online-quran-lesson-setup-accessibility",
+      "fit_assessment": "Potential audience fit. The resource is not presented as curriculum-aligned, endorsed or affiliated with RISE. The prepared enquiry explicitly discloses AI assistance and asks whether that is compatible with the publisher's policy.",
+      "ai_policy": "No explicit AI rule found on the inspected Connect and Terms pages. Acceptance of AI-assisted work remains unconfirmed; ask before submission.",
+      "sender_status": "No verified OQC sender available in this run.",
+      "owner_authorization": "Explicit authorization for this named RISE submission/channel still required.",
+      "status": "Prepared, not sent",
+      "acquired_backlink": false,
+      "next_action": "After sender verification and explicit owner authorization, submit the prepared eligibility enquiry once; record the actual response. An acknowledgement is not a placement."
+    },
+    {
+      "id": "LINK-01",
+      "organization": "Islamic Special Religious Education (ISRE)",
+      "source": "https://www.isre.org.au/resources/",
+      "last_reviewed": "2026-11-07",
+      "status": "Researched; scope suitability and sender authorization pending",
+      "note": "The observed invitation was beside video-resource and syllabus material. General commercial article eligibility is not established. Do not imply affiliation.",
+      "target_oqc_url": "https://www.onlinequrancollege.com/blog/noorani-qaida-home-practice-checklist",
+      "acquired_backlink": false
+    },
+    {
+      "id": "LINK-02",
+      "organization": "Islamic Schools League of America",
+      "source": "https://theisla.org/blog/",
+      "eligibility_source": "https://theisla.org/membership/individual-faq/",
+      "last_reviewed": "2026-11-07",
+      "status": "Conditional; non-member editorial eligibility and existing membership unverified",
+      "note": "The official FAQ describes blog contributions as a membership benefit. Do not buy membership or a placement for a link.",
+      "target_oqc_url": "https://www.onlinequrancollege.com/blog/parent-teacher-quran-progress-review",
+      "acquired_backlink": false
+    },
+    {
+      "id": "LINK-04",
+      "organization": "Ihsaan Home Academy",
+      "source": "https://ihsaanhomeacademy.com/submit-guest-post/",
+      "last_reviewed": "2026-11-07",
+      "status": "Excluded from AI-authored article submission",
+      "note": "The publisher explicitly rejects AI-generated articles. Respect the policy; do not relabel AI-assisted work as human-written.",
+      "acquired_backlink": false
+    },
+    {
+      "id": "LINK-05",
+      "organization": "Dream Forward Books",
+      "source": "https://dreamforwardbooks.com/lesson-plan-unit-study-submission-guidelines",
+      "last_reviewed": "2026-11-07",
+      "status": "Held; guideline access unavailable",
+      "note": "Direct guideline retrieval redirected to an inaccessible identity page. Search snippets are insufficient for qualification.",
+      "acquired_backlink": false
+    },
+    {
+      "id": "LINK-06",
+      "organization": "IslamiCity — Write for Us",
+      "source": "https://www.islamicity.org/write-for-us/",
+      "last_reviewed": "2026-11-07",
+      "status": "Research only; not sent",
+      "note": "Official contribution page was observed, but acceptance, attribution, link policy and AI policy remain unverified. Named human author and Academic review are needed.",
+      "target_oqc_url": "https://www.onlinequrancollege.com/learn/quran-for-kids",
+      "acquired_backlink": false
+    }
+  ],
+  "held_candidates": [
+    {
+      "organization": "Muslim Council of Britain",
+      "url": "https://mcb.org.uk/resources/",
+      "status": "Held",
+      "reason": "Direct page retrieval timed out; no opportunity qualified from search snippets alone."
+    },
+    {
+      "organization": "ISNA Education Forum",
+      "url": "https://isna.net/education-forum-papers/",
+      "status": "Held",
+      "reason": "No current intake or deadline verified."
+    },
+    {
+      "organization": "Muslim Teachers Association",
+      "url": "https://mta-uk.org/teaching",
+      "status": "Held",
+      "reason": "The resource list appears dated; active editorial maintenance needs verification."
+    }
+  ]
+}
