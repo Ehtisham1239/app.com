@@ -23,7 +23,8 @@ test("hreflang lists all five hubs plus x-default, as absolute URLs", () => {
 
 test("only country hubs carry hreflang, and a noindex page never does", () => {
   const hub = readFileSync(new URL("../src/app/(site)/locations/[country]/page.jsx", import.meta.url), "utf8");
-  assert.match(hub, /languages: INDEXED_MARKETS\.includes\(country\.slug\) \? marketHreflang\(SITE_URL\) : undefined/);
+  assert.match(hub, /const languages = INDEXED_MARKETS\.includes\(country\.slug\)\s*\? await indexableMarketLanguages\(country\.slug, page\)\s*: undefined;/);
+  assert.match(hub, /shouldIncludeInSitemap\(locationIndexRecord\(page, country, null\), path, SITE_URL\)/, "only sitemap-eligible markets are listed as alternates");
   const city = readFileSync(new URL("../src/app/(site)/locations/[country]/[city]/page.jsx", import.meta.url), "utf8");
   assert.doesNotMatch(city, /marketHreflang|languages:/);
   const meta = readFileSync(new URL("../src/lib/seo-metadata.js", import.meta.url), "utf8");
