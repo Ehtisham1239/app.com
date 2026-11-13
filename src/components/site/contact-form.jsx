@@ -11,11 +11,11 @@ import { COUNTRIES } from "@/lib/constants";
 
 const SUBJECTS = ["Course enquiry", "Fees and payment", "Class timings", "Teacher request", "Existing student support", "Partnership", "Other"];
 
-export function ContactForm({ id, consentText, alternateContact }) {
+export function ContactForm({ id, consentText, alternateContact, careerSubject }) {
   const router = useRouter();
   const formRef = useRef(null);
   const submitting = useRef(false);
-  const [form, setForm] = useState({ name: "", email: "", phone: "", country: "", subject: SUBJECTS[0], message: "", consent: false, website: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", country: "", subject: careerSubject || SUBJECTS[0], message: "", consent: false, website: "" });
   const [errors, setErrors] = useState({});
   const [state, setState] = useState({ sending: false, error: "" });
   useEffect(() => {
@@ -64,8 +64,8 @@ export function ContactForm({ id, consentText, alternateContact }) {
       <div className="flex items-center gap-4 rounded-2xl border border-leaf-100 bg-leaf-50 p-4 sm:gap-5">
         <img src="/brand/oqc-contact-logo.webp" alt="Online Quran College Ltd" width={240} height={240} className="size-16 shrink-0 rounded-xl bg-white ring-1 ring-leaf-100 sm:size-20" />
         <div>
-          <h2 id={id ? `${id}-heading` : undefined} className="text-[1.8rem] text-mushaf-900">Send us a message</h2>
-          <p className="mt-2 text-sm leading-relaxed text-ink-soft">Tell us how we can help. We’ll reply by email.</p>
+          <h2 id={id ? `${id}-heading` : undefined} className="text-[1.8rem] text-mushaf-900">{careerSubject ? "Register your interest" : "Send us a message"}</h2>
+          <p className="mt-2 text-sm leading-relaxed text-ink-soft">{careerSubject ? "Share your experience and availability. We’ll reply by email if there is a suitable opportunity." : "Tell us how we can help. We’ll reply by email."}</p>
         </div>
       </div>
       <div className="absolute -left-[9999px]" aria-hidden="true">
@@ -87,7 +87,7 @@ export function ContactForm({ id, consentText, alternateContact }) {
           {err("email")}
         </div>
       </div>
-      <div>
+      {!careerSubject && <div>
         <label htmlFor="c-subject" className="field-label">
           Topic
         </label>
@@ -96,12 +96,12 @@ export function ContactForm({ id, consentText, alternateContact }) {
             <option key={s}>{s}</option>
           ))}
         </select>
-      </div>
+      </div>}
       <div>
         <label htmlFor="c-message" className="field-label">
-          Message
+          {careerSubject ? "Experience and availability" : "Message"}
         </label>
-        <textarea id="c-message" className="textarea" rows={3} placeholder="How can we help?" value={form.message} onChange={(e) => set("message", e.target.value)} required maxLength={5000} aria-describedby={errors.message ? "c-message-error" : undefined} aria-invalid={Boolean(errors.message)} />
+        <textarea id="c-message" className="textarea" rows={3} placeholder={careerSubject ? "Tell us your subject or area of interest, languages and time zone." : "How can we help?"} value={form.message} onChange={(e) => set("message", e.target.value)} required maxLength={5000} aria-describedby={errors.message ? "c-message-error" : undefined} aria-invalid={Boolean(errors.message)} />
         {err("message")}
       </div>
       <details className="rounded-xl border border-leaf-100 bg-leaf-50 px-4">
@@ -146,7 +146,7 @@ export function ContactForm({ id, consentText, alternateContact }) {
       )}
       <button type="submit" className="btn btn-primary btn-lg w-full sm:w-auto" disabled={state.sending}>
         {state.sending ? <Loader2 className="size-5 animate-spin" aria-hidden="true" /> : <Send className="size-5" aria-hidden="true" />}
-        {state.sending ? "Sending…" : "Send message"}
+        {state.sending ? "Sending…" : careerSubject ? "Submit interest" : "Send message"}
       </button>
     </form>
   );
