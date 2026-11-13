@@ -172,7 +172,7 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
           {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
           <a href="/admin" className="btn portal-button header-portal whitespace-nowrap px-3 text-xs sm:px-5 sm:text-sm"><ShieldCheck className="size-4" aria-hidden="true" />Portal</a>
           <Link href="/free-trial" className="btn btn-primary hidden sm:inline-flex">
-            Free trial
+            Request a free trial
             <ArrowRight className="size-4" aria-hidden="true" />
           </Link>
           <button
@@ -249,7 +249,7 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
             <a href="/admin" className="btn portal-button w-full sm:hidden"><ShieldCheck className="size-4" aria-hidden="true" />Portal</a>
             <Link href="/free-trial" onClick={() => setOpen(false)} className="btn btn-primary w-full">
-              Book a 3-day free trial
+              Request a 3-day free trial
             </Link>
 
           </div>
