@@ -248,25 +248,27 @@ begin
 end $$;
 
 -- Teachers may view their own assignments, assessments, training and weekly plans only.
+-- The row's teacher_id is table-qualified: inside the subquery an unqualified
+-- teacher_id resolves to profiles.teacher_id and would match every row.
 create policy "teacher own roles read" on public.teacher_role_assignments
   for select to authenticated using (
-    exists (select 1 from public.profiles p where p.id = auth.uid() and p.is_active and p.teacher_id = teacher_id)
+    exists (select 1 from public.profiles p where p.id = auth.uid() and p.is_active and p.teacher_id = teacher_role_assignments.teacher_id)
   );
 create policy "teacher own subjects read" on public.teacher_subject_assignments
   for select to authenticated using (
-    exists (select 1 from public.profiles p where p.id = auth.uid() and p.is_active and p.teacher_id = teacher_id)
+    exists (select 1 from public.profiles p where p.id = auth.uid() and p.is_active and p.teacher_id = teacher_subject_assignments.teacher_id)
   );
 create policy "teacher own assessments read" on public.teacher_assessments
   for select to authenticated using (
-    exists (select 1 from public.profiles p where p.id = auth.uid() and p.is_active and p.teacher_id = teacher_id)
+    exists (select 1 from public.profiles p where p.id = auth.uid() and p.is_active and p.teacher_id = teacher_assessments.teacher_id)
   );
 create policy "teacher own training records read" on public.teacher_training_records
   for select to authenticated using (
-    exists (select 1 from public.profiles p where p.id = auth.uid() and p.is_active and p.teacher_id = teacher_id)
+    exists (select 1 from public.profiles p where p.id = auth.uid() and p.is_active and p.teacher_id = teacher_training_records.teacher_id)
   );
 create policy "teacher own weekly plans read" on public.teacher_weekly_plans
   for select to authenticated using (
-    exists (select 1 from public.profiles p where p.id = auth.uid() and p.is_active and p.teacher_id = teacher_id)
+    exists (select 1 from public.profiles p where p.id = auth.uid() and p.is_active and p.teacher_id = teacher_weekly_plans.teacher_id)
   );
 
 -- Keep the critical accuracy flag visible as a separate escalation signal; it must not be averaged away.

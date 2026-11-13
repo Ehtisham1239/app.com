@@ -71,4 +71,14 @@ test("teacher self-service can read only their own subject assignments and asses
   assert.equal((await db.query("select count(*)::int as n from public.teacher_subject_assignments")).rows[0].n, 1);
   assert.equal((await db.query("select count(*)::int as n from public.teacher_assessments")).rows[0].n, 1);
   assert.equal((await db.query("select count(*)::int as n from public.teacher_issues")).rows[0].n, 0);
+  assert.equal((await db.query("select count(*)::int as n from public.teacher_role_assignments")).rows[0].n, 0, "another teacher's role assignment stays hidden");
+  assert.equal((await db.query("select count(*)::int as n from public.teacher_assessments where teacher_id=$1", [a])).rows[0].n, 0, "another teacher's assessment stays hidden");
+});
+
+test("every teacher self-read policy compares the row's own teacher_id, not profiles.teacher_id", () => {
+  const migration = sql("supabase/migrations/20261112000100_teacher_excellence_center.sql");
+  for (const t of ["teacher_role_assignments", "teacher_subject_assignments", "teacher_assessments", "teacher_training_records", "teacher_weekly_plans"]) {
+    assert.ok(migration.includes(`p.teacher_id = ${t}.teacher_id)`), t);
+  }
+  assert.doesNotMatch(migration, /p\.teacher_id = teacher_id\)/);
 });
