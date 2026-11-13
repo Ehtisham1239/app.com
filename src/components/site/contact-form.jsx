@@ -49,7 +49,10 @@ export function ContactForm({ id, consentText, alternateContact, careerSubject }
     requestLeadNotification(data, form.email.trim().toLowerCase());
     announceLeadSaved({ formType: "contact", country: form.country, reference: data?.reference, honeypot: form.website });
     const reference = typeof data?.reference === "string" && /^MSG-[A-Z0-9-]{4,32}$/.test(data.reference) && data.reference !== "MSG-RECEIVED" ? data.reference : "";
-    router.push("/contact/thank-you" + (reference ? "?ref=" + encodeURIComponent(reference) : ""));
+    const confirmation = new URLSearchParams();
+    if (careerSubject) confirmation.set("type", "careers");
+    if (reference) confirmation.set("ref", reference);
+    router.push("/contact/thank-you" + (confirmation.size ? "?" + confirmation.toString() : ""));
   }
 
   const err = (k) =>
