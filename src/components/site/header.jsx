@@ -76,6 +76,7 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
       setCompact(next);
       if (!next) setOpen(false);
     };
+    update();
     window.addEventListener("resize", update);
     const observer = new ResizeObserver(update);
     observer.observe(document.documentElement);
@@ -208,13 +209,13 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
           aria-modal="true"
           aria-label="Menu"
         >
-          <div className="flex h-[4.5rem] shrink-0 items-center justify-between gap-2 border-b border-line px-5">
-            <span className="font-display text-lg text-mushaf-900">{brandName}</span>
-            <button type="button" className="flex size-11 items-center justify-center rounded-full hover:bg-leaf-50" onClick={() => setOpen(false)} aria-label="Close menu">
+          <div className="flex min-h-[4.5rem] shrink-0 items-center justify-between gap-2 border-b border-line px-5 py-2">
+            <span className="min-w-0 break-words font-display text-lg text-mushaf-900">{brandName}</span>
+            <button type="button" className="flex size-11 shrink-0 items-center justify-center rounded-full hover:bg-leaf-50" onClick={() => setOpen(false)} aria-label="Close menu">
               <X className="size-5" aria-hidden="true" />
             </button>
           </div>
-          <nav className="flex-1 overflow-y-auto px-3 py-4" aria-label="Mobile">
+          <nav className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-3 py-4" aria-label="Mobile">
             {menu.map((item) => (
               <div key={item.href}>
                 <Link
