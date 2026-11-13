@@ -29,7 +29,7 @@ export const DEFAULT_SETTINGS = {
     title: "Live one-to-one online Quran classes for children and adults",
     subtitle:
       "Personal Quran lessons for children and adults, including Noorani Qaida, Tajweed, Hifz and Arabic. Discuss teacher availability and class times with our admissions team.",
-    primary_label: "Book a 3-day free trial",
+    primary_label: "Request a 3-day free trial",
     secondary_label: "Explore courses",
     badges: ["3-day free trial on eligible plans", "No card needed on eligible plans", "Teacher preference discussed", "Classes in any time zone"],
   },
@@ -48,11 +48,11 @@ export const DEFAULT_SETTINGS = {
     { icon: "headset", title: "Coordinator support", text: "Coordinators help with rescheduling and make-up classes." },
   ],
   "site.steps": [
-    { title: "Book a free trial", text: "Fill in the short form, choose a course and tell us when you are free. A coordinator contacts you to arrange your trial." },
+    { title: "Request a free trial", text: "Fill in the short form, choose a course and tell us when you are free. A coordinator contacts you to arrange your trial." },
     { title: "Choose your plan", text: "After the trial, a coordinator agrees timings, teacher preference and a monthly package with you." },
     { title: "Start regular classes", text: "Meet your teacher live online on your chosen days and track progress every month." },
   ],
-  "site.announcement": { enabled: true, text: "3-day free trial on eligible plans. Weekend plan excluded. No card needed on eligible plans.", link_label: "Book now", link: "/free-trial" },
+  "site.announcement": { enabled: true, text: "3-day free trial on eligible plans. Weekend plan excluded. No card needed on eligible plans.", link_label: "Request a trial", link: "/free-trial" },
   "site.family_discount": {
     enabled: true,
     name: "Sibling Discount",
