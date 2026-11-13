@@ -168,3 +168,14 @@ test("the landing page emails admissions only after the lead is saved and uses a
 test("USA campaign copy has no duplicated trial or card wording", () => {
   assert.doesNotMatch(landing, /A A 3-day|no card on eligible plans needed/i);
 });
+
+test("hero and final call-to-action use real photos under a brand-green overlay", () => {
+  const css = landing.slice(landing.indexOf("<style"), landing.indexOf("</style>"));
+  assert.match(css, /\.hero \{[^}]*linear-gradient\([^)]*rgba\(13, 74, 28/, "hero overlay uses deep green #0D4A1C");
+  assert.match(css, /\.hero \{[^}]*\/images\/learning\/usa-online-quran-learning-r2-800\.avif/, "hero photo");
+  assert.match(css, /\.final-card \{[^}]*\/images\/hero\/online-lesson-child-v1-800\.avif/, "final CTA photo");
+  for (const img of ["learning/usa-online-quran-learning-r2-800", "learning/usa-online-quran-learning-r2-1200", "hero/online-lesson-child-v1-800", "hero/online-lesson-child-v1-1200"]) {
+    for (const ext of ["avif", "webp"]) assert.ok(readFileSync(new URL(`../public/images/${img}.${ext}`, import.meta.url)).length > 0, `${img}.${ext} exists`);
+  }
+  assert.match(css, /\.hero h1, \.hero \.verse, \.hero \.verse-note strong \{ color: var\(--white\); \}/, "hero text is white on the photo");
+});
