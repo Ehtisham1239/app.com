@@ -22,14 +22,17 @@ export function blogIndexMetadata(filters) {
 }
 
 function PostCard({ post, large = false }) {
+  const titleId = `blog-card-${post.slug}`;
+  const visual = contentVisual(post);
   return (
     <Link
+      aria-labelledby={titleId}
       data-card-tone={cardTone(post.slug)}
       href={`/blog/${post.slug}`}
       className={`editorial-card card-tinted group flex h-full flex-col ${large ? "md:col-span-2 md:flex-row" : ""}`}
     >
       <div className={`relative m-2 shrink-0 overflow-hidden rounded-[1.15rem] bg-leaf-50 ${large ? "aspect-[3/2] md:aspect-auto md:w-[46%]" : "aspect-[3/2]"}`}>
-        <ContentImage src={contentVisual(post).src} alt={contentVisual(post).alt} sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 400px" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <ContentImage src={visual.src} alt={visual.alt} sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 400px" className="size-full object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-105" />
       </div>
       <div className={`flex min-w-0 flex-1 flex-col px-6 pb-6 pt-4 ${large ? "md:py-7" : ""}`}>
         <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.7rem] font-semibold uppercase tracking-wider text-leaf-700">
@@ -40,9 +43,9 @@ function PostCard({ post, large = false }) {
             </span>
           ) : null}
         </p>
-        <h2 className={`mt-3 font-sans font-bold leading-snug text-mushaf-900 ${large ? "text-[1.6rem]" : "text-[1.2rem]"}`}>{post.title}</h2>
+        <h2 id={titleId} className={`mt-3 font-sans font-bold leading-snug text-mushaf-900 ${large ? "text-[1.6rem]" : "text-[1.2rem]"}`}>{post.title}</h2>
         <p className="mt-3 flex-1 text-[0.97rem] leading-relaxed text-ink-soft">{truncate(post.excerpt || "", large ? 140 : 100)}</p>
-        <p className="mt-4 text-xs text-ink-faint">{formatDate(post.published_at)}</p>
+        {post.published_at && <time dateTime={post.published_at} className="mt-4 text-xs text-ink-faint">{formatDate(post.published_at)}</time>}
         <span className="card-action mt-5">Read article <span className="card-arrow"><ArrowRight className="size-4" aria-hidden="true" /></span></span>
       </div>
     </Link>
