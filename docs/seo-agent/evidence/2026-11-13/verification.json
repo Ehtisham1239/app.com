@@ -1,0 +1,193 @@
+{
+  "reviewed": "2026-11-13",
+  "timezone": "Asia/Karachi",
+  "repository": {
+    "full_name": "Ehtisham1239/app.com",
+    "current_main": "5c72de0c9864642229ec3bc481ccd1676822a50a",
+    "latest_production_source": "7e768aea78b3bc6f417dd9b3d03048b1cb6da8be",
+    "main_ahead_by": 43,
+    "latest_production_deployment": "dpl_DNqDwFmrfUGWA6XL5Mmp8ns5h8TA",
+    "latest_preview_deployment": "dpl_8PNnaYT5huWyBt99kMjxMWWutFvi",
+    "latest_preview_source": "cdbad4021be44a572d6921bff88906227f872435"
+  },
+  "vercel": {
+    "project": "appcom-online-quran-college",
+    "project_access": "confirmed",
+    "repository_link": "Ehtisham1239/app.com",
+    "production_deployment_state": "READY",
+    "production_deployment_commit": "7e768aea78b3bc6f417dd9b3d03048b1cb6da8be",
+    "latest_preview_branch": "claude/oqc-open-approved-city-pages-2026-11-11",
+    "latest_preview_state": "READY",
+    "last_50_minute_production_error_warning_query": "No logs found",
+    "limitations": [
+      "This short query does not establish 24-hour error-free operation.",
+      "Hobby retention previously prevented a complete 24-hour raw-log review."
+    ]
+  },
+  "supabase_blog_snapshot": {
+    "project": "app.com",
+    "table": "public.blog_posts",
+    "active_published_english": 36,
+    "soft_deleted": 0,
+    "noindex": 0,
+    "missing_free_trial_link": 0,
+    "max_body_words": 939,
+    "max_inclusive_words": 969,
+    "over_1000": 0,
+    "recently_updated_rows": {
+      "2026-11-13T00:09:20.846793+00:00": 14,
+      "2026-11-12T14:28:08.812839+00:00": 3,
+      "2026-11-12T04:13:59.117056+00:00": 19
+    },
+    "migration_20261112130000_recorded": false,
+    "remote_migration_versions_checked": [
+      "20261112032025",
+      "20261112173644",
+      "20261113000920",
+      "20261113001028"
+    ]
+  },
+  "gsc_owner_snapshot": {
+    "source": "docs/seo/international-gsc-baseline-2026-11-13.md",
+    "period": "Last 3 months; exact start/end dates not specified in the source note.",
+    "markets": {
+      "United Kingdom": {
+        "clicks": 3,
+        "impressions": 207,
+        "ctr": "1.45%",
+        "average_position": 25.14
+      },
+      "United States": {
+        "clicks": 1,
+        "impressions": 266,
+        "ctr": "0.38%",
+        "average_position": 33.39
+      },
+      "Australia": {
+        "clicks": 1,
+        "impressions": 215,
+        "ctr": "0.47%",
+        "average_position": 43.74
+      },
+      "Canada": {
+        "clicks": 0,
+        "impressions": 44,
+        "ctr": "0%",
+        "average_position": 58
+      },
+      "Switzerland": {
+        "clicks": 3,
+        "impressions": 18,
+        "ctr": "16.67%",
+        "average_position": 7
+      },
+      "Belgium": {
+        "clicks": 2,
+        "impressions": 17,
+        "ctr": "11.76%",
+        "average_position": 6
+      },
+      "Netherlands": {
+        "clicks": 2,
+        "impressions": 14,
+        "ctr": "14.29%",
+        "average_position": 9.71
+      },
+      "Sweden": {
+        "clicks": 1,
+        "impressions": 9,
+        "ctr": "11.11%",
+        "average_position": 9
+      },
+      "Germany": {
+        "clicks": 0,
+        "impressions": 12,
+        "ctr": "0%",
+        "average_position": 6
+      },
+      "Ireland": {
+        "clicks": 0,
+        "impressions": 12,
+        "ctr": "0%",
+        "average_position": 8.17
+      }
+    },
+    "priority_pages": {
+      "/online-quran-classes-uk": {
+        "impressions": 88,
+        "clicks": 0,
+        "average_position": 34.27
+      },
+      "/locations/united-states/houston": {
+        "impressions": 141,
+        "clicks": 0,
+        "average_position": 29.21
+      },
+      "/locations/australia/melbourne": {
+        "impressions": 92,
+        "clicks": 0,
+        "average_position": 33.58
+      },
+      "/locations/australia/perth": {
+        "impressions": 87,
+        "clicks": 1,
+        "average_position": 23.1
+      },
+      "/courses": {
+        "impressions": 67,
+        "clicks": 0,
+        "average_position": 4.21
+      },
+      "/pricing": {
+        "impressions": 56,
+        "clicks": 0,
+        "average_position": 3.61
+      },
+      "/locations/lithuania": {
+        "impressions": 172,
+        "clicks": 0,
+        "average_position": 5.65,
+        "note": "Prior internal audit linked impressions to irrelevant 'arabic classes near me' queries; do not treat as Lithuanian demand."
+      }
+    },
+    "live_connector_read": "Blocked: three connected accounts on a Free plan that includes one account. No account disconnected and no billing change made.",
+    "raw_export_file": "Not located in the searched Library results; the repository summary was available."
+  },
+  "live_public_checks": {
+    "uk_alias": "Public URL resolution ended at /locations/united-kingdom; HTTP status and Google-selected canonical not exposed by this check.",
+    "articles": "Hifz and parent-teacher pages returned crawler snapshots from last week displaying Updated 1 Nov. Three other article URLs and the unique deployment host were inaccessible. Current CMS rendering therefore remains unverified.",
+    "mobile": "No new 390px rendered pass."
+  },
+  "competitor_sample": [
+    {
+      "market": "UK",
+      "url": "https://ayatway.co.uk/",
+      "observation": "GBP per-lesson pricing, free trial, one-to-one lesson path and teacher information are prominent."
+    },
+    {
+      "market": "USA",
+      "url": "https://quranroof.com/online-quran-classes-usa/",
+      "observation": "Country page foregrounds US time zones, one-to-one lessons and a free trial."
+    },
+    {
+      "market": "Canada",
+      "url": "https://www.noorulquran.ca/",
+      "observation": "Canadian page foregrounds CAD pricing, local scheduling and parent-focused trial details."
+    },
+    {
+      "market": "Australia",
+      "url": "https://www.quranclassesacademy.com/online-quran-classes/australia/",
+      "observation": "Country page foregrounds Australian cities, local scheduling and AUD billing."
+    }
+  ],
+  "changes_made": {
+    "repository": "Created documentation-only review branch seo/ops-2026-11-13.",
+    "production_code": false,
+    "cms_content": false,
+    "pricing": false,
+    "google_business_profile": false,
+    "analytics_settings": false,
+    "outreach": false,
+    "backlink_acquisitions": 0
+  }
+}
