@@ -90,9 +90,10 @@
       "id": "OPS-07",
       "priority": "P2",
       "workstream": "Ethical backlinks and digital PR",
-      "status": "Research-only; no outreach or placement",
-      "result": "The exact RISE resource pitch remains prepared, not sent. No verified OQC sender or named submission authorization was available. Zero outreach and zero acquired links.",
-      "next": "Continue prospect qualification; do not contact recipients until the sender and named submission are authorized."
+      "status": "Research-only; current publisher eligibility rechecked 13 Nov; no outreach or placement",
+      "result": "RISE's official Connect page confirms open submissions for useful resources for Muslim educators and families, including resources from other countries or curricula. It asks for audience, curriculum reference where relevant and authorship. No explicit AI policy was found on the inspected Connect/Terms pages; acceptance of AI-assisted work remains unconfirmed. The exact eligibility enquiry remains prepared, not sent. No verified OQC sender or named submission authorization was available. Zero outreach and zero acquired links.",
+      "next": "Continue prospect qualification; do not contact recipients until the sender and named submission are authorized.",
+      "evidence": "docs/seo-agent/LINK-PROSPECT-REGISTER-2026-11-13.json"
     },
     {
       "id": "OPS-08",
@@ -184,5 +185,12 @@
     "report": "docs/SEO-DAILY-2026-11-13.md",
     "evidence": "docs/seo-agent/evidence/2026-11-13/verification.json",
     "result": "Reconciled current CMS article inventory, reviewed the owner-provided international GSC baseline, checked Vercel production/preview status and runtime logs, sampled current country pages and competitors, and recorded unresolved migration, release, academic, analytics and mobile dependencies."
+  },
+  "latest_link_preflight": {
+    "date": "2026-11-13",
+    "source": "https://resourcesforislamicschools.com/connect",
+    "terms": "https://resourcesforislamicschools.com/privacy",
+    "result": "Open submissions; intended audience, curriculum reference where relevant and authorship requested. No explicit AI rule found in inspected public terms. AI acceptance unconfirmed.",
+    "action": "Eligibility enquiry remains prepared and unsent. Verified sender and explicit owner authorization required."
   }
 }
