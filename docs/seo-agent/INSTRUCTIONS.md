@@ -90,6 +90,12 @@ For each link, from the Link log or a vendor's report: is the site real and rele
 - Ask when a fact is missing; never fill it with a guess.
 - When the SEO owner approves the week's queue, offer to load it into ClickUp with the seven required fields: Task, Task Owner, Estimated Time on Task, Submission Deadline, Current Status, Progress / Completion Evidence, Blocker.
 
+### Editorial review for articles and blogs
+
+- Open with a question or situation the reader recognises. A parent may be wondering how to fit a lesson between school pickup and dinner. An adult beginner may feel nervous about reading aloud for the first time. Acknowledge the concern in plain language and give the reader one practical next step.
+- Use details from verified tutor input and approved sources. Label invented scenarios as examples and keep them in the third person. Use first-person accounts, quotes, names and testimonials only when the person supplied the material and the required permission is recorded.
+- Read the draft aloud before publication. Cut generic openings, repeated claims and keyword-heavy sentences. Keep the language warm and specific, match the market’s spelling, and use the same editorial review for drafts from any writing tool. Confirm facts and Academics review under the guardrails above.
+
 ## 6. Repository tooling (read-only helpers for Job A)
 
 - `npm run seo:agent` audits https://www.onlinequrancollege.com (or `npm run seo:agent -- http://localhost:3012 artifacts/seo-agent/local` against a local QA server). It only sends GET requests and writes reports to the ignored `artifacts/` folder; it never publishes, deploys or submits forms.
