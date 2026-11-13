@@ -124,5 +124,15 @@
     "proposed_change": "Test-only assertion alignment; no production source change.",
     "branch": "docs/seo-ops-2026-11-13"
   },
-  "production_changes_by_this_run": false
+  "production_changes_by_this_run": false,
+  "pull_request": {
+    "number": 234,
+    "url": "https://github.com/Ehtisham1239/app.com/pull/234",
+    "state": "open",
+    "draft": true,
+    "head": "90bd33dcb5723cc2026d31b38448df986b22aa7a",
+    "base": "5c72de0c9864642229ec3bc481ccd1676822a50a",
+    "initial_workflow_runs": 0,
+    "ci_status": "pending/unavailable at first poll"
+  }
 }
