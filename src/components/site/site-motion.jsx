@@ -25,25 +25,28 @@ export function SiteMotion() {
     );
     // Cards that share a parent (a grid or list row) arrive in a short stagger.
     const siblingIndex = new Map();
+    const revealSteps = new WeakMap();
     targets.forEach((node) => {
       const parent = node.parentElement;
       const index = siblingIndex.get(parent) ?? 0;
       siblingIndex.set(parent, index + 1);
-      node.dataset.siteRevealStep = String(Math.min(index, 5));
+      revealSteps.set(node, Math.min(index, 5));
     });
     if (!targets.length) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
+        const initialViewportCutoff = window.innerHeight * 0.82;
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
           const element = entry.target;
           // Keep the initial viewport and likely LCP content completely still.
-          if (element.getBoundingClientRect().top < window.innerHeight * 0.82) {
+          // Use the observer's layout snapshot so earlier reveal writes cannot force a layout read.
+          if (entry.boundingClientRect.top < initialViewportCutoff) {
             observer.unobserve(element);
             return;
           }
-          const step = Number(element.dataset.siteRevealStep || 0);
+          const step = revealSteps.get(element) ?? 0;
           element.style.setProperty("--site-reveal-delay", `${step * 70}ms`);
           element.classList.add("site-reveal");
           observer.unobserve(element);
