@@ -19,6 +19,75 @@ import { cleanHtml } from "@/lib/sanitize";
 import { formatDate, truncate, stripHtml, whatsappLink } from "@/lib/format";
 import { SITE_URL } from "@/lib/config";
 
+const supportingImages = {
+  "blog-australia-schedule": [
+    "/images/learning/blog-australia-schedule-r2-1200.webp",
+    "Sunlit study desk with a clock, weekly planner and laptop for scheduling online lessons"
+  ],
+  "blog-enrolment-questions": [
+    "/images/learning/blog-enrolment-questions-r2-1200.webp",
+    "Parent preparing an enrolment checklist beside a laptop, calendar and notebook"
+  ],
+  "oqc-course-noorani-qaida": [
+    "/images/learning/oqc-course-noorani-qaida-v3-1200.webp",
+    "A parent supporting a child during an online beginner Arabic letter lesson"
+  ],
+  "oqc-course-hifz-quran": [
+    "/images/learning/oqc-course-hifz-quran-v3-1200.webp",
+    "A teenage learner reviewing memorisation with a revision notebook and an online teacher"
+  ],
+  "guide-tajweed": [
+    "/images/learning/guide-tajweed-r2-1200.webp",
+    "Adult learner listening carefully during a recitation lesson with a book stand and microphone"
+  ],
+  "oqc-course-quran-translation": [
+    "/images/learning/oqc-course-quran-translation-v3-1200.webp",
+    "An adult learner comparing study books and notes during an online Quran translation lesson"
+  ],
+  "oqc-course-arabic-language": [
+    "/images/learning/oqc-course-arabic-language-v3-1200.webp",
+    "An adult woman practising Arabic vocabulary with a notebook during a live online lesson"
+  ],
+  "blog-first-trial": [
+    "/images/learning/blog-first-trial-r2-1200.webp",
+    "Mother and child greeting an online teacher on a laptop at the start of a lesson"
+  ],
+  "guide-adults": [
+    "/images/learning/guide-adults-r2-1200.webp",
+    "Mature learner wearing reading glasses studying a beginner workbook beside a laptop"
+  ],
+  "blog-parent-progress": [
+    "/images/learning/blog-parent-progress-r2-1200.webp",
+    "Mother discussing a lesson on a laptop while taking progress notes beside her child"
+  ],
+  "blog-accessible-setup": [
+    "/images/learning/blog-accessible-setup-r2-1200.webp",
+    "Learner wearing headphones at a bright organised desk with a raised laptop, notebook and reading lamp"
+  ],
+  "blog-kids-learning": [
+    "/images/learning/blog-kids-learning-r2-1200.webp",
+    "Father helping his daughter adjust her headset before an online lesson"
+  ]
+};
+
+function supportingImage(slug, cover, html) {
+  if (/<img\b/i.test(html)) return null;
+  const topics = [
+    [/fees|enrolment|choose-online/, ["blog-enrolment-questions", "blog-parent-progress"]],
+    [/time-zones|weekly-routine|ramadan|uae-families/, ["blog-australia-schedule", "blog-accessible-setup"]],
+    [/qaida/, ["oqc-course-noorani-qaida", "blog-kids-learning"]],
+    [/hifz|memori[sz]ation|sabaq/, ["oqc-course-hifz-quran"]],
+    [/tajweed|makharij/, ["guide-tajweed"]],
+    [/arabic|tafseer|translation/, ["oqc-course-quran-translation", "oqc-course-arabic-language"]],
+    [/adults?|returning-to-quran/, ["guide-adults"]],
+    [/setup-accessibility/, ["blog-first-trial"]],
+    [/trial|kids|child|parent|famil/, ["blog-first-trial", "blog-kids-learning"]],
+  ];
+  const candidates = topics.find(([pattern]) => pattern.test(slug))?.[1] || [];
+  const coverUrl = new URL(publicImageUrl(cover), SITE_URL).href;
+  return candidates.map(key => supportingImages[key]).find(([src]) => publicImageUrl(src) !== coverUrl) || null;
+}
+
 export const revalidate = 300;
 export const dynamicParams = true;
 
@@ -33,7 +102,12 @@ export async function generateMetadata({ params }) {
   if (!post) return { title: "Article not found" };
   const description = post.seo_description || post.excerpt || truncate(stripHtml(post.body_html), 158);
   const visual = contentVisual(post), dates = articleDates(post), author = articleAuthor(post.author_name);
-  return { ...contentMetadata({ ...post, cover_url: visual.src, cover_alt: visual.alt, published_at: dates.published, updated_at: dates.modified }, { path: `/blog/${post.slug}`, description, type: "article" }), authors: [{ name: author.name, ...(author["@type"] === "Organization" ? { url: `${SITE_URL}/about` } : {}) }] };
+  const metadata = contentMetadata({ ...post, cover_url: visual.src, cover_alt: visual.alt, published_at: dates.published, updated_at: dates.modified }, { path: `/blog/${post.slug}`, description, type: "article" });
+  return {
+    ...metadata,
+    authors: [{ name: author.name, ...(author["@type"] === "Organization" ? { url: `${SITE_URL}/about` } : {}) }],
+    twitter: { ...metadata.twitter, images: metadata.openGraph.images },
+  };
 }
 
 export default async function PostPage({ params }) {
@@ -45,6 +119,7 @@ export default async function PostPage({ params }) {
   const resources = articleResources(post);
   const { html, headings } = articleNavigation(cleanHtml(post.body_html));
   const visual = contentVisual(post), dates = articleDates(post), author = articleAuthor(post.author_name);
+  const supporting = supportingImage(post.slug, visual.src, html);
   const breadcrumbs = [{ name: "Home", path: "/" }, { name: "Articles", path: "/blog" }, { name: post.title, path: `/blog/${post.slug}` }];
   const wa = whatsappLink(settings["site.contact"]?.whatsapp, "Assalamu alaikum, I read your article and would like to book a free trial.");
   const jsonLd = blogPosting(post, { siteUrl: SITE_URL, visual: { ...visual, src: publicImageUrl(visual.src) }, html, description: post.seo_description || post.excerpt || truncate(stripHtml(html), 158) });
@@ -77,6 +152,11 @@ export default async function PostPage({ params }) {
             </section>
           )}
           {post.excerpt && <p className="mb-8 max-w-[68ch] border-l-4 border-gold-500 pl-5 text-[1.12rem] leading-relaxed text-ink-soft">{post.excerpt}</p>}
+          {supporting && (
+            <figure className="mb-8 max-w-[68ch] overflow-hidden rounded-2xl">
+              <ContentImage src={supporting[0]} alt={supporting[1]} sizes="(max-width: 767px) calc(100vw - 2rem), 680px" className="block h-auto w-full" />
+            </figure>
+          )}
           <div className="prose-oqc text-[1.06rem]" dangerouslySetInnerHTML={{ __html: html }} />
           {post.tags?.length > 0 && (
             <ul className="mt-10 flex flex-wrap gap-2">
