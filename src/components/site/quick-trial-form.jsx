@@ -201,19 +201,18 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
 
   const err = (k) => (errors[k] ? { "aria-invalid": true, "aria-describedby": `q-${k}-error` } : {});
   return (
-    <form ref={topRef} onSubmit={submit} noValidate aria-busy={state.sending} aria-label={eligible ? "Book a free trial" : "Package enquiry"} className="surface scroll-mt-28 space-y-5 p-5 shadow-[var(--shadow-lift)] sm:p-8">
+    <form ref={topRef} onSubmit={submit} noValidate aria-busy={state.sending} aria-label={eligible ? "Book a free trial" : "Package enquiry"} className="surface scroll-mt-28 space-y-5 bg-white p-5 shadow-[var(--shadow-lift)] sm:space-y-6 sm:p-8">
       <div className="absolute -left-[9999px]" aria-hidden="true"><label>Website<input tabIndex={-1} autoComplete="off" value={form.website} onChange={(e) => set("website", e.target.value)} /></label></div>
-      <div className="flex items-center gap-4 rounded-2xl border border-leaf-100 bg-leaf-50 p-4 sm:gap-5">
-        <img src="/brand/oqc-contact-logo.webp" alt="Online Quran College Ltd" width={240} height={240} className="size-16 shrink-0 rounded-xl bg-white ring-1 ring-leaf-100 sm:size-20" />
-        <div>
-          <h2 className="text-[1.55rem] text-mushaf-900">{eligible ? "Book your free 3-day trial" : `Enquire about ${selectedPlan.name}`}</h2>
-          <p className="mt-1 text-[0.92rem] text-ink-soft">{eligible ? "No card needed. Admissions will contact you to arrange a time." : "The Weekend plan is excluded from the free trial. The coordinator will confirm the schedule and terms."}</p>
-        </div>
+      <div className="border-b border-line pb-5">
+        <h2 className="text-2xl leading-tight text-mushaf-900">{eligible ? "Request a 3-day free trial" : `Ask about ${selectedPlan.name}`}</h2>
+        <p className="mt-2 max-w-md text-sm leading-relaxed text-ink-soft">
+          {eligible ? "Tell us who’ll be learning and how to reach you. A coordinator will be in touch to find a time that suits you. No payment card needed." : "A coordinator will be in touch to discuss lesson times and fees. The Weekend plan is excluded from the free trial."}
+        </p>
       </div>
       {(selectedPlan || initialPreferenceNotes) && <div className="rounded-xl border border-leaf-100 bg-leaf-50 p-4 text-sm text-ink-soft" role="group" aria-label="Your enquiry preferences">{selectedPlan && <p>Selected package: <strong>{selectedPlan.name}</strong></p>}{initialPreferenceNotes && <p className="mt-1 whitespace-pre-line">{initialPreferenceNotes}</p>}</div>}
 
       <fieldset aria-describedby={errors.age_band ? "q-age_band-error" : undefined}>
-        <legend className="field-label">Age group</legend>
+        <legend className="field-label">How old is the learner?</legend>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
           {AGE_BANDS.map((a, i) => (
             <button key={a.value} id={`q-age-${i}`} type="button" aria-pressed={form.age_band === a.value} onClick={() => set("age_band", a.value)}
@@ -250,8 +249,8 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="q-phone" className="field-label">Phone or WhatsApp number</label>
-          <input id="q-phone" className="input" type="tel" inputMode="tel" value={form.phone} onChange={(e) => set("phone", e.target.value)} autoComplete="tel" placeholder="Start with country code: +1, +44, +61…" maxLength={24} required {...err("phone")} aria-describedby={errors.phone ? "q-phone-hint q-phone-error" : "q-phone-hint"} />
-          <p id="q-phone-hint" className="mt-1 text-xs text-ink-faint">Include the country code. {isChild ? "Use the parent or guardian’s number." : "Use a number we can reach you on."}</p>
+          <input id="q-phone" className="input" type="tel" inputMode="tel" value={form.phone} onChange={(e) => set("phone", e.target.value)} autoComplete="tel" placeholder="For example, +44 7700 900123" maxLength={24} required {...err("phone")} aria-describedby={errors.phone ? "q-phone-hint q-phone-error" : "q-phone-hint"} />
+          <p id="q-phone-hint" className="mt-1 text-xs text-ink-faint">Include the country code. {isChild ? "Use the parent or guardian’s number." : "Use the number you check most often."}</p>
           <FieldError id="q-phone-error">{errors.phone}</FieldError>
           <label className="mt-2 flex min-h-11 items-center gap-2 text-sm text-ink-soft">
             <input type="checkbox" className="check shrink-0" checked={form.phone_is_whatsapp} onChange={(e) => set("phone_is_whatsapp", e.target.checked)} />
