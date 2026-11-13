@@ -170,14 +170,14 @@
       "observation": "Country page foregrounds US time zones, one-to-one lessons and a free trial."
     },
     {
-      "market": "Canada",
-      "url": "https://www.noorulquran.ca/",
-      "observation": "Canadian page foregrounds CAD pricing, local scheduling and parent-focused trial details."
-    },
-    {
       "market": "Australia",
       "url": "https://www.quranclassesacademy.com/online-quran-classes/australia/",
       "observation": "Country page foregrounds Australian cities, local scheduling and AUD billing."
+    },
+    {
+      "market": "Canada",
+      "url": "https://www.noorulquran.ca/online-quran-classes-canada",
+      "status": "Direct page retrieval failed; excluded from current competitor findings."
     }
   ],
   "changes_made": {
