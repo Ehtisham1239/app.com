@@ -1,0 +1,188 @@
+{
+  "reviewed": "2026-11-13",
+  "timezone": "Asia/Karachi",
+  "site": "https://www.onlinequrancollege.com",
+  "specification": {
+    "file": "docs/seo-agent/MASTER-OPERATING-SPEC.md",
+    "sections": 28,
+    "complete_text_preserved": true,
+    "previous_recorded_sha256": "494a59b40dcce7465ba29855fa4fe9abda09e62c2a9cc7d9cd47938e7e67c8f9"
+  },
+  "scheduling": {
+    "daily_local_time": "08:00",
+    "timezone": "Asia/Karachi",
+    "external_task_confirmed_enabled": true,
+    "manual_requests_allowed": true,
+    "future_run_completion_claimed": false
+  },
+  "source_and_release": {
+    "repository": "Ehtisham1239/app.com",
+    "current_main_commit": "5c72de0c9864642229ec3bc481ccd1676822a50a",
+    "latest_production_commit": "7e768aea78b3bc6f417dd9b3d03048b1cb6da8be",
+    "main_ahead_of_production_by": 43,
+    "latest_production_deployment": {
+      "id": "dpl_DNqDwFmrfUGWA6XL5Mmp8ns5h8TA",
+      "state": "READY",
+      "commit": "7e768aea78b3bc6f417dd9b3d03048b1cb6da8be"
+    },
+    "latest_preview_deployment": {
+      "id": "dpl_8PNnaYT5huWyBt99kMjxMWWutFvi",
+      "state": "READY",
+      "target": null,
+      "branch": "claude/oqc-open-approved-city-pages-2026-11-11",
+      "commit": "cdbad4021be44a572d6921bff88906227f872435"
+    },
+    "no_production_change_this_run": true
+  },
+  "actions": [
+    {
+      "id": "OPS-01",
+      "priority": "P1",
+      "workstream": "Master operating specification",
+      "status": "Complete and retained",
+      "result": "The complete 28-section operating specification was read. Daily and manual execution rules remain active.",
+      "next": "Continue to read the current source and registers at each run."
+    },
+    {
+      "id": "OPS-02",
+      "priority": "P1",
+      "workstream": "Existing blogs",
+      "status": "Current CMS inventory reconciled; current live rendering not fully reverified",
+      "result": "36 active published English articles; 0 noindex; 0 missing /free-trial links; max body 939 words; max inclusive 969; 0 above the 1,000-word limit. Five articles have overlapping appended sections. Fourteen CMS rows updated on 13 Nov.",
+      "evidence": "docs/seo-agent/BLOG-ACTION-REGISTER-2026-11-13.json",
+      "next": "Do not rewrite for activity. Obtain live rendered revalidation and approve a line-by-line consolidation only for the five identified articles."
+    },
+    {
+      "id": "OPS-03",
+      "priority": "P1",
+      "workstream": "Technical SEO and indexability",
+      "status": "Previous sitemap and page verification retained; new main-branch hreflang change not production verified",
+      "result": "The public UK alias /online-quran-classes-uk resolves to /locations/united-kingdom. The current main branch adds country hreflang filtering based on sitemap eligibility; production still runs commit 7e768a.",
+      "evidence": "https://github.com/Ehtisham1239/app.com/commit/5c72de0c9864642229ec3bc481ccd1676822a50a",
+      "next": "Verify the UK alias with URL Inspection and add a direct hreflang regression test before an approved release."
+    },
+    {
+      "id": "OPS-04",
+      "priority": "P2",
+      "workstream": "Keywords and competitors",
+      "status": "Owner-provided 13 Nov GSC baseline reviewed; current connector query unavailable",
+      "result": "UK, USA and Australia account for the largest non-Pakistan impression pools in the supplied three-month snapshot. Search-result samples reviewed for UK, USA, Canada and Australia.",
+      "evidence": "docs/seo/international-gsc-baseline-2026-11-13.md",
+      "next": "Obtain query-plus-page export before rewriting titles, descriptions or creating pages."
+    },
+    {
+      "id": "OPS-05",
+      "priority": "P2",
+      "workstream": "AEO/GEO",
+      "status": "No special markup or new filler content recommended",
+      "result": "Country pages remain fact-led with visible course, trial, pricing and local-time details. No AI citation or ranking claim is made.",
+      "next": "Continue source-backed answers and maintain factual entity consistency."
+    },
+    {
+      "id": "OPS-06",
+      "priority": "P2",
+      "workstream": "Search Console, GA4 and organic funnel",
+      "status": "Live Windsor reads blocked by account limit",
+      "result": "The authenticated account is on the Free plan with three connected accounts; the plan permits one. Search Console and GA4 reads are paused. No account was disconnected and no plan/billing change was made. The owner-provided GSC summary remains usable as a dated snapshot.",
+      "next": "Use an owner-provided query/page export or owner-managed account selection; do not disconnect GBP or alter billing."
+    },
+    {
+      "id": "OPS-07",
+      "priority": "P2",
+      "workstream": "Ethical backlinks and digital PR",
+      "status": "Research-only; no outreach or placement",
+      "result": "The exact RISE resource pitch remains prepared, not sent. No verified OQC sender or named submission authorization was available. Zero outreach and zero acquired links.",
+      "next": "Continue prospect qualification; do not contact recipients until the sender and named submission are authorized."
+    },
+    {
+      "id": "OPS-08",
+      "priority": "P2",
+      "workstream": "International SEO",
+      "status": "Existing market hubs retained; no new city pages",
+      "result": "The GSC snapshot shows UK 3/207, USA 1/266, Australia 1/215 and Canada 0/44 clicks/impressions. Small European samples are not enough to justify new pages. Lithuania impressions are tied to irrelevant queries and are excluded from growth targeting.",
+      "next": "Improve existing market pages only where query intent supports it; no unapproved price or physical-office claims."
+    },
+    {
+      "id": "OPS-09",
+      "priority": "P2",
+      "workstream": "Image SEO and accessibility",
+      "status": "No fresh mobile/browser matrix this run",
+      "result": "Public crawler retrieval was partial and stale for some pages; current 390px rendering was not rechecked. Earlier 28 Oct 390px checks remain historical evidence only.",
+      "next": "Use a supported browser or owner-supplied dated mobile evidence before claiming current mobile pass."
+    },
+    {
+      "id": "OPS-10",
+      "priority": "P2",
+      "workstream": "Mobile and Core Web Vitals",
+      "status": "Field p75 unavailable; lab and field scopes remain separate",
+      "result": "No current field CWV data or new remote Lighthouse run was obtained in this run.",
+      "next": "Obtain field p75 by device and reporting window; do not infer it from a lab score."
+    },
+    {
+      "id": "OPS-11",
+      "priority": "P1",
+      "workstream": "Qualified academic review",
+      "status": "Awaiting evidence",
+      "result": "Arabic-for-Quran-readers, is-my-child-ready-for-hifz and quran-translation-tafseer-beginners remain published/indexable; no matching qualified sign-off found in inspected records.",
+      "next": "Obtain named qualified review and owner indexing decision; preserve current text and flags until then."
+    },
+    {
+      "id": "OPS-12",
+      "priority": "P2",
+      "workstream": "Vercel project and logs",
+      "status": "Access confirmed; external pathway register still unavailable",
+      "result": "The correct appcom-online-quran-college project is accessible and linked to Ehtisham1239/app.com. The last-50-minute production error/warning query returned no records. Hobby retention still limits longer raw-log verification. External register capability remains pending.",
+      "next": "Use current project for read-only checks; obtain external register access separately."
+    },
+    {
+      "id": "OPS-13",
+      "priority": "P1",
+      "workstream": "Production release divergence",
+      "status": "Awaiting owner/developer release review; no merge or deployment",
+      "result": "Current main is 43 commits ahead of the latest READY production commit. The difference includes public-site changes, lead-sync outbox, admin, teacher-excellence and certificate-privacy work. Latest Vercel preview is a separate branch, not current main.",
+      "evidence": "https://github.com/Ehtisham1239/app.com/compare/7e768aea78b3bc6f417dd9b3d03048b1cb6da8be...5c72de0c9864642229ec3bc481ccd1676822a50a",
+      "next": "Review the complete diff, CI and release gates; deploy only after explicit release approval."
+    },
+    {
+      "id": "OPS-14",
+      "priority": "P1",
+      "workstream": "CMS migration and inventory reconciliation",
+      "status": "Blocked pending database/source reconciliation",
+      "result": "The exact blog SEO migration version 20261112130000 is absent from remote schema_migrations; the current CMS already has all 36 trial links and 14 recent updates. The 12 Nov follow-up said 37 articles; current exact query finds 36 with no soft-deleted row.",
+      "evidence": "docs/seo-agent/BLOG-ACTION-REGISTER-2026-11-13.json",
+      "next": "Map the remote migration versions to source files and reconcile the article count before applying or rerunning any migration."
+    },
+    {
+      "id": "OPS-15",
+      "priority": "P2",
+      "workstream": "GSC page and canonical mapping",
+      "status": "Query-level and URL Inspection evidence required",
+      "result": "The GSC baseline lists /online-quran-classes-uk (88 impressions, 0 clicks, avg position 34.27), while the public URL resolves to /locations/united-kingdom. Courses and pricing show positions near 4 with zero clicks, but query mix is unavailable.",
+      "next": "Inspect query/page rows and Google-selected canonical before changing snippets."
+    },
+    {
+      "id": "OPS-16",
+      "priority": "P2",
+      "workstream": "Editorial consolidation",
+      "status": "Five overlap candidates identified; no edits made",
+      "result": "The five articles listed in the blog register have repeated section themes. They remain within the word limit; this is a clarity improvement, not a need to expand or rewrite.",
+      "next": "Prepare a concise consolidation proposal for editorial approval only."
+    }
+  ],
+  "owner_dependencies": [
+    "Owner-managed Windsor account selection or dated GSC/GA4 exports.",
+    "Qualified academic reviewer sign-off and owner indexing decision for three articles.",
+    "Verified OQC sender and explicit authorization for the named RISE submission.",
+    "Authorized test enquiry plus read-only GHL and email-receipt evidence for lead delivery.",
+    "Owner/developer release review before any merge or production deployment.",
+    "External pathway register access.",
+    "Supported 390px browser evidence and field p75 Core Web Vitals data."
+  ],
+  "last_daily_review": {
+    "date": "2026-11-13",
+    "source_reviewed": "5c72de0c9864642229ec3bc481ccd1676822a50a",
+    "report": "docs/SEO-DAILY-2026-11-13.md",
+    "evidence": "docs/seo-agent/evidence/2026-11-13/verification.json",
+    "result": "Reconciled current CMS article inventory, reviewed the owner-provided international GSC baseline, checked Vercel production/preview status and runtime logs, sampled current country pages and competitors, and recorded unresolved migration, release, academic, analytics and mobile dependencies."
+  }
+}
