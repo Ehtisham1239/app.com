@@ -54,14 +54,14 @@ export default async function PostPage({ params }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema(breadcrumbs, SITE_URL)) }} />
       {quick && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema([quick])) }} />}
-      <article>
-        <PageHero path={`/blog/${post.slug}`} eyebrow={post.category} title={post.title} visual={<ContentImage src={visual.src} alt={visual.alt} priority sizes="(max-width: 1024px) 100vw, 600px" className="aspect-[3/2] w-full object-cover" />}>
+      <article className="bg-white">
+        <PageHero path={`/blog/${post.slug}`} eyebrow={post.category} title={post.title} visual={<ContentImage src={visual.src} alt={visual.alt} priority sizes="(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) calc(100vw - 4rem), 48vw" className="block aspect-[3/2] w-full object-cover object-center" />}>
           <nav aria-label="Breadcrumb" className="mt-5 text-sm text-white/75"><Link href="/" prefetch={false}>Home</Link> / <Link href="/blog" className="underline">Articles</Link></nav>
           <p className="mt-5 flex flex-wrap items-center gap-3 text-sm text-white/75">{author["@type"] === "Organization" ? <Link href="/about" className="underline underline-offset-4">{author.name}</Link> : <span>{author.name}</span>}{dates.published && <span>Published <time dateTime={dates.published}>{formatDate(dates.published, "UTC")}</time></span>}{dates.showModified && <span>Updated <time dateTime={dates.modified}>{formatDate(dates.modified, "UTC")}</time></span>}{post.reading_minutes ? <span className="inline-flex items-center gap-1"><Clock3 className="size-4" aria-hidden="true" />{post.reading_minutes} min read</span> : null}<Link href="/editorial-standards" className="underline underline-offset-4">How we write</Link></p>
         </PageHero>
         <div className="page-wrap article-layout">
           <aside className="article-sidebar order-first min-w-0 lg:order-last" aria-label="Article navigation and learning resources">
-            {headings.length > 1 && <details className="article-toc rounded-2xl border border-leaf-100 bg-leaf-50 px-5 py-3"><summary>In this article</summary><nav aria-label="In this article"><ol className="mt-2">{headings.map(heading => <li key={heading.id}><a href={`#${heading.id}`}>{heading.title}</a></li>)}</ol></nav></details>}
+            {headings.length > 1 && <details className="article-toc rounded-2xl border border-leaf-100 bg-[#f5faf1] px-5 py-3"><summary>In this article</summary><nav aria-label="In this article"><ol className="mt-2">{headings.map(heading => <li key={heading.id}><a href={`#${heading.id}`}>{heading.title}</a></li>)}</ol></nav></details>}
             <div className="mt-5 hidden rounded-2xl border border-line bg-white p-5 lg:block">
               <h2 className="font-sans text-lg font-semibold">Continue your learning</h2>
               <p className="mb-4 mt-2 text-sm text-ink-soft">{resources.label}</p>
