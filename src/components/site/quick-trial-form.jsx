@@ -201,7 +201,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
 
   const err = (k) => (errors[k] ? { "aria-invalid": true, "aria-describedby": `q-${k}-error` } : {});
   return (
-    <form ref={topRef} onSubmit={submit} noValidate aria-busy={state.sending} aria-label={eligible ? "Book a free trial" : "Package enquiry"} className="surface scroll-mt-28 space-y-5 bg-white p-5 shadow-[var(--shadow-lift)] sm:space-y-6 sm:p-8">
+    <form ref={topRef} onSubmit={submit} noValidate aria-busy={state.sending} aria-label={eligible ? "Book a free trial" : "Package enquiry"} className="surface @container min-w-0 scroll-mt-28 space-y-5 bg-white p-5 shadow-[var(--shadow-lift)] sm:space-y-6 sm:p-8">
       <div className="absolute -left-[9999px]" aria-hidden="true"><label>Website<input tabIndex={-1} autoComplete="off" value={form.website} onChange={(e) => set("website", e.target.value)} /></label></div>
       <div className="border-b border-line pb-5">
         <h2 className="text-2xl leading-tight text-mushaf-900">{eligible ? "Request a 3-day free trial" : `Ask about ${selectedPlan.name}`}</h2>
@@ -211,9 +211,9 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       </div>
       {(selectedPlan || initialPreferenceNotes) && <div className="rounded-xl border border-leaf-100 bg-leaf-50 p-4 text-sm text-ink-soft" role="group" aria-label="Your enquiry preferences">{selectedPlan && <p>Selected package: <strong>{selectedPlan.name}</strong></p>}{initialPreferenceNotes && <p className="mt-1 whitespace-pre-line">{initialPreferenceNotes}</p>}</div>}
 
-      <fieldset aria-describedby={errors.age_band ? "q-age_band-error" : undefined}>
+      <fieldset className="min-w-0" aria-describedby={errors.age_band ? "q-age_band-error" : undefined}>
         <legend className="field-label">How old is the learner?</legend>
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-2 @min-[30rem]:grid-cols-4">
           {AGE_BANDS.map((a, i) => (
             <button key={a.value} id={`q-age-${i}`} type="button" aria-pressed={form.age_band === a.value} onClick={() => set("age_band", a.value)}
               className={clsx("inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl border px-2 text-[0.88rem] font-medium transition-colors", form.age_band === a.value ? "border-leaf-700 bg-leaf-700 text-white" : "border-line-strong bg-white text-ink hover:border-leaf-600")}>
@@ -224,7 +224,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
         <FieldError id="q-age_band-error">{errors.age_band}</FieldError>
       </fieldset>
 
-      <div className={clsx("grid gap-5", isChild && "sm:grid-cols-2")}>
+      <div className={clsx("grid gap-5", isChild && "@min-[26rem]:grid-cols-2")}>
         <div>
           <label htmlFor="q-learner_name" className="field-label">{isChild ? "Student’s name" : "Your name"}</label>
           <input id="q-learner_name" className="input" value={form.learner_name} onChange={(e) => set("learner_name", e.target.value)} autoComplete={isChild ? "section-student name" : "name"} maxLength={120} required {...err("learner_name")} />
@@ -246,7 +246,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
         <FieldError id="q-country-error">{errors.country}</FieldError>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid gap-5 @min-[26rem]:grid-cols-2">
         <div>
           <label htmlFor="q-phone" className="field-label">Phone or WhatsApp number</label>
           <input id="q-phone" className="input" type="tel" inputMode="tel" value={form.phone} onChange={(e) => set("phone", e.target.value)} autoComplete="tel" placeholder="For example, +44 7700 900123" maxLength={24} required {...err("phone")} aria-describedby={errors.phone ? "q-phone-hint q-phone-error" : "q-phone-hint"} />
@@ -299,7 +299,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       </div>
 
       {state.error && <p className="rounded-xl bg-rose-600/10 px-4 py-3 text-[0.92rem] font-medium text-rose-600" role="alert">{state.error}</p>}
-      <button type="submit" className="btn btn-primary btn-lg w-full" disabled={state.sending}>
+      <button type="submit" className="btn btn-primary btn-lg w-full whitespace-normal text-center" disabled={state.sending}>
         {state.sending ? <Loader2 className="size-5 animate-spin" aria-hidden="true" /> : <CheckCircle2 className="size-5" aria-hidden="true" />}
         {state.sending ? "Sending…" : eligible ? "Request my free trial" : "Send package enquiry"}
       </button>
