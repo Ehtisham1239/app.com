@@ -11,11 +11,17 @@ import { COUNTRIES } from "@/lib/constants";
 
 const SUBJECTS = ["Course enquiry", "Fees and payment", "Class timings", "Teacher request", "Existing student support", "Partnership", "Other"];
 
+const CAREER_FIELDS = [
+  { key: "role", label: "Role of interest", maxLength: 100 },
+  { key: "qualification", label: "Degree or qualification", maxLength: 150 },
+  { key: "skills", label: "Relevant skills", maxLength: 240 },
+];
+
 export function ContactForm({ id, consentText, alternateContact, careerSubject }) {
   const router = useRouter();
   const formRef = useRef(null);
   const submitting = useRef(false);
-  const [form, setForm] = useState({ name: "", email: "", phone: "", country: "", subject: careerSubject || SUBJECTS[0], message: "", consent: false, website: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", country: "", subject: careerSubject || SUBJECTS[0], role: "", qualification: "", skills: "", message: "", consent: false, website: "" });
   const [errors, setErrors] = useState({});
   const [state, setState] = useState({ sending: false, error: "" });
   useEffect(() => {
@@ -32,6 +38,11 @@ export function ContactForm({ id, consentText, alternateContact, careerSubject }
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(form.email.trim())) errs.email = "Please enter a valid email address.";
     if (form.message.trim().length < 5) errs.message = "Please write a short message.";
     if (!form.consent) errs.consent = "Please agree so we can reply to you.";
+    if (careerSubject) {
+      for (const { key, label } of CAREER_FIELDS) {
+        if (!form[key].trim()) errs[key] = `Please enter your ${label.toLowerCase()}.`;
+      }
+    }
     setErrors(errs);
     if (Object.keys(errs).length) return;
     submitting.current = true;
@@ -39,7 +50,11 @@ export function ContactForm({ id, consentText, alternateContact, careerSubject }
     let data, error;
     try {
       const utm = captureAttribution();
-      ({ data, error } = await (await import("@/lib/supabase/public")).getPublicBrowserClient().rpc("submit_contact_message_with_notification", { payload: { ...form, email: form.email.trim().toLowerCase(), utm, source: utm.utm_source || "website" } }));
+      const { role, qualification, skills, ...contact } = form;
+      if (careerSubject) {
+        contact.message = [`Role: ${role.trim()}`, `Qualification: ${qualification.trim()}`, `Skills: ${skills.trim()}`, "", "Experience and availability", contact.message.trim()].join("\n");
+      }
+      ({ data, error } = await (await import("@/lib/supabase/public")).getPublicBrowserClient().rpc("submit_contact_message_with_notification", { payload: { ...contact, email: form.email.trim().toLowerCase(), utm, source: utm.utm_source || "website" } }));
     } catch (cause) { error = cause; }
     if (error) {
       submitting.current = false;
@@ -100,11 +115,20 @@ export function ContactForm({ id, consentText, alternateContact, careerSubject }
           ))}
         </select>
       </div>}
+      {careerSubject && <div className="grid gap-5 sm:grid-cols-2">
+        {CAREER_FIELDS.map(({ key, label, maxLength }) => (
+          <div key={key}>
+            <label htmlFor={`c-${key}`} className="field-label">{label}</label>
+            <input id={`c-${key}`} className="input" value={form[key]} onChange={(e) => set(key, e.target.value)} required maxLength={maxLength} aria-invalid={Boolean(errors[key])} aria-describedby={errors[key] ? `c-${key}-error` : undefined} />
+            {err(key)}
+          </div>
+        ))}
+      </div>}
       <div>
         <label htmlFor="c-message" className="field-label">
           {careerSubject ? "Experience and availability" : "Message"}
         </label>
-        <textarea id="c-message" className="textarea" rows={3} placeholder={careerSubject ? "Tell us your subject or area of interest, languages and time zone." : "How can we help?"} value={form.message} onChange={(e) => set("message", e.target.value)} required maxLength={5000} aria-describedby={errors.message ? "c-message-error" : undefined} aria-invalid={Boolean(errors.message)} />
+        <textarea id="c-message" className="textarea" rows={3} placeholder={careerSubject ? "Tell us your subject or area of interest, languages and time zone." : "How can we help?"} value={form.message} onChange={(e) => set("message", e.target.value)} required maxLength={careerSubject ? 1000 : 5000} aria-describedby={errors.message ? "c-message-error" : undefined} aria-invalid={Boolean(errors.message)} />
         {err("message")}
       </div>
       <details className="rounded-xl border border-leaf-100 bg-leaf-50 px-4">
