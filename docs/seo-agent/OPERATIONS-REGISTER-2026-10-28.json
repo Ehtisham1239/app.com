@@ -30,19 +30,19 @@
       "id": "OPS-02",
       "priority": "P1",
       "workstream": "Existing blogs",
-      "status": "35 published CMS records unchanged on 11 November. Prior live audit evidence retained.",
-      "result": "20 CMS/live HTML agreements and source-formatted titles pass.31 contextual destinations pass. Changed20 max792 inclusive words; all35 max951 using tag-spaced whitespace method.",
-      "evidence": "docs/seo-agent/BLOG-ACTION-REGISTER-2026-11-10.json",
-      "next": "Preserve staff edits. Obtain qualified approval records for three version5 articles and supported390px verification."
+      "status": "36 published CMS records; 14 existing migration changes verified; five study sections now visible in live HTML; nine trial CTAs verified in CMS only.",
+      "result": "Read-only CMS snapshot: 36 published and indexable, zero missing SEO title/description/cover/alt; inclusive count 453–969. The applied migration adds nine trial links (exactly one each) and five practical study sections. All 14 CMS additions are present. Five study-section pages now return live HTML showing the expected inserted heading and an Updated 13 Nov date. The nine CTA additions have not been refreshed in live HTML; sampled public-reader responses were stale or inaccessible. No content edited by this run.",
+      "evidence": "docs/seo-agent/BLOG-ACTION-REGISTER-2026-11-13.json",
+      "next": "Preserve all CMS edits. Refresh live HTML for the nine CTA articles after cache revalidation and run mobile checks for all 14 changed pages; reconcile the three unattributed audit events before further content work."
     },
     {
       "id": "OPS-03",
       "priority": "P1",
       "workstream": "Technical SEO",
-      "status": "24 sampled legacy redirects and 19 live pages verified on 11 November",
-      "result": "All sampled redirects return 308 to their intended destinations with the query retained. All 19 pages return 200 with self-canonicals, one H1 and parseable JSON-LD. Sitemap lists 87 pages and 35 blogs.",
-      "evidence": "docs/seo-agent/evidence/2026-11-11/verification.json",
-      "next": "Monitor changed routes and unresolved issues; do not repeat unchanged checks without a reason."
+      "status": "Prior 88-URL sitemap and ten approved city pages verified 12 November; US and Australia country hubs returned 200 on 13 November. Current main hreflang source change is not deployed.",
+      "result": "The live US and Australia market hubs remain reachable. The sitemap endpoint could not be fetched through the available web reader; the 88-URL count is carried forward from 12 November, not re-claimed as a fresh check.",
+      "evidence": "docs/SEO-DAILY-2026-11-13.md",
+      "next": "Recheck sitemap, canonical and reciprocal hreflang after an owner-approved production deployment; do not change city indexation."
     },
     {
       "id": "OPS-04",
@@ -65,18 +65,19 @@
       "id": "OPS-06",
       "priority": "P2",
       "workstream": "Analytics and organic funnel",
-      "status": "Reporting reads blocked by account limit; CRM aggregate delivery status observed10November",
-      "result": "Windsor account discovery succeeds but GA4 read returns account-cap error and no metrics. Current CMS lead_crm_sync table exists and records successful sync attempts. This does not establish organic qualification/admissions.",
-      "next": "Owner-managed reporting-account selection or dated GA4/GSC exports needed. Obtain business qualification through authorized operational workflow; no automatic account disconnection."
+      "status": "GA4 and Search Console reads blocked on 13 November by Windsor Free-plan account limit",
+      "result": "Three accounts remain connected (GA4, Search Console and excluded GBP) while the Free plan includes one. Both GA4 and Search Console data pulls returned the same account-cap error and no metrics. No account was disconnected and no billing/plan change was made.",
+      "next": "Owner-managed account selection or dated GA4/GSC exports are required. Keep GBP excluded from this SEO scope; do not disconnect any account automatically.",
+      "evidence": "docs/seo-agent/evidence/2026-11-13/verification.json"
     },
     {
       "id": "OPS-07",
       "priority": "P2",
       "workstream": "Editorial relationships/backlinks",
-      "status": "RISE route and OQC resource rechecked on 11 November",
+      "status": "RISE route and OQC resource rechecked 11 November; recipient-directed work remains unsent",
       "evidence": "content/seo-agent/link-prospects-2026-10-28.json; content/seo-agent/resource-pitch-2026-10-28.md; docs/seo-agent/CITATION-QUALIFICATION-2026-11-07.csv",
-      "next": "Use the prepared eligibility enquiry once verified sender access and authorization for this named submission are available.",
-      "result": "Current RISE form invites education resources across countries and curricula. The OQC checklist returns 200 and serves index/follow. AI acceptance remains unconfirmed. Zero submissions and acquired links."
+      "next": "Wait for verified OQC sender identity and explicit approval for the named RISE submission, or existing authorized partner/directory publishing access. Do not send, purchase membership or acquire paid links.",
+      "result": "The five editorial candidates and exact RISE resource pitch remain prepared. No verified OQC sender or explicit authorization for the named submission was available in this run. Zero submissions and zero acquired links."
     },
     {
       "id": "OPS-08",
@@ -90,18 +91,19 @@
       "id": "OPS-09",
       "priority": "P2",
       "workstream": "Image SEO/accessibility",
-      "status": "Rating correction retained and USA call accessible-name correction verified live8November",
-      "next": "New mobile attempts blocked by local socket permissions and native browser connection/DevTools policy. Preserve dated desktop evidence; do not claim fresh mobile checks.",
-      "result": "Current rating paragraphs have screen-reader text. PR146 removes two redundant USA call aria-label attributes. Both corrected links verified in public HTML on READY production c30c4968. Three changed articles now pass1363px desktop cover/H1/TOC/overflow checks on9November. Trial form child/adult field transitions verified without submission. Contact hero exposes AVIF and WebP variants at 400, 800 and 1200px. All six asset headers return 200 with the expected image type."
+      "status": "Previous 20-article 390px checks and 48 representative viewport cases remain valid for their recorded scope; the 14 subsequently changed articles have not yet had a fresh mobile run.",
+      "next": "Use the CI artifact for current production viewport evidence; do not claim a fresh mobile pass until it completes.",
+      "result": "The local browser startup restriction remains. A GitHub Actions responsive audit will be triggered by the draft review PR and is pending at report time.",
+      "evidence": "docs/SEO-DAILY-2026-11-13.md"
     },
     {
       "id": "OPS-10",
       "priority": "P2",
       "workstream": "Mobile/field CWV",
-      "status": "Remote lab refreshed8November; field evidence pending",
-      "result": "Ten remote observations across five live pages. Mobile performance92\u201399, desktop100; accessibility scores100. USA label/name diagnostics were still present before the call-link release. Post-release HTML verifies both overrides removed.",
-      "next": "Obtain actual field p75/device/window data; retain the separate scopes and dates of remote lab and release HTML evidence.",
-      "evidence": "docs/seo-agent/evidence/2026-11-08/verification.json",
+      "status": "No new field CWV evidence. Vercel runtime error aggregation returned no error clusters in the last 24 hours; the last 30-minute error/fatal log query returned no entries. Raw logs older than one hour are unavailable on the current Hobby retention.",
+      "result": "The CI live-performance audit is expected to collect a fresh lab report from the review PR. Field p75/device/window evidence remains unavailable.",
+      "next": "Read the CI Lighthouse artifact when available and keep lab, field and historical measurements separate.",
+      "evidence": "docs/seo-agent/evidence/2026-11-13/verification.json",
       "latest_attempt": {
         "date": "2026-10-31",
         "tool": "PageSpeed Insights API mobile",
@@ -113,17 +115,36 @@
       "id": "OPS-11",
       "priority": "P2",
       "workstream": "Religious review",
-      "status": "Qualified review evidence and article indexing reconciliation pending",
-      "result": "Three reviewed draft bodies are now public/indexable. No qualified sign-off found in inspected records; approval elsewhere remains unknown.",
-      "next": "Locate academic reviewer sign-off and owner publishing/indexing decision for Arabic, Hifz-readiness and Translation/Tafseer articles."
+      "status": "Qualified academic review and publishing/indexing reconciliation remain pending",
+      "result": "The previously flagged Arabic, Hifz-readiness and Translation/Tafseer material remains indexable in the current CMS snapshot. The 13 November migration adds five practical study sections without adding religious rulings or new source claims; qualified review is still required. No indexing flags were changed.",
+      "next": "Locate qualified reviewer sign-off and owner publishing/indexing authorization; preserve current content and flags until that evidence is reconciled."
     },
     {
       "id": "OPS-12",
       "priority": "P2",
       "workstream": "External registers and private hosting logs",
-      "status": "Vercel project/deployment access works; current functional correction verified live",
-      "result": "Source b50fff0 is READY at dpl_GJLsdRA67gpC7Y2cxxa3QsitDRR3. Staff changes verified through sampled live redirects, learning links and contact HTML.",
-      "next": "External Claude Docs pathway remains unavailable. Verify actual business outcomes separately from deployment/source delivery."
+      "status": "Vercel project/deployment read access restored; raw log retention is limited; current main deployment remains blocked. External Claude Docs pathway remains unavailable.",
+      "result": "The production deployment is READY at source 7e768ae. Main head 5c72de is 43 commits ahead and has a failing Vercel status pointing to account-level deployment blocking; no deployment exists for that SHA. A separate preview is READY with target null and is not production. Runtime error aggregation is readable; raw log history is limited to one hour on the current plan.",
+      "next": "Owner resolves the Vercel account deployment block and approves any release after source/schema reconciliation. Do not promote manually. External register capability still needs a supported authorized connector.",
+      "evidence": "docs/seo-agent/evidence/2026-11-13/verification.json"
+    },
+    {
+      "id": "OPS-13",
+      "priority": "P1",
+      "workstream": "Main-to-production release parity",
+      "status": "Blocked — current main is 43 commits ahead of the latest READY production source",
+      "result": "Production remains 7e768aea78b3bc6f417dd9b3d03048b1cb6da8be; main is 5c72de0c9864642229ec3bc481ccd1676822a50a. Vercel status for main is failure and no deployment record exists for that SHA.",
+      "evidence": "docs/seo-agent/evidence/2026-11-13/verification.json",
+      "next": "Owner resolves the account-level Vercel block and reviews the migration/source sequence before authorizing a production release. No deployment attempted."
+    },
+    {
+      "id": "OPS-14",
+      "priority": "P2",
+      "workstream": "Hreflang regression-test alignment",
+      "status": "Draft PR #234 open; workflow result not yet returned",
+      "result": "The current country-page source uses a dynamic sitemap-eligibility helper, while tests/market-hreflang.test.mjs still asserts the previous static expression. The proposed patch updates the test only; production source is unchanged. Draft review: https://github.com/Ehtisham1239/app.com/pull/234. Initial workflow-run query returned zero runs; no CI pass is claimed.",
+      "evidence": "https://github.com/Ehtisham1239/app.com/pull/234",
+      "next": "Review the draft PR and inspect npm test, lint, build, responsive and performance job results before any merge."
     }
   ],
   "master_sections": [
@@ -139,7 +160,7 @@
     },
     {
       "section": 3,
-      "title": "OPERATING MODEL: STANDARDIZE \u2192 AUTOMATE \u2192 OPTIMIZE",
+      "title": "OPERATING MODEL: STANDARDIZE → AUTOMATE → OPTIMIZE",
       "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
     },
     {
@@ -149,7 +170,7 @@
     },
     {
       "section": 5,
-      "title": "EXISTING BLOG AUDIT \u2014 MANDATORY FIRST WORKSTREAM",
+      "title": "EXISTING BLOG AUDIT — MANDATORY FIRST WORKSTREAM",
       "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
     },
     {
@@ -174,12 +195,12 @@
     },
     {
       "section": 10,
-      "title": "AEO \u2014 ANSWER ENGINE OPTIMIZATION",
+      "title": "AEO — ANSWER ENGINE OPTIMIZATION",
       "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
     },
     {
       "section": 11,
-      "title": "GEO \u2014 GENERATIVE ENGINE OPTIMIZATION",
+      "title": "GEO — GENERATIVE ENGINE OPTIMIZATION",
       "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
     },
     {
@@ -199,7 +220,7 @@
     },
     {
       "section": 15,
-      "title": "CRO \u2014 CONVERSION RATE OPTIMIZATION",
+      "title": "CRO — CONVERSION RATE OPTIMIZATION",
       "configuration": "Complete instruction retained; operational status is in the action register, not inferred from this entry."
     },
     {
@@ -269,21 +290,11 @@
     }
   ],
   "last_daily_review": {
-    "date": "2026-11-11",
-    "source_reviewed": "b50fff04ca65b22915f642510cba41f67986cbbd",
-    "report": "docs/SEO-DAILY-2026-11-11.md",
-    "result": "CMS inventory unchanged. Verified 24 redirects, 19 public pages, contact image variants, 15 source tests and RISE eligibility preflight.",
-    "evidence": "docs/seo-agent/evidence/2026-11-11/verification.json",
-    "follow_up": {
-      "date": "2026-11-11",
-      "source_reviewed": "4e74108d5353c085a1f7b0331194905d65631dcc",
-      "scope": "Staff lead notification error-code change",
-      "tests": 25,
-      "failures": 0,
-      "deployment_status": "READY, production domain alias confirmed",
-      "verification": "docs/seo-agent/evidence/2026-11-11/notification-follow-up.json",
-      "next": "Production release and public page availability verified. Delivery failure remains locally verified with mocked providers; real delivery requires authorized staff evidence."
-    }
+    "date": "2026-11-13",
+    "source_reviewed": "5c72de0c9864642229ec3bc481ccd1676822a50a",
+    "report": "docs/SEO-DAILY-2026-11-13.md",
+    "result": "Read the 28-section master specification, 28 October verification baseline, 12 November operations/article registers and private owner report. Read-only CMS check confirms 36 published and indexable articles, 453–969 inclusive words, complete title/description/cover/alt fields. Verified the existing 14-article CMS migration: nine trial links exactly once and five practical study sections. No content was edited by this run. Vercel read access is restored, but current main is 43 commits ahead of production and its Vercel check is blocked at account level. GA4/GSC reads remain paused by the Free-plan account cap. Draft PR #234 opened for the test-only regression correction and dated registers; no workflow run was visible at the first poll.",
+    "evidence": "docs/seo-agent/evidence/2026-11-13/verification.json"
   },
   "last_implementation": {
     "date": "2026-10-29",
@@ -296,7 +307,7 @@
     "deployment": "Earlier API creation attempts returned 403; owner-authorized GitHub/Vercel setup resolved access. Existing production project is Ready at dpl_BUcSc8RHF9yAePAUp3UCyzKo6TQe and the public domain was verified.",
     "remaining_frontier": "58/58 public URLs return 200; no new parser findings. Combined same-day inventory 208.",
     "browser_release": {
-      "status": "Resolved \u2014 existing project connected; production verified",
+      "status": "Resolved — existing project connected; production verified",
       "evidence": "docs/seo-agent/evidence/2026-10-29-report-fixes/browser-release-blocker.json",
       "production_commit": "807d5969c32e0430e344467179c8153e1e71cb2e",
       "next": "Connection blocker resolved by 29 October release; inspect private logs only when needed and available. Preserve existing project/repository access.",
@@ -367,8 +378,8 @@
     "next": "Verify receipt of the three new trial funnel events in the existing GTM/GA4 account"
   },
   "city_indexing_review": {
-    "date": "2026-11-07",
-    "status": "Awaiting reconciliation",
+    "date": "2026-11-12",
+    "status": "Owner approval reconciled and live sitemap/robots verified",
     "approved_in_inspected_decision_log": [
       "Houston",
       "Perth",
@@ -383,7 +394,21 @@
       "Brisbane",
       "Adelaide"
     ],
-    "next": "Locate any later explicit approval and local evidence before changing current CMS flags"
+    "next": "Keep the ten approved city flags unchanged. The current main hreflang eligibility change is not deployed because the Vercel account check is blocked; recheck the live sitemap and reciprocal tags only after an owner-approved release. Search Console remains unavailable.",
+    "owner_decision": "AGENTS.md owner decision dated 11 November, commit 4ee70b3",
+    "approved_paths": [
+      "/locations/united-states/new-york",
+      "/locations/united-states/los-angeles",
+      "/locations/united-states/chicago",
+      "/locations/united-states/houston",
+      "/locations/united-states/dallas",
+      "/locations/australia/sydney",
+      "/locations/australia/melbourne",
+      "/locations/australia/brisbane",
+      "/locations/australia/perth",
+      "/locations/australia/adelaide"
+    ],
+    "verification": "docs/seo-agent/evidence/2026-11-12/verification.json"
   },
   "last_accessibility_fix": {
     "date": "2026-11-08",
@@ -397,12 +422,99 @@
     "priority": "P1",
     "status": "Awaiting approval evidence",
     "previous_flags": "seo_noindex=true on8November",
-    "current_flags": "seo_noindex=false, version5 for all three",
+    "current_flags": "Previously flagged review articles remain seo_noindex=false in the current CMS snapshot; their versions have advanced since version5. See the 13 November article register for current per-article versions. No indexing flags changed in this run.",
     "cms_updated_utc": "2026-11-09T04:28:30.137163Z",
     "live_directive": "index, follow",
     "sitemap_inclusion": true,
     "academic_review": "No matching qualified sign-off found in inspected repository and private report. This does not establish absence of approval elsewhere.",
-    "action": "Preserve current settings. Reconcile human academic sign-off and publishing/indexing authorization before any change.",
-    "last_reviewed": "2026-11-10"
+    "action": "Preserve current settings. Reconcile qualified human academic sign-off and owner publishing/indexing authorization before any change.",
+    "last_reviewed": "2026-11-13"
+  },
+  "prior_daily_review": {
+    "date": "2026-11-12",
+    "source_reviewed": "54c658a1b4495b0c06c3dce42216f41e08b6da62",
+    "report": "docs/SEO-DAILY-2026-11-12.md",
+    "result": "One new and one updated article pass HTML and link checks. City approvals reconciled, all ten live signals pass. IndexNow dry run passes 32 URLs. Twelve source tests pass.",
+    "evidence": "docs/seo-agent/evidence/2026-11-12/verification.json"
+  },
+  "historical_daily_reviews": [
+    {
+      "date": "2026-11-11",
+      "source_reviewed": "b50fff04ca65b22915f642510cba41f67986cbbd",
+      "report": "docs/SEO-DAILY-2026-11-11.md",
+      "result": "CMS inventory unchanged. Verified 24 redirects, 19 public pages, contact image variants, 15 source tests and RISE eligibility preflight.",
+      "evidence": "docs/seo-agent/evidence/2026-11-11/verification.json",
+      "follow_up": {
+        "date": "2026-11-11",
+        "source_reviewed": "4e74108d5353c085a1f7b0331194905d65631dcc",
+        "scope": "Staff lead notification error-code change",
+        "tests": 25,
+        "failures": 0,
+        "deployment_status": "READY, production domain alias confirmed",
+        "verification": "docs/seo-agent/evidence/2026-11-11/notification-follow-up.json",
+        "next": "Production release and public page availability verified. Delivery failure remains locally verified with mocked providers; real delivery requires authorized staff evidence."
+      }
+    }
+  ],
+  "last_reviewed": "2026-11-13",
+  "latest_cms_inventory_check": {
+    "date": "2026-11-13",
+    "source": "Supabase public.blog_posts read-only snapshot",
+    "published": 36,
+    "indexable": 36,
+    "noindex": 0,
+    "missing_seo_title": 0,
+    "missing_seo_description": 0,
+    "missing_cover": 0,
+    "missing_cover_alt": 0,
+    "explicit_canonical": 5,
+    "generated_self_canonical": 31,
+    "min_inclusive_words": 453,
+    "max_inclusive_words": 969,
+    "content_changed_by_this_run": false,
+    "note": "CMS-only snapshot; 36 updates at 12 Nov 04:13 have no tracked content/metadata/version changes; three 12 Nov 14:28 audit rows have empty snapshots; 14 known migration changes are separately verified."
+  },
+  "latest_blog_migration": {
+    "date": "2026-11-13",
+    "source_file": "supabase/migrations/20261112130000_blog_seo_trial_links_and_depth.sql",
+    "applied_migration_version": "20261113000920",
+    "applied_at_utc": "2026-11-13T00:09:20.846793Z",
+    "affected_articles": 14,
+    "trial_link_articles": 9,
+    "trial_link_occurrences": "exactly one in each of the nine target articles",
+    "study_section_articles": 5,
+    "cms_presence": "14/14 expected additions verified",
+    "inclusive_word_range_of_all_36": "453–969",
+    "content_changed_by_this_run": false,
+    "note": "Existing applied source/DB migration discovered and verified. Five practical study additions still require qualified academic review."
+  },
+  "latest_vercel_check": {
+    "date": "2026-11-13",
+    "project_id": "prj_ohTvpaIwR1bWHFJWl23QiNfOoJG7",
+    "production_deployment": "dpl_DNqDwFmrfUGWA6XL5Mmp8ns5h8TA",
+    "production_source": "7e768aea78b3bc6f417dd9b3d03048b1cb6da8be",
+    "production_state": "READY",
+    "main_source": "5c72de0c9864642229ec3bc481ccd1676822a50a",
+    "main_ahead_by_commits": 43,
+    "main_vercel_status": "failure — account deployment blocked",
+    "deployment_for_main_head": 0,
+    "latest_preview": "dpl_8PNnaYT5huWyBt99kMjxMWWutFvi",
+    "latest_preview_target": null,
+    "runtime_errors_last_24h": "none returned",
+    "error_fatal_logs_last_30m": "none returned",
+    "raw_log_retention": "24h query rejected; current Hobby plan retains one hour",
+    "production_changes_by_this_run": false
+  },
+  "latest_analytics_check": {
+    "date": "2026-11-13",
+    "connectors": [
+      "googleanalytics4",
+      "searchconsole"
+    ],
+    "status": "blocked",
+    "reason": "Three connected accounts (GA4, Search Console, excluded GBP) exceed the Free plan's one-account limit.",
+    "metrics_returned": false,
+    "accounts_disconnected": 0,
+    "billing_or_plan_changed": false
   }
 }

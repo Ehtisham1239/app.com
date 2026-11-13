@@ -1,0 +1,175 @@
+{
+  "date": "2026-11-13",
+  "timezone": "Asia/Karachi",
+  "repository": "Ehtisham1239/app.com",
+  "main_source_reviewed": "5c72de0c9864642229ec3bc481ccd1676822a50a",
+  "prior_register_evidence_commit": "e1df61d8bf288933e432ea27e0af29662f0829ad",
+  "specification": {
+    "file": "docs/seo-agent/MASTER-OPERATING-SPEC.md",
+    "sha256": "494a59b40dcce7465ba29855fa4fe9abda09e62c2a9cc7d9cd47938e7e67c8f9",
+    "sections": 28,
+    "complete_text_preserved": true
+  },
+  "cms": {
+    "project_id": "lgbwidraztavhhbnbfhr",
+    "published": 36,
+    "indexable": 36,
+    "noindex": 0,
+    "missing_seo_title": 0,
+    "missing_seo_description": 0,
+    "missing_cover": 0,
+    "missing_cover_alt": 0,
+    "explicit_canonical": 5,
+    "generated_self_canonical": 31,
+    "inclusive_words": {
+      "min": 453,
+      "max": 969
+    },
+    "no_content_edits_by_this_run": true
+  },
+  "blog_migration": {
+    "source_file": "supabase/migrations/20261112130000_blog_seo_trial_links_and_depth.sql",
+    "applied_version": "20261113000920",
+    "applied_at_utc": "2026-11-13T00:09:20.846793Z",
+    "affected_articles": 14,
+    "expected_changes_present": 14,
+    "trial_link_articles": 9,
+    "trial_links_exactly_one_each": 9,
+    "study_section_articles": 5,
+    "all_target_articles_under_1000_words": true,
+    "no_new_religious_rulings_or_sources_in_migration": true,
+    "qualified_academic_review_still_required": true,
+    "live_verified_study_sections": [
+      {
+        "slug": "online-tafseer-classes-what-you-learn",
+        "url": "https://www.onlinequrancollege.com/blog/online-tafseer-classes-what-you-learn",
+        "heading": "Prepare for your first Tafseer lesson",
+        "updated": "13 Nov 2026"
+      },
+      {
+        "slug": "how-long-to-learn-noorani-qaida",
+        "url": "https://www.onlinequrancollege.com/blog/how-long-to-learn-noorani-qaida",
+        "heading": "What a lesson might look like at this stage",
+        "updated": "13 Nov 2026"
+      },
+      {
+        "slug": "how-long-does-hifz-take-online",
+        "url": "https://www.onlinequrancollege.com/blog/how-long-does-hifz-take-online",
+        "heading": "What a realistic first conversation covers",
+        "updated": "13 Nov 2026"
+      },
+      {
+        "slug": "arabic-for-quran-readers",
+        "url": "https://www.onlinequrancollege.com/blog/arabic-for-quran-readers",
+        "heading": "Build vocabulary from passages you already know",
+        "updated": "13 Nov 2026"
+      },
+      {
+        "slug": "quran-translation-tafseer-beginners",
+        "url": "https://www.onlinequrancollege.com/blog/quran-translation-tafseer-beginners",
+        "heading": "Choose a passage that fits your level",
+        "updated": "13 Nov 2026"
+      }
+    ],
+    "live_verified_trial_cta_articles": 0,
+    "trial_cta_live_html_status": "CMS verification complete; live HTML remains pending because sampled public-reader responses were stale or inaccessible."
+  },
+  "audit_log_reconciliation": {
+    "2026-11-12T04:13:00Z": {
+      "rows": 36,
+      "tracked_body_title_excerpt_metadata_version_changes": 0
+    },
+    "2026-11-12T14:28:00Z": {
+      "rows": 3,
+      "before_after_empty": true,
+      "field_delta": "unknown"
+    },
+    "2026-11-13T00:09:00Z": {
+      "rows": 14,
+      "before_after_empty": true,
+      "verified_by_migration_source_and_current_CMS": true
+    }
+  },
+  "public_site": {
+    "us_country_hub": {
+      "url": "https://www.onlinequrancollege.com/locations/united-states",
+      "status": 200
+    },
+    "australia_country_hub": {
+      "url": "https://www.onlinequrancollege.com/locations/australia",
+      "status": 200
+    },
+    "sitemap_fetch": "Unavailable through web reader; 88-URL count carried forward from 12 November.",
+    "blog_article_live_html_checks": 5,
+    "prior_article_live_check": "Two changed articles passed 12 November; 34 other records matched that snapshot.",
+    "live_verified_study_section_pages": 5,
+    "trial_cta_live_html": "not verified this run; stale/inaccessible snapshots in sampled pages"
+  },
+  "vercel": {
+    "project_id": "prj_ohTvpaIwR1bWHFJWl23QiNfOoJG7",
+    "production_deployment": {
+      "id": "dpl_DNqDwFmrfUGWA6XL5Mmp8ns5h8TA",
+      "state": "READY",
+      "source": "7e768aea78b3bc6f417dd9b3d03048b1cb6da8be",
+      "target": "production"
+    },
+    "main_head": "5c72de0c9864642229ec3bc481ccd1676822a50a",
+    "main_ahead_of_production_by_commits": 43,
+    "main_status_check": "failure — account deployment blocked",
+    "deployment_records_for_main_head": 0,
+    "latest_preview": {
+      "id": "dpl_8PNnaYT5huWyBt99kMjxMWWutFvi",
+      "state": "READY",
+      "target": null,
+      "source": "cdbad4021be44a572d6921bff88906227f872435"
+    },
+    "runtime_error_clusters_24h": "none returned",
+    "error_fatal_logs_30m": "none returned",
+    "raw_logs_24h": "unavailable; Hobby retention is one hour",
+    "deployment_attempted_by_this_run": false
+  },
+  "analytics": {
+    "ga4": "Blocked — Windsor Free plan has three connected accounts against one included; no data returned.",
+    "search_console": "Blocked — same account-cap error; no data returned.",
+    "accounts_disconnected": 0,
+    "plan_changed": false
+  },
+  "mobile_performance": {
+    "fresh_390px_run": false,
+    "prior_evidence": "20 live articles, 48 representative viewport cases and four journeys passed in earlier dated evidence.",
+    "local_browser": "Chromium startup socket denial persists.",
+    "remote_lighthouse": "Pending GitHub Actions live-performance job.",
+    "field_cwv": "Unavailable."
+  },
+  "backlink_work": {
+    "candidates_reviewed": 5,
+    "rise_pitch_prepared": true,
+    "rise_pitch_sent": false,
+    "verified_oqc_sender": false,
+    "named_submission_authorized": false,
+    "acquired_links": 0,
+    "paid_links_or_memberships": 0
+  },
+  "external_register": {
+    "status": "Blocked",
+    "reason": "No supported external Claude Docs/register connector was available; repository registers are maintained on the review branch."
+  },
+  "test_gap": {
+    "file": "tests/market-hreflang.test.mjs",
+    "finding": "Test still asserts the prior static marketHreflang expression; main source now calls the dynamic indexableMarketLanguages helper.",
+    "proposed_change": "Test-only assertion alignment; no production source change.",
+    "branch": "docs/seo-ops-2026-11-13"
+  },
+  "production_changes_by_this_run": false,
+  "pull_request": {
+    "number": 234,
+    "url": "https://github.com/Ehtisham1239/app.com/pull/234",
+    "state": "open",
+    "draft": true,
+    "head": "90bd33dcb5723cc2026d31b38448df986b22aa7a",
+    "base": "5c72de0c9864642229ec3bc481ccd1676822a50a",
+    "initial_workflow_runs": 0,
+    "ci_status": "pending/unavailable at first poll",
+    "latest_commit_before_this_update": "13b904826473bcfdf7979427124a1059b779a62b"
+  }
+}
