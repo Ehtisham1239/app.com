@@ -1,6 +1,7 @@
 import { contentMetadata } from "@/lib/seo-metadata";
 import Link from "next/link";
 import { PageHero } from "@/components/site/chrome";
+import { getSettings } from "@/lib/site-data";
 import { ContactForm } from "@/components/site/contact-form";
 
 export const metadata = contentMetadata(
@@ -32,7 +33,9 @@ const roles = [
   },
 ];
 
-export default function CareersPage() {
+export default async function CareersPage() {
+  const forms = (await getSettings())["site.forms"] ?? {};
+  const consent = forms.careers_consent?.trim() || "I agree that Online Quran College Limited may contact me about my careers enquiry.";
   return (
     <>
       <PageHero immersive path="/careers" eyebrow="Online Quran College Limited" title="Careers & Opportunities" intro="Register your interest in teaching or supporting live online Quran education." />
@@ -60,7 +63,14 @@ export default function CareersPage() {
           <p>Tell us which role interests you, your relevant experience, the languages you work in and your availability, including your time zone. We’ll contact you if there is a suitable opening. Please keep identity documents and certificates for a later stage.</p>
           <Link href="https://www.linkedin.com/company/online-quran-college-ltd/" className="btn btn-outline">Find us on LinkedIn</Link>
         </div>
-        <ContactForm id="careers-form" careerSubject="Careers & Opportunities" consentText="I agree that Online Quran College Limited may contact me about my careers enquiry." />
+        {forms.careers_form_hidden === true ? (
+          <div id="careers-form" className="surface scroll-mt-28 p-6">
+            <h2 className="text-2xl">Careers registration</h2>
+            <p className="mt-2 text-ink-soft">Online registration is currently closed. Check back for updates.</p>
+          </div>
+        ) : (
+          <ContactForm id="careers-form" careerSubject="Careers & Opportunities" consentText={consent} />
+        )}
       </section>
     </>
   );
