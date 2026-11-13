@@ -1,0 +1,111 @@
+{
+  "reviewed": "2026-11-13",
+  "timezone": "Asia/Karachi",
+  "site": "https://www.onlinequrancollege.com",
+  "source_commit": "5c72de0c9864642229ec3bc481ccd1676822a50a",
+  "status": "Current evidence register; no production changes made in this run.",
+  "issues": [
+    {
+      "id": "OQC-TZ-CA-001",
+      "priority": "P1",
+      "status": "Open; carried forward",
+      "issue": "The Canada lesson planner lacks an explicit Winnipeg permanent-time compatibility override for browsers with stale IANA data.",
+      "evidence": "Previous 10 Nov issue register; Manitoba's permanent UTC−5 rule from 1 Nov 2026.",
+      "owner_dependency": "Developer code change and owner approval.",
+      "next_action": "Add the UTC−5 override for America/Winnipeg from 2026-11-01 and regression tests; preserve historical behavior."
+    },
+    {
+      "id": "OQC-CONTENT-CA-002",
+      "priority": "P2",
+      "status": "Open; carried forward",
+      "issue": "The Canada time-zone guide does not yet summarize the Northwest Territories permanent UTC−6 rule, Ontario west of the 90th meridian, and eastern BC local exceptions.",
+      "evidence": "Previous 10 Nov issue register and official jurisdiction sources listed there.",
+      "owner_dependency": "Editorial and owner approval.",
+      "next_action": "Prepare a sourced, concise addendum under 1,000 words; do not publish without review."
+    },
+    {
+      "id": "OQC-ACA-001",
+      "priority": "P1",
+      "status": "Open; rechecked in CMS",
+      "issue": "Three published/indexable articles still lack a matching qualified academic sign-off in inspected records.",
+      "affected_slugs": [
+        "arabic-for-quran-readers",
+        "is-my-child-ready-for-hifz",
+        "quran-translation-tafseer-beginners"
+      ],
+      "evidence": "Current CMS flags seo_noindex=false; previous sign-off search found no matching record.",
+      "owner_dependency": "Named qualified academic reviewer and owner indexing decision.",
+      "next_action": "Reconcile the sign-off record; do not change text or index settings before the decision."
+    },
+    {
+      "id": "OQC-LEAD-001",
+      "priority": "P1",
+      "status": "Open; delivery not independently verified",
+      "issue": "A previous lead_notification lookup_failed event was recorded. The latest 50-minute Vercel error/warning query returned no records, but end-to-end CRM and email delivery remain unverified.",
+      "evidence": "10 Nov issue register; current Vercel last-50-minute log query.",
+      "owner_dependency": "Authorized test lead, read-only GHL access and email receipt evidence.",
+      "next_action": "Run one approved test enquiry and separately verify DB save, GHL contact, notification and staff follow-up."
+    },
+    {
+      "id": "OQC-ANALYTICS-001",
+      "priority": "P2",
+      "status": "Open; connector limit confirmed",
+      "issue": "Windsor.ai reads are paused because three accounts are connected while the Free plan includes one. Current GSC/GA4 live reads are unavailable.",
+      "evidence": "13 Nov get_connectors/get_current_user and get_data responses; owner-provided GSC summary document.",
+      "owner_dependency": "Owner-managed account selection or dated exports; legal/privacy review remains separate.",
+      "next_action": "Use a dated query/page GSC export and reliable GA4 event export; do not disconnect accounts or change billing automatically."
+    },
+    {
+      "id": "OQC-MOBILE-001",
+      "priority": "P2",
+      "status": "Open; current run unable to reverify",
+      "issue": "A current 390px rendered check and field p75 Core Web Vitals evidence are unavailable.",
+      "evidence": "Public article retrieval was stale/partial; unique Vercel deployment host was inaccessible to the browser retrieval tool.",
+      "owner_dependency": "Supported browser or owner-supplied dated mobile/field evidence.",
+      "next_action": "Repeat 390px checks on priority country pages and obtain field p75 by device and reporting window."
+    },
+    {
+      "id": "OQC-BLOG-REPEAT-001",
+      "priority": "P2",
+      "status": "Open; CMS-confirmed",
+      "issue": "Five articles contain appended sections that repeat earlier explanations.",
+      "affected_slugs": [
+        "adult-quran-beginner-first-month",
+        "family-quran-learning-multiple-children",
+        "hifz-revision-with-school",
+        "parent-teacher-quran-progress-review",
+        "tajweed-practice-with-feedback"
+      ],
+      "evidence": "Current public.blog_posts body_html reviewed read-only on 13 Nov.",
+      "owner_dependency": "Editorial approval; qualified religious review where a claim or source is affected.",
+      "next_action": "Draft a line-by-line consolidation plan that preserves the best practical checklist and removes duplicated explanation. No CMS edit made."
+    },
+    {
+      "id": "OQC-BLOG-MIGRATION-001",
+      "priority": "P1",
+      "status": "Blocked; do not rerun",
+      "issue": "The source blog SEO migration version 20261112130000 is absent from remote schema_migrations, while current CMS content already has all 36 trial links and 14 recent updates. The 12 Nov follow-up claimed 37 published English articles; the current exact query finds 36 and no soft-deleted row.",
+      "evidence": "Current Supabase read-only queries and docs/seo/OQC-BLOG-SEO-FOLLOWUP-2026-11-12.md.",
+      "owner_dependency": "Database owner/developer to map remote versions 20261112173644, 20261113000920 and 20261113001028 to source operations.",
+      "next_action": "Reconcile migration ledger and count before any migration application. Do not infer which operation produced current content."
+    },
+    {
+      "id": "OQC-RELEASE-001",
+      "priority": "P1",
+      "status": "Awaiting release review; no deployment",
+      "issue": "Current main is 43 commits ahead of latest READY production commit 7e768aea. The difference includes public-site, lead-sync, admin, teacher-excellence and certificate-privacy changes.",
+      "evidence": "GitHub compare result and Vercel production/preview deployment metadata checked 13 Nov.",
+      "owner_dependency": "Owner/developer release approval and complete CI/release-gate review.",
+      "next_action": "Review the full diff and deployment plan; do not merge or deploy from this automation run."
+    },
+    {
+      "id": "OQC-GSC-UK-001",
+      "priority": "P2",
+      "status": "Open; mapping needs verification",
+      "issue": "The 13 Nov GSC snapshot reports 88 impressions and zero clicks for /online-quran-classes-uk, while the public URL resolves to /locations/united-kingdom.",
+      "evidence": "Owner-provided GSC baseline and public URL resolution; no URL Inspection data available.",
+      "owner_dependency": "Query/page export and Search Console URL Inspection.",
+      "next_action": "Confirm redirect status, Google-selected canonical and query intent before changing the current UK page title or description."
+    }
+  ]
+}
