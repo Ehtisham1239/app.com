@@ -5,14 +5,13 @@ import { formatMoney } from "@/lib/format";
 import { isTrialEligible } from "@/lib/trial-eligibility";
 import { familyMonthlyEstimate, WEEKS_PER_MONTH } from "@/lib/fee-estimate";
 import { currencyOptions, displayPrice } from "@/lib/fx";
-import { LOCATIONS } from "@/lib/locations";
 import { useVisitorCurrency } from "@/lib/use-visitor-currency";
 
 // Side-by-side plan comparison plus a family fee estimator, built only from the
 // published plans. Amounts follow the chosen currency; converted ones carry "≈".
 export function FeeCompare({ plans, fx = null, defaultCurrency = "USD", explicit = false, familyDiscount = null }) {
   const all = Array.isArray(plans) ? plans : [];
-  const currencies = currencyOptions(all, fx, LOCATIONS.map((c) => c.currency));
+  const currencies = currencyOptions(all, fx);
   const [currency, setCurrency] = useVisitorCurrency(currencies, defaultCurrency, explicit);
   const priced = all.map((p) => ({ plan: p, price: displayPrice(p.prices, currency, fx) })).filter((row) => row.price);
   const [planId, setPlanId] = useState(all.find((p) => p.is_featured)?.id ?? all[0]?.id);
