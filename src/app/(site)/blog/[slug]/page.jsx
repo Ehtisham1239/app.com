@@ -18,6 +18,17 @@ import { getPlans, getPost, getPosts, getPublishedSlugs, getSettings } from "@/l
 import { cleanHtml } from "@/lib/sanitize";
 import { formatDate, truncate, stripHtml, whatsappLink } from "@/lib/format";
 import { SITE_URL } from "@/lib/config";
+import { LOCATIONS } from "@/lib/locations";
+
+const articleMarkets = {
+  "online-quran-class-fees-usa-comparison": "united-states",
+  "choose-online-quran-teacher-usa": "united-states",
+  "online-quran-lessons-usa-time-zones": "united-states",
+  "online-quran-class-fees-uk-comparison": "united-kingdom",
+  "quran-lessons-australia-time-zones": "australia",
+  "online-quran-lessons-canada-time-zones": "canada",
+  "online-quran-lessons-uae-families": "united-arab-emirates",
+};
 
 const supportingImages = {
   "blog-australia-schedule": [
@@ -117,6 +128,10 @@ export default async function PostPage({ params }) {
   const [posts, settings, quick] = await Promise.all([getPosts(50), getSettings(), articleNeedsAnswer(post.slug) ? Promise.all([getPlans(), getUsdRates()]).then(([plans, fx]) => articleAnswer(post.slug, { plans, fx })) : null]);
   const more = relatedArticles(post, posts);
   const resources = articleResources(post);
+  const market = LOCATIONS.find(location => location.slug === articleMarkets[post.slug]);
+  const trialHref = market
+    ? `/free-trial?${new URLSearchParams({ country: market.name, currency: market.currency })}#trial-form`
+    : "/free-trial";
   const { html, headings } = articleNavigation(cleanHtml(post.body_html));
   const visual = contentVisual(post), dates = articleDates(post), author = articleAuthor(post.author_name);
   const supporting = supportingImage(post.slug, visual.src, html);
@@ -194,7 +209,7 @@ export default async function PostPage({ params }) {
           </div>
         </section>
       )}
-      <div data-article-cta><CtaBand title="Put it into practice with a teacher" text="Book a free trial to discuss your learning level, course and lesson time with the college." whatsappHref={wa} /></div>
+      <div data-article-cta><CtaBand title="Put it into practice with a teacher" text="Book a free trial to discuss your learning level, course and lesson time with the college." whatsappHref={wa} primaryHref={trialHref} /></div>
     </>
   );
 }
