@@ -249,7 +249,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       <div className="grid gap-5 @min-[26rem]:grid-cols-2">
         <div>
           <label htmlFor="q-phone" className="field-label">Phone or WhatsApp number</label>
-          <input id="q-phone" className="input" type="tel" inputMode="tel" value={form.phone} onChange={(e) => set("phone", e.target.value)} autoComplete="tel" placeholder="For example, +44 7700 900123" maxLength={24} required {...err("phone")} aria-describedby={errors.phone ? "q-phone-hint q-phone-error" : "q-phone-hint"} />
+          <input id="q-phone" className="input" type="tel" inputMode="tel" value={form.phone} onChange={(e) => set("phone", e.target.value)} autoComplete="tel" placeholder="Start with country code: +1, +44, +61…" maxLength={24} required {...err("phone")} aria-describedby={errors.phone ? "q-phone-hint q-phone-error" : "q-phone-hint"} />
           <p id="q-phone-hint" className="mt-1 text-xs text-ink-faint">Include the country code. {isChild ? "Use the parent or guardian’s number." : "Use the number you check most often."}</p>
           <FieldError id="q-phone-error">{errors.phone}</FieldError>
           <label className="mt-2 flex min-h-11 items-center gap-2 text-sm text-ink-soft">
