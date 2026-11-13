@@ -189,5 +189,17 @@
     "analytics_settings": false,
     "outreach": false,
     "backlink_acquisitions": 0
+  },
+  "rise_preflight": {
+    "reviewed": "2026-11-13",
+    "submission_page": "https://resourcesforislamicschools.com/connect",
+    "terms_page": "https://resourcesforislamicschools.com/privacy",
+    "observed": "Open submissions for useful learning resources for Muslim educators and families, including work from other countries or curricula; intended audience, curriculum reference where relevant and authorship requested.",
+    "ai_policy": "No explicit AI-content rule found on the inspected public pages. Acceptance of AI-assisted work remains unconfirmed.",
+    "pitch": "Existing OQC eligibility enquiry remains prepared, discloses AI assistance and asks for policy compatibility before submission.",
+    "sender_verified": false,
+    "named_submission_authorized": false,
+    "outreach_sent": false,
+    "backlink_acquired": false
   }
 }
