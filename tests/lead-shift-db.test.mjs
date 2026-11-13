@@ -78,27 +78,29 @@ test("website submissions are stamped with the current shift", async () => {
 
 test("the 08:00 and 20:00 hand-overs carry only pending leads and are idempotent", async () => {
   await as("postgres");
-  const pending = await insertTrial("Pending Night", "2026-11-13T01:00:00+05:00", "new");
-  const closed = await insertTrial("Closed Night", "2026-11-13T01:10:00+05:00", "new");
+  // Use a far-future date: the migration seeds the current hand-over during setup,
+  // so a same-day fixture would collide with that intentionally idempotent record.
+  const pending = await insertTrial("Pending Night", "2099-12-13T01:00:00+05:00", "new");
+  const closed = await insertTrial("Closed Night", "2099-12-13T01:10:00+05:00", "new");
   await db.query("update public.trial_applications set status = 'cancelled' where id = $1", [closed.id]);
-  const later = await insertTrial("After Handover", "2026-11-13T08:05:00+05:00", "new");
+  const later = await insertTrial("After Handover", "2099-12-13T08:05:00+05:00", "new");
 
-  const first = await one("select private.run_lead_shift_handover('2026-11-13T09:00:00+05:00') r");
+  const first = await one("select private.run_lead_shift_handover('2099-12-13T09:00:00+05:00') r");
   assert.equal(first.r.to_shift, "day");
-  assert.equal(new Date(first.r.handover_at).toISOString(), "2026-11-13T03:00:00.000Z");
-  const log = await one("select * from public.lead_shift_handovers where handover_at = '2026-11-13T08:00:00+05:00'");
+  assert.equal(new Date(first.r.handover_at).toISOString(), "2099-12-13T03:00:00.000Z");
+  const log = await one("select * from public.lead_shift_handovers where handover_at = '2099-12-13T08:00:00+05:00'");
   assert.equal(log.from_shift, "night");
-  assert.equal(iso(log.to_shift_date), "2026-11-13");
+  assert.equal(iso(log.to_shift_date), "2099-12-13");
   assert.ok(log.trial_ids.includes(pending.id));
   assert.ok(!log.trial_ids.includes(closed.id));
   assert.ok(!log.trial_ids.includes(later.id));
   assert.equal(log.trials_count, log.trial_ids.length);
 
-  const again = await one("select private.run_lead_shift_handover('2026-11-13T19:59:00+05:00') r");
+  const again = await one("select private.run_lead_shift_handover('2099-12-13T19:59:00+05:00') r");
   assert.equal(again.r.already_recorded, true);
-  const evening = await one("select private.run_lead_shift_handover('2026-11-13T20:00:00+05:00') r");
+  const evening = await one("select private.run_lead_shift_handover('2099-12-13T20:00:00+05:00') r");
   assert.equal(evening.r.to_shift, "night");
-  const eveningLog = await one("select trial_ids from public.lead_shift_handovers where handover_at = '2026-11-13T20:00:00+05:00'");
+  const eveningLog = await one("select trial_ids from public.lead_shift_handovers where handover_at = '2099-12-13T20:00:00+05:00'");
   assert.ok(eveningLog.trial_ids.includes(later.id));
 
   const version = await one("select version from public.trial_applications where id = $1", [pending.id]);
