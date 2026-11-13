@@ -16,15 +16,17 @@ export default function ContactsPage() {
   const router = useRouter();
   const [status, setStatus] = useState("new");
   const [shift, setShift] = useState("all");
+  const [careersOnly, setCareersOnly] = useState(false);
   const [q, setQ] = useState("");
   const [page, setPage] = useState(0);
   const list = useLoad(() => {
     let query = db().from("contact_messages").select("id, reference, name, email, subject, message, status, created_at, lead_shift, shift_date", { count: "exact" }).is("deleted_at", null);
     if (status !== "all") query = query.eq("status", status);
+    if (careersOnly) query = query.eq("subject", "Careers & Opportunities");
     query = applyShiftFilter(query, "contact_messages", shift);
     if (q) query = query.or(["name", "email", "subject", "reference", "message"].map((f) => `${f}.ilike.${likeTerm(q)}`).join(","));
     return query.order("created_at", { ascending: false }).range(page * PAGE, page * PAGE + PAGE - 1);
-  }, [status, shift, q, page]);
+  }, [status, shift, careersOnly, q, page]);
   const crm = useCrmStatus(list.data?.map((m) => m.reference));
   const counts = useLoad(async () => {
     const res = await Promise.all(CONTACT_STATUSES.map((s) => db().from("contact_messages").select("id", { count: "exact", head: true }).is("deleted_at", null).eq("status", s.value)));
@@ -32,11 +34,12 @@ export default function ContactsPage() {
   }, []);
   return (
     <>
-      <PageHeader title="Messages" subtitle="Questions sent through the website’s contact form." />
+      <PageHeader title="Messages" subtitle="Website contact messages and careers enquiries." />
       <ShiftQueueBanner table="contact_messages" />
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <Tabs value={status} onChange={(v) => { setStatus(v); setPage(0); }} tabs={[...CONTACT_STATUSES.map((s) => ({ value: s.value, label: s.label, count: counts.data?.[s.value] })), { value: "all", label: "All" }]} />
         <div className="flex w-full flex-wrap gap-2 sm:w-auto">
+          <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={careersOnly} onChange={(e) => { setCareersOnly(e.target.checked); setPage(0); }} /> Careers only</label>
           <ShiftFilter value={shift} onChange={(v) => { setShift(v); setPage(0); }} />
           <SearchInput value={q} onChange={(v) => { setQ(v); setPage(0); }} placeholder="Name, email or subject…" className="w-full sm:w-72" />
         </div>
@@ -47,7 +50,7 @@ export default function ContactsPage() {
         ) : list.error ? (
           <ErrorState error={list.error} onRetry={list.reload} />
         ) : !list.data?.length ? (
-          <EmptyState title={status === "new" ? "No new messages" : "No messages here"} text="Messages from the contact page arrive here automatically." />
+          <EmptyState title={status === "new" ? "No new messages" : "No messages here"} text="Website contact messages and careers enquiries arrive here." />
         ) : (
           <ul className="divide-y divide-line">
             {list.data.map((m) => (
