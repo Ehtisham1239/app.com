@@ -49,7 +49,10 @@ async function deliver(job, lead, { highLevel, emailConfig, siteUrl, fetchImpl }
 export async function processLeadSyncBatch({ db, highLevel, emailConfig, siteUrl, limit = 10, fetchImpl = fetch, log = () => {} }) {
   const summary = { claimed: 0, done: 0, retry: 0, dead: 0, failed_lookup: 0 };
   const { data: jobs, error } = await db.rpc("claim_lead_sync_jobs", { p_limit: limit });
-  if (error) throw new Error("claim_failed");
+  if (error) {
+    log("error", { event: "lead_sync", outcome: "claim_failed", rpc_error_code: code(error.code) });
+    throw new Error("claim_failed");
+  }
   for (const job of jobs || []) {
     summary.claimed += 1;
     let outcome;
