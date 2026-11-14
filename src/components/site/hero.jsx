@@ -1,3 +1,4 @@
+import { preload } from "react-dom";
 import { NavigationLink as Link } from "@/components/site/navigation-link";
 import { SEARCH_INTENTS } from "@/lib/search-intent";
 import { ArrowRight, Check } from "@/components/site/icons";
@@ -10,11 +11,18 @@ const DEFAULT_HERO = {
   primary_label: "Book a free trial", secondary_label: "Explore courses", badges: [],
 };
 export function HomeHero({ hero, stats }) {
+  preload("/brand/hero.avif", {
+    as: "image",
+    type: "image/avif",
+    imageSrcSet: HERO_AVIF,
+    imageSizes: HERO_SIZES,
+    media: "(min-width: 1024px)",
+    fetchPriority: "high",
+  });
   const h = { ...DEFAULT_HERO, ...(hero && typeof hero === "object" ? hero : {}) };
   const badges = (Array.isArray(h.badges) ? h.badges : []).filter(Boolean).slice(0, 4);
   const items = (Array.isArray(stats) ? stats : []).filter((s) => s?.value && s?.label).slice(0, 4);
   return <section className="home-hero relative overflow-hidden bg-[radial-gradient(ellipse_at_85%_15%,#eefaf3_0%,#fff_65%)]">
-    <link rel="preload" as="image" href="/brand/hero.avif" type="image/avif" media="(min-width: 1024px)" imageSrcSet={HERO_AVIF} imageSizes={HERO_SIZES} fetchPriority="high" />
     <div className="hero-glow hero-glow-one" aria-hidden="true" /><div className="hero-glow hero-glow-two" aria-hidden="true" />
     <div className="hero-layout relative page-wrap grid items-center gap-12 py-14 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14 lg:py-24"><div className="hero-copy">
       <p className="hero-eyebrow inline-flex items-center gap-2 rounded-full border border-leaf-100 bg-white/90 px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-leaf-800 shadow-sm"><span className="size-2 rounded-full bg-leaf-500" aria-hidden="true" />{h.eyebrow}</p>
