@@ -45,7 +45,7 @@ export function CourseCard({ course }) {
       className="course-card editorial-card card-tinted group flex h-full flex-col"
     >
       <div className="course-visual">
-        <ContentImage src={visual.src} alt={visual.alt} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <ContentImage src={visual.src} alt={visual.alt} sizes="auto, (max-width: 639px) 100vw, (max-width: 1023px) 50vw, 400px" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" />
         {course.level && <span className="card-label absolute left-3 top-3">{course.level}</span>}
       </div>
       <div className="course-body">

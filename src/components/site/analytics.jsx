@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { useReportWebVitals } from "next/web-vitals";
 import { ANALYTICS_CONSENT_KEY, clearAnalyticsCookies, createAnalyticsController, isAnalyticsHost } from "@/lib/analytics";
@@ -52,9 +52,10 @@ export function WebsiteAnalytics({ config }) {
   }, [enabled, ga4Id, config.gtmId]);
   useEffect(() => { controller.current?.pageView(pathname); }, [pathname]);
   // Real-visit Core Web Vitals go to GA4 as LCP / INP / CLS / FCP / TTFB events.
-  useReportWebVitals((metric) => {
+  const reportWebVital = useCallback((metric) => {
     if (controller.current) controller.current.webVital(metric);
     else if (pending.current.length < 10) pending.current.push(metric);
-  });
+  }, []);
+  useReportWebVitals(reportWebVital);
   return null;
 }
