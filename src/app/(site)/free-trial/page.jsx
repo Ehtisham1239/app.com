@@ -67,6 +67,12 @@ export default async function FreeTrialPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema(TRIAL_FAQS)) }} />
       <h2 id="trial-faq" className="text-2xl text-mushaf-900 sm:text-3xl">Questions about the free trial</h2>
       <p className="mt-3 text-ink-soft">Before booking, you can <Link href="/courses" className="font-semibold text-leaf-700 underline underline-offset-4">compare Quran courses</Link>, <Link href="/pricing" className="font-semibold text-leaf-700 underline underline-offset-4">check class fees and packages</Link> or <Link href="/locations" className="font-semibold text-leaf-700 underline underline-offset-4">plan a lesson in your local time</Link>.</p>
+      <h3 className="mt-6 text-lg font-semibold text-mushaf-900">How do I book an online Quran trial?</h3>
+      <ol className="mt-2 list-decimal space-y-2 pl-5 text-ink-soft">
+        <li>Send the trial form with your preferred course and lesson time.</li>
+        <li>Reply to the coordinator by WhatsApp or email to agree a class time and check teacher availability.</li>
+        <li>Attend your live one-to-one lessons. Eligible plans include a 3-day free trial. The Weekend plan is excluded.</li>
+      </ol>
       <div className="mt-6"><FaqList faqs={TRIAL_FAQS.map((f, i) => ({ id: `trial-${i}`, ...f }))} defaultOpen={-1} /></div>
     </section>
     </>
