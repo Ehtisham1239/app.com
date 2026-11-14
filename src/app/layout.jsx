@@ -1,3 +1,4 @@
+import Script from "next/script";
 import localFont from "next/font/local";
 import { SITE_URL } from "@/lib/config";
 import "./globals.css";
@@ -95,6 +96,17 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en-GB" data-scroll-behavior="smooth" className={`${inter.variable} ${interLatin.variable} ${interExtended.variable} ${outfit.variable} ${outfitLatin.variable} ${amiri.variable} ${amiriDisplay.variable}`} suppressHydrationWarning>
+      <Script id="oqc-clarity" strategy="beforeInteractive">{`
+        (function(c,l,a,r,i){
+          if (/^\\/(?:admin|parents|api|auth)(?:\\/|$)/.test(l.location.pathname)) return;
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          c[a]("consentv2",{analytics_storage:"denied",ad_storage:"denied"});
+          var t=l.createElement(r);
+          t.async=true;
+          t.src="https://www.clarity.ms/tag/"+i;
+          l.head.appendChild(t);
+        })(window,document,"clarity","script","zdo7gxbgkn");
+      `}</Script>
       <body>
         {children}
       </body>
