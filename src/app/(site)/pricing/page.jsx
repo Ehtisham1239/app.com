@@ -45,6 +45,10 @@ export default async function PricingPage() {
           <div className="mx-auto max-w-3xl rounded-[var(--radius-card)] border border-line bg-white p-6 sm:p-7">
             <h2 id="fee-quick-answer" className="font-sans text-[1.15rem] font-bold text-mushaf-900">{quickAnswer.question}</h2>
             <p className="mt-2 text-[0.98rem] leading-relaxed text-ink-soft">{quickAnswer.answer}</p>
+            <div className="mt-3 flex flex-wrap gap-x-5">
+              <Link href="#compare-plans" className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">Compare lesson plans</Link>
+              <Link href="/free-trial" className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">Request a free trial on an eligible plan</Link>
+            </div>
           </div>
         </section>
       )}
