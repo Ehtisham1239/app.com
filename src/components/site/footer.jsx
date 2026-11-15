@@ -67,7 +67,7 @@ export function SiteFooter({ settings, menus }) {
         </div>
         <div className="footer-navigation grid min-w-0 grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-3 sm:gap-8 lg:col-span-8">
           <FooterColumn title="Courses" items={menus.footer_courses} />
-          <FooterColumn title="College" items={[...(menus.footer_company || []).filter((i) => i.href !== "/locations" && i.href !== reviewPage), { label: "Countries & cities", href: "/locations" }, ...(reviews.enabled ? [{ label: "Share your experience", href: reviewPage }] : [])]} />
+          <FooterColumn title="College" items={[...(menus.footer_company || []).filter((i) => i.href !== reviewPage), ...(reviews.enabled ? [{ label: "Share your experience", href: reviewPage }] : [])]} />
           <FooterColumn title="Policies" items={menus.footer_legal} />
         </div>
       </div>

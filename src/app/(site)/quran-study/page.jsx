@@ -1,13 +1,12 @@
 import { PageHero, SectionHeading } from "@/components/site/chrome";
 import { NavigationLink as Link } from "@/components/site/navigation-link";
 import { ArrowRight, ArrowUpRight, BookOpen, Compass, Headset } from "@/components/site/icons";
-import { SITE_URL } from "@/lib/config";
 import { contentMetadata } from "@/lib/seo-metadata";
 
 export const revalidate = 3600;
 export const metadata = contentMetadata(
   { title: "Quran Reading & Recitation Practice Tools", seo_noindex: false },
-  { path: "/quran-study", description: "Explore Quran reading, listening and recitation practice resources, including the Tarteel app and Quran.com. Use them alongside guidance from your Quran teacher." }
+  { path: "/quran-study", description: "Explore Quran reading, listening and recitation practice resources, including the Tarteel app and Quran.com, to use alongside your Quran teacher's guidance." }
 );
 
 const resources = [
@@ -30,21 +29,9 @@ const resources = [
 ];
 
 export default function QuranStudyPage() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "@id": `${SITE_URL}/quran-study#webpage`,
-    url: `${SITE_URL}/quran-study`,
-    name: "Quran Reading and Recitation Practice Tools",
-    description: "A curated starting point for independent Quran reading, listening and recitation practice.",
-    isPartOf: { "@id": `${SITE_URL}/#website` },
-    about: { "@id": `${SITE_URL}/#organization` },
-    inLanguage: "en-GB",
-  };
-
+  // PageHero publishes this page's WebPage JSON-LD; a second block here duplicated its @id.
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <PageHero
         path="/quran-study"
         eyebrow="Quran practice centre"

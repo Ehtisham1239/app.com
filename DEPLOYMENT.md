@@ -1,4 +1,11 @@
-# Canonical production target — 4 November 2026
+# Production hosting — verified 15 November 2026
+
+- **www.onlinequrancollege.com is served by Hostinger** (Node.js web hosting; responses carry `platform: hostinger`). Hostinger auto-deploys every push to `main` of `Ehtisham1239/app.com` with `npm run build:hostinger` (Node 22, Next.js standalone output). Release check: Hostinger `hosting_get-deployment` for `onlinequrancollege.com` shows the commit hash and build log; e.g. `78e92ce` (#261) built and went live 15 Nov 2026 15:36 UTC.
+- The Vercel project `appcom-online-quran-college` (`prj_ohTvpaIwR1bWHFJWl23QiNfOoJG7`) still builds every push and serves preview/`*.vercel.app` URLs (kept `noindex`), but it does **not** serve the public domain. A Vercel "production READY" status is therefore not proof that visitors see a change — verify on Hostinger and the live `www` HTML.
+- DNS records stay on Hostinger (owner rule, 11 Nov 2026).
+- Database migrations are not applied by either host: apply them to Supabase before merging code that depends on them.
+
+# Canonical production target — 4 November 2026 (superseded for hosting by the section above)
 
 - Public canonical host: **https://www.onlinequrancollege.com** (verified on the current OQC Vercel project).
 - Apex host: **https://onlinequrancollege.com** redirects to `www` with HTTP 308.

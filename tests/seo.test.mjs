@@ -245,8 +245,8 @@ test("CMS link counts distinguish internal routes, external references and unsaf
   assert.deepEqual(analyzeSeo({ body_html }).linkCounts, { internal: 2, external: 1, anchors: 1, invalid: 2 });
 });
 
-
-test("sitemap applies market-guide lastmod only to country hubs, not city pages", async () => {
+test("sitemap excludes retired locations and their CMS aliases", () => {
   const sitemap = readFileSync(new URL("../src/app/sitemap.js", import.meta.url), "utf8");
-  assert.match(sitemap, /locationLastModified\(page, city \? undefined : MARKET_GUIDES\[country\.slug\]\?\.updatedAt\)/);
+  assert.doesNotMatch(sitemap, /["']\/locations|locationIndexRecord/);
+  assert.ok(sitemap.includes('!p.slug.startsWith("locations-")'));
 });
