@@ -12,6 +12,7 @@ import { cleanHtml } from "@/lib/sanitize";
 import { formatDate, slugify, whatsappLink } from "@/lib/format";
 import { getCourses, getFaqs, getPlans, getPageVideo, getSettings, getTeachers, getTestimonials } from "@/lib/site-data";
 import { analyticsConfig, cookielessAnalyticsConfig } from "@/lib/analytics";
+import { CmsPageSchema } from "@/components/site/custom-code";
 
 // Adds ids to <h2> headings so policies get a table of contents.
 function withHeadingIds(html) {
@@ -49,6 +50,7 @@ export async function CmsPage({ page }) {
 
   return (
     <>
+      {(watch || page.template === "landing") && <CmsPageSchema path={`/${page.slug}`} />}
       {watch && <div className="page-wrap pt-10"><h1>{page.title}</h1></div>}
       {watch && <PageVideo video={video} path={`/${page.slug}`} structured={shouldIncludeInSitemap(page, `/${page.slug}`, SITE_URL)} />}
       {!watch && page.template !== "landing" && <PageHero path={`/${page.slug}`} eyebrow={isPolicy ? "Policy" : isAbout ? "Our college" : undefined} title={page.title} titleAccent={isAbout ? "Quran College" : undefined} intro={page.excerpt} immersive={isAbout} imageOverride={isAbout && page.cover_url ? { src: page.cover_url, alt: page.cover_alt } : undefined} visual={page.cover_url ? <ContentImage src={page.cover_url} alt={page.cover_alt} priority sizes="(max-width: 1024px) 100vw, 600px" className="aspect-[3/2] w-full object-cover" /> : undefined}>{isAbout && <div className="mt-7 flex flex-wrap gap-3"><Link className="btn btn-gold" href="/courses">Explore our courses <ArrowRight className="size-4" aria-hidden="true" /></Link><Link className="btn btn-outline-light" href="/teachers">Meet our teachers</Link></div>}</PageHero>}

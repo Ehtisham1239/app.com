@@ -13,6 +13,7 @@ import { getCourses, getFaqs, getPlans, getPosts, getSettings, getTeachers, getT
 import { SITE_URL } from "@/lib/config";
 import { truncate } from "@/lib/format";
 import { normalizeSeoSettings } from "@/lib/search-settings";
+import { CmsPageSchema } from "@/components/site/custom-code";
 
 export const revalidate = 300;
 
@@ -47,6 +48,7 @@ export default async function HomePage() {
     <div data-home-motion>
       <HomeMotion />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
+      <CmsPageSchema path="/" />
       <HomeHero hero={settings["site.hero"]} stats={settings["site.stats"]} />
       {/* One compact jump row, in the same order as the sections below. Scrolls sideways on phones instead of wrapping into several rows. */}
       <nav aria-label="On this page" className="page-wrap py-5">

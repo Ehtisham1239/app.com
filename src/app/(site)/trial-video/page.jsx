@@ -3,6 +3,7 @@ import { PageVideo } from "@/components/site/page-video";
 import { contentMetadata } from "@/lib/seo-metadata";
 import { pageVideo } from "@/lib/page-video";
 import { TRIAL_GUIDE_VIDEO } from "@/lib/trial-guide-video";
+import { CmsPageSchema } from "@/components/site/custom-code";
 
 export const metadata = contentMetadata({
   seo_title: "How to Request a Free Online Quran Trial | Online Quran College",
@@ -13,6 +14,7 @@ export const metadata = contentMetadata({
 export default function TrialVideoPage() {
   return (
     <>
+      <CmsPageSchema path="/trial-video" />
       <div className="page-wrap pt-10">
         <h1 className="text-3xl text-mushaf-900 sm:text-4xl">{TRIAL_GUIDE_VIDEO.title}</h1>
       </div>

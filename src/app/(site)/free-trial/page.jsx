@@ -11,6 +11,7 @@ import { whatsappLink } from "@/lib/format";
 import { faqSchema, safeJsonLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
 import { heroArt } from "@/lib/hero-art";
+import { CmsPageSchema } from "@/components/site/custom-code";
 
 export const revalidate = 300;
 
@@ -42,6 +43,7 @@ export default async function FreeTrialPage() {
   const jsonLd = { "@context": "https://schema.org", "@type": "WebPage", "@id": `${SITE_URL}/free-trial#webpage`, url: `${SITE_URL}/free-trial`, name: "Book a free 3-day trial", isPartOf: { "@id": `${SITE_URL}/#website` }, about: { "@id": `${SITE_URL}/#organization` }, inLanguage: "en-GB" };
   return (
     <>
+      <CmsPageSchema path="/free-trial" />
     <section id="trial-form" aria-labelledby="trial-title" className="relative overflow-hidden bg-mushaf-900 pb-12 pt-7 sm:pt-10 lg:pb-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
       <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.07]" aria-hidden="true" />

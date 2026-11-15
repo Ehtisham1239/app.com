@@ -3,6 +3,7 @@ import { ArrowRight, Clock, Globe2, Users, Video } from "@/components/site/icons
 import { ContentImage } from "./content-image";
 import { heroArt } from "@/lib/hero-art";
 import { safeJsonLd } from "@/lib/seo";
+import { CmsPageSchema } from "./custom-code";
 import { SITE_URL } from "@/lib/config";
 
 export function TopBar({ announcement }) {
@@ -82,12 +83,13 @@ function ImmersiveHero({ eyebrow, title, titleAccent, intro, children, arabic, i
 export function PageHero({ eyebrow, title, titleAccent, intro, children, arabic, visual, path, art, imageOverride, immersive = false, features }) {
   const image = imageOverride || heroArt(art || path || title);
   if (immersive) {
-    const jsonLd = path && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", "@type": "WebPage", "@id": `${SITE_URL}${path}#webpage`, url: `${SITE_URL}${path}`, name: title, description: intro, isPartOf: { "@id": `${SITE_URL}/#website` }, about: { "@id": `${SITE_URL}/#organization` }, inLanguage: "en-GB" }) }} />;
+    const jsonLd = path && <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", "@type": "WebPage", "@id": `${SITE_URL}${path}#webpage`, url: `${SITE_URL}${path}`, name: title, description: intro, isPartOf: { "@id": `${SITE_URL}/#website` }, about: { "@id": `${SITE_URL}/#organization` }, inLanguage: "en-GB" }) }} /><CmsPageSchema path={path} /></>;
     return <ImmersiveHero {...{ eyebrow, title, titleAccent, intro, children, arabic, image, features, jsonLd }} />;
   }
   return (
     <section className="inner-hero relative overflow-hidden bg-mushaf-900 text-white">
       {path && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", "@type": "WebPage", "@id": `${SITE_URL}${path}#webpage`, url: `${SITE_URL}${path}`, name: title, description: intro, isPartOf: { "@id": `${SITE_URL}/#website` }, about: { "@id": `${SITE_URL}/#organization` }, inLanguage: "en-GB" }) }} />}
+      {path && <CmsPageSchema path={path} />}
       <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.09]" aria-hidden="true" />
       <div className="pointer-events-none absolute -right-24 -top-24 size-[26rem] rounded-full bg-leaf-600/25 blur-3xl" aria-hidden="true" />
       <div className="page-wrap inner-hero-layout relative grid items-center gap-7 py-9 sm:py-14 lg:grid-cols-[1fr_1.05fr] lg:gap-12">

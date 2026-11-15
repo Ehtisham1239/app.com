@@ -2,6 +2,7 @@ import { getSettings } from "@/lib/site-data";
 import { ReviewForm } from "@/components/site/review-form";
 import { ArrowUpRight, HeartHandshake, MessageCircle, ShieldCheck, Users } from "@/components/site/icons";
 import { REVIEWS_BUTTON_DEFAULTS, googleReviewUrl, trustpilotUrl } from "@/lib/reviews-button";
+import { CmsPageSchema } from "@/components/site/custom-code";
 
 export const revalidate = 300;
 
@@ -29,6 +30,7 @@ export default async function ReviewsPage() {
   const profileUrl = trustpilotUrl(settings["site.social"]?.trustpilot) || "https://www.trustpilot.com/review/onlinequrancollege.com";
   return (
     <>
+      <CmsPageSchema path="/reviews" />
       <section className="relative overflow-hidden bg-mushaf-900 pb-28 pt-10 text-white sm:pb-32 sm:pt-14">
         <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.07]" aria-hidden="true" />
         <div className="pointer-events-none absolute -right-24 -top-28 size-[24rem] rounded-full bg-leaf-600/25 blur-3xl" aria-hidden="true" />

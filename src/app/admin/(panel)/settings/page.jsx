@@ -12,6 +12,7 @@ import { normalizeSeoSettings, seoSettingsError } from "@/lib/search-settings";
 import { reviewsButtonError } from "@/lib/reviews-button";
 import { CONTENT_ICONS, ContentIcon } from "@/components/icon";
 import { Card, ErrorState, Field, Loading, PageHeader, TagInput, Toggle } from "@/components/admin/ui";
+import { SeoCodeSettings } from "@/components/admin/seo-code-settings";
 
 const t = (name, label, extra = {}) => ({ name, label, type: "text", ...extra });
 const area = (name, label, extra = {}) => ({ name, label, type: "textarea", ...extra });
@@ -29,6 +30,7 @@ const SECTIONS = [
   { key: "site.chat", title: "Website chat", text: "Hatchium chat widget on public pages. This embed does not forward website forms to Make or a chat API. API secrets must never be entered here.", fields: [{ name: "enabled", label: "Enable website chat", type: "bool" }, t("widget_key", "Hatchium public widget key")] },
   { key: "site.analytics", title: "Google Analytics & tags", text: "Use your own public IDs, not script snippets or passwords. The current website uses cookieless analytics without a consent banner: analytics cookies stay in page memory, advertising consent stays denied and Google signals stay off. When a GTM ID is provided, Tag Manager manages GA4; the separate GA4 script is not loaded. Publish the matching Google tags inside your GTM container.", fields: [{ name: "enabled", label: "Enable website analytics", type: "bool" }, t("ga4_measurement_id", "GA4 Measurement ID", { hint: "Starts G-. Find it in GA4 Admin → Data streams → Web." }), t("gtm_container_id", "Tag Manager Container ID", { hint: "Starts GTM-. Leave empty for direct GA4." })] },
   { key: "site.seo", title: "Search engines", text: "Default search title and description. Google and Bing may choose different wording for a search result. Individual course, page and article metadata can override these defaults.", fields: [t("title", "Title"), area("description", "Description"), t("google_verification", "Google Search Console verification code", { hint: "Optional meta-tag method: paste only the content value supplied by your Search Console account. File or DNS verification does not require this field." }), t("bing_verification", "Bing Webmaster verification code", { hint: "Optional meta-tag method: paste only your Bing account's code. A saved code still needs confirmation in Bing Webmaster Tools." })] },
+  { key: "seo_code", custom: true, title: "SEO code & schema" },
 ];
 
 function Input({ id, f, value, onChange, disabled }) {
@@ -60,7 +62,7 @@ export default function SettingsPage() {
     setPrevious({ active, data: rows.data });
     const stored = rows.data?.find((r) => r.key === active)?.value;
     const fallback = structuredClone(DEFAULT_SETTINGS[active] ?? (section.list ? [] : {}));
-    setValue(rows.data ? (active === "site.seo" ? normalizeSeoSettings(stored) : stored ?? fallback) : null);
+    setValue(rows.data && !section.custom ? (active === "site.seo" ? normalizeSeoSettings(stored) : stored ?? fallback) : null);
   }
 
   const save = async () => {
@@ -102,7 +104,8 @@ export default function SettingsPage() {
               </button>
             ))}
           </nav>
-          {value && (
+          {section.custom && <SeoCodeSettings rows={rows.data} seo={normalizeSeoSettings(rows.data.find((r) => r.key === "site.seo")?.value)} onSaved={rows.reload} />}
+          {value && !section.custom && (
             <Card
               title={section.title}
               actions={canEdit && (

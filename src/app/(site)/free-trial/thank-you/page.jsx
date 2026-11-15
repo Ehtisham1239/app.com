@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CmsPageSchema } from "@/components/site/custom-code";
 
 export const metadata = {
   title: "Trial request received | Online Quran College",
@@ -12,6 +13,7 @@ export default async function TrialThankYouPage({ searchParams }) {
   const reference = /^TR-[A-Z0-9-]{4,32}$/.test(raw) && raw !== "TR-RECEIVED" ? raw : "";
   return (
     <main className="page-wrap flex min-h-[65vh] max-w-2xl items-center justify-center py-16">
+      <CmsPageSchema path="/free-trial/thank-you" />
       <section className="surface w-full p-8 text-center shadow-[var(--shadow-lift)] sm:p-10" role="status" aria-live="polite">
         <span className="mx-auto flex size-16 items-center justify-center rounded-full bg-leaf-50 text-leaf-700 ring-1 ring-leaf-100" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" className="size-8" stroke="currentColor" strokeWidth="2"><path d="m5 12 4 4L19 6" strokeLinecap="round" strokeLinejoin="round" /></svg>
