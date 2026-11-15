@@ -13,6 +13,14 @@ export const revalidate = 300;
 
 export const metadata = contentMetadata({ title: "Online Quran Courses", seo_noindex: false }, { path: "/courses", description: "Explore live one-to-one online Quran courses for children and adults: Noorani Qaida, Tajweed, Hifz, Arabic and Islamic studies. Compare lessons and request a trial." });
 
+const internationalGuides = [
+  ["/blog/online-quran-class-fees-uk-comparison", "the UK", "Compare online Quran lesson fees and what packages cover."],
+  ["/blog/online-quran-lessons-usa-time-zones", "the USA", "Plan a lesson around your time zone and weekly routine."],
+  ["/blog/online-quran-lessons-canada-time-zones", "Canada", "Check the proposed lesson date and time against your local school schedule."],
+  ["/blog/quran-lessons-australia-time-zones", "Australia", "Plan around local school hours and daylight-saving differences."],
+  ["/blog/online-quran-lessons-uae-families", "the UAE", "Prepare your course, language and scheduling questions for Admissions."],
+];
+
 export default async function CoursesPage() {
   const [courses, settings] = await Promise.all([getCourses(), getSettings()]);
   const wa = whatsappLink(settings["site.contact"]?.whatsapp, "Assalamu alaikum, which course would suit my child?");
@@ -49,7 +57,15 @@ export default async function CoursesPage() {
       <section className="page-wrap pb-12" aria-labelledby="international-quran-classes">
         <div className="surface space-y-4 p-6 sm:p-8">
           <h2 id="international-quran-classes" className="text-2xl">Online Quran classes for families abroad</h2>
-          <p>Families in the UK, Europe, the United States, Canada and Australia can ask about one-to-one online Quran lessons for children and adults. Classes take place online, not at a local branch. Tell admissions your country, time zone, learning level and preferred lesson times so they can check available options.</p>
+          <p>Children and adults can join live one-to-one Quran lessons online. When you request a trial, share your local time zone, a preferred date and time, and what the learner can already read. Admissions checks teacher availability and confirms the lesson time before you enrol.</p>
+          <ul aria-label="Planning guides by market" className="grid list-none gap-3 sm:grid-cols-2">
+            {internationalGuides.map(([href, market, detail]) => (
+              <li key={href} className="rounded-xl border border-line px-4 py-3">
+                <Link href={href} className="font-semibold text-leaf-700 underline">Quran lesson planning in {market}</Link>
+                <p className="mt-1 text-sm text-ink-soft">{detail}</p>
+              </li>
+            ))}
+          </ul>
           <p>Compare <Link href="/pricing" className="text-leaf-700 underline">fees and packages</Link> or <Link href="/free-trial" className="text-leaf-700 underline">request a trial in your time zone</Link>. Admissions confirms teacher availability, lesson language, currency and fees before enrolment.</p>
         </div>
       </section>
