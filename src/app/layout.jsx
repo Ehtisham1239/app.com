@@ -100,7 +100,7 @@ export default function RootLayout({ children }) {
           (function(c,l,a,r,i){
             if (/^\\/(?:admin|parents|api|auth)(?:\\/|$)/.test(l.location.pathname)) return;
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            c[a]("consentv2",{analytics_storage:"denied",ad_storage:"denied"});
+            c[a]("consentv2",{analytics_Storage:"denied",ad_Storage:"denied"});
             function loadTag() {
               if (/^\\/(?:admin|parents|api|auth)(?:\\/|$)/.test(l.location.pathname)) return;
               var t=l.createElement(r);
