@@ -90,6 +90,7 @@ async function main() {
   writeFileSync("artifacts/bing-seo-audit/report.md", md);
   if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, md);
   console.log(JSON.stringify(summary, null, 2));
+  for (const r of results.filter((x) => x.issues.length)) console.log(`FLAG ${r.url.replace(origin, "") || "/"} | ${r.issues.join("; ")} | title(${(r.title || "").length}): ${r.title || ""} | desc(${(r.desc || "").length}): ${r.desc || ""}`);
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) await main();
