@@ -95,6 +95,32 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en-GB" data-scroll-behavior="smooth" className={`${inter.variable} ${interLatin.variable} ${interExtended.variable} ${outfit.variable} ${outfitLatin.variable} ${amiri.variable} ${amiriDisplay.variable}`} suppressHydrationWarning>
+      <head>
+        <script id="oqc-clarity" dangerouslySetInnerHTML={{ __html: `
+          (function(c,l,a,r,i){
+            if (/^\\/(?:admin|parents|api|auth)(?:\\/|$)/.test(l.location.pathname)) return;
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            c[a]("consentv2",{analytics_storage:"denied",ad_storage:"denied"});
+            function loadTag() {
+              if (/^\\/(?:admin|parents|api|auth)(?:\\/|$)/.test(l.location.pathname)) return;
+              var t=l.createElement(r);
+              t.async=true;
+              t.fetchPriority="low";
+              t.src="https://www.clarity.ms/tag/"+i;
+              l.head.appendChild(t);
+            }
+            function scheduleTag() {
+              if (typeof c.requestIdleCallback==="function") {
+                c.requestIdleCallback(loadTag,{timeout:2500});
+              } else {
+                c.setTimeout(loadTag,1000);
+              }
+            }
+            if (l.readyState==="complete") scheduleTag();
+            else c.addEventListener("load",scheduleTag,{once:true});
+          })(window,document,"clarity","script","zdo7gxbgkn");
+        ` }} />
+      </head>
       <body>
         {children}
       </body>
