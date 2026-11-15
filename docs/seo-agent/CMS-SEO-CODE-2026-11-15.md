@@ -35,3 +35,14 @@ Also fixed: `/quran-study` published two WebPage blocks with the same `@id` (pag
 ## Rollback
 
 Revert the PR (the site ignores the two rows without this code). Database rollback: drop the three `head code …` policies, delete `('admin','seo_code:update')` and the `site.head_code` / `site.custom_schema` rows.
+
+## Release record (15 Nov 2026)
+
+- Migration `20261115120000_seo_custom_code.sql` applied to Supabase `lgbwidraztavhhbnbfhr` before merge. Policy check (one transaction, rolled back): Marketing (content_editor) could not update `site.head_code` (0 rows) but could update `site.custom_schema` and other settings; Administrator could update all.
+- PR #261 merged as `78e92ce`. Hostinger build `01a1dfd8-68c8-723d-b164-71ecb7b2810a` completed and published at 15:36 UTC; live `/quran-study` now has one WebPage block.
+- Schema Markup Validator on the live homepage after release: 0 errors, 0 warnings (WebPage + FAQPage roots; WebSite and EducationalOrganization nested). Google Rich Results Test needs a signed-in Google account and is left to the SEO team.
+- Microsoft Clarity `zdo7gxbgkn` was already installed in the root layout `<head>` (#256); do not add it again through Header custom code (the parser refuses it).
+
+## Development dependency audit (15 Nov 2026)
+
+`npm audit --omit=dev`: 0 vulnerabilities. `npm audit fix` (no `--force`) updated Lighthouse's Sentry/glob chain and typescript-eslint patch versions (11 → 8 moderate advisories). The remaining 8 are one advisory (GHSA-g3hv-75wg-m249, minimatch pattern DoS) inside lint tooling: typescript-eslint requires minimatch ^10 and the fix is only in 11.x, while npm's `--force` fix downgrades eslint-config-next to 15. Not applied: it affects only local/CI linting of our own files, never the website.
