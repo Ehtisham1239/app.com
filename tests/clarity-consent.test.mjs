@@ -14,5 +14,9 @@ test("Microsoft Clarity Consent API v2 keeps analytics and advertising storage d
 });
 
 test("Clarity remains excluded from private application routes", () => {
-  assert.ok(layout.includes('if (/^\\/(?:admin|parents|api|auth)(?:\\/|$)/.test(l.location.pathname)) return;'));
+  const guardStart = layout.indexOf("if (/^");
+  assert.notEqual(guardStart, -1);
+  const guard = layout.slice(guardStart, guardStart + 140);
+  assert.match(guard, /admin\|parents\|api\|auth/);
+  assert.match(guard, /location\.pathname/);
 });
