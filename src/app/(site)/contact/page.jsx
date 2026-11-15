@@ -8,6 +8,7 @@ import { whatsappLink } from "@/lib/format";
 import { SITE_URL } from "@/lib/config";
 import { safeJsonLd } from "@/lib/seo";
 import { heroArt } from "@/lib/hero-art";
+import { CmsPageSchema } from "@/components/site/custom-code";
 
 export const revalidate = 300;
 
@@ -30,6 +31,7 @@ export default async function ContactPage() {
 
   return (
     <>
+      <CmsPageSchema path="/contact" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({
         "@context": "https://schema.org", "@type": "ContactPage",
         "@id": `${SITE_URL}/contact#webpage`, url: `${SITE_URL}/contact`, name: "Contact Online Quran College",
