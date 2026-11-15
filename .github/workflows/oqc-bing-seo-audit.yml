@@ -1,0 +1,43 @@
+name: OQC Bing SEO audit
+
+# Read-only check of every live sitemap page against Bing Webmaster Tools' SEO report rules
+# (scripts/bing-seo-audit.mjs). Report: job summary + artifact. It never changes the site.
+on:
+  schedule:
+    - cron: "41 4 1 * *" # 1st of each month, 04:41 UTC (09:41 PKT)
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - scripts/bing-seo-audit.mjs
+      - .github/workflows/oqc-bing-seo-audit.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: oqc-bing-seo-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    name: Audit live pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+      - name: Run audit
+        run: node scripts/bing-seo-audit.mjs https://www.onlinequrancollege.com
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: bing-seo-audit
+          path: artifacts/bing-seo-audit
+          retention-days: 90

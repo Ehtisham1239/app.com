@@ -9,7 +9,7 @@ import { HelpCircle } from "@/components/site/icons";
 
 export const revalidate = 300;
 
-export const metadata = contentMetadata({ title: "Questions About Online Quran Classes", seo_noindex: false }, { path: "/faq", description: "Answers about free trials, female teachers, class timings, fees, rescheduling and certificates at Online Quran College." });
+export const metadata = contentMetadata({ title: "Questions About Online Quran Classes", seo_noindex: false }, { path: "/faq", description: "Answers about free trials, female teachers, class timings, fees, rescheduling and certificates at Online Quran College, plus what you need for online classes." });
 
 export default async function FaqPage() {
   const [faqs, settings] = await Promise.all([getFaqs(), getSettings()]);

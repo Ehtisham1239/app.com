@@ -1,6 +1,5 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
 import { INDEXED_MARKETS, MARKET_HREFLANG, marketHreflang } from "../src/lib/locations.js";
 
 const site = "https://www.onlinequrancollege.com";
@@ -19,14 +18,4 @@ test("hreflang lists all five hubs plus x-default, as absolute URLs", () => {
     "en-AE": `${site}/locations/united-arab-emirates`,
     "x-default": `${site}/locations`,
   });
-});
-
-test("only country hubs carry hreflang, and a noindex page never does", () => {
-  const hub = readFileSync(new URL("../src/app/(site)/locations/[country]/page.jsx", import.meta.url), "utf8");
-  assert.match(hub, /const languages = INDEXED_MARKETS\.includes\(country\.slug\)\s*\? await indexableMarketLanguages\(country\.slug, page\)\s*: undefined;/);
-  assert.match(hub, /shouldIncludeInSitemap\(locationIndexRecord\(page, country, null\), path, SITE_URL\)/, "only sitemap-eligible markets are listed as alternates");
-  const city = readFileSync(new URL("../src/app/(site)/locations/[country]/[city]/page.jsx", import.meta.url), "utf8");
-  assert.doesNotMatch(city, /marketHreflang|languages:/);
-  const meta = readFileSync(new URL("../src/lib/seo-metadata.js", import.meta.url), "utf8");
-  assert.match(meta, /\.\.\.\(languages && !record\.seo_noindex \? \{ languages \} : \{\}\)/);
 });

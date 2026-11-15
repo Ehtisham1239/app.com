@@ -8,6 +8,7 @@ import { whatsappLink } from "@/lib/format";
 import { SITE_URL } from "@/lib/config";
 import { safeJsonLd } from "@/lib/seo";
 import { heroArt } from "@/lib/hero-art";
+import { CmsPageSchema } from "@/components/site/custom-code";
 
 export const revalidate = 300;
 
@@ -15,7 +16,7 @@ export const metadata = contentMetadata({
   seo_title: "Contact Online Quran College | Admissions & Support",
   cover_url: heroArt("/contact").src,
   cover_alt: heroArt("/contact").alt,
-}, { path: "/contact", description: "Speak with Online Quran College about Quran courses, fees, teacher preferences and online class times. Contact our coordinator by WhatsApp, phone, email or the enquiry form." });
+}, { path: "/contact", description: "Contact Online Quran College about courses, fees, teacher preferences and class times. Reach our coordinator by WhatsApp, phone, email or the enquiry form." });
 
 export default async function ContactPage() {
   const settings = await getSettings();
@@ -30,6 +31,7 @@ export default async function ContactPage() {
 
   return (
     <>
+      <CmsPageSchema path="/contact" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({
         "@context": "https://schema.org", "@type": "ContactPage",
         "@id": `${SITE_URL}/contact#webpage`, url: `${SITE_URL}/contact`, name: "Contact Online Quran College",

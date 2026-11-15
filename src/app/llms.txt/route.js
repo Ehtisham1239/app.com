@@ -2,8 +2,6 @@ import { getCourses, getPosts, getPublishedSlugs, getSettings } from "@/lib/site
 import { shouldIncludeInSitemap, organizationIdentityProfiles } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
 import { LEARNING_GUIDES } from "@/lib/learning-guides";
-import { INDEXED_MARKETS, getLocation, locationPath } from "@/lib/locations";
-import { MARKET_GUIDES } from "@/lib/market-guides";
 
 export const dynamic = "force-static";
 export const revalidate = 3600;
@@ -24,14 +22,13 @@ export async function GET() {
   const lines = [
     "# Online Quran College", "",
     "> Live one-to-one online Quran learning for children and adults.", "",
-    "The public website describes courses, class fees, trial eligibility and remote lesson scheduling. Location pages describe online service coverage, not physical offices. The coordinator confirms teacher availability and package details.", "",
+    "The public website describes courses, class fees, trial eligibility and remote lesson scheduling. The coordinator confirms teacher availability and package details.", "",
     "## When to use this website", "",
-    "Use these public pages to compare a learner’s starting point with the available Quran courses, understand published package and trial terms, prepare questions for a first lesson, or plan a proposed class time in the learner’s country. Follow the course, article and country links below with ordinary HTTP GET requests. Confirm booking and teacher availability with the coordinator; obtain the learner’s or guardian’s consent before submitting a request.", "",
+    "Use these public pages to compare a learner’s starting point with the available Quran courses, understand published package and trial terms, prepare questions for a first lesson, or plan a proposed class time in the learner’s country. Follow the course and article links below with ordinary HTTP GET requests. Confirm booking and teacher availability with the coordinator; obtain the learner’s or guardian’s consent before submitting a request.", "",
     "## Start here", "",
     "- [Course comparison](/courses)",
     "- [Fees and packages](/pricing): A three-day free trial is available on eligible plans. The Weekend plan is excluded.",
     "- [Trial request and eligibility](/free-trial): a coordinator confirms the lesson time, teacher and plan.",
-    "- [Countries, cities and time-zone planning](/locations)",
     "- [Learning guides](/learn)",
     "- [Frequently asked questions](/faq): trial, scheduling, teachers, payments and getting started.",
     "- [Teachers](/teachers): current public teacher profiles and a preference-request process; Admissions confirms suitability, language and availability.",
@@ -46,7 +43,7 @@ export async function GET() {
     "- A three-day free trial is available on eligible plans; the Weekend plan is excluded.",
     `- ${familyDiscountCopy}`,
     "- Fees can be shown converted into the visitor's currency for guidance; the coordinator confirms the fee and payment currency before enrolment.",
-    "- Lessons are arranged in the learner's time zone. Country pages describe online coverage, not physical offices.", "",
+    "- Lessons are arranged in the learner's time zone.", "",
     "## Profile links configured on this website", "",
     "The following profile URLs are configured as outbound links on the OQC website. A website link does not independently verify account ownership or profile administration:",
     ...profiles.map(([key, url]) => `- [${label(PROFILE_NAMES[key] || key)}](${url})`), "",
@@ -62,20 +59,6 @@ export async function GET() {
     "- [Can I request a female teacher?](/teachers) Families can share a teacher preference. Admissions confirms who is available for the learner’s course and schedule.",
     "- [How should a parent prepare for a first lesson?](/learn/quran-for-kids) Share the child’s current reading level and goals, and have a parent or guardian available for the introduction.",
     "- [Can an adult begin from scratch?](/learn/quran-for-adults) Adult beginners can start from their current reading level and discuss a suitable course during the trial.", "",
-    "## Country pages", "",
-    ...INDEXED_MARKETS.map(getLocation).filter(Boolean).map(c => `- [Online Quran classes in ${label(c.name)}](${locationPath(c)})`),
-    "- [New Zealand lesson planning](/locations#new-zealand-lessons): propose a date and time in the learner’s local time. Admissions confirms the timetable and payment currency.", "",
-    "## Market guidance and primary references", "",
-    "The country hubs link to official government or regulator material for the specific time-zone, privacy, consumer-protection and licensing context. These references are independent public guidance, not endorsements of OQC. For the current source list, use each country's hub:",
-    ...INDEXED_MARKETS.flatMap(slug => {
-      const market = getLocation(slug);
-      const guide = MARKET_GUIDES[slug];
-      return guide ? [
-        `### ${label(market?.name)}`,
-        ...guide.sources.map(source => `- [${label(source.name)}](${source.url})`),
-        "",
-      ] : [];
-    }),
     "## Courses", "",
     ...courses.filter(row => courseSlugs.has(row.slug)).map(row => `- [${label(row.title)}](/courses/${encodeURIComponent(row.slug)})`), "",
     "## Learning articles", "",

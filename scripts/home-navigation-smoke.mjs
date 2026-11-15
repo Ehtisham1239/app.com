@@ -17,14 +17,14 @@ for(const entry of [{name:'desktop-fresh',viewport:{width:1440,height:1000},coun
    return route.continue();
   });
   const response=await page.goto(base+'/',{waitUntil:'load'});assert.equal(response.status(),200);assert.equal(new URL(page.url()).pathname,'/');await page.locator('.home-hero h1').waitFor();assert.equal(await page.locator('#c-name,#t-name').count(),0);
-  {const markets=page.locator('#countries');for(const slug of ['united-states','united-kingdom','canada','australia','united-arab-emirates'])assert.equal(await markets.locator('a[href="/locations/'+slug+'"]').count(),1);}
-  await page.locator('main a[href="/locations/united-states"]').first().click();await page.waitForURL('**/locations/united-states');await page.getByRole('heading',{level:1}).filter({hasText:'United States'}).waitFor();
+  assert.equal(await page.locator('a[href^="/locations"]').count(),0);
+  await page.locator('main a[href="/courses"]').first().click();await page.waitForURL('**/courses');
   await page.locator('.site-header a[href="/"]').first().click();await page.waitForURL(url=>url.pathname==='/');await page.locator('.home-hero h1').waitFor();
   await page.reload({waitUntil:'load'});assert.equal(new URL(page.url()).pathname,'/');await page.locator('.home-hero h1').waitFor();assert.equal(await page.locator('#c-name,#t-name').count(),0);
-  {const markets=page.locator('#countries');for(const slug of ['united-states','united-kingdom','canada','australia','united-arab-emirates'])assert.equal(await markets.locator('a[href="/locations/'+slug+'"]').count(),1);}
+  assert.equal(await page.locator('a[href^="/locations"]').count(),0);
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);await page.screenshot({path:`${out}/${entry.name}-home.png`});
-  for(const [slug,name]of [['united-kingdom','United Kingdom'],['australia','Australia']]){const r=await page.goto(base+'/locations/'+slug,{waitUntil:'load'});assert.equal(r.status(),200);assert.equal(new URL(page.url()).pathname,'/locations/'+slug);await page.getByRole('heading',{level:1}).filter({hasText:name}).waitFor();}
-  report.cases.push({case:entry.name,homeRemainsHome:true,explicitCountryNavigation:true,logoReturnsHome:true,reloadRemainsHome:true,countryPagesSeparate:true});console.log('PASS '+entry.name);
+  for(const slug of ['united-kingdom','australia']){const r=await page.request.get(base+'/locations/'+slug,{maxRedirects:0});assert.equal(r.status(),308);assert.equal(new URL(r.headers().location,base).pathname,'/courses');}
+  report.cases.push({case:entry.name,homeRemainsHome:true,explicitCourseNavigation:true,logoReturnsHome:true,reloadRemainsHome:true,locationRedirects:true});console.log('PASS '+entry.name);
  }finally{await browser.close();}
 }
 assert.deepEqual(report.browserErrors,[]);assert.equal(report.submittedForms,0);writeFileSync(out+'/summary.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
