@@ -2,16 +2,15 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { LEARNING_GUIDES } from "../src/lib/learning-guides.js";
-import { INDEXED_MARKETS, getLocation, locationPath } from "../src/lib/locations.js";
+import { INDEXED_MARKETS } from "../src/lib/locations.js";
 
 const read = (p) => readFileSync(new URL(`../${p}`, import.meta.url), "utf8");
 const route = read("src/app/llms.txt/route.js");
 
-test("llms.txt lists every learning guide and indexed country page", () => {
+test("llms.txt lists every learning guide and omits retired location URLs", () => {
   assert.match(route, /LEARNING_GUIDES\.map\(g => `- \[\$\{label\(g\.title\)\}\]\(\$\{g\.path\}\)/);
-  assert.match(route, /INDEXED_MARKETS\.map\(getLocation\)/);
+  assert.doesNotMatch(route, /\/locations/);
   assert.ok(LEARNING_GUIDES.length >= 6);
-  for (const slug of INDEXED_MARKETS) assert.ok(getLocation(slug) && locationPath(getLocation(slug)).startsWith("/locations/"), slug);
 });
 
 test("llms.txt key facts repeat what public pages already state", () => {
@@ -55,11 +54,4 @@ test("llms.txt turns its site links into absolute URLs before serving", () => {
   assert.match(route, /lines\.join\("\\n"\)\.replaceAll\("\]\(\/", `\]\(\$\{SITE_URL\}\/`\)/);
   const sample = "- [Fees](/pricing)\n- [Trustpilot](https://www.trustpilot.com/review/x)".replaceAll("](/", "](https://www.onlinequrancollege.com/");
   assert.equal(sample, "- [Fees](https://www.onlinequrancollege.com/pricing)\n- [Trustpilot](https://www.trustpilot.com/review/x)");
-});
-
-test("llms.txt exposes country-specific official references without calling them endorsements", () => {
-  assert.match(route, /MARKET_GUIDES/);
-  assert.match(route, /## Market guidance and primary references/);
-  assert.match(route, /independent public guidance, not endorsements of OQC/);
-  assert.match(route, /guide\.sources\.map\(source =>/);
 });
