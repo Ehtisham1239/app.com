@@ -20,17 +20,21 @@ test('host rules only send the bare domain to the canonical www origin',()=>{
   }
 });
 
-test('homepage and canonical learning/location pages are not redirect sources',()=>{
-  for(const path of ['/','/courses','/blog','/pricing','/free-trial','/locations',...LOCATIONS.flatMap(c=>[null,...c.cities].map(city=>locationPath(c,city)))])assert.equal(bySource.has(path),false,path);
+test('homepage and canonical learning pages are not redirect sources',()=>{
+  for(const path of ['/','/courses','/blog','/pricing','/free-trial'])assert.equal(bySource.has(path),false,path);
   const source=readFileSync(new URL('../src/proxy.js',import.meta.url),'utf8');
   const matchers=JSON.parse(source.match(/matcher:\s*(\[[\s\S]*?^  \]),/m)[1]);
   assert.deepEqual(matchers,['/admin/:path*','/auth/:path*','/parents','/parents/:path*', ...['page','category'].map(key=>({source:'/blog',has:[{type:'query',key}]}))]);
 });
 
-test('every legacy country and city CMS URL resolves to its own canonical page',()=>{
+test('every legacy country and city CMS URL redirects directly to the courses page',()=>{
+  assert.equal(bySource.get('/locations')?.destination,'/courses');
   for(const country of LOCATIONS)for(const city of [null,...country.cities]){
     const source='/'+locationCmsSlug(country,city),rule=bySource.get(source);
-    assert.equal(rule?.destination,locationPath(country,city),source);assert.equal(rule.permanent,true);
+    for (const redirect of [rule, bySource.get(locationPath(country,city))]) {
+      assert.equal(redirect?.destination,'/courses',source);
+      assert.equal(redirect.permanent,true);
+    }
   }
 });
 
@@ -40,8 +44,8 @@ test('redirect sources are unique and have no self redirects, chains or external
 });
 
 test('existing country, city, course and guide aliases retain their intended destinations',()=>{
-  for(const [alias,country]of [['uk','united-kingdom'],['usa','united-states'],['australia','australia']])assert.equal(bySource.get('/online-quran-classes-'+alias)?.destination,'/locations/'+country);
-  for(const city of ['london','birmingham','manchester','leeds','bradford','leicester'])assert.equal(bySource.get('/online-quran-classes-'+city)?.destination,'/locations/united-kingdom');
+  for(const alias of ['uk','usa','australia'])assert.equal(bySource.get('/online-quran-classes-'+alias)?.destination,'/courses');
+  for(const city of ['london','birmingham','manchester','leeds','bradford','leicester'])assert.equal(bySource.get('/online-quran-classes-'+city)?.destination,'/courses');
   for(const course of ['noorani-qaida','quran-nazara','hifz-quran','arabic-language','quran-translation','hadith-translation'])assert.equal(bySource.get('/'+course)?.destination,'/courses/'+course);
   for(const guide of LEARNING_GUIDES)assert.equal(bySource.get('/'+guide.slug)?.destination,guide.path);
   assert.equal(bySource.get('/login.html')?.destination,'/admin/login');assert.equal(bySource.get('/register')?.destination,'/free-trial');
@@ -70,7 +74,7 @@ test('legacy relative contact, course and location URLs reach the intended publi
     ['/op/book-now-online-quran-free-classes', '/free-trial'],
     ['/:section(about|contact|pricing|privacy-policy)/pricing', '/pricing'],
     ['/:section(about|contact|pricing|privacy-policy)/hadith-translation', '/courses/hadith-translation'],
-    ['/:section(about|contact|pricing|privacy-policy)/online-quran-classes-leeds', '/locations/united-kingdom'],
+    ['/:section(about|contact|pricing|privacy-policy)/online-quran-classes-leeds', '/courses'],
   ]) {
     assert.equal(bySource.get(source)?.destination, destination, source);
     assert.equal(bySource.get(source)?.permanent, true, source);

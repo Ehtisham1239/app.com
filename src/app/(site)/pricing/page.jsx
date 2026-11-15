@@ -10,7 +10,6 @@ import { whatsappLink } from "@/lib/format";
 import { faqSchema, safeJsonLd } from "@/lib/seo";
 import { getUsdRates } from "@/lib/fx";
 import { feeAnswer } from "@/lib/fee-answer";
-import { INDEXED_MARKETS, getLocation, locationPath } from "@/lib/locations";
 
 export const revalidate = 300;
 
@@ -21,7 +20,7 @@ export default async function PricingPage() {
   const [plans, faqs, settings, fx] = await Promise.all([getPlans(), getFaqs(), getSettings(), getUsdRates()]);
   const packages = plans.filter((p) => /^package/i.test(p.name));
   const other = plans.filter((p) => !/^package/i.test(p.name));
-  // General fee, payment and missed-class questions; country-specific answers stay on their country pages.
+  // General fee, payment and missed-class questions.
   const feeFaqs = faqs.filter((f) => !/^Market:/i.test(f.category || "") && /fee|pay|cancel|discount|reschedul|miss/i.test(`${f.category} ${f.question}`));
   const wa = whatsappLink(settings["site.contact"]?.whatsapp, "Assalamu alaikum, I have a question about your fees.");
   // Direct answer for the most-searched fee question; built from the same published plans as the cards.
@@ -52,20 +51,10 @@ export default async function PricingPage() {
           </div>
         </section>
       )}
-      <section className="page-wrap mt-8" aria-labelledby="fees-by-country">
-        <div className="mx-auto max-w-3xl rounded-[var(--radius-card)] border border-line bg-leaf-50 p-6 sm:p-7">
-          <h2 id="fees-by-country" className="text-xl text-mushaf-900">Quran lesson fees and schedules by country</h2>
-          <p className="mt-2 text-ink-soft">Use your country guide to check lesson times and fee guidance. Admissions confirms the exact fee, payment currency and teacher availability before enrolment.</p>
-          <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
-            {INDEXED_MARKETS.map(getLocation).map(country => <li key={country.slug}><Link href={locationPath(country)} className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">{country.name} fees and scheduling</Link></li>)}
-            <li><Link href="/locations#new-zealand-lessons" className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">New Zealand lesson planning</Link></li>
-          </ul>
-        </div>
-      </section>
-      <section className="page-wrap pb-10" aria-labelledby="international-course-options">
+      <section className="page-wrap pt-8 pb-10" aria-labelledby="international-course-options">
         <div className="mx-auto max-w-3xl space-y-3">
           <h2 id="international-course-options" className="text-xl text-mushaf-900">Choosing a Quran course from abroad?</h2>
-          <p className="text-ink-soft">Compare <Link href="/courses" className="text-leaf-700 underline">online Quran courses</Link> before selecting a package. Students in the UK, Europe, the USA, Canada and Australia can request lessons matched to their learning level and preferred local time, subject to teacher availability. Country guides explain scheduling; the coordinator confirms actual fees and currencies.</p>
+          <p className="text-ink-soft">Compare <Link href="/courses" className="text-leaf-700 underline">online Quran courses</Link> before selecting a package. Students in the UK, Europe, the USA, Canada and Australia can request lessons matched to their learning level and preferred local time, subject to teacher availability. The coordinator confirms actual fees and currencies.</p>
           <p><Link href="/free-trial" className="font-semibold text-leaf-700 underline">Ask about an eligible free trial</Link> before enrolling.</p>
         </div>
       </section>

@@ -6,6 +6,7 @@ import { reviewsButtonConfig } from "@/lib/reviews-button";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { safeJsonLd, organizationPostalAddress, organizationIdentityProfiles } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
+import { isRetiredLocationLink } from "@/lib/retired-location-links";
 import { CampaignAttribution } from "@/components/site/campaign-attribution";
 import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
@@ -18,7 +19,7 @@ import { INDEXED_MARKETS, getLocation } from "@/lib/locations";
 import { customCodeFromSettings, mergeSiteGraph, validateSiteSchema } from "@/lib/custom-code";
 import { CustomHeadCode } from "@/components/site/custom-code";
 
-// Where lessons are offered online (the five indexed markets) and what is taught; both are
+// Where lessons are offered online (the five online markets) and what is taught; both are
 // stated on the public pages. Online coverage, not physical offices.
 const AREA_SERVED = INDEXED_MARKETS.map(getLocation).filter(Boolean).map((c) => ({ "@type": "Country", name: c.name }));
 const KNOWS_ABOUT = ["Quran recitation", "Tajweed", "Noorani Qaida", "Hifz (Quran memorisation)", "Quranic Arabic", "Quran translation and tafseer", "Islamic studies for children"];
@@ -39,13 +40,14 @@ export default async function SiteLayout({ children }) {
   const identity = settings["site.identity"] || {};
   const contact = settings["site.contact"] || {};
   const brandName = settings["site.identity"]?.name ?? "Online Quran College";
-  const header = (menus.header ?? []).map(({ label, href, opens_new_tab }) => ({ label, href, opens_new_tab }));
-  if (!header.some((item) => item.href === "/locations")) header.splice(3, 0, { label: "Areas", href: "/locations" });
+  const publicLinks = (items) => (items ?? []).filter(({ href }) => !isRetiredLocationLink(href));
+  const header = publicLinks(menus.header).map(({ label, href, opens_new_tab }) => ({ label, href, opens_new_tab }));
   const courseLinks = courses.map(({ slug, title, age_group }) => ({ slug, title, age_group }));
   const footerMenus = {
     ...menus,
-    footer_company: [...(menus.footer_company || []), ...[{ label: "Learning guides", href: "/learn" }, { label: "Quran practice tools", href: "/quran-study" }, { label: "Careers", href: "/careers" }, { label: "Parent portal (results)", href: "/parents" }].filter(link => !(menus.footer_company || []).some(item => item.href === link.href))],
-    footer_courses: menus.footer_courses?.length ? menus.footer_courses : courseLinks.map((c) => ({ label: c.title, href: `/courses/${c.slug}` })),
+    footer_legal: publicLinks(menus.footer_legal),
+    footer_company: [...publicLinks(menus.footer_company), ...[{ label: "Learning guides", href: "/learn" }, { label: "Quran practice tools", href: "/quran-study" }, { label: "Careers", href: "/careers" }, { label: "Parent portal (results)", href: "/parents" }].filter(link => !(menus.footer_company || []).some(item => item.href === link.href))],
+    footer_courses: menus.footer_courses?.length ? publicLinks(menus.footer_courses) : courseLinks.map((c) => ({ label: c.title, href: `/courses/${c.slug}` })),
   };
 
   // One site-wide graph. CMS "Site-wide schema" nodes for the Organization or WebSite merge into

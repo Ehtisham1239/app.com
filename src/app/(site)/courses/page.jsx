@@ -50,7 +50,7 @@ export default async function CoursesPage() {
         <div className="surface space-y-4 p-6 sm:p-8">
           <h2 id="international-quran-classes" className="text-2xl">Online Quran classes for families abroad</h2>
           <p>Families in the UK, Europe, the United States, Canada and Australia can ask about one-to-one online Quran lessons for children and adults. Classes take place online, not at a local branch. Tell admissions your country, time zone, learning level and preferred lesson times so they can check available options.</p>
-          <p>Explore our <Link href="/locations/united-kingdom" className="text-leaf-700 underline">UK Quran classes</Link>, <Link href="/locations/united-states" className="text-leaf-700 underline">USA lesson planning</Link>, <Link href="/locations/canada" className="text-leaf-700 underline">Canada class options</Link>, and <Link href="/locations/australia" className="text-leaf-700 underline">Australia schedules</Link>. For other European countries, browse the <Link href="/locations" className="text-leaf-700 underline">country guides</Link>. Teacher availability, lesson language, currency and fees are confirmed before enrolment.</p>
+          <p>Compare <Link href="/pricing" className="text-leaf-700 underline">fees and packages</Link> or <Link href="/free-trial" className="text-leaf-700 underline">request a trial in your time zone</Link>. Admissions confirms teacher availability, lesson language, currency and fees before enrolment.</p>
           <p>Already know your course? <Link href="/free-trial" className="text-leaf-700 underline">Request a trial</Link> and share your preferred local class time.</p>
         </div>
       </section>
