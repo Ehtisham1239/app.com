@@ -6,7 +6,7 @@ import { ContactForm } from "@/components/site/contact-form";
 
 export const metadata = contentMetadata(
   { title: "Careers & Opportunities | Online Quran College" },
-  { path: "/careers", description: "Register your interest in online Quran teaching, e-learning support or partnerships with Online Quran College Limited." },
+  { path: "/careers", description: "Register your interest in online Quran teaching, e-learning support or partnership roles at Online Quran College. Share your experience and preferred hours." },
 );
 
 const roles = [

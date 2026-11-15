@@ -11,7 +11,7 @@ import { safeJsonLd } from "@/lib/seo";
 
 export const revalidate = 300;
 
-export const metadata = contentMetadata({ title: "Online Quran Courses", seo_noindex: false }, { path: "/courses", description: "Explore live one-to-one online Quran courses for children and adults: Noorani Qaida, Tajweed, Hifz, Arabic and Islamic studies. Compare lessons and request a trial." });
+export const metadata = contentMetadata({ title: "Online Quran Courses", seo_noindex: false }, { path: "/courses", description: "Live one-to-one online Quran courses for children and adults: Noorani Qaida, Tajweed, Hifz, Arabic and Islamic studies. Compare courses and request a trial." });
 
 export default async function CoursesPage() {
   const [courses, settings] = await Promise.all([getCourses(), getSettings()]);
