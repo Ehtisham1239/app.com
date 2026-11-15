@@ -16,7 +16,7 @@ export const metadata = contentMetadata({
   seo_title: "Contact Online Quran College | Admissions & Support",
   cover_url: heroArt("/contact").src,
   cover_alt: heroArt("/contact").alt,
-}, { path: "/contact", description: "Speak with Online Quran College about Quran courses, fees, teacher preferences and online class times. Contact our coordinator by WhatsApp, phone, email or the enquiry form." });
+}, { path: "/contact", description: "Contact Online Quran College about courses, fees, teacher preferences and class times. Reach our coordinator by WhatsApp, phone, email or the enquiry form." });
 
 export default async function ContactPage() {
   const settings = await getSettings();

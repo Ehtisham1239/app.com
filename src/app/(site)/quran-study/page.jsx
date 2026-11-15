@@ -6,7 +6,7 @@ import { contentMetadata } from "@/lib/seo-metadata";
 export const revalidate = 3600;
 export const metadata = contentMetadata(
   { title: "Quran Reading & Recitation Practice Tools", seo_noindex: false },
-  { path: "/quran-study", description: "Explore Quran reading, listening and recitation practice resources, including the Tarteel app and Quran.com. Use them alongside guidance from your Quran teacher." }
+  { path: "/quran-study", description: "Explore Quran reading, listening and recitation practice resources, including the Tarteel app and Quran.com, to use alongside your Quran teacher's guidance." }
 );
 
 const resources = [
