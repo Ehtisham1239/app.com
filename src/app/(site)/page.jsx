@@ -71,7 +71,14 @@ export default async function HomePage() {
         </div>
         <div className="mt-12">
           <CoursesGrid courses={courses} swipe />
-        </div></div>
+        </div>
+        <nav aria-label="Find Quran lessons for your needs" className="mt-8">
+          <ul className="flex flex-wrap gap-3">
+            <li><Link href="/learn/quran-for-kids" className="btn btn-outline">Quran classes for kids</Link></li>
+            <li><Link href="/learn/quran-for-adults" className="btn btn-outline">Quran lessons for adult beginners</Link></li>
+            <li><Link href="/learn/female-quran-teacher" className="btn btn-outline">Learning with a female Quran teacher</Link></li>
+          </ul>
+        </nav></div>
       </section>
 
       <section id="how-it-works" className="relative scroll-mt-24 overflow-hidden bg-white py-16 sm:py-24">
