@@ -7,7 +7,7 @@ const topics = {
   hifz: { label: "Balancing new work and revision", guide: ["Ask about a sustainable study routine", "/contact"], course: ["Explore the Hifz course", "/courses/hifz-quran"] },
   adults: { label: "Learning at your own starting point", guide: ["Quran learning for adult beginners", "/learn/quran-for-adults"], course: ["Compare the available courses", "/courses"] },
   understanding: { label: "Reading, language and understanding", guide: ["Explore Quran translation", "/courses/quran-translation"], course: ["Explore Arabic language study", "/courses/arabic-language"] },
-  international: { label: "Planning lessons around your local time", guide: ["Ask about lessons in your time zone", "/contact"], course: ["Compare class fees and packages", "/pricing"] },
+  international: { label: "Planning lessons around your local time", guide: ["Find your country and time zone", "/locations"], course: ["Compare class fees and packages", "/pricing"] },
 };
 
 const articleTopics = {

@@ -1,4 +1,4 @@
-import { LOCATIONS, locationPath, locationCmsSlug } from "./src/lib/locations.js";
+import { LOCATIONS, INDEXED_MARKETS, locationPath, locationCmsSlug } from "./src/lib/locations.js";
 import { LEARNING_GUIDES } from "./src/lib/learning-guides.js";
 import { readFileSync } from "node:fs";
 import { legacyImageRedirects } from "./src/lib/legacy-image-redirects.js";
@@ -71,12 +71,15 @@ const nextConfig = {
   // Keep links from the previous WordPress site working
   async redirects() {
     const courses = ["noorani-qaida", "quran-nazara", "hifz-quran", "arabic-language", "quran-translation", "hadith-translation"];
-    const ukAliases = ["london", "birmingham", "manchester", "leeds", "bradford", "leicester"].map((slug) => [`online-quran-classes-${slug}`, "/courses"]);
+    const ukAliases = ["london", "birmingham", "manchester", "leeds", "bradford", "leicester"].map((slug) => [`online-quran-classes-${slug}`, "/locations/united-kingdom"]);
+    // Owner decision (16 Nov 2026): only the five market hubs stay live. Every retired
+    // city page goes to its market hub; other countries and their cities go to /courses.
+    const retiredLocationTarget = (country) => (INDEXED_MARKETS.includes(country.slug) ? locationPath(country) : "/courses");
     const oldRelativeLinks = [
       ...["about", "contact", "pricing", "careers"].map((slug) => [slug, `/${slug}`]),
       ...courses.map((slug) => [slug, `/courses/${slug}`]),
       ...ukAliases,
-      ["online-quran-classes-uk", "/courses"],
+      ["online-quran-classes-uk", "/locations/united-kingdom"],
       ["terms-conditions", "/terms-and-conditions"],
     ];
     return [
@@ -89,14 +92,14 @@ const nextConfig = {
       ...legacyImageRedirects(imageManifest),
       { source: "/images/learning/map-:region([a-z-]+)-r2-:width(400|800|1200).webp", destination: "/images/learning/oqc-learning-:region-v3-:width.webp", permanent: true },
       { source: "/images/learning/map-:region([a-z-]+)-:width(400|800|1200).webp", destination: "/images/learning/oqc-learning-:region-v3-:width.webp", permanent: true },
-      { source: "/locations", destination: "/courses", permanent: true },
-      ...LOCATIONS.flatMap((country) => [null, ...country.cities].map((city) => ({ source: locationPath(country, city), destination: "/courses", permanent: true }))),
-      ...LOCATIONS.flatMap((country) => [null, ...country.cities].map((city) => ({ source: `/${locationCmsSlug(country, city)}`, destination: "/courses", permanent: true }))),
+      ...LOCATIONS.filter((country) => !INDEXED_MARKETS.includes(country.slug)).map((country) => ({ source: locationPath(country), destination: "/courses", permanent: true })),
+      ...LOCATIONS.flatMap((country) => country.cities.map((city) => ({ source: locationPath(country, city), destination: retiredLocationTarget(country), permanent: true }))),
+      ...LOCATIONS.flatMap((country) => [null, ...country.cities].map((city) => ({ source: `/${locationCmsSlug(country, city)}`, destination: city ? retiredLocationTarget(country) : (INDEXED_MARKETS.includes(country.slug) ? locationPath(country) : "/courses"), permanent: true }))),
       ...LEARNING_GUIDES.map((guide) => ({ source: `/${guide.slug}`, destination: guide.path, permanent: true })),
-      { source: "/online-quran-classes-usa", destination: "/courses", permanent: true },
-      { source: "/online-quran-classes-australia", destination: "/courses", permanent: true },
-      { source: "/online-quran-classes-uk", destination: "/courses", permanent: true },
-      // Preserve old WordPress city links with a direct course destination.
+      { source: "/online-quran-classes-usa", destination: "/locations/united-states", permanent: true },
+      { source: "/online-quran-classes-australia", destination: "/locations/australia", permanent: true },
+      { source: "/online-quran-classes-uk", destination: "/locations/united-kingdom", permanent: true },
+      // Old WordPress city URLs still rank in Search Console. Send them to the UK hub.
       ...ukAliases.map(([slug, destination]) => ({ source: `/${slug}`, destination, permanent: true })),
       // Recover relative links from the old public pages reported as 404 in Search Console.
       ...oldRelativeLinks.map(([slug, destination]) => ({ source: `/:section(about|contact|pricing|privacy-policy)/${slug}`, destination, permanent: true })),

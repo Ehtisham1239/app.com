@@ -1,5 +1,4 @@
 import sanitizeHtml from "sanitize-html";
-import { isRetiredLocationLink } from "./retired-location-links.js";
 
 // Admin-written HTML is cleaned before it is rendered on the public site.
 const options = {
@@ -20,7 +19,6 @@ const options = {
   allowedSchemes: ["http", "https", "mailto", "tel"],
   transformTags: {
     a: (tagName, attribs) => {
-      if (isRetiredLocationLink(attribs.href)) return { tagName: "span", attribs: {} };
       const external = /^https?:\/\//i.test(attribs.href || "");
       return {
         tagName,

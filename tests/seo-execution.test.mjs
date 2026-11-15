@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { courseHeading } from "../src/lib/course-heading.js";
 import { GUIDE_FAQS, guideFaqs } from "../src/lib/guide-faqs.js";
+import { SEARCH_INTENTS } from "../src/lib/search-intent.js";
 import { LEARNING_GUIDES } from "../src/lib/learning-guides.js";
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
@@ -28,6 +29,12 @@ test("every learning guide has direct, cautious FAQ answers rendered with FAQPag
   assert.match(page, /<FaqList faqs=\{faqs\}/);
 });
 
+test("the UAE snippet fits in search results", () => {
+  const uae = SEARCH_INTENTS["/locations/united-arab-emirates"];
+  assert.ok(uae.description.length <= 160, `${uae.description.length} characters`);
+  assert.match(read("src/app/(site)/locations/[country]/page.jsx"), /\?\.description \|\| SEARCH_INTENTS/);
+});
+
 test("pricing and free-trial pages stay cacheable: no server-side searchParams", () => {
   for (const path of ["src/app/(site)/pricing/page.jsx", "src/app/(site)/free-trial/page.jsx"]) {
     const source = read(path);
@@ -51,9 +58,16 @@ test("the free-trial FAQ repeats only what the page already promises", () => {
   assert.doesNotMatch(source, /no obligation/i);
 });
 
-test("course pages link to course fees and the trial without linking to retired locations", () => {
+test("course pages link to all five indexed country hubs", () => {
   const source = read("src/app/(site)/courses/[slug]/page.jsx");
-  assert.ok(source.includes('href="/pricing"'));
-  assert.ok(source.includes('href="/free-trial"'));
-  assert.doesNotMatch(source, /href="\/locations/);
+  for (const [path, label] of [
+    ["/locations/united-kingdom", "UK families"],
+    ["/locations/united-states", "USA families"],
+    ["/locations/canada", "Canadian families"],
+    ["/locations/australia", "Australian families"],
+    ["/locations/united-arab-emirates", "UAE families"],
+  ]) {
+    assert.ok(source.includes(`href="${path}"`), path);
+    assert.ok(source.includes(`>${label}</Link>`), label);
+  }
 });

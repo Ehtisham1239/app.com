@@ -42,28 +42,34 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Wait for the location redirects to reach production
+      - name: Wait for the current Australia hub content to reach production
         shell: bash
         run: |
           set -euo pipefail
           base="https://www.onlinequrancollege.com"
+          ready=0
           for attempt in $(seq 1 60); do
-            result=$(curl -sS -o /dev/null -w '%{http_code} %{redirect_url}' "$base/locations/australia")
-            if [ "$result" = "308 $base/courses" ]; then exit 0; fi
+            home_status=$(curl -sS -o /tmp/oqc-home.html -w '%{http_code}' "$base/")
+            australia_status=$(curl -sS -o /tmp/oqc-australia.html -w '%{http_code}' "$base/locations/australia")
+            if [ "$home_status" = "200" ] && [ "$australia_status" = "200" ] \
+              && grep -Fq "Arrange online Quran classes from Perth" /tmp/oqc-australia.html \
+              && grep -Fq "city=Perth" /tmp/oqc-australia.html; then
+              ready=1
+              break
+            fi
             sleep 10
           done
-          echo "The retired location URL has not redirected on production"
-          exit 1
+          test "$ready" = "1" || { echo "Production did not serve the Perth-specific Australia hub content after the main deployment"; exit 1; }
       - name: Smoke-test public routes
         shell: bash
         run: |
           set -euo pipefail
           base="https://www.onlinequrancollege.com"
-          for path in /reviews /free-trial /courses /pricing /robots.txt /sitemap.xml; do
+          for path in /reviews /free-trial /locations/united-kingdom /locations/united-states /locations/canada /locations/australia /locations/united-arab-emirates /robots.txt /sitemap.xml; do
             status=$(curl -sS -o /tmp/oqc-response -w '%{http_code}' "$base$path")
             test "$status" = "200" || { echo "$path returned $status"; exit 1; }
           done
-      - name: Verify canonical pricing and location retirement
+      - name: Verify legacy pricing slash and course market links
         shell: bash
         run: |
           set -euo pipefail
@@ -74,13 +80,7 @@ jobs:
           curl -fsS "$base/pricing" -o /tmp/oqc-pricing.html
           grep -Fq "rel=\"canonical\" href=\"$base/pricing\"" /tmp/oqc-pricing.html
           curl -fsS "$base/courses/noorani-qaida" -o /tmp/oqc-course.html
-          if grep -Fq 'href="/locations' /tmp/oqc-course.html; then exit 1; fi
-          curl -fsS "$base/sitemap.xml" -o /tmp/oqc-sitemap.xml
-          if grep -Fq "$base/locations" /tmp/oqc-sitemap.xml; then exit 1; fi
-          for path in /locations /locations/united-kingdom /locations/united-states/new-york /locations-australia-perth /online-quran-classes-uk; do
-            result=$(curl -sS -o /dev/null -w '%{http_code} %{redirect_url}' "$base$path")
-            test "$result" = "308 $base/courses" || { echo "$path -> $result"; exit 1; }
-          done
+          grep -Fq 'href="/locations/united-arab-emirates"' /tmp/oqc-course.html
 
       - name: Verify review short links redirect to the canonical page
         shell: bash
@@ -97,7 +97,7 @@ jobs:
           done
 
   # Opens the live public pages at 320–1440px and fails if any page scrolls
-  # sideways.
+  # sideways; also checks the country-hub hreflang cluster and city-page indexing.
   # On a pull request it audits current production; on main it runs after deploy.
   responsive-audit:
     if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
@@ -170,7 +170,7 @@ jobs:
       - name: Lighthouse lab audit of key pages (E-31)
         env:
           OQC_QA_OUTPUT: artifacts/performance
-          OQC_PERF_PATHS: /,/pricing,/free-trial,/courses,/teachers
+          OQC_PERF_PATHS: /,/pricing,/free-trial,/locations/united-kingdom,/locations/united-states
         run: npm run audit:performance -- https://www.onlinequrancollege.com
       - name: Read-only SEO crawl of the sitemap (E-16)
         env:
