@@ -50,4 +50,8 @@ test("blog covers replace only the identified legacy files and preserve newer ed
     alt: "New image description",
   });
   assert.deepEqual(contentVisual({ slug }), corrected);
+  assert.deepEqual(contentVisual({
+    slug,
+    cover_url: "https://assets.example.org/regenerated/map-australia-melbourne-r2-1200.webp",
+  }), corrected);
 });
