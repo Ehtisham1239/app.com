@@ -2,7 +2,8 @@ import { contentMetadata } from "@/lib/seo-metadata";
 import Link from "next/link";
 import { ArrowRight, BookA, BookMarked, BookOpen } from "@/components/site/icons";
 import { PageHero } from "@/components/site/chrome";
-import { CoursesGrid, CtaBand } from "@/components/site/sections";
+import CourseFinder from "@/components/site/course-finder";
+import { CourseCard, CoursesGrid, CtaBand } from "@/components/site/sections";
 import { getCourses, getSettings } from "@/lib/site-data";
 import { whatsappLink } from "@/lib/format";
 import { SITE_URL } from "@/lib/config";
@@ -21,6 +22,12 @@ const internationalGuides = [
   ["/blog/online-quran-lessons-uae-families", "the UAE", "Prepare your course, language and scheduling questions for Admissions."],
 ];
 
+const learningGoals = [
+  { id: "reading", label: "Reading & Tajweed", slugs: ["noorani-qaida", "quran-nazara", "tajweed"] },
+  { id: "memorisation", label: "Memorisation", slugs: ["hifz-quran"] },
+  { id: "understanding", label: "Arabic & Islamic studies", slugs: ["arabic-language", "quran-translation", "hadith-translation"] },
+];
+
 const startingPoints = [
   { slug: "noorani-qaida", label: "Start with Arabic letters", detail: "For learners who are recognising letters or joining sounds.", Icon: BookA, tone: 1 },
   { slug: "quran-nazara", label: "Read with confidence", detail: "For readers working on pronunciation, fluency and Tajweed.", Icon: BookOpen, tone: 2 },
@@ -31,12 +38,23 @@ export default async function CoursesPage() {
   const [courses, settings] = await Promise.all([getCourses(), getSettings()]);
   const courseSlugs = new Set(courses.map(({ slug }) => slug));
   const availableStartingPoints = startingPoints.filter(({ slug }) => courseSlugs.has(slug));
-  const wa = whatsappLink(settings["site.contact"]?.whatsapp, "Assalamu alaikum, which course would suit my child?");
+  const goals = learningGoals.filter(({ slugs }) => slugs.some((slug) => courseSlugs.has(slug)))
+    .map(({ id, label }) => ({ id, label }));
+  const entries = courses.map((course) => ({
+    slug: course.slug,
+    goal: learningGoals.find(({ slugs }) => slugs.includes(course.slug))?.id ?? "",
+    card: <CourseCard course={course} />,
+  }));
+  const wa = whatsappLink(settings["site.contact"]?.whatsapp, "Assalamu alaikum, could you help me choose a Quran course?");
   return (
     <>
       {courses.length > 0 && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(courseListSchema(courses, SITE_URL)) }} />}
       <PageHero path="/courses"
         eyebrow="Courses"
+        imageOverride={{
+          src: "/images/quran-courses-family.webp",
+          alt: "A parent sits with her daughter during an online Quran lesson.",
+        }}
         title="Online Quran courses for every age and level"
         arabic="تَعَلَّمِ القُرْآن"
         intro="Compare live one-to-one Quran lessons by learning goal. During a trial, discuss the learner’s starting level and a suitable pace."
@@ -72,9 +90,9 @@ export default async function CoursesPage() {
           </ul>
         </div>
       </section>}
-      <section id="all-courses" className="page-wrap py-11 sm:py-16" aria-labelledby="all-courses-title">
+      <section id="all-courses" className="page-wrap scroll-mt-24 py-11 sm:py-16" aria-labelledby="all-courses-title">
         <h2 id="all-courses-title" className="mb-6 text-2xl text-mushaf-900 sm:text-3xl">All online Quran courses</h2>
-        <CoursesGrid courses={courses} />
+        {goals.length ? <CourseFinder goals={goals} entries={entries} /> : <CoursesGrid courses={courses} />}
       </section>
       <section className="page-wrap pb-12" aria-labelledby="choose-course">
         <div className="surface space-y-4 p-6 sm:p-8">
