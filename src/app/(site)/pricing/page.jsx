@@ -2,7 +2,7 @@ import Link from "next/link";
 import { contentMetadata } from "@/lib/seo-metadata";
 import { CurrencyPricing } from "@/components/site/currency-pricing";
 import { FeeCompare } from "@/components/site/fee-compare";
-import { CreditCard, ShieldCheck } from "@/components/site/icons";
+import { ArrowRight, CreditCard, ShieldCheck } from "@/components/site/icons";
 import { PageHero, SectionHeading } from "@/components/site/chrome";
 import { CtaBand, FaqList } from "@/components/site/sections";
 import { getFaqs, getPlans, getSettings } from "@/lib/site-data";
@@ -35,11 +35,56 @@ export default async function PricingPage() {
 
   return (
     <>
-      <PageHero immersive path="/pricing"
+      <PageHero path="/pricing"
         eyebrow="Fees"
         title="Online Quran class fees and packages"
         intro="Choose how many days a week suit your family. Compare lesson frequency, duration and fees below. A 3-day free trial is available on eligible plans; the Weekend plan is excluded."
-      />
+      >
+        <div className="mt-6 flex flex-wrap gap-3">
+          <a className="btn btn-gold" href="#monthly-packages">See monthly fees <ArrowRight className="size-4" aria-hidden="true" /></a>
+          {plans.length > 0 && <a className="btn btn-outline-light" href="#compare-plans">Compare plans</a>}
+        </div>
+      </PageHero>
+      <section id="monthly-packages" className="page-wrap py-11 sm:py-16" aria-labelledby="monthly-packages-title">
+        <h2 id="monthly-packages-title" className="mb-5 text-2xl text-mushaf-900 sm:text-3xl">Monthly class packages</h2>
+        {packages.length > 0
+          ? <CurrencyPricing plans={packages} fx={fx} />
+          : <p className="surface p-5 text-ink-soft">Ask Admissions about available monthly packages. <Link href="/contact" className="font-semibold text-leaf-700 underline">Contact the college</Link>.</p>}
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          {[
+            { icon: ShieldCheck, title: "Free trial on eligible plans", text: "Try 3 days of classes before choosing an eligible package. The Weekend plan is excluded; confirm your plan with the coordinator." },
+            { icon: CreditCard, title: "Easy payment", text: "Pay monthly by card, PayPal or bank transfer. The coordinator confirms your payment currency." },
+          ].map(({ icon: Icon, title, text }) => (
+            <div key={title} className="flex gap-4 rounded-[var(--radius-card)] border border-line bg-white p-5">
+              <Icon className="mt-0.5 size-6 shrink-0 text-gold-600" aria-hidden="true" />
+              <div>
+                <h3 className="font-sans text-[1.02rem] font-bold text-mushaf-900">{title}</h3>
+                <p className="mt-1 text-[0.93rem] leading-relaxed text-ink-soft">{text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {plans.length > 0 && <section id="compare-plans" className="border-t border-line bg-[#f5faf1] py-16 sm:py-20" aria-labelledby="compare-plans-title">
+        <div className="page-wrap">
+          <SectionHeading eyebrow="Compare" title={<span id="compare-plans-title">Compare plans and estimate your family’s fees</span>} intro="See every plan side by side, then work out a monthly total for more than one learner." />
+          <div className="mt-10"><FeeCompare plans={plans} fx={fx} familyDiscount={settings["site.family_discount"]} /></div>
+          <p className="mx-auto mt-4 max-w-3xl text-center text-sm text-ink-soft">{familyDiscountCopy}</p>
+        </div>
+      </section>}
+
+      {other.length > 0 && (
+        <section className="border-y border-line bg-white/60 py-16 sm:py-20">
+          <div className="page-wrap">
+            <SectionHeading eyebrow="More options" title="Weekend and flexible plans" intro="For busy weekdays or adults who prefer a lighter pace." />
+            <div className="mt-12">
+              <CurrencyPricing plans={other} fx={fx} />
+            </div>
+          </div>
+        </section>
+      )}
+
       {quickAnswer && (
         <section className="page-wrap pt-12 sm:pt-16" aria-labelledby="fee-quick-answer">
           <div className="mx-auto max-w-3xl rounded-[var(--radius-card)] border border-line bg-white p-6 sm:p-7">
@@ -62,52 +107,13 @@ export default async function PricingPage() {
           </ul>
         </div>
       </section>
-      <section className="page-wrap pb-10" aria-labelledby="international-course-options">
+      <section className="page-wrap py-10" aria-labelledby="international-course-options">
         <div className="mx-auto max-w-3xl space-y-3">
           <h2 id="international-course-options" className="text-xl text-mushaf-900">Choosing a Quran course from abroad?</h2>
           <p className="text-ink-soft">Compare <Link href="/courses" className="text-leaf-700 underline">online Quran courses</Link> before selecting a package. Students in the UK, Europe, the USA, Canada and Australia can request lessons matched to their learning level and preferred local time, subject to teacher availability. Country guides explain scheduling; the coordinator confirms actual fees and currencies.</p>
           <p><Link href="/free-trial" className="font-semibold text-leaf-700 underline">Ask about an eligible free trial</Link> before enrolling.</p>
         </div>
       </section>
-      <section className="page-wrap py-16 sm:py-20" aria-labelledby="monthly-packages">
-        <h2 id="monthly-packages" className="sr-only">Monthly class packages</h2>
-        {packages.length > 0 && <CurrencyPricing plans={packages} fx={fx} />}
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
-          {[
-            { icon: ShieldCheck, title: "Free trial on eligible plans", text: "Try 3 days of classes before choosing an eligible package. The Weekend plan is excluded; confirm your plan with the coordinator." },
-            { icon: CreditCard, title: "Easy payment", text: "Pay monthly by card, PayPal or bank transfer. The coordinator confirms your payment currency." },
-          ].map(({ icon: Icon, title, text }) => (
-            <div key={title} className="flex gap-4 rounded-[var(--radius-card)] border border-line bg-white p-5">
-              <Icon className="mt-0.5 size-6 shrink-0 text-gold-600" aria-hidden="true" />
-              <div>
-                <h2 className="font-sans text-[1.02rem] font-bold text-mushaf-900">{title}</h2>
-                <p className="mt-1 text-[0.93rem] leading-relaxed text-ink-soft">{text}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-t border-line bg-[#f5faf1] py-16 sm:py-20" aria-labelledby="compare-plans">
-        <div className="page-wrap">
-          <SectionHeading eyebrow="Compare" title={<span id="compare-plans">Compare plans and estimate your family’s fees</span>} intro="See every plan side by side, then work out a monthly total for more than one learner." />
-          <div className="mt-10"><FeeCompare plans={plans} fx={fx} familyDiscount={settings["site.family_discount"]} /></div>
-          <p className="mx-auto mt-4 max-w-3xl text-center text-sm text-ink-soft">{familyDiscountCopy}</p>
-          
-        </div>
-      </section>
-
-      {other.length > 0 && (
-        <section className="border-y border-line bg-white/60 py-16 sm:py-20">
-          <div className="page-wrap">
-            <SectionHeading eyebrow="More options" title="Weekend and flexible plans" intro="For busy weekdays or adults who prefer a lighter pace." />
-            <div className="mt-12">
-              <CurrencyPricing plans={other} fx={fx} />
-            </div>
-          </div>
-        </section>
-      )}
-
       {feeFaqs.length === 0 && quickAnswer && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema(schemaFaqs)) }} />}
       {feeFaqs.length > 0 && (
         <section className="page-wrap py-16 sm:py-20">

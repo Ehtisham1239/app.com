@@ -42,7 +42,8 @@ export function FeeCompare({ plans, fx = null, defaultCurrency = "USD", explicit
               <h3 className="font-sans text-lg font-bold text-mushaf-900">Compare every plan</h3>
               <p className="mt-1 text-sm text-ink-soft">All lessons are live and one-to-one. {anyApprox ? `Amounts marked ≈ are converted from US dollars at the latest available exchange rate.` : `Fees shown in ${currency}.`}</p>
             </div>
-            <div className="overflow-x-auto" role="region" aria-label="Plan comparison" tabIndex={0}>
+            <p className="border-b border-line px-5 py-2 text-xs text-ink-soft lg:hidden">Scroll the table to see all plan details.</p>
+            <div className="mx-1 overflow-x-auto overscroll-x-contain focus-visible:outline-offset-[-3px]" role="region" aria-label="Plan comparison" tabIndex={0}>
               <table className="w-full min-w-[34rem] text-left text-sm">
                 <thead className="text-xs uppercase tracking-wide text-ink-soft">
                   <tr>
@@ -75,14 +76,14 @@ export function FeeCompare({ plans, fx = null, defaultCurrency = "USD", explicit
 
           <div className="surface p-5 sm:p-6">
             <h3 className="font-sans text-lg font-bold text-mushaf-900">Multi-learner fee estimator</h3>
-            <p className="mt-1 text-sm text-ink-soft">Estimate your family’s combined monthly fee. The first learner pays the published fee; eligible additional siblings receive the backend-approved discount.</p>
+            <p className="mt-1 text-sm text-ink-soft">Estimate your family’s combined monthly fee. The first learner pays the published fee; eligible additional siblings receive the published discount.</p>
             <label htmlFor="fee-plan" className="field-label mt-5">Plan</label>
             <select id="fee-plan" className="input" value={selectedRow.plan.id} onChange={(e) => setPlanId(e.target.value)}>
               {priced.map((row) => <option key={row.plan.id} value={row.plan.id}>{row.plan.name} — {money(row.price, row.price.amount_minor)} / month</option>)}
             </select>
             <fieldset className="mt-5">
               <legend className="field-label">Number of learners</legend>
-              <div className="mt-1 flex gap-2">
+              <div className="mt-1 flex flex-wrap gap-2">
                 {Array.from({ length: Math.max(1, Math.min(5, Number(familyDiscount?.max_learners) || 5)) }, (_, i) => i + 1).map((n) => (
                   <button key={n} type="button" aria-pressed={learners === n} onClick={() => setLearners(n)}
                     className={`size-11 rounded-full border text-base font-semibold transition-colors ${learners === n ? "border-leaf-700 bg-leaf-700 text-white" : "border-line bg-white text-mushaf-900 hover:border-leaf-700"}`}>{n}</button>

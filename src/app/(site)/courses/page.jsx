@@ -1,6 +1,6 @@
 import { contentMetadata } from "@/lib/seo-metadata";
 import Link from "next/link";
-import { ArrowRight } from "@/components/site/icons";
+import { ArrowRight, BookA, BookMarked, BookOpen } from "@/components/site/icons";
 import { PageHero } from "@/components/site/chrome";
 import { CoursesGrid, CtaBand } from "@/components/site/sections";
 import { getCourses, getSettings } from "@/lib/site-data";
@@ -21,20 +21,31 @@ const internationalGuides = [
   ["/blog/online-quran-lessons-uae-families", "the UAE", "Prepare your course, language and scheduling questions for Admissions."],
 ];
 
+const startingPoints = [
+  { slug: "noorani-qaida", label: "Start with Arabic letters", detail: "For learners who are recognising letters or joining sounds.", Icon: BookA, tone: 1 },
+  { slug: "quran-nazara", label: "Read with confidence", detail: "For readers working on pronunciation, fluency and Tajweed.", Icon: BookOpen, tone: 2 },
+  { slug: "hifz-quran", label: "Work on memorisation", detail: "For learners building their Hifz and revision routine.", Icon: BookMarked, tone: 3 },
+];
+
 export default async function CoursesPage() {
   const [courses, settings] = await Promise.all([getCourses(), getSettings()]);
+  const courseSlugs = new Set(courses.map(({ slug }) => slug));
+  const availableStartingPoints = startingPoints.filter(({ slug }) => courseSlugs.has(slug));
   const wa = whatsappLink(settings["site.contact"]?.whatsapp, "Assalamu alaikum, which course would suit my child?");
   return (
     <>
       {courses.length > 0 && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(courseListSchema(courses, SITE_URL)) }} />}
-      <PageHero immersive path="/courses"
+      <PageHero path="/courses"
         eyebrow="Courses"
         title="Online Quran courses for every age and level"
         arabic="تَعَلَّمِ القُرْآن"
         intro="Compare live one-to-one Quran lessons by learning goal. During a trial, discuss the learner’s starting level and a suitable pace."
       >
         <div className="mt-8 flex flex-wrap gap-3">
-          <Link href="/free-trial" className="btn btn-gold">
+          <a href="#all-courses" className="btn btn-gold">
+            Browse courses <ArrowRight className="size-4" aria-hidden="true" />
+          </a>
+          <Link href="/free-trial" className="btn btn-outline-light">
             Book a free trial <ArrowRight className="size-4" aria-hidden="true" />
           </Link>
           <Link href="/pricing" className="btn btn-outline-light">
@@ -42,8 +53,27 @@ export default async function CoursesPage() {
           </Link>
         </div>
       </PageHero>
-      <section className="page-wrap py-16 sm:py-20" aria-labelledby="all-courses">
-        <h2 id="all-courses" className="sr-only">All online Quran courses</h2>
+      {availableStartingPoints.length > 0 && <section className="border-b border-line bg-paper" aria-labelledby="starting-point">
+        <div className="page-wrap py-9 sm:py-12">
+          <h2 id="starting-point" className="text-2xl text-mushaf-900 sm:text-3xl">Find your starting point</h2>
+          <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {availableStartingPoints.map(({ slug, label, detail, Icon, tone }) => (
+              <li key={slug}>
+                <Link href={`/courses/${slug}`} data-card-tone={tone} className="editorial-card card-tinted flex h-full items-start gap-3 p-4">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-white text-leaf-800"><Icon className="size-5" aria-hidden="true" /></span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block font-bold leading-tight text-mushaf-900">{label}</span>
+                    <span className="mt-1 block text-sm leading-relaxed text-ink-soft">{detail}</span>
+                  </span>
+                  <ArrowRight className="mt-1 size-4 text-leaf-800" aria-hidden="true" />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>}
+      <section id="all-courses" className="page-wrap py-11 sm:py-16" aria-labelledby="all-courses-title">
+        <h2 id="all-courses-title" className="mb-6 text-2xl text-mushaf-900 sm:text-3xl">All online Quran courses</h2>
         <CoursesGrid courses={courses} />
       </section>
       <section className="page-wrap pb-12" aria-labelledby="choose-course">
