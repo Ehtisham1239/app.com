@@ -66,6 +66,7 @@ export default async function CoursesPage() {
               </li>
             ))}
           </ul>
+          <p>Country lesson guides: <Link href="/locations/united-kingdom" className="text-leaf-700 underline">UK</Link>, <Link href="/locations/united-states" className="text-leaf-700 underline">USA</Link>, <Link href="/locations/canada" className="text-leaf-700 underline">Canada</Link>, <Link href="/locations/australia" className="text-leaf-700 underline">Australia</Link> and <Link href="/locations/united-arab-emirates" className="text-leaf-700 underline">UAE</Link>.</p>
           <p>Compare <Link href="/pricing" className="text-leaf-700 underline">fees and packages</Link> or <Link href="/free-trial" className="text-leaf-700 underline">request a trial in your time zone</Link>. Admissions confirms teacher availability, lesson language, currency and fees before enrolment.</p>
         </div>
       </section>

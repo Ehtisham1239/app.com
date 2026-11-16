@@ -19,5 +19,5 @@ test('new CMS articles receive a useful fallback without fabricated article or c
 test('Canada and UAE planning guides share the international scheduling resources with the USA and Australia guides', () => {
   const australia = articleResources({ slug: 'quran-lessons-australia-time-zones' });
   for (const slug of ['online-quran-lessons-canada-time-zones', 'online-quran-lessons-uae-families']) assert.deepEqual(articleResources({ slug }), australia, slug);
-  assert.deepEqual(australia.links.map(link => link.href), ['/contact', '/pricing']);
+  assert.deepEqual(australia.links.map(link => link.href), ['/locations', '/pricing']);
 });

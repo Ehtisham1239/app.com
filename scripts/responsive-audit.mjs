@@ -1,7 +1,8 @@
 // Responsive audit of the live site (or SMOKE_BASE_URL): opens the main public
 // pages at phone, tablet and desktop widths and fails when a page scrolls
 // sideways, i.e. something is wider than the screen outside a scrollable box.
-// Screenshots at 390px go to RESPONSIVE_SHOTS_DIR when set.
+// Also checks the five country-hub hreflang cluster and that retired city pages
+// permanently redirect to their country hub (owner decision, 16 Nov 2026). Screenshots at 390px go to RESPONSIVE_SHOTS_DIR when set.
 import { chromium, devices } from "playwright";
 import { mkdirSync } from "node:fs";
 
@@ -12,8 +13,13 @@ const DEVICE_PROFILES = ["iPhone 13", "iPhone 14 Pro Max", "Pixel 7", "iPad Pro 
 export const PAGES = [
   "/", "/courses", "/courses/hifz-quran", "/courses/noorani-qaida", "/pricing", "/free-trial", "/teachers",
   "/reviews", "/learn", "/learn/quran-for-adults", "/blog", "/blog/online-quran-class-fees-uk-comparison",
-  "/faq", "/about", "/contact",
+  "/faq", "/about", "/contact", "/locations",
+  "/locations/united-kingdom", "/locations/united-states", "/locations/canada", "/locations/australia", "/locations/united-arab-emirates",
 ];
+const HUBS = ["/locations/united-kingdom", "/locations/united-states", "/locations/canada", "/locations/australia", "/locations/united-arab-emirates"];
+// Retired city pages must land on their country hub.
+const RETIRED_CITY_PAGES = [["/locations/united-states/houston", "/locations/united-states"], ["/locations/united-kingdom/london", "/locations/united-kingdom"]];
+
 // Runs in the page: elements that stick out past the right edge and are not
 // inside a box that scrolls or clips horizontally.
 function overflowReport() {
@@ -98,10 +104,23 @@ async function main() {
     }
     await context.close();
   }
+  const page = await browser.newPage();
+  for (const path of HUBS) {
+    await auditedGoto(page, `${base}${path}`);
+    const langs = await page.$$eval('link[rel="alternate"][hreflang]', (els) => els.map((e) => `${e.getAttribute("hreflang")}=${new URL(e.href).pathname}`).sort());
+    const want = ["en-AE=/locations/united-arab-emirates", "en-AU=/locations/australia", "en-CA=/locations/canada", "en-GB=/locations/united-kingdom", "en-US=/locations/united-states", "x-default=/locations"];
+    checks++;
+    if (JSON.stringify(langs) !== JSON.stringify(want)) failures.push(`${path}: hreflang ${JSON.stringify(langs)}`);
+  }
+  for (const [path, hub] of RETIRED_CITY_PAGES) {
+    await auditedGoto(page, `${base}${path}`);
+    checks++;
+    if (new URL(page.url()).pathname !== hub) failures.push(`${path}: landed on ${new URL(page.url()).pathname}, expected ${hub}`);
+  }
   await browser.close();
-  console.log(`Responsive audit: ${checks} checks on ${base}`);
+  console.log(`Responsive audit: ${checks} checks on ${base} (${PAGES.length} pages × ${WIDTHS.length} widths, ${DEVICE_PROFILES.length} device profiles, hreflang on ${HUBS.length} hubs, ${RETIRED_CITY_PAGES.length} retired city redirects)`);
   if (failures.length) { console.log(`FAIL (${failures.length}):\n- ${failures.join("\n- ")}`); process.exit(1); }
-  console.log("PASS: no sideways scrolling at any tested width or device");
+  console.log("PASS: no sideways scrolling at any width; hreflang as expected; retired city pages redirect to their country hub");
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) await main();
