@@ -331,7 +331,6 @@
 
 /* Lightweight home motion uses compositor properties, with no hidden content dependency. */
 @keyframes home-arrive { from { transform: translateY(24px); opacity: .35; } to { transform: none; opacity: 1; } }
-@keyframes portrait-arrive { from { transform: translateY(16px) scale(.985); } to { transform: none; } }
 @keyframes glow-drift { from { transform: translate(-20px, 15px) scale(.88); opacity: .25; } to { transform: translate(0, 0) scale(1); opacity: .65; } }
 .hero-glow { position: absolute; pointer-events: none; width: 24rem; height: 24rem; border-radius: 50%; opacity: .65; background: radial-gradient(circle, rgb(36 156 12 / .13), transparent 68%); }
 .hero-glow-one { right: -5rem; top: -8rem; }
@@ -341,7 +340,6 @@ main section[id], main [id^="c-"], main [id^="t-"] { scroll-margin-top: 7rem; }
   /* No entrance animation on the hero image: it is the LCP element and a 0.9 s
      transform held back its paint by the same amount on mobile. */
   .home-hero .hero-glow { animation: glow-drift 4.5s ease-out backwards; }
-  .home-hero .hero-actions { animation: home-arrive .7s ease-out backwards; }
   .home-reveal { animation: home-arrive .65s cubic-bezier(.2,.65,.3,1) var(--reveal-delay, 0ms) backwards; }
   [data-home-motion] .surface { transition: transform .2s ease, box-shadow .2s ease; }
   [data-home-motion] a.surface img { transition: transform .5s ease; }
@@ -363,10 +361,6 @@ main section[id], main [id^="c-"], main [id^="t-"] { scroll-margin-top: 7rem; }
   .prose-oqc, .prose { overflow-wrap: anywhere; }
 }
 img { max-width: 100%; }
-@media (max-width: 1023px) and (max-height: 600px) {
-  .home-hero .hero-layout { padding-top: 24px; }
-  .home-hero .hero-portrait { max-width: 220px; }
-}
 .editorial-card {
   min-width: 0;
   overflow: hidden;
@@ -430,8 +424,18 @@ a.editorial-card:focus-visible .card-arrow { background: var(--color-leaf-700); 
 .trial-option > summary::-webkit-details-marker { display: none; }
 .trial-option > summary::after { content: ""; flex: 0 0 .55rem; height: .55rem; border: solid currentColor; border-width: 0 2px 2px 0; rotate: 45deg; }
 .trial-option[open] > summary::after { rotate: 225deg; }
-.home-hero .hero-copy h1 { text-wrap: balance; }
-.home-hero .hero-intro { color: var(--color-ink-soft); }
+.home-hero { background: radial-gradient(ellipse at 95% 0%, #e2f0dd, transparent 45%), linear-gradient(115deg, #fcfaf3, #f5faf2 70%, #f9faf7); }
+.hero-copy h1 { font-size: clamp(2rem, 4.1vw, 3.75rem); line-height: 1.04; letter-spacing: -.04em; text-wrap: balance; }
+.hero-portrait {
+  padding: 7px;
+  border: 1px solid #c6a250;
+  border-radius: 2rem;
+  background: #fffbed;
+  box-shadow: 0 20px 44px -22px rgb(13 74 28 / .48);
+}
+.hero-portrait picture { border-radius: calc(2rem - 8px); background: var(--color-leaf-50); }
+.hero-stats { overflow: hidden; gap: 1px; border-radius: 1.15rem; background: #4b7751; }
+.hero-stats > div { min-width: 0; background: var(--color-mushaf-900); overflow-wrap: anywhere; }
 @supports (padding: env(safe-area-inset-bottom)) {
   body { padding-bottom: env(safe-area-inset-bottom); }
 }
@@ -449,23 +453,13 @@ main input:not([type="checkbox"]):not([type="radio"]), main select, main textare
   .site-header img { height: 64px; width: 64px; max-width: 64px; }
   .mobile-menu-trigger { width: 44px; height: 44px; min-width: 44px; min-height: 44px; border: 0; border-radius: 9px; background: #f1f9ec; color: #0c6c0c; }
   .mobile-menu-trigger svg { width: 24px; height: 24px; }
-  .home-hero { margin-top: 0; background: linear-gradient(115deg, #f8fbf5, #f1f9ec 80%, #fff); }
-  .home-hero .hero-layout { padding: 38px 16px 36px; gap: 32px; }
-  .home-hero .hero-copy { grid-row: 1; min-width: 0; text-align: center; }
-  .home-hero .hero-portrait { grid-row: 2; width: 82vw; max-width: 360px; border-width: 8px; border-radius: 1.5rem; }
-  .home-hero .arabic { text-align: center; font-size: clamp(27px, 8.3vw, 36px); line-height: 1.8; min-height: 1.8em; }
-  .home-hero h1 { margin: 12px auto 0; font-size: clamp(22px, 6.1vw, 31px); line-height: 1.2; font-weight: 800; color: #0c6c0c; text-wrap: wrap; }
-  .home-hero .hero-intro { margin: 16px auto 0; font-size: 14px; line-height: 1.75; color: #535b61; }
-  .home-hero .hero-actions, .home-hero .hero-badges, .home-hero .hero-proof { justify-content: center; }
-  .home-hero .hero-eyebrow { margin-inline: auto; font-size: .68rem; letter-spacing: .1em; }
-  .home-hero .hero-proof { max-width: 27rem; margin-inline: auto; gap: .65rem 1rem; font-size: .8rem; }
-  .home-hero .hero-areas { margin-top: 1rem; }
-}
-
-/* The first mobile view introduces the college; enquiry fields appear only on request. */
-@media (max-width: 1023px) {
-  .home-hero .hero-copy { grid-row: 1; }
-  .home-hero .hero-portrait { grid-row: 2; width: 100%; max-width: 600px; border-radius: 1.75rem; }
+  .hero-copy { text-align: center; }
+  .hero-copy h1 { margin-inline: auto; font-size: clamp(1.9rem, 7.5vw, 2.6rem); }
+  .hero-intro { margin-inline: auto; }
+  .hero-verse { margin-inline: auto; padding-inline: .5rem; border: 0; border-top: 1px solid var(--color-gold-300); }
+  .hero-verse .arabic { text-align: center; }
+  .hero-proof { justify-content: center; }
+  .hero-badges { justify-content: flex-start; padding-inline: .5rem; }
 }
 
 /* Soft course/package colours retain dark text and distinct focus outlines. */
@@ -475,7 +469,6 @@ main input:not([type="checkbox"]):not([type="radio"]), main select, main textare
 .card-tinted[data-card-tone="3"] { --card-wash: #f2eaff; --card-accent: #c5afe1; }
 .card-tinted[data-card-tone="4"] { --card-wash: #ffeef0; --card-accent: #e4adb9; }
 .card-tinted[data-card-tone="5"] { --card-wash: #e4f8f4; --card-accent: #8dcfc1; }
-.home-hero .hero-portrait { width: 100%; max-width: 440px; }
 
 /* Mobile action bar: hidden (and not focusable) until the visitor scrolls past the first screen. */
 .mobile-action-bar { transform: translateY(110%); visibility: hidden; transition: transform .25s ease, visibility 0s linear .25s; }
@@ -512,9 +505,11 @@ main input:not([type="checkbox"]):not([type="radio"]), main select, main textare
 @keyframes review-fade-in { from { opacity: 0; } to { opacity: 1; } }
 .review-help summary::-webkit-details-marker { display: none; }
 
-/* Homepage jump links: one sideways-scrolling row on phones, no visible scrollbar. */
-.home-jump-row { scrollbar-width: none; overscroll-behavior-x: contain; }
-.home-jump-row::-webkit-scrollbar { display: none; }
+/* Keep a visible scroll affordance and clearance for keyboard focus. */
+.home-jump-row { scrollbar-width: thin; scrollbar-color: var(--color-leaf-500) transparent; overscroll-behavior-x: contain; scroll-padding-inline: .4rem; }
+.home-jump:hover { border-color: var(--color-leaf-500); }
+.mobile-menu-panel { border-inline-start: 1px solid var(--color-line); }
+.mobile-menu-panel nav [aria-current="page"] { box-shadow: inset 3px 0 var(--color-leaf-700); }
 
 
 /* Site-wide motion for inner landing pages: reveal only after entering view.

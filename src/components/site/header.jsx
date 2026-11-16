@@ -200,7 +200,7 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
         />
         <div
           className={clsx(
-            "absolute inset-y-0 right-0 flex max-h-[100dvh] w-[min(22rem,88vw)] flex-col bg-paper shadow-2xl transition-transform duration-300",
+            "mobile-menu-panel absolute inset-y-0 right-0 flex max-h-[100dvh] w-[min(22rem,92vw)] flex-col bg-white shadow-2xl transition-transform duration-300",
             open ? "translate-x-0" : "translate-x-full",
           )}
           ref={dialogRef}
@@ -209,9 +209,9 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
           aria-modal="true"
           aria-label="Menu"
         >
-          <div className="flex min-h-[4.5rem] shrink-0 items-center justify-between gap-2 border-b border-line px-5 py-2">
+          <div className="flex min-h-[4.5rem] shrink-0 items-center justify-between gap-2 border-b border-line bg-paper px-5 py-2">
             <span className="min-w-0 break-words font-display text-lg text-mushaf-900">{brandName}</span>
-            <button type="button" className="flex size-11 shrink-0 items-center justify-center rounded-full hover:bg-leaf-50" onClick={() => setOpen(false)} aria-label="Close menu">
+            <button type="button" className="flex size-11 shrink-0 items-center justify-center rounded-full bg-white text-mushaf-900 hover:bg-leaf-50" onClick={() => setOpen(false)} aria-label="Close menu">
               <X className="size-5" aria-hidden="true" />
             </button>
           </div>

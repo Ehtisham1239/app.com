@@ -21,9 +21,9 @@ test("CMS hero and image-text sections use responsive AVIF/WebP image variants",
   assert.match(image, /srcSet=\{asset \? asset\.variants/);
   assert.match(image, /loading=\{priority \? "eager" : "lazy"\}/);
   assert.match(hero, /max-w-\[440px\]/);
-  assert.match(hero, /const HERO_SIZES = "\(max-width: 471px\) calc\(100vw - 48px\), 424px"/);
+  assert.match(hero, /const HERO_SIZES = "\(max-width: 471px\) calc\(100vw - 48px\), \(min-width: 768px\) and \(max-width: 1023px\) calc\(45vw - 61px\), 424px"/);
   assert.match(hero, /preload\("\/brand\/hero\.avif", \{\s*as: "image",\s*type: "image\/avif",\s*imageSrcSet: HERO_AVIF,\s*imageSizes: HERO_SIZES,\s*media: "\(min-width: 1024px\)",\s*fetchPriority: "high"/);
-  assert.match(hero, /<picture[^>]*><source[^>]*srcSet=\{HERO_AVIF\}[^>]*\/><img[^>]*loading="eager"/);
+  assert.match(hero, /<picture[^>]*>\s*<source[^>]*srcSet=\{HERO_AVIF\}[^>]*\/>\s*<img[^>]*loading="eager"/);
 });
 
 test("the responsive audit covers phone to desktop widths and the market pages", () => {

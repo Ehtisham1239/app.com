@@ -18,21 +18,21 @@ export function TopBar({ announcement }) {
   );
 }
 
-// Section heading with the gold diamond rule used across the site.
+// Shared headings keep the page hierarchy consistent across the public site.
 export function SectionHeading({ eyebrow, title, intro, align = "center", tone = "light", className = "" }) {
   const centered = align === "center";
   const dark = tone === "dark";
   return (
     <div className={`${centered ? "mx-auto text-center" : ""} max-w-2xl ${className}`}>
       {eyebrow && (
-        <p className={`flex items-center gap-3 text-xs font-bold uppercase tracking-[0.22em] ${centered ? "justify-center" : ""} ${dark ? "text-leaf-200" : "text-leaf-700"}`}>
+        <p className={`flex items-center gap-2.5 text-xs font-bold uppercase tracking-[0.16em] ${centered ? "justify-center" : ""} ${dark ? "text-leaf-200" : "text-leaf-700"}`}>
           <span className={`h-px w-8 ${dark ? "bg-gold-400/60" : "bg-gold-500/60"}`} aria-hidden="true" />
           {eyebrow}
-          <span className={`h-px w-8 ${dark ? "bg-gold-400/60" : "bg-gold-500/60"}`} aria-hidden="true" />
+          {centered && <span className={`h-px w-8 ${dark ? "bg-gold-400/60" : "bg-gold-500/60"}`} aria-hidden="true" />}
         </p>
       )}
-      <h2 className={`mt-4 text-[2.1rem] sm:text-[2.6rem] ${dark ? "text-white" : "text-mushaf-900"}`}>{title}</h2>
-      {intro && <p className={`mt-4 text-[1.05rem] leading-relaxed ${dark ? "text-white/75" : "text-ink-soft"}`}>{intro}</p>}
+      <h2 className={`mt-3 text-balance text-[1.85rem] sm:text-[2.5rem] ${dark ? "text-white" : "text-mushaf-900"}`}>{title}</h2>
+      {intro && <p className={`mt-3 text-[1.03rem] leading-relaxed ${dark ? "text-white/75" : "text-ink-soft"}`}>{intro}</p>}
     </div>
   );
 }
