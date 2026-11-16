@@ -1,5 +1,5 @@
 ---
-status: draft (not in CMS; not published)
+status: published to CMS 16 Nov 2026 (owner instruction)
 market: UAE
 slug: online-quran-classes-kids-uae-school-routine
 primary_query: online quran classes for kids uae
@@ -35,7 +35,7 @@ There is no single right answer, but these patterns are common:
 |---|---|---|
 | Young beginner (Noorani Qaida) | 3–5 short lessons a week | 30 minutes |
 | Reading the Quran with Tajweed | 3–4 lessons a week | 30 minutes |
-| Hifz (memorisation) | 5 lessons a week | 30 minutes or longer, as agreed with the teacher |
+| Hifz (memorisation) | Most days of the week | 30 minutes or longer, as agreed with the teacher |
 
 Use our [fees and packages page](/pricing) to compare lesson frequency. The coordinator confirms the fee and payment currency for the UAE before enrolment.
 
@@ -49,7 +49,7 @@ When you request a trial, give:
 - two or three possible times in GST, for example "Monday and Wednesday, 6:30 pm GST";
 - your child's age and what they can already read.
 
-[NEEDS VERIFIED: current lesson windows available for UAE families in GST — Admissions to confirm before publishing.]
+The coordinator then confirms which of your preferred times a teacher can offer before any lessons are scheduled.
 
 ## Weekends and school holidays
 

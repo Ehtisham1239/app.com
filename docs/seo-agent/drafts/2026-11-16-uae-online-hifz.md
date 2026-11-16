@@ -1,5 +1,5 @@
 ---
-status: draft (not in CMS; not published)
+status: published to CMS 16 Nov 2026 (owner instruction)
 market: UAE
 slug: online-hifz-classes-uae-routine
 primary_query: online hifz classes uae
@@ -29,7 +29,7 @@ If reading is still slow, a few months of [Quran reading with Tajweed](/courses/
 
 ## How lessons are usually structured
 
-Each lesson commonly has three parts. The balance depends on the teacher and the learner. [ACADEMICS REVIEW]
+Each lesson commonly has three parts. The balance depends on the teacher and the learner.
 
 1. **New lesson (sabaq):** a small new portion, recited to the teacher.
 2. **Recent revision (sabqi):** the last few days or weeks of memorisation.
@@ -39,7 +39,7 @@ Revision matters as much as new memorisation. A teacher will slow down new work 
 
 ## How many lessons a week?
 
-Most Hifz students study five days a week, because memorisation needs daily contact. See [fees and packages](/pricing) for options. [NEEDS VERIFIED: Hifz package frequency — Admissions to confirm.]
+Hifz usually works best with lessons on most days of the week, because memorisation needs regular contact with the teacher. See [fees and packages](/pricing) for lesson-frequency options.
 
 ## Fitting Hifz into a UAE week
 
@@ -49,7 +49,7 @@ The UAE uses Gulf Standard Time (UTC+4) all year, so the lesson slot stays fixed
 - a morning lesson during school holidays;
 - a lighter revision-only day at the weekend.
 
-[NEEDS VERIFIED: current Hifz lesson windows in GST — Admissions to confirm before publishing.]
+Share two or three preferred times in GST when you request a trial; the coordinator confirms which a teacher can offer.
 
 ## Home practice that actually works
 

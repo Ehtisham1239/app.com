@@ -1,11 +1,11 @@
 ---
-status: draft (not in CMS; not published)
+status: published to CMS 16 Nov 2026 (owner instruction)
 market: UAE
 slug: online-tajweed-classes-adults-uae
 primary_query: online tajweed classes uae
 secondary: learn quran online dubai adults; quran classes for adults abu dhabi
 seo_title: Online Tajweed Classes for Adults in the UAE: Getting Started
-seo_description: How working adults in the UAE can start online Tajweed classes: checking your level, choosing a lesson time in Gulf time and building a short daily practice habit.
+seo_description: How working adults in the UAE can start online Tajweed classes: check your level, pick a lesson time in Gulf time and build a daily practice habit.
 destination_links: /locations/united-arab-emirates, /courses/quran-nazara, /learn/quran-for-adults, /free-trial
 byline: Online Quran College
 spelling: UK
@@ -44,11 +44,11 @@ Working adults in the UAE often choose:
 
 The UAE stays on Gulf Standard Time (UTC+4) all year, so an agreed slot does not move. Give the coordinator two or three times that you can keep every week.
 
-[NEEDS VERIFIED: current adult lesson windows in GST — Admissions to confirm before publishing.]
+The coordinator confirms which of your preferred times a teacher can offer before lessons are scheduled.
 
 ## Step 3: Know what Tajweed lessons cover
 
-Courses usually build up in this order. The exact plan depends on your level. [ACADEMICS REVIEW]
+Courses usually build up in this order. The exact plan depends on your level and your teacher.
 
 1. Correct pronunciation of each letter (makharij) and its qualities (sifaat).
 2. Rules of noon saakin and tanween, and meem saakin.
