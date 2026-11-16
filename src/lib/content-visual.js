@@ -85,11 +85,11 @@ const covers = {
 // replace any cover with a newly uploaded image.
 const articleCoverUpdates = {
   "tajweed-rules-for-beginners": {
-    previous: "oqc-learning-australia-melbourne-v3-1200.webp",
+    previous: ["oqc-learning-australia-melbourne-v3-1200.webp", "map-australia-melbourne-r2-1200.webp", "map-australia-melbourne-1200.webp"],
     replacement: "importance-of-reciting-quran-with-tajweed",
   },
   "online-quran-class-fees-usa-comparison": {
-    previous: "blog-usa-teacher-r2-1200.webp",
+    previous: ["blog-usa-teacher-r2-1200.webp", "blog-usa-teacher-1200.webp"],
     replacement: "online-quran-class-fees-uk-comparison",
   },
 };
@@ -97,7 +97,8 @@ const articleCoverUpdates = {
 export function contentVisual(record) {
   const src = record.cover_url?.trim();
   const update = articleCoverUpdates[record.slug];
-  const replaceLegacy = update && (!src || src.split(/[?#]/, 1)[0].endsWith(`/${update.previous}`));
+  const file = src?.split(/[?#]/, 1)[0].split("/").at(-1);
+  const replaceLegacy = update && (!src || update.previous.includes(file));
   if (replaceLegacy) return covers[update.replacement];
 
   const fallback = covers[record.slug] || {
