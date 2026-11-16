@@ -94,7 +94,8 @@ function supportingImage(slug, cover, html) {
     [/setup-accessibility/, ["blog-first-trial"]],
     [/trial|kids|child|parent|famil/, ["blog-first-trial", "blog-kids-learning"]],
   ];
-  const candidates = topics.find(([pattern]) => pattern.test(slug))?.[1] || [];
+  const topicImages = topics.find(([pattern]) => pattern.test(slug))?.[1] ?? [];
+  const candidates = [...topicImages, "blog-parent-progress", "blog-accessible-setup"];
   const coverUrl = new URL(publicImageUrl(cover), SITE_URL).href;
   return candidates.map(key => supportingImages[key]).find(([src]) => new URL(publicImageUrl(src), SITE_URL).href !== coverUrl) || null;
 }
@@ -155,10 +156,13 @@ export default async function PostPage({ params }) {
         <div className="page-wrap article-layout">
           <aside className="article-sidebar order-first min-w-0 lg:order-last" aria-label="Article navigation and learning resources">
             {headings.length > 1 && <details className="article-toc rounded-2xl border border-leaf-100 bg-[#f5faf1] px-5 py-3"><summary>In this article <span className="ml-auto mr-3 text-xs font-normal text-ink-soft">{headings.length} sections</span></summary><nav aria-label="In this article"><ol className="mt-2">{headings.map(heading => <li key={heading.id}><a href={`#${heading.id}`}>{heading.title}</a></li>)}</ol></nav></details>}
-            <div className="mt-5 rounded-2xl border border-line bg-white p-5">
+            <div className="article-learning-panel mt-5 rounded-2xl border border-leaf-200 bg-leaf-50 p-5">
               <h2 className="font-sans text-lg font-semibold">Continue your learning</h2>
               <p className="mb-4 mt-2 text-sm text-ink-soft">{resources.label}</p>
               {resources.links.map(link => <Link key={link.href} href={link.href} className="article-resource">{link.label}<ArrowRight className="size-4 shrink-0" aria-hidden="true" /></Link>)}
+              <Link href={trialHref} className="btn btn-primary mt-3 w-full">
+                Book a free trial <ArrowRight className="size-4" aria-hidden="true" />
+              </Link>
             </div>
           </aside>
           <div className="article-body min-w-0">
@@ -188,7 +192,7 @@ export default async function PostPage({ params }) {
           <section className="mt-8 max-w-[68ch] rounded-2xl border border-line bg-paper p-5 sm:p-6" aria-labelledby="article-next-step">
             <h2 id="article-next-step" className="text-xl">Keep this guide</h2>
             <p className="mb-4 mt-2 text-sm text-ink-soft">Save or share this guide when you want to revisit it.</p>
-            <ArticleTools url={`${SITE_URL}/blog/${post.slug}`} />
+            <ArticleTools url={`${SITE_URL}/blog/${post.slug}`} title={post.title} />
           </section>
           <p className="article-print-source hidden">Online Quran College · {SITE_URL}/blog/{post.slug}</p>
           </div>
