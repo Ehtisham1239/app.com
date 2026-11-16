@@ -12,6 +12,11 @@ on:
         description: "Send to IndexNow (unticked = dry run)"
         type: boolean
         default: false
+      paths:
+        description: "Optional: space-separated paths to send instead of the last 7 days (e.g. /locations /locations/united-kingdom)"
+        type: string
+        required: false
+        default: ""
 
 permissions:
   contents: read
@@ -37,9 +42,18 @@ jobs:
           node-version: 22
 
       - name: Send changed pages (scheduled) or dry run (manual default)
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          SUBMIT: ${{ inputs.submit }}
+          PATHS: ${{ inputs.paths }}
         run: |
-          if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ inputs.submit }}" = "true" ]; then
-            node scripts/indexnow.mjs --recent-days=7 --submit
+          flags=()
+          if [ "$EVENT_NAME" = "schedule" ] || [ "$SUBMIT" = "true" ]; then flags+=(--submit); fi
+          if [ "$EVENT_NAME" = "workflow_dispatch" ] && [ -n "$PATHS" ]; then
+            # Explicit paths; scripts/indexnow.mjs still requires each one to be a
+            # same-origin, sitemap-listed, 200, indexable, self-canonical page.
+            read -ra targets <<< "$PATHS"
+            node scripts/indexnow.mjs "${targets[@]}" "${flags[@]}"
           else
-            node scripts/indexnow.mjs --recent-days=7
+            node scripts/indexnow.mjs --recent-days=7 "${flags[@]}"
           fi
