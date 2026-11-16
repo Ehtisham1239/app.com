@@ -37,6 +37,15 @@ export function SiteFooter({ settings, menus }) {
     <footer className="site-footer relative overflow-hidden text-mushaf-900">
       <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.05]" aria-hidden="true" />
       <div className="page-wrap relative pt-10 sm:pt-14">
+        <figure className="quran-verse-panel mb-6 rounded-3xl px-5 py-6 text-center sm:px-8">
+          <blockquote>
+            <p lang="ar" dir="rtl" className="arabic text-3xl leading-relaxed sm:text-4xl">رَبِّ زِدْنِي عِلْمًا</p>
+            <p className="mt-1 text-sm leading-relaxed">“My Lord, increase me in knowledge.”</p>
+          </blockquote>
+          <figcaption className="mt-2 text-sm">
+            <a href="https://quran.com/20/114" className="font-semibold underline underline-offset-4">Qur’an 20:114 · excerpt</a>
+          </figcaption>
+        </figure>
         <div className="footer-invitation flex flex-wrap items-center justify-between gap-5 rounded-3xl border border-leaf-200 bg-white/80 p-6 sm:p-8">
           <div><h2 className="max-w-xl text-2xl text-mushaf-900 sm:text-3xl">Find a Quran class that fits your schedule</h2><p className="mt-3 max-w-xl text-sm text-ink-soft">Tell us what you’d like to learn and when you’re available.</p></div>
           <Link href="/free-trial" className="btn btn-gold">Arrange a free trial <ArrowUpRight className="size-4" aria-hidden="true" /></Link>

@@ -35,6 +35,19 @@ export default function QuranStudyPage() {
       <PageHero
         path="/quran-study"
         eyebrow="Quran practice centre"
+        visual={<picture>
+          <img
+            src="/images/quran-study-rehal-1200.webp"
+            srcSet="/images/quran-study-rehal-640.webp 640w, /images/quran-study-rehal-1200.webp 1200w"
+            sizes="(max-width: 639px) calc(100vw - 2rem), (max-width: 1023px) calc(100vw - 4rem), 550px"
+            alt="A Quran on a wooden rehal beside headphones and a notebook."
+            width={1200}
+            height={800}
+            fetchPriority="high"
+            decoding="async"
+            className="block aspect-[3/2] w-full object-cover"
+          />
+        </picture>}
         title="Build a steady Quran reading and recitation routine"
         intro="Explore trusted digital study tools and use them to support—not replace—your learning plan, teacher feedback and regular revision."
       >
@@ -43,6 +56,18 @@ export default function QuranStudyPage() {
           <Link href="/courses/tajweed" className="btn btn-outline-light">Explore Tajweed classes</Link>
         </div>
       </PageHero>
+
+      <div className="page-wrap pt-10">
+        <figure className="quran-verse-panel quran-verse-panel-study rounded-3xl px-5 py-6 text-center sm:px-8">
+          <blockquote>
+            <p lang="ar" dir="rtl" className="arabic text-3xl leading-relaxed sm:text-4xl">وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِنْ مُدَّكِرٍ</p>
+            <p className="mt-1 text-sm leading-relaxed">“We have certainly made the Qur’an easy to remember. Is there anyone who will take heed?”</p>
+          </blockquote>
+          <figcaption className="mt-2 text-sm">
+            <a href="https://quran.com/54/17" className="font-semibold underline underline-offset-4">Qur’an 54:17</a>
+          </figcaption>
+        </figure>
+      </div>
 
       <section className="page-wrap py-14 sm:py-20" aria-labelledby="practice-tools-heading">
         <SectionHeading
