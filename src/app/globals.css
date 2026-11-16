@@ -100,26 +100,26 @@
 }
 
 @layer components {
-  .site-footer { background: radial-gradient(ellipse at 12% 0%, #1a7f0c 0%, transparent 55%), linear-gradient(150deg, #0d4a1c, #082e12); border-top: 5px solid #c9a13b; }
-  .footer-link { display: inline-flex; align-items: center; min-height: 44px; padding-block: .35rem; color: rgb(255 255 255 / .85); font-size: .9375rem; line-height: 1.45; overflow-wrap: anywhere; text-decoration-thickness: 1px; text-underline-offset: 5px; }
-  .footer-link:hover { color: #ddf1d3; text-decoration-line: underline; }
-  .footer-contact-link { display: flex; align-items: center; gap: .75rem; min-height: 44px; color: rgb(255 255 255 / .9); }
+  .site-footer { background: linear-gradient(150deg, #f6f9ee, #fffaf0); border-top: 1px solid var(--color-leaf-200); }
+  .footer-link { display: inline-flex; align-items: center; min-height: 44px; padding-block: .35rem; color: var(--color-ink-soft); font-size: .9375rem; line-height: 1.45; overflow-wrap: anywhere; text-decoration-thickness: 1px; text-underline-offset: 5px; }
+  .footer-link:is(:hover, :focus-visible) { color: var(--color-leaf-700); text-decoration-line: underline; }
+  .footer-contact-link { display: flex; align-items: center; gap: .75rem; min-height: 44px; color: var(--color-ink); }
   .footer-contact-link span { overflow-wrap: anywhere; min-width: 0; }
-  .footer-contact-link:hover { color: #ddf1d3; }
+  .footer-contact-link:is(:hover, :focus-visible) { color: var(--color-leaf-700); }
   .inner-hero { background-image: radial-gradient(ellipse at 0% 100%, #14661a 0%, transparent 65%); }
   .inner-hero-visual img { display: block; }
   /* Full-bleed hero: scene on the right, brand green fading in from the left. */
   .hero-immersive { isolation: isolate; }
   .hero-immersive-media { position: relative; display: block; height: 15rem; }
   .hero-immersive-media img { width: 100%; height: 100%; object-fit: cover; object-position: 38% 45%; }
-  .hero-immersive-shade { position: absolute; inset: 0; height: 15rem; background: linear-gradient(180deg, transparent 45%, var(--color-mushaf-900) 100%); pointer-events: none; }
+  .hero-immersive-shade { position: absolute; inset: 0; height: 15rem; background: linear-gradient(180deg, transparent 45%, #f6faef 100%); pointer-events: none; }
   @media (min-width: 640px) { .hero-immersive-media, .hero-immersive-shade { height: 20rem; } }
   @media (min-width: 1024px) {
     .hero-immersive-copy { max-width: min(36rem, 55%); }
     .hero-immersive-media { position: absolute; inset: 0 0 0 auto; width: 66%; height: 100%; z-index: -1; }
     .hero-immersive-media img { object-position: 44% 50%; }
-    .hero-immersive-shade { height: auto; z-index: -1; background: linear-gradient(90deg, var(--color-mushaf-900) 34%, rgb(13 74 28 / .88) 44%, rgb(13 74 28 / .25) 60%, transparent 74%); }
-    .hero-immersive-features li + li { border-left: 1px solid rgb(255 255 255 / .2); padding-left: 1.25rem; }
+    .hero-immersive-shade { height: auto; z-index: -1; background: linear-gradient(90deg, #f6faef 39%, rgb(246 250 239 / .96) 50%, rgb(246 250 239 / .35) 63%, transparent 76%); }
+    .hero-immersive-features li + li { border-left: 1px solid var(--color-leaf-200); padding-left: 1.25rem; }
   }
   .site-header nav :where(a, button) { min-height: 44px; }
   .header-brand > span { min-width: 0; }
@@ -590,3 +590,36 @@ a.card-tinted:focus-visible .card-arrow { background: var(--card-ink); color: #f
     transform: translateX(2px);
   }
 }
+
+/* Light public surfaces share the same green and warm cream palette. */
+.inner-hero,
+.public-cta {
+  background: linear-gradient(115deg, #f6faef 40%, #fff8eb);
+}
+.inner-hero .btn-outline-light,
+.public-cta .btn-outline-light {
+  border-color: var(--color-leaf-200);
+  color: var(--color-mushaf-900);
+  background: #fff;
+}
+.inner-hero .btn-outline-light:is(:hover, :focus-visible),
+.public-cta .btn-outline-light:is(:hover, :focus-visible) {
+  border-color: var(--color-leaf-500);
+  color: var(--color-mushaf-900);
+  background: var(--color-leaf-100);
+}
+.site-header .nav-primary :is(a, button):is(:hover, :focus-visible),
+#mobile-navigation nav :is(a, button):is(:hover, :focus-visible) {
+  background-color: var(--color-leaf-100);
+  color: var(--color-mushaf-900);
+}
+.site-header :is(.header-brand, .btn):is(:hover, :focus-visible) {
+  box-shadow: 0 0 0 3px var(--color-leaf-100);
+}
+.teacher-profile-banner {
+  background: linear-gradient(125deg, var(--card-wash, #eaf5e4), #fffaf0);
+}
+.teacher-profile-portrait { border-radius: 48% 48% 30% 30%; }
+.teacher-profile-portrait picture { width: 100%; height: 100%; }
+.long-article-copy h3 { text-wrap: balance; }
+.long-article-copy :where(p, li) { overflow-wrap: anywhere; }

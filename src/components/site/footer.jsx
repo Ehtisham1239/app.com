@@ -8,7 +8,7 @@ function FooterColumn({ title, items }) {
   if (!items?.length) return null;
   return (
     <nav aria-label={`Footer ${title}`} className="footer-column">
-      <h2 className="font-sans text-sm font-bold tracking-wide text-leaf-200">{title}</h2>
+      <h2 className="font-sans text-sm font-bold tracking-wide text-leaf-700">{title}</h2>
       <ul className="mt-3 space-y-0.5">
         {items.map((item) => (
           <li key={item.href + item.label}>
@@ -34,35 +34,35 @@ export function SiteFooter({ settings, menus }) {
   const socials = Object.entries(social).filter(([, url]) => typeof url === "string" && /^https?:\/\//.test(url));
 
   return (
-    <footer className="site-footer relative overflow-hidden text-white">
+    <footer className="site-footer relative overflow-hidden text-mushaf-900">
       <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.05]" aria-hidden="true" />
       <div className="page-wrap relative pt-10 sm:pt-14">
-        <div className="footer-invitation flex flex-wrap items-center justify-between gap-5 rounded-3xl border border-white/20 bg-white/5 p-6 sm:p-8">
-          <div><p className="text-xs font-semibold uppercase tracking-[0.18em] text-leaf-200">Learn from the comfort of home</p><h2 className="mt-3 max-w-xl text-2xl text-white sm:text-3xl">A little learning, every day.</h2><p className="mt-3 max-w-xl text-sm text-white/80">Find the right Quran course and a lesson time that fits your family.</p></div>
-          <Link href="/free-trial" className="btn bg-white text-leaf-700 hover:bg-leaf-100">Arrange a free trial <ArrowUpRight className="size-4" aria-hidden="true" /></Link>
+        <div className="footer-invitation flex flex-wrap items-center justify-between gap-5 rounded-3xl border border-leaf-200 bg-white/80 p-6 sm:p-8">
+          <div><h2 className="max-w-xl text-2xl text-mushaf-900 sm:text-3xl">Find a Quran class that fits your schedule</h2><p className="mt-3 max-w-xl text-sm text-ink-soft">Tell us what you’d like to learn and when you’re available.</p></div>
+          <Link href="/free-trial" className="btn btn-gold">Arrange a free trial <ArrowUpRight className="size-4" aria-hidden="true" /></Link>
         </div>
       </div>
       <div className="page-wrap relative grid gap-10 py-10 sm:py-14 lg:grid-cols-12 lg:gap-14">
         <div className="min-w-0 lg:col-span-4">
           <Link href="/" prefetch={false} aria-label={`${identity.name ?? "Online Quran College"} — home`} className="inline-flex rounded-2xl bg-white p-3 shadow-sm"><img src="/brand/oqc-contact-logo.webp" alt={identity.name ?? "Online Quran College"} width={240} height={240} loading="lazy" decoding="async" className="size-20 object-contain" /></Link>
-          <p className="mt-5 max-w-sm text-[0.95rem] leading-relaxed text-white/85">{identity.tagline}</p>
+          <p className="mt-5 max-w-sm text-[0.95rem] leading-relaxed text-ink-soft">{identity.tagline}</p>
           <div className="footer-contact mt-5 space-y-1 text-[0.95rem]">
             {contact.email && (
               <a href={`mailto:${contact.email}`} className="footer-contact-link">
-                <Mail className="size-4 shrink-0 text-leaf-200" aria-hidden="true" /> <span>{contact.email}</span>
+                <Mail className="size-4 shrink-0 text-leaf-700" aria-hidden="true" /> <span>{contact.email}</span>
               </a>
             )}
             {contact.phone && (
               <a href={`tel:${contact.phone.replace(/\s/g, "")}`} className="footer-contact-link">
-                <Phone className="size-4 shrink-0 text-leaf-200" aria-hidden="true" /> <span>{contact.phone}</span>
+                <Phone className="size-4 shrink-0 text-leaf-700" aria-hidden="true" /> <span>{contact.phone}</span>
               </a>
             )}
             {wa && (
               <a href={wa} target="_blank" rel="noopener noreferrer" className="footer-contact-link">
-                <MessageCircle className="size-4 shrink-0 text-leaf-200" aria-hidden="true" /> WhatsApp
+                <MessageCircle className="size-4 shrink-0 text-leaf-700" aria-hidden="true" /> WhatsApp
               </a>
             )}
-            <p className="py-2 text-sm text-white/80">Online-only academy · no walk-in office</p>
+            <p className="py-2 text-sm text-ink-soft">Online-only academy · no walk-in office</p>
           </div>
         </div>
         <div className="footer-navigation grid min-w-0 grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-3 sm:gap-8 lg:col-span-8">
@@ -71,8 +71,8 @@ export function SiteFooter({ settings, menus }) {
           <FooterColumn title="Policies" items={menus.footer_legal} />
         </div>
       </div>
-      <div className="relative border-t border-white/10">
-        <div className="page-wrap flex flex-col gap-4 py-6 text-sm text-white/80 lg:flex-row lg:items-center lg:justify-between">
+      <div className="relative border-t border-line">
+        <div className="page-wrap flex flex-col gap-4 py-6 text-sm text-ink-soft lg:flex-row lg:items-center lg:justify-between">
           <p className="min-w-0">
             © {year} {identity.legal_name ?? identity.name}. All rights reserved.
           </p>
@@ -83,7 +83,7 @@ export function SiteFooter({ settings, menus }) {
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center gap-1 rounded-full border border-white/25 px-3 py-2 text-white/90 transition-colors hover:border-leaf-200 hover:bg-white/10"
+                className="inline-flex min-h-11 items-center gap-1 rounded-full border border-line px-3 py-2 text-ink transition-colors hover:border-leaf-300 hover:bg-leaf-100"
               >
                 {SOCIAL_LABELS[key] ?? key}
                 <ArrowUpRight className="size-3.5" aria-hidden="true" />

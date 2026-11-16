@@ -83,13 +83,13 @@ export function CoursesGrid({ courses, swipe = false }) {
 export function CtaBand({ title, text, whatsappHref, primaryHref = "/free-trial", primaryLabel = "Book a free trial" }) {
   return (
     <section className="page-wrap py-16 sm:py-20">
-      <div className="relative overflow-hidden rounded-[2rem] bg-mushaf-900 px-7 py-14 text-white sm:px-14 sm:py-16">
+      <div className="public-cta relative overflow-hidden rounded-[2rem] border border-leaf-200 px-7 py-14 text-mushaf-900 sm:px-14 sm:py-16">
         <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.1]" aria-hidden="true" />
         <div className="pointer-events-none absolute -left-24 -top-24 size-72 rounded-full bg-leaf-600/30 blur-3xl" aria-hidden="true" />
         <span className="brand-mark pointer-events-none absolute -bottom-10 -right-6 size-64 text-gold-400 opacity-[0.16] sm:size-80" aria-hidden="true" />
         <div className="relative max-w-2xl">
-          <h2 className="text-[2.1rem] text-white sm:text-[2.7rem]">{title}</h2>
-          {text && <p className="mt-4 text-[1.06rem] leading-relaxed text-white/75">{text}</p>}
+          <h2 className="text-[2.1rem] text-mushaf-900 sm:text-[2.7rem]">{title}</h2>
+          {text && <p className="mt-4 text-[1.06rem] leading-relaxed text-ink-soft">{text}</p>}
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href={primaryHref} className="btn btn-gold btn-lg" data-oqc-cta="section_cta_primary">
               {primaryLabel} <ArrowRight className="size-5" aria-hidden="true" />
@@ -174,21 +174,17 @@ export function TeacherCard({ teacher: t }) {
   return (
     <Link
       href={`/teachers/${t.slug}`}
-      className="editorial-card group flex h-full flex-col"
+      data-card-tone={cardTone(t.slug)}
+      className="editorial-card card-tinted teacher-profile-card group flex h-full flex-col"
     >
-      {t.photo_url ? (
-        <div className="relative aspect-[4/3] overflow-hidden bg-mushaf-900">
-          <ContentImage src={t.photo_url} alt="" sizes="(max-width: 639px) 90vw, (max-width: 1023px) 45vw, 320px" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" />
-          {gender && <span className="absolute left-4 top-4 rounded-full bg-mushaf-950/80 px-2.5 py-0.5 text-[0.72rem] font-semibold text-gold-300 backdrop-blur">{gender}</span>}
-        </div>
-      ) : (
-        // No photo yet: a compact branded header instead of a large empty image area.
-        <div className="relative flex items-center gap-4 overflow-hidden bg-mushaf-900 px-5 py-4">
-          <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.12]" aria-hidden="true" />
-          <span className="relative flex size-14 shrink-0 items-center justify-center rounded-full border-2 border-gold-300 bg-mushaf-950 font-serif text-2xl font-bold text-gold-300" aria-hidden="true">{teacherInitial(t.display_name)}</span>
-          {gender && <span className="relative rounded-full bg-white/10 px-2.5 py-0.5 text-[0.72rem] font-semibold text-gold-300">{gender}</span>}
-        </div>
-      )}
+      <div className="teacher-profile-banner flex items-center gap-4 px-5 py-5">
+        <span className="teacher-profile-portrait grid size-24 shrink-0 place-items-center overflow-hidden border-4 border-white bg-white font-serif text-3xl font-bold text-leaf-700 shadow-sm">
+          {t.photo_url ? (
+            <ContentImage src={t.photo_url} alt="" sizes="96px" className="block size-full object-cover object-[50%_30%]" />
+          ) : <span aria-hidden="true">{teacherInitial(t.display_name)}</span>}
+        </span>
+        {gender && <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-mushaf-900">{gender}</span>}
+      </div>
       <div className="flex flex-1 flex-col p-5">
         <h3 className="text-[1.08rem] font-bold text-mushaf-900 transition-colors group-hover:text-leaf-700">{t.display_name}</h3>
         {t.headline && <p className="mt-1 text-[0.9rem] leading-snug text-ink-soft">{t.headline}</p>}

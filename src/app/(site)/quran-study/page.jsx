@@ -40,7 +40,7 @@ export default function QuranStudyPage() {
       >
         <div className="mt-7 flex flex-wrap gap-3">
           <Link href="/free-trial" className="btn btn-gold">Discuss a Quran learning plan <ArrowRight className="size-4" aria-hidden="true" /></Link>
-          <Link href="/courses/tajweed" className="btn btn-outline border-white/40 text-white hover:bg-white/10">Explore Tajweed classes</Link>
+          <Link href="/courses/tajweed" className="btn btn-outline-light">Explore Tajweed classes</Link>
         </div>
       </PageHero>
 
