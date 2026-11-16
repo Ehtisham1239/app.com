@@ -690,3 +690,27 @@ a.card-tinted:focus-visible .card-arrow { background: var(--card-ink); color: #f
     color: var(--color-leaf-800);
   }
 }
+
+.article-preview:focus-visible {
+  border-color: var(--card-edge);
+  background: linear-gradient(145deg, var(--card-wash), #fff 115%);
+}
+.article-preview:focus-visible h3 { color: var(--card-ink); }
+.blog-article :is(.article-toc summary, .article-toc a, .article-resource):focus-visible {
+  background-color: var(--color-leaf-100);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #main[data-site-motion] .article-preview:hover {
+    border-color: var(--card-edge);
+    background: linear-gradient(145deg, var(--card-wash), #fff 115%);
+  }
+  .article-preview:hover h3 { color: var(--card-ink); }
+  #main[data-site-motion] .blog-article :is(.article-toc summary, .article-toc a, .article-resource):hover {
+    background-color: var(--color-leaf-100);
+  }
+  .blog-article :is(.long-article-copy a, [data-article-tools] a):hover {
+    color: var(--color-leaf-800);
+    background-color: var(--color-gold-50);
+  }
+}

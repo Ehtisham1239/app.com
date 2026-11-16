@@ -29,7 +29,7 @@ function PostCard({ post, large = false }) {
       aria-labelledby={titleId}
       data-card-tone={cardTone(post.slug)}
       href={`/blog/${post.slug}`}
-      className={`editorial-card card-tinted group flex h-full flex-col ${large ? "md:col-span-2 md:flex-row lg:col-span-3" : ""}`}
+      className={`article-preview editorial-card card-tinted group flex h-full flex-col ${large ? "md:col-span-2 md:flex-row lg:col-span-3" : ""}`}
     >
       <div className={`relative m-2 shrink-0 overflow-hidden rounded-[1.15rem] bg-leaf-50 ${large ? "aspect-[3/2] md:aspect-[3/2] md:w-[46%] lg:w-[44%]" : "aspect-[3/2]"}`}>
         <ContentImage src={visual.src} alt={visual.alt} sizes={large ? "auto, (max-width: 767px) calc(100vw - 2rem), 520px" : "auto, (max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 50vw, 400px"} className="size-full object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-105" />
