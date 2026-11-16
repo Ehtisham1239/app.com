@@ -72,6 +72,22 @@ OQC is online-only. It is not eligible for Google Business Profile, and no virtu
 
 Hold map-first or address-dependent listings until eligibility is documented.
 
+### Screening notes (16 Nov 2026, web search only; sites not yet opened)
+
+| Prospect | Finding | Decision |
+|---|---|---|
+| AMCOB (amcob.org) | Search results describe it as a membership-based social enterprise for "top-tier" Muslim business leaders, and its listing is tied to membership and advertising terms | Hold: paid membership, not a free citation |
+| Heritage Web network (Muslim Tutors category) | Offers free listings for Muslim professionals and businesses, reviewed before publication | Candidate: check terms and online-provider fit |
+| Muslim Link directory | Free listing option per city, plus paid featured tiers | Hold: city-based; check online-only eligibility |
+| Kiwi Muslim Directory (NZ) | Free basic listing with address and phone | Hold: NZ is not a primary market; needs an address |
+| Mosque-run directories (Masjid App) | Each mosque verifies local members | Not a fit: local membership needed |
+
+## Linkable assets
+
+| Asset | URL | Status |
+|---|---|---|
+| Printable weekly Quran practice planner | /blog/printable-weekly-quran-practice-planner | Published 16 Nov 2026; pitch to homeschool resource editors (queue 3–5) |
+
 ## Publisher pipeline (repeatable)
 
 | Route | What OQC offers |
