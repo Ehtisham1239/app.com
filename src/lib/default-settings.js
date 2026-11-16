@@ -14,7 +14,7 @@ export const DEFAULT_SETTINGS = {
     phone: "+44 7864 710821",
     whatsapp: "447864710821",
     location: "United Kingdom",
-    hours: "24/7 enquiry support; live class times arranged by availability across time zones",
+    hours: "Send enquiries anytime; coordinators confirm response times and available class slots",
   },
   "site.social": {
     facebook: "https://www.facebook.com/OnlineQuranCollegeLtdUK",
@@ -31,7 +31,7 @@ export const DEFAULT_SETTINGS = {
       "Personal Quran lessons for children and adults, including Noorani Qaida, Tajweed, Hifz and Arabic. Discuss teacher availability and class times with our admissions team.",
     primary_label: "Request a 3-day free trial",
     secondary_label: "Explore courses",
-    badges: ["3-day free trial on eligible plans", "No card needed on eligible plans", "Teacher preference discussed", "Classes in any time zone"],
+    badges: ["3-day free trial on eligible plans", "No card needed on eligible plans", "Teacher preference discussed", "Class times confirmed with admissions"],
   },
   "site.stats": [
     { value: "Online", label: "Learn from home" },
