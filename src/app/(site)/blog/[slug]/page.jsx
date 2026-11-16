@@ -155,7 +155,7 @@ export default async function PostPage({ params }) {
         <div className="page-wrap article-layout">
           <aside className="article-sidebar order-first min-w-0 lg:order-last" aria-label="Article navigation and learning resources">
             {headings.length > 1 && <details className="article-toc rounded-2xl border border-leaf-100 bg-[#f5faf1] px-5 py-3"><summary>In this article <span className="ml-auto mr-3 text-xs font-normal text-ink-soft">{headings.length} sections</span></summary><nav aria-label="In this article"><ol className="mt-2">{headings.map(heading => <li key={heading.id}><a href={`#${heading.id}`}>{heading.title}</a></li>)}</ol></nav></details>}
-            <div className="mt-5 hidden rounded-2xl border border-line bg-white p-5 lg:block">
+            <div className="mt-5 rounded-2xl border border-line bg-white p-5">
               <h2 className="font-sans text-lg font-semibold">Continue your learning</h2>
               <p className="mb-4 mt-2 text-sm text-ink-soft">{resources.label}</p>
               {resources.links.map(link => <Link key={link.href} href={link.href} className="article-resource">{link.label}<ArrowRight className="size-4 shrink-0" aria-hidden="true" /></Link>)}
@@ -186,9 +186,8 @@ export default async function PostPage({ params }) {
             </ul>
           )}
           <section className="mt-8 max-w-[68ch] rounded-2xl border border-line bg-paper p-5 sm:p-6" aria-labelledby="article-next-step">
-            <h2 id="article-next-step" className="text-xl">Put this guide into practice</h2>
-            <p className="mb-4 mt-2 text-sm text-ink-soft">{resources.label}. Use these resources to choose your next step.</p>
-            {resources.links.map(link => <Link key={link.href} href={link.href} className="article-resource">{link.label}<ArrowRight className="size-4 shrink-0" aria-hidden="true" /></Link>)}
+            <h2 id="article-next-step" className="text-xl">Keep this guide</h2>
+            <p className="mb-4 mt-2 text-sm text-ink-soft">Save or share this guide when you want to revisit it.</p>
             <ArticleTools url={`${SITE_URL}/blog/${post.slug}`} />
           </section>
           <p className="article-print-source hidden">Online Quran College · {SITE_URL}/blog/{post.slug}</p>

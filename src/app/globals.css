@@ -623,3 +623,28 @@ a.card-tinted:focus-visible .card-arrow { background: var(--card-ink); color: #f
 .teacher-profile-portrait picture { width: 100%; height: 100%; }
 .long-article-copy h3 { text-wrap: balance; }
 .long-article-copy :where(p, li) { overflow-wrap: anywhere; }
+
+.quran-verse-panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid #c6ddd9;
+  color: #204c4c;
+  background: linear-gradient(120deg, #e8f4f0, #f8f6e7);
+}
+.quran-verse-panel-study {
+  border-color: #e5d5ae;
+  color: #624512;
+  background: linear-gradient(120deg, #fff3d8, #faf0f5);
+}
+.quran-verse-panel::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  opacity: .14;
+  background-image: repeating-linear-gradient(45deg, currentColor 0 1px, transparent 1px 19px),
+    repeating-linear-gradient(-45deg, currentColor 0 1px, transparent 1px 19px);
+  mask-image: linear-gradient(90deg, black, transparent 27%, transparent 73%, black);
+}

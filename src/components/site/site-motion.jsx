@@ -17,7 +17,7 @@ export function SiteMotion() {
 
     const candidates = [
       ...root.querySelectorAll(
-        "section h1, section h2, section > .page-wrap > h3, section a.surface, section div.surface, section article.surface, section li.surface, section figure"
+        "section h1, section h2, section > .page-wrap > h3, section a.surface, section a.editorial-card, section div.surface, section article.surface, section li.surface, section figure"
       ),
     ];
     const targets = candidates.filter(
@@ -30,10 +30,11 @@ export function SiteMotion() {
       const parent = node.parentElement;
       const index = siblingIndex.get(parent) ?? 0;
       siblingIndex.set(parent, index + 1);
-      revealSteps.set(node, Math.min(index, 5));
+      revealSteps.set(node, Math.min(index, 3));
     });
     if (!targets.length) return;
 
+    const initialScroll = window.scrollY;
     const observer = new IntersectionObserver(
       (entries) => {
         const initialViewportCutoff = window.innerHeight * 0.82;
@@ -42,12 +43,12 @@ export function SiteMotion() {
           const element = entry.target;
           // Keep the initial viewport and likely LCP content completely still.
           // Use the observer's layout snapshot so earlier reveal writes cannot force a layout read.
-          if (entry.boundingClientRect.top < initialViewportCutoff) {
+          if (entry.boundingClientRect.top + window.scrollY - initialScroll < initialViewportCutoff) {
             observer.unobserve(element);
             return;
           }
           const step = revealSteps.get(element) ?? 0;
-          element.style.setProperty("--site-reveal-delay", `${step * 70}ms`);
+          element.style.setProperty("--site-reveal-delay", `${step * 45}ms`);
           element.classList.add("site-reveal");
           observer.unobserve(element);
         });
