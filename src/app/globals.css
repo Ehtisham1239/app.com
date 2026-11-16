@@ -648,3 +648,31 @@ a.card-tinted:focus-visible .card-arrow { background: var(--card-ink); color: #f
     repeating-linear-gradient(-45deg, currentColor 0 1px, transparent 1px 19px);
   mask-image: linear-gradient(90deg, black, transparent 27%, transparent 73%, black);
 }
+
+/* Public controls retain their own palette and share a visible interaction state. */
+:where(.site-header, #main[data-site-motion], .site-footer)
+  :where(a[href], button:not(:disabled), summary, input:not(:disabled), select:not(:disabled), textarea:not(:disabled)):focus-visible {
+  outline: 2px solid var(--color-leaf-700);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :where(#main[data-site-motion], .site-footer) a[href]:not(.btn, .editorial-card, .surface):hover {
+    text-decoration-line: underline;
+    text-underline-offset: .2em;
+  }
+  :where(#main[data-site-motion], .site-footer) :is(a.editorial-card, a.surface):hover {
+    border-color: var(--card-edge, var(--color-leaf-500));
+    box-shadow: var(--shadow-lift);
+  }
+  #main[data-site-motion] :where(button:not(.btn):not(:disabled), summary):hover {
+    box-shadow: inset 0 0 0 1px var(--color-leaf-600);
+  }
+  #main[data-site-motion] :where(input:not(:disabled), select:not(:disabled), textarea:not(:disabled)):hover {
+    border-color: var(--color-leaf-500);
+  }
+  #main[data-site-motion] :where(a.article-resource, .article-toc a):hover {
+    color: var(--color-leaf-800);
+    background-color: var(--color-leaf-50);
+  }
+}
