@@ -53,7 +53,7 @@ export function SiteFooter({ settings, menus }) {
       </div>
       <div className="page-wrap relative grid gap-10 py-10 sm:py-14 lg:grid-cols-12 lg:gap-14">
         <div className="min-w-0 lg:col-span-4">
-          <Link href="/" prefetch={false} aria-label={`${identity.name ?? "Online Quran College"} — home`} className="inline-flex rounded-2xl bg-white p-3 shadow-sm"><img src="/brand/oqc-contact-logo.webp" alt={identity.name ?? "Online Quran College"} width={240} height={240} loading="lazy" decoding="async" className="size-20 object-contain" /></Link>
+          <Link href="/" prefetch={false} aria-label={`${identity.name ?? "Online Quran College"} — home`} className="footer-brand inline-flex rounded-2xl border border-leaf-100 bg-white p-3 shadow-sm"><img src="/brand/oqc-contact-logo.webp" alt={identity.name ?? "Online Quran College"} width={240} height={240} loading="lazy" decoding="async" className="size-20 object-contain" /></Link>
           <p className="mt-5 max-w-sm text-[0.95rem] leading-relaxed text-ink-soft">{identity.tagline}</p>
           <div className="footer-contact mt-5 space-y-1 text-[0.95rem]">
             {contact.email && (
