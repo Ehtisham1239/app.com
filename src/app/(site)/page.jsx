@@ -51,9 +51,9 @@ export default async function HomePage() {
       <CmsPageSchema path="/" />
       <HomeHero hero={settings["site.hero"]} stats={settings["site.stats"]} />
       {/* One compact jump row, in the same order as the sections below. Scrolls sideways on phones instead of wrapping into several rows. */}
-      <nav aria-label="On this page" className="page-wrap py-5">
-        <ul className="home-jump-row flex gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:justify-center sm:overflow-visible">
-          {[["#courses", "Courses"], ["#how-it-works", "How it works"], ...(homePlans.length ? [["#fees", "Fees"]] : []), ...(testimonials.length ? [["#reviews", "Reviews"]] : []), ["#countries", "Your country"], ...(faqs.length ? [["#questions", "Questions"]] : []), ["#contact", "Contact"]].map(([href, label]) => <li key={href} className="shrink-0"><a href={href} className="home-jump inline-flex min-h-11 items-center rounded-full border border-leaf-100 bg-white px-5 text-sm font-semibold text-leaf-700 hover:bg-leaf-50">{label}</a></li>)}
+      <nav aria-label="On this page" className="page-wrap py-3 sm:py-5">
+        <ul className="home-jump-row flex gap-2 overflow-x-auto px-1.5 py-2 sm:flex-wrap sm:justify-center sm:overflow-visible">
+          {[["#courses", "Courses"], ["#how-it-works", "How it works"], ...(homePlans.length ? [["#fees", "Fees"]] : []), ...(testimonials.length ? [["#reviews", "Reviews"]] : []), ["#countries", "Your country"], ...(faqs.length ? [["#questions", "Questions"]] : []), ["#contact", "Contact"]].map(([href, label]) => <li key={href} className="shrink-0"><a href={href} className="home-jump inline-flex min-h-11 items-center rounded-xl border border-leaf-100 bg-white px-4 text-sm font-semibold text-leaf-700 hover:bg-leaf-50">{label}</a></li>)}
         </ul>
       </nav>
 
