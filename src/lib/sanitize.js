@@ -5,14 +5,14 @@ const options = {
   allowedTags: [
     "p", "br", "h2", "h3", "h4", "strong", "b", "em", "i", "u", "s", "a", "ul", "ol", "li",
     "blockquote", "hr", "img", "figure", "figcaption", "span", "code", "pre", "table", "thead",
-    "tbody", "tr", "th", "td",
+    "tbody", "tfoot", "tr", "th", "td", "caption",
   ],
   allowedAttributes: {
     a: ["href", "title", "target", "rel"],
     img: ["src", "alt", "title", "width", "height", "loading"],
     span: ["lang", "dir", "class"],
     p: ["dir", "lang"],
-    th: ["colspan", "rowspan"],
+    th: ["colspan", "rowspan", { name: "scope", values: ["col", "row", "colgroup", "rowgroup"] }],
     td: ["colspan", "rowspan"],
   },
   allowedClasses: { span: ["arabic"] },

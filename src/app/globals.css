@@ -273,6 +273,9 @@
   .prose-oqc :where(img, video) { max-width: 100%; height: auto; }
   .prose-oqc :where(pre) { overflow-x: auto; padding: 1rem; border-radius: .75rem; background: var(--color-paper); }
   .prose-oqc :where(table) { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; margin-block: 1.5rem; }
+  .prose-oqc .article-table-scroll { max-width: 100%; overflow-x: auto; overscroll-behavior-inline: contain; margin-block: 1.5rem; }
+  .prose-oqc .article-table-scroll > table { display: table; width: 100%; margin: 0; }
+  .prose-oqc .article-table-scroll :where(caption) { padding-block: .5rem; font-weight: 600; text-align: start; color: var(--color-mushaf-900); }
   .prose-oqc :where(th, td) { min-width: 9rem; padding: .75rem; border: 1px solid var(--color-line); vertical-align: top; text-align: start; }
   .prose-oqc :where(th) { background: var(--color-leaf-50); font-weight: 600; }
   .prose-oqc :where(h2, h3, h4) { scroll-margin-top: 6rem; }
@@ -307,6 +310,8 @@
   .article-layout { display: block; padding-block: 1rem; }
   .article-print-source { display: block !important; overflow-wrap: anywhere; }
   .article-body { max-width: none; }
+  .prose-oqc .article-table-scroll { overflow: visible; }
+  .prose-oqc .article-table-scroll :where(th, td) { min-width: 0; overflow-wrap: anywhere; }
   .prose-oqc { max-width: none; }
   .prose-oqc :where(h2, h3) { break-after: avoid; }
   .prose-oqc :where(img, blockquote, tr) { break-inside: avoid; }
