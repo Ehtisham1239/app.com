@@ -459,7 +459,6 @@ main input:not([type="checkbox"]):not([type="radio"]), main select, main textare
   .site-announcement .page-wrap { flex-wrap: wrap; }
   .site-header { background: #fff; border-bottom: 1px solid #f0f5f2; backdrop-filter: none; }
   .site-header > .page-wrap { height: auto; min-height: 76px; padding: 6px 22px; }
-  .site-header img { height: 64px; width: 64px; max-width: 64px; }
   .mobile-menu-trigger { width: 44px; height: 44px; min-width: 44px; min-height: 44px; border: 0; border-radius: 9px; background: #f1f9ec; color: #0c6c0c; }
   .mobile-menu-trigger svg { width: 24px; height: 24px; }
   .hero-copy { text-align: center; }
@@ -674,5 +673,20 @@ a.card-tinted:focus-visible .card-arrow { background: var(--card-ink); color: #f
   #main[data-site-motion] :where(a.article-resource, .article-toc a):hover {
     color: var(--color-leaf-800);
     background-color: var(--color-leaf-50);
+  }
+}
+
+.site-header .header-brand:focus-visible,
+.site-footer .footer-brand:focus-visible {
+  background-color: var(--color-leaf-50);
+}
+@media (hover: hover) and (pointer: fine) {
+  .site-header .header-brand:hover,
+  .site-footer .footer-brand:hover {
+    background-color: var(--color-gold-50);
+    box-shadow: 0 0 0 2px var(--color-gold-300);
+  }
+  .header-brand:hover .header-brand-name {
+    color: var(--color-leaf-800);
   }
 }
