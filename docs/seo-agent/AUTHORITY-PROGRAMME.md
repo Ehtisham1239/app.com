@@ -53,22 +53,24 @@ OQC is online-only. It is not eligible for Google Business Profile, and no virtu
 - **Service area:** online lessons for families in the UK, USA, Canada, Australia and the UAE. There is no local office.
 - **Contact details:** use only the details shown on /contact.
 
-## First queue (from the owner's register; status needs live re-check)
+## First queue (pages opened and checked 16 Nov 2026)
 
-| # | Source | Market | Kind | First action | Status |
+| # | Source | Market | Kind | What the live page shows | Status |
 |---|---|---|---|---|---|
-| 1 | Ummah Muslim Directory: theummah.io/resources/businesses/submit/ | Global | Citation | Find any earlier listing before submitting | needs check |
-| 2 | Halalytic directory: halalytic.com/directory/submit | Global | Citation | Check earlier receipts and the public listing | needs check |
-| 3 | Muslim Homeschool Foundation: mhfusa.org/resources | USA | Editorial | Offer a reviewed parent lesson-planning guide to the resource editor | needs asset |
-| 4 | Muslim Home Education Network Australia: muslimhomeschool.net/resources.html | AU | Editorial | Offer a parent scheduling guide | needs asset |
-| 5 | The Muslim Homeschooling Hub: themuslimhomeschoolinghub.com | USA/UK | Citation or editorial | Check provider terms and fees | needs check |
-| 6 | Support Muslim: supportmuslim.com | Global | Citation | Check online-only eligibility and the free tier | needs check |
-| 7 | musDir: musdir.com/join | Global | Citation | Confirm online and cross-border eligibility | needs check |
-| 8 | MPG Connects: mpgmuslims.org | USA | Citation | Check the free tier and geographic rules | needs check |
-| 9 | Muslim Business Hub UK: muslimbusinesshub.co.uk/listings/create/ | UK | Citation | Retry the historical form once; check terms | needs check |
-| 10 | Muslim Business Network Australia: mbnaus.com/submit-business | AU | Citation | Check eligibility for an overseas online provider | needs check |
-| 11 | AMCOB: amcob.org/add-listing | USA | Citation | Check terms and that it is free | needs check |
-| 12 | LinkedIn company page | Global | Existing profile | Check the website field and description | existing, not new credit |
+| 1 | Ummah Muslim Directory: theummah.io/resources/businesses/submit/ | Global | Citation | "Free verified listing"; reviewed weekly; categories: app, business, organization, nonprofit; no education category and no stated rule on online or overseas providers | ready: submit once as "Organization" or "Business" with the copy below |
+| 2 | Halalytic: halalytic.com/directory/submit | Global | Citation | Live form, no account; asks for tool name, URL and email; built for apps and digital services; no fee or address requested | low fit: it is a digital-tools directory; submit only if its listing policy accepts education services |
+| 3 | Muslim Homeschool Foundation: mhfusa.org/resources | USA | Editorial | Covers Quran memorisation and Tajweed but names no providers; says the list "will keep growing"; contact page only | ready for outreach: offer the practice planner through the Contact page |
+| 4 | MHENA Australia: muslimhomeschool.net/resources.html | AU | Editorial | Links to outside resources in 13 collections; no Quran tutoring providers; no submission process | ready for outreach: email info@muslimhomeschool.net with the planner |
+| 5 | The Muslim Homeschooling Hub: themuslimhomeschoolinghub.com | USA/UK | Unknown | The page renders only with JavaScript; no readable content | hold: a person needs to open it in a browser |
+| 6 | SupportMuslim: supportmuslim.com | Global | Citation | Basic listing is free; "local and around the world"; Education category includes Madrasa / Religious Studies | ready: best fit; submit under Education → Madrasa / Religious Studies |
+| 7 | musDir: musdir.com/join | Global | Citation | Listing is "completely free" at musdir.com/add-business; strongest coverage in North America; no education category named | ready: submit under Islamic services |
+| 8 | MPG Connects: mpgmuslims.org | USA/CA | Citation | Reviewed directory covering the US and Canada; no pricing or eligibility shown | hold: ask MPG whether an overseas online provider can list |
+| 9 | Muslim Business Hub UK: muslimbusinesshub.co.uk/listings/create/ | UK | Citation | The site blocks automated access | hold: a person needs to open it in a browser |
+| 10 | Muslim Business Network Australia: mbnaus.com/submit-business | AU | Citation | Listing is free for Muslim-owned businesses; no ABN or address requirement stated | ready: submit and state clearly that lessons are online, with no Australian office |
+| 11 | AMCOB: amcob.org/add-listing | USA | Citation | Form with Education categories and no address field. Search results describe AMCOB as membership-based | hold: list only if it is free, without paid membership |
+| 12 | LinkedIn company page | Global | Existing profile | — | existing, not new credit |
+
+**Submissions are not yet made.** They need the owner's go-ahead in chat. Each one sends business details in OQC's name, and some need an account whose password stays with the owner. Record every receipt here, then count it only after the public listing URL is verified.
 
 Hold map-first or address-dependent listings until eligibility is documented.
 
