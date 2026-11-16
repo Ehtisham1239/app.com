@@ -215,7 +215,7 @@ export function Testimonials({ items }) {
   return (
     <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
       {list.map((t) => (
-        <figure key={t.id ?? t.name} className="flex h-full flex-col rounded-[var(--radius-card)] border border-line bg-white p-7">
+        <figure key={t.id ?? t.name} data-card-tone={cardTone(t.id ?? t.name)} className="surface card-tinted flex h-full flex-col p-7">
           <Quote className="size-8 text-gold-400" aria-hidden="true" />
           {t.rating ? (
             <p className="mt-4 flex gap-0.5 text-gold-500">

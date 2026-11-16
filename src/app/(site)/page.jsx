@@ -111,8 +111,8 @@ export default async function HomePage() {
               ["04", "Feedback", "Discuss strengths and the next area to practise with the learner."],
               ["05", "Improve", "Use the next lesson and home practice to build on the previous step."],
             ].map(([number, title, description]) => (
-              <li key={number} className="surface flex flex-col p-5">
-                <span className="font-display text-2xl text-gold-600">{number}</span>
+              <li key={number} data-card-tone={String(Number(number) - 1)} className="surface card-tinted flex flex-col p-5">
+                <span className="card-step font-display text-xl">{number}</span>
                 <h3 className="mt-3 text-lg font-bold text-mushaf-900">{title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-soft">{description}</p>
               </li>
@@ -237,7 +237,7 @@ export default async function HomePage() {
       <section id="contact" className="scroll-mt-24 border-t border-line bg-white py-16 sm:py-24"><div className="page-wrap max-w-3xl"><SectionHeading eyebrow="Contact the college" title="Send a message" intro="Have a question about a course, fees or class times? A coordinator can reply by email or WhatsApp." /><div className="mt-8"><HomeContact consentText={settings["site.forms"]?.consent_text} successText={settings["site.forms"]?.contact_success} /></div></div></section>
 
       <section className="page-wrap py-12 sm:py-16" aria-labelledby="quran-practice-heading">
-        <div className="surface grid items-center gap-7 p-7 sm:p-10 lg:grid-cols-[1.3fr_auto]">
+        <div data-card-tone="5" className="surface card-tinted grid items-center gap-7 p-7 sm:p-10 lg:grid-cols-[1.3fr_auto]">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-leaf-700">Quran practice centre</p>
             <h2 id="quran-practice-heading" className="mt-3 text-3xl text-mushaf-900">Reading, listening and recitation practice</h2>

@@ -472,12 +472,53 @@ main input:not([type="checkbox"]):not([type="radio"]), main select, main textare
 }
 
 /* Soft course/package colours retain dark text and distinct focus outlines. */
-.card-tinted { --card-wash: #eef7e8; --card-accent: #9fcf8a; background: linear-gradient(160deg, var(--card-wash), #fff 58%); border-color: var(--card-accent); }
-.card-tinted[data-card-tone="1"] { --card-wash: #fff2d9; --card-accent: #e2c17d; }
-.card-tinted[data-card-tone="2"] { --card-wash: #e6f5ff; --card-accent: #9ac8e0; }
-.card-tinted[data-card-tone="3"] { --card-wash: #f2eaff; --card-accent: #c5afe1; }
-.card-tinted[data-card-tone="4"] { --card-wash: #ffeef0; --card-accent: #e4adb9; }
-.card-tinted[data-card-tone="5"] { --card-wash: #e4f8f4; --card-accent: #8dcfc1; }
+/* Light reading surfaces with stronger accents for the shared public cards. */
+.card-tinted {
+  --card-wash: #e0f6d5;
+  --card-accent: #9dcf88;
+  --card-edge: #449833;
+  --card-ink: #245c21;
+  background: linear-gradient(155deg, var(--card-wash), #fff 88%);
+  border-color: var(--card-accent);
+  border-block-start: 3px solid var(--card-edge);
+}
+.card-tinted[data-card-tone="1"] { --card-wash: #fff0c5; --card-accent: #e9c479; --card-edge: #b47513; --card-ink: #774908; }
+.card-tinted[data-card-tone="2"] { --card-wash: #dbf0ff; --card-accent: #9dcce8; --card-edge: #367fa9; --card-ink: #225b7c; }
+.card-tinted[data-card-tone="3"] { --card-wash: #efe2ff; --card-accent: #cdb6ec; --card-edge: #8b56ba; --card-ink: #663693; }
+.card-tinted[data-card-tone="4"] { --card-wash: #ffe3eb; --card-accent: #e9adbf; --card-edge: #bc5277; --card-ink: #8f3153; }
+.card-tinted[data-card-tone="5"] { --card-wash: #d4f6ee; --card-accent: #8fd2c4; --card-edge: #2b907f; --card-ink: #246458; }
+
+.card-tinted :where(.card-arrow, .card-label, .course-icon, .card-step) {
+  color: var(--card-ink);
+  background: var(--card-wash);
+}
+.card-tinted :where(.card-action, .package-caption) { border-color: var(--card-accent); }
+.card-tinted .card-action { color: var(--card-ink); }
+.card-tinted .card-step {
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: .75rem;
+  border: 1px solid var(--card-accent);
+  line-height: 1;
+}
+.card-tinted .text-ink-faint { color: var(--color-ink-soft); }
+a.card-tinted:focus-visible { outline: 3px solid var(--card-ink); outline-offset: 3px; }
+a.card-tinted:focus-visible .card-arrow { background: var(--card-ink); color: #fff; }
+@media (hover: hover) {
+  a.card-tinted:hover { border-color: var(--card-edge); }
+  a.card-tinted:hover .card-arrow { background: var(--card-ink); color: #fff; }
+}
+.card-tinted[data-featured="true"] { border-color: var(--color-leaf-700); }
+.faq-card[open] {
+  background: linear-gradient(155deg, #eaf7e0, #fff 92%);
+  border-inline-start: 3px solid var(--color-leaf-600);
+}
+.trial-card {
+  border-block-start: 4px solid var(--color-gold-400);
+  background: linear-gradient(165deg, #f1fae9, #fff 45%);
+}
 
 /* Mobile action bar: hidden (and not focusable) until the visitor scrolls past the first screen. */
 .mobile-action-bar { transform: translateY(110%); visibility: hidden; transition: transform .25s ease, visibility 0s linear .25s; }
