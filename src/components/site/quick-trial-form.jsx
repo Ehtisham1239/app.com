@@ -201,7 +201,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
 
   const err = (k) => (errors[k] ? { "aria-invalid": true, "aria-describedby": `q-${k}-error` } : {});
   return (
-    <form ref={topRef} onSubmit={submit} noValidate aria-busy={state.sending} aria-label={eligible ? "Book a free trial" : "Package enquiry"} className="surface @container min-w-0 scroll-mt-28 space-y-5 bg-white p-5 shadow-[var(--shadow-lift)] sm:space-y-6 sm:p-8">
+    <form ref={topRef} onSubmit={submit} noValidate aria-busy={state.sending} aria-label={eligible ? "Book a free trial" : "Package enquiry"} className="surface trial-card @container min-w-0 scroll-mt-28 space-y-5 bg-white p-5 shadow-[var(--shadow-lift)] sm:space-y-6 sm:p-8">
       <div className="absolute -left-[9999px]" aria-hidden="true"><label>Website<input tabIndex={-1} autoComplete="off" value={form.website} onChange={(e) => set("website", e.target.value)} /></label></div>
       <div className="border-b border-line pb-5">
         <h2 className="text-2xl leading-tight text-mushaf-900">{eligible ? "Request a 3-day free trial" : `Ask about ${selectedPlan.name}`}</h2>
@@ -264,8 +264,8 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
         </div>
       </div>
 
-      <details className="rounded-xl border border-leaf-100 bg-leaf-50 px-4">
-        <summary className="min-h-11 cursor-pointer rounded-lg py-3 font-semibold text-leaf-800">{form.course_id ? courses.find((course) => course.id === form.course_id)?.title || "Class preferences" : "Add class preferences"} <span className="text-sm font-normal">(optional)</span></summary>
+      <details className="trial-option rounded-xl border border-leaf-100 px-4">
+        <summary className="min-h-11 cursor-pointer rounded-lg py-3 font-semibold text-leaf-800">{form.course_id ? courses.find((course) => course.id === form.course_id)?.title || "Class preferences" : "Add class preferences"} <span className="ml-auto text-sm font-normal">(optional)</span></summary>
         <div className="space-y-4 pb-4">
           <div>
             <label htmlFor="q-course_id" className="field-label">Course <span className="font-normal text-ink-faint">(optional)</span></label>

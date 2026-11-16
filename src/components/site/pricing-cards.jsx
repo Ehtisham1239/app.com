@@ -34,18 +34,21 @@ export function PricingCards({ plans, compact = false, currency, fx }) {
           <div
             key={p.id}
             data-card-tone={cardTone(p.name)}
+            data-featured={featured ? "true" : undefined}
             className={clsx(
               "pricing-card editorial-card card-tinted relative flex flex-col p-6",
               featured ? "ring-2 ring-leaf-700" : "",
             )}
           >
-            <div className="package-caption"><span className="text-xs font-semibold uppercase tracking-wider text-leaf-700">Personal lessons</span>{featured && <span className="rounded-full bg-leaf-700 px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-wider text-white">Featured</span>}</div>
-            <h3 className="text-[1.15rem] font-bold text-mushaf-900">{p.name}</h3>
+            <div className="package-caption">
+              <h3 className="text-xl font-bold leading-tight text-mushaf-900">{p.name}</h3>
+              {featured && <span className="rounded-full bg-leaf-700 px-2.5 py-1 text-xs font-semibold text-white">Featured</span>}
+            </div>
             {p.tagline && <p className="mt-1 text-[0.9rem] leading-snug text-ink-soft">{p.tagline}</p>}
             <p className="mt-5 flex flex-wrap items-baseline gap-x-1.5">
               {price ? (
                 <>
-                  <span className="font-display text-[2.6rem] leading-none text-mushaf-900">{price.approximate && <span className="mr-1 text-[1.6rem] text-ink-soft" title="Approximate">≈</span>}{formatMoney(price.amount_minor, price.currency)}</span>
+                  <span className="font-display text-[2.6rem] font-bold tabular-nums leading-none text-mushaf-900">{price.approximate && <span className="mr-1 text-[1.6rem] text-ink-soft" title="Approximate">≈</span>}{formatMoney(price.amount_minor, price.currency)}</span>
                   <span className="text-[0.9rem] text-ink-faint">{PERIOD[p.billing_period] ?? ""}</span>
                   {price.approximate && <span className="basis-full text-[0.8rem] text-ink-faint">Approx. from {formatMoney(price.from.amount_minor, price.from.currency)} at the latest available exchange rate</span>}
                 </>

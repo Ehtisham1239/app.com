@@ -102,7 +102,7 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
           </span>
         </Link>
 
-        <nav className={clsx("ml-auto hidden items-center gap-1", !compact && "xl:flex")} aria-label="Main">
+        <nav className={clsx("nav-primary ml-auto hidden items-center gap-1", !compact && "xl:flex")} aria-label="Main">
           {menu.map((item) =>
             item.href === "/courses" && courses.length > 0 ? (
               <div key={item.href} ref={coursesRef} className="relative"
