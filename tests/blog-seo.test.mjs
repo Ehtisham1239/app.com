@@ -1,4 +1,5 @@
 import test from "node:test";
+import { contentVisual } from "../src/lib/content-visual.js";
 import assert from "node:assert/strict";
 import { blogParams, blogUrl, articleDates, blogPosting, articleFeed } from "../src/lib/blog-seo.js";
 
@@ -36,4 +37,17 @@ test("RSS safely escapes editorial text and does not fabricate publication dates
   assert.ok(feed.includes("A &quot;quoted&quot; tip."));
   assert.equal((feed.match(/<pubDate>/g) || []).length, 1);
   assert.equal((feed.match(/<item>/g) || []).length, 2);
+});
+
+test("blog covers replace only the identified legacy files and preserve newer editor uploads", () => {
+  const slug = "tajweed-rules-for-beginners";
+  const oldCover = "https://assets.example.org/oqc-learning-australia-melbourne-v3-1200.webp?v=2";
+  const corrected = contentVisual({ slug, cover_url: oldCover, cover_alt: "Legacy alt" });
+  assert.match(corrected.src, /blog-tajweed-recitation-r2-1200\.webp$/);
+  assert.match(corrected.alt, /recitation/);
+  assert.deepEqual(contentVisual({ slug, cover_url: "/new-cover.webp", cover_alt: "New image description" }), {
+    src: "/new-cover.webp",
+    alt: "New image description",
+  });
+  assert.deepEqual(contentVisual({ slug }), corrected);
 });

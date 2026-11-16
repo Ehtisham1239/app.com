@@ -1,10 +1,13 @@
 import { SITE_URL } from "@/lib/config";
 import { BRAND_NAME, canonicalUrl } from "@/lib/seo";
 import imageManifest from "@/lib/image-manifest.json";
+import cmsImageManifest from "@/lib/cms-image-manifest.json";
+
+const publicImages = [...imageManifest, ...cmsImageManifest];
 import { heroArt } from "./hero-art";
 export function publicImageUrl(src) {
   if (!src) return undefined;
-  const image = imageManifest.find(item => item.url === src || item.storage_url === src || item.previous_urls?.includes(src));
+  const image = publicImages.find(item => item.url === src || item.storage_url === src || item.previous_urls?.includes(src));
   return image ? `${SITE_URL}${image.url}` : src;
 }
 const TITLE_SUFFIX = " · Online Quran College";
@@ -28,7 +31,7 @@ export function contentMetadata(record, { path, title, description, type = "webs
   const canonical = canonicalUrl(record.canonical_url, path, SITE_URL);
   const displayTitle = record.seo_title || title || record.title;
   const cover = publicImageUrl(record.cover_url || heroArt(path).src);
-  const coverAsset = imageManifest.find(item => `${SITE_URL}${item.url}` === cover);
+  const coverAsset = publicImages.find(item => `${SITE_URL}${item.url}` === cover);
   const coverAlt = coverAsset?.replacesLegacyVisual ? coverAsset.alt : (record.cover_alt || coverAsset?.alt || displayTitle);
   return {
     title: fitTitle(record.seo_title, title || record.title),

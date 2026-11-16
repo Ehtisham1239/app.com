@@ -278,13 +278,17 @@
   .prose-oqc :where(h2, h3, h4) { scroll-margin-top: 6rem; }
   .prose-oqc :where(> :first-child) { margin-top: 0; }
 
+  .long-article-copy { font-size: clamp(1rem, 1.55vw, 1.12rem); line-height: 1.77; }
+  .long-article-copy h2 { line-height: 1.24; font-weight: 600; text-wrap: balance; }
+  .long-article-copy h2:target { text-decoration: underline; text-underline-offset: .2em; text-decoration-color: var(--color-gold-500); }
   .article-layout { display: grid; gap: 2.5rem; padding-block: 2rem 3.5rem; }
   .article-toc summary { display: flex; align-items: center; justify-content: space-between; min-height: 44px; cursor: pointer; font-weight: 600; color: var(--color-leaf-700); list-style: none; }
   .article-toc summary::-webkit-details-marker { display: none; }
   .article-toc summary::after { content: "+"; font-size: 1.5rem; }
   .article-toc[open] summary::after { content: "−"; }
+  .article-toc nav { max-block-size: min(48dvh, 25rem); overflow-y: auto; overscroll-behavior-y: contain; padding-inline: .3rem; }
   .article-toc a { display: flex; align-items: center; min-height: 44px; padding-block: .5rem; font-size: .9375rem; line-height: 1.5; color: var(--color-leaf-700); text-decoration: underline; text-underline-offset: 4px; }
-  .article-topics { display: flex; gap: .625rem; max-width: 100%; overflow-x: auto; padding-block: .25rem .75rem; scrollbar-width: thin; }
+  .article-topics { display: flex; gap: .625rem; max-width: 100%; overflow-x: auto; padding: .3rem .3rem .75rem; scrollbar-width: thin; scrollbar-color: var(--color-leaf-500) transparent; }
   .article-topics .btn { flex-shrink: 0; min-height: 44px; }
   .article-resource { display: flex; align-items: center; justify-content: space-between; gap: .75rem; min-height: 44px; padding-block: .75rem; border-top: 1px solid var(--color-line); color: var(--color-leaf-700); font-size: .9375rem; font-weight: 600; }
   @media (min-width: 1024px) {

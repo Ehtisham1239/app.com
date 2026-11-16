@@ -96,7 +96,7 @@ function supportingImage(slug, cover, html) {
   ];
   const candidates = topics.find(([pattern]) => pattern.test(slug))?.[1] || [];
   const coverUrl = new URL(publicImageUrl(cover), SITE_URL).href;
-  return candidates.map(key => supportingImages[key]).find(([src]) => publicImageUrl(src) !== coverUrl) || null;
+  return candidates.map(key => supportingImages[key]).find(([src]) => new URL(publicImageUrl(src), SITE_URL).href !== coverUrl) || null;
 }
 
 export const revalidate = 300;
@@ -138,6 +138,9 @@ export default async function PostPage({ params }) {
   const breadcrumbs = [{ name: "Home", path: "/" }, { name: "Articles", path: "/blog" }, { name: post.title, path: `/blog/${post.slug}` }];
   const wa = whatsappLink(settings["site.contact"]?.whatsapp, "Assalamu alaikum, I read your article and would like to book a free trial.");
   const jsonLd = blogPosting(post, { siteUrl: SITE_URL, visual: { ...visual, src: publicImageUrl(visual.src) }, html, description: post.seo_description || post.excerpt || truncate(stripHtml(html), 158) });
+  const readingMinutes = Number(post.reading_minutes) > 0
+    ? Number(post.reading_minutes)
+    : Math.ceil(jsonLd.wordCount / 220);
 
   return (
     <>
@@ -145,13 +148,13 @@ export default async function PostPage({ params }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema(breadcrumbs, SITE_URL)) }} />
       {quick && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema([quick])) }} />}
       <article className="bg-white">
-        <PageHero path={`/blog/${post.slug}`} eyebrow={post.category} title={post.title} visual={<ContentImage src={visual.src} alt={visual.alt} priority sizes="(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) calc(100vw - 4rem), 48vw" className="block aspect-[3/2] w-full object-cover object-center" />}>
+        <PageHero path={`/blog/${post.slug}`} eyebrow={post.category} title={post.title} visual={<ContentImage src={visual.src} alt={visual.alt} priority sizes="(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) calc(100vw - 4rem), (max-width: 1216px) 48vw, 575px" className="block aspect-[3/2] w-full object-cover object-center" />}>
           <nav aria-label="Breadcrumb" className="mt-5 text-sm text-white/75"><Link href="/" prefetch={false}>Home</Link> / <Link href="/blog" className="underline">Articles</Link></nav>
-          <p className="mt-5 flex flex-wrap items-center gap-3 text-sm text-white/75">{author["@type"] === "Organization" ? <Link href="/about" className="underline underline-offset-4">{author.name}</Link> : <span>{author.name}</span>}{dates.published && <span>Published <time dateTime={dates.published}>{formatDate(dates.published, "UTC")}</time></span>}{dates.showModified && <span>Updated <time dateTime={dates.modified}>{formatDate(dates.modified, "UTC")}</time></span>}{post.reading_minutes ? <span className="inline-flex items-center gap-1"><Clock3 className="size-4" aria-hidden="true" />{post.reading_minutes} min read</span> : null}<Link href="/editorial-standards" className="underline underline-offset-4">How we write</Link></p>
+          <p className="mt-5 flex flex-wrap items-center gap-3 text-sm text-white/75">{author["@type"] === "Organization" ? <Link href="/about" className="underline underline-offset-4">{author.name}</Link> : <span>{author.name}</span>}{dates.published && <span>Published <time dateTime={dates.published}>{formatDate(dates.published, "UTC")}</time></span>}{dates.showModified && <span>Updated <time dateTime={dates.modified}>{formatDate(dates.modified, "UTC")}</time></span>}{readingMinutes > 0 && <span className="inline-flex items-center gap-1"><Clock3 className="size-4" aria-hidden="true" />{readingMinutes} min read</span>}<Link href="/editorial-standards" className="underline underline-offset-4">How we write</Link></p>
         </PageHero>
         <div className="page-wrap article-layout">
           <aside className="article-sidebar order-first min-w-0 lg:order-last" aria-label="Article navigation and learning resources">
-            {headings.length > 1 && <details className="article-toc rounded-2xl border border-leaf-100 bg-[#f5faf1] px-5 py-3"><summary>In this article</summary><nav aria-label="In this article"><ol className="mt-2">{headings.map(heading => <li key={heading.id}><a href={`#${heading.id}`}>{heading.title}</a></li>)}</ol></nav></details>}
+            {headings.length > 1 && <details className="article-toc rounded-2xl border border-leaf-100 bg-[#f5faf1] px-5 py-3"><summary>In this article <span className="ml-auto mr-3 text-xs font-normal text-ink-soft">{headings.length} sections</span></summary><nav aria-label="In this article"><ol className="mt-2">{headings.map(heading => <li key={heading.id}><a href={`#${heading.id}`}>{heading.title}</a></li>)}</ol></nav></details>}
             <div className="mt-5 hidden rounded-2xl border border-line bg-white p-5 lg:block">
               <h2 className="font-sans text-lg font-semibold">Continue your learning</h2>
               <p className="mb-4 mt-2 text-sm text-ink-soft">{resources.label}</p>
@@ -169,10 +172,10 @@ export default async function PostPage({ params }) {
           {post.excerpt && <p className="mb-8 max-w-[68ch] border-l-4 border-gold-500 pl-5 text-[1.12rem] leading-relaxed text-ink-soft">{post.excerpt}</p>}
           {supporting && (
             <figure className="mb-8 max-w-[68ch] overflow-hidden rounded-2xl">
-              <ContentImage src={supporting[0]} alt={supporting[1]} sizes="(max-width: 767px) calc(100vw - 2rem), 680px" className="block h-auto w-full" />
+              <ContentImage src={supporting[0]} alt={supporting[1]} sizes="auto, (max-width: 767px) calc(100vw - 2rem), 680px" className="block h-auto w-full" />
             </figure>
           )}
-          <div className="prose-oqc text-[1.06rem]" dangerouslySetInnerHTML={{ __html: html }} />
+          <div className="prose-oqc long-article-copy" dangerouslySetInnerHTML={{ __html: html }} />
           {post.tags?.length > 0 && (
             <ul className="mt-10 flex flex-wrap gap-2">
               {post.tags.map((t) => (
@@ -199,7 +202,7 @@ export default async function PostPage({ params }) {
             <div className="mt-8 grid gap-5 md:grid-cols-3">
               {more.map((p) => (
                 <Link key={p.slug} data-card-tone={cardTone(p.slug)} href={`/blog/${p.slug}`} className="editorial-card card-tinted group flex flex-col">
-                  {<div className="mx-2 mt-2 aspect-[3/2] overflow-hidden rounded-[1.15rem]"><ContentImage src={contentVisual(p).src} alt={contentVisual(p).alt} sizes="(max-width: 767px) 100vw, 400px" className="size-full object-cover" /></div>}
+                  {<div className="mx-2 mt-2 aspect-[3/2] overflow-hidden rounded-[1.15rem]"><ContentImage src={contentVisual(p).src} alt={contentVisual(p).alt} sizes="auto, (max-width: 767px) calc(100vw - 2rem), 400px" className="size-full object-cover" /></div>}
                   <div className="flex flex-1 flex-col p-6"><p className="text-xs font-bold uppercase tracking-wider text-leaf-700">{p.category}</p>
                   <h3 className="mt-2 text-[1.1rem] font-bold leading-snug text-mushaf-900 group-hover:text-leaf-700">{p.title}</h3>
                   <p className="mt-2 flex-1 text-[0.93rem] text-ink-soft">{truncate(p.excerpt ?? "", 110)}</p><span className="card-action mt-5">Read article <span className="card-arrow"><ArrowRight className="size-4" aria-hidden="true" /></span></span></div>
