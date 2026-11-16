@@ -20,6 +20,7 @@ export function HomeHero({ hero, stats }) {
     fetchPriority: "high",
   });
   const h = { ...DEFAULT_HERO, ...(hero && typeof hero === "object" ? hero : {}) };
+  const title = typeof h.title === "string" && h.title.trim() ? h.title : DEFAULT_HERO.title;
   const badges = (Array.isArray(h.badges) ? h.badges : []).filter(Boolean).slice(0, 4);
   const items = (Array.isArray(stats) ? stats : []).filter((s) => s?.value && s?.label).slice(0, 4);
   return (
@@ -32,7 +33,9 @@ export function HomeHero({ hero, stats }) {
             <span className="size-1.5 shrink-0 rotate-45 bg-gold-500" aria-hidden="true" />
             {h.eyebrow}
           </p>
-          <h1 id="home-title" className="mt-3 max-w-2xl font-bold text-mushaf-900">{h.title}</h1>
+          <h1 id="home-title" className="mt-3 max-w-2xl font-bold text-mushaf-900">{title.split(/(one-to-one)/i).map((part, i) => (
+            i % 2 ? <span key={i} className="whitespace-nowrap">{part}</span> : part
+          ))}</h1>
           {h.subtitle && <p className="hero-intro mt-5 max-w-xl text-[1.05rem] leading-relaxed text-ink-soft">{h.subtitle.length > 150 ? SEARCH_INTENTS["/"].intro : h.subtitle}</p>}
           <div className="hero-actions mt-6 grid gap-3 sm:flex sm:flex-wrap">
             <Link href="/free-trial" className="btn btn-primary btn-lg" data-oqc-cta="home_hero_primary">{h.primary_label || "Book a free trial"}<ArrowRight className="size-5" aria-hidden="true" /></Link>
