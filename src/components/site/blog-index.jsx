@@ -29,10 +29,10 @@ function PostCard({ post, large = false }) {
       aria-labelledby={titleId}
       data-card-tone={cardTone(post.slug)}
       href={`/blog/${post.slug}`}
-      className={`editorial-card card-tinted group flex h-full flex-col ${large ? "md:col-span-2 md:flex-row" : ""}`}
+      className={`editorial-card card-tinted group flex h-full flex-col ${large ? "md:col-span-2 md:flex-row lg:col-span-3" : ""}`}
     >
-      <div className={`relative m-2 shrink-0 overflow-hidden rounded-[1.15rem] bg-leaf-50 ${large ? "aspect-[3/2] md:aspect-auto md:w-[46%]" : "aspect-[3/2]"}`}>
-        <ContentImage src={visual.src} alt={visual.alt} sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 400px" className="size-full object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-105" />
+      <div className={`relative m-2 shrink-0 overflow-hidden rounded-[1.15rem] bg-leaf-50 ${large ? "aspect-[3/2] md:aspect-[3/2] md:w-[46%] lg:w-[44%]" : "aspect-[3/2]"}`}>
+        <ContentImage src={visual.src} alt={visual.alt} sizes={large ? "auto, (max-width: 767px) calc(100vw - 2rem), 520px" : "auto, (max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) 50vw, 400px"} className="size-full object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-105" />
       </div>
       <div className={`flex min-w-0 flex-1 flex-col px-6 pb-6 pt-4 ${large ? "md:py-7" : ""}`}>
         <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.7rem] font-semibold uppercase tracking-wider text-leaf-700">
@@ -43,8 +43,8 @@ function PostCard({ post, large = false }) {
             </span>
           ) : null}
         </p>
-        <h2 id={titleId} className={`mt-3 font-sans font-bold leading-snug text-mushaf-900 ${large ? "text-[1.6rem]" : "text-[1.2rem]"}`}>{post.title}</h2>
-        <p className="mt-3 flex-1 text-[0.97rem] leading-relaxed text-ink-soft">{truncate(post.excerpt || "", large ? 140 : 100)}</p>
+        <h3 id={titleId} className={`mt-3 font-sans font-bold leading-snug text-mushaf-900 ${large ? "text-[1.6rem]" : "text-[1.2rem]"}`}>{post.title}</h3>
+        <p className="mt-3 flex-1 text-[0.97rem] leading-relaxed text-ink-soft">{truncate(post.excerpt || "", large ? 165 : 120)}</p>
         {post.published_at && <time dateTime={post.published_at} className="mt-4 text-xs text-ink-faint">{formatDate(post.published_at)}</time>}
         <span className="card-action mt-5">Read article <span className="card-arrow"><ArrowRight className="size-4" aria-hidden="true" /></span></span>
       </div>
@@ -63,15 +63,16 @@ export async function BlogIndex({ filters }) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(collection) }} />
-      <PageHero immersive path={blogUrl(page, category)} eyebrow={category || "Blog"} title={`Quran learning articles for learners and parents${page > 1 ? ` · Page ${page}` : ""}`} arabic="عِلْم" intro="Short, practical reading on recitation, memorisation and building a Quran routine at home." />
-      <section className="page-wrap py-16 sm:py-20">
+      <PageHero path={blogUrl(page, category)} eyebrow={category || "Blog"} title={`Quran learning articles for learners and parents${page > 1 ? ` · Page ${page}` : ""}`} arabic="عِلْم" intro="Practical guides to Quran reading, Tajweed, memorisation and building a routine at home." />
+      <section className="page-wrap py-10 sm:py-14" aria-labelledby="browse-articles">
+        <h2 id="browse-articles" className="mb-4 text-2xl text-mushaf-900 sm:text-3xl">Browse articles by topic</h2>
         <nav aria-label="Article topics" className="article-topics mb-8">{["", ...categories].map(c => <Link key={c} aria-current={c === category ? "page" : undefined} className={`btn btn-sm ${c === category ? "btn-primary" : "btn-outline"}`} href={blogUrl(1,c)}>{c || "All articles"}</Link>)}</nav>
         {posts.length === 0 ? (
           <p className="surface p-10 text-center text-ink-soft">New articles are on their way. Please check back soon.</p>
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {posts.map((p, i) => (
-              <PostCard key={p.id} post={p} large={i === 0 && posts.length > 2} />
+              <PostCard key={p.id} post={p} large={page === 1 && !category && i === 0 && posts.length > 2} />
             ))}
           </div>
         )}

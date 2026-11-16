@@ -6,9 +6,10 @@ import { MARKET_GUIDES } from "@/lib/market-guides";
 import { getPublishedPageVideos, getPublishedSlugs } from "@/lib/site-data";
 import { SITE_URL } from "@/lib/config";
 import { shouldIncludeInSitemap } from "@/lib/seo";
-import imageManifest from "@/lib/image-manifest.json";
+import { contentVisual } from "@/lib/content-visual";
+import { publicImageUrl } from "@/lib/seo-metadata";
 import { heroArt } from "@/lib/hero-art";
-const imageUrl = (src) => new URL(imageManifest.find((image) => image.storage_url === src || image.url === src || image.previous_urls?.includes(src))?.url || src, SITE_URL).href;
+const imageUrl = (src) => new URL(publicImageUrl(src), SITE_URL).href;
 const fixedImages = {
   "": "/brand/hero.webp",
   "/contact": heroArt("/contact").src,
@@ -29,7 +30,8 @@ export default async function sitemap() {
   const content = (rows, prefix, priority) => rows.flatMap((row) => {
     const path = prefix === "" && guideForSlug(row.slug) ? guideForSlug(row.slug).path : `${prefix}/${row.slug}`;
     const video = prefix === "" ? videos.get(row.slug) : null;
-    return shouldIncludeInSitemap(row, path, SITE_URL) ? [{ url: `${SITE_URL}${path}`, lastModified: row.updated_at, ...(row.cover_url ? { images: [imageUrl(row.cover_url)] } : {}), ...(video?.primary ? { videos: [videoSitemapEntry(video)] } : {}), priority }] : [];
+    const cover = prefix === "/blog" ? contentVisual(row).src : row.cover_url;
+    return shouldIncludeInSitemap(row, path, SITE_URL) ? [{ url: `${SITE_URL}${path}`, lastModified: row.updated_at, ...(cover ? { images: [imageUrl(cover)] } : {}), ...(video?.primary ? { videos: [videoSitemapEntry(video)] } : {}), priority }] : [];
   });
   const trialVideo = { url: `${SITE_URL}/trial-video`, videos: [videoSitemapEntry(pageVideo(TRIAL_GUIDE_VIDEO))] };
   return [...fixed, trialVideo, ...locations, ...content(courses, "/courses", 0.8), ...content(pages.filter((p) => !p.slug.startsWith("locations-")), "", 0.5), ...content(posts, "/blog", 0.6), ...content(teachers, "/teachers", 0.5)];
