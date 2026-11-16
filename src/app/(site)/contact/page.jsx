@@ -42,7 +42,7 @@ export default async function ContactPage() {
           {wa && <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-gold btn-lg"><MessageCircle className="size-5" />Chat on WhatsApp<ArrowRight className="size-4" /></a>}
           <a href="#send-message" className="btn btn-outline-light btn-lg"><Send className="size-4" />Send an enquiry</a>
         </div>
-        <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/85">Course advice · Teacher preferences · Fees · Class scheduling · Existing student support</p>
+        <p className="mt-5 max-w-xl text-sm leading-relaxed text-ink-soft">Course advice · Teacher preferences · Fees · Class scheduling · Existing student support</p>
       </PageHero>
 
       <section aria-label="Contact options and enquiry form" className="page-wrap grid items-start gap-8 py-12 sm:gap-12 sm:py-16 lg:grid-cols-[0.88fr_1.12fr]">
