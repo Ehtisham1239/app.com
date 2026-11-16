@@ -174,7 +174,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
     } catch (cause) { error = cause; }
     if (error || data?.ok !== true) {
       submitting.current = false;
-      setState({ sending: false, error: error?.message || "We could not send your request. Please try again or message us on WhatsApp.", reference: null });
+      setState({ sending: false, error: "We could not send your request. Your details are still in the form. Please try again, or contact us on WhatsApp.", reference: null });
       return;
     }
     requestLeadNotification(data, form.email.trim().toLowerCase());
