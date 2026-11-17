@@ -108,6 +108,18 @@ const nextConfig = {
       { source: "/noorani-qaida-course", destination: "/courses/noorani-qaida", permanent: true },
       { source: "/hadith-translation-course", destination: "/courses/hadith-translation", permanent: true },
       { source: "/our-blogs", destination: "/blog", permanent: true },
+      // Old WordPress feed, archive and sitemap URLs that crawlers still request (17 Nov 2026
+      // live check found them 404). Each goes to its current equivalent.
+      { source: "/feed", destination: "/blog/feed.xml", permanent: true },
+      { source: "/blog/feed", destination: "/blog/feed.xml", permanent: true },
+      { source: "/comments/feed", destination: "/blog/feed.xml", permanent: true },
+      { source: "/category/:slug*", destination: "/blog", permanent: true },
+      { source: "/tag/:slug*", destination: "/blog", permanent: true },
+      { source: "/author/:slug*", destination: "/about", permanent: true },
+      { source: "/blog/page/:n(\\d+)", destination: "/blog", permanent: true },
+      { source: "/page/:n(\\d+)", destination: "/blog", permanent: true },
+      { source: "/:name(sitemap_index|wp-sitemap|sitemap-index|post-sitemap|page-sitemap|category-sitemap|wp-sitemap-posts-post-1|wp-sitemap-posts-page-1).xml", destination: "/sitemap.xml", permanent: true },
+      { source: "/index.php", destination: "/", permanent: true },
       { source: "/faqs", destination: "/faq", permanent: true },
       ...courses.map((slug) => ({ source: `/${slug}`, destination: `/courses/${slug}`, permanent: true })),
       { source: "/hifz-ul-quran-course", destination: "/courses/hifz-quran", permanent: true },
