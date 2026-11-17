@@ -25,6 +25,6 @@ export default function robots() {
       { userAgent: "PerplexityBot", allow: "/", disallow: PRIVATE_PATHS },
       { userAgent: "*", allow: "/", disallow: PRIVATE_PATHS },
     ],
-    sitemap: `${SITE_URL}/sitemap.xml`,
+    sitemap: [`${SITE_URL}/sitemap.xml`, `${SITE_URL}/sitemap.txt`],
   };
 }
