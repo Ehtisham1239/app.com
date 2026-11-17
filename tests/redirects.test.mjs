@@ -90,3 +90,10 @@ test('old WordPress feed, archive and sitemap URLs move to their current equival
   assert.equal(sitemaps?.destination,'/sitemap.xml');
   assert.equal(bySource.has('/ramzan-course'),false,'no exact equivalent: stays a 404');
 });
+
+test('the duplicate Quran Recitation course moves to the Nazara course (owner, 17 Nov 2026)',()=>{
+  const rule=bySource.get('/courses/quran-recitation');
+  assert.equal(rule?.destination,'/courses/quran-nazara');
+  assert.equal(rule.permanent,true);
+  assert.equal(bySource.has('/courses/quran-nazara'),false,'the kept course is not itself redirected');
+});
