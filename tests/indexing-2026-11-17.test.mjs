@@ -28,3 +28,9 @@ test("CMS landing pages declare a WebPage identity and open with a hero visual",
   const sections = read("src/components/site/page-sections.jsx");
   assert.match(sections, /<div data-hero-visual><ContentImage src=\{heroImage\.src\}/);
 });
+
+test("/reviews declares its WebPage identity and marks its hero visual", () => {
+  const page = read("src/app/(site)/reviews/page.jsx");
+  assert.match(page, /"@type": "WebPage", "@id": `\$\{SITE_URL\}\/reviews#webpage`, url: `\$\{SITE_URL\}\/reviews`/);
+  assert.match(page, /<div data-hero-visual className="shrink-0"><img src="\/brand\/mark-v2-128\.png"/);
+});

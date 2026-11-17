@@ -3,6 +3,8 @@ import { ReviewForm } from "@/components/site/review-form";
 import { ArrowUpRight, HeartHandshake, MessageCircle, ShieldCheck, Users } from "@/components/site/icons";
 import { REVIEWS_BUTTON_DEFAULTS, googleReviewUrl, trustpilotUrl } from "@/lib/reviews-button";
 import { CmsPageSchema } from "@/components/site/custom-code";
+import { SITE_URL } from "@/lib/config";
+import { safeJsonLd } from "@/lib/seo";
 
 export const revalidate = 300;
 
@@ -29,13 +31,14 @@ export default async function ReviewsPage() {
   const profileUrl = trustpilotUrl(settings["site.social"]?.trustpilot) || "https://www.trustpilot.com/review/onlinequrancollege.com";
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", "@type": "WebPage", "@id": `${SITE_URL}/reviews#webpage`, url: `${SITE_URL}/reviews`, name: "Share your experience", description: metadata.description, isPartOf: { "@id": `${SITE_URL}/#website` }, about: { "@id": `${SITE_URL}/#organization` }, inLanguage: "en-GB" }) }} />
       <CmsPageSchema path="/reviews" />
       <section className="relative overflow-hidden bg-mushaf-900 pb-28 pt-10 text-white sm:pb-32 sm:pt-14">
         <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.07]" aria-hidden="true" />
         <div className="pointer-events-none absolute -right-24 -top-28 size-[24rem] rounded-full bg-leaf-600/25 blur-3xl" aria-hidden="true" />
         <div className="page-wrap relative max-w-5xl text-center lg:text-left">
           <div className="flex flex-col items-center gap-5 lg:flex-row lg:items-center">
-            <img src="/brand/mark-v2-128.png" alt="Online Quran College" width={88} height={88} className="size-[4.5rem] shrink-0 rounded-[1.4rem] bg-white p-2 shadow-[0_10px_30px_rgb(0_0_0/0.25)] sm:size-[5.5rem]" />
+            <div data-hero-visual className="shrink-0"><img src="/brand/mark-v2-128.png" alt="Online Quran College" width={88} height={88} className="size-[4.5rem] shrink-0 rounded-[1.4rem] bg-white p-2 shadow-[0_10px_30px_rgb(0_0_0/0.25)] sm:size-[5.5rem]" /></div>
             <div>
               <p className="text-sm font-semibold text-gold-300">After your parent–teacher meeting</p>
               <h1 className="mt-1 text-3xl leading-tight sm:text-[2.6rem]">How are the classes going?</h1>
