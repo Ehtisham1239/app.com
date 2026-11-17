@@ -84,6 +84,25 @@ Hold map-first or address-dependent listings until eligibility is documented.
 | Kiwi Muslim Directory (NZ) | Free basic listing with address and phone | Hold: NZ is not a primary market; needs an address |
 | Mosque-run directories (Masjid App) | Each mosque verifies local members | Not a fit: local membership needed |
 
+### Gate scores, batch 2 (16 Nov 2026, scheduled run; pages opened, nothing submitted)
+
+Score = audience fit /30 + editorial oversight /25 + service relevance /20 + discoverability /15 + expected visits /10. None reached 75, so nothing joins the queue from this batch.
+
+| Prospect | Evidence from the live page | Score | Decision |
+|---|---|---:|---|
+| AllSchools.co.uk supplier listing (allschools.co.uk/suppliers/apply) | UK; "All submissions are reviewed"; "Submitting a supplier listing is free"; accepts "nationwide and online school suppliers", tutors included; no address needed. Audience is all UK schools, not Muslim families; no named editor; keyword-heavy category lists | 57 | Below gate: re-screen only if a Quran/Islamic-education category appears |
+| Muslim School Show (mss.ams-uk.org, AMS-UK) | UK parents choosing Muslim schools; listings are schools, joined through AMS membership; directory page showed a bot check | 0 (not eligible) | Not a fit: OQC is not a school |
+| Masjid Al-Huda yellow pages (masjidalhuda.org/yellow-page) | Chicago-area mosque directory with an "Education / Tutoring" category and free/featured/premium tiers; duplicate listings and keyword-heavy promotional copy | 41 | Reject: local audience, spam signals |
+| Muslim Women's Organization directory (mwo-orlando.org/directory) | Orlando, women-run home businesses; others pay to advertise | 40 | Not a fit: local, paid for non-home businesses |
+| UmmahPlaces (ummahplaces.com) | US listings site; page says tags are unchecked ("has not checked them"); paid "Ummah One" upsell; no education focus | 36 | Reject: weak editorial control |
+| Digital British Islam, "Exploring Directories" | Academic archive commentary (named author); names two directories, no providers, no submission route | 37 | Not a fit: no listings |
+| IELC blog post "Muslim Home Education Network Australia" (ielc.learnworlds.com) | Single post linking to muslimhomeschool.net; no editor or submission route; the site sells courses | 34 | Not a fit; MHENA itself is already queue item 4 |
+| IELC blog post "Islamic Studies Resources" (ielc.learnworlds.com/blog/isr) | Single post pointing to islamicstudiesresources.com; broken link; no submission route | 32 | Not a fit |
+| Canadian Ismaili Business Directory (iicanada.org) | Open only to Ismaili-owned Canadian businesses ("only accepting Canadian businesses") | 0 (not eligible) | Not a fit |
+| MasjidPlus businesses (masjidplus.com/landing/businesses) | Redirects to docs.ummahx.org; not assessed | — | Hold: a person should open it in a browser |
+
+Next batch: follow the search patterns below with UK/Canada parent newsletters and homeschool co-ops, which the plan names for December; generic Muslim business directories have now mostly been screened.
+
 ## Linkable assets
 
 | Asset | URL | Status |
