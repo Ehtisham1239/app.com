@@ -148,7 +148,7 @@ export default async function PostPage({ params }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema(breadcrumbs, SITE_URL)) }} />
       {quick && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema([quick])) }} />}
-      <article className="bg-white">
+      <article className="blog-article bg-white">
         <PageHero path={`/blog/${post.slug}`} eyebrow={post.category} title={post.title} visual={<ContentImage src={visual.src} alt={visual.alt} priority sizes="(max-width: 639px) calc(100vw - 2rem), (max-width: 1023px) calc(100vw - 4rem), (max-width: 1216px) 46vw, 550px" className="block aspect-[3/2] w-full object-cover object-center" />}>
           <nav aria-label="Breadcrumb" className="mt-5 text-sm text-ink-soft"><Link href="/" prefetch={false}>Home</Link> / <Link href="/blog" className="underline">Articles</Link></nav>
           <p className="mt-5 flex flex-wrap items-center gap-3 text-sm text-ink-soft">{author["@type"] === "Organization" ? <Link href="/about" className="underline underline-offset-4">{author.name}</Link> : <span>{author.name}</span>}{dates.published && <span>Published <time dateTime={dates.published}>{formatDate(dates.published, "UTC")}</time></span>}{dates.showModified && <span>Updated <time dateTime={dates.modified}>{formatDate(dates.modified, "UTC")}</time></span>}{readingMinutes > 0 && <span className="inline-flex items-center gap-1"><Clock3 className="size-4" aria-hidden="true" />{readingMinutes} min read</span>}<Link href="/editorial-standards" className="underline underline-offset-4">How we write</Link></p>
@@ -204,7 +204,7 @@ export default async function PostPage({ params }) {
             <h2 className="text-[1.8rem] text-mushaf-900">Keep reading</h2>
             <div className="mt-8 grid gap-5 md:grid-cols-3">
               {more.map((p) => (
-                <Link key={p.slug} data-card-tone={cardTone(p.slug)} href={`/blog/${p.slug}`} className="editorial-card card-tinted group flex flex-col">
+                <Link key={p.slug} data-card-tone={cardTone(p.slug)} href={`/blog/${p.slug}`} className="article-preview editorial-card card-tinted group flex flex-col">
                   {<div className="mx-2 mt-2 aspect-[3/2] overflow-hidden rounded-[1.15rem]"><ContentImage src={contentVisual(p).src} alt={contentVisual(p).alt} sizes="auto, (max-width: 767px) calc(100vw - 2rem), 400px" className="size-full object-cover" /></div>}
                   <div className="flex flex-1 flex-col p-6"><p className="text-xs font-bold uppercase tracking-wider text-leaf-700">{p.category}</p>
                   <h3 className="mt-2 text-[1.1rem] font-bold leading-snug text-mushaf-900 group-hover:text-leaf-700">{p.title}</h3>
