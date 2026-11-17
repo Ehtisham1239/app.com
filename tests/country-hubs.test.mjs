@@ -24,7 +24,10 @@ test("all five indexed hubs get a landing block in their own currency", () => {
     assert.match(hub.steps[2].text, /Weekend plan is excluded/, slug);
     assert.match(hub.feeQuestion, new RegExp(`cost in ${hub.place.replace(/[.]/g, "\\.")}\\?$`), slug);
   }
-  assert.match(COUNTRY_HUBS.canada.steps[0].text, /Canadian time zone/);
+  assert.match(COUNTRY_HUBS.canada.steps[0].text, /Canadian local time/);
+  for (const city of ["Toronto", "Ottawa", "Montreal", "Vancouver", "Calgary", "Winnipeg", "Regina", "Halifax", "St. John’s"]) {
+    assert.ok(COUNTRY_HUBS.canada.steps[0].text.includes(city), `Canadian planner copy includes ${city}`);
+  }
   assert.match(COUNTRY_HUBS["united-arab-emirates"].steps[0].text, /Gulf Standard Time/);
 });
 
