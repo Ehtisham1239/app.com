@@ -9,6 +9,7 @@ import { mkdirSync } from "node:fs";
 const base = (process.env.SMOKE_BASE_URL || "https://www.onlinequrancollege.com").replace(/\/$/, "");
 const shots = process.env.RESPONSIVE_SHOTS_DIR || "";
 const WIDTHS = [320, 360, 390, 430, 768, 820, 1024, 1280, 1440, 1600, 1920, 2560];
+const WIDTH_CONCURRENCY = Math.max(1, Number(process.env.RESPONSIVE_CONCURRENCY) || 4);
 const DEVICE_PROFILES = ["iPhone 13", "iPhone 14 Pro Max", "Pixel 7", "iPad Pro 11"];
 export const PAGES = [
   "/", "/courses", "/courses/hifz-quran", "/courses/noorani-qaida", "/pricing", "/free-trial", "/teachers",
@@ -72,7 +73,9 @@ async function main() {
   const browser = await chromium.launch({ headless: true, ...(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {}) });
   const failures = [];
   let checks = 0;
-  for (const width of WIDTHS) {
+  // Widths run a few at a time (each in its own context): 252 sequential loads took
+  // longer than the CI job's 20-minute limit on Hostinger (17 Nov 2026).
+  const auditWidth = async (width) => {
     const context = await browser.newContext({ viewport: { width, height: 900 }, isMobile: width < 768, hasTouch: width < 768, deviceScaleFactor: 1 });
     const page = await context.newPage();
     for (const path of PAGES) {
@@ -87,7 +90,9 @@ async function main() {
       if (width === 390 && shots) await page.screenshot({ path: `${shots}/${(path.replace(/\//g, "_") || "_home")}-390.png`, fullPage: true });
     }
     await context.close();
-  }
+  };
+  const queue = [...WIDTHS];
+  await Promise.all(Array.from({ length: WIDTH_CONCURRENCY }, async () => { while (queue.length) await auditWidth(queue.shift()); }));
   // Real browser device descriptors complement width-only desktop checks.
   // These exercise iOS Safari-like and Android touch/mobile viewports.
   for (const deviceName of DEVICE_PROFILES) {
