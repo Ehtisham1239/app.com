@@ -21,3 +21,9 @@ test('Canada and UAE planning guides share the international scheduling resource
   for (const slug of ['online-quran-lessons-canada-time-zones', 'online-quran-lessons-uae-families']) assert.deepEqual(articleResources({ slug }), australia, slug);
   assert.deepEqual(australia.links.map(link => link.href), ['/locations', '/pricing']);
 });
+
+test('the USA fee comparison and the starting-age guide get their own topic resources, not the generic fallback', () => {
+  const international = articleResources({ slug: 'quran-lessons-australia-time-zones' });
+  assert.deepEqual(articleResources({ slug: 'online-quran-class-fees-usa-comparison' }), international);
+  assert.deepEqual(articleResources({ slug: 'what-age-start-online-quran-classes' }), articleResources({ slug: 'choose-online-quran-classes-kids' }));
+});
