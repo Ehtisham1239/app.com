@@ -82,3 +82,11 @@ test('legacy relative contact, course and location URLs reach the intended publi
     assert.equal(bySource.get(source)?.permanent, true, source);
   }
 });
+
+test('old WordPress feed, archive and sitemap URLs move to their current equivalents (17 Nov 2026)',()=>{
+  const expected=[['/feed','/blog/feed.xml'],['/blog/feed','/blog/feed.xml'],['/comments/feed','/blog/feed.xml'],['/category/:slug*','/blog'],['/tag/:slug*','/blog'],['/author/:slug*','/about'],['/index.php','/']];
+  for(const [source,destination] of expected){const rule=bySource.get(source);assert.ok(rule,source);assert.equal(rule.destination,destination,source);assert.equal(rule.permanent,true,source);}
+  const sitemaps=redirects.find(r=>r.source.includes('sitemap_index|wp-sitemap'));
+  assert.equal(sitemaps?.destination,'/sitemap.xml');
+  assert.equal(bySource.has('/ramzan-course'),false,'no exact equivalent: stays a 404');
+});

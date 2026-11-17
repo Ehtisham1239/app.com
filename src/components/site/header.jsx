@@ -171,7 +171,7 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
         <div className={clsx("ml-auto flex items-center gap-2", !compact && "xl:ml-2")}>
           {/* A full document navigation removes the public third-party chat runtime before staff sign-in. */}
           {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-          <a href="/admin" className="btn portal-button header-portal whitespace-nowrap px-3 text-xs sm:px-5 sm:text-sm"><ShieldCheck className="size-4" aria-hidden="true" />Portal</a>
+          <a href="/admin" rel="nofollow" className="btn portal-button header-portal whitespace-nowrap px-3 text-xs sm:px-5 sm:text-sm"><ShieldCheck className="size-4" aria-hidden="true" />Portal</a>
           <Link href="/free-trial" className="btn btn-primary hidden sm:inline-flex">
             Request a free trial
             <ArrowRight className="size-4" aria-hidden="true" />
@@ -248,7 +248,7 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
           <div className="shrink-0 space-y-2 border-t border-line p-5">
             {/* Full document navigation keeps public chat isolated from staff sign-in. */}
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            <a href="/admin" className="btn portal-button w-full sm:hidden"><ShieldCheck className="size-4" aria-hidden="true" />Portal</a>
+            <a href="/admin" rel="nofollow" className="btn portal-button w-full sm:hidden"><ShieldCheck className="size-4" aria-hidden="true" />Portal</a>
             <Link href="/free-trial" onClick={() => setOpen(false)} className="btn btn-primary w-full">
               Request a 3-day free trial
             </Link>
