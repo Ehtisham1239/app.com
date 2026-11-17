@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { PageHero } from "@/components/site/chrome";
 import { VerifyCertificate } from "@/components/site/verify-certificate";
 
-export const metadata = contentMetadata({ title: "Verify a Certificate", seo_noindex: true }, { path: "/verify-certificate", description: "Check that an Online Quran College certificate is genuine using its certificate number." });
+export const metadata = contentMetadata({ title: "Verify a Certificate", seo_noindex: false }, { path: "/verify-certificate", description: "Check that an Online Quran College certificate is genuine using its certificate number." });
 
 export default function VerifyPage() {
   return (

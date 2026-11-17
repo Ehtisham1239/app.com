@@ -11,7 +11,6 @@ export const metadata = {
   title: "Share your experience",
   description: "Share honest feedback about your Online Quran College classes, privately with our team or publicly on Trustpilot.",
   alternates: { canonical: "/reviews" },
-  robots: { index: false, follow: true },
 };
 
 const PROMISES = [

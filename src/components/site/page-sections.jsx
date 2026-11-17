@@ -33,7 +33,10 @@ function limit(list, n) {
 function Block({ section, data }) {
   const d = section.data && typeof section.data === "object" ? section.data : {};
   switch (section.type) {
-    case "hero":
+    case "hero": {
+      // A hero without its own image falls back to the page cover, so every
+      // landing page opens with a visual (public-page-quality "top visual").
+      const heroImage = d.image_url ? { src: d.image_url, alt: d.image_alt } : data.heroImage?.src ? data.heroImage : null;
       return (
         <section className="relative overflow-hidden bg-mushaf-950 text-white">
           <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.08]" aria-hidden="true" />
@@ -48,10 +51,11 @@ function Block({ section, data }) {
                 </Link>
               </div>
             </div>
-            {d.image_url && <ContentImage src={d.image_url} alt={d.image_alt || ""} sizes="(max-width: 1023px) calc(100vw - 2.5rem), (max-width: 1599px) 42vw, 42rem" priority className="aspect-[4/3] w-full rounded-[1.5rem] object-cover ring-4 ring-gold-400/30" />}
+            {heroImage && <div data-hero-visual><ContentImage src={heroImage.src} alt={heroImage.alt || ""} sizes="(max-width: 1023px) calc(100vw - 2.5rem), (max-width: 1599px) 42vw, 42rem" priority className="aspect-[4/3] w-full rounded-[1.5rem] object-cover ring-4 ring-gold-400/30" /></div>}
           </div>
         </section>
       );
+    }
 
     case "rich_text": {
       const html = cleanHtml(d.html ?? "");

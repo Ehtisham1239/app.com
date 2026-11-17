@@ -123,7 +123,7 @@ test("the form is one short screen that keeps a draft, guides the reviewer and s
   assert.match(read("src/app/admin/(panel)/reviews/page.jsx"), /How to handle reviews/);
   const page = read("src/app/(site)/reviews/page.jsx");
   assert.match(page, /<ReviewForm open inline /, "the /reviews page shows the form inline");
-  assert.match(page, /robots: \{ index: false, follow: true \}/);
+  assert.doesNotMatch(page, /index: false/, "owner 17 Nov 2026: /reviews is indexable");
   const css = read("src/app/globals.css");
   assert.match(css, /\.review-star\[data-filled="true"\] \{ color: var\(--color-gold-500\); \}/);
   assert.match(css, /@keyframes review-sheet-in/);
