@@ -19,6 +19,7 @@ test("teacher profiles explain lessons and link to courses, the trial guide and 
   assert.match(page, /The trial lasts 3 days and the Weekend plan is excluded/);
   assert.match(page, /href="\/trial-video"/);
   assert.match(page, /aria-labelledby="other-teachers"/);
+  assert.doesNotMatch(page, /x\.slug !== t\.slug\)\.slice\(/, "every other teacher is listed");
 });
 
 test("the Hifz course links to the readiness article", () => {
