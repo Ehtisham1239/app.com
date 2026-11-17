@@ -134,6 +134,8 @@ const nextConfig = {
       { source: "/how-to-learn-quran-by-heart-2", destination: "/blog/memorization-techniques-for-beginners", permanent: true },
       { source: "/start-teaching-the-quran-to-your-children", destination: "/blog/help-your-kids-learn-quran-online", permanent: true },
       { source: "/terms-conditions", destination: "/terms-and-conditions", permanent: true },
+      // Teacher profile renamed in the CMS from ustadha-aisha to aisha; the old URL was a 404 in Search Console (17 Nov 2026).
+      { source: "/teachers/ustadha-aisha", destination: "/teachers/aisha", permanent: true },
       { source: "/login.html", destination: "/admin/login", permanent: false },
       { source: "/login", destination: "/admin/login", permanent: false },
       { source: "/register", destination: "/free-trial", permanent: false },
