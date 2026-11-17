@@ -123,6 +123,9 @@ const nextConfig = {
       { source: "/faqs", destination: "/faq", permanent: true },
       ...courses.map((slug) => ({ source: `/${slug}`, destination: `/courses/${slug}`, permanent: true })),
       { source: "/hifz-ul-quran-course", destination: "/courses/hifz-quran", permanent: true },
+      // Duplicate course (17 Nov 2026, owner): "Quran Recitation" repeated the Nazara course's
+      // intent (fluent recitation with Tajweed). Nazara is kept; the duplicate is unpublished.
+      { source: "/courses/quran-recitation", destination: "/courses/quran-nazara", permanent: true },
       // Old WordPress pages still in the search index (2 Nov 2026 site: check) that now 404.
       // Only exact-intent targets: /ramzan-course has no current equivalent and stays a 404.
       { source: "/quran-nazara-course", destination: "/courses/quran-nazara", permanent: true },
