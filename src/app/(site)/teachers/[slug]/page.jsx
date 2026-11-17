@@ -4,7 +4,8 @@ import { contentMetadata } from "@/lib/seo-metadata";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Award, Languages, Sparkles } from "@/components/site/icons";
-import { getPublishedSlugs, getTeacher } from "@/lib/site-data";
+import { getPublishedSlugs, getTeacher, getTeachers } from "@/lib/site-data";
+import { teacherCourses } from "@/lib/teacher-courses";
 import { truncate } from "@/lib/format";
 import { teacherPerson } from "@/lib/teacher-schema";
 import { safeJsonLd } from "@/lib/seo";
@@ -30,6 +31,9 @@ export default async function TeacherPage({ params }) {
   const t = await getTeacher(slug);
   if (!t) notFound();
   const person = teacherPerson(t, SITE_URL);
+  const courses = teacherCourses(t);
+  const others = (await getTeachers()).filter((x) => x.slug && x.slug !== t.slug).slice(0, 6);
+  const first = t.display_name.split(" ").slice(-1)[0];
   return (
     <>
       {person && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", ...person }) }} />}
@@ -47,6 +51,15 @@ export default async function TeacherPage({ params }) {
             <>
               <h2>Qualifications</h2>
               <p>{t.qualifications}</p>
+            </>
+          )}
+          <h2>How lessons with {first} work</h2>
+          <p>Every lesson is live and one-to-one over video, so {first} listens to each learner read and corrects mistakes as they happen. You agree regular class times with our coordinator, and lessons can be arranged for children or adults{t.languages?.length ? `, taught in ${t.languages.join(", ").replace(/,([^,]*)$/, " or$1")}` : ""}.</p>
+          <p>To learn with {first}, book a free trial and write “{t.display_name}” in the notes. The trial lasts 3 days and the Weekend plan is excluded. The coordinator confirms availability, timings and fees before you enrol.</p>
+          {courses.length > 0 && (
+            <>
+              <h2>Courses {first} teaches</h2>
+              <ul>{courses.map((c) => <li key={c.href}><Link href={c.href}>{c.label}</Link></li>)}</ul>
             </>
           )}
         </div>
@@ -71,7 +84,16 @@ export default async function TeacherPage({ params }) {
             <Link href="/free-trial" className="btn btn-primary mt-4 w-full">
               Book a free trial <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
+            <Link href="/trial-video" className="mt-3 block text-center text-sm text-leaf-700 underline">Watch the 15-second trial guide</Link>
           </div>
+          {others.length > 0 && (
+            <nav className="surface p-6" aria-labelledby="other-teachers">
+              <h2 id="other-teachers" className="font-sans text-sm font-bold uppercase tracking-wider text-gold-700">Other teachers</h2>
+              <ul className="mt-3 space-y-1.5 text-[0.95rem]">
+                {others.map((o) => <li key={o.slug}><Link href={`/teachers/${o.slug}`} className="text-leaf-700 underline-offset-2 hover:underline">{o.display_name}</Link>{o.headline ? <span className="text-ink-soft"> · {o.headline.trim()}</span> : null}</li>)}
+              </ul>
+            </nav>
+          )}
         </aside>
       </div>
     </>
