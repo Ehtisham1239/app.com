@@ -714,3 +714,42 @@ a.card-tinted:focus-visible .card-arrow { background: var(--card-ink); color: #f
     background-color: var(--color-gold-50);
   }
 }
+
+/* Premium visual polish — CSS-only, low-cost effects for public pages. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes oqc-ambient-breathe {
+    0%, 100% { opacity: .42; transform: scale(1); }
+    50% { opacity: .65; transform: scale(1.045); }
+  }
+  .hero-immersive::before, .inner-hero::before {
+    animation: oqc-ambient-breathe 12s ease-in-out infinite;
+  }
+}
+.hero-immersive, .inner-hero { position: relative; isolation: isolate; }
+.hero-immersive::before, .inner-hero::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(ellipse 38% 54% at 94% 5%, rgb(219 185 96 / .13), transparent 75%),
+    radial-gradient(ellipse 40% 60% at 3% 90%, rgb(36 156 12 / .09), transparent 76%);
+}
+.site-header { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+:where(#main[data-site-motion]) :where(.editorial-card, a.surface, .course-card) {
+  transition: box-shadow .25s ease, border-color .25s ease, transform .25s ease;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  :where(#main[data-site-motion]) :where(.editorial-card, a.surface, .course-card):hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px -22px rgb(12 75 35 / .32), 0 0 0 1px rgb(201 161 59 / .2);
+  }
+  :where(#main[data-site-motion]) :where(.editorial-card, a.surface, .course-card):hover img {
+    transform: scale(1.035);
+  }
+  :where(#main[data-site-motion]) :where(.editorial-card, a.surface, .course-card) img {
+    transition: transform .45s cubic-bezier(.2,.65,.3,1);
+  }
+  .btn-primary:hover:not(:disabled), .btn-gold:hover:not(:disabled) {
+    box-shadow: 0 10px 24px -10px rgb(12 108 12 / .5), 0 0 0 3px rgb(219 185 96 / .22), 0 0 26px rgb(219 185 96 / .14);
+  }
+}
+@media (max-width: 767px) {
+  .hero-immersive::before, .inner-hero::before { opacity: .5; }
+}
