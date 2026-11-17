@@ -97,3 +97,9 @@ test('the duplicate Quran Recitation course moves to the Nazara course (owner, 1
   assert.equal(rule.permanent,true);
   assert.equal(bySource.has('/courses/quran-nazara'),false,'the kept course is not itself redirected');
 });
+
+test('the renamed teacher profile keeps its old URL alive with one 301',()=>{
+  const rule=bySource.get('/teachers/ustadha-aisha');
+  assert.equal(rule?.destination,'/teachers/aisha');assert.equal(rule.permanent,true);
+  assert.equal(bySource.has('/teachers/aisha'),false);
+});
