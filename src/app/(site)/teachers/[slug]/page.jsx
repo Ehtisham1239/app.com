@@ -32,7 +32,8 @@ export default async function TeacherPage({ params }) {
   if (!t) notFound();
   const person = teacherPerson(t, SITE_URL);
   const courses = teacherCourses(t);
-  const others = (await getTeachers()).filter((x) => x.slug && x.slug !== t.slug).slice(0, 6);
+  // Every other public teacher, so each profile is linked from all the rest.
+  const others = (await getTeachers()).filter((x) => x.slug && x.slug !== t.slug);
   const first = t.display_name.split(" ").slice(-1)[0];
   return (
     <>
