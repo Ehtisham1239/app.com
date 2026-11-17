@@ -26,6 +26,7 @@ const articleTopics = {
   "choose-online-quran-teacher-usa": "international",
   "quran-lessons-australia-time-zones": "international",
   "online-quran-lessons-canada-time-zones": "international",
+  "online-quran-class-fees-usa-comparison": "international",
   "online-quran-lessons-usa-time-zones": "international",
   "online-quran-lessons-uae-families": "international",
   "noorani-qaida-or-quran-reading": "reading",
@@ -42,6 +43,7 @@ const articleTopics = {
   "makharij-explained-for-beginners": "tajweed",
   "common-tajweed-mistakes": "tajweed",
   "ramadan-quran-plan-for-families": "parents",
+  "what-age-start-online-quran-classes": "parents",
 };
 
 export function articleResources(post) {
