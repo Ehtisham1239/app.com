@@ -29,8 +29,9 @@ for (const country of LOCATIONS) for (const city of [null, ...country.cities]) {
 const privacy = await html("/privacy-policy"); assert.ok(privacy.includes("sessionStorage")); assert.ok(privacy.includes("24 hours"));
 const about = await html("/about"); assert.equal(about.includes("Every teacher goes through a background check"), false);
 await html("/careers");
-const utility = await html("/verify-certificate"); assert.match(utility, /name="robots" content="noindex, follow"/);
-const sitemap = await html("/sitemap.xml"); assert.equal(sitemap.includes("/verify-certificate"), false); assert.ok(sitemap.includes("/careers"));
+// Owner decision 17 Nov 2026: /verify-certificate is indexable and listed in the sitemap.
+const utility = await html("/verify-certificate"); assert.doesNotMatch(utility, /name="robots" content="[^"]*noindex/);
+const sitemap = await html("/sitemap.xml"); assert.ok(sitemap.includes("/verify-certificate")); assert.ok(sitemap.includes("/careers"));
 const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || "/usr/bin/chromium", headless: true, args: ["--no-sandbox"] });
 try {
   const page = await browser.newPage({ viewport: { width: 390, height: 844 }, timezoneId: "Asia/Karachi" });

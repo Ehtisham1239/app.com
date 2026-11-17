@@ -106,7 +106,7 @@ jobs:
     continue-on-error: ${{ github.event_name == 'pull_request' }}
     needs: [test-and-lint]
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45 # 252 sequential page loads; Hostinger's WAF answers 403 to parallel loads (17 Nov 2026)
     steps:
       - name: Check out source
         uses: actions/checkout@v4
