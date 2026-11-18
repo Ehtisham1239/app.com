@@ -484,6 +484,7 @@ window.OQC_LP_CONFIG = {
   // Owner request 18 Nov 2026: second container and Google Ads tag, same denied-consent set-up.
   gtmId2: 'GTM-52PTXDRF',
   adsId: 'AW-16564445897',
+  adsLabel: '', // Google Ads conversion label (the part after AW-…/); empty = no conversion event
   analyticsHosts: ['www.onlinequrancollege.com', 'onlinequrancollege.com'],
   leadValueUSD: null,
   attributionDays: 1,
@@ -721,7 +722,13 @@ window.OQC_LP_CONFIG = {
     var o = { event: 'oqc_' + name };
     for (var k in params) if (Object.prototype.hasOwnProperty.call(params, k)) o[k] = params[k];
     dl.push(o);
+    // Google Ads conversion, only when the owner has set the label; fired from the saved-lead signal.
+    var cfg = window.OQC_LP_CONFIG || {};
+    if (name === 'generate_lead' && /^AW-[0-9]{6,15}$/.test(cfg.adsId || '') && /^[A-Za-z0-9_-]{6,40}$/.test(cfg.adsLabel || '')) {
+      (function () { dl.push(arguments); })('event', 'conversion', { send_to: cfg.adsId + '/' + cfg.adsLabel });
+    }
   }
+  oqcEmit('thank_you_view', { form_type: 'trial', page_path: location.pathname });
   document.addEventListener('click', function (e) {
     var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
     var href = a ? a.getAttribute('href') || '' : '';

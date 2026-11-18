@@ -200,3 +200,23 @@ test("the extra IDs can be changed or switched off from settings and are validat
   adapter.setConsent(true);
   assert.equal(scripts.length, 1); adapter.destroy();
 });
+
+test("thank-you pages send one named event and Ads conversion fires only from a saved lead with a label", () => {
+  const base = { ...noExtras, enabled: true, ga4_measurement_id: ga4Id, gtm_container_id: gtmId, google_ads_id: "AW-16564445897" };
+  assert.equal(analyticsConfig(base).adsLabel, "", "no label until the owner supplies one");
+  assert.ok(analyticsSettingsError({ ...base, google_ads_conversion_label: "bad<script>" }));
+  const run = settings => {
+    const { win } = fakeBrowser(); win.location = new URL("https://college.test/free-trial/thank-you?x=private");
+    const adapter = createAnalyticsController(win, cookielessAnalyticsConfig(analyticsConfig(settings)));
+    adapter.setConsent(true); adapter.pageView(win.location.href); adapter.pageView(win.location.href);
+    win.dispatchEvent(leadEvent({ event: "generate_lead", form_type: "trial", market: "UK", email: "private@example.test" }));
+    return { win, conversions: win.dataLayer.map(i => Array.from(i ?? [])).filter(i => i[0] === "event" && i[1] === "conversion") };
+  };
+  const without = run(base);
+  assert.equal(without.conversions.length, 0);
+  const views = without.win.dataLayer.filter(i => i.event === "oqc_thank_you_view");
+  assert.deepEqual(views, [{ event: "oqc_thank_you_view", form_type: "trial", page_path: "/free-trial/thank-you" }]);
+  assert.ok(!JSON.stringify(without.win.dataLayer).includes("private"));
+  const withLabel = run({ ...base, google_ads_conversion_label: "AbC_123-xyz" });
+  assert.deepEqual(withLabel.conversions.map(c => c[2]), [{ send_to: "AW-16564445897/AbC_123-xyz" }]);
+});
