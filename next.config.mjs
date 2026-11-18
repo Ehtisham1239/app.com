@@ -135,8 +135,9 @@ const nextConfig = {
       { source: "/terms-conditions", destination: "/terms-and-conditions", permanent: true },
       // Teacher profile renamed in the CMS from ustadha-aisha to aisha; the old URL was a 404 in Search Console (17 Nov 2026).
       { source: "/teachers/ustadha-aisha", destination: "/teachers/aisha", permanent: true },
-      { source: "/login.html", destination: "/admin/login", permanent: false },
-      { source: "/login", destination: "/admin/login", permanent: false },
+      // /login serves its own noindex page (src/app/login/route.js): redirecting it to the
+      // robots-blocked /admin/login left it "indexed, though blocked by robots.txt" (18 Nov 2026).
+      { source: "/login.html", destination: "/login", permanent: true },
       { source: "/register", destination: "/free-trial", permanent: false },
     ];
   },
