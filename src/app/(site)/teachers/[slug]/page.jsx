@@ -19,11 +19,13 @@ export async function generateStaticParams() {
   return teachers.map((t) => ({ slug: t.slug }));
 }
 
+// A short bio makes a thin search snippet; add one factual sentence when it is under 110 characters.
+const teacherDescription = (t) => { const base = (t.bio || t.headline || "").trim(); return base.length >= 110 ? base : `${base}${base && !/[.!?]$/.test(base) ? "." : ""} Live one-to-one online Quran lessons with ${t.display_name}; request a free trial.`.trim(); };
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const t = await getTeacher(slug);
   if (!t) return { title: "Teacher not found" };
-  return contentMetadata({ title: `${t.display_name} — ${t.headline || "Quran teacher"}` }, { path: `/teachers/${t.slug}`, description: truncate(t.bio || t.headline || "", 158) });
+  return contentMetadata({ title: `${t.display_name} — ${t.headline || "Quran teacher"}` }, { path: `/teachers/${t.slug}`, description: truncate(teacherDescription(t), 158) });
 }
 
 export default async function TeacherPage({ params }) {
