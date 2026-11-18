@@ -8,7 +8,7 @@ import { getPublishedSlugs, getTeacher, getTeachers } from "@/lib/site-data";
 import { teacherCourses } from "@/lib/teacher-courses";
 import { truncate } from "@/lib/format";
 import { teacherPerson } from "@/lib/teacher-schema";
-import { safeJsonLd } from "@/lib/seo";
+import { safeJsonLd, breadcrumbSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
 
 export const revalidate = 300;
@@ -39,6 +39,7 @@ export default async function TeacherPage({ params }) {
   const first = t.display_name.split(" ").slice(-1)[0];
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Teachers", path: "/teachers" }, { name: t.display_name, path: `/teachers/${t.slug}` }], SITE_URL)) }} />
       {person && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", ...person }) }} />}
       <PageHero path={`/teachers/${t.slug}`} art="teachers" eyebrow="Meet your teacher" title={t.display_name} intro={t.headline}>
         <Link href="/teachers" className="mt-5 inline-block text-sm text-leaf-700 underline">All teachers</Link>

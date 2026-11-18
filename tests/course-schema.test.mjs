@@ -28,7 +28,8 @@ test("course listing supplies unique canonical detail URLs in visible course ord
 });
 
 test("incomplete CMS course records are not emitted as invalid Course items", () => {
-  assert.equal(courseSchema({ slug: "empty", title: "Empty" }, site), null);
+  // 18 Nov 2026: a titled course with no summary gets a factual fallback description (live, one-to-one, online) so it is still valid.
+  assert.match(courseSchema({ slug: "empty", title: "Empty" }, site).description, /one-to-one online Empty lessons/);
   assert.equal(courseSchema({ slug: "empty", summary: "Description" }, site), null);
   assert.equal(courseSchema({ slug: "reading", title: "Reading", description_html: "<p>Read with a teacher.</p>" }, site).description, "Read with a teacher.");
 });

@@ -1023,3 +1023,25 @@ export const locationIndexRecord = (page, country, city) => ({
       ? !(isApprovedCityPage(country, city) && page?.seo_noindex === false)
       : page?.seo_noindex ?? defaultLocationNoindex(country, city),
 });
+
+// Internal links between live location pages so none depends on a single inbound link: the parent country,
+// the live cities of the same country, and the next three pages in the sorted restored list (a ring, so
+// every restored page receives at least three extra links). Hubs link to their live cities only.
+export function relatedLocationLinks(country, city) {
+  const self = `${country.slug}${city ? `/${city.slug}` : ""}`;
+  const toLink = (path) => {
+    const [cs, ci] = path.split("/");
+    const c = getLocation(cs), ct = ci ? c?.cities.find((x) => x.slug === ci) : null;
+    return c && (!ci || ct) ? { name: ct ? `${ct.name}, ${c.name}` : c.name, path: locationPath(c, ct) } : null;
+  };
+  const live = (c, ct) => isLiveLocation(c, ct);
+  const paths = [];
+  if (city && live(country, null)) paths.push(country.slug);
+  paths.push(...RESTORED_LOCATION_PATHS.filter((p) => p.startsWith(`${country.slug}/`) && p !== self));
+  if (isRestoredLocation(country, city)) {
+    const i = RESTORED_LOCATION_PATHS.indexOf(self);
+    for (let k = 1; k <= 3; k++) paths.push(RESTORED_LOCATION_PATHS[(i + k) % RESTORED_LOCATION_PATHS.length]);
+  }
+  const seen = new Set([self]);
+  return paths.filter((p) => !seen.has(p) && seen.add(p)).map(toLink).filter(Boolean).slice(0, 8);
+}
