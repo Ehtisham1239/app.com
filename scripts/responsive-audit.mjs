@@ -17,8 +17,9 @@ export const PAGES = [
   "/locations/united-kingdom", "/locations/united-states", "/locations/canada", "/locations/australia", "/locations/united-arab-emirates",
 ];
 const HUBS = ["/locations/united-kingdom", "/locations/united-states", "/locations/canada", "/locations/australia", "/locations/united-arab-emirates"];
-// Retired city pages must land on their country hub.
-const RETIRED_CITY_PAGES = [["/locations/united-states/houston", "/locations/united-states"], ["/locations/united-kingdom/london", "/locations/united-kingdom"]];
+// Every city page is live on its own address (owner decision 18 Nov 2026); only a city-state whose
+// city page would repeat its country page word for word lands on the country page.
+const CITY_PAGES = [["/locations/united-states/houston", "/locations/united-states/houston"], ["/locations/united-kingdom/london", "/locations/united-kingdom/london"], ["/locations/monaco/monaco", "/locations/monaco"]];
 
 // Runs in the page: elements that stick out past the right edge and are not
 // inside a box that scrolls or clips horizontally.
@@ -112,15 +113,15 @@ async function main() {
     checks++;
     if (JSON.stringify(langs) !== JSON.stringify(want)) failures.push(`${path}: hreflang ${JSON.stringify(langs)}`);
   }
-  for (const [path, hub] of RETIRED_CITY_PAGES) {
+  for (const [path, hub] of CITY_PAGES) {
     await auditedGoto(page, `${base}${path}`);
     checks++;
     if (new URL(page.url()).pathname !== hub) failures.push(`${path}: landed on ${new URL(page.url()).pathname}, expected ${hub}`);
   }
   await browser.close();
-  console.log(`Responsive audit: ${checks} checks on ${base} (${PAGES.length} pages × ${WIDTHS.length} widths, ${DEVICE_PROFILES.length} device profiles, hreflang on ${HUBS.length} hubs, ${RETIRED_CITY_PAGES.length} retired city redirects)`);
+  console.log(`Responsive audit: ${checks} checks on ${base} (${PAGES.length} pages × ${WIDTHS.length} widths, ${DEVICE_PROFILES.length} device profiles, hreflang on ${HUBS.length} hubs, ${CITY_PAGES.length} city-page checks)`);
   if (failures.length) { console.log(`FAIL (${failures.length}):\n- ${failures.join("\n- ")}`); process.exit(1); }
-  console.log("PASS: no sideways scrolling at any width; hreflang as expected; retired city pages redirect to their country hub");
+  console.log("PASS: no sideways scrolling at any width; hreflang as expected; city pages stay on their own address");
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) await main();
