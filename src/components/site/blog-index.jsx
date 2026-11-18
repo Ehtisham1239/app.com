@@ -6,19 +6,19 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight, Clock3 } from "@/components/site/icons";
 import { PageHero } from "@/components/site/chrome";
-import { getPostPage, getPosts } from "@/lib/site-data";
+import { getPostPage } from "@/lib/site-data";
 import { blogUrl } from "@/lib/blog-seo";
 import { safeJsonLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
 import { formatDate, truncate } from "@/lib/format";
 
-// Shared by /blog (static, first page) and /blog/browse (rewritten ?page= / ?category= URLs).
+// Shared by /blog (static, first page) and /blog/browse (rewritten ?page= URLs).
 export function blogIndexMetadata(filters) {
   if (!filters) notFound();
-  const { page, category } = filters;
-  const title = `${category ? `${category} Quran Learning Articles` : "Quran Learning Articles & Parent Guides"}${page > 1 ? ` · Page ${page}` : ""} | OQC`;
-  const description = category ? `Browse ${category.toLowerCase()} articles for Quran learners and parents${page > 1 ? ` on page ${page}` : ""}. Find practical guidance and related learning resources.` : `Practical articles on Tajweed, Hifz, Noorani Qaida and Quranic Arabic, plus guides to help parents support children learning the Quran online.${page > 1 ? ` Browse page ${page} for more learning guides.` : ""}`;
-  return contentMetadata({ seo_title: title, seo_noindex: Boolean(category) }, { path: blogUrl(page, category), description });
+  const { page } = filters;
+  const title = `Quran Learning Articles & Parent Guides${page > 1 ? ` · Page ${page}` : ""} | OQC`;
+  const description = `Practical articles on Tajweed, Hifz, Noorani Qaida and Quranic Arabic, plus guides to help parents support children learning the Quran online.${page > 1 ? ` Browse page ${page} for more learning guides.` : ""}`;
+  return contentMetadata({ seo_title: title }, { path: blogUrl(page), description });
 }
 
 function PostCard({ post, large = false }) {
@@ -54,29 +54,26 @@ function PostCard({ post, large = false }) {
 
 export async function BlogIndex({ filters }) {
   if (!filters) notFound();
-  const { page, category } = filters;
-  const [{ posts, hasNext }, recentPosts] = await Promise.all([getPostPage(page, category), getPosts(200)]);
-  if ((page > 1 || category) && !posts.length) notFound();
-  // Use actual published categories, including Parents, Tajweed and Hifz.
-  const categories = [...new Set([...recentPosts, ...posts].map(post => post.category).filter(Boolean))].sort((a, b) => a.localeCompare(b, "en"));
-  const collection = { "@context": "https://schema.org", "@type": "Blog", "@id": `${SITE_URL}${blogUrl(page, category)}#blog`, url: `${SITE_URL}${blogUrl(page, category)}`, name: "Quran learning articles", publisher: { "@id": `${SITE_URL}/#organization` }, mainEntity: { "@type": "ItemList", itemListElement: posts.map((post, index) => ({ "@type": "ListItem", position: (page - 1) * 9 + index + 1, url: `${SITE_URL}/blog/${post.slug}`, name: post.title })) } };
+  const { page } = filters;
+  const { posts, hasNext } = await getPostPage(page);
+  if (page > 1 && !posts.length) notFound();
+  const collection = { "@context": "https://schema.org", "@type": "Blog", "@id": `${SITE_URL}${blogUrl(page)}#blog`, url: `${SITE_URL}${blogUrl(page)}`, name: "Quran learning articles", publisher: { "@id": `${SITE_URL}/#organization` }, mainEntity: { "@type": "ItemList", itemListElement: posts.map((post, index) => ({ "@type": "ListItem", position: (page - 1) * 9 + index + 1, url: `${SITE_URL}/blog/${post.slug}`, name: post.title })) } };
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(collection) }} />
-      <PageHero path={blogUrl(page, category)} eyebrow={category || "Blog"} title={`Quran learning articles for learners and parents${page > 1 ? ` · Page ${page}` : ""}`} arabic="عِلْم" intro="Practical guides to Quran reading, Tajweed, memorisation and building a routine at home." />
-      <section className="page-wrap py-10 sm:py-14" aria-labelledby="browse-articles">
-        <h2 id="browse-articles" className="mb-4 text-2xl text-mushaf-900 sm:text-3xl">Browse articles by topic</h2>
-        <nav aria-label="Article topics" className="article-topics mb-8">{["", ...categories].map(c => <Link key={c} aria-current={c === category ? "page" : undefined} className={`btn btn-sm ${c === category ? "btn-primary" : "btn-outline"}`} href={blogUrl(1,c)}>{c || "All articles"}</Link>)}</nav>
+      <PageHero path={blogUrl(page)} eyebrow="Blog" title={`Quran learning articles for learners and parents${page > 1 ? ` · Page ${page}` : ""}`} arabic="عِلْم" intro="Practical guides to Quran reading, Tajweed, memorisation and building a routine at home." />
+      <section className="page-wrap py-10 sm:py-14" aria-labelledby="blog-articles">
+        <h2 id="blog-articles" className="sr-only">Articles</h2>
         {posts.length === 0 ? (
           <p className="surface p-10 text-center text-ink-soft">New articles are on their way. Please check back soon.</p>
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {posts.map((p, i) => (
-              <PostCard key={p.id} post={p} large={page === 1 && !category && i === 0 && posts.length > 2} />
+              <PostCard key={p.id} post={p} large={page === 1 && i === 0 && posts.length > 2} />
             ))}
           </div>
         )}
-        {(page > 1 || hasNext) && <nav aria-label="Article pages" className="mt-10 grid grid-cols-[1fr_auto_1fr] items-center gap-3">{page > 1 ? <Link rel="prev" className="btn btn-outline whitespace-normal text-center" href={blogUrl(page-1,category)}>Previous articles</Link> : <span />}<span aria-current="page" className="text-sm">Page {page}</span>{hasNext ? <Link rel="next" className="btn btn-primary whitespace-normal text-center" href={blogUrl(page+1,category)}>Next articles</Link> : <span />}</nav>}
+        {(page > 1 || hasNext) && <nav aria-label="Article pages" className="mt-10 grid grid-cols-[1fr_auto_1fr] items-center gap-3">{page > 1 ? <Link rel="prev" className="btn btn-outline whitespace-normal text-center" href={blogUrl(page-1)}>Previous articles</Link> : <span />}<span aria-current="page" className="text-sm">Page {page}</span>{hasNext ? <Link rel="next" className="btn btn-primary whitespace-normal text-center" href={blogUrl(page+1)}>Next articles</Link> : <span />}</nav>}
         <p className="mt-8 text-sm text-ink-soft"><a href="/blog/feed.xml" className="underline underline-offset-4">Subscribe to the article RSS feed</a></p>
       </section>
     </>

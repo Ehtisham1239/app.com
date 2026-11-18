@@ -1,20 +1,16 @@
 import { stripHtml } from "./format.js";
 
-// Reject malformed/polluted filters rather than serving duplicate first pages.
+// Reject malformed/polluted page values rather than serving duplicate first pages.
+// The ?category= topic filter was removed on 18 Nov 2026; /blog?category=... now 301s to /blog.
 export function blogParams(params = {}) {
-  if (Array.isArray(params.page) || Array.isArray(params.category)) return null;
+  if (Array.isArray(params.page)) return null;
   const rawPage = params.page === undefined ? "1" : String(params.page);
   if (!/^[1-9]\d{0,3}$/.test(rawPage)) return null;
-  const category = params.category === undefined ? "" : params.category;
-  if (typeof category !== "string" || category.length > 100) return null;
-  return { page: Number(rawPage), category: category.trim() };
+  return { page: Number(rawPage) };
 }
 
-export function blogUrl(page = 1, category = "") {
-  const params = new URLSearchParams();
-  if (category) params.set("category", category);
-  if (page > 1) params.set("page", String(page));
-  return `/blog${params.size ? `?${params}` : ""}`;
+export function blogUrl(page = 1) {
+  return page > 1 ? `/blog?page=${page}` : "/blog";
 }
 
 export function articleDates(post) {

@@ -224,11 +224,11 @@ export const getRedirect = cache(async (path) =>
 );
 
 // Bounded, crawlable blog pagination. A failed service never fabricates analytics or content counts.
-export const getPostPage = cache(async (page = 1, category = "") => {
+export const getPostPage = cache(async (page = 1) => {
   const size = 9, offset = (page - 1) * size;
   const fallback = () => {
     const all = seedFallback("posts", [])
-      .filter((p) => !p.seo_noindex && (!category || p.category === category))
+      .filter((p) => !p.seo_noindex)
       .sort((a, b) => String(b.published_at).localeCompare(String(a.published_at)));
     return { posts: all.slice(offset, offset + size), hasNext: all.length > offset + size };
   };
@@ -237,7 +237,6 @@ export const getPostPage = cache(async (page = 1, category = "") => {
     let q = publicDb.from("blog_posts").select(POST_FIELDS).eq("status", "published").is("deleted_at", null)
       .or("seo_noindex.is.null,seo_noindex.eq.false")
       .order("published_at", { ascending: false }).order("id").range(offset, offset + size);
-    if (category) q = q.eq("category", category);
     const { data, error } = await q;
     if (error) { if (error.code === "PGRST205") return fallback(); throw error; }
     return { posts: (data || []).slice(0, size), hasNext: (data || []).length > size };
