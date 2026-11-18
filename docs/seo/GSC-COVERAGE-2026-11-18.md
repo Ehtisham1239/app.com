@@ -32,3 +32,15 @@ Observed from the Page indexing drilldowns (data of 13 Nov).
 - **Crawled, not indexed 7:** `/blog/feed.xml` now `X-Robots-Tag: noindex` (a feed should not be indexed); `/online-quran-classes-birmingham|leeds`, `/services/`, `/book-now/`, `/quran-quiz/` are redirects/410 now; `/blog/online-quran-classes-new-zealand-time-zones` is a real article (Google quality decision).
 - **Discovered, not indexed 15:** 9 blog articles, `/editorial-standards`, `/learn/quran-for-reverts`, 4 teacher profiles (`/teachers/ustadha-aisha` is 301 to `/teachers/aisha`). All are in the sitemap and live; only Google can index them. Use URL Inspection > Request indexing.
 - **Other hosts seen in the lists, not served by this repo:** `hiring.onlinequrancollege.com/_preview/`, `email.mail.onlinequrancollege.com`, `app.onlinequrancollege.com`.
+
+## Verification (18 Nov 2026)
+- **PASS, production** (`www.onlinequrancollege.com`, deployment `dpl_DQ35hVbn6CiTmgw48DDUu1cHaehi`, commit `2645ca2`): `/login` 200 + noindex; `/noorani-qaida-quiz`, `/wp-json/elementskit/v1`, `/2012/10/17/kod-pocztowy` 410 + noindex; `/blog/feed.xml` 200 + `X-Robots-Tag: noindex`. `/login.html`, `/about/pricing`, `/hifz-ul-quran-course`, `/teaching-the-quran-to-your-children-2` redirect (destination not read in this check).
+- **PASS:** the 22 "discovered/crawled, not indexed" and hub URLs are 200, not noindex and self-canonical, so nothing on the site blocks them.
+- **PASS, local:** `node --test` on redirects, robots, indexing, seo and legacy-gone: 44 pass, 0 fail.
+- **BLOCKED:** Search Console "Request indexing" returned "Quota exceeded" (daily limit). IndexNow POST from the browser failed (CORS) and the sandbox cannot reach `api.indexnow.org`. Creating a scheduled task for tomorrow's requests was denied by the permission check.
+- **NOT RUN:** full production build locally (Supabase not reachable from the sandbox); Search Console re-validation results (Google decides; validation already "Started").
+
+## Checkpoint
+**Next action (owner, 19 Nov onward):** in Search Console > URL Inspection, press REQUEST INDEXING for the 22 URLs, about 10 per day: the five hubs and `/locations`, `/editorial-standards`, `/learn/quran-for-reverts`, `/teachers/{ustadha-fatima,ustadha-khadija,ustadha-maryam,aisha}`, then the 10 blog articles listed under "Discovered/Crawled". Then run `node scripts/indexnow.mjs --submit <paths>` from a machine with internet access (Bing/Yandex only).
+**Open, outside this repo:** `hiring.onlinequrancollege.com/_preview/`, `email.mail.onlinequrancollege.com`, `app.onlinequrancollege.com/login`.
+**Recheck:** Page indexing report on about 25 Nov, once Google has recrawled the 404/403/noindex URLs.
