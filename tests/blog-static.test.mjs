@@ -11,10 +11,9 @@ test("/blog is served from the static cache; filtered lists keep their address",
   assert.match(browse, /blogParams\(await searchParams\)/, "invalid filters still 404 via blogParams");
   const config = (await import("../next.config.mjs")).default;
   const { beforeFiles } = await config.rewrites();
-  for (const key of ["page", "category"]) {
-    const rule = beforeFiles.find((r) => r.has?.[0]?.key === key);
-    assert.ok(rule && rule.source === "/blog" && rule.destination === "/blog/browse", key);
-  }
+  const rule = beforeFiles.find((r) => r.has?.[0]?.key === "page");
+  assert.ok(rule && rule.source === "/blog" && rule.destination === "/blog/browse", "page");
+  assert.equal(beforeFiles.some((r) => r.has?.[0]?.key === "category"), false, "the category filter was removed");
   const shared = read("src/components/site/blog-index.jsx");
   assert.doesNotMatch(shared, /searchParams/);
   assert.match(shared, /alternates|contentMetadata\(/, "metadata (canonical) still comes from contentMetadata");

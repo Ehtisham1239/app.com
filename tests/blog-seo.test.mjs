@@ -5,10 +5,8 @@ import { blogParams, blogUrl, articleDates, blogPosting, articleFeed } from "../
 
 test("blog filters reject duplicate, impossible and unbounded page values", () => {
   for (const page of ["0", "-1", "2.5", "1e2", "", "01", "10000", ["1", "2"]]) assert.equal(blogParams({ page }), null);
-  assert.equal(blogParams({ category: ["Parents", "Tajweed"] }), null);
-  assert.equal(blogParams({ category: "x".repeat(101) }), null);
-  assert.deepEqual(blogParams({ page: "2", category: "Parents & children" }), { page: 2, category: "Parents & children" });
-  assert.equal(blogUrl(2, "Parents & children"), "/blog?category=Parents+%26+children&page=2");
+  assert.deepEqual(blogParams({ page: "2", category: "Parents & children" }), { page: 2 }, "the removed category filter is ignored");
+  assert.equal(blogUrl(2), "/blog?page=2");
   assert.equal(blogUrl(1), "/blog");
 });
 

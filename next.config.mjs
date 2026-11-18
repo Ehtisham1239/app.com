@@ -61,7 +61,6 @@ const nextConfig = {
     return {
       beforeFiles: [
         { source: "/blog", has: [{ type: "query", key: "page" }], destination: "/blog/browse" },
-        { source: "/blog", has: [{ type: "query", key: "category" }], destination: "/blog/browse" },
         // USA Google Ads landing page: static, self-contained files in public/usa-quran-classes.
         { source: "/usa-quran-classes", destination: "/usa-quran-classes/index.html" },
         { source: "/usa-quran-classes/thank-you", destination: "/usa-quran-classes/thank-you/index.html" },
