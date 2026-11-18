@@ -159,6 +159,9 @@ export function createAnalyticsController(win, config) {
       // The container's Google tag reads these before its config: keep it
       // cookieless with Google signals and ad personalisation off.
       if (config.cookieless) command("set", { ...cookieless, allow_google_signals: false, allow_ad_personalization_signals: false });
+      // Ads click IDs travel in the page URL between pages instead of a cookie, so a landing page
+      // can still be tied to its thank-you page while ad storage stays denied (nothing is stored).
+      if (config.adsId) command("set", "url_passthrough", true);
       win.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js", page_location: location });
     }
     else {

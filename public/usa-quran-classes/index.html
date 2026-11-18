@@ -597,6 +597,7 @@ window.OQC_LP_CONFIG = {
       allow_google_signals: false,
       allow_ad_personalization_signals: false
     });
+    if (/^AW-[0-9]{6,15}$/.test(c.adsId || '')) gtag('set', 'url_passthrough', true); // click IDs ride in the URL, nothing is stored
     var here = location.origin + location.pathname, ref = '';
     try { var r = new URL(document.referrer); ref = r.origin === location.origin ? r.origin + r.pathname : r.origin + '/'; } catch (e) {}
     window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js', page_location: here });
