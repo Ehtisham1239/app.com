@@ -18,7 +18,7 @@ export function WebsiteAnalytics({ config }) {
     if (!enabled || !config.cookieless || config.mode === "off" || !isAnalyticsHost(window.location.hostname)) return;
     clearAnalyticsCookies(window);
     try { window.localStorage.removeItem(ANALYTICS_CONSENT_KEY); } catch { /* storage blocked */ }
-    let adapter, cancelled = false, idle;
+    let adapter, cancelled = false;
     const start = () => {
       if (cancelled) return;
       adapter = createAnalyticsController(window, config);
@@ -28,24 +28,10 @@ export function WebsiteAnalytics({ config }) {
       // Metrics reported before the tags started (TTFB, FCP) are sent now.
       pending.current.splice(0).forEach((metric) => adapter.webVital(metric));
     };
-    // Tag Manager's start-up is the main long task, so wait for the visitor's
-    // first interaction or 4 s after load, whichever comes first.
-    const EVENTS = ["pointerdown", "keydown", "touchstart", "scroll"];
-    let timer;
-    const go = () => {
-      EVENTS.forEach((name) => window.removeEventListener(name, go));
-      window.clearTimeout(timer);
-      if (idle === undefined) idle = "requestIdleCallback" in window ? window.requestIdleCallback(start, { timeout: 1500 }) : window.setTimeout(start, 200);
-    };
-    const schedule = () => { timer = window.setTimeout(go, 4000); };
-    EVENTS.forEach((name) => window.addEventListener(name, go, { once: true, passive: true }));
-    if (document.readyState === "complete") schedule(); else window.addEventListener("load", schedule, { once: true });
+    // Owner request, 18 Nov 2026: tags load straight away on every page (no wait for interaction).
+    start();
     return () => {
       cancelled = true;
-      EVENTS.forEach((name) => window.removeEventListener(name, go));
-      window.clearTimeout(timer);
-      window.removeEventListener("load", schedule);
-      if (idle !== undefined) ("cancelIdleCallback" in window ? window.cancelIdleCallback(idle) : window.clearTimeout(idle));
       adapter?.destroy(); controller.current = null;
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
