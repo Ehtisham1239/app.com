@@ -129,6 +129,11 @@ const nextConfig = {
       { source: "/:name(sitemap_index|wp-sitemap|sitemap-index|post-sitemap|page-sitemap|category-sitemap|wp-sitemap-posts-post-1|wp-sitemap-posts-page-1).xml", destination: "/sitemap.xml", permanent: true },
       { source: "/index.php", destination: "/", permanent: true },
       { source: "/faqs", destination: "/faq", permanent: true },
+      // Duplicate CMS pages retired (18 Nov 2026, owner): an empty page, a noindex copy of /trial-video,
+      // and the old WordPress Perth URL whose canonical was already the Perth city page.
+      { source: "/online-quran-academy", destination: "/", permanent: true },
+      { source: "/free-trial-video-guide", destination: "/trial-video", permanent: true },
+      { source: "/online-quran-classes-in-perth-australia", destination: "/locations/australia/perth", permanent: true },
       ...courses.map((slug) => ({ source: `/${slug}`, destination: `/courses/${slug}`, permanent: true })),
       { source: "/hifz-ul-quran-course", destination: "/courses/hifz-quran", permanent: true },
       // Duplicate course (17 Nov 2026, owner): "Quran Recitation" repeated the Nazara course's

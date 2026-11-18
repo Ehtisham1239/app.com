@@ -108,3 +108,9 @@ test('the renamed teacher profile keeps its old URL alive with one 301',()=>{
   assert.equal(rule?.destination,'/teachers/aisha');assert.equal(rule.permanent,true);
   assert.equal(bySource.has('/teachers/aisha'),false);
 });
+
+test('retired duplicate CMS pages 301 to their live equivalents',()=>{
+  for(const [from,to] of [['/online-quran-academy','/'],['/free-trial-video-guide','/trial-video'],['/online-quran-classes-in-perth-australia','/locations/australia/perth']]){
+    const rule=bySource.get(from);assert.equal(rule?.destination,to,from);assert.equal(rule.permanent,true);
+  }
+});
