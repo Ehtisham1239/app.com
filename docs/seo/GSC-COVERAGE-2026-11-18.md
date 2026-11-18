@@ -17,3 +17,18 @@ Source: GSC coverage export for `onlinequrancollege.com` (data to 13 Nov 2026). 
 
 ## Not verified
 Per-URL causes for 404, 403, canonical and duplicate rows. No live headers were checked: the sandbox cannot reach the site and the logs on the Hobby plan keep one hour. Windsor's Search Console read is paused by the Free-plan account cap.
+
+
+## Real URL lists (exported from Search Console on 18 Nov 2026) and fixes
+
+Observed from the Page indexing drilldowns (data of 13 Nov).
+
+- **Noindex 59 = 52 retired `/locations/{country}[/{city}]` pages + 7 `/blog?category=` filters.** All already 301 (16 Nov decision; #306). Noindex intentionally kept off the redirect targets.
+- **404 61:** 44 old relative links (`/about|contact|pricing|privacy-policy/{slug}`) already 301 in `next.config.mjs`; old non-www WordPress URLs (`/quran-nazara-course`, `/hifz-ul-quran-course`, `/noorani-qaida-course`, `/hadith-translation-course`, `/our-blogs`, `/faqs`, `/start-teaching-the-quran-to-your-children`, `/op/book-now-...`) already 301. **New in this change:** `/teaching-the-quran-to-your-children-2` 301s to the same guide; quiz pages, `/lp-profile`, `/api-test`, `/sign-in`, two old articles with no equivalent, `/wp-json/*`, and the injected spam date permalinks (`/2012/10/17/kod-pocztowy`, `/2013/01/23/komplety-erotyczne`) now answer **410 Gone** via `/gone`.
+- **403 5:** `/wp-content/*`, `/wp-*.php` on the old WordPress install. Now 410 as well.
+- **Alternate with canonical 11:** `/free-trial?...` query variants, `/?jkit-ajax-request=...`, `/pricing/`, `/privacy-policy/`. Expected: Google correctly picked the canonical. No change.
+- **Redirect 13:** bare/`http` host, trailing-slash, `/book-now`, `/login.html`, `/online-quran-classes-uk`. Expected.
+- **Duplicate without canonical 1:** `app.onlinequrancollege.com/login`, a different subdomain outside this repository.
+- **Crawled, not indexed 7:** `/blog/feed.xml` now `X-Robots-Tag: noindex` (a feed should not be indexed); `/online-quran-classes-birmingham|leeds`, `/services/`, `/book-now/`, `/quran-quiz/` are redirects/410 now; `/blog/online-quran-classes-new-zealand-time-zones` is a real article (Google quality decision).
+- **Discovered, not indexed 15:** 9 blog articles, `/editorial-standards`, `/learn/quran-for-reverts`, 4 teacher profiles (`/teachers/ustadha-aisha` is 301 to `/teachers/aisha`). All are in the sitemap and live; only Google can index them. Use URL Inspection > Request indexing.
+- **Other hosts seen in the lists, not served by this repo:** `hiring.onlinequrancollege.com/_preview/`, `email.mail.onlinequrancollege.com`, `app.onlinequrancollege.com`.

@@ -10,6 +10,6 @@ export async function GET() {
   const [posts, published] = await Promise.all([getPosts(50), getPublishedSlugs()]);
   const eligible = new Set(published.posts.filter(post => shouldIncludeInSitemap(post, `/blog/${post.slug}`, SITE_URL)).map(post => post.slug));
   return new Response(articleFeed(posts.filter(post => eligible.has(post.slug)), SITE_URL), {
-    headers: { "Content-Type": "application/rss+xml; charset=utf-8", "X-Content-Type-Options": "nosniff" },
+    headers: { "Content-Type": "application/rss+xml; charset=utf-8", "X-Content-Type-Options": "nosniff", "X-Robots-Tag": "noindex" },
   });
 }
