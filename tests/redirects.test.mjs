@@ -24,7 +24,7 @@ test('homepage and canonical learning/location pages are not redirect sources',(
   for(const path of ['/','/courses','/blog','/pricing','/free-trial','/locations',...INDEXED_MARKETS.map(slug=>'/locations/'+slug)])assert.equal(bySource.has(path),false,path);
   const source=readFileSync(new URL('../src/proxy.js',import.meta.url),'utf8');
   const matchers=JSON.parse(source.match(/matcher:\s*(\[[\s\S]*?^  \]),/m)[1]);
-  assert.deepEqual(matchers,['/admin/:path*','/auth/:path*','/parents','/parents/:path*', ...['page','category'].map(key=>({source:'/blog',has:[{type:'query',key}]}))]);
+  assert.deepEqual(matchers,['/admin/:path*','/auth/:path*','/parents','/parents/:path*',{source:'/:path*',has:[{type:'query',key:'jkit-ajax-request'}]}, ...['page','category'].map(key=>({source:'/blog',has:[{type:'query',key}]}))]);
 });
 
 // Owner decisions: 16 Nov 2026 retired all city and non-hub country pages; 18 Nov 2026 restored the 52 in

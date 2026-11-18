@@ -63,3 +63,13 @@ test('the removed blog category filter 301s to the plain blog index', async () =
     assert.equal(new URL(moved.headers.get('location')).pathname + new URL(moved.headers.get('location')).search, '/blog', query);
   }
 });
+
+test('plugin ajax URLs (?jkit-ajax-request) return 410 Gone and noindex', async () => {
+  for (const url of ['https://college.test/?jkit-ajax-request=jkit_elements', 'https://college.test/blog?jkit-ajax-request=x']) {
+    const gone = await proxy(new NextRequest(url));
+    assert.equal(gone.status, 410);
+    assert.equal(gone.headers.get('x-robots-tag'), 'noindex, nofollow');
+  }
+  const home = await proxy(new NextRequest('https://college.test/blog?page=2'));
+  assert.equal(home.status, 200);
+});
