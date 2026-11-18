@@ -50,7 +50,7 @@ test('existing country, city, course and guide aliases retain their intended des
   for(const city of ['london','birmingham','manchester','leeds','bradford','leicester'])assert.equal(bySource.get('/online-quran-classes-'+city)?.destination,'/locations/united-kingdom');
   for(const course of ['noorani-qaida','quran-nazara','hifz-quran','arabic-language','quran-translation','hadith-translation'])assert.equal(bySource.get('/'+course)?.destination,'/courses/'+course);
   for(const guide of LEARNING_GUIDES)assert.equal(bySource.get('/'+guide.slug)?.destination,guide.path);
-  assert.equal(bySource.get('/login.html')?.destination,'/admin/login');assert.equal(bySource.get('/register')?.destination,'/free-trial');
+  assert.equal(bySource.get('/login.html')?.destination,'/login');assert.equal(bySource.has('/login'),false,'/login must serve its own noindex page, not redirect to the robots-blocked /admin/login');assert.equal(bySource.get('/register')?.destination,'/free-trial');
 });
 
 
