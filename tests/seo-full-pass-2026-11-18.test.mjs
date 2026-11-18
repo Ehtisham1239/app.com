@@ -20,7 +20,7 @@ test("hubs link to their live cities and every inbound link is counted at least 
   }
   for (const p of RESTORED_LOCATION_PATHS) assert.ok((inbound.get(`/locations/${p}`) || 0) >= 3, p);
   const canada = LOCATIONS.find((c) => c.slug === "canada");
-  assert.deepEqual(relatedLocationLinks(canada, null).map((l) => l.path).sort(), ["/locations/canada/montreal", "/locations/canada/ottawa", "/locations/canada/vancouver"]);
+  assert.deepEqual(relatedLocationLinks(canada, null).map((l) => l.path).sort(), canada.cities.map((c) => `/locations/canada/${c.slug}`).sort());
 });
 test("/favicon.ico is rewritten to the generated icon, teacher pages emit BreadcrumbList", () => {
   assert.match(readFileSync(new URL("../next.config.mjs", import.meta.url), "utf8"), /source: "\/favicon\.ico", destination: "\/icon"/);

@@ -79,10 +79,10 @@ const nextConfig = {
   // Keep links from the previous WordPress site working
   async redirects() {
     const courses = ["noorani-qaida", "quran-nazara", "hifz-quran", "arabic-language", "quran-translation", "hadith-translation"];
-    const ukAliases = ["london", "birmingham", "manchester", "leeds", "bradford", "leicester"].map((slug) => [`online-quran-classes-${slug}`, "/locations/united-kingdom"]);
-    // Owner decision (16 Nov 2026): only the five market hubs stay live. Every retired
-    // city page goes to its market hub; other countries and their cities go to /courses.
-    const retiredLocationTarget = (country) => (INDEXED_MARKETS.includes(country.slug) ? locationPath(country) : "/courses");
+    const ukAliases = ["london", "birmingham", "manchester", "leeds", "bradford", "leicester"].map((slug) => [`online-quran-classes-${slug}`, `/locations/united-kingdom/${slug}`]);
+    // Owner decision (18 Nov 2026): every country and city page is live. Only the Monaco,
+    // San Marino and Vatican City city URLs (identical to their country page) still 301.
+    const retiredLocationTarget = (country) => (isLiveLocation(country, null) ? locationPath(country) : "/courses");
     const oldRelativeLinks = [
       ...["about", "contact", "pricing", "careers"].map((slug) => [slug, `/${slug}`]),
       ...courses.map((slug) => [slug, `/courses/${slug}`]),
@@ -107,7 +107,7 @@ const nextConfig = {
       { source: "/online-quran-classes-usa", destination: "/locations/united-states", permanent: true },
       { source: "/online-quran-classes-australia", destination: "/locations/australia", permanent: true },
       { source: "/online-quran-classes-uk", destination: "/locations/united-kingdom", permanent: true },
-      // Old WordPress city URLs still rank in Search Console. Send them to the UK hub.
+      // Old WordPress city URLs still rank in Search Console. Send each to its own city page.
       ...ukAliases.map(([slug, destination]) => ({ source: `/${slug}`, destination, permanent: true })),
       // Recover relative links from the old public pages reported as 404 in Search Console.
       ...oldRelativeLinks.map(([slug, destination]) => ({ source: `/:section(about|contact|pricing|privacy-policy)/${slug}`, destination, permanent: true })),

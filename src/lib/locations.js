@@ -952,64 +952,16 @@ export function marketHreflang(siteUrl) {
   return { ...languages, "x-default": `${siteUrl}/locations` };
 }
 export const defaultLocationNoindex = (country, city) => Boolean(city) || !INDEXED_MARKETS.includes(country.slug);
-// Owner decision (18 Nov 2026, replaces the 16 Nov retirement for these URLs only): the 52
-// country and city pages that Search Console listed as "Excluded by noindex" are live and
-// indexable again. Every other city or country page stays retired (301 in next.config.mjs).
+// Owner decision (18 Nov 2026, replaces the 16 Nov retirement): every country and every city
+// page is live and indexable on its own address; none redirects to a country page. The five
+// market hubs are live through INDEXED_MARKETS, so they are not repeated here. The only
+// exception is a city-state whose city page would repeat its country page word for word
+// (Monaco, San Marino, Vatican City): that city URL 301s to the one country page.
 // Each page states that classes are online and does not claim a local branch.
-export const RESTORED_LOCATION_PATHS = [
-  "albania",
-  "australia/adelaide",
-  "australia/sydney",
-  "austria/graz",
-  "bosnia-and-herzegovina/sarajevo",
-  "canada/montreal",
-  "canada/ottawa",
-  "canada/vancouver",
-  "croatia/split",
-  "cyprus/nicosia",
-  "denmark",
-  "denmark/copenhagen",
-  "estonia",
-  "finland",
-  "finland/tampere",
-  "germany/hamburg",
-  "greece",
-  "greece/athens",
-  "hungary",
-  "hungary/budapest",
-  "iceland",
-  "iceland/akureyri",
-  "iceland/reykjavik",
-  "latvia",
-  "liechtenstein",
-  "liechtenstein/schaan",
-  "liechtenstein/vaduz",
-  "lithuania/kaunas",
-  "luxembourg",
-  "luxembourg/esch-sur-alzette",
-  "luxembourg/luxembourg-city",
-  "malta/valletta",
-  "norway",
-  "norway/bergen",
-  "norway/oslo",
-  "poland",
-  "poland/krakow",
-  "poland/warsaw",
-  "portugal",
-  "portugal/lisbon",
-  "romania",
-  "romania/cluj-napoca",
-  "serbia",
-  "serbia/belgrade",
-  "slovakia",
-  "slovakia/bratislava",
-  "slovenia",
-  "slovenia/ljubljana",
-  "slovenia/maribor",
-  "spain",
-  "sweden/gothenburg",
-  "ukraine/kyiv",
-];
+export const RESTORED_LOCATION_PATHS = LOCATIONS.flatMap((country) => [
+  ...(INDEXED_MARKETS.includes(country.slug) ? [] : [country.slug]),
+  ...country.cities.filter((city) => city.name !== country.name).map((city) => `${country.slug}/${city.slug}`),
+]).sort();
 const RESTORED_SET = new Set(RESTORED_LOCATION_PATHS);
 export const isRestoredLocation = (country, city) => RESTORED_SET.has(`${country.slug}${city ? `/${city.slug}` : ""}`);
 export const isLiveLocation = (country, city) => (!city && INDEXED_MARKETS.includes(country.slug)) || isRestoredLocation(country, city);
