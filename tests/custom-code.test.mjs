@@ -45,6 +45,8 @@ test("head code rejects anything that could break the page or duplicate installe
     "<link rel=\"canonical\" href=\"https://x.test/\">": /not allowed/,
     "<script async src=\"https://www.googletagmanager.com/gtm.js?id=GTM-AAAA\"></script>": /Tag Manager/,
     "<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-57TGPTDNT4\"></script>": /GA4/,
+    "<script async src=\"https://www.googletagmanager.com/gtm.js?id=GTM-52PTXDRF\"></script>": /Tag Manager/,
+    "<script>gtag('config','AW-16564445897')</script>": /Google Ads/,
     "<script>(function(c,l,a,r,i){})(window,document,'clarity','script','zdo7gxbgkn')</script>": /Clarity/,
     "<meta http-equiv=\"refresh\" content=\"0;url=https://x.test\">": /not allowed/,
   };

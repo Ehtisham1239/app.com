@@ -34,6 +34,8 @@ export const EMPTY_CUSTOM_CODE = Object.freeze({ head_code: "", schema: "", page
 
 // Tags the site already installs (owner decisions in AGENTS.md). Adding them again double-counts.
 const ALREADY_INSTALLED = [
+  { re: /GTM-52PTXDRF/i, label: "Google Tag Manager (GTM-52PTXDRF) is already installed site-wide from the Google Analytics & tags section" },
+  { re: /AW-16564445897/i, label: "The Google Ads tag (AW-16564445897) is already installed site-wide from the Google Analytics & tags section" },
   { re: /GTM-W7CMZS53/i, label: "Google Tag Manager (GTM-W7CMZS53) is already installed from the Google Analytics & tags section" },
   { re: /googletagmanager\.com\/gtm\.js/i, label: "Google Tag Manager is managed in the Google Analytics & tags section; a second container loader would double-count" },
   { re: /googletagmanager\.com\/gtag\/js|G-57TGPTDNT4/i, label: "GA4 runs through the GTM container; a direct gtag.js tag would double-count page views" },

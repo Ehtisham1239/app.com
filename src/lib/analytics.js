@@ -2,13 +2,25 @@ export const ANALYTICS_CONSENT_KEY = "oqc-analytics-consent-v1";
 export const ANALYTICS_CONSENT_EVENT = "oqc:analytics-consent";
 export const CONSENT_DENIED = { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" };
 
+// Owner request, 18 Nov 2026 (written, in chat): a second Tag Manager container and the
+// Google Ads tag run site-wide, including the contact and free-trial thank-you pages and
+// the USA trial pages. They load through the same cookieless, consent-denied loader as
+// GTM-W7CMZS53; the CMS setting can override either ID (an explicit empty value turns it off).
+export const DEFAULT_SECONDARY_GTM_ID = "GTM-52PTXDRF";
+export const DEFAULT_GOOGLE_ADS_ID = "AW-16564445897";
+
 export function analyticsConfig(value = {}) {
   value = value && typeof value === "object" ? value : {};
+  const pick = (key, fallback) => (typeof value[key] === "string" ? value[key].trim() : fallback);
+  const gtm2 = pick("gtm_secondary_container_id", DEFAULT_SECONDARY_GTM_ID);
+  const ads = pick("google_ads_id", DEFAULT_GOOGLE_ADS_ID);
   const ga4 = typeof value.ga4_measurement_id === "string" ? value.ga4_measurement_id.trim() : "";
   const gtm = typeof value.gtm_container_id === "string" ? value.gtm_container_id.trim() : "";
   const ga4Id = /^G-[A-Z0-9]{6,20}$/.test(ga4) ? ga4 : "";
   const gtmId = /^GTM-[A-Z0-9]{5,12}$/.test(gtm) ? gtm : "";
-  return { enabled: value.enabled === true && Boolean(gtmId || ga4Id), mode: gtmId ? "gtm" : ga4Id ? "ga4" : "off", ga4Id, gtmId };
+  const gtm2Id = /^GTM-[A-Z0-9]{5,12}$/.test(gtm2) && gtm2 !== gtmId ? gtm2 : "";
+  const adsId = /^AW-[0-9]{6,15}$/.test(ads) ? ads : "";
+  return { enabled: value.enabled === true && Boolean(gtmId || ga4Id), mode: gtmId ? "gtm" : ga4Id ? "ga4" : "off", ga4Id, gtmId, gtm2Id, adsId };
 }
 
 // Site-wide mode since 26 Oct 2026: no consent banner, analytics granted, all ad
@@ -19,13 +31,15 @@ export function analyticsConfig(value = {}) {
 export function cookielessAnalyticsConfig(config) {
   const ga4Id = config?.ga4Id || "", gtmId = config?.gtmId || "";
   const mode = gtmId ? "gtm" : ga4Id ? "ga4" : "off";
-  return { ...config, enabled: Boolean(config?.enabled && mode !== "off"), mode, ga4Id, gtmId, cookieless: true };
+  return { ...config, enabled: Boolean(config?.enabled && mode !== "off"), mode, ga4Id, gtmId, gtm2Id: config?.gtm2Id || "", adsId: config?.adsId || "", cookieless: true };
 }
 
 export function analyticsSettingsError(value = {}) {
   const config = analyticsConfig(value);
   if (value.ga4_measurement_id && !config.ga4Id) return "Enter only a valid GA4 Measurement ID beginning G-, without script code.";
   if (value.gtm_container_id && !config.gtmId) return "Enter only a valid Google Tag Manager Container ID beginning GTM-, without script code.";
+  if (value.gtm_secondary_container_id && !config.gtm2Id) return "Enter only a valid second Tag Manager Container ID beginning GTM- (different from the main one), without script code.";
+  if (value.google_ads_id && !config.adsId) return "Enter only a valid Google Ads ID beginning AW- followed by digits, without script code.";
   if (value.enabled && !config.enabled) return "Add your actual GA4 or GTM ID before enabling analytics.";
   return "";
 }
@@ -148,11 +162,21 @@ export function createAnalyticsController(win, config) {
       command("js", new Date());
       command("config", config.ga4Id, { send_page_view: false, page_location: location, page_referrer: previousPage, allow_google_signals: false, allow_ad_personalization_signals: false, ...cookieless });
     }
-    const id = "oqc-google-analytics";
-    if (!doc.getElementById(id)) {
-      const script = doc.createElement("script"); script.id = id; script.async = true;
-      script.src = config.mode === "gtm" ? `https://www.googletagmanager.com/gtm.js?id=${config.gtmId}` : `https://www.googletagmanager.com/gtag/js?id=${config.ga4Id}`;
+    const load = (id, src) => {
+      if (doc.getElementById(id)) return;
+      const script = doc.createElement("script"); script.id = id; script.async = true; script.src = src;
       doc.head.appendChild(script);
+    };
+    load("oqc-google-analytics", config.mode === "gtm" ? `https://www.googletagmanager.com/gtm.js?id=${config.gtmId}` : `https://www.googletagmanager.com/gtag/js?id=${config.ga4Id}`);
+    // One gtm.js event above serves every container: each one replays the dataLayer on load,
+    // so a second loader never pushes a second page-load event.
+    if (config.mode === "gtm" && config.gtm2Id) load("oqc-google-tag-manager-2", `https://www.googletagmanager.com/gtm.js?id=${config.gtm2Id}`);
+    if (config.adsId) {
+      // Google Ads tag. Ad storage, ad data and personalisation stay denied (owner decision,
+      // 26 Oct 2026), so it sends cookieless pings only and sets no advertising cookie.
+      command("js", new Date());
+      command("config", config.adsId, { allow_ad_personalization_signals: false, ...cookieless });
+      load("oqc-google-ads", `https://www.googletagmanager.com/gtag/js?id=${config.adsId}`);
     }
   }
   function pageView(path) {
