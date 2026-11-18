@@ -23,7 +23,7 @@ const check = (condition, path, issue) => { if (!condition) failures.push({ path
 const sitemap = await read("/sitemap.xml");
 assert.equal(sitemap.status, 200);
 const urls = [...sitemap.html.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => new URL(decode(m[1])));
-assert.ok(urls.length > 0 && urls.length <= 250);
+assert.ok(urls.length > 0 && urls.length <= 400); // 170 live location pages pushed the sitemap past 250 (18 Nov 2026)
 const canonicalOrigin = urls[0].origin, canonicalPaths = new Set(urls.map(u => u.pathname));
 function links(html, path) {
   for (const a of tags(html, "a")) {
