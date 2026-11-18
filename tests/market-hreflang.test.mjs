@@ -25,7 +25,9 @@ test("only country hubs carry hreflang, and a noindex page never does", () => {
   const hub = readFileSync(new URL("../src/app/(site)/locations/[country]/page.jsx", import.meta.url), "utf8");
   assert.match(hub, /const languages = INDEXED_MARKETS\.includes\(country\.slug\)\s*\? await indexableMarketLanguages\(country\.slug, page\)\s*: undefined;/);
   assert.match(hub, /shouldIncludeInSitemap\(locationIndexRecord\(page, country, null\), path, SITE_URL\)/, "only sitemap-eligible markets are listed as alternates");
-  assert.equal(existsSync(new URL("../src/app/(site)/locations/[country]/[city]/page.jsx", import.meta.url)), false, "city pages are retired");
+  const city = readFileSync(new URL("../src/app/(site)/locations/[country]/[city]/page.jsx", import.meta.url), "utf8");
+  assert.doesNotMatch(city, /languages/, "restored city pages carry no hreflang cluster");
+  assert.match(city, /isLiveLocation\(country, city\)/, "only restored cities render; others 404 (and are redirected in next.config.mjs)");
   const meta = readFileSync(new URL("../src/lib/seo-metadata.js", import.meta.url), "utf8");
   assert.match(meta, /\.\.\.\(languages && !record\.seo_noindex \? \{ languages \} : \{\}\)/);
 });

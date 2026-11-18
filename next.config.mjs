@@ -1,4 +1,4 @@
-import { LOCATIONS, INDEXED_MARKETS, locationPath, locationCmsSlug } from "./src/lib/locations.js";
+import { LOCATIONS, INDEXED_MARKETS, isLiveLocation, locationPath, locationCmsSlug } from "./src/lib/locations.js";
 import { LEARNING_GUIDES } from "./src/lib/learning-guides.js";
 import { readFileSync } from "node:fs";
 import { legacyImageRedirects } from "./src/lib/legacy-image-redirects.js";
@@ -98,9 +98,9 @@ const nextConfig = {
       ...legacyImageRedirects(imageManifest),
       { source: "/images/learning/map-:region([a-z-]+)-r2-:width(400|800|1200).webp", destination: "/images/learning/oqc-learning-:region-v3-:width.webp", permanent: true },
       { source: "/images/learning/map-:region([a-z-]+)-:width(400|800|1200).webp", destination: "/images/learning/oqc-learning-:region-v3-:width.webp", permanent: true },
-      ...LOCATIONS.filter((country) => !INDEXED_MARKETS.includes(country.slug)).map((country) => ({ source: locationPath(country), destination: "/courses", permanent: true })),
-      ...LOCATIONS.flatMap((country) => country.cities.map((city) => ({ source: locationPath(country, city), destination: retiredLocationTarget(country), permanent: true }))),
-      ...LOCATIONS.flatMap((country) => [null, ...country.cities].map((city) => ({ source: `/${locationCmsSlug(country, city)}`, destination: city ? retiredLocationTarget(country) : (INDEXED_MARKETS.includes(country.slug) ? locationPath(country) : "/courses"), permanent: true }))),
+      ...LOCATIONS.filter((country) => !isLiveLocation(country, null)).map((country) => ({ source: locationPath(country), destination: "/courses", permanent: true })),
+      ...LOCATIONS.flatMap((country) => country.cities.filter((city) => !isLiveLocation(country, city)).map((city) => ({ source: locationPath(country, city), destination: retiredLocationTarget(country), permanent: true }))),
+      ...LOCATIONS.flatMap((country) => [null, ...country.cities].map((city) => ({ source: `/${locationCmsSlug(country, city)}`, destination: isLiveLocation(country, city) ? locationPath(country, city) : city ? retiredLocationTarget(country) : "/courses", permanent: true }))),
       ...LEARNING_GUIDES.map((guide) => ({ source: `/${guide.slug}`, destination: guide.path, permanent: true })),
       { source: "/online-quran-classes-usa", destination: "/locations/united-states", permanent: true },
       { source: "/online-quran-classes-australia", destination: "/locations/australia", permanent: true },

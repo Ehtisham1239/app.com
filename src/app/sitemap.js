@@ -1,7 +1,7 @@
 import { TRIAL_GUIDE_VIDEO } from "@/lib/trial-guide-video";
 import { isVideoPageSlug, pageVideo, videoSitemapEntry } from "@/lib/page-video";
 import { guideForSlug } from "@/lib/learning-guides";
-import { INDEXED_MARKETS, getLocation, locationPath, locationCmsSlug, locationIndexRecord, locationLastModified } from "@/lib/locations";
+import { INDEXED_MARKETS, RESTORED_LOCATION_PATHS, getLocation, locationPath, locationCmsSlug, locationIndexRecord, locationLastModified } from "@/lib/locations";
 import { MARKET_GUIDES } from "@/lib/market-guides";
 import { getPublishedPageVideos, getPublishedSlugs } from "@/lib/site-data";
 import { SITE_URL } from "@/lib/config";
@@ -25,9 +25,12 @@ export default async function sitemap() {
   const videos = new Map(videoPages.filter((page) => page.template === "standard" && isVideoPageSlug(page.slug) && !guideForSlug(page.slug)).map((page) => [page.slug, pageVideo(page.video)]));
   const fixed = ["", "/courses", "/pricing", "/free-trial", "/teachers", "/blog", "/faq", "/contact", "/careers", "/locations", "/learn", "/quran-study", "/reviews", "/verify-certificate", "/usa-quran-classes"].map((path) => ({ url: `${SITE_URL}${path}`, ...(fixedImages[path] ? { images: [imageUrl(fixedImages[path])] } : {}), changeFrequency: path === "" ? "weekly" : "monthly", priority: path === "" ? 1 : 0.7 }));
   const locationPages = new Map(pages.map((p) => [p.slug, p]));
-  const locations = INDEXED_MARKETS.map(getLocation).flatMap((country) => {
-    const path = locationPath(country), page = locationPages.get(locationCmsSlug(country));
-    return shouldIncludeInSitemap(locationIndexRecord(page, country, null), path, SITE_URL) ? [{ url: `${SITE_URL}${path}`, lastModified: locationLastModified(page, MARKET_GUIDES[country.slug]?.updatedAt), ...(page?.cover_url ? { images: [imageUrl(page.cover_url)] } : {}), changeFrequency: "monthly", priority: 0.7 }] : [];
+  const locationEntries = [...INDEXED_MARKETS.map((slug) => [slug, null]), ...RESTORED_LOCATION_PATHS.map((p) => p.split("/"))];
+  const locations = locationEntries.flatMap(([countrySlug, citySlug]) => {
+    const country = getLocation(countrySlug), city = citySlug ? country?.cities.find((c) => c.slug === citySlug) : null;
+    if (!country || (citySlug && !city)) return [];
+    const path = locationPath(country, city), page = locationPages.get(locationCmsSlug(country, city));
+    return shouldIncludeInSitemap(locationIndexRecord(page, country, city), path, SITE_URL) ? [{ url: `${SITE_URL}${path}`, lastModified: locationLastModified(page, city ? undefined : MARKET_GUIDES[country.slug]?.updatedAt), ...(page?.cover_url ? { images: [imageUrl(page.cover_url)] } : {}), changeFrequency: "monthly", priority: city ? 0.5 : 0.7 }] : [];
   });
   const content = (rows, prefix, priority) => rows.flatMap((row) => {
     const path = prefix === "" && guideForSlug(row.slug) ? guideForSlug(row.slug).path : `${prefix}/${row.slug}`;

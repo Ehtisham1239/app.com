@@ -246,9 +246,9 @@ test("CMS link counts distinguish internal routes, external references and unsaf
 });
 
 
-test("sitemap lists only the five market hubs, with market-guide lastmod", async () => {
+test("sitemap lists the five market hubs plus the 52 restored pages, with market-guide lastmod on hubs", async () => {
   const sitemap = readFileSync(new URL("../src/app/sitemap.js", import.meta.url), "utf8");
-  assert.match(sitemap, /INDEXED_MARKETS\.map\(getLocation\)/);
-  assert.match(sitemap, /locationLastModified\(page, MARKET_GUIDES\[country\.slug\]\?\.updatedAt\)/);
-  assert.doesNotMatch(sitemap, /country\.cities/);
+  assert.match(sitemap, /INDEXED_MARKETS\.map\(\(slug\) => \[slug, null\]\)/);
+  assert.match(sitemap, /RESTORED_LOCATION_PATHS\.map/);
+  assert.match(sitemap, /MARKET_GUIDES\[country\.slug\]\?\.updatedAt/);
 });

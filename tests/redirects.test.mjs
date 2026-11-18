@@ -2,7 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import nextConfig from '../next.config.mjs';
-import {LOCATIONS,INDEXED_MARKETS,locationCmsSlug,locationPath} from '../src/lib/locations.js';
+import {LOCATIONS,INDEXED_MARKETS,locationCmsSlug,locationPath,isLiveLocation,RESTORED_LOCATION_PATHS} from '../src/lib/locations.js';
 import {LEARNING_GUIDES} from '../src/lib/learning-guides.js';
 
 const allRedirects=await nextConfig.redirects();
@@ -27,17 +27,21 @@ test('homepage and canonical learning/location pages are not redirect sources',(
   assert.deepEqual(matchers,['/admin/:path*','/auth/:path*','/parents','/parents/:path*', ...['page','category'].map(key=>({source:'/blog',has:[{type:'query',key}]}))]);
 });
 
-// Owner decision 16 Nov 2026: only the five market hubs stay live. Retired city pages
-// go to their market hub; other countries and their cities go to /courses.
-test('every legacy country and city URL resolves in one hop to a live hub or /courses',()=>{
+// Owner decisions: 16 Nov 2026 retired all city and non-hub country pages; 18 Nov 2026 restored the 52 in
+// RESTORED_LOCATION_PATHS. Live pages have no redirect of their own; every other one resolves in one hop.
+test('every legacy country and city URL resolves in one hop to a live page, a hub or /courses',()=>{
   for(const country of LOCATIONS){
-    const market=INDEXED_MARKETS.includes(country.slug),target=market?locationPath(country):'/courses';
+    const market=INDEXED_MARKETS.includes(country.slug);
     for(const city of [null,...country.cities]){
+      const live=isLiveLocation(country,city),path=locationPath(country,city);
+      const target=live?path:(city&&market?locationPath(country):'/courses');
       const cms=bySource.get('/'+locationCmsSlug(country,city));
       assert.equal(cms?.destination,target,'/'+locationCmsSlug(country,city));assert.equal(cms.permanent,true);
-      if(city||!market){const route=bySource.get(locationPath(country,city));assert.equal(route?.destination,target,locationPath(country,city));assert.equal(route.permanent,true);}
+      if(live)assert.equal(bySource.has(path),false,path+' is live and must not redirect');
+      else{const route=bySource.get(path);assert.equal(route?.destination,target,path);assert.equal(route.permanent,true);}
     }
   }
+  assert.equal(RESTORED_LOCATION_PATHS.length,52);
 });
 
 test('redirect sources are unique and have no self redirects, chains or external targets',()=>{

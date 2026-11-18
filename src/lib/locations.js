@@ -952,15 +952,74 @@ export function marketHreflang(siteUrl) {
   return { ...languages, "x-default": `${siteUrl}/locations` };
 }
 export const defaultLocationNoindex = (country, city) => Boolean(city) || !INDEXED_MARKETS.includes(country.slug);
-// Owner decision (16 Nov 2026): only the five market hubs remain indexable.
-// City URLs permanently redirect to their market hub (or /courses for other
-// countries). Keep this allowlist empty; re-enable a city only after it has
-// genuinely unique local value and the owner explicitly approves it.
+// Owner decision (18 Nov 2026, replaces the 16 Nov retirement for these URLs only): the 52
+// country and city pages that Search Console listed as "Excluded by noindex" are live and
+// indexable again. Every other city or country page stays retired (301 in next.config.mjs).
+// Each page states that classes are online and does not claim a local branch.
+export const RESTORED_LOCATION_PATHS = [
+  "albania",
+  "australia/adelaide",
+  "australia/sydney",
+  "austria/graz",
+  "bosnia-and-herzegovina/sarajevo",
+  "canada/montreal",
+  "canada/ottawa",
+  "canada/vancouver",
+  "croatia/split",
+  "cyprus/nicosia",
+  "denmark",
+  "denmark/copenhagen",
+  "estonia",
+  "finland",
+  "finland/tampere",
+  "germany/hamburg",
+  "greece",
+  "greece/athens",
+  "hungary",
+  "hungary/budapest",
+  "iceland",
+  "iceland/akureyri",
+  "iceland/reykjavik",
+  "latvia",
+  "liechtenstein",
+  "liechtenstein/schaan",
+  "liechtenstein/vaduz",
+  "lithuania/kaunas",
+  "luxembourg",
+  "luxembourg/esch-sur-alzette",
+  "luxembourg/luxembourg-city",
+  "malta/valletta",
+  "norway",
+  "norway/bergen",
+  "norway/oslo",
+  "poland",
+  "poland/krakow",
+  "poland/warsaw",
+  "portugal",
+  "portugal/lisbon",
+  "romania",
+  "romania/cluj-napoca",
+  "serbia",
+  "serbia/belgrade",
+  "slovakia",
+  "slovakia/bratislava",
+  "slovenia",
+  "slovenia/ljubljana",
+  "slovenia/maribor",
+  "spain",
+  "sweden/gothenburg",
+  "ukraine/kyiv",
+];
+const RESTORED_SET = new Set(RESTORED_LOCATION_PATHS);
+export const isRestoredLocation = (country, city) => RESTORED_SET.has(`${country.slug}${city ? `/${city.slug}` : ""}`);
+export const isLiveLocation = (country, city) => (!city && INDEXED_MARKETS.includes(country.slug)) || isRestoredLocation(country, city);
 export const APPROVED_CITY_PAGES = [];
 export const isApprovedCityPage = (country, city) => Boolean(city) && APPROVED_CITY_PAGES.includes(`${country.slug}/${city.slug}`);
 export const locationIndexRecord = (page, country, city) => ({
   ...(page || {}),
-  seo_noindex: city
-    ? !(isApprovedCityPage(country, city) && page?.seo_noindex === false)
-    : page?.seo_noindex ?? defaultLocationNoindex(country, city),
+  seo_noindex: isRestoredLocation(country, city)
+    ? false
+    : city
+      ? !(isApprovedCityPage(country, city) && page?.seo_noindex === false)
+      : page?.seo_noindex ?? defaultLocationNoindex(country, city),
 });
