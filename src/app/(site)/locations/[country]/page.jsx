@@ -1,19 +1,19 @@
 import { contentMetadata } from "@/lib/seo-metadata";
 import { notFound } from "next/navigation";
 import { LocationPage } from "@/components/site/location-page";
-import { getLocation, locationPath, locationCmsSlug, locationSearchTitle, locationLocale, locationSearchIntro, locationIndexRecord, locationHeading, INDEXED_MARKETS, marketHreflang } from "@/lib/locations";
+import { getLocation, locationPath, locationCmsSlug, locationSearchTitle, locationLocale, locationSearchIntro, locationIndexRecord, locationHeading, INDEXED_MARKETS, LOCATIONS, isLiveLocation, marketHreflang } from "@/lib/locations";
 import { SITE_URL } from "@/lib/config";
 import { getPage } from "@/lib/site-data";
 import { shouldIncludeInSitemap } from "@/lib/seo";
 import { SEARCH_INTENTS } from "@/lib/search-intent";
 export const revalidate = 300;
-// Owner decision (16 Nov 2026): only the five market hubs are live; next.config.mjs redirects the rest.
-export function generateStaticParams() { return INDEXED_MARKETS.map((slug) => ({ country: slug })); }
+// Live: the five market hubs plus the country pages restored on 18 Nov 2026 (RESTORED_LOCATION_PATHS); next.config.mjs redirects the rest.
+export function generateStaticParams() { return LOCATIONS.filter((c) => isLiveLocation(c, null)).map((c) => ({ country: c.slug })); }
 async function resolve(params) {
   const p = await params;
   const country = getLocation(p.country);
   const city = null;
-  if (!country || !INDEXED_MARKETS.includes(country.slug)) notFound();
+  if (!country || !isLiveLocation(country, null)) notFound();
   return { country, city };
 }
 async function indexableMarketLanguages(currentSlug, currentPage) {

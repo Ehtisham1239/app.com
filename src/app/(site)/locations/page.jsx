@@ -3,7 +3,7 @@ import { locationImage } from "@/lib/location-image";
 import { contentMetadata } from "@/lib/seo-metadata";
 import { LocationDirectory } from "@/components/site/location-directory";
 import { PageHero } from "@/components/site/chrome";
-import { INDEXED_MARKETS, getLocation, locationPath } from "@/lib/locations";
+import { INDEXED_MARKETS, RESTORED_LOCATION_PATHS, getLocation, locationPath } from "@/lib/locations";
 
 export const metadata = contentMetadata({ title: "Online Quran classes by country", seo_noindex: false }, { path: "/locations", description: "Browse UK, USA, Canada, Australia and UAE time-zone guides for online Quran lessons. Admissions confirms teacher availability, fees and payment options before enrolment." });
 export default function LocationsPage() {
@@ -25,6 +25,7 @@ export default function LocationsPage() {
           </ul>
         </div>
       </section>
+      <section className="mt-10" aria-labelledby="more-places"><h2 id="more-places" className="text-2xl">More countries and cities</h2><p className="mt-2 text-ink-soft">Time-zone and fee guides for other places. Lessons are live and online; none of these pages is a local branch.</p><ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2">{RESTORED_LOCATION_PATHS.map((path) => { const [countrySlug, citySlug] = path.split("/"); const country = getLocation(countrySlug), city = citySlug ? country?.cities.find((c) => c.slug === citySlug) : null; return country ? <li key={path}><Link className="text-leaf-700 underline underline-offset-4" href={locationPath(country, city)}>{city ? `${city.name}, ${country.name}` : country.name}</Link></li> : null; })}</ul></section>
       <LocationDirectory countries={INDEXED_MARKETS.map(getLocation).map(country => { const image = locationImage(country); return { name: country.name, slug: country.slug, currency: country.currency, image: { src: image.url, alt: image.alt, variants: image.variants, avif: image.avif, width: image.width, height: image.height }, path: locationPath(country), cities: [] }; })} />
       <details className="mt-8 text-xs text-ink-soft"><summary className="cursor-pointer py-3">About the learning imagery</summary><p>AI-generated editorial scenes illustrate Quran learning at home. They do not depict documented students, teachers or local college branches.</p></details>
     </section></>;

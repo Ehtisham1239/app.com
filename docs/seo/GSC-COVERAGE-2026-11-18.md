@@ -44,3 +44,13 @@ Observed from the Page indexing drilldowns (data of 13 Nov).
 **Next action (owner, 19 Nov onward):** in Search Console > URL Inspection, press REQUEST INDEXING for the 22 URLs, about 10 per day: the five hubs and `/locations`, `/editorial-standards`, `/learn/quran-for-reverts`, `/teachers/{ustadha-fatima,ustadha-khadija,ustadha-maryam,aisha}`, then the 10 blog articles listed under "Discovered/Crawled". Then run `node scripts/indexnow.mjs --submit <paths>` from a machine with internet access (Bing/Yandex only).
 **Open, outside this repo:** `hiring.onlinequrancollege.com/_preview/`, `email.mail.onlinequrancollege.com`, `app.onlinequrancollege.com/login`.
 **Recheck:** Page indexing report on about 25 Nov, once Google has recrawled the 404/403/noindex URLs.
+
+## Update 18 Nov 2026 (later): 52 location pages restored
+
+- **Owner request (chat):** restore and index the 59 "Excluded by noindex" URLs. **Observed:** 52 are `/locations/{country}[/{city}]` pages (26 country, 26 city), 7 are `/blog?category=` filters.
+- **Implemented:** the 52 are live again (`RESTORED_LOCATION_PATHS`), `index, follow`, self-canonical, in `sitemap.xml`; their 301s are removed; the old `/locations-{slug}` URLs now 301 to them. The 7 blog filters stay 301 to `/blog` (the filter feature was removed in #306; restoring them would only duplicate `/blog`).
+- **PASS, local (`next dev`, stub CMS):** `/locations/norway/oslo`, `/locations/serbia`, `/locations/canada/ottawa` return 200 + `index, follow`; `/locations/sweden/stockholm` and `/locations/france` still 308; sitemap lists exactly the 52 + 5 hubs. `node --test tests/*.test.mjs`: 455 pass, 0 fail.
+- **NOT RUN:** full production build (CMS host not reachable from this sandbox). **BLOCKED:** Search Console "Request indexing" quota; IndexNow needs a machine with internet.
+- **Inferred risk:** these pages share one template, so Google may classify some as "Crawled - currently not indexed". Fix is unique local content, not more pages.
+- **Next action:** after the merge deploys, check the live URLs, submit the sitemap in Search Console and request indexing for the first ~10 (quota), recheck Page indexing around 25 Nov.
+- **Not done (no confirmation given):** deleting the old WordPress site, Hostinger test sites, old Vercel projects and DNS subdomains.
