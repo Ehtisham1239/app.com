@@ -35,7 +35,7 @@ test("legacy regional paths resolve directly to relevant routes",async()=>{
   for(const name of ['london','birmingham','manchester','leeds','bradford','leicester']){
     assert.ok(uk.cities.some(c=>c.slug===name));
     const r=redirects.find(r=>r.source===`/online-quran-classes-${name}`);
-    assert.equal(r.destination,'/locations/united-kingdom');assert.equal(r.permanent,true);
+    assert.equal(r.destination,'/locations/united-kingdom/'+name);assert.equal(r.permanent,true);
   }
   assert.equal(redirects.find(r=>r.source==='/online-quran-classes-uk').destination,'/locations/united-kingdom');
 });
@@ -58,7 +58,7 @@ test('known CMS aliases redirect before rendering with one unique mapping per so
  const{LEARNING_GUIDES}=await import('../src/lib/learning-guides.js');
  const rules=await config.redirects();assert.equal(new Set(rules.map(r=>r.source)).size,rules.length);
  for(const g of LEARNING_GUIDES)assert.equal(rules.find(r=>r.source==='/'+g.slug).destination,g.path);
- assert.equal(rules.find(r=>r.source==='/locations-united-kingdom-london').destination,'/locations/united-kingdom');
+ assert.equal(rules.find(r=>r.source==='/locations-united-kingdom-london').destination,'/locations/united-kingdom/london');
 });
 
 test("every location and the admin price list use only GBP, USD, AUD or AED", () => {

@@ -3,15 +3,18 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { LOCATIONS, INDEXED_MARKETS, RESTORED_LOCATION_PATHS, APPROVED_CITY_PAGES, locationIndexRecord } from "../src/lib/locations.js";
 
-// Owner decisions: 16 Nov 2026 kept only the five hubs; 18 Nov 2026 restored the 52 URLs Search Console listed as "Excluded by noindex".
-test("without a CMS row only the five hubs and the 52 restored pages are indexable", () => {
+// Owner decisions: 16 Nov 2026 kept only the five hubs; 18 Nov 2026 restored the 52 URLs Search Console listed as "Excluded by noindex",
+// then made every country and city page live (only city-state cities that repeat their country page still redirect).
+const EXPECTED_LIVE = LOCATIONS.reduce((n, c) => n + (INDEXED_MARKETS.includes(c.slug) ? 0 : 1) + c.cities.filter((city) => city.name !== c.name).length, 0);
+test("without a CMS row every hub, country and city page is indexable except the three city-state duplicates", () => {
   const indexable = LOCATIONS.flatMap((country) => [null, ...country.cities].filter((city) => !locationIndexRecord(undefined, country, city).seo_noindex).map((city) => city ? `${country.slug}/${city.slug}` : country.slug));
-  assert.equal(RESTORED_LOCATION_PATHS.length, 52);
-  assert.equal(new Set(RESTORED_LOCATION_PATHS).size, 52);
+  assert.equal(RESTORED_LOCATION_PATHS.length, EXPECTED_LIVE);
+  assert.equal(new Set(RESTORED_LOCATION_PATHS).size, EXPECTED_LIVE);
+  for (const key of ["monaco/monaco", "san-marino/san-marino", "vatican-city/vatican-city"]) assert.equal(RESTORED_LOCATION_PATHS.includes(key), false, key);
   assert.deepEqual(indexable.sort(), [...new Set([...INDEXED_MARKETS, ...RESTORED_LOCATION_PATHS])].sort());
 });
 
-test("restored pages are indexable even if the old CMS row says noindex; every other city stays noindex", () => {
+test("restored pages are indexable even if the old CMS row says noindex; the three city-state duplicates stay noindex", () => {
   assert.deepEqual(APPROVED_CITY_PAGES, []);
   for (const country of LOCATIONS) {
     for (const city of [null, ...country.cities]) {
