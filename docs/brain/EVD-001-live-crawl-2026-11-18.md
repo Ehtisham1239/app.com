@@ -8,7 +8,7 @@ method: in-browser fetch of all sitemap URLs on https://www.onlinequrancollege.c
 
 **Observed**
 - 145/145 sitemap URLs 200; 0 noindex; 0 canonical mismatches; 0 pages without exactly one h1; 0 invalid JSON-LD; 0 images without alt; 0 duplicate titles or descriptions.
-- Schema: country/city = Service+FAQPage+BreadcrumbList+WebPage; blog = BlogPosting+BreadcrumbList; courses = Course (6 of 7) +FAQPage; teachers = Person (no BreadcrumbList).
+- Schema: country/city = Service+FAQPage+BreadcrumbList+WebPage; blog = BlogPosting+BreadcrumbList; courses = Course on the 6 CMS courses; `/courses/tajweed` is a guide page (FAQPage+BreadcrumbList, no Course, by design); teachers = Person (no BreadcrumbList).
 - hreflang only on the 5 hubs (reciprocal), as designed.
 - Median words: blog 774, courses 641, country 666, city 557, teachers 138 (126 to 141).
 - Inbound internal links: 51 restored location pages had exactly 1 (the /locations directory); `/usa-quran-classes` 0; 4 teacher pages and 1 blog post had 1.
