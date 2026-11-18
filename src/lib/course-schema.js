@@ -5,9 +5,8 @@ import { textContent } from "./seo.js";
 // monthly packages. No start dates, prices or ratings are invented here.
 export function courseSchema(course, siteUrl, providerName = "Online Quran College") {
   const url = new URL(`/courses/${course.slug}`, siteUrl).href;
-  if (!course.title?.trim()) return null;
-  // A course with no CMS summary still gets a factual description: every course is live, one-to-one and online.
-  const description = textContent(course.summary || course.description_html || "") || `Live one-to-one online ${course.title.trim()} lessons with Online Quran College teachers.`;
+  const description = textContent(course.summary || course.description_html || "");
+  if (!course.title?.trim() || !description) return null;
   return {
     "@context": "https://schema.org",
     "@type": "Course",

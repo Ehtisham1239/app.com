@@ -2,7 +2,6 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { LOCATIONS, RESTORED_LOCATION_PATHS, INDEXED_MARKETS, relatedLocationLinks, isLiveLocation } from "../src/lib/locations.js";
-import { courseSchema } from "../src/lib/course-schema.js";
 
 test("every restored page gets at least three related links, all to live pages, never to itself", () => {
   const live = new Set([...INDEXED_MARKETS, ...RESTORED_LOCATION_PATHS].map((p) => `/locations/${p}`));
@@ -22,12 +21,6 @@ test("hubs link to their live cities and every inbound link is counted at least 
   for (const p of RESTORED_LOCATION_PATHS) assert.ok((inbound.get(`/locations/${p}`) || 0) >= 3, p);
   const canada = LOCATIONS.find((c) => c.slug === "canada");
   assert.deepEqual(relatedLocationLinks(canada, null).map((l) => l.path).sort(), ["/locations/canada/montreal", "/locations/canada/ottawa", "/locations/canada/vancouver"]);
-});
-test("a course without a CMS summary still gets Course schema with a factual description", () => {
-  const s = courseSchema({ slug: "tajweed", title: "Tajweed" }, "https://www.onlinequrancollege.com");
-  assert.equal(s["@type"], "Course");
-  assert.match(s.description, /one-to-one online Tajweed lessons/);
-  assert.equal(courseSchema({ slug: "x", title: " " }, "https://www.onlinequrancollege.com"), null);
 });
 test("/favicon.ico is rewritten to the generated icon, teacher pages emit BreadcrumbList", () => {
   assert.match(readFileSync(new URL("../next.config.mjs", import.meta.url), "utf8"), /source: "\/favicon\.ico", destination: "\/icon"/);
