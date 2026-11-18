@@ -60,6 +60,8 @@ const nextConfig = {
   async rewrites() {
     return {
       beforeFiles: [
+        // Crawlers and browsers request /favicon.ico regardless of <link rel="icon">; serve the generated brand icon instead of a 404.
+        { source: "/favicon.ico", destination: "/icon" },
         { source: "/blog", has: [{ type: "query", key: "page" }], destination: "/blog/browse" },
         // USA Google Ads landing page: static, self-contained files in public/usa-quran-classes.
         { source: "/usa-quran-classes", destination: "/usa-quran-classes/index.html" },

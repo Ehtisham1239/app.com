@@ -14,6 +14,7 @@ export default function LocationsPage() {
         <p className="mt-2 text-ink-soft">Use these country guides to compare lesson times, then check fees and teacher availability with Admissions.</p>
         <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
           {INDEXED_MARKETS.map(getLocation).map(country => <li key={country.slug}><Link className="font-semibold text-leaf-700 underline underline-offset-4" href={locationPath(country)}>{country.name} lesson guide</Link></li>)}
+          <li><Link prefetch={false} className="font-semibold text-leaf-700 underline underline-offset-4" href="/usa-quran-classes">USA admissions and free trial</Link></li>
           <li><a className="font-semibold text-leaf-700 underline underline-offset-4" href="#new-zealand-lessons">New Zealand lesson planning</a></li>
         </ul>
         <div id="new-zealand-lessons" className="mt-6 border-t border-leaf-100 pt-5">

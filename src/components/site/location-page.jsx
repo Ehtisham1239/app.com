@@ -10,6 +10,7 @@ import { ContentImage } from "@/components/site/content-image";
 import Link from "next/link";
 import { LocationSchedule } from "./location-schedule";
 import { LocationTimeFacts } from "./location-time-facts";
+import { LocationRelated } from "./location-related";
 import { schedulingLocations } from "@/lib/location-schedule";
 import { breadcrumbSchema, safeJsonLd, faqSchema, locationServiceSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
@@ -103,6 +104,7 @@ export async function LocationPage({ country, city }) {
 
       <section><h2 className="mb-5 text-2xl">Questions about learning in {city?.name || countryInName(country)}</h2><FaqList faqs={faqs} defaultOpen={-1} /></section>
       <div className="rounded-3xl bg-mushaf-900 p-7 text-white"><h2 className="text-2xl text-white">Start from {city?.name || countryInName(country)}</h2><p className="mt-3 text-white/80">For a child, a parent or guardian should complete the request.</p><div className="mt-5 flex flex-wrap items-center gap-3"><Link className="btn btn-gold" href={`/free-trial?${query}`}>Book a free trial in {city?.name || countryInName(country)}</Link>{country.slug === "united-states" && <a className="btn btn-outline border-white text-white hover:bg-white hover:text-mushaf-900" href="tel:+17869645678">Call +1 (786) 964-5678</a>}</div></div>
+      <LocationRelated country={country} city={city} />
       <details className="text-xs text-ink-soft"><summary className="cursor-pointer py-3">About the learning imagery</summary><p>AI-generated editorial learning scenes illustrate online study at home. They do not depict documented college students, teachers or local branches.</p></details>
     </section>
   </div>;
