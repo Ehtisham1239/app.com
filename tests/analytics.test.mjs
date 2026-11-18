@@ -220,3 +220,16 @@ test("thank-you pages send one named event and Ads conversion fires only from a 
   const withLabel = run({ ...base, google_ads_conversion_label: "AbC_123-xyz" });
   assert.deepEqual(withLabel.conversions.map(c => c[2]), [{ send_to: "AW-16564445897/AbC_123-xyz" }]);
 });
+
+test("url_passthrough is on with the Ads tag while every ad consent signal stays denied", () => {
+  const { win } = fakeBrowser();
+  const adapter = createAnalyticsController(win, cookielessAnalyticsConfig(analyticsConfig({ ...noExtras, enabled: true, gtm_container_id: gtmId, google_ads_id: "AW-16564445897" })));
+  adapter.setConsent(true);
+  const sets = win.dataLayer.map(i => Array.from(i ?? [])).filter(i => i[0] === "set" && i[1] === "url_passthrough");
+  assert.equal(sets.length, 1); assert.equal(sets[0][2], true);
+  const consents = win.dataLayer.map(i => Array.from(i ?? [])).filter(i => i[0] === "consent");
+  assert.equal(consents.at(-1)[2].ad_storage, "denied"); assert.equal(consents.at(-1)[2].ad_user_data, "denied");
+  const { win: win2 } = fakeBrowser();
+  createAnalyticsController(win2, cookielessAnalyticsConfig(analyticsConfig({ ...noExtras, enabled: true, gtm_container_id: gtmId }))).setConsent(true);
+  assert.equal(win2.dataLayer.map(i => Array.from(i ?? [])).filter(i => i[1] === "url_passthrough").length, 0, "off without an Ads ID");
+});
