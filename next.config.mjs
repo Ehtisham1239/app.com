@@ -64,6 +64,13 @@ const nextConfig = {
         // USA Google Ads landing page: static, self-contained files in public/usa-quran-classes.
         { source: "/usa-quran-classes", destination: "/usa-quran-classes/index.html" },
         { source: "/usa-quran-classes/thank-you", destination: "/usa-quran-classes/thank-you/index.html" },
+        // Old WordPress URLs with no equivalent page (Search Console 404/403 list, 18 Nov 2026):
+        // answer 410 Gone instead of a vague 404. Equivalent pages are 301-redirected below instead.
+        { source: "/:slug(noorani-qaida-quiz|tajweed-quiz|islamic-quiz|quran-quiz|quiz|quiz-2|lp-profile|api-test|sign-in|importance-of-hajj-and-the-steps-of-hajj-2024|the-quran-a-guide-for-humanity)", destination: "/gone" },
+        { source: "/:dir(wp-content|wp-json|wp-admin|wp-includes)/:path*", destination: "/gone" },
+        { source: "/:file(wp-[a-z-]+\\.php|xmlrpc\\.php)", destination: "/gone" },
+        // WordPress date permalinks (/2012/10/17/post-name): the 2012-13 ones in the index are injected spam.
+        { source: "/:year(20\\d{2})/:month(\\d{2})/:day(\\d{2})/:slug*", destination: "/gone" },
       ],
     };
   },
@@ -132,6 +139,7 @@ const nextConfig = {
       // Recovered original articles reviewed in the 31 October migration proposal.
       { source: "/how-to-learn-quran-by-heart-2", destination: "/blog/memorization-techniques-for-beginners", permanent: true },
       { source: "/start-teaching-the-quran-to-your-children", destination: "/blog/help-your-kids-learn-quran-online", permanent: true },
+      { source: "/teaching-the-quran-to-your-children-2", destination: "/blog/help-your-kids-learn-quran-online", permanent: true },
       { source: "/terms-conditions", destination: "/terms-and-conditions", permanent: true },
       // Teacher profile renamed in the CMS from ustadha-aisha to aisha; the old URL was a 404 in Search Console (17 Nov 2026).
       { source: "/teachers/ustadha-aisha", destination: "/teachers/aisha", permanent: true },
