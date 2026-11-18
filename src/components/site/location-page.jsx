@@ -9,6 +9,7 @@ import { SEARCH_INTENTS } from "@/lib/search-intent";
 import { ContentImage } from "@/components/site/content-image";
 import Link from "next/link";
 import { LocationSchedule } from "./location-schedule";
+import { LocationTimeFacts } from "./location-time-facts";
 import { schedulingLocations } from "@/lib/location-schedule";
 import { breadcrumbSchema, safeJsonLd, faqSchema, locationServiceSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
@@ -76,6 +77,7 @@ export async function LocationPage({ country, city }) {
         ["Lesson format", "Live online · One learner, one teacher"],
       ].map(([label, value]) => <div key={label} className="surface p-5"><dt className="text-sm text-ink-soft">{label}</dt><dd className="mt-2 font-semibold text-mushaf-900">{value}</dd></div>)}</dl>
       <LocationSchedule countryName={country.name} currency={country.currency} places={places} />
+      {!hub && <LocationTimeFacts placeName={city ? `${city.name}, ${country.name}` : country.name} timeZone={city?.timezone || country.timezone} />}
       {hub && <CountryLanding hub={hub} fee={hubFee} teachers={teachers} trialHref={`/free-trial?${query}`} trustpilotProfile={trustpilotProfile} testimonials={testimonials} />}
       {guide && <section aria-labelledby="local-guide-title" className="space-y-5">
         <h2 id="local-guide-title" className="text-2xl">{guide.title}</h2>
