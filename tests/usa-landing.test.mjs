@@ -33,8 +33,10 @@ test("both pages are production builds the site CSP allows", () => {
     assert.doesNotMatch(html, /<[a-zA-Z][^>]*\son[a-z]+\s*=/, `${name}: inline event handlers are blocked by script-src-attr 'none'`);
     assert.doesNotMatch(html, /class="pv-tools"|Preview build/, `${name}: preview tools removed`);
     assert.match(html, /^<!doctype html>\n<html lang="en-US">\n<head>/, `${name}: real document head`);
-    assert.match(html, /<meta name="robots" content="noindex/, `${name}: kept out of search (ads-only page)`);
   }
+  // Owner 18 Nov 2026: the landing page is indexable and in the sitemap; the thank-you page stays out of search.
+  assert.match(landing, /<meta name="robots" content="index, follow/);
+  assert.match(thankYou, /<meta name="robots" content="noindex/);
   assert.match(landing, /<link rel="canonical" href="https:\/\/www\.onlinequrancollege\.com\/usa-quran-classes">/);
   assert.match(landing, /leadBackend: 'oqc-cms'/);
   assert.match(landing, /thankYouUrl: '\/usa-quran-classes\/thank-you'/);

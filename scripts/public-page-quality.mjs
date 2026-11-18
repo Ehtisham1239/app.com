@@ -1,5 +1,8 @@
 // Read-only release gate for every declared public page. No account or form mutations.
 import assert from "node:assert/strict";
+// Pages whose hero is a lead form by owner decision, not an image: the USA Google Ads
+// landing page (CEO, 5 Nov 2026), indexable since 18 Nov 2026.
+const FORM_HERO_PAGES=new Set(["/usa-quran-classes"]);
 import {mkdirSync,writeFileSync} from "node:fs";
 import { isWebPageIdentity } from "./lib/page-schema.mjs";
 const base=(process.argv[2]||"http://localhost:3012").replace(/\/$/,"");
@@ -22,7 +25,7 @@ await Promise.all(Array.from({length:3},async()=>{while(cursor<urls.length){cons
  const validVideo=Boolean(video?.name&&video.description&&video.uploadDate&&video.thumbnailUrl?.[0]&&player&&+player.width>0&&+player.height>0);
  if(validVideo){const thumbnail=new URL(video.thumbnailUrl[0]);if(thumbnail.origin===canonicalOrigin)images.add(thumbnail.pathname);}
  const og=metas.find(m=>m.property==="og:title")?.content,ogDesc=metas.find(m=>m.property==="og:description")?.content;
- for(const [condition,reason]of [[status===200,"status"],[Boolean(title&&description),"title/description"],[Boolean(canonical&&new URL(canonical).href===url.href),"canonical"],[(body.match(/<h1[\s>]/g)||[]).length===1,"one H1"],[Boolean(web&&new URL(web.url).href===url.href),"WebPage identity"],[Boolean(org),"shared organisation"],[heroImages.length>0||validVideo,"top visual"],[!video||validVideo,"video metadata and matching player"],[heroImages.every(x=>x.alt?.trim()&&+x.width>0&&+x.height>0),"image alt/dimensions"],[Boolean(og&&ogDesc),"social metadata"],[graph.every(x=>x["@type"]!=="Course"||(x.hasCourseInstance?.courseMode==="Online"&&!x.startDate&&x.offers?.category&&x.provider&&x.name&&x.description)),"course fields"]])if(!condition)failures.push({path,reason});
+ for(const [condition,reason]of [[status===200,"status"],[Boolean(title&&description),"title/description"],[Boolean(canonical&&new URL(canonical).href===url.href),"canonical"],[(body.match(/<h1[\s>]/g)||[]).length===1,"one H1"],[Boolean(web&&new URL(web.url).href===url.href),"WebPage identity"],[Boolean(org),"shared organisation"],[heroImages.length>0||validVideo||FORM_HERO_PAGES.has(path),"top visual"],[!video||validVideo,"video metadata and matching player"],[heroImages.every(x=>x.alt?.trim()&&+x.width>0&&+x.height>0),"image alt/dimensions"],[Boolean(og&&ogDesc),"social metadata"],[graph.every(x=>x["@type"]!=="Course"||(x.hasCourseInstance?.courseMode==="Online"&&!x.startDate&&x.offers?.category&&x.provider&&x.name&&x.description)),"course fields"]])if(!condition)failures.push({path,reason});
  for(const image of heroImages)if(image.src?.startsWith("/"))images.add(image.src);
  rows.push({path,status,title,description,canonical,heroImages:heroImages.map(x=>x.src),schemas:graph.map(x=>x["@type"])});
 }catch(error){failures.push({path,reason:error.message});}}}));
