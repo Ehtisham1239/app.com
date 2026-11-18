@@ -14,13 +14,15 @@ export function analyticsConfig(value = {}) {
   const pick = (key, fallback) => (typeof value[key] === "string" ? value[key].trim() : fallback);
   const gtm2 = pick("gtm_secondary_container_id", DEFAULT_SECONDARY_GTM_ID);
   const ads = pick("google_ads_id", DEFAULT_GOOGLE_ADS_ID);
+  const label = pick("google_ads_conversion_label", "");
   const ga4 = typeof value.ga4_measurement_id === "string" ? value.ga4_measurement_id.trim() : "";
   const gtm = typeof value.gtm_container_id === "string" ? value.gtm_container_id.trim() : "";
   const ga4Id = /^G-[A-Z0-9]{6,20}$/.test(ga4) ? ga4 : "";
   const gtmId = /^GTM-[A-Z0-9]{5,12}$/.test(gtm) ? gtm : "";
   const gtm2Id = /^GTM-[A-Z0-9]{5,12}$/.test(gtm2) && gtm2 !== gtmId ? gtm2 : "";
   const adsId = /^AW-[0-9]{6,15}$/.test(ads) ? ads : "";
-  return { enabled: value.enabled === true && Boolean(gtmId || ga4Id), mode: gtmId ? "gtm" : ga4Id ? "ga4" : "off", ga4Id, gtmId, gtm2Id, adsId };
+  const adsLabel = adsId && /^[A-Za-z0-9_-]{6,40}$/.test(label) ? label : "";
+  return { enabled: value.enabled === true && Boolean(gtmId || ga4Id), mode: gtmId ? "gtm" : ga4Id ? "ga4" : "off", ga4Id, gtmId, gtm2Id, adsId, adsLabel };
 }
 
 // Site-wide mode since 26 Oct 2026: no consent banner, analytics granted, all ad
@@ -31,7 +33,7 @@ export function analyticsConfig(value = {}) {
 export function cookielessAnalyticsConfig(config) {
   const ga4Id = config?.ga4Id || "", gtmId = config?.gtmId || "";
   const mode = gtmId ? "gtm" : ga4Id ? "ga4" : "off";
-  return { ...config, enabled: Boolean(config?.enabled && mode !== "off"), mode, ga4Id, gtmId, gtm2Id: config?.gtm2Id || "", adsId: config?.adsId || "", cookieless: true };
+  return { ...config, enabled: Boolean(config?.enabled && mode !== "off"), mode, ga4Id, gtmId, gtm2Id: config?.gtm2Id || "", adsId: config?.adsId || "", adsLabel: config?.adsLabel || "", cookieless: true };
 }
 
 export function analyticsSettingsError(value = {}) {
@@ -40,6 +42,7 @@ export function analyticsSettingsError(value = {}) {
   if (value.gtm_container_id && !config.gtmId) return "Enter only a valid Google Tag Manager Container ID beginning GTM-, without script code.";
   if (value.gtm_secondary_container_id && !config.gtm2Id) return "Enter only a valid second Tag Manager Container ID beginning GTM- (different from the main one), without script code.";
   if (value.google_ads_id && !config.adsId) return "Enter only a valid Google Ads ID beginning AW- followed by digits, without script code.";
+  if (value.google_ads_conversion_label && !config.adsLabel) return "Enter only the conversion label (letters, digits, - or _) and set a valid Google Ads ID first, without script code.";
   if (value.enabled && !config.enabled) return "Add your actual GA4 or GTM ID before enabling analytics.";
   return "";
 }
@@ -184,12 +187,17 @@ export function createAnalyticsController(win, config) {
     if (!allowed() || !location || location === lastPage) return false;
     const sent = emit("page_view", { page_location: location, page_path: new URL(location).pathname, page_title: doc.title, page_referrer: previousPage });
     if (sent) { lastPage = location; previousPage = location; }
+    // Confirmation pages: one named event per page view so GTM triggers do not have to match URLs.
+    const thanks = sent && /^\/(contact|free-trial|usa-quran-classes)\/thank-you\/?$/.exec(new URL(location).pathname);
+    if (thanks) emit("thank_you_view", { form_type: thanks[1] === "contact" ? "contact" : "trial", page_path: new URL(location).pathname });
     return sent;
   }
   const onLead = event => {
     const { form_type, market } = event.detail || {};
     if (event.detail?.event !== "generate_lead" || !["trial", "contact"].includes(form_type) || !["UK", "USA", "Canada", "Australia", "UAE", "Other"].includes(market)) return;
-    emit("generate_lead", { form_type, market }); // Only a confirmed first-party save signal; no form field values.
+    if (!emit("generate_lead", { form_type, market })) return; // Only a confirmed first-party save signal; no form field values.
+    // Google Ads conversion: only once the owner supplies the label. Fired from the saved-lead signal, never from a page view, so reloads do not count twice.
+    if (config.adsId && config.adsLabel) command("event", "conversion", { send_to: `${config.adsId}/${config.adsLabel}` });
   };
   const pagePath = () => {
     const location = publicAnalyticsUrl(win.location.href, origin);

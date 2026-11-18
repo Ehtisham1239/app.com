@@ -52,6 +52,7 @@ test("analytics follow the site's owner decision: GTM-W7CMZS53, cookieless, ad s
     assert.match(html, /event: 'oqc_page_view'/, name);
     assert.match(html, /gtmId2: 'GTM-52PTXDRF'/, name);
     assert.match(html, /adsId: 'AW-16564445897'/, name);
+    assert.match(html, /adsLabel: ''/, `${name}: conversion label stays empty until the owner supplies it`);
     assert.doesNotMatch(html, /googletagmanager\.com\/gtag\/js\?id=G-/, `${name}: no direct GA4 gtag (the container owns GA4)`);
     assert.doesNotMatch(html, /getJSON\(LS, 'oqc_lp_attr'\)/, `${name}: attribution is session-only`);
   }
