@@ -80,11 +80,12 @@ test("location pages describe online tuition for the place without claiming a lo
   assert.ok(us.sources.every((s) => new URL(s.url).hostname.endsWith(".gov")));
   assert.notEqual(us.title, guide.title);
 });
-test("location sitemap dates include country guide updates without refreshing city pages", async () => {
+test("location sitemap dates use the later of the template date and a country guide update", async () => {
   const { locationLastModified, LOCATION_TEMPLATE_UPDATED } = await import("../src/lib/locations.js");
   const { MARKET_GUIDES } = await import("../src/lib/market-guides.js");
   const templateDate = new Date(LOCATION_TEMPLATE_UPDATED).toISOString();
-  const australiaGuideDate = new Date(MARKET_GUIDES.australia.updatedAt).toISOString();
+  // The later of the guide date and the shared template date wins.
+  const australiaGuideDate = new Date(Math.max(new Date(MARKET_GUIDES.australia.updatedAt), new Date(LOCATION_TEMPLATE_UPDATED))).toISOString();
 
   assert.equal(locationLastModified({ updated_at: "2026-10-29T09:49:43Z" }), templateDate);
   assert.equal(locationLastModified({ updated_at: "2099-01-02T03:04:05Z" }), "2099-01-02T03:04:05.000Z");
