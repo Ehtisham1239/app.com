@@ -35,6 +35,9 @@ export const EMPTY_CUSTOM_CODE = Object.freeze({ head_code: "", schema: "", page
 // Tags the site already installs (owner decisions in AGENTS.md). Adding them again double-counts.
 const ALREADY_INSTALLED = [
   { re: /GTM-W7CMZS53/i, label: "Google Tag Manager (GTM-W7CMZS53) is already installed from the Google Analytics & tags section" },
+  // Owner decision (18 Nov 2026): GTM-W7CMZS53 is the only container; Google Ads lives inside it.
+  { re: /GTM-52PTXDRF/i, label: "GTM-52PTXDRF is not used: GTM-W7CMZS53 is the site's only container and already holds the Google Ads tag, so a second container would duplicate it" },
+  { re: /AW-16564445897|googletagmanager\.com\/gtag\/js\?id=AW-/i, label: "Google Ads (AW-16564445897) is configured inside GTM-W7CMZS53; a separate Google Ads global site tag would duplicate it" },
   { re: /googletagmanager\.com\/gtm\.js/i, label: "Google Tag Manager is managed in the Google Analytics & tags section; a second container loader would double-count" },
   { re: /googletagmanager\.com\/gtag\/js|G-57TGPTDNT4/i, label: "GA4 runs through the GTM container; a direct gtag.js tag would double-count page views" },
   { re: /clarity\.ms|zdo7gxbgkn/i, label: "Microsoft Clarity is already installed in the document head" },

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { clsx } from "clsx";
-import { announceLeadSaved } from "@/lib/conversion-events";
+import { rememberConfirmedLead } from "@/lib/conversion-events";
 import { isTrialEligible } from "@/lib/trial-eligibility";
 import { captureAttribution } from "@/lib/attribution";
 import { MARKET_TIME_ZONES } from "@/lib/market-timezones";
@@ -178,7 +178,8 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       return;
     }
     requestLeadNotification(data, form.email.trim().toLowerCase());
-    announceLeadSaved({ formType: "trial", country: form.country, reference: data?.reference, honeypot: form.website });
+    // Conversion is counted once on the thank-you page, never here (conversion-events.js).
+    rememberConfirmedLead({ formType: "trial", country: form.country, reference: data?.reference, honeypot: form.website, packageEnquiry: !eligible });
     const reference = typeof data?.reference === "string" && /^TR-[A-Z0-9-]{4,32}$/.test(data.reference) && data.reference !== "TR-RECEIVED" ? data.reference : "";
     router.push("/free-trial/thank-you" + (reference ? "?ref=" + encodeURIComponent(reference) : ""));
   }

@@ -1,6 +1,12 @@
+import { consumeConfirmedLead } from "./conversion-events.js";
+
 export const ANALYTICS_CONSENT_KEY = "oqc-analytics-consent-v1";
 export const ANALYTICS_CONSENT_EVENT = "oqc:analytics-consent";
 export const CONSENT_DENIED = { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" };
+// Owner decision (18 Nov 2026, CEO in chat): Google Ads measurement cookies are allowed for
+// every visitor so a lead can be linked to the ad click. Ad personalisation (remarketing)
+// stays denied and Google signals stay off. Supersedes the ad part of the 26 Oct decision.
+export const CONSENT_GRANTED = { analytics_storage: "granted", ad_storage: "granted", ad_user_data: "granted", ad_personalization: "denied" };
 
 export function analyticsConfig(value = {}) {
   value = value && typeof value === "object" ? value : {};
@@ -11,8 +17,9 @@ export function analyticsConfig(value = {}) {
   return { enabled: value.enabled === true && Boolean(gtmId || ga4Id), mode: gtmId ? "gtm" : ga4Id ? "ga4" : "off", ga4Id, gtmId };
 }
 
-// Site-wide mode since 26 Oct 2026: no consent banner, analytics granted, all ad
-// signals denied. When a GTM container is set it owns GA4 (the live container
+// Site-wide mode since 26 Oct 2026: no consent banner, analytics granted. Since 18 Nov 2026
+// ad measurement (ad_storage, ad_user_data) is granted; ad personalisation stays denied.
+// When a GTM container is set it owns GA4 (the live container
 // already holds the G- tag), so the direct gtag script is not loaded: loading
 // both double-counts, and the standalone G- tag currently answers 404.
 // Cookieless: Google analytics cookies live only in page memory (see shieldAnalyticsCookies).
@@ -76,8 +83,10 @@ export function clearAnalyticsCookies(win) {
 // nothing when it cannot read its own cookie back. So Google's analytics
 // cookies are kept in page memory only: GA can read them while the page is
 // open, nothing is written to the visitor's device, and each page load gets a
-// fresh random client ID. Other cookies pass through untouched.
-const GOOGLE_COOKIE = /^\s*(?:_ga|_gid|_gat|_gcl)/;
+// fresh random client ID. Other cookies pass through untouched — including the
+// Google Ads click cookies (_gcl_aw, _gcl_au, _gcl_gb…), which must persist from the ad
+// landing page to the thank-you page for a conversion to be attributed (18 Nov 2026).
+const GOOGLE_COOKIE = /^\s*(?:_ga|_gid|_gat)/;
 export function shieldAnalyticsCookies(doc) {
   if (!doc || doc.__oqcCookieShield) return false;
   let proto = Object.getPrototypeOf(doc), native = null;
@@ -105,16 +114,24 @@ export function shieldAnalyticsCookies(doc) {
   } catch { return false; }
 }
 
+// A Google Ads click (gclid / gbraid / wbraid) is read from the landing URL by the
+// container's conversion linker. Start the tags straight away on such a landing so the
+// click ID is stored before the visitor moves to another page and the URL loses it.
+export function hasAdClickId(search) {
+  try { return ["gclid", "gbraid", "wbraid"].some((key) => new URLSearchParams(search || "").get(key)); } catch { return false; }
+}
+
 export function pageClientId(random = Math.random, now = Date.now) {
   return `${Math.floor(random() * 2147483647) + 1}.${Math.floor(now() / 1000)}`;
 }
 
 // One transport per page. Banner mode: do not load Google before opt-in.
-// Cookieless mode (owner decision, 26 Oct 2026 — keep): GA4 loads straight away
-// with client_storage "none", so no cookie or identifier is written, and
+// Cookieless analytics (owner decision, 26 Oct 2026 — keep): GA4 loads straight away
+// with client_storage "none", so no analytics cookie or identifier is written, and
 // analytics_storage is granted so page views and leads appear in GA4 reports.
 // With analytics_storage "denied" Google keeps hits only for modelling and the
-// reports stay almost empty. Ad storage, ad data and personalisation stay denied.
+// reports stay almost empty. Ad measurement is granted (18 Nov 2026); ad
+// personalisation stays denied.
 export function createAnalyticsController(win, config) {
   let consent = false, initialized = false, lastPage = "", previousPage = "";
   const doc = win.document, origin = win.location.origin;
@@ -132,7 +149,7 @@ export function createAnalyticsController(win, config) {
   function setConsent(granted) {
     consent = granted === true;
     if (config.ga4Id) win[`ga-disable-${config.ga4Id}`] = !consent;
-    command("consent", "update", { ...CONSENT_DENIED, analytics_storage: consent ? "granted" : "denied" });
+    command("consent", "update", consent ? { ...CONSENT_GRANTED } : { ...CONSENT_DENIED });
     if (!allowed() || initialized) return;
     initialized = true;
     const location = publicAnalyticsUrl(win.location.href, origin);
@@ -159,14 +176,27 @@ export function createAnalyticsController(win, config) {
     const location = publicAnalyticsUrl(path, origin);
     if (!allowed() || !location || location === lastPage) return false;
     const sent = emit("page_view", { page_location: location, page_path: new URL(location).pathname, page_title: doc.title, page_referrer: previousPage });
-    if (sent) { lastPage = location; previousPage = location; }
+    if (sent) { lastPage = location; previousPage = location; confirmLead(); }
     return sent;
   }
-  const onLead = event => {
-    const { form_type, market } = event.detail || {};
-    if (event.detail?.event !== "generate_lead" || !["trial", "contact"].includes(form_type) || !["UK", "USA", "Canada", "Australia", "UAE", "Other"].includes(market)) return;
-    emit("generate_lead", { form_type, market }); // Only a confirmed first-party save signal; no form field values.
-  };
+  // A confirmed lead is sent once, on its thank-you page, after that page's page_view
+  // (see conversion-events.js). The event has no form values; transaction_id is the
+  // opaque lead reference so Google Ads de-duplicates.
+  function confirmLead() {
+    const lead = consumeConfirmedLead(win);
+    if (!lead) return false;
+    let sent = false;
+    if (allowed()) {
+      if (config.mode === "gtm") { win.dataLayer.push({ ...lead.event }); sent = true; }
+      else {
+        const params = { ...lead.event };
+        delete params.event;
+        sent = emit("generate_lead", params);
+      }
+    }
+    if (sent) lead.markCounted();
+    return sent;
+  }
   const pagePath = () => {
     const location = publicAnalyticsUrl(win.location.href, origin);
     return location ? new URL(location).pathname : "";
@@ -197,7 +227,6 @@ export function createAnalyticsController(win, config) {
     trialFormAttempted = true;
     emit("trial_form_submit_attempt", { page_path: pagePath() });
   };
-  win.addEventListener("oqc:lead-saved", onLead);
   doc.addEventListener("click", onClick);
   doc.addEventListener("focusin", onFormFocus);
   doc.addEventListener("submit", onFormSubmit);
@@ -221,7 +250,6 @@ export function createAnalyticsController(win, config) {
   return {
     setConsent, pageView, webVital,
     destroy() {
-      win.removeEventListener("oqc:lead-saved", onLead);
       doc.removeEventListener("click", onClick);
       doc.removeEventListener("focusin", onFormFocus);
       doc.removeEventListener("submit", onFormSubmit);

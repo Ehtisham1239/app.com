@@ -42,18 +42,28 @@ test("both pages are production builds the site CSP allows", () => {
   assert.match(landing, /thankYouUrl: '\/usa-quran-classes\/thank-you'/);
 });
 
-test("analytics follow the site's owner decision: GTM-W7CMZS53, cookieless, ad signals denied, live domain only", () => {
+test("analytics follow the site's owner decisions: GTM-W7CMZS53 only, cookieless analytics, ad measurement granted (18 Nov 2026), live domain only", () => {
   for (const [name, html] of Object.entries(pages)) {
     assert.match(html, /gtmId: 'GTM-W7CMZS53'/, name);
     assert.match(html, /analyticsHosts: \['www\.onlinequrancollege\.com', 'onlinequrancollege\.com'\]/, name);
     assert.match(html, /client_storage: 'none'/, name);
     assert.match(html, /function shieldAnalyticsCookies/, name);
-    assert.match(html, /ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied'/, name);
+    assert.match(html, /gtag\('consent', 'default', denied\)/, name);
+    assert.match(html, /var denied = \{ analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' \}/, name);
+    assert.match(html, /gtag\('consent', 'update', \{ analytics_storage: 'granted', ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'denied' \}\)/, name);
+    assert.match(html, /GOOGLE = \/\^\\s\*\(\?:_ga\|_gid\|_gat\)\//, `${name}: Ads click cookies (_gcl_*) are not held in memory`);
+    assert.match(html, /allow_ad_personalization_signals: false/, name);
+    assert.doesNotMatch(html, /GTM-52PTXDRF|AW-16564445897/, `${name}: no second container or direct Ads tag`);
     assert.match(html, /event: 'oqc_page_view'/, name);
     assert.doesNotMatch(html, /googletagmanager\.com\/gtag\/js/, `${name}: no direct gtag (the container owns GA4)`);
     assert.doesNotMatch(html, /getJSON\(LS, 'oqc_lp_attr'\)/, `${name}: attribution is session-only`);
   }
-  assert.match(landing, /oqcEmit\('generate_lead', \{ form_type: 'trial', market: 'USA' \}\)/);
+  // One lead signal: free_trial_submission on the thank-you page, once per lead reference.
+  for (const [name, html] of Object.entries(pages)) {
+    assert.doesNotMatch(html, /oqcEmit\('generate_lead'/, `${name}: no pre-redirect lead event`);
+    assert.match(html, /event: pending\.test \? 'free_trial_submission_test' : 'free_trial_submission'/, name);
+    assert.match(html, /form_id: FORM_ID, form_type: 'trial', lead_type: 'free_trial', market: 'USA',\s+lead_id: pending\.lead_id, transaction_id: pending\.lead_id/, name);
+  }
 });
 
 test("the landing page routes are rewritten to the static files", async () => {
@@ -160,7 +170,7 @@ test("the landing page emails admissions only after the lead is saved and uses a
   const successAfterNotify = landing.indexOf("succeed({ ok: true, lead_id: b.reference });", notifyAt);
   assert.ok(at("if (b.reference === 'TR-RECEIVED')") < at("b.notification_token") && at("b.notification_token") < at("setJSON(SS, SENT_KEY") && at("setJSON(SS, SENT_KEY") < notifyAt && notifyAt < successAfterNotify);
   assert.match(landing, /notifyAdmissions\(prior\.ref, p\.email, prior\.token\)/);
-  assert.match(landing, /if \(!res\.test && !res\.spam && !res\.repeat\) oqcEmit\('generate_lead'/);
+  assert.match(landing, /a repeat of a\s+\/\/ request already saved from this tab reuses its reference and is never counted twice/);
   // Only the reference, typed email and short-lived notification token go to the server; no lead PII is stored in session state.
   assert.match(landing, /\{ reference: reference, email: email, notification_token: token \}/);
   assert.match(landing, /token: b\.notification_token/);

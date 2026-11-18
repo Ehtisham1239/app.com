@@ -18,6 +18,7 @@
     "test": "node scripts/prepare-responsive-learning.mjs && node --test tests/*.test.mjs",
     "seed:locations": "node scripts/seed-locations.mjs",
     "test:browser": "node scripts/browser-smoke.mjs",
+    "test:lead-conversion": "node scripts/lead-conversion-smoke.mjs",
     "verify:site": "node scripts/run-site-quality.mjs",
     "audit:performance": "node scripts/performance-audit.mjs",
     "audit:responsive": "node scripts/responsive-audit.mjs",

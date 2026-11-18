@@ -1,6 +1,6 @@
 "use client";
 import { requestLeadNotification } from "@/lib/request-lead-notification";
-import { announceLeadSaved } from "@/lib/conversion-events";
+import { rememberConfirmedLead } from "@/lib/conversion-events";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -62,7 +62,8 @@ export function ContactForm({ id, consentText, alternateContact, careerSubject }
       return;
     }
     requestLeadNotification(data, form.email.trim().toLowerCase());
-    announceLeadSaved({ formType: "contact", country: form.country, reference: data?.reference, honeypot: form.website });
+    // Only prospect enquiries count as leads; careers and support messages never do.
+    rememberConfirmedLead({ formType: "contact", country: form.country, reference: data?.reference, honeypot: form.website, subject: form.subject, careers: Boolean(careerSubject) });
     const reference = typeof data?.reference === "string" && /^MSG-[A-Z0-9-]{4,32}$/.test(data.reference) && data.reference !== "MSG-RECEIVED" ? data.reference : "";
     const confirmation = new URLSearchParams();
     if (careerSubject) confirmation.set("type", "careers");

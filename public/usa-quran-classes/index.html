@@ -557,19 +557,21 @@ window.OQC_LP_CONFIG = {
   window.dataLayer = window.dataLayer || [];
   var hostOK = !c.analyticsHosts || c.analyticsHosts.indexOf(location.hostname) > -1;
   if (/^GTM-[A-Z0-9]{4,}$/.test(c.gtmId || '') && hostOK) {
-    // Same cookieless set-up as src/lib/analytics.js (owner decision, 26 Oct 2026):
-    // analytics granted, every ad signal denied, Google signals off, Google cookies
-    // kept in page memory only and a random client_id for each page load.
+    // Same set-up as src/lib/analytics.js: cookieless analytics (owner decision, 26 Oct 2026),
+    // Google signals off, analytics cookies kept in page memory only and a random client_id
+    // for each page load. Ad measurement (ad_storage, ad_user_data) is granted and the
+    // Google Ads click cookies (_gcl_*) are stored normally (owner decision, 18 Nov 2026);
+    // ad personalisation stays denied.
     var gtag = function () { window.dataLayer.push(arguments); };
     var denied = { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' };
     gtag('consent', 'default', denied);
-    gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+    gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'denied' });
     (function shieldAnalyticsCookies(doc) {
       if (doc.__oqcCookieShield) return;
       var proto = Object.getPrototypeOf(doc), native = null;
       while (proto && !native) { native = Object.getOwnPropertyDescriptor(proto, 'cookie'); proto = Object.getPrototypeOf(proto); }
       if (!native || !native.get || !native.set) return;
-      var jar = {}, GOOGLE = /^\s*(?:_ga|_gid|_gat|_gcl)/;
+      var jar = {}, GOOGLE = /^\s*(?:_ga|_gid|_gat)/;
       try {
         Object.defineProperty(doc, 'cookie', {
           configurable: true,
@@ -1096,8 +1098,9 @@ window.OQC_LP_CONFIG = {
  *   callback_cta_click    "Request a call back" button (shown only while the phone line is closed)
  *   form_start            first interaction with the trial form (once per page view)
  *   form_submit_error     validation / network / server / not_configured
- *   generate_lead         thank-you page only, once per lead_id (primary conversion)
- *   generate_lead_test    same, but from preview test mode — never map this to Ads
+ *   free_trial_submission       thank-you page only, once per lead_id; transaction_id = lead reference
+ *                               (primary Google Ads conversion; same event as the main site's trial form)
+ *   free_trial_submission_test  same, but from preview test mode — never map this to Ads
  */
 (function () {
   'use strict';
@@ -1122,7 +1125,7 @@ window.OQC_LP_CONFIG = {
   function del(s, k) { if (!s) return; try { s.removeItem(k); } catch (e) {} }
 
   /* ---------- tracking ---------- */
-  var ALLOWED = ['event', 'cta_location', 'form_id', 'course', 'plan', 'page_variant', 'page_type',
+  var ALLOWED = ['event', 'cta_location', 'form_id', 'form_type', 'lead_type', 'market', 'course', 'plan', 'page_variant', 'page_type',
     'error_type', 'lead_id', 'transaction_id', 'value', 'currency', 'lp_mode'];
   var logEl = document.querySelector('[data-log]');
   var logList = logEl ? logEl.querySelector('ol') : null;
@@ -1499,8 +1502,8 @@ window.OQC_LP_CONFIG = {
 
   function succeed(res) {
     setJSON(SS, 'oqc_lp_pending', { lead_id: res.lead_id, course: value('course'), ts: Date.now(), test: !!res.test, spam: !!res.spam });
-    // A repeat of a request already saved from this tab is not a new lead.
-    if (!res.test && !res.spam && !res.repeat) oqcEmit('generate_lead', { form_type: 'trial', market: 'USA' });
+    // The lead is counted once, on the thank-you page (free_trial_submission); a repeat of a
+    // request already saved from this tab reuses its reference and is never counted twice.
     status('ok', res.repeat
       ? '<strong>We already have this request</strong> (reference ' + esc(res.lead_id) + '). Taking you to the next step…'
       : '<strong>Request received.</strong> Taking you to the next step…');
@@ -1736,8 +1739,9 @@ window.OQC_LP_CONFIG = {
     if (fresh && pending.spam) { del(SS, 'oqc_lp_pending'); pending = null; fresh = false; }
     if (fresh && done.indexOf(pending.lead_id) === -1) {
       var ev = {
-        event: pending.test ? 'generate_lead_test' : 'generate_lead',
-        form_id: FORM_ID, lead_id: pending.lead_id, transaction_id: pending.lead_id,
+        event: pending.test ? 'free_trial_submission_test' : 'free_trial_submission',
+        form_id: FORM_ID, form_type: 'trial', lead_type: 'free_trial', market: 'USA',
+        lead_id: pending.lead_id, transaction_id: pending.lead_id,
         course: pending.course, currency: 'USD', lp_mode: PROD ? 'production' : 'preview'
       };
       if (typeof C.leadValueUSD === 'number') ev.value = C.leadValueUSD;

@@ -52,12 +52,16 @@ for (const width of realLibrary ? [390] : [390, 1440]) {
     assert.equal(consent[0][1], 'default');
     assert.equal(consent[0][2].analytics_storage, 'denied');
     assert.equal(consent.at(-1)[2].analytics_storage, 'granted');
-    for (const item of consent) for (const key of ['ad_storage', 'ad_user_data', 'ad_personalization']) assert.equal(item[2][key], 'denied');
+    for (const key of ['ad_storage', 'ad_user_data', 'ad_personalization']) assert.equal(consent[0][2][key], 'denied');
+    // Owner decision (18 Nov 2026): ad measurement granted after start-up; personalisation stays denied.
+    assert.equal(consent.at(-1)[2].ad_storage, 'granted');
+    assert.equal(consent.at(-1)[2].ad_user_data, 'granted');
+    for (const item of consent) assert.equal(item[2].ad_personalization, 'denied');
     const storage = await page.evaluate(() => ({ analyticsCookies: document.cookie.split(';').map(c => c.split('=')[0].trim()).filter(n => /^_ga(?:_|$)/.test(n)), preference: localStorage.getItem('oqc-analytics-consent-v1') }));
     assert.deepEqual(storage.analyticsCookies, []);
     assert.equal(storage.preference, null);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
-    report.cases.push({ width, transport: gtm ? 'GTM' : 'GA4', loaderCount: 1, routeViews: 2, noDuplicateTransport: true, analyticsGrantedWithClientStorageNone: true, adsDenied: true, legacyCookieRemoved: true, noBanner: true });
+    report.cases.push({ width, transport: gtm ? 'GTM' : 'GA4', loaderCount: 1, routeViews: 2, noDuplicateTransport: true, analyticsGrantedWithClientStorageNone: true, adMeasurementGranted: true, adPersonalisationDenied: true, legacyCookieRemoved: true, noBanner: true });
   } finally { await session?.close(); await browser.close(); }
 }
 assert.deepEqual(report.browserErrors, []);

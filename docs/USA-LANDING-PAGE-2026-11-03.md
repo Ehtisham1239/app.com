@@ -64,7 +64,7 @@ Same owner decision as the rest of the site (AGENTS.md, 26 Oct 2026): container 
 
 Events the container already handles: `oqc_page_view`, `oqc_contact_click` (phone, email, WhatsApp), and `oqc_generate_lead` with `form_type: trial`, `market: USA`, sent once at the confirmed save. The page's own `generate_lead`, `phone_click`, `trial_cta_click` and similar events stay in the dataLayer for a future Ads tag; the container does not use them today.
 
-**Google Ads conversions are not connected.** With no ad cookies and query strings stripped from GA4 page locations, Google cannot link a lead to an ad click in the browser. The gclid is saved with each lead, so the privacy-consistent route is offline conversion import from the CMS. Adding an Ads conversion tag or cookies needs the owner's approval.
+**Superseded 18 Nov 2026:** see `docs/GOOGLE-ADS-CONVERSIONS-2026-11-18.md` (ad measurement granted, thank-you event `free_trial_submission`). Original note: **Google Ads conversions are not connected.** With no ad cookies and query strings stripped from GA4 page locations, Google cannot link a lead to an ad click in the browser. The gclid is saved with each lead, so the privacy-consistent route is offline conversion import from the CMS. Adding an Ads conversion tag or cookies needs the owner's approval.
 
 ## Updating
 

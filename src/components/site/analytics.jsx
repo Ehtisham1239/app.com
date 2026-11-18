@@ -3,11 +3,12 @@
 import { useCallback, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { useReportWebVitals } from "next/web-vitals";
-import { ANALYTICS_CONSENT_KEY, clearAnalyticsCookies, createAnalyticsController, isAnalyticsHost } from "@/lib/analytics";
+import { ANALYTICS_CONSENT_KEY, clearAnalyticsCookies, createAnalyticsController, hasAdClickId, isAnalyticsHost } from "@/lib/analytics";
 
 // Cookieless GA4 (owner decision, 26 Oct 2026): no banner or preference button.
-// client_storage "none" means nothing is written to the device; analytics
-// storage is granted so hits reach GA4 reports. Ad storage is never granted.
+// client_storage "none" means no analytics cookie is written to the device; analytics
+// storage is granted so hits reach GA4 reports. Google Ads measurement cookies are
+// allowed since 18 Nov 2026 (owner decision); ad personalisation stays denied.
 // Older _ga cookies and saved banner choices are removed on load.
 export function WebsiteAnalytics({ config }) {
   const { enabled, ga4Id } = config;
@@ -39,13 +40,21 @@ export function WebsiteAnalytics({ config }) {
     };
     const schedule = () => { timer = window.setTimeout(go, 4000); };
     EVENTS.forEach((name) => window.addEventListener(name, go, { once: true, passive: true }));
-    if (document.readyState === "complete") schedule(); else window.addEventListener("load", schedule, { once: true });
+    // An ad-click landing starts at once: the conversion linker must store the click ID
+    // before the visitor follows a link and the URL loses it.
+    let immediate;
+    if (hasAdClickId(window.location.search)) {
+      EVENTS.forEach((name) => window.removeEventListener(name, go));
+      idle = null; // Blocks the interaction path; start() runs on the next task.
+      immediate = window.setTimeout(start, 0);
+    } else if (document.readyState === "complete") schedule(); else window.addEventListener("load", schedule, { once: true });
     return () => {
       cancelled = true;
       EVENTS.forEach((name) => window.removeEventListener(name, go));
       window.clearTimeout(timer);
+      window.clearTimeout(immediate);
       window.removeEventListener("load", schedule);
-      if (idle !== undefined) ("cancelIdleCallback" in window ? window.cancelIdleCallback(idle) : window.clearTimeout(idle));
+      if (idle !== undefined && idle !== null) ("cancelIdleCallback" in window ? window.cancelIdleCallback(idle) : window.clearTimeout(idle));
       adapter?.destroy(); controller.current = null;
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
