@@ -1265,6 +1265,9 @@ window.OQC_LP_CONFIG = {
       };
       if (typeof C.leadValueUSD === 'number') ev.value = C.leadValueUSD;
       track(ev);
+      // The GTM container counts leads (GA4 generate_lead + Google Ads conversion) from this event name,
+      // the same one /contact/thank-you pushes. Test leads are never counted; reloads are blocked by `done`.
+      if (!pending.test && window.OQC_ANALYTICS_ON) dl.push({ event: 'thanku_generate_lead', lead_ref: pending.lead_id });
       done.push(pending.lead_id);
       setJSON(SS, 'oqc_lp_converted', done.slice(-20));
       setJSON(SS, 'oqc_lp_confirmed', { lead_id: pending.lead_id });
