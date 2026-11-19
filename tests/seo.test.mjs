@@ -281,3 +281,11 @@ test("site-wide ayah band uses sourced verses with references and stays script-f
   assert.match(motion, /prefers-reduced-motion: no-preference\) \{\s*\.ayah-glow/);
   assert.doesNotMatch(motion.slice(0, motion.indexOf("Gold lattice")), /@keyframes ayah-[a-z]+ \{[^}]*(width|height|top|left|background-position)/, "animations use opacity/transform only");
 });
+
+test("the ayah band never repeats the footer's 20:114 and its ornaments are silent", async () => {
+  const { readFileSync } = await import("node:fs");
+  const { AYAT } = await import("../src/lib/ayat.js");
+  assert.equal(AYAT.some(a => a.ref.startsWith("20:114")), false);
+  const css = readFileSync(new URL("../src/app/globals.css", import.meta.url), "utf8");
+  assert.match(css, /\.ayah-kicker::before, \.ayah-kicker::after \{ content: "۞" \/ "";/);
+});
