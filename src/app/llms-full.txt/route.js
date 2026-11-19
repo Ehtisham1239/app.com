@@ -15,14 +15,14 @@ export async function GET() {
     `> ${f.description || "Live one-to-one online Quran learning for children and adults."}`, "",
     `Page index: /llms.txt · The same facts for people: /at-a-glance`, "",
     rule, "## 1. Who we are", rule, "",
-    `- Name: ${f.name}${f.legalName ? ` (${f.legalName})` : ""}`,
+    `- Name: ${f.name}${f.legalName && f.legalName.toLowerCase() !== f.name.toLowerCase() ? ` (${f.legalName})` : f.legalName ? ` (registered as ${f.legalName})` : ""}`,
     f.headline && `- What we do: ${f.headline}`,
     f.tagline && `- Tagline: ${f.tagline}`,
     c.base && `- Based in: ${c.base}. Classes are online; no local office or branch is claimed for any country page.`,
-    "- Website: /", "",
+    "- [Website](/)", "",
     rule, "## 2. Contact", rule, "",
     c.email && `- Email: ${c.email}`, c.phone && `- Phone: ${c.phone}`, c.whatsapp && `- WhatsApp: https://wa.me/${c.whatsapp}`, c.hours && `- Class slots: ${c.hours}`,
-    "- Contact form: /contact", "- Free trial request: /free-trial", "",
+    "- [Contact form](/contact)", "- [Free trial request](/free-trial)", "",
     rule, "## 3. How it works", rule, "",
     ...f.steps.map((s, i) => `${i + 1}. ${s.title}: ${s.text}`), "",
     rule, "## 4. Why families choose us", rule, "",
@@ -44,6 +44,6 @@ export async function GET() {
     rule, "## 10. Policies and trust", rule, "",
     "- [Editorial standards](/editorial-standards)", "- [Refund policy](/refund-policy)", "- [Terms and conditions](/terms-and-conditions)", "- [Privacy policy](/privacy-policy)", "- [Independent reviews on Trustpilot](https://www.trustpilot.com/review/onlinequrancollege.com)", "",
   ].filter(line => line !== false && line !== undefined && line !== null && line !== 0).filter((line, i, all) => !(line === "" && all[i - 1] === ""));
-  const body = lines.join("\n").replaceAll("](/", `](${SITE_URL}/`).replace("Page index: /llms.txt · The same facts for people: /at-a-glance", `Page index: ${SITE_URL}/llms.txt · The same facts for people: ${SITE_URL}/at-a-glance`).replace("- Website: /", `- Website: ${SITE_URL}/`);
+  const body = lines.join("\n").replaceAll("](/", `](${SITE_URL}/`).replace("Page index: /llms.txt · The same facts for people: /at-a-glance", `Page index: ${SITE_URL}/llms.txt · The same facts for people: ${SITE_URL}/at-a-glance`).replace("- [Website](/)", `- Website: ${SITE_URL}/`);
   return new Response(body, { headers: { "Content-Type": "text/plain; charset=utf-8", "X-Content-Type-Options": "nosniff" } });
 }
