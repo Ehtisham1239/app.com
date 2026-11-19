@@ -310,3 +310,14 @@ test("verse animations stay cheap: hero glow is finite and the band renders only
   assert.match(css, /\.hero-ayah-glow \{ animation: ayah-glow 10s ease-in-out 1\.5s 2; \}/);
   assert.match(css, /\.ayah-band \{[^}]*content-visibility: auto; contain-intrinsic-size: auto 26rem;/);
 });
+
+test("Arabic-first country titles follow Search Console demand (Lithuania, 19 Nov 2026)", async () => {
+  const { getLocation, locationSearchTitle, locationSearchIntro, ARABIC_FIRST_COUNTRIES } = await import("../src/lib/locations.js");
+  assert.deepEqual([...ARABIC_FIRST_COUNTRIES], ["lithuania"]);
+  const lt = getLocation("lithuania"); const country = lt.country || lt;
+  assert.equal(locationSearchTitle(country), "Online Arabic & Quran Classes in Lithuania | OQC");
+  assert.match(locationSearchIntro(country), /^Live one-to-one online Arabic classes in Lithuania/);
+  assert.ok(locationSearchIntro(country).length <= 175);
+  const uk = getLocation("united-kingdom"); assert.match(locationSearchTitle(uk.country || uk), /^Online Quran & Arabic Classes/);
+  const city = country.cities[0]; assert.match(locationSearchTitle(country, city), /^Quran & Arabic Classes in /, "city pages keep the shared pattern");
+});

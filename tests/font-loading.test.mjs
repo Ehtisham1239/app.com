@@ -35,3 +35,11 @@ test("the solid white mobile header gets no backdrop blur", () => {
   assert.doesNotMatch(css, /^\.site-header \{ backdrop-filter: blur/m, "an unscoped blur overrides the mobile rule");
   assert.match(css, /@media \(min-width: 640px\) \{ \.site-header \{ backdrop-filter: blur\(12px\)/);
 });
+
+test("the Outfit heading face is preloaded so the desktop home hero does not shift (CLS 0.098 → 0, 19 Nov 2026)", () => {
+  const start = layout.indexOf('variable: "--font-outfit",');
+  const block = layout.slice(start, layout.indexOf("});", start));
+  assert.match(block, /preload: true/);
+  const latin = layout.slice(layout.indexOf('variable: "--font-outfit-latin"'));
+  assert.match(latin.slice(0, latin.indexOf("});")), /preload: false/, "only the 24 KB text subset is preloaded");
+});

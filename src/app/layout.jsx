@@ -42,7 +42,9 @@ const outfit = localFont({
   src: [{ path: "../../public/fonts/oqc-outfit-text-v1.woff2", weight: "100 900", style: "normal" }],
   variable: "--font-outfit",
   display: "swap",
-  preload: false,
+  // Preloaded (24 KB) so headings paint in Outfit: with the fallback the desktop home heading wrapped
+  // to 2 lines, then 3 when Outfit arrived, moving the hero portrait (CLS 0.098, 19 Nov 2026).
+  preload: true,
   adjustFontFallback: false,
 });
 
