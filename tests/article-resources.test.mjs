@@ -27,3 +27,25 @@ test('the USA fee comparison and the starting-age guide get their own topic reso
   assert.deepEqual(articleResources({ slug: 'online-quran-class-fees-usa-comparison' }), international);
   assert.deepEqual(articleResources({ slug: 'what-age-start-online-quran-classes' }), articleResources({ slug: 'choose-online-quran-classes-kids' }));
 });
+
+test('related articles give every post at least one inbound link and stay deterministic (19 Nov 2026)', async () => {
+  const { relatedArticles } = await import('../src/lib/article-resources.js');
+  const mk = (slug, category, tags) => ({ slug, category, tags });
+  const posts = [
+    mk('is-my-child-ready-for-hifz', 'Hifz', ['Hifz']), mk('how-long-does-hifz-take-online', 'Hifz', ['Hifz']),
+    mk('sabaq-sabqi-manzil-explained', 'Hifz', ['Hifz']), mk('memorization-techniques-for-beginners', 'Hifz', ['Hifz']),
+    mk('hifz-revision-with-school', 'Recitation & revision', ['Hifz']), mk('tajweed-rules-for-beginners', 'Tajweed', ['Tajweed']),
+    mk('common-tajweed-mistakes', 'Tajweed', ['Tajweed']), mk('makharij-explained-for-beginners', 'Tajweed', ['Tajweed']),
+    mk('tajweed-practice-with-feedback', 'Recitation & revision', ['Tajweed']),
+  ];
+  const inbound = new Map(posts.map(p => [p.slug, 0]));
+  for (const p of posts) {
+    const picks = relatedArticles(p, posts);
+    assert.equal(picks.length, 3);
+    assert.ok(!picks.some(x => x.slug === p.slug));
+    assert.deepEqual(relatedArticles(p, posts).map(x => x.slug), picks.map(x => x.slug), 'same result every render');
+    picks.forEach(x => inbound.set(x.slug, inbound.get(x.slug) + 1));
+  }
+  for (const [slug, n] of inbound) assert.ok(n >= 1, slug + ' gets at least one related link');
+  assert.ok(relatedArticles(posts[0], posts).every(x => /hifz|memoriz|sabaq/.test(x.slug)), 'stays on topic');
+});

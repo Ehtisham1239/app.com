@@ -44,6 +44,19 @@ const articleTopics = {
   "common-tajweed-mistakes": "tajweed",
   "ramadan-quran-plan-for-families": "parents",
   "what-age-start-online-quran-classes": "parents",
+  // 19 Nov 2026: these posts had no topic, so four of them got no related-article links at all.
+  "is-my-child-ready-for-hifz": "hifz",
+  "online-hifz-classes-uae-routine": "hifz",
+  "online-quran-classes-or-mosque-classes": "parents",
+  "printable-weekly-quran-practice-planner": "parents",
+  "online-quran-classes-kids-uae-school-routine": "international",
+  "online-tajweed-classes-adults-uae": "tajweed",
+  "online-quran-classes-europe-time-zones": "international",
+  "online-quran-classes-new-zealand-time-zones": "international",
+  "native-arabic-speaking-quran-teacher": "tajweed",
+  "how-to-learn-quran-online-beginners-guide": "reading",
+  "arabic-for-quran-readers": "understanding",
+  "quran-translation-tafseer-beginners": "understanding",
 };
 
 export function articleResources(post) {
@@ -51,9 +64,27 @@ export function articleResources(post) {
   return { label: topic.label, links: [topic.guide, topic.course].map(([label, href]) => ({ label, href })) };
 }
 
-export function relatedArticles(post, posts, limit = 3) {
-  const score = candidate => (articleTopics[post.slug] && articleTopics[candidate.slug] === articleTopics[post.slug] ? 5 : 0)
+function relatedScore(post, candidate) {
+  return (articleTopics[post.slug] && articleTopics[candidate.slug] === articleTopics[post.slug] ? 5 : 0)
     + (candidate.category && candidate.category === post.category ? 3 : 0)
     + (candidate.tags || []).filter(tag => post.tags?.includes(tag)).length;
-  return posts.filter(candidate => candidate.slug !== post.slug).sort((a, b) => score(b) - score(a)).slice(0, limit);
+}
+
+// Related links are planned for all posts together so every article receives some: posts are
+// visited in slug order and each picks the most relevant candidates, minus 2 points for every
+// link a candidate already has (19 Nov 2026: plain top-3 by relevance left 4 articles with none).
+// Deterministic for the same post list, so a page's links do not change between renders.
+export function relatedArticles(post, posts, limit = 3) {
+  const all = posts.some(p => p.slug === post.slug) ? posts : [...posts, post];
+  const inbound = new Map(all.map(p => [p.slug, 0]));
+  let mine = [];
+  for (const source of [...all].sort((a, b) => a.slug.localeCompare(b.slug))) {
+    const picks = all.filter(c => c.slug !== source.slug)
+      .map((c, i) => ({ c, i, key: relatedScore(source, c) - 2 * inbound.get(c.slug) }))
+      .sort((a, b) => b.key - a.key || a.i - b.i)
+      .slice(0, limit).map(x => x.c);
+    picks.forEach(c => inbound.set(c.slug, inbound.get(c.slug) + 1));
+    if (source.slug === post.slug) mine = picks;
+  }
+  return mine;
 }
