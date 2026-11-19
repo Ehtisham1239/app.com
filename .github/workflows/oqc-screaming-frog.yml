@@ -10,9 +10,9 @@ name: OQC Screaming Frog crawl
 #   variable SF_EULA_VERSION                       (optional; the eula.accepted number for the installed
 #                                                   version, default 15. Setting it is accepting the
 #                                                   Screaming Frog EULA for this automation.)
+# Optional and paid. The free weekly crawl is oqc-site-crawl.yml (scripts/site-crawl.mjs), so
+# this one is manual only and needs the licence secrets below.
 on:
-  schedule:
-    - cron: "23 2 * * 1" # Mondays 02:23 UTC (07:23 PKT)
   workflow_dispatch:
     inputs:
       url:
@@ -23,10 +23,6 @@ on:
         description: "SEO Spider version (the .deb on download.screamingfrog.co.uk)"
         type: string
         default: "25.1"
-  pull_request:
-    paths:
-      - .github/workflows/oqc-screaming-frog.yml
-      - scripts/sf-crawl-summary.mjs
 
 permissions:
   contents: read

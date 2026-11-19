@@ -1,5 +1,5 @@
-// Summarises a Screaming Frog SEO Spider headless export (internal_all.csv + the filtered
-// tab exports) into a Markdown report for the GitHub job summary.
+// Summarises internal_all.csv from scripts/site-crawl.mjs (free crawler) or a Screaming Frog
+// SEO Spider headless export into a Markdown report for the GitHub job summary.
 // Usage: node scripts/sf-crawl-summary.mjs <export-folder> [--fail-on-5xx]
 //   writes <export-folder>/summary.md and appends it to $GITHUB_STEP_SUMMARY when set.
 // Read-only: it never touches the site. Exit 1 only with --fail-on-5xx and a 5xx URL.
@@ -37,6 +37,15 @@ export function parseCsv(text) {
 const num = (v) => Number.parseFloat(v) || 0;
 const isHtml = (r) => /text\/html/i.test(r["Content Type"] || "");
 
+function duplicates(pages) {
+  const groups = new Map();
+  for (const r of pages) {
+    const key = (r["Title 1"] || "").trim().toLowerCase();
+    if (key) groups.set(key, [...(groups.get(key) || []), r]);
+  }
+  return [...groups.values()].filter((g) => g.length > 1).flat();
+}
+
 export function summarise(rows) {
   const html = rows.filter(isHtml);
   const ok = html.filter((r) => num(r["Status Code"]) === 200);
@@ -51,7 +60,11 @@ export function summarise(rows) {
     redirects: byClass(300, 400),
     clientErrors: byClass(400, 500),
     serverErrors: byClass(500, 600),
-    noResponse: rows.filter((r) => num(r["Status Code"]) === 0),
+    blocked: rows.filter((r) => num(r["Status Code"]) === 0 && /robots/i.test(r.Status || "")),
+    noResponse: rows.filter((r) => num(r["Status Code"]) === 0 && !/robots/i.test(r.Status || "")),
+    duplicateTitles: duplicates(indexable),
+    sitemapProblems: rows.filter((r) => r["In Sitemap"] === "Yes" && !(num(r["Status Code"]) === 200 && (r.Indexability || "").toLowerCase() === "indexable")),
+    orphans: rows.filter((r) => r["In Sitemap"] === "Yes" && num(r.Inlinks) === 0 && !/^https?:\/\/[^/]+\/?$/.test(r.Address)),
     missingTitle: blank("Title 1"),
     missingMeta: blank("Meta Description 1"),
     missingH1: blank("H1-1"),
@@ -66,7 +79,7 @@ const list = (rows, max = 15) => rows.slice(0, max)
 export function toMarkdown(s, meta = {}) {
   const line = (label, rows) => `| ${label} | ${rows.length} |`;
   const parts = [
-    `## Screaming Frog crawl${meta.site ? `: ${meta.site}` : ""}`,
+    `## Site crawl${meta.site ? `: ${meta.site}` : ""}`,
     meta.note ? `> ${meta.note}\n` : "",
     "| Check | URLs |", "| --- | ---: |",
     `| Crawled URLs | ${s.total} |`, `| HTML pages | ${s.htmlPages} |`,
@@ -78,7 +91,7 @@ export function toMarkdown(s, meta = {}) {
     line("Indexable pages missing H1", s.missingH1),
     line("Indexable pages slower than 2 s", s.slow), "",
   ];
-  for (const [title, rows] of [["5xx server errors", s.serverErrors], ["4xx client errors", s.clientErrors], ["No response", s.noResponse], ["Missing title", s.missingTitle], ["Missing H1", s.missingH1]]) {
+  for (const [title, rows] of [["5xx server errors", s.serverErrors], ["4xx client errors", s.clientErrors], ["No response", s.noResponse], ["Sitemap URLs that are not indexable 200", s.sitemapProblems], ["Orphan pages", s.orphans], ["Duplicate titles", s.duplicateTitles], ["Missing title", s.missingTitle], ["Missing H1", s.missingH1]]) {
     if (rows.length) parts.push(`### ${title}`, list(rows), "");
   }
   return parts.join("\n");
