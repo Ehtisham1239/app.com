@@ -63,3 +63,11 @@ test("llms.txt exposes country-specific official references without calling them
   assert.match(route, /independent public guidance, not endorsements of OQC/);
   assert.match(route, /guide\.sources\.map\(source =>/);
 });
+
+test("llms-full.txt is linked from llms.txt and carries only published course and FAQ text with absolute links", () => {
+  const full = read("src/app/llms-full.txt/route.js");
+  assert.match(route, /\/llms-full\.txt/);
+  assert.match(full, /getFaqs/); assert.match(full, /shouldIncludeInSitemap/);
+  assert.match(full, /replaceAll\("\]\(\/", `\]\(\$\{SITE_URL\}\/`\)/);
+  assert.match(full, /not physical offices/);
+});

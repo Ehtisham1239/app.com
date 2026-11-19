@@ -82,6 +82,7 @@ export async function GET() {
     ...posts.filter(row => postSlugs.has(row.slug)).map(row => `- [${label(row.title)}](/blog/${encodeURIComponent(row.slug)})`), "",
     "## Further information", "",
     "- [Article RSS feed](/blog/feed.xml)",
+    "- [Full text of the courses and FAQ in one file](/llms-full.txt)",
     "- [Public sitemap](/sitemap.xml)",
     "- [Privacy and optional analytics](/privacy-policy)",
     "- [Terms and conditions](/terms-and-conditions)",
