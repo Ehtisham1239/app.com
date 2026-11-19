@@ -2,7 +2,7 @@ import Link from "next/link";
 import { CmsPageSchema } from "@/components/site/custom-code";
 
 export const metadata = {
-  title: "Trial request received | Online Quran College",
+  title: "Trial request received",
   description: "Your online Quran trial request has been received.",
   robots: { index: false, follow: false },
 };
