@@ -918,9 +918,15 @@ export function locationHeading(country, city, cmsTitle) {
   const generated = `Online Quran classes in ${city ? place : country.name}`;
   return !cmsTitle || cmsTitle === generated ? `Online Quran classes in ${place}` : cmsTitle;
 }
+// Country pages whose Search Console demand is for Arabic first (evidence per slug). Lithuania,
+// 28 Oct–6 Nov 2026: "arabic classes near me" 166 impressions at position ~5.7 and 0 clicks while the
+// title led with Quran. These lead with Arabic; the page and its courses stay the same.
+export const ARABIC_FIRST_COUNTRIES = new Set(["lithuania"]);
+const arabicFirst = (country, city) => !city && ARABIC_FIRST_COUNTRIES.has(country?.slug);
 export function locationSearchTitle(country, city) {
   // Search Console (18 Nov 2026): location pages rank for "arabic classes near me" and city queries
   // but earn few clicks, so the title names both services the page offers.
+  if (arabicFirst(country, city)) return `Online Arabic & Quran Classes in ${countryInName(country)} | OQC`;
   return `${city ? "Quran & Arabic Classes" : "Online Quran & Arabic Classes"} in ${city?.name || countryInName(country)} | OQC`;
 }
 export function locationBreadcrumbs(country, city) {
@@ -931,6 +937,7 @@ export function locationBreadcrumbs(country, city) {
 
 export function locationSearchIntro(country, city) {
   const place = city ? `${city.name}, ${country.name}` : country.name;
+  if (arabicFirst(country, city)) return `Live one-to-one online Arabic classes in ${countryInName(country)} for adults and kids: from the alphabet to Quranic Arabic grammar, plus Quran reading and Tajweed. Book a 3-day free trial.`;
   return city
     ? `Live one-to-one online Quran and Arabic classes in ${place} for kids and adults: Noorani Qaida, Tajweed, Hifz and Quranic Arabic, planned in ${locationTimeZone(country, city)}. Book a 3-day free trial.`
     : `Live one-to-one online Quran and Arabic classes for families in ${countryInName(country)}: Noorani Qaida, Tajweed, Hifz and Quranic Arabic at local class times. Book a 3-day free trial.`;
