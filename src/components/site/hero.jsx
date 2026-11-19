@@ -2,6 +2,9 @@ import { preload } from "react-dom";
 import { NavigationLink as Link } from "@/components/site/navigation-link";
 import { SEARCH_INTENTS } from "@/lib/search-intent";
 import { ArrowRight, Check } from "@/components/site/icons";
+
+// Surah Al-Alaq 96:1, split into words for the arrival animation.
+const AL_ALAQ_1 = "اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ";
 // The portrait is beside the copy on desktop and follows it on narrow screens.
 const HERO_SIZES = "(max-width: 471px) calc(100vw - 48px), (min-width: 768px) and (max-width: 1023px) calc(45vw - 61px), 424px";
 const HERO_AVIF = "/brand/hero-320.avif 320w, /brand/hero.avif 440w";
@@ -46,9 +49,9 @@ export function HomeHero({ hero, stats }) {
             <li className="flex items-center gap-2"><Check className="size-4 text-leaf-700" aria-hidden="true" />Teacher preference available</li>
           </ul>
           <p className="hero-areas mt-3 text-sm text-ink-soft"><Link href="/locations" className="inline-flex min-h-11 items-center gap-2 font-semibold text-leaf-800 underline underline-offset-4">Find classes in your time zone <ArrowRight className="size-4" aria-hidden="true" /></Link></p>
-          <blockquote className="hero-verse mt-3 w-fit max-w-full border-s-2 border-gold-400 ps-4">
-            <p lang="ar" dir="rtl" className="arabic text-left text-[1.7rem] text-mushaf-900 sm:text-[2rem]">اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ</p>
-            <p className="text-sm leading-relaxed text-ink-soft">“Recite in the name of your Lord who created” <span className="font-semibold">— Qur’an 96:1</span></p>
+          <blockquote className="hero-verse verse-card mt-3 w-fit max-w-full border-s-2 border-gold-400 ps-4">
+            <p lang="ar" dir="rtl" className="arabic verse-ar text-left text-[1.7rem] text-mushaf-900 sm:text-[2rem]">{AL_ALAQ_1.split(" ").map((word, i, all) => <span key={word} className="verse-word" style={{ "--i": i }}>{word}{i < all.length - 1 ? " " : ""}</span>)}</p>
+            <p className="verse-en text-sm leading-relaxed text-ink-soft">“Recite in the name of your Lord who created” <span className="font-semibold text-leaf-800">— Qur’an 96:1</span></p>
           </blockquote>
         </div>
 

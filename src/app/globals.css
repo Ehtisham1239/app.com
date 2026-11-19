@@ -753,3 +753,17 @@ a.card-tinted:focus-visible .card-arrow { background: var(--card-ink); color: #f
 @media (max-width: 767px) {
   .hero-immersive::before, .inner-hero::before { opacity: .5; }
 }
+
+/* Surah Al-Alaq 96:1 in the home hero: green-to-gold colour on the Arabic, a soft glow, and a short
+   word-by-word arrival. Opacity and transform only, finite, off for reduced motion. The text is always
+   in the page, so it never delays first paint and screen readers read the five words in order. */
+.verse-card { position: relative; border-image: linear-gradient(to bottom, var(--color-gold-300), var(--color-leaf-500)) 1; background: radial-gradient(120% 140% at 0% 50%, rgba(232, 207, 134, .22), transparent 62%); padding-block: .35rem; }
+.verse-ar { line-height: 1.7; }
+.verse-word { display: inline-block; background: linear-gradient(100deg, var(--color-mushaf-900) 0%, var(--color-leaf-700) 38%, #9a6f12 62%, var(--color-mushaf-900) 100%); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+@media (prefers-reduced-motion: no-preference) {
+  .verse-word { animation: verse-arrive .8s cubic-bezier(.2, .7, .2, 1) both, verse-shimmer 5s ease-in-out 2 both; animation-delay: calc(var(--i) * .16s + .15s), calc(var(--i) * .16s + 1.2s); }
+  .verse-en { animation: rise-in .9s ease-out 1s both; }
+}
+@keyframes verse-arrive { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes verse-shimmer { 0%, 100% { background-position: 0% 0; } 50% { background-position: 100% 0; } }
+@media (forced-colors: active) { .verse-word { background: none; color: CanvasText; -webkit-text-fill-color: CanvasText; } }
