@@ -771,7 +771,7 @@ a.card-tinted:focus-visible .card-arrow { background: var(--card-ink); color: #f
 /* Site-wide ayah band (19 Nov 2026): deep-green panel, gold eight-point lattice border,
    verse in Amiri Quran that cross-fades from ivory to an illumination-gold gradient, and two
    floating khatam stars. Opacity/transform animations only; all off for reduced motion. */
-.ayah-band { --font-quran: var(--font-amiri-quran), var(--font-arabic); position: relative; isolation: isolate; overflow: hidden;
+.ayah-band { --font-quran: var(--font-amiri-quran), var(--font-arabic); position: relative; isolation: isolate; overflow: hidden; content-visibility: auto; contain-intrinsic-size: auto 26rem;
   background: radial-gradient(90% 120% at 50% 0%, #135a26 0%, var(--color-mushaf-900) 55%, var(--color-mushaf-950) 100%); color: #fff; padding-block: clamp(2.75rem, 6vw, 4.5rem); }
 .ayah-band::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .16; pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23e8cf86' stroke-width='1'%3E%3Cpath d='M36 11 61 36 36 61 11 36Z'/%3E%3Cpath d='M18 18h36v36H18z'/%3E%3Cpath d='M36 0v11M36 61v11M0 36h11M61 36h11'/%3E%3C/g%3E%3C/svg%3E");
@@ -834,7 +834,7 @@ a.card-tinted:focus-visible .card-arrow { background: var(--card-ink); color: #f
 }
 @media (prefers-reduced-motion: no-preference) {
   .hero-ayah { animation: rise-in .8s ease-out .25s both; }
-  .hero-ayah-glow { animation: ayah-glow 10s ease-in-out 1.5s infinite; }
+  .hero-ayah-glow { animation: ayah-glow 10s ease-in-out 1.5s 2; } /* two cycles, then hover only (paint cost, 19 Nov) */
 }
 @media (forced-colors: active) { .hero-ayah-glow { display: none; } }
 @media print { .hero-ayah { display: none; } }
