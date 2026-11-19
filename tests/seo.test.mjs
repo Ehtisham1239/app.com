@@ -262,3 +262,22 @@ test("thank-you page titles name the brand once (the layout template adds it)", 
     assert.doesNotMatch(title, /Online Quran College|OQC/, f);
   }
 });
+
+test("site-wide ayah band uses sourced verses with references and stays script-free (19 Nov 2026)", async () => {
+  const { readFileSync } = await import("node:fs");
+  const { AYAT, ayahForDate } = await import("../src/lib/ayat.js");
+  assert.ok(AYAT.length >= 5);
+  for (const a of AYAT) {
+    assert.match(a.ref, /^\d{1,3}:\d{1,3}(–\d{1,3})?$/);
+    assert.match(a.ar, /[؀-ۿ]/);
+    assert.ok(a.en.length > 10);
+  }
+  assert.equal(ayahForDate(new Date("2026-11-19T01:00:00Z")), ayahForDate(new Date("2026-11-19T23:00:00Z")), "one verse per UTC day");
+  const band = readFileSync(new URL("../src/components/site/ayah-band.jsx", import.meta.url), "utf8");
+  assert.doesNotMatch(band, /"use client"/);
+  assert.match(band, /aria-hidden="true">\{ayah\.ar\}/, "the colour layer is hidden from screen readers");
+  const css = readFileSync(new URL("../src/app/globals.css", import.meta.url), "utf8");
+  const motion = css.slice(css.indexOf(".ayah-band {"));
+  assert.match(motion, /prefers-reduced-motion: no-preference\) \{\s*\.ayah-glow/);
+  assert.doesNotMatch(motion.slice(0, motion.indexOf("Gold lattice")), /@keyframes ayah-[a-z]+ \{[^}]*(width|height|top|left|background-position)/, "animations use opacity/transform only");
+});
