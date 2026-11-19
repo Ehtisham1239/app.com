@@ -289,3 +289,17 @@ test("the ayah band never repeats the footer's 20:114 and its ornaments are sile
   const css = readFileSync(new URL("../src/app/globals.css", import.meta.url), "utf8");
   assert.match(css, /\.ayah-kicker::before, \.ayah-kicker::after \{ content: "۞" \/ "";/);
 });
+
+test("every page hero carries a sourced verse that fits the page (19 Nov 2026)", async () => {
+  const { readFileSync } = await import("node:fs");
+  const { HERO_AYAT, heroAyahFor } = await import("../src/lib/hero-ayat.js");
+  for (const a of Object.values(HERO_AYAT)) { assert.match(a.ref, /^\d{1,3}:\d{1,3}(–\d{1,3})?$/); assert.match(a.ar, /[؀-ۿ]/); assert.ok(a.ar.length < 90); }
+  assert.equal(heroAyahFor("/courses/hifz-quran").ref, "75:17");
+  assert.equal(heroAyahFor("/free-trial").ref, "20:25–26");
+  assert.equal(heroAyahFor("/locations/france/paris"), heroAyahFor("/locations/france/paris"), "stable per path");
+  const chrome = readFileSync(new URL("../src/components/site/chrome.jsx", import.meta.url), "utf8");
+  assert.equal((chrome.match(/<HeroAyah path=\{path \|\| title\} \/>/g) || []).length, 2, "both hero variants");
+  const hero = readFileSync(new URL("../src/components/site/hero-ayah.jsx", import.meta.url), "utf8");
+  assert.doesNotMatch(hero, /"use client"/);
+  assert.match(hero, /aria-hidden="true">\{ayah\.ar\}/);
+});
