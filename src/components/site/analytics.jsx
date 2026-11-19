@@ -18,7 +18,7 @@ export function WebsiteAnalytics({ config }) {
     if (!enabled || !config.cookieless || config.mode === "off" || !isAnalyticsHost(window.location.hostname)) return;
     clearAnalyticsCookies(window);
     try { window.localStorage.removeItem(ANALYTICS_CONSENT_KEY); } catch { /* storage blocked */ }
-    let adapter, cancelled = false;
+    let adapter, cancelled = false, idle, loadWait = false;
     const start = () => {
       if (cancelled) return;
       adapter = createAnalyticsController(window, config);
@@ -28,10 +28,26 @@ export function WebsiteAnalytics({ config }) {
       // Metrics reported before the tags started (TTFB, FCP) are sent now.
       pending.current.splice(0).forEach((metric) => adapter.webVital(metric));
     };
-    // Owner request, 18 Nov 2026: tags load straight away on every page (no wait for interaction).
-    start();
+    // Owner decisions, 18–19 Nov 2026: every visitor is tracked with no wait for an interaction,
+    // but the tags start once the page has loaded and the browser is idle (at most 2 s later).
+    // Starting them during the first paint pushed mobile Total Blocking Time from ~250 ms to
+    // ~1,600 ms (Lighthouse CI, #326). If the visitor leaves first, the tags start at once.
+    const schedule = () => {
+      if (idle !== undefined || cancelled) return;
+      idle = "requestIdleCallback" in window ? window.requestIdleCallback(start, { timeout: 2000 }) : window.setTimeout(start, 1);
+    };
+    const leaving = () => { if (document.visibilityState === "hidden" && !adapter) { unschedule(); start(); } };
+    const unschedule = () => {
+      if (idle !== undefined) ("cancelIdleCallback" in window ? window.cancelIdleCallback(idle) : window.clearTimeout(idle));
+      idle = undefined;
+    };
+    if (document.readyState === "complete") schedule(); else { loadWait = true; window.addEventListener("load", schedule, { once: true }); }
+    document.addEventListener("visibilitychange", leaving);
     return () => {
       cancelled = true;
+      if (loadWait) window.removeEventListener("load", schedule);
+      document.removeEventListener("visibilitychange", leaving);
+      unschedule();
       adapter?.destroy(); controller.current = null;
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
