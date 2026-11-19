@@ -241,3 +241,18 @@ test("url_passthrough is on with the Ads tag while every ad consent signal stays
   createAnalyticsController(win2, cookielessAnalyticsConfig(analyticsConfig({ ...noExtras, enabled: true, gtm_container_id: gtmId }))).setConsent(true);
   assert.equal(win2.dataLayer.map(i => Array.from(i ?? [])).filter(i => i[1] === "url_passthrough").length, 0, "off without an Ads ID");
 });
+
+test("free-trial thank-you sends thanku_generate_lead once per lead reference, never for contact, bad or missing refs", () => {
+  const run = (path, store) => {
+    const { win } = fakeBrowser(); win.location = new URL("https://college.test" + path);
+    win.sessionStorage = store ?? new Map(Object.entries({})); if (!store) { const m = new Map(); win.sessionStorage = { getItem: k => m.get(k) ?? null, setItem: (k, v) => m.set(k, v) }; }
+    const adapter = createAnalyticsController(win, cookielessAnalyticsConfig(analyticsConfig({ ...noExtras, enabled: true, gtm_container_id: gtmId })));
+    adapter.setConsent(true); adapter.pageView(win.location.href);
+    return win.dataLayer.filter(i => i.event === "thanku_generate_lead");
+  };
+  assert.deepEqual(run("/free-trial/thank-you?ref=TR-ABCD1234"), [{ event: "thanku_generate_lead", lead_ref: "TR-ABCD1234" }]);
+  for (const path of ["/free-trial/thank-you", "/free-trial/thank-you?ref=TR-RECEIVED", "/free-trial/thank-you?ref=MSG-ABCD1234", "/free-trial/thank-you?ref=x", "/contact/thank-you?ref=MSG-ABCD1234", "/free-trial?ref=TR-ABCD1234"]) assert.deepEqual(run(path), [], path);
+  const keys = new Map(); const shared = { getItem: k => keys.get(k) ?? null, setItem: (k, v) => keys.set(k, v) };
+  assert.equal(run("/free-trial/thank-you?ref=TR-SAME1234", shared).length, 1);
+  assert.equal(run("/free-trial/thank-you?ref=TR-SAME1234", shared).length, 0, "a reload does not count twice");
+});

@@ -57,6 +57,8 @@ test("analytics follow the site's owner decision: GTM-W7CMZS53, cookieless, ad s
     assert.doesNotMatch(html, /getJSON\(LS, 'oqc_lp_attr'\)/, `${name}: attribution is session-only`);
   }
   assert.match(landing, /oqcEmit\('generate_lead', \{ form_type: 'trial', market: 'USA' \}\)/);
+  assert.match(thankYou, /event: 'thanku_generate_lead', lead_ref: pending\.lead_id/, 'USA thank-you feeds the container\'s lead event');
+  assert.match(thankYou, /!pending\.test && window\.OQC_ANALYTICS_ON/, 'test leads are never counted');
 });
 
 test("the landing page routes are rewritten to the static files", async () => {

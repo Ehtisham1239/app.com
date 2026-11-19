@@ -122,6 +122,13 @@ export function shieldAnalyticsCookies(doc) {
   } catch { return false; }
 }
 
+const countedLeads = new Set();
+function leadAlreadyCounted(win, ref) {
+  const key = `lead_sent_${ref}`;
+  try { if (win.sessionStorage.getItem(key)) return true; win.sessionStorage.setItem(key, "1"); return false; }
+  catch { if (countedLeads.has(key)) return true; countedLeads.add(key); return false; } // Storage blocked: once per page session.
+}
+
 export function pageClientId(random = Math.random, now = Date.now) {
   return `${Math.floor(random() * 2147483647) + 1}.${Math.floor(now() / 1000)}`;
 }
@@ -193,6 +200,13 @@ export function createAnalyticsController(win, config) {
     // Confirmation pages: one named event per page view so GTM triggers do not have to match URLs.
     const thanks = sent && /^\/(contact|free-trial|usa-quran-classes)\/thank-you\/?$/.exec(new URL(location).pathname);
     if (thanks) emit("thank_you_view", { form_type: thanks[1] === "contact" ? "contact" : "trial", page_path: new URL(location).pathname });
+    // The Tag Manager container counts a lead (GA4 generate_lead and the Google Ads conversion) when it sees
+    // `thanku_generate_lead`. It pushes that itself on /contact/thank-you only, so the free-trial thank-you page
+    // sends the same event here, once per lead reference (same sessionStorage key, so the two never double up).
+    if (sent && new URL(location).pathname.replace(/\/$/, "") === "/free-trial/thank-you") {
+      const ref = new URL(win.location.href).searchParams.get("ref") || "";
+      if (/^TR-[A-Z0-9-]{4,32}$/.test(ref) && ref !== "TR-RECEIVED" && !leadAlreadyCounted(win, ref)) win.dataLayer.push({ event: "thanku_generate_lead", lead_ref: ref });
+    }
     return sent;
   }
   const onLead = event => {
