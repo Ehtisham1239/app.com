@@ -99,7 +99,21 @@ export function extractLinks(html, base) {
   return [...out];
 }
 
-async function get(url, timeoutMs = 30000) {
+const RETRY_STATUS = new Set([429, 503]);
+
+// GET with up to 3 retries on 429/503, honouring Retry-After (seconds, capped at 30) or backing off 1s/2s/4s.
+async function get(url, timeoutMs = 30000, baseDelayMs = Number(process.env.SITE_CRAWL_RETRY_MS) || 1000) {
+  let res = await getOnce(url, timeoutMs);
+  for (let attempt = 0; attempt < 3 && RETRY_STATUS.has(res.status); attempt += 1) {
+    const asked = Number(res.headers.get("retry-after"));
+    const wait = Number.isFinite(asked) && asked > 0 ? Math.min(asked * 1000, 30000) : baseDelayMs * 2 ** attempt;
+    await new Promise((resolve) => setTimeout(resolve, wait));
+    res = await getOnce(url, timeoutMs);
+  }
+  return res;
+}
+
+async function getOnce(url, timeoutMs) {
   const started = performance.now();
   try {
     const res = await fetch(url, { redirect: "manual", headers: { "user-agent": UA, accept: "text/html,application/xhtml+xml,*/*;q=0.5" }, signal: AbortSignal.timeout(timeoutMs) });
