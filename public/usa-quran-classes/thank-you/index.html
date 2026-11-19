@@ -566,9 +566,7 @@ window.OQC_LP_CONFIG = {
     if (/^AW-[0-9]{6,15}$/.test(c.adsId || '')) {
       gtag('js', new Date());
       gtag('config', c.adsId, { allow_ad_personalization_signals: false, client_storage: 'none' });
-      var s3 = document.createElement('script'); s3.async = true; s3.id = 'oqc-google-ads';
-      s3.src = 'https://www.googletagmanager.com/gtag/js?id=' + c.adsId;
-      document.head.appendChild(s3);
+      // No separate gtag.js: both containers already carry this Ads tag (owner, 19 Nov 2026).
     }
   }
 })();

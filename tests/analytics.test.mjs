@@ -187,8 +187,7 @@ test("second GTM container and Google Ads tag load site-wide under denied ad con
   assert.deepEqual(scripts.map(s => s.src), [
     "https://www.googletagmanager.com/gtm.js?id=" + gtmId,
     "https://www.googletagmanager.com/gtm.js?id=GTM-52PTXDRF",
-    "https://www.googletagmanager.com/gtag/js?id=AW-16564445897",
-  ]);
+  ], "no separate Ads gtag.js: both containers carry AW-16564445897 (owner, 19 Nov 2026)");
   assert.equal(win.dataLayer.filter(item => item.event === "gtm.js").length, 1, "one page-load event serves both containers");
   const adsConfig = win.dataLayer.map(item => Array.from(item ?? [])).find(item => item[0] === "config" && item[1] === "AW-16564445897");
   assert.equal(adsConfig[2].allow_ad_personalization_signals, false);
@@ -255,4 +254,17 @@ test("free-trial thank-you sends thanku_generate_lead once per lead reference, n
   const keys = new Map(); const shared = { getItem: k => keys.get(k) ?? null, setItem: (k, v) => keys.set(k, v) };
   assert.equal(run("/free-trial/thank-you?ref=TR-SAME1234", shared).length, 1);
   assert.equal(run("/free-trial/thank-you?ref=TR-SAME1234", shared).length, 0, "a reload does not count twice");
+});
+
+test("Ads gtag.js loads only when no Tag Manager container carries the Ads tag (owner, 19 Nov 2026)", () => {
+  const config = cookielessAnalyticsConfig(analyticsConfig({ enabled: true, ga4_measurement_id: ga4Id, gtm_container_id: "", google_ads_id: "AW-16564445897" }));
+  assert.equal(config.mode, "ga4");
+  const { win, scripts } = fakeBrowser();
+  const adapter = createAnalyticsController(win, config);
+  adapter.setConsent(true);
+  assert.ok(scripts.some(s => s.src === "https://www.googletagmanager.com/gtag/js?id=AW-16564445897"), "GA4-only set-up still loads the Ads tag itself");
+  adapter.destroy();
+  for (const page of ["../public/usa-quran-classes/index.html", "../public/usa-quran-classes/thank-you/index.html"]) {
+    assert.doesNotMatch(readFileSync(new URL(page, import.meta.url), "utf8"), /gtag\/js\?id=' \+ c\.adsId/, page);
+  }
 });
