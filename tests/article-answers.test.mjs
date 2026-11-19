@@ -24,6 +24,7 @@ test("the UK fees article answers its search question with the same figures as /
 
 test("the post page shows the answer first and as FAQPage data", () => {
   const page = readFileSync(new URL("../src/app/(site)/blog/[slug]/page.jsx", import.meta.url), "utf8");
-  assert.match(page, /faqSchema\(\[quick\]\)/);
+  assert.match(page, /faqSchema\(faqs\)/);
+  assert.match(page, /\.\.\.\(quick \? \[quick\] : \[\]\)/, "the quick answer leads the FAQPage");
   assert.ok(page.indexOf('id="quick-answer"') < page.indexOf("post.excerpt &&"), "answer comes before the excerpt");
 });
