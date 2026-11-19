@@ -11,4 +11,4 @@ Hub: [[000-OQC-SEO-Hub]]
 **Why not commit reports to main:** a push to main triggers deploys and the quality gates; artifacts keep crawl data out of the site history.
 **Observed (vendor docs):** CLI flags `--crawl --headless --save-crawl --output-folder --export-tabs --overwrite --export-format`; licence in `~/.ScreamingFrogSEOSpider/licence.txt` (username line 1, key line 2); EULA via `eula.accepted=<n>` in `spider.config`; `.deb` and `.sha256` at download.screamingfrog.co.uk (25.1 released 4 Nov 2026).
 **Assumption:** EULA number 15 is accepted by 25.1 (docs say it may need raising); override with repo variable `SF_EULA_VERSION`.
-**Unknown:** whether the free (unlicensed) version runs the CLI/exports; needs repo secrets `SF_LICENCE_USERNAME` / `SF_LICENCE_KEY` for >500 URLs.
+**Observed (PR #353 run 44537834545):** install with checksum PASS; EULA 15 accepted by 25.1; headless CLI exits "Could not locate licence file" without a licence, so the free version cannot run it. Secrets `SF_LICENCE_USERNAME` / `SF_LICENCE_KEY` are required; PR runs skip the crawl without them, scheduled/manual runs fail with a clear error.

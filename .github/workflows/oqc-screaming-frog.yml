@@ -5,7 +5,8 @@ name: OQC Screaming Frog crawl
 # Output: job summary + artifact (CSV exports and the .seospider crawl file, open it in the desktop app).
 #
 # One-time setup (repo Settings -> Secrets and variables -> Actions):
-#   secrets  SF_LICENCE_USERNAME, SF_LICENCE_KEY   (without them the free 500-URL limit applies)
+#   secrets  SF_LICENCE_USERNAME, SF_LICENCE_KEY   (required: the headless CLI refuses to start without a
+#                                                   licence file; pull_request runs skip the crawl without them)
 #   variable SF_EULA_VERSION                       (optional; the eula.accepted number for the installed
 #                                                   version, default 15. Setting it is accepting the
 #                                                   Screaming Frog EULA for this automation.)
@@ -76,12 +77,22 @@ jobs:
           if [ -n "$SF_LICENCE_USERNAME" ] && [ -n "$SF_LICENCE_KEY" ]; then
             printf '%s\n%s\n' "$SF_LICENCE_USERNAME" "$SF_LICENCE_KEY" > "$dir/licence.txt"
             chmod 600 "$dir/licence.txt"
-            echo "SF_NOTE=Licensed crawl." >> "$GITHUB_ENV"
+            echo "SF_LICENSED=true" >> "$GITHUB_ENV"
           else
-            echo "::warning::No Screaming Frog licence secrets set; free version crawls at most 500 URLs."
-            echo "SF_NOTE=No licence secrets set: free version, 500 URL limit." >> "$GITHUB_ENV"
+            echo "SF_LICENSED=false" >> "$GITHUB_ENV"
+          fi
+      - name: Licence required
+        if: env.SF_LICENSED != 'true'
+        run: |
+          msg="Screaming Frog licence secrets SF_LICENCE_USERNAME and SF_LICENCE_KEY are not set; the headless CLI cannot run without a licence file."
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "::notice::$msg Crawl skipped on pull requests."
+          else
+            echo "::error::$msg"
+            exit 1
           fi
       - name: Crawl
+        if: env.SF_LICENSED == 'true'
         run: |
           set -euo pipefail
           mkdir -p artifacts/sf-crawl
@@ -90,6 +101,7 @@ jobs:
             --export-tabs "Internal:All,Response Codes:Client Error (4xx),Response Codes:Server Error (5xx),Page Titles:Missing,Meta Description:Missing,H1:Missing"
           ls -la artifacts/sf-crawl
       - name: Summarise
+        if: env.SF_LICENSED == 'true'
         run: |
           flag=""
           if [ "${{ github.event_name }}" = "schedule" ]; then flag="--fail-on-5xx"; fi
