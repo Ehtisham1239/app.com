@@ -49,7 +49,7 @@ These are activity targets, not promised rankings. Search engines decide ranking
 - [x] Linkable asset 1: printable weekly Quran practice planner published at /blog/printable-weekly-quran-practice-planner (print or save as PDF from the article).
 - [x] Privacy policy now discloses Microsoft Clarity (PR #270, #259).
 - [x] Every-3-days SEO scheduled task now follows `oqc-seo` and this plan.
-- [ ] Owner: free up Windsor reads (the plan allows 1 connected account; 3 are connected), so Search Console numbers can be pulled again.
+- [x] Owner: free up Windsor reads. Done by 19 Nov 2026: Windsor shows 1 Search Console account and reads work again.
 
 ## Month 2: Dec 2026 (market hubs and authority)
 
