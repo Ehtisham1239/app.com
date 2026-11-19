@@ -39,7 +39,7 @@ export function SiteFooter({ settings, menus }) {
       <div className="page-wrap relative pt-10 sm:pt-14">
         <figure className="quran-verse-panel mb-6 rounded-3xl px-5 py-6 text-center sm:px-8">
           <blockquote>
-            <p lang="ar" dir="rtl" className="arabic text-3xl leading-relaxed sm:text-4xl">رَبِّ زِدْنِي عِلْمًا</p>
+            <p lang="ar" dir="rtl" className="arabic quran-text text-3xl leading-relaxed sm:text-4xl">رَبِّ زِدْنِي عِلْمًا</p>
             <p className="mt-1 text-sm leading-relaxed">“My Lord, increase me in knowledge.”</p>
           </blockquote>
           <figcaption className="mt-2 text-sm">

@@ -731,7 +731,9 @@ a.card-tinted:focus-visible .card-arrow { background: var(--card-ink); color: #f
   background: radial-gradient(ellipse 38% 54% at 94% 5%, rgb(219 185 96 / .13), transparent 75%),
     radial-gradient(ellipse 40% 60% at 3% 90%, rgb(36 156 12 / .09), transparent 76%);
 }
-.site-header { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+/* Wider screens only: the mobile header is solid white (rule above), where a blur costs GPU work on
+   every scroll frame and changes nothing visible. */
+@media (min-width: 640px) { .site-header { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); } }
 :where(#main[data-site-motion]) :where(.editorial-card, a.surface, .course-card) {
   transition: box-shadow .25s ease, border-color .25s ease, transform .25s ease;
 }
@@ -761,8 +763,13 @@ a.card-tinted:focus-visible .card-arrow { background: var(--card-ink); color: #f
 .verse-ar { line-height: 1.7; }
 .verse-word { display: inline-block; background: linear-gradient(100deg, var(--color-mushaf-900) 0%, var(--color-leaf-700) 38%, #9a6f12 62%, var(--color-mushaf-900) 100%); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
 @media (prefers-reduced-motion: no-preference) {
-  .verse-word { animation: verse-arrive .8s cubic-bezier(.2, .7, .2, 1) both, verse-shimmer 5s ease-in-out 2 both; animation-delay: calc(var(--i) * .16s + .15s), calc(var(--i) * .16s + 1.2s); }
+  /* Arrival only on load. The shimmer animates background-position, which repaints every frame
+     (measured ~300 ms extra paint on mobile, 19 Nov 2026), so it runs only on hover. */
+  .verse-word { animation: verse-arrive .8s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc(var(--i) * .16s + .15s); }
   .verse-en { animation: rise-in .9s ease-out 1s both; }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .verse-card:hover .verse-word { animation: verse-shimmer 2.4s ease-in-out 1 both; animation-delay: calc(var(--i) * .08s); }
 }
 @keyframes verse-arrive { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @keyframes verse-shimmer { 0%, 100% { background-position: 0% 0; } 50% { background-position: 100% 0; } }
@@ -771,6 +778,10 @@ a.card-tinted:focus-visible .card-arrow { background: var(--card-ink); color: #f
 /* Site-wide ayah band (19 Nov 2026): deep-green panel, gold eight-point lattice border,
    verse in Amiri Quran that cross-fades from ivory to an illumination-gold gradient, and two
    floating khatam stars. Opacity/transform animations only; all off for reduced motion. */
+/* Quran text outside the band and heroes. Amiri Quran is already loaded for the verse band on every
+   page and covers the full Uthmani set; the small display subset lacks letters such as zay, so the
+   footer verse used to pull the complete 109 KB Amiri face on every page (19 Nov 2026). */
+.quran-text { font-family: var(--font-amiri-quran), var(--font-arabic); }
 .ayah-band { --font-quran: var(--font-amiri-quran), var(--font-arabic); position: relative; isolation: isolate; overflow: hidden; content-visibility: auto; contain-intrinsic-size: auto 26rem;
   background: radial-gradient(90% 120% at 50% 0%, #135a26 0%, var(--color-mushaf-900) 55%, var(--color-mushaf-950) 100%); color: #fff; padding-block: clamp(2.75rem, 6vw, 4.5rem); }
 .ayah-band::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .16; pointer-events: none;
