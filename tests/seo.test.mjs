@@ -253,3 +253,12 @@ test("sitemap lists the five market hubs plus the 52 restored pages, with market
   assert.match(sitemap, /RESTORED_LOCATION_PATHS\.map/);
   assert.match(sitemap, /MARKET_GUIDES\[country\.slug\]\?\.updatedAt/);
 });
+
+test("thank-you page titles name the brand once (the layout template adds it)", async () => {
+  const { readFileSync } = await import("node:fs");
+  for (const f of ["contact/thank-you", "free-trial/thank-you"]) {
+    const src = readFileSync(new URL(`../src/app/(site)/${f}/page.jsx`, import.meta.url), "utf8");
+    const title = src.match(/\n  title: "([^"]+)"/)[1];
+    assert.doesNotMatch(title, /Online Quran College|OQC/, f);
+  }
+});

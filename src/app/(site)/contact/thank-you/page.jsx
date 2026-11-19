@@ -2,7 +2,7 @@ import Link from "next/link";
 import { CmsPageSchema } from "@/components/site/custom-code";
 
 export const metadata = {
-  title: "Message received | Online Quran College",
+  title: "Message received",
   description: "Your message to Online Quran College has been received.",
   robots: { index: false, follow: false },
 };
