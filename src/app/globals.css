@@ -808,3 +808,58 @@ a.card-tinted:focus-visible .card-arrow { background: var(--card-ink); color: #f
   background-size: 28px 14px; background-repeat: repeat-x;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent); mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent); }
 @media print { .hero-immersive::after, .inner-hero::after { display: none; } }
+
+/* Page-hero verse (19 Nov 2026): a gold-framed card with a corner khatam; the verse sits in
+   Amiri Quran with a green-to-gold colour layer that breathes and lights up on hover. */
+.hero-ayah { --font-quran: var(--font-amiri-quran), var(--font-arabic); position: relative; margin: 1.5rem 0 0; width: fit-content; max-width: 100%;
+  padding: .7rem 1.15rem .75rem; border: 1px solid rgb(201 161 59 / .55); border-radius: 1.1rem; outline: 1px solid rgb(201 161 59 / .2); outline-offset: 4px;
+  background: linear-gradient(120deg, rgb(255 255 255 / .9), rgb(251 246 231 / .92)); box-shadow: 0 10px 26px -18px rgb(13 74 28 / .45);
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease, outline-color .3s ease; }
+.hero-ayah::before { content: ""; position: absolute; top: -.7rem; inset-inline-end: -.7rem; width: 1.6rem; height: 1.6rem; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cg fill='%23fbf6e7' stroke='%23c9a13b' stroke-width='2'%3E%3Cpath d='M24 3 30 18 45 24 30 30 24 45 18 30 3 24 18 18Z'/%3E%3Ccircle cx='24' cy='24' r='5'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+  transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+.hero-ayah blockquote { margin: 0; }
+.hero-ayah-ar { display: inline-grid; margin: 0; font-family: var(--font-quran); font-size: clamp(1.35rem, 2.6vw, 1.7rem); line-height: 1.9; color: var(--color-mushaf-900); }
+.hero-ayah-ar > span { grid-area: 1 / 1; }
+.hero-ayah-glow { opacity: 0; background: linear-gradient(100deg, var(--color-leaf-700) 0%, #9a6f12 45%, var(--color-gold-500) 70%, var(--color-leaf-600) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; transition: opacity .45s ease; }
+.hero-ayah-meaning { margin-top: .15rem; font-size: .86rem; line-height: 1.45; color: var(--color-ink-soft); }
+.hero-ayah-meaning cite { font-style: normal; font-weight: 700; color: var(--color-gold-700); white-space: nowrap; }
+@media (hover: hover) and (pointer: fine) {
+  .hero-ayah:hover { border-color: var(--color-gold-500); outline-color: rgb(201 161 59 / .45); box-shadow: 0 16px 34px -18px rgb(143 108 28 / .55); }
+  .hero-ayah:hover .hero-ayah-glow { opacity: 1; animation: none; }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .hero-ayah:hover { transform: translateY(-3px); }
+  .hero-ayah:hover::before { transform: rotate(45deg) scale(1.12); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-ayah { animation: rise-in .8s ease-out .25s both; }
+  .hero-ayah-glow { animation: ayah-glow 10s ease-in-out 1.5s infinite; }
+}
+@media (forced-colors: active) { .hero-ayah-glow { display: none; } }
+@media print { .hero-ayah { display: none; } }
+
+/* Ayah band hover: the gold layer holds, the frame and stars brighten. */
+.ayah-frame { transition: border-color .35s ease, outline-color .35s ease, box-shadow .35s ease; }
+.ayah-star { transition: filter .35s ease, opacity .35s ease; }
+@media (hover: hover) and (pointer: fine) {
+  .ayah-frame:hover { border-color: var(--color-gold-300); outline-color: rgb(232 207 134 / .5); box-shadow: 0 30px 60px -28px rgb(0 0 0 / .5), 0 0 40px -10px rgb(232 207 134 / .35), inset 0 1px 0 rgb(255 255 255 / .12); }
+  .ayah-frame:hover .ayah-glow { animation: none; opacity: 1; transition: opacity .45s ease; }
+  .ayah-frame:hover .ayah-star { opacity: 1; filter: drop-shadow(0 0 6px rgb(232 207 134 / .8)); }
+}
+
+/* Site-wide Islamic hover accent (19 Nov 2026): interactive cards gain a gold double rule
+   (outline, so no layout shift) and their titles turn illumination gold; outline buttons
+   turn gold. Colour and outline only; motion stays with the existing card rules. */
+:where(a.surface, a.card-tinted, .course-card, .editorial-card) { transition: box-shadow .25s ease, border-color .25s ease, transform .25s ease, outline-color .25s ease; outline: 1px solid transparent; outline-offset: 4px; }
+@media (hover: hover) and (pointer: fine) {
+  :where(a.surface, a.card-tinted, .course-card, .editorial-card):hover { outline-color: rgb(201 161 59 / .45); border-color: var(--color-gold-400); }
+  :where(a.surface, a.card-tinted, .course-card, .editorial-card):hover :where(h2, h3, .course-title) { color: var(--color-gold-700); transition: color .25s ease; }
+  .btn-outline:hover:not(:disabled) { border-color: var(--color-gold-500); color: var(--color-gold-700); background: var(--color-gold-50); box-shadow: 0 6px 14px -8px rgb(143 108 28 / .45); }
+  .prose-oqc a:hover { text-decoration-color: var(--color-gold-500); color: var(--color-leaf-800); }
+}
+
+/* Article headings carry a small gold eight-point star (decorative, no text). */
+.prose-oqc :where(h2)::before { content: ""; display: inline-block; width: .62em; height: .62em; margin-inline-end: .45em; vertical-align: .08em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M24 3 30 18 45 24 30 30 24 45 18 30 3 24 18 18Z' fill='%23c9a13b'/%3E%3C/svg%3E") center / contain no-repeat; }
+@media print { .prose-oqc :where(h2)::before { display: none; } }
