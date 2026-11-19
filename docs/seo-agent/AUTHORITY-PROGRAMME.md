@@ -101,7 +101,26 @@ Score = audience fit /30 + editorial oversight /25 + service relevance /20 + dis
 | Canadian Ismaili Business Directory (iicanada.org) | Open only to Ismaili-owned Canadian businesses ("only accepting Canadian businesses") | 0 (not eligible) | Not a fit |
 | MasjidPlus businesses (masjidplus.com/landing/businesses) | Redirects to docs.ummahx.org; not assessed | — | Hold: a person should open it in a browser |
 
-Next batch: follow the search patterns below with UK/Canada parent newsletters and homeschool co-ops, which the plan names for December; generic Muslim business directories have now mostly been screened.
+### Gate scores, batch 3 (19 Nov 2026, scheduled run; pages opened, nothing submitted)
+
+Focus: homeschool resource lists and parent/community publishers, as batch 2 recommended. Same scoring. None reached 75, so nothing joins the queue.
+
+| Prospect | Evidence from the live page | Score | Decision |
+|---|---|---:|---|
+| TheHomeSchoolMom "Islam" lesson plans (thehomeschoolmom.com/homeschool-lesson-plans/islam/) | US homeschool "World Religions" list (PBS, BBC, religionfacts.com); byline "THSM", no named editor; page is `noindex, follow`; no Quran section; Amazon Associate and "Advertise" links; contact page only | 38 | Below gate: general audience, not indexed |
+| TheHomeSchoolMom local listing, Colorado Muslim homeschool families | Single Facebook-group listing for Denver area; "Listings have not been vetted"; open "Submit a New Resource" form | 36 | Below gate: local, unvetted |
+| Islamic Educational Resources (sites.google.com/site/islamiceducationalresources) | Children's and home-educator resources; no named author; links free worksheets and one tradition-specific publisher; no providers listed; no submission route | 46 | Below gate: no editor, no route |
+| The Halal Life (thehalallife.co.uk) | UK Muslim lifestyle blog with named authors; "Learning Qur'an in the Modern Age" post exists; contact admin@ for contributors; affiliate-tagged travel links and partner announcements | 62 | Below gate: re-check if a Quran-learning resource page appears; any approach would be the owner's editorial pitch, never a paid post |
+| Lajna SEND learning resources list (lajna.org.uk PDF, Feb 2024) | UK list for teachers and parents of SEN pupils; links only the organisation's own and sister-body Quran resources; no author, no contact or submission route | 40 | Not a fit: closed community list |
+| OurKids Islamic schools (ourkids.net/islamic-schools.php) | Canada guide to full-time private Islamic schools in the GTA | 0 (not eligible) | Not a fit: OQC is not a school |
+| IslamicFinder news article on kids' online Quran classes (islamicfinder.org/news/…) | Article republished from a competing academy ("originally published on AthanAcademy.com"), with prices and "limited seats"; site has "Advertise With Us" | 0 (rejected) | Reject: paid/promotional placement |
+| SeekersGuidance answer "What Quran classes do you recommend for children?" | Named scholar, dated 2023; recommends only its own curriculum; no outside providers; donation appeals; no listing route | 72 | Below gate: peer Islamic-education organisation with no placement route |
+| Alfajr Online Learning (alfajrlearning.learnworlds.com) | Canada/US homeschool vendor selling "Islamic Studies + Quran Meanings" group classes | 0 (not eligible) | Not a fit: competitor |
+| IQRA Network (iqranetwork.com) | US paid online Quran and Islamic school with pricing and evaluations | 0 (not eligible) | Not a fit: competitor |
+
+Learning from batch 3: open web searches for "Muslim homeschool resources" now return mostly competing academies. The December batch should start from named UK/Canada Muslim homeschool groups and mosque newsletters found by a person (Facebook groups are not readable here), then score them.
+
+Next batch (batch 2 note): follow the search patterns below with UK/Canada parent newsletters and homeschool co-ops, which the plan names for December; generic Muslim business directories have now mostly been screened.
 
 ## Linkable assets
 
