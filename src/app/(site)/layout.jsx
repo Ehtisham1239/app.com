@@ -13,6 +13,8 @@ import { TopBar } from "@/components/site/chrome";
 import { getCourses, getMenus, getSettings } from "@/lib/site-data";
 import { WebsiteAnalytics } from "@/components/site/analytics";
 import { analyticsConfig, cookielessAnalyticsConfig } from "@/lib/analytics";
+import { MetaPixel } from "@/components/site/meta-pixel";
+import { metaPixelId } from "@/lib/meta-pixel";
 import { verificationCode } from "@/lib/search-settings";
 import { INDEXED_MARKETS, getLocation } from "@/lib/locations";
 import { customCodeFromSettings, mergeSiteGraph, validateSiteSchema } from "@/lib/custom-code";
@@ -72,6 +74,8 @@ export default async function SiteLayout({ children }) {
           only exists on Vercel, so other hosts (Hostinger) skip it instead of loading a 404. */}
       {process.env.VERCEL === "1" && <SpeedInsights />}
       {analytics.enabled && <WebsiteAnalytics config={analytics} />}
+      {/* Meta Pixel: off until META_PIXEL_ID is set; loads only after the visitor accepts (owner, 19 Nov 2026). */}
+      {metaPixelId(process.env.META_PIXEL_ID) && <MetaPixel pixelId={metaPixelId(process.env.META_PIXEL_ID)} />}
     </>
   );
 }
