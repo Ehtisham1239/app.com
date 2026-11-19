@@ -303,3 +303,10 @@ test("every page hero carries a sourced verse that fits the page (19 Nov 2026)",
   assert.doesNotMatch(hero, /"use client"/);
   assert.match(hero, /aria-hidden="true">\{ayah\.ar\}/);
 });
+
+test("verse animations stay cheap: hero glow is finite and the band renders only when near the viewport", async () => {
+  const { readFileSync } = await import("node:fs");
+  const css = readFileSync(new URL("../src/app/globals.css", import.meta.url), "utf8");
+  assert.match(css, /\.hero-ayah-glow \{ animation: ayah-glow 10s ease-in-out 1\.5s 2; \}/);
+  assert.match(css, /\.ayah-band \{[^}]*content-visibility: auto; contain-intrinsic-size: auto 26rem;/);
+});
