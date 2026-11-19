@@ -70,6 +70,14 @@ const amiriDisplay = localFont({
   adjustFontFallback: false,
 });
 
+// Quranic verses (Uthmani text with its marks). Below the fold only, never preloaded (19 Nov 2026).
+const amiriQuran = localFont({
+  src: [{ path: "../../node_modules/@fontsource/amiri-quran/files/amiri-quran-arabic-400-normal.woff2", weight: "400", style: "normal" }],
+  variable: "--font-amiri-quran",
+  display: "swap",
+  preload: false,
+});
+
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -94,7 +102,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en-GB" data-scroll-behavior="smooth" className={`${inter.variable} ${interLatin.variable} ${interExtended.variable} ${outfit.variable} ${outfitLatin.variable} ${amiri.variable} ${amiriDisplay.variable}`} suppressHydrationWarning>
+    <html lang="en-GB" data-scroll-behavior="smooth" className={`${inter.variable} ${interLatin.variable} ${interExtended.variable} ${outfit.variable} ${outfitLatin.variable} ${amiri.variable} ${amiriDisplay.variable} ${amiriQuran.variable}`} suppressHydrationWarning>
       <head>
         <script id="oqc-clarity" dangerouslySetInnerHTML={{ __html: `
           (function(c,l,a,r,i){
