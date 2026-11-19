@@ -90,3 +90,23 @@ test("workflow is pinned, least-privilege and read-only", () => {
   assert.match(yml, /schedule:/);
   assert.match(yml, /node scripts\/site-crawl\.mjs/);
 });
+
+test("crawler retries 429 and recovers", async () => {
+  process.env.SITE_CRAWL_RETRY_MS = "5";
+  const { crawl: freshCrawl } = await import(`../scripts/site-crawl.mjs?retry=${Date.now()}`);
+  let hits = 0;
+  const server = http.createServer((req, res) => {
+    if (req.url === "/robots.txt" || req.url === "/sitemap.xml") { res.writeHead(404); return res.end(); }
+    hits += 1;
+    if (hits <= 2) { res.writeHead(429, { "content-type": "text/html" }); return res.end("slow down"); }
+    res.writeHead(200, { "content-type": "text/html" });
+    res.end(page("Home", "<h1>Home</h1>"));
+  });
+  await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
+  try {
+    const result = await freshCrawl({ origin: `http://127.0.0.1:${server.address().port}`, concurrency: 1 });
+    const home = result.rows.find((r) => new URL(r.url).pathname === "/");
+    assert.equal(home.status, 200);
+    assert.equal(hits, 3, "two 429s then success");
+  } finally { server.close(); delete process.env.SITE_CRAWL_RETRY_MS; }
+});
