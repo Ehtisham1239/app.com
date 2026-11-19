@@ -114,3 +114,13 @@ test('retired duplicate CMS pages 301 to their live equivalents',()=>{
     const rule=bySource.get(from);assert.equal(rule?.destination,to,from);assert.equal(rule.permanent,true);
   }
 });
+
+test('mistyped Australia city links in the CMS body redirect to the real city pages',()=>{
+  for(const [from,to] of [['/locations/australia/australia-melbourne','/locations/australia/melbourne'],['/locations/australia/locations-australia-brisbane','/locations/australia/brisbane']]){
+    const rule=bySource.get(from);
+    assert.ok(rule,from);
+    assert.equal(rule.destination,to);
+    assert.equal(rule.permanent,true);
+    assert.ok(RESTORED_LOCATION_PATHS.includes(to)||INDEXED_MARKETS.some(m=>to.startsWith('/locations/'+m+'/')),to+' is a live city page');
+  }
+});
