@@ -64,10 +64,17 @@ test("llms.txt exposes country-specific official references without calling them
   assert.match(route, /guide\.sources\.map\(source =>/);
 });
 
-test("llms-full.txt is linked from llms.txt and carries only published course and FAQ text with absolute links", () => {
-  const full = read("src/app/llms-full.txt/route.js");
-  assert.match(route, /\/llms-full\.txt/);
-  assert.match(full, /getFaqs/); assert.match(full, /shouldIncludeInSitemap/);
+test("llms-full.txt is linked from llms.txt, built from the shared facts and serves absolute links", () => {
+  const full = read("src/app/llms-full.txt/route.js"), facts = read("src/lib/org-facts.js");
+  assert.match(route, /\/llms-full\.txt/); assert.match(route, /\/at-a-glance/);
+  assert.match(full, /organizationFacts/);
+  for (const source of ["getFaqs", "getPlans", "getTeachers", "shouldIncludeInSitemap"]) assert.match(facts, new RegExp(source));
   assert.match(full, /replaceAll\("\]\(\/", `\]\(\$\{SITE_URL\}\/`\)/);
-  assert.match(full, /not physical offices/);
+  assert.match(full, /no local office or branch/);
+});
+
+test("the at-a-glance page reads the same facts and claims no local office", () => {
+  const page = read("src/app/(site)/at-a-glance/page.jsx");
+  assert.match(page, /organizationFacts/); assert.match(page, /not local offices/);
+  assert.match(page, /seo_noindex: false/);
 });
