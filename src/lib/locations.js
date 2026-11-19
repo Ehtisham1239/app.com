@@ -919,7 +919,9 @@ export function locationHeading(country, city, cmsTitle) {
   return !cmsTitle || cmsTitle === generated ? `Online Quran classes in ${place}` : cmsTitle;
 }
 export function locationSearchTitle(country, city) {
-  return `${city ? "Quran classes" : "Online Quran classes"} in ${city?.name || countryInName(country)} | OQC`;
+  // Search Console (18 Nov 2026): location pages rank for "arabic classes near me" and city queries
+  // but earn few clicks, so the title names both services the page offers.
+  return `${city ? "Quran & Arabic Classes" : "Online Quran & Arabic Classes"} in ${city?.name || countryInName(country)} | OQC`;
 }
 export function locationBreadcrumbs(country, city) {
   return [{ name: "Countries & cities", path: "/locations" },
@@ -930,8 +932,8 @@ export function locationBreadcrumbs(country, city) {
 export function locationSearchIntro(country, city) {
   const place = city ? `${city.name}, ${country.name}` : country.name;
   return city
-    ? `Online Quran classes in ${place} for children and adults. Plan lessons using ${locationTimeZone(country, city)} and confirm the course and ${country.currency} fee with a coordinator.`
-    : `Live one-to-one online Quran classes for families in ${countryInName(country)}: Noorani Qaida, Tajweed and Hifz at local class times. Request a 3-day free trial on eligible plans.`;
+    ? `Live one-to-one online Quran and Arabic classes in ${place} for kids and adults: Noorani Qaida, Tajweed, Hifz and Quranic Arabic, planned in ${locationTimeZone(country, city)}. Book a 3-day free trial.`
+    : `Live one-to-one online Quran and Arabic classes for families in ${countryInName(country)}: Noorani Qaida, Tajweed, Hifz and Quranic Arabic at local class times. Book a 3-day free trial.`;
 }
 
 // Pathway decision (26–28 Oct 2026): only the country hubs for approved markets

@@ -170,6 +170,14 @@ test("the analytics component does not start GA4 on preview or other hosts", () 
   assert.match(src, /!isAnalyticsHost\(window\.location\.hostname\)\) return;/);
 });
 
+test("tags start after load when the browser is idle, never during first paint, with no interaction wait (19 Nov 2026)", () => {
+  const src = readFileSync(new URL("../src/components/site/analytics.jsx", import.meta.url), "utf8");
+  assert.match(src, /requestIdleCallback\(start, \{ timeout: 2000 \}\)/);
+  assert.match(src, /addEventListener\("load", schedule, \{ once: true \}\)/);
+  assert.doesNotMatch(src, /pointerdown|keydown|touchstart/, "no wait for a first interaction");
+  assert.doesNotMatch(src, /\n\s*start\(\);\n\s*return/, "tags no longer start synchronously during hydration");
+});
+
 test("second GTM container and Google Ads tag load site-wide under denied ad consent (owner request, 18 Nov 2026)", () => {
   const config = cookielessAnalyticsConfig(analyticsConfig({ enabled: true, ga4_measurement_id: ga4Id, gtm_container_id: gtmId }));
   assert.equal(config.gtm2Id, "GTM-52PTXDRF"); assert.equal(config.adsId, "AW-16564445897");
