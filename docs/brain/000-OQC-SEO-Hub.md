@@ -16,3 +16,4 @@ Method: Claude Code Engineering Brain (Obsidian style). Labels: **Observed** (me
 - Earlier GSC work: `docs/seo/GSC-COVERAGE-2026-11-18.md`
 - Owner decisions: `AGENTS.md` ("Owner decisions" block) always wins over this folder.
 - [[CHK-007-crawl-speed-2026-11-19]] crawl clean, speed review, blocked items
+- [[ADR-005-speed-best-practices]] speed best-practice checklist and status
