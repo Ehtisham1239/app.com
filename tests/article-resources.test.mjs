@@ -49,3 +49,17 @@ test('related articles give every post at least one inbound link and stay determ
   for (const [slug, n] of inbound) assert.ok(n >= 1, slug + ' gets at least one related link');
   assert.ok(relatedArticles(posts[0], posts).every(x => /hifz|memoriz|sabaq/.test(x.slug)), 'stays on topic');
 });
+
+test('FAQ markup comes only from visible question headings and the paragraph under them (AEO, 19 Nov 2026)', async () => {
+  const { articleQuestionAnswers } = await import('../src/lib/article-answers.js');
+  const html = '<p>Intro</p><h2>The short comparison</h2><p>Not a question so it is skipped entirely here.</p>'
+    + '<h2>Questions</h2><h3>1. Can my child do Hifz online alongside school?</h3><p>Yes. Live one-to-one lessons can be arranged around school hours &amp; the family&#39;s time zone.</p>'
+    + '<h3>Is there a short one?</h3><p>Too short.</p>'
+    + '<h3>Does a heading without a paragraph count?</h3><h3>What age can a child start?</h3><p>Most children can start once they can sit with a screen for a short lesson and repeat sounds.</p>';
+  const faqs = articleQuestionAnswers(html);
+  assert.deepEqual(faqs.map(f => f.question), ['Can my child do Hifz online alongside school?', 'What age can a child start?']);
+  assert.equal(faqs[0].answer, "Yes. Live one-to-one lessons can be arranged around school hours & the family's time zone.");
+  const long = '<h2>Why does this matter so much?</h2><p>' + 'This sentence is part of a long answer. '.repeat(20) + '</p>';
+  assert.ok(articleQuestionAnswers(long)[0].answer.length <= 321);
+  assert.deepEqual(articleQuestionAnswers(''), []);
+});

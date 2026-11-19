@@ -3,7 +3,7 @@ import { cardTone } from "@/lib/card-presentation";
 import { PageHero } from "@/components/site/chrome";
 import { ContentImage } from "@/components/site/content-image";
 import { safeJsonLd, breadcrumbSchema, faqSchema } from "@/lib/seo";
-import { articleAnswer, articleNeedsAnswer } from "@/lib/article-answers";
+import { articleAnswer, articleNeedsAnswer, articleQuestionAnswers } from "@/lib/article-answers";
 import { getUsdRates } from "@/lib/fx";
 import { contentMetadata, publicImageUrl } from "@/lib/seo-metadata";
 import { articleNavigation } from "@/lib/article-navigation";
@@ -139,6 +139,8 @@ export default async function PostPage({ params }) {
   const breadcrumbs = [{ name: "Home", path: "/" }, { name: "Articles", path: "/blog" }, { name: post.title, path: `/blog/${post.slug}` }];
   const wa = whatsappLink(settings["site.contact"]?.whatsapp, "Assalamu alaikum, I read your article and would like to book a free trial.");
   const jsonLd = blogPosting(post, { siteUrl: SITE_URL, visual: { ...visual, src: publicImageUrl(visual.src) }, html, description: post.seo_description || post.excerpt || truncate(stripHtml(html), 158) });
+  // One FAQPage per article: the computed quick answer (fee posts) plus the article's own visible question headings.
+  const faqs = [...(quick ? [quick] : []), ...articleQuestionAnswers(html).filter(f => f.question !== quick?.question)];
   const readingMinutes = Number(post.reading_minutes) > 0
     ? Number(post.reading_minutes)
     : Math.ceil(jsonLd.wordCount / 220);
@@ -147,7 +149,7 @@ export default async function PostPage({ params }) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema(breadcrumbs, SITE_URL)) }} />
-      {quick && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema([quick])) }} />}
+      {faqs.length > 0 && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema(faqs)) }} />}
       <article className="blog-article bg-white">
         <PageHero path={`/blog/${post.slug}`} eyebrow={post.category} title={post.title} visual={<ContentImage src={visual.src} alt={visual.alt} priority sizes="(max-width: 639px) calc(100vw - 2rem), (max-width: 1023px) calc(100vw - 4rem), (max-width: 1216px) 46vw, 550px" className="block aspect-[3/2] w-full object-cover object-center" />}>
           <nav aria-label="Breadcrumb" className="mt-5 text-sm text-ink-soft"><Link href="/" prefetch={false}>Home</Link> / <Link href="/blog" className="underline">Articles</Link></nav>
