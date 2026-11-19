@@ -61,7 +61,10 @@ test("crawler finds status codes, redirects, indexability, orphans and writes CS
     assert.equal(summary.duplicateTitles.length, 2);
     assert.equal(summary.missingH1.length, 0, "every indexable page has an h1; the noindex page is excluded");
     assert.ok(summary.sitemapProblems.some((r) => r.Address.endsWith("/noindex")));
-    assert.match(toMarkdown(summary, { site: origin }), /Orphan pages/);
+    const md = toMarkdown(summary, { site: origin });
+    assert.match(md, /\| Sitemap pages with no internal links \(orphans\) \| 1 \|/);
+    assert.match(md, /\| Blocked by robots\.txt \| 1 \|/);
+    assert.match(md, /\| Indexable pages with duplicate titles \| 2 \|/);
     const broken = readFileSync(join(dir, "broken_links_sources.csv"), "utf8");
     assert.match(broken, /\/gone/);
     assert.doesNotMatch(broken, /\/private/);
