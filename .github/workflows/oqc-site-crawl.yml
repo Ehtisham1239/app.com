@@ -1,0 +1,65 @@
+name: OQC site crawl
+
+# Free weekly crawl of the live site (scripts/site-crawl.mjs, no licence needed): status codes,
+# redirects, indexability, titles / meta descriptions / H1, duplicate titles, broken links with the
+# pages that link to them, sitemap problems and orphan pages. Read-only: GET requests only, 4 at a time,
+# robots.txt honoured. Report: job summary + artifact (CSV files). It never changes the site.
+# Scheduled runs fail on 5xx responses so GitHub emails the owner.
+on:
+  schedule:
+    - cron: "23 2 * * 1" # Mondays 02:23 UTC (07:23 PKT)
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "Site to crawl"
+        type: string
+        default: "https://www.onlinequrancollege.com"
+      max_pages:
+        description: "Maximum URLs"
+        type: string
+        default: "2000"
+  pull_request:
+    paths:
+      - .github/workflows/oqc-site-crawl.yml
+      - scripts/site-crawl.mjs
+      - scripts/sf-crawl-summary.mjs
+
+permissions:
+  contents: read
+
+concurrency:
+  group: oqc-site-crawl
+  cancel-in-progress: false
+
+jobs:
+  crawl:
+    name: Crawl and summarise
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      SF_URL: ${{ inputs.url || 'https://www.onlinequrancollege.com' }}
+      MAX_PAGES: ${{ inputs.max_pages || (github.event_name == 'pull_request' && '300') || '2000' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+      - name: Crawl
+        run: node scripts/site-crawl.mjs "$SF_URL" --out artifacts/site-crawl --max-pages "$MAX_PAGES"
+      - name: Summarise
+        run: |
+          flag=""
+          if [ "${{ github.event_name }}" = "schedule" ]; then flag="--fail-on-5xx"; fi
+          SF_SITE="$SF_URL" node scripts/sf-crawl-summary.mjs artifacts/site-crawl $flag
+      - name: Upload crawl
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: site-crawl
+          path: artifacts/site-crawl
+          retention-days: 90
+          if-no-files-found: warn

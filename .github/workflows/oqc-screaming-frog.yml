@@ -1,0 +1,112 @@
+name: OQC Screaming Frog crawl
+
+# Headless Screaming Frog SEO Spider crawl of the live site (scripts/sf-crawl-summary.mjs
+# builds the report). Read-only: it only fetches public pages and never changes the site.
+# Output: job summary + artifact (CSV exports and the .seospider crawl file, open it in the desktop app).
+#
+# One-time setup (repo Settings -> Secrets and variables -> Actions):
+#   secrets  SF_LICENCE_USERNAME, SF_LICENCE_KEY   (required: the headless CLI refuses to start without a
+#                                                   licence file; pull_request runs skip the crawl without them)
+#   variable SF_EULA_VERSION                       (optional; the eula.accepted number for the installed
+#                                                   version, default 15. Setting it is accepting the
+#                                                   Screaming Frog EULA for this automation.)
+# Optional and paid. The free weekly crawl is oqc-site-crawl.yml (scripts/site-crawl.mjs), so
+# this one is manual only and needs the licence secrets below.
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "Site to crawl"
+        type: string
+        default: "https://www.onlinequrancollege.com"
+      version:
+        description: "SEO Spider version (the .deb on download.screamingfrog.co.uk)"
+        type: string
+        default: "25.1"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: oqc-screaming-frog
+  cancel-in-progress: false
+
+env:
+  SF_URL: ${{ inputs.url || 'https://www.onlinequrancollege.com' }}
+  SF_VERSION: ${{ inputs.version || '25.1' }}
+  SF_EULA_VERSION: ${{ vars.SF_EULA_VERSION || '15' }}
+
+jobs:
+  crawl:
+    name: Crawl and summarise
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+      - name: Install SEO Spider (checksum verified)
+        run: |
+          set -euo pipefail
+          base="https://download.screamingfrog.co.uk/products/seo-spider"
+          deb="screamingfrogseospider_${SF_VERSION}_amd64.deb"
+          curl -fsSL -o "$deb" "$base/$deb"
+          curl -fsSL -o "$deb.sha256" "$base/$deb.sha256"
+          echo "$(cut -d' ' -f1 "$deb.sha256")  $deb" | sha256sum -c -
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq "./$deb"
+      - name: Accept EULA and add licence
+        env:
+          SF_LICENCE_USERNAME: ${{ secrets.SF_LICENCE_USERNAME }}
+          SF_LICENCE_KEY: ${{ secrets.SF_LICENCE_KEY }}
+        run: |
+          set -euo pipefail
+          dir="$HOME/.ScreamingFrogSEOSpider"
+          mkdir -p "$dir"
+          printf 'eula.accepted=%s\n' "$SF_EULA_VERSION" >> "$dir/spider.config"
+          printf -- '-Xmx4g\n' > "$HOME/.screamingfrogseospider"
+          if [ -n "$SF_LICENCE_USERNAME" ] && [ -n "$SF_LICENCE_KEY" ]; then
+            printf '%s\n%s\n' "$SF_LICENCE_USERNAME" "$SF_LICENCE_KEY" > "$dir/licence.txt"
+            chmod 600 "$dir/licence.txt"
+            echo "SF_LICENSED=true" >> "$GITHUB_ENV"
+          else
+            echo "SF_LICENSED=false" >> "$GITHUB_ENV"
+          fi
+      - name: Licence required
+        if: env.SF_LICENSED != 'true'
+        run: |
+          msg="Screaming Frog licence secrets SF_LICENCE_USERNAME and SF_LICENCE_KEY are not set; the headless CLI cannot run without a licence file."
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "::notice::$msg Crawl skipped on pull requests."
+          else
+            echo "::error::$msg"
+            exit 1
+          fi
+      - name: Crawl
+        if: env.SF_LICENSED == 'true'
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/sf-crawl
+          screamingfrogseospider --crawl "$SF_URL" --headless --save-crawl \
+            --output-folder artifacts/sf-crawl --overwrite --export-format csv \
+            --export-tabs "Internal:All,Response Codes:Client Error (4xx),Response Codes:Server Error (5xx),Page Titles:Missing,Meta Description:Missing,H1:Missing"
+          ls -la artifacts/sf-crawl
+      - name: Summarise
+        if: env.SF_LICENSED == 'true'
+        run: |
+          flag=""
+          if [ "${{ github.event_name }}" = "schedule" ]; then flag="--fail-on-5xx"; fi
+          SF_SITE="$SF_URL" node scripts/sf-crawl-summary.mjs artifacts/sf-crawl $flag
+      - name: Upload crawl
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: screaming-frog-crawl
+          path: artifacts/sf-crawl
+          retention-days: 90
+          if-no-files-found: warn
