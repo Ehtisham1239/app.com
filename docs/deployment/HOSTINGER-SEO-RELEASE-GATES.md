@@ -46,7 +46,7 @@ The owner preference is to manage OQC DNS records through Hostinger. The authori
 
 ## Cutover and rollback
 
-Only after staging acceptance and a reviewed DNS diff: schedule the cutover, apply the approved web-record changes while preserving email/verification records, verify apex-to-www redirect and HTTPS, then smoke-test all priority routes and forms. Keep the old deployment and DNS snapshot available for rollback. Do not decommission Vercel/Cloudflare or delete old resources until the Hostinger production path is stable and the owner approves retirement.
+Only after staging acceptance and a reviewed DNS diff: schedule the cutover, apply the approved web-record changes while preserving email/verification records, verify apex-to-www redirect and HTTPS, then smoke-test all priority routes and forms. Keep the old deployment and DNS snapshot available for rollback. Do not decommission Vercel or delete old resources until the Hostinger production path is stable and the owner approves retirement.
 
 ## Status at branch preparation
 

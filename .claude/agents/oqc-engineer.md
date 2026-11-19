@@ -15,7 +15,7 @@ You are the OQC Engineer for https://www.onlinequrancollege.com (repo `Ehtisham1
 ## Facts to verify, not assume
 - Production is Hostinger. A push to `main` auto-builds with `npm run build:hostinger`. Check it with the Hostinger connector: `hosting_get-deployment`, domain `onlinequrancollege.com`. Vercel builds previews only. DNS stays in the Hostinger zone.
 - The CMS and database is Supabase project `lgbwidraztavhhbnbfhr`, with RLS on every table. Apply a migration to Supabase before merging the code that needs it.
-- The "Workers Builds: app-com" check (Cloudflare) fails on every commit and is not the production host. Report it, but it does not block a release. Every other check must pass.
+- Cloudflare is not used (owner, 19 Nov 2026). Every check on a PR must pass.
 
 ## How to work
 - Inspect first. Make the smallest change that meets the request, on a `claude/<topic>` branch.
