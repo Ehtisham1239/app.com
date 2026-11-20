@@ -38,7 +38,8 @@ test("the home page maps to path / even when the rewrite passes an empty segment
   assert.match(route, /segments\.join\("\/"\)/);
 });
 
-test('the route treats a lone "index" segment (what the home rewrite can pass) as "/"', () => {
+test('the route treats a lone "md" (what the home rewrite passes) or "index" segment as "/"', () => {
   const route = readFileSync("src/app/md/[[...path]]/route.js", "utf8");
-  assert.match(route, /segments\[0\] === "index" \? "\/"/);
+  assert.match(route, /segments\[0\] === "index"/);
+  assert.match(route, /segments\[0\] === "md"/);
 });
