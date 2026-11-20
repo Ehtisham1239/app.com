@@ -916,7 +916,8 @@ export const countryInName = (country) => `${/^(United |Netherlands$|Czech Repub
 export function locationHeading(country, city, cmsTitle) {
   const place = city && !isCityState(country, city) ? `${city.name}, ${country.name}` : city ? country.name : countryInName(country);
   const generated = `Online Quran classes in ${city ? place : country.name}`;
-  return !cmsTitle || cmsTitle === generated ? `Online Quran classes in ${place}` : cmsTitle;
+  const doubled = city && isCityState(country, city) ? `Online Quran classes in ${city.name}, ${country.name}` : null;
+  return !cmsTitle || cmsTitle === generated || cmsTitle === doubled ? `Online Quran classes in ${place}` : cmsTitle;
 }
 // Country pages whose Search Console demand is for Arabic first (evidence per slug). Lithuania,
 // 28 Oct–6 Nov 2026: "arabic classes near me" 166 impressions at position ~5.7 and 0 clicks while the

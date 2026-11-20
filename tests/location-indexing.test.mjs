@@ -106,3 +106,16 @@ test("a city page shows its own CMS guidance open when substantive local content
   const src = readFileSync(new URL("../src/components/site/location-page.jsx", import.meta.url), "utf8");
   assert.match(src, /<details className="surface p-6" open=\{Boolean\(city\)\}>/);
 });
+
+test("city-state headings do not repeat the place name", async () => {
+  const { locationHeading, getLocation } = await import("../src/lib/locations.js");
+  for (const slug of ["monaco", "san-marino", "vatican-city"]) {
+    const country = getLocation(slug);
+    const city = country.cities[0];
+    const expected = `Online Quran classes in ${country.name}`;
+    assert.equal(locationHeading(country, city), expected, slug);
+    assert.equal(locationHeading(country, city, `${expected}, ${country.name}`), expected, slug);
+  }
+  const uk = getLocation("united-kingdom");
+  assert.equal(locationHeading(uk, uk.cities[0]), `Online Quran classes in ${uk.cities[0].name}, ${uk.name}`);
+});
