@@ -34,7 +34,8 @@ test("the Markdown route is never cached and is noindex", () => {
 
 test("the home page maps to path / even when the rewrite passes an empty segment", () => {
   const route = readFileSync("src/app/md/[[...path]]/route.js", "utf8");
-  assert.match(route, /path\.filter\(Boolean\)\.join\("\/"\)/);
+  assert.match(route, /path\.filter\(Boolean\)/);
+  assert.match(route, /segments\.join\("\/"\)/);
 });
 
 test('the route treats a lone "index" segment (what the home rewrite can pass) as "/"', () => {
