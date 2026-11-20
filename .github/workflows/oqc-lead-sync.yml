@@ -1,0 +1,43 @@
+name: OQC lead sync worker
+
+# Production moved from Vercel to Hostinger on 11 Nov 2026, so the Vercel cron in
+# vercel.json no longer runs and the lead outbox (public.lead_sync_jobs) is never
+# worked: retries for the admissions email and GoHighLevel were not happening.
+# This schedule calls the same worker. It does nothing until the owner sets the
+# same CRON_SECRET (24+ characters) in GitHub (Settings → Secrets → Actions) and in
+# the Hostinger Node.js environment variables.
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: oqc-lead-sync
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Call /api/cron/lead-sync
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+        run: |
+          if [ "${#CRON_SECRET}" -lt 24 ]; then
+            echo "::notice::CRON_SECRET is not set in GitHub secrets; the lead sync worker was not called."
+            exit 0
+          fi
+          code=$(curl -sS -o response.json -w "%{http_code}" --max-time 60 \
+            -H "Authorization: Bearer ${CRON_SECRET}" \
+            https://www.onlinequrancollege.com/api/cron/lead-sync)
+          echo "HTTP ${code}"
+          # The response carries counts only, no lead data.
+          head -c 500 response.json; echo
+          if [ "${code}" != "200" ]; then
+            echo "::error::Lead sync worker answered HTTP ${code} (401 = CRON_SECRET differs from Hostinger; 503 = settings missing)."
+            exit 1
+          fi
