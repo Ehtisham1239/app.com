@@ -181,7 +181,7 @@ export const getPage = cache(async (slug) =>
   safe(() =>
     publicDb
       .from("pages")
-      .select("id, slug, title, excerpt, template, body_html, cover_url, cover_alt, seo_title, seo_description, canonical_url, seo_noindex, seo_focus_keyword, updated_at, page_sections(id, type, data, sort_order)")
+      .select("id, slug, title, excerpt, template, body_html, cover_url, cover_alt, seo_title, seo_description, canonical_url, seo_noindex, seo_focus_keyword, published_at, updated_at, page_sections(id, type, data, sort_order)")
       .eq("slug", slug)
       .eq("locale", "en")
       .eq("status", "published")
