@@ -16,7 +16,7 @@ Sources: Next.js production checklist and CDN caching guide (bundled in `node_mo
 | Few web-font files, `unicode-range` on fallbacks, no unused subsets | Done (CHK-005): 100-134 KB per page |
 | No layout shift (reserved image/hero space) | Done: CLS 0 mobile, 0.098 desktop |
 | Third-party scripts start after load and idle, never during first paint | Done (owner, 19 Nov); keep it |
-| Fewer third-party tags: duplicates removed | Partly: second GA4 `G-EMHY1G2CKB` still in `GTM-W7CMZS53` (BLOCKED, owner sign-in) |
+| Fewer third-party tags: duplicates removed | Done 20 Nov: second GA4 `G-EMHY1G2CKB` removed from `GTM-W7CMZS53` (Version 20 live) |
 | Server Components by default; small `"use client"` islands | Inferred: first-party JS is not the bottleneck (CHK-005) |
 | CDN on, HTTP/3, brotli | Observed: hcdn on |
 | Edge caching of ISR HTML (`s-maxage=300`) | Observed: hcdn reports DYNAMIC. Not changed: needs the host to honour `Vary`/`_rsc` and per-visitor `/api/geo` must stay uncached |
