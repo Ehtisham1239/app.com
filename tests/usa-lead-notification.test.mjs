@@ -6,7 +6,7 @@ import assert from "node:assert/strict";
 import { build } from "esbuild";
 import { resolve } from "node:path";
 import {
-  RESEND_ENDPOINT, buildLeadEmail, idempotencyKey, notificationConfig, parseNotificationRequest, sendLeadEmail,
+  RESEND_ENDPOINT, buildLeadEmail, idempotencyKey, notificationConfig, notificationConfigIssues, parseNotificationRequest, sendLeadEmail,
 } from "../src/lib/usa-lead-notification.js";
 
 const KEY = "re_test_0123456789abcdef";
@@ -230,4 +230,22 @@ test("verified USA trial syncs to HighLevel even when email delivery is unconfig
   assert.ok(recorded);
   assert.equal(recorded[1].p_ok, true);
   assert.equal(recorded[1].p_reference, valid.reference);
+});
+
+// 20 Nov 2026: production answered "not_configured" for every lead, so no form email was sent.
+test("hosting-panel quirks are tolerated: quotes around values and ; between recipients", () => {
+  const quoted = { RESEND_API_KEY: `"${KEY}"`, LEAD_NOTIFICATION_FROM: "'OQC Website <leads@example.test>'", LEAD_NOTIFICATION_TO: "\"admissions@example.test; ceo@example.test\"" };
+  assert.deepEqual(notificationConfig(quoted), { apiKey: KEY, from: "OQC Website <leads@example.test>", to: ["admissions@example.test", "ceo@example.test"] });
+  assert.deepEqual(notificationConfigIssues(quoted), []);
+});
+
+test("config issues name the broken setting and never echo a value", () => {
+  assert.deepEqual(notificationConfigIssues({}), ["RESEND_API_KEY missing", "LEAD_NOTIFICATION_FROM missing", "LEAD_NOTIFICATION_TO missing"]);
+  const issues = notificationConfigIssues({ ...ENV, RESEND_API_KEY: "sk_live_secretvalue123", LEAD_NOTIFICATION_FROM: "OQC Website", LEAD_NOTIFICATION_TO: "admissions@example.test, nope" });
+  assert.equal(issues.length, 3);
+  assert.match(issues[0], /^RESEND_API_KEY invalid/);
+  assert.match(issues[1], /^LEAD_NOTIFICATION_FROM invalid/);
+  assert.match(issues[2], /^LEAD_NOTIFICATION_TO invalid/);
+  assert.doesNotMatch(issues.join(" "), /secretvalue|nope|OQC Website/);
+  assert.deepEqual(notificationConfigIssues(ENV), []);
 });
