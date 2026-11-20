@@ -3,7 +3,7 @@ import { NavigationLink as Link } from "@/components/site/navigation-link";
 import { ArrowRight, Clock, Globe2, Users, Video } from "@/components/site/icons";
 import { ContentImage } from "./content-image";
 import { heroArt } from "@/lib/hero-art";
-import { safeJsonLd } from "@/lib/seo";
+import { safeJsonLd, modifiedIso } from "@/lib/seo";
 import { CmsPageSchema } from "./custom-code";
 import { SITE_URL } from "@/lib/config";
 
@@ -82,15 +82,16 @@ function ImmersiveHero({ eyebrow, title, titleAccent, intro, children, arabic, i
   );
 }
 
-export function PageHero({ eyebrow, title, titleAccent, intro, children, arabic, visual, path, art, imageOverride, immersive = false, features }) {
+export function PageHero({ eyebrow, title, titleAccent, intro, children, arabic, visual, path, art, imageOverride, immersive = false, features, modified }) {
+  const dateModified = modifiedIso(modified);
   const image = imageOverride || heroArt(art || path || title);
   if (immersive) {
-    const jsonLd = path && <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", "@type": "WebPage", "@id": `${SITE_URL}${path}#webpage`, url: `${SITE_URL}${path}`, name: title, description: intro, isPartOf: { "@id": `${SITE_URL}/#website` }, about: { "@id": `${SITE_URL}/#organization` }, inLanguage: "en-GB" }) }} /><CmsPageSchema path={path} /></>;
+    const jsonLd = path && <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", "@type": "WebPage", "@id": `${SITE_URL}${path}#webpage`, url: `${SITE_URL}${path}`, name: title, description: intro, isPartOf: { "@id": `${SITE_URL}/#website` }, about: { "@id": `${SITE_URL}/#organization` }, inLanguage: "en-GB", ...(dateModified ? { dateModified } : {}) }) }} /><CmsPageSchema path={path} /></>;
     return <ImmersiveHero {...{ eyebrow, title, titleAccent, intro, children, arabic, image, features, jsonLd, path }} />;
   }
   return (
     <section className="inner-hero relative overflow-hidden text-mushaf-900">
-      {path && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", "@type": "WebPage", "@id": `${SITE_URL}${path}#webpage`, url: `${SITE_URL}${path}`, name: title, description: intro, isPartOf: { "@id": `${SITE_URL}/#website` }, about: { "@id": `${SITE_URL}/#organization` }, inLanguage: "en-GB" }) }} />}
+      {path && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", "@type": "WebPage", "@id": `${SITE_URL}${path}#webpage`, url: `${SITE_URL}${path}`, name: title, description: intro, isPartOf: { "@id": `${SITE_URL}/#website` }, about: { "@id": `${SITE_URL}/#organization` }, inLanguage: "en-GB", ...(dateModified ? { dateModified } : {}) }) }} />}
       {path && <CmsPageSchema path={path} />}
       <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.09]" aria-hidden="true" />
       <div className="pointer-events-none absolute -right-24 -top-24 size-[26rem] rounded-full bg-leaf-200/40 blur-3xl" aria-hidden="true" />

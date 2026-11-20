@@ -12,7 +12,7 @@ import { formatDate, slugify, whatsappLink } from "@/lib/format";
 import { getCourses, getFaqs, getPlans, getPageVideo, getSettings, getTeachers, getTestimonials } from "@/lib/site-data";
 import { analyticsConfig, cookielessAnalyticsConfig } from "@/lib/analytics";
 import { CmsPageSchema } from "@/components/site/custom-code";
-import { safeJsonLd, shouldIncludeInSitemap } from "@/lib/seo";
+import { safeJsonLd, shouldIncludeInSitemap, modifiedIso } from "@/lib/seo";
 import { publicImageUrl } from "@/lib/seo-metadata";
 
 // Adds ids to <h2> headings so policies get a table of contents.
@@ -38,6 +38,7 @@ function landingWebPage(page) {
     isPartOf: { "@id": `${SITE_URL}/#website` }, about: { "@id": `${SITE_URL}/#organization` },
     ...(page.cover_url ? { primaryImageOfPage: { "@type": "ImageObject", url: new URL(publicImageUrl(page.cover_url), SITE_URL).href } } : {}),
     inLanguage: "en-GB",
+    ...(modifiedIso(page.updated_at) ? { dateModified: modifiedIso(page.updated_at) } : {}),
   };
 }
 
@@ -71,7 +72,7 @@ export async function CmsPage({ page }) {
       {(watch || landing) && <CmsPageSchema path={`/${page.slug}`} />}
       {watch && <div className="page-wrap pt-10"><h1>{page.title}</h1></div>}
       {watch && <PageVideo video={video} path={`/${page.slug}`} structured={shouldIncludeInSitemap(page, `/${page.slug}`, SITE_URL)} />}
-      {!watch && page.template !== "landing" && <PageHero path={`/${page.slug}`} eyebrow={isPolicy ? "Policy" : isAbout ? "Our college" : undefined} title={page.title} titleAccent={isAbout ? "Quran College" : undefined} intro={page.excerpt} immersive={isAbout} imageOverride={isAbout && page.cover_url ? { src: page.cover_url, alt: page.cover_alt } : undefined} visual={page.cover_url ? <ContentImage src={page.cover_url} alt={page.cover_alt} priority sizes="(max-width: 1024px) 100vw, 600px" className="aspect-[3/2] w-full object-cover" /> : undefined}>{isAbout && <div className="mt-7 flex flex-wrap gap-3"><Link className="btn btn-gold" href="/courses">Explore our courses <ArrowRight className="size-4" aria-hidden="true" /></Link><Link className="btn btn-outline-light" href="/teachers">Meet our teachers</Link></div>}</PageHero>}
+      {!watch && page.template !== "landing" && <PageHero path={`/${page.slug}`} modified={page.updated_at} eyebrow={isPolicy ? "Policy" : isAbout ? "Our college" : undefined} title={page.title} titleAccent={isAbout ? "Quran College" : undefined} intro={page.excerpt} immersive={isAbout} imageOverride={isAbout && page.cover_url ? { src: page.cover_url, alt: page.cover_alt } : undefined} visual={page.cover_url ? <ContentImage src={page.cover_url} alt={page.cover_alt} priority sizes="(max-width: 1024px) 100vw, 600px" className="aspect-[3/2] w-full object-cover" /> : undefined}>{isAbout && <div className="mt-7 flex flex-wrap gap-3"><Link className="btn btn-gold" href="/courses">Explore our courses <ArrowRight className="size-4" aria-hidden="true" /></Link><Link className="btn btn-outline-light" href="/teachers">Meet our teachers</Link></div>}</PageHero>}
       {isAbout && html && <section className="page-wrap py-14 sm:py-20">{aboutLead && <div className="prose-oqc mb-10 max-w-3xl text-lg" dangerouslySetInnerHTML={{ __html: aboutLead }} />}<div className="grid items-start gap-6 md:grid-cols-2">{aboutParts.map((part, index) => { const Icon = aboutIcons[index % aboutIcons.length]; return <article className="editorial-card p-7 sm:p-8" key={index}><span className="mb-5 inline-flex size-12 items-center justify-center rounded-2xl bg-leaf-50 text-leaf-700"><Icon className="size-6" aria-hidden="true" /></span><div className="prose-oqc [&_h2]:mt-0 [&_h2]:text-2xl" dangerouslySetInnerHTML={{ __html: part }} /></article>; })}</div></section>}
       {html && !isAbout && (
         <div className={`page-wrap py-14 sm:py-16 ${isPolicy && toc.length > 2 ? "grid gap-12 lg:grid-cols-[15rem_1fr]" : ""}`}>
