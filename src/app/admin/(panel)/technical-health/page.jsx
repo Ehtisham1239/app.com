@@ -36,6 +36,13 @@ export default function TechnicalHealthPage() {
     {error && <ErrorState error={error} onRetry={runAudit}/>}
     {report && !loading && <>
       <p className="mb-4 text-xs text-ink-faint">Last scan: {dateLabel(report.scannedAt)} · {report.scannedUrls} of {report.totalUrls} sitemap URLs · {report.partial ? "Partial scan" : "Full sitemap scan"}</p>
+      {report.leadDelivery && <Card className="mb-6" title="Lead delivery (website forms)">
+        <ul className="space-y-3 text-sm">{[["Email to admissions (Resend)", report.leadDelivery.email], ["GoHighLevel CRM", report.leadDelivery.ghl], ["Retry worker", report.leadDelivery.worker]].map(([label, item]) => <li key={label} className="flex items-start gap-2">
+          {item.ok ? <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-leaf-700"/> : <AlertTriangle className="mt-0.5 size-4 shrink-0 text-amber-600"/>}
+          <span><span className="font-semibold">{label}:</span> {item.ok ? "configured" : item.issues.join("; ")}</span>
+        </li>)}</ul>
+        <p className="mt-3 text-xs text-ink-faint">Setting names only. Fix values in Hostinger → Node.js → Environment variables, then redeploy.</p>
+      </Card>}
       <div className="mb-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard label="Pages scanned" value={report.scannedUrls}/>
         <StatCard label="Pages with findings" value={summary.pagesWithIssues}/>
