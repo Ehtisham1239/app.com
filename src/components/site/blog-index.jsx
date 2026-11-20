@@ -17,7 +17,7 @@ export function blogIndexMetadata(filters) {
   if (!filters) notFound();
   const { page } = filters;
   const title = `Quran Learning Articles & Parent Guides${page > 1 ? ` · Page ${page}` : ""} | OQC`;
-  const description = `Practical articles on Tajweed, Hifz, Noorani Qaida and Quranic Arabic, plus guides to help parents support children learning the Quran online.${page > 1 ? ` Browse page ${page} for more learning guides.` : ""}`;
+  const description = `Practical articles on Tajweed, Hifz, Noorani Qaida and Quranic Arabic, plus guides to help parents support children learning the Quran online.${page > 1 ? ` Page ${page}.` : ""}`;
   return contentMetadata({ seo_title: title }, { path: blogUrl(page), description });
 }
 
