@@ -45,7 +45,7 @@ These are activity targets, not promised rankings. Search engines decide ranking
 - [x] Bing: IndexNow running; 8 meta descriptions fixed; monthly audit live.
 - [ ] Owner: Bing Webmaster → URL submission for /locations/united-kingdom, /locations/united-states, /locations/canada, /locations/australia, /locations/united-arab-emirates, plus Search Console URL inspection for the same five URLs.
 - [x] 3 UAE articles published 16 Nov 2026 (owner instruction): /blog/online-quran-classes-kids-uae-school-routine, /blog/online-tajweed-classes-adults-uae, /blog/online-hifz-classes-uae-routine. No lesson-time windows are stated; the coordinator confirms times.
-- [ ] Authority pilot: live-check queue items 1–12; team submits the eligible ones; Claude verifies live URLs.
+- [ ] Authority pilot: live-check queue items 1–12 (item 13, MuslimMatters, added 20 Nov 2026 at gate score 85); team submits the eligible ones; Claude verifies live URLs.
 - [x] Linkable asset 1: printable weekly Quran practice planner published at /blog/printable-weekly-quran-practice-planner (print or save as PDF from the article).
 - [x] Privacy policy now discloses Microsoft Clarity (PR #270, #259).
 - [x] Every-3-days SEO scheduled task now follows `oqc-seo` and this plan.
