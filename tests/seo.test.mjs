@@ -262,3 +262,62 @@ test("thank-you page titles name the brand once (the layout template adds it)", 
     assert.doesNotMatch(title, /Online Quran College|OQC/, f);
   }
 });
+
+test("site-wide ayah band uses sourced verses with references and stays script-free (19 Nov 2026)", async () => {
+  const { readFileSync } = await import("node:fs");
+  const { AYAT, ayahForDate } = await import("../src/lib/ayat.js");
+  assert.ok(AYAT.length >= 5);
+  for (const a of AYAT) {
+    assert.match(a.ref, /^\d{1,3}:\d{1,3}(–\d{1,3})?$/);
+    assert.match(a.ar, /[؀-ۿ]/);
+    assert.ok(a.en.length > 10);
+  }
+  assert.equal(ayahForDate(new Date("2026-11-19T01:00:00Z")), ayahForDate(new Date("2026-11-19T23:00:00Z")), "one verse per UTC day");
+  const band = readFileSync(new URL("../src/components/site/ayah-band.jsx", import.meta.url), "utf8");
+  assert.doesNotMatch(band, /"use client"/);
+  assert.match(band, /aria-hidden="true">\{ayah\.ar\}/, "the colour layer is hidden from screen readers");
+  const css = readFileSync(new URL("../src/app/globals.css", import.meta.url), "utf8");
+  const motion = css.slice(css.indexOf(".ayah-band {"));
+  assert.match(motion, /prefers-reduced-motion: no-preference\) \{\s*\.ayah-glow/);
+  assert.doesNotMatch(motion.slice(0, motion.indexOf("Gold lattice")), /@keyframes ayah-[a-z]+ \{[^}]*(width|height|top|left|background-position)/, "animations use opacity/transform only");
+});
+
+test("the ayah band never repeats the footer's 20:114 and its ornaments are silent", async () => {
+  const { readFileSync } = await import("node:fs");
+  const { AYAT } = await import("../src/lib/ayat.js");
+  assert.equal(AYAT.some(a => a.ref.startsWith("20:114")), false);
+  const css = readFileSync(new URL("../src/app/globals.css", import.meta.url), "utf8");
+  assert.match(css, /\.ayah-kicker::before, \.ayah-kicker::after \{ content: "۞" \/ "";/);
+});
+
+test("every page hero carries a sourced verse that fits the page (19 Nov 2026)", async () => {
+  const { readFileSync } = await import("node:fs");
+  const { HERO_AYAT, heroAyahFor } = await import("../src/lib/hero-ayat.js");
+  for (const a of Object.values(HERO_AYAT)) { assert.match(a.ref, /^\d{1,3}:\d{1,3}(–\d{1,3})?$/); assert.match(a.ar, /[؀-ۿ]/); assert.ok(a.ar.length < 90); }
+  assert.equal(heroAyahFor("/courses/hifz-quran").ref, "75:17");
+  assert.equal(heroAyahFor("/free-trial").ref, "20:25–26");
+  assert.equal(heroAyahFor("/locations/france/paris"), heroAyahFor("/locations/france/paris"), "stable per path");
+  const chrome = readFileSync(new URL("../src/components/site/chrome.jsx", import.meta.url), "utf8");
+  assert.equal((chrome.match(/<HeroAyah path=\{path \|\| title\} \/>/g) || []).length, 2, "both hero variants");
+  const hero = readFileSync(new URL("../src/components/site/hero-ayah.jsx", import.meta.url), "utf8");
+  assert.doesNotMatch(hero, /"use client"/);
+  assert.match(hero, /aria-hidden="true">\{ayah\.ar\}/);
+});
+
+test("verse animations stay cheap: hero glow is finite and the band renders only when near the viewport", async () => {
+  const { readFileSync } = await import("node:fs");
+  const css = readFileSync(new URL("../src/app/globals.css", import.meta.url), "utf8");
+  assert.match(css, /\.hero-ayah-glow \{ animation: ayah-glow 10s ease-in-out 1\.5s 2; \}/);
+  assert.match(css, /\.ayah-band \{[^}]*content-visibility: auto; contain-intrinsic-size: auto 26rem;/);
+});
+
+test("Arabic-first country titles follow Search Console demand (Lithuania, 19 Nov 2026)", async () => {
+  const { getLocation, locationSearchTitle, locationSearchIntro, ARABIC_FIRST_COUNTRIES } = await import("../src/lib/locations.js");
+  assert.deepEqual([...ARABIC_FIRST_COUNTRIES], ["lithuania"]);
+  const lt = getLocation("lithuania"); const country = lt.country || lt;
+  assert.equal(locationSearchTitle(country), "Online Arabic & Quran Classes in Lithuania | OQC");
+  assert.match(locationSearchIntro(country), /^Live one-to-one online Arabic classes in Lithuania/);
+  assert.ok(locationSearchIntro(country).length <= 175);
+  const uk = getLocation("united-kingdom"); assert.match(locationSearchTitle(uk.country || uk), /^Online Quran & Arabic Classes/);
+  const city = country.cities[0]; assert.match(locationSearchTitle(country, city), /^Quran & Arabic Classes in /, "city pages keep the shared pattern");
+});

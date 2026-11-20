@@ -42,12 +42,12 @@ test("responsive navigation keeps a persistent 429 as a failure", async () => {
   assert.deepEqual(waits, [10, 20]);
 });
 
-for (const status of [404, 500, 503]) {
+for (const status of [404, 500]) {
   test(`responsive navigation preserves HTTP ${status} without retry`, async () => {
     let calls = 0;
     const page = {
       async goto() { calls++; return response(status); },
-      async waitForTimeout() { assert.fail('Non-429 responses must not be retried'); },
+      async waitForTimeout() { assert.fail('Non-transient responses must not be retried'); },
     };
     assert.equal((await gotoWithRetry(page, 'https://example.com')).status(), status);
     assert.equal(calls, 1);
@@ -61,4 +61,29 @@ test('responsive navigation propagates network failures', async () => {
     async waitForTimeout() { assert.fail('Network errors must stay visible'); },
   };
   await assert.rejects(gotoWithRetry(page, 'https://example.com'), error);
+});
+
+for (const status of [502, 503, 504]) {
+  test(`responsive navigation retries a transient HTTP ${status} and recovers`, async () => {
+    const statuses = [status, 200];
+    const waits = [];
+    const page = {
+      async goto() { return response(statuses.shift()); },
+      async waitForTimeout(ms) { waits.push(ms); },
+    };
+    const result = await gotoWithRetry(page, 'https://example.com', { retryDelays: [10, 20] });
+    assert.equal(result.status(), 200);
+    assert.deepEqual(waits, [10]);
+  });
+}
+
+test('responsive navigation keeps a persistent 504 as a failure', async () => {
+  let calls = 0;
+  const page = {
+    async goto() { calls++; return response(504); },
+    async waitForTimeout() {},
+  };
+  const result = await gotoWithRetry(page, 'https://example.com', { retryDelays: [10, 20] });
+  assert.equal(result.status(), 504);
+  assert.equal(calls, 3);
 });

@@ -26,6 +26,8 @@ test("the privacy policy discloses Microsoft Clarity and its cookieless denied-c
   const section = page.slice(page.indexOf('id="optional-analytics"'));
   assert.match(section, /<h3>Microsoft Clarity<\/h3>/);
   assert.match(section, /consent signals set to denied/);
-  assert.match(section, /does not set Clarity cookies/);
+  assert.match(section, /does not set Clarity cookies on our website/);
+  // Observed 19 Nov 2026: with consent denied, clarity.ms/bing.com still set CLID, MUID and others as third-party cookies.
+  assert.match(section, /Microsoft’s own servers \(clarity\.ms and bing\.com\) may still place their cookies/);
   assert.match(section, /not loaded on staff, parent-portal, sign-in or API pages/);
 });

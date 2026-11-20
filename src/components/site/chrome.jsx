@@ -1,3 +1,4 @@
+import { HeroAyah } from "@/components/site/hero-ayah";
 import { NavigationLink as Link } from "@/components/site/navigation-link";
 import { ArrowRight, Clock, Globe2, Users, Video } from "@/components/site/icons";
 import { ContentImage } from "./content-image";
@@ -46,7 +47,7 @@ const IMMERSIVE_FEATURES = [
 ];
 
 // Full-bleed banner: the scene fills the right side and fades into the brand green.
-function ImmersiveHero({ eyebrow, title, titleAccent, intro, children, arabic, image, features, jsonLd }) {
+function ImmersiveHero({ eyebrow, title, titleAccent, intro, children, arabic, image, features, jsonLd, path }) {
   const lead = titleAccent && title.endsWith(titleAccent) ? title.slice(0, -titleAccent.length).trimEnd() : title;
   const backdrop = image.immersive;
   return (
@@ -74,6 +75,7 @@ function ImmersiveHero({ eyebrow, title, titleAccent, intro, children, arabic, i
               </li>
             ))}
           </ul>}
+          <HeroAyah path={path || title} />
         </div>
       </div>
     </section>
@@ -84,7 +86,7 @@ export function PageHero({ eyebrow, title, titleAccent, intro, children, arabic,
   const image = imageOverride || heroArt(art || path || title);
   if (immersive) {
     const jsonLd = path && <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", "@type": "WebPage", "@id": `${SITE_URL}${path}#webpage`, url: `${SITE_URL}${path}`, name: title, description: intro, isPartOf: { "@id": `${SITE_URL}/#website` }, about: { "@id": `${SITE_URL}/#organization` }, inLanguage: "en-GB" }) }} /><CmsPageSchema path={path} /></>;
-    return <ImmersiveHero {...{ eyebrow, title, titleAccent, intro, children, arabic, image, features, jsonLd }} />;
+    return <ImmersiveHero {...{ eyebrow, title, titleAccent, intro, children, arabic, image, features, jsonLd, path }} />;
   }
   return (
     <section className="inner-hero relative overflow-hidden text-mushaf-900">
@@ -105,6 +107,7 @@ export function PageHero({ eyebrow, title, titleAccent, intro, children, arabic,
         </div>
         {intro && <p className="mt-5 max-w-2xl text-[1.08rem] leading-relaxed text-ink-soft">{intro}</p>}
         {children}
+        <HeroAyah path={path || title} />
         </div>
         <div data-hero-visual className="inner-hero-visual min-w-0 overflow-hidden rounded-[1.75rem] border border-white bg-white shadow-[0_20px_60px_-25px_rgb(0_0_0/.4)]">{visual || <ContentImage src={image.src} alt={image.alt} priority sizes="(max-width: 1024px) 100vw, 600px" className="aspect-[3/2] w-full object-cover" />}</div>
       </div>

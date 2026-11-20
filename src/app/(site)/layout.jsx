@@ -9,6 +9,7 @@ import { SITE_URL } from "@/lib/config";
 import { CampaignAttribution } from "@/components/site/campaign-attribution";
 import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
+import { AyahBand } from "@/components/site/ayah-band";
 import { TopBar } from "@/components/site/chrome";
 import { getCourses, getMenus, getSettings } from "@/lib/site-data";
 import { WebsiteAnalytics } from "@/components/site/analytics";
@@ -66,6 +67,7 @@ export default async function SiteLayout({ children }) {
       <CampaignAttribution />
       <SiteHeader menu={header} courses={courseLinks} brandName={brandName} />
       <main id="main" data-site-motion><SiteMotion />{children}</main>
+      <AyahBand />
       <SiteFooter settings={settings} menus={footerMenus} />
       <MobileActionBar chatEnabled={chatEnabled} />
       <ReviewsButton config={reviewsButtonConfig(settings["site.reviews_button"], settings["site.social"])} consentText={settings["site.forms"]?.consent_text} />

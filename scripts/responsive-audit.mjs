@@ -47,14 +47,16 @@ function overflowReport() {
 
 const RATE_LIMIT_RETRY_DELAYS_MS = [2_000, 5_000, 10_000];
 
-// Production edge protection can return HTTP 429 when the full viewport matrix
-// is requested too quickly. Retry only 429 responses; other HTTP failures remain
-// visible to the audit and are never converted into success.
+// Production edge protection can return HTTP 429, and the host can return a brief
+// 502/503/504 under load, when the full viewport matrix is requested quickly.
+// Retry only those statuses with bounded backoff; 404/500 and persistent
+// failures remain visible to the audit and are never converted into success.
+const RETRYABLE_STATUSES = new Set([429, 502, 503, 504]);
 export async function gotoWithRetry(page, url, { retryDelays = RATE_LIMIT_RETRY_DELAYS_MS } = {}) {
   let response;
   for (let attempt = 0; attempt <= retryDelays.length; attempt++) {
     response = await page.goto(url, { waitUntil: "load", timeout: 60_000 });
-    if (response?.status() !== 429) return response;
+    if (!RETRYABLE_STATUSES.has(response?.status())) return response;
     if (attempt < retryDelays.length) await page.waitForTimeout(retryDelays[attempt]);
   }
   return response;

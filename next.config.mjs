@@ -134,6 +134,10 @@ const nextConfig = {
       { source: "/online-quran-academy", destination: "/", permanent: true },
       { source: "/free-trial-video-guide", destination: "/trial-video", permanent: true },
       { source: "/online-quran-classes-in-perth-australia", destination: "/locations/australia/perth", permanent: true },
+      // Mistyped city links inside the CMS body of /locations/australia (found by the 19 Nov 2026 crawl;
+      // they returned 404). Send them to the real city pages until the CMS text is corrected.
+      { source: "/locations/australia/australia-melbourne", destination: "/locations/australia/melbourne", permanent: true },
+      { source: "/locations/australia/locations-australia-brisbane", destination: "/locations/australia/brisbane", permanent: true },
       ...courses.map((slug) => ({ source: `/${slug}`, destination: `/courses/${slug}`, permanent: true })),
       { source: "/hifz-ul-quran-course", destination: "/courses/hifz-quran", permanent: true },
       // Duplicate course (17 Nov 2026, owner): "Quran Recitation" repeated the Nazara course's

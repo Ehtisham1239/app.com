@@ -69,6 +69,7 @@ OQC is online-only. It is not eligible for Google Business Profile, and no virtu
 | 10 | Muslim Business Network Australia: mbnaus.com/submit-business | AU | Citation | Listing is free for Muslim-owned businesses; no ABN or address requirement stated | ready: submit and state clearly that lessons are online, with no Australian office |
 | 11 | AMCOB: amcob.org/add-listing | USA | Citation | Form with Education categories and no address field. Search results describe AMCOB as membership-based | hold: list only if it is free, without paid membership |
 | 12 | LinkedIn company page | Global | Existing profile | — | existing, not new credit |
+| 13 | MuslimMatters guest submissions: muslimmatters.org/write-for-us/ (gate score 85, batch 4, 20 Nov 2026) | USA / global English | Editorial | Collaborative Muslim magazine since 2007, posts dated 18–19 Nov 2026; named Editor-in-Chief (Hena Zuberi) on /the-team/; sections "Quran and Sunnah", "Homeschooling", "Education"; one Airtable submission form; "does not currently pay guest writers"; minimum 750 words; "Please do NOT submit AI generated material"; "publishes very few". Manitoba Education lists it as a Grade 12 resource | ready for the owner's team: a human-written, non-promotional article by a real OQC teacher (e.g. practical Tajweed habits for adult beginners), no keyword anchors, no request for a link; Claude does not draft the text because the publisher refuses AI-written material. Owner approval needed before submitting |
 
 **Submissions are not yet made.** They need the owner's go-ahead in chat. Each one sends business details in OQC's name, and some need an account whose password stays with the owner. Record every receipt here, then count it only after the public listing URL is verified.
 
@@ -119,6 +120,24 @@ Focus: homeschool resource lists and parent/community publishers, as batch 2 rec
 | IQRA Network (iqranetwork.com) | US paid online Quran and Islamic school with pricing and evaluations | 0 (not eligible) | Not a fit: competitor |
 
 Learning from batch 3: open web searches for "Muslim homeschool resources" now return mostly competing academies. The December batch should start from named UK/Canada Muslim homeschool groups and mosque newsletters found by a person (Facebook groups are not readable here), then score them.
+
+### Gate scores, batch 4 (20 Nov 2026, scheduled run; web search plus pages opened, nothing submitted)
+
+Focus: podcasts and parent publishers (search pattern "Quran education podcast USA"), Australia directories and UAE resources. Same scoring. One prospect reached 75 and joins the queue as item 13.
+
+| Prospect | Evidence from the live page | Score | Decision |
+|---|---|---:|---|
+| MuslimMatters (muslimmatters.org/write-for-us/) | See queue item 13: active magazine, named Editor-in-Chief, Quran/Homeschooling/Education sections, unpaid editorial selection, no AI-written submissions | 85 | Qualifies: queue item 13 (editorial pitch by the owner's team) |
+| Mommying While Muslim podcast (mommyingwhilemuslim.com) | US Muslim moms; named hosts Uzma Jafri and Zaiba Hasan; cohost farewell episode 9 Jan 2025; contact salam@mommyingwhilemuslim.com; no guest policy; parenting, not Quran learning; current activity not confirmed | 70 | Below gate: re-check for new episodes in December; a teacher-interview pitch only if the show is active |
+| Muslim Superdad and Wondermom podcast (Rephonic listing) | Hosted by Amin Aaser, CEO of Noor Kids (an Islamic children's education company, partly overlapping with OQC); Islamic parenting; no public guest route; episode dates not visible | 66 | Below gate: overlap with the host's own business, no route |
+| FeedSpot "Muslim mom podcasts" list (podcast.feedspot.com) | Commercial podcast directory updated 27 Oct 2026; "Sponsor this list"; lists podcasts only | 0 (not eligible) | Not a fit: OQC has no podcast; sponsored placements |
+| Manitoba Education Grade 12 Islam resource, references (edu.gov.mb.ca PDF) | Government teacher resource; newest cited item 2021; no submission route | 40 | Not a fit: closed list (useful only as evidence for MuslimMatters' standing) |
+| Ummazing (Birmingham Post article via inkl) | UK Muslim-friendly services platform, free-to-paid listings; covers halal finance, venues, restaurants; article about 2022; site itself not opened | 35 | Below gate: no education relevance; activity unknown |
+| myprivatetutor.ae Islamic tutors pages | UAE tutor marketplace listing individual Quran tutors | 0 (not eligible) | Not a fit: competing marketplace, as with dubizzle |
+| askfilo.com Islamic studies online tutors UAE | Tutor marketplace with duplicate location pages per tutor | 0 (rejected) | Reject: thin, duplicate pages |
+| australianmanufacturing.com.au business directory "quran-education" category | General Australian business directory with an auto-generated category page | 20 | Reject: no audience or editorial fit |
+
+Learning from batch 4: established Muslim magazines with an editorial desk score higher than directories or podcasts; the next batch should screen UK and Canada equivalents (community magazines and mosque newsletters with named editors).
 
 Next batch (batch 2 note): follow the search patterns below with UK/Canada parent newsletters and homeschool co-ops, which the plan names for December; generic Muslim business directories have now mostly been screened.
 

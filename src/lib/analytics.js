@@ -189,7 +189,9 @@ export function createAnalyticsController(win, config) {
       // 26 Oct 2026), so it sends cookieless pings only and sets no advertising cookie.
       command("js", new Date());
       command("config", config.adsId, { allow_ad_personalization_signals: false, ...cookieless });
-      load("oqc-google-ads", `https://www.googletagmanager.com/gtag/js?id=${config.adsId}`);
+      // With Tag Manager both containers already carry this Ads tag, so a separate gtag.js only
+      // loaded it a third time (155 KB, ~250 ms of mobile script). Owner approved removal, 19 Nov 2026.
+      if (config.mode !== "gtm") load("oqc-google-ads", `https://www.googletagmanager.com/gtag/js?id=${config.adsId}`);
     }
   }
   function pageView(path) {

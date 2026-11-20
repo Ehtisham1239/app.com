@@ -60,7 +60,7 @@ export default function QuranStudyPage() {
       <div className="page-wrap pt-10">
         <figure className="quran-verse-panel quran-verse-panel-study rounded-3xl px-5 py-6 text-center sm:px-8">
           <blockquote>
-            <p lang="ar" dir="rtl" className="arabic text-3xl leading-relaxed sm:text-4xl">وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِنْ مُدَّكِرٍ</p>
+            <p lang="ar" dir="rtl" className="arabic quran-text text-3xl leading-relaxed sm:text-4xl">وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِنْ مُدَّكِرٍ</p>
             <p className="mt-1 text-sm leading-relaxed">“We have certainly made the Qur’an easy to remember. Is there anyone who will take heed?”</p>
           </blockquote>
           <figcaption className="mt-2 text-sm">
