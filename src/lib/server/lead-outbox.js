@@ -10,7 +10,21 @@ import { buildContactEmail, buildLeadEmail, sendLeadEmail } from "../usa-lead-no
 const USA_LANDING = "/usa-quran-classes";
 const code = (value) => String(value || "").toLowerCase().replace(/[^a-z0-9_]/g, "").slice(0, 80) || "unknown";
 
-async function deliver(job, lead, { highLevel, emailConfig, siteUrl, fetchImpl }) {
+// LEAD_SYNC_SINCE (an ISO date such as 2026-11-21T00:00:00Z) keeps leads that were submitted before
+// it out of HighLevel and out of the admissions inbox, so switching the connector on does not message
+// a backlog. Such a lead is closed without delivery: no CRM status row is written for it.
+export function parseSyncSince(value) {
+  const text = String(value ?? "").trim();
+  if (!text) return { since: null, valid: true };
+  const time = Date.parse(text);
+  return Number.isNaN(time) ? { since: null, valid: false } : { since: time, valid: true };
+}
+
+async function deliver(job, lead, { highLevel, emailConfig, siteUrl, fetchImpl, since }) {
+  if (since !== null && since !== undefined) {
+    const created = Date.parse(lead.created_at);
+    if (Number.isNaN(created) || created < since) return { crmOk: null, emailOk: true, error: null, skipped: true };
+  }
   const usa = lead.utm?.landing_page === USA_LANDING;
   const result = { crmOk: null, emailOk: job.email_done, error: null };
 
@@ -46,8 +60,8 @@ async function deliver(job, lead, { highLevel, emailConfig, siteUrl, fetchImpl }
   return result;
 }
 
-export async function processLeadSyncBatch({ db, highLevel, emailConfig, siteUrl, limit = 10, fetchImpl = fetch, log = () => {} }) {
-  const summary = { claimed: 0, done: 0, retry: 0, dead: 0, failed_lookup: 0 };
+export async function processLeadSyncBatch({ db, highLevel, emailConfig, siteUrl, limit = 10, fetchImpl = fetch, log = () => {}, since = null }) {
+  const summary = { claimed: 0, done: 0, retry: 0, dead: 0, failed_lookup: 0, skipped_before_since: 0 };
   const { data: jobs, error, status: rpcStatus } = await db.rpc("claim_lead_sync_jobs", { p_limit: limit });
   if (error) {
     log("error", { event: "lead_sync", outcome: "claim_failed", rpc_error_code: code(error.code), rpc_http_status: rpcStatus });
@@ -62,7 +76,8 @@ export async function processLeadSyncBatch({ db, highLevel, emailConfig, siteUrl
         summary.failed_lookup += 1;
         outcome = { crmOk: null, emailOk: false, error: "lead_lookup_failed" };
       } else {
-        outcome = await deliver(job, lead, { highLevel, emailConfig, siteUrl, fetchImpl });
+        outcome = await deliver(job, lead, { highLevel, emailConfig, siteUrl, fetchImpl, since });
+        if (outcome.skipped) summary.skipped_before_since += 1;
       }
     } catch (caught) {
       outcome = { crmOk: null, emailOk: false, error: code(caught?.name || "worker_error") };
