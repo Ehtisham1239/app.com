@@ -60,6 +60,9 @@ const nextConfig = {
   async rewrites() {
     return {
       beforeFiles: [
+        // Markdown for AI agents: only requests whose Accept header asks for text/markdown (browsers never do).
+        { source: "/", has: [{ type: "header", key: "accept", value: ".*text/markdown.*" }], destination: "/md" },
+        { source: "/:path((?!_next/|api/|admin|auth|parents|login|md/|gone).+)", has: [{ type: "header", key: "accept", value: ".*text/markdown.*" }], destination: "/md/:path" },
         // Crawlers and browsers request /favicon.ico regardless of <link rel="icon">; serve the generated brand icon instead of a 404.
         { source: "/favicon.ico", destination: "/icon" },
         { source: "/blog", has: [{ type: "query", key: "page" }], destination: "/blog/browse" },
