@@ -8,6 +8,10 @@ import lighthouse from 'lighthouse';
 import desktopConfig from 'lighthouse/core/config/desktop-config.js';
 import { auditOrigin } from './lib/audit-origin.mjs';
 
+// Page never painted or never started navigating: a runner/page-load hiccup, retried up to 3 times.
+// Any other Lighthouse error, and a persistent one, still fails the audit.
+export const TRANSIENT_LIGHTHOUSE_CODES = new Set(['NO_NAVSTART', 'NO_FCP']);
+
 const remote = process.argv.find(arg => /^https?:\/\//.test(arg));
 const out = process.env.OQC_QA_OUTPUT || 'artifacts/performance';
 mkdirSync(out, { recursive: true });
@@ -68,8 +72,8 @@ try {
         console.log(JSON.stringify(summary, null, 2));
         completed = true;
       } catch (error) {
-        if (error.code !== 'NO_NAVSTART' || attempt === 3) throw error;
-        console.warn(`Transient Lighthouse NO_NAVSTART for ${url} (${device}); retry ${attempt + 1}/3`);
+        if (!TRANSIENT_LIGHTHOUSE_CODES.has(error.code) || attempt === 3) throw error;
+        console.warn(`Transient Lighthouse ${error.code} for ${url} (${device}); retry ${attempt + 1}/3`);
         await new Promise(resolve => setTimeout(resolve, 1500 * attempt));
       } finally {
         await launched.kill();

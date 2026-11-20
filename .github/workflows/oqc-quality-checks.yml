@@ -66,7 +66,7 @@ jobs:
           set -euo pipefail
           base="https://www.onlinequrancollege.com"
           for path in /reviews /free-trial /locations/united-kingdom /locations/united-states /locations/canada /locations/australia /locations/united-arab-emirates /robots.txt /sitemap.xml; do
-            status=$(curl -sS -o /tmp/oqc-response -w '%{http_code}' "$base$path")
+            status=$(curl -sS --retry 6 --retry-delay 10 -o /tmp/oqc-response -w '%{http_code}' "$base$path")
             test "$status" = "200" || { echo "$path returned $status"; exit 1; }
           done
       - name: Verify legacy pricing slash and course market links
