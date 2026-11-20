@@ -22,3 +22,12 @@ test("CMS pages pass their stored updated_at to the WebPage schema; nothing else
   assert.match(cms, /published=\{page\.published_at\}/);
   assert.match(cms, /datePublished: modifiedIso\(page\.published_at\)/);
 });
+
+test("static pages carry the reviewed date as dateModified", async () => {
+  const { STATIC_PAGES_REVIEWED, modifiedIso } = await import("../src/lib/seo.js");
+  assert.equal(modifiedIso(STATIC_PAGES_REVIEWED), STATIC_PAGES_REVIEWED);
+  for (const f of ["learn", "locations", "pricing", "faq", "courses"]) {
+    const src = readFileSync(`src/app/(site)/${f}/page.jsx`, "utf8");
+    assert.match(src, /modified=\{STATIC_PAGES_REVIEWED\}/, f);
+  }
+});

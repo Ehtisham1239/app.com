@@ -7,7 +7,7 @@ import { PageHero, SectionHeading } from "@/components/site/chrome";
 import { CtaBand, FaqList } from "@/components/site/sections";
 import { getFaqs, getPlans, getSettings } from "@/lib/site-data";
 import { whatsappLink } from "@/lib/format";
-import { faqSchema, safeJsonLd } from "@/lib/seo";
+import { faqSchema, safeJsonLd, STATIC_PAGES_REVIEWED } from "@/lib/seo";
 import { getUsdRates } from "@/lib/fx";
 import { feeAnswer } from "@/lib/fee-answer";
 import { INDEXED_MARKETS, getLocation, locationPath } from "@/lib/locations";
@@ -35,7 +35,7 @@ export default async function PricingPage() {
 
   return (
     <>
-      <PageHero path="/pricing"
+      <PageHero path="/pricing" modified={STATIC_PAGES_REVIEWED}
         eyebrow="Fees"
         title="Online Quran class fees and packages"
         intro="Choose how many days a week suit your family. Compare lesson frequency, duration and fees below. A 3-day free trial is available on eligible plans; the Weekend plan is excluded."

@@ -8,7 +8,7 @@ import { getCourses, getSettings } from "@/lib/site-data";
 import { whatsappLink } from "@/lib/format";
 import { SITE_URL } from "@/lib/config";
 import { courseListSchema } from "@/lib/course-schema";
-import { safeJsonLd } from "@/lib/seo";
+import { safeJsonLd, STATIC_PAGES_REVIEWED } from "@/lib/seo";
 
 export const revalidate = 300;
 
@@ -49,7 +49,7 @@ export default async function CoursesPage() {
   return (
     <>
       {courses.length > 0 && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(courseListSchema(courses, SITE_URL)) }} />}
-      <PageHero path="/courses"
+      <PageHero path="/courses" modified={STATIC_PAGES_REVIEWED}
         eyebrow="Courses"
         imageOverride={{
           src: "/images/quran-courses-family.webp",
