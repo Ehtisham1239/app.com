@@ -10,9 +10,11 @@ const TTL = 5 * 60 * 1000;
 
 export async function GET(_request, { params }) {
   const { path = [] } = await params;
-  // For "/" the rewrite can hand over no segment, an empty one or "index"; no real page is called /index.
+  // For "/" the rewrite (destination "/md") hands over ["md"] (observed on Next 16.4.6); a direct hit on /md gives [] and
+  // /md/index gives ["index"]. None of "md" and "index" is a real public page, so a lone one of them means the home page.
   const segments = path.filter(Boolean);
-  const pathname = segments.length === 1 && segments[0] === "index" ? "/" : `/${segments.join("/")}`;
+  const home = segments.length === 0 || (segments.length === 1 && (segments[0] === "md" || segments[0] === "index"));
+  const pathname = home ? "/" : `/${segments.join("/")}`;
   if (!markdownPathAllowed(pathname)) return new Response("Not found", { status: 404, headers: { ...HEADERS, "Content-Type": "text/plain; charset=utf-8" } });
   const hit = cache.get(pathname);
   if (hit && Date.now() - hit.at < TTL) return new Response(hit.body, { headers: { ...HEADERS, "Content-Type": "text/markdown; charset=utf-8" } });
