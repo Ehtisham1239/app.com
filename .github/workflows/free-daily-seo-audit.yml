@@ -1,0 +1,29 @@
+name: Free Daily SEO Audit
+on:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Crawl public site (max 500 URLs)
+        run: node scripts/free-seo-audit.mjs
+      - name: Publish audit summary
+        if: always()
+        run: |
+          if [ -f seo-reports/summary.md ]; then cat seo-reports/summary.md >> "$GITHUB_STEP_SUMMARY"; fi
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-seo-report
+          path: seo-reports/
+          retention-days: 14
