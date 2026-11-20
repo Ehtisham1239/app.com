@@ -6,7 +6,7 @@ import { breadcrumbSchema, safeJsonLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
 
 export const revalidate = 300;
-export const metadata = contentMetadata({ title: "Online Quran College at a Glance: Courses, Trial and Contact", seo_noindex: false }, { path: "/at-a-glance", description: "Everything about Online Quran College in one page: live one-to-one courses, how the 3-day free trial works, teachers, countries served online, answers and contact details." });
+export const metadata = contentMetadata({ title: "Online Quran College at a Glance: Courses, Trial and Contact", seo_noindex: false }, { path: "/at-a-glance", description: "Everything about Online Quran College on one page: live one-to-one courses, the 3-day free trial, teachers, countries served online, FAQs and contact details." });
 
 const card = "rounded-2xl border border-line bg-white p-6 shadow-sm";
 const chip = "rounded-full border border-line px-4 py-2 hover:bg-leaf-50";
