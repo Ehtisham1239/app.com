@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerClient } from "@/lib/supabase/server";
 import { SITE_URL } from "@/lib/config";
 import { fetchWithoutRedirect, readBoundedText } from "@/lib/site-health-fetch";
+import { leadDeliveryStatus } from "@/lib/server/lead-delivery-status";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
@@ -83,7 +84,7 @@ export async function GET() {
     }
     const issues = pages.flatMap((page) => page.findings.map((finding) => ({ url: page.url, status: page.status, finding })));
     return response({
-      ok: true, scannedAt: new Date().toISOString(), sitemapUrl: new URL("/sitemap.xml", root).href,
+      ok: true, scannedAt: new Date().toISOString(), leadDelivery: leadDeliveryStatus(), sitemapUrl: new URL("/sitemap.xml", root).href,
       totalUrls: unique.length, scannedUrls: pages.length, partial: unique.length > pages.length, pages, issues,
       summary: {
         pagesWithIssues: pages.filter((page) => page.findings.length).length,
