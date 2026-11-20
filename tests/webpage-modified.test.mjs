@@ -18,4 +18,7 @@ test("CMS pages pass their stored updated_at to the WebPage schema; nothing else
   assert.match(cms, /modified=\{page\.updated_at\}/);
   assert.match(cms, /dateModified: modifiedIso\(page\.updated_at\)/);
   assert.equal((chrome.match(/\.\.\.\(dateModified \? \{ dateModified \} : \{\}\)/g) || []).length, 2);
+  assert.equal((chrome.match(/\.\.\.\(datePublished \? \{ datePublished \} : \{\}\)/g) || []).length, 2);
+  assert.match(cms, /published=\{page\.published_at\}/);
+  assert.match(cms, /datePublished: modifiedIso\(page\.published_at\)/);
 });
