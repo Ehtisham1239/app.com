@@ -30,4 +30,9 @@ test("static pages carry the reviewed date as dateModified", async () => {
     const src = readFileSync(`src/app/(site)/${f}/page.jsx`, "utf8");
     assert.match(src, /modified=\{STATIC_PAGES_REVIEWED\}/, f);
   }
+
+test("teacher profile shows an initial avatar (not a photo) when no photo is stored", () => {
+  const src = readFileSync("src/app/(site)/teachers/[slug]/page.jsx", "utf8");
+  assert.match(src, /teacherInitial\(t\.display_name\)/);
+  assert.match(src, /t\.photo_url \?/);
 });
