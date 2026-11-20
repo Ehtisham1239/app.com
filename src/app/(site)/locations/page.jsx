@@ -2,12 +2,13 @@ import Link from "next/link";
 import { locationImage } from "@/lib/location-image";
 import { contentMetadata } from "@/lib/seo-metadata";
 import { LocationDirectory } from "@/components/site/location-directory";
+import { STATIC_PAGES_REVIEWED } from "@/lib/seo";
 import { PageHero } from "@/components/site/chrome";
 import { INDEXED_MARKETS, RESTORED_LOCATION_PATHS, getLocation, locationPath } from "@/lib/locations";
 
 export const metadata = contentMetadata({ title: "Online Quran classes by country", seo_noindex: false }, { path: "/locations", description: "Browse UK, USA, Canada, Australia and UAE time-zone guides for online Quran lessons. Admissions confirms teacher availability and fees before enrolment." });
 export default function LocationsPage() {
-  return <><PageHero immersive path="/locations" eyebrow="Learn from anywhere" title="Online Quran lesson guides by country" titleAccent="by country" intro="Explore online Quran classes by country with practical scheduling guides for local time zones. Admissions confirms availability, teacher matching and payment options before enrolment." />
+  return <><PageHero immersive path="/locations" modified={STATIC_PAGES_REVIEWED} eyebrow="Learn from anywhere" title="Online Quran lesson guides by country" titleAccent="by country" intro="Explore online Quran classes by country with practical scheduling guides for local time zones. Admissions confirms availability, teacher matching and payment options before enrolment." />
     <section className="page-wrap py-16"><p className="mb-8 text-ink-soft">Browse online Quran classes by country using these practical time-zone and currency guides. Lessons are live and online only; a guide does not represent a local branch or guarantee that a specific teacher or payment option is available in every country.</p>
       <section className="mb-8 rounded-2xl border border-leaf-100 bg-leaf-50 p-5 sm:p-7" aria-labelledby="popular-market-guides">
         <h2 id="popular-market-guides" className="text-2xl">Plan lessons in your local time</h2>

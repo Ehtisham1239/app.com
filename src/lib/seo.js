@@ -67,6 +67,9 @@ export function shouldIncludeInSitemap(record, path, siteUrl) {
   return !record?.seo_noindex && (!record?.canonical_url || canonicalUrl(record.canonical_url, path, siteUrl) === new URL(path, siteUrl).href);
 }
 export function safeJsonLd(value) { return JSON.stringify(value).replace(/</g, "\\u003c"); }
+/** Date the owner-reviewed static pages (home hubs, FAQ, courses, pricing, learn, locations) were last checked. Update it only when their content is actually reviewed or changed. */
+export const STATIC_PAGES_REVIEWED = "2026-11-21T00:00:00.000Z";
+
 /** ISO 8601 `dateModified` from a stored timestamp; undefined when the value is missing or not a real date (never invent one). */
 export function modifiedIso(value) {
   if (!value) return undefined;

@@ -8,7 +8,7 @@ import { ContentImage } from "@/components/site/content-image";
 import { LEARNING_GUIDES } from "@/lib/learning-guides";
 import { COURSE_STARTING_POINTS, LEARNING_ARTICLE_PATHS } from "@/lib/learning-decisions";
 import { getCourses, getPage, getPosts, getPublishedSlugs } from "@/lib/site-data";
-import { breadcrumbSchema, safeJsonLd, shouldIncludeInSitemap } from "@/lib/seo";
+import { breadcrumbSchema, safeJsonLd, shouldIncludeInSitemap, STATIC_PAGES_REVIEWED } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
 
 export const revalidate = 3600;
@@ -45,7 +45,7 @@ export default async function Page() {
   return <>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema([{ name: "Learning guides", path: "/learn" }], SITE_URL)) }} />
     {resources.length > 0 && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(resourceList) }} />}
-    <PageHero immersive path="/learn" eyebrow="Learning centre" title="Quran learning guides for families and adults" intro="Start with your learner’s current reading level and goals, then explore a course and discuss a trial." />
+    <PageHero immersive path="/learn" modified={STATIC_PAGES_REVIEWED} eyebrow="Learning centre" title="Quran learning guides for families and adults" intro="Start with your learner’s current reading level and goals, then explore a course and discuss a trial." />
     <div className="page-wrap py-12">
       <nav aria-label="On this learning guide" className="flex flex-wrap gap-3 text-sm font-semibold text-leaf-700">
         <a className="rounded-full border border-line px-4 py-2 hover:bg-leaf-50" href="#course-comparison">Compare courses</a>
