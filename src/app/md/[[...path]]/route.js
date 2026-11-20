@@ -10,7 +10,7 @@ const TTL = 5 * 60 * 1000;
 
 export async function GET(_request, { params }) {
   const { path = [] } = await params;
-  const pathname = `/${path.join("/")}`;
+  const pathname = `/${path.filter(Boolean).join("/")}`;
   if (!markdownPathAllowed(pathname)) return new Response("Not found", { status: 404, headers: { ...HEADERS, "Content-Type": "text/plain; charset=utf-8" } });
   const hit = cache.get(pathname);
   if (hit && Date.now() - hit.at < TTL) return new Response(hit.body, { headers: { ...HEADERS, "Content-Type": "text/markdown; charset=utf-8" } });

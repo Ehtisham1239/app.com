@@ -31,3 +31,8 @@ test("the Markdown route is never cached and is noindex", () => {
   assert.match(route, /"X-Robots-Tag": "noindex"/);
   assert.match(route, /markdownPathAllowed\(pathname\)/);
 });
+
+test("the home page maps to path / even when the rewrite passes an empty segment", () => {
+  const route = readFileSync("src/app/md/[[...path]]/route.js", "utf8");
+  assert.match(route, /path\.filter\(Boolean\)\.join\("\/"\)/);
+});
