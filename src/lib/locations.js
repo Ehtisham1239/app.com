@@ -961,12 +961,12 @@ export function marketHreflang(siteUrl) {
   return { ...languages, "x-default": `${siteUrl}/locations` };
 }
 export const defaultLocationNoindex = (country, city) => Boolean(city) || !INDEXED_MARKETS.includes(country.slug);
-// Owner decision (18 Nov 2026, replaces the 16 Nov retirement): every country and every city
-// page is live and indexable on its own address; none redirects to a country page. The five
-// market hubs are live through INDEXED_MARKETS, so they are not repeated here. The only
-// exception is a city-state whose city page would repeat its country page word for word
-// (Monaco, San Marino, Vatican City): that city URL 301s to the one country page.
-// Each page states that classes are online and does not claim a local branch.
+// Routes remain available independently of indexability. The five target-market hubs
+// are indexable by default; other country and city pages require an explicit CMS
+// seo_noindex=false decision after genuinely unique local value is reviewed.
+// Thin/duplicate pages remain live but noindex and out of the sitemap. Duplicate
+// city-state pages that repeat their country page still 301 to that country page.
+// Every page states that classes are online and does not claim a local branch.
 export const RESTORED_LOCATION_PATHS = LOCATIONS.flatMap((country) => [
   ...(INDEXED_MARKETS.includes(country.slug) ? [] : [country.slug]),
   ...country.cities.filter((city) => city.name !== country.name).map((city) => `${country.slug}/${city.slug}`),
@@ -978,11 +978,10 @@ export const APPROVED_CITY_PAGES = [];
 export const isApprovedCityPage = (country, city) => Boolean(city) && APPROVED_CITY_PAGES.includes(`${country.slug}/${city.slug}`);
 export const locationIndexRecord = (page, country, city) => ({
   ...(page || {}),
-  seo_noindex: isRestoredLocation(country, city)
-    ? false
-    : city
-      ? !(isApprovedCityPage(country, city) && page?.seo_noindex === false)
-      : page?.seo_noindex ?? defaultLocationNoindex(country, city),
+  // The published CMS decision is authoritative. Without an explicit approval,
+  // city and non-hub country pages default to noindex; the five market hubs default
+  // to indexable. This same record is used by page metadata and sitemap generation.
+  seo_noindex: page?.seo_noindex ?? defaultLocationNoindex(country, city),
 });
 
 // Internal links between live location pages so none depends on a single inbound link: the parent country,
