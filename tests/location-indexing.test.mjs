@@ -15,17 +15,17 @@ const EXPECTED_LIVE = LOCATIONS.reduce(
   (n, country) =>
     n +
     (INDEXED_MARKETS.includes(country.slug) ? 0 : 1) +
-    country.cities.filter((city) => city.name !== country.name).length,
+    country.cities.length,
   0,
 );
 const SITE_URL = "https://www.onlinequrancollege.com";
 
-test("configured country and city routes remain live except the three duplicate city-state URLs", () => {
+test("every configured country and city route is live, including the three city-state URLs (owner, 20 Nov 2026)", () => {
   assert.equal(RESTORED_LOCATION_PATHS.length, EXPECTED_LIVE);
   assert.equal(new Set(RESTORED_LOCATION_PATHS).size, EXPECTED_LIVE);
 
   for (const key of ["monaco/monaco", "san-marino/san-marino", "vatican-city/vatican-city"]) {
-    assert.equal(RESTORED_LOCATION_PATHS.includes(key), false, key);
+    assert.equal(RESTORED_LOCATION_PATHS.includes(key), true, key);
   }
 
   for (const country of LOCATIONS) {
@@ -35,8 +35,7 @@ test("configured country and city routes remain live except the three duplicate 
       country.slug,
     );
     for (const city of country.cities) {
-      const duplicateCityState = city.name === country.name;
-      assert.equal(isLiveLocation(country, city), !duplicateCityState, `${country.slug}/${city.slug}`);
+      assert.equal(isLiveLocation(country, city), true, `${country.slug}/${city.slug}`);
     }
   }
 });
@@ -50,13 +49,11 @@ test("only the five target-market hubs are indexable by default", () => {
     );
 
     for (const city of country.cities) {
-      const duplicateCityState = city.name === country.name;
       assert.equal(
         locationIndexRecord(undefined, country, city).seo_noindex,
         true,
         `${country.slug}/${city.slug}`,
       );
-      if (duplicateCityState) assert.equal(isLiveLocation(country, city), false);
     }
   }
 });
@@ -108,4 +105,17 @@ test("approved country hubs remain indexable unless CMS explicitly sets noindex"
 test("a city page shows its own CMS guidance open when substantive local content is published", () => {
   const src = readFileSync(new URL("../src/components/site/location-page.jsx", import.meta.url), "utf8");
   assert.match(src, /<details className="surface p-6" open=\{Boolean\(city\)\}>/);
+});
+
+test("city-state headings do not repeat the place name", async () => {
+  const { locationHeading, getLocation } = await import("../src/lib/locations.js");
+  for (const slug of ["monaco", "san-marino", "vatican-city"]) {
+    const country = getLocation(slug);
+    const city = country.cities[0];
+    const expected = `Online Quran classes in ${country.name}`;
+    assert.equal(locationHeading(country, city), expected, slug);
+    assert.equal(locationHeading(country, city, `${expected}, ${country.name}`), expected, slug);
+  }
+  const uk = getLocation("united-kingdom");
+  assert.equal(locationHeading(uk, uk.cities[0]), `Online Quran classes in ${uk.cities[0].name}, ${uk.name}`);
 });

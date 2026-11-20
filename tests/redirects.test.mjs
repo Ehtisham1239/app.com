@@ -41,8 +41,8 @@ test('every legacy country and city URL resolves in one hop to a live page, a hu
       else{const route=bySource.get(path);assert.equal(route?.destination,target,path);assert.equal(route.permanent,true);}
     }
   }
-  assert.equal(RESTORED_LOCATION_PATHS.length,LOCATIONS.reduce((n,c)=>n+(INDEXED_MARKETS.includes(c.slug)?0:1)+c.cities.filter(x=>x.name!==c.name).length,0));
-  for(const key of ['monaco/monaco','san-marino/san-marino','vatican-city/vatican-city'])assert.equal(bySource.get('/locations/'+key)?.destination,'/locations/'+key.split('/')[0],key);
+  assert.equal(RESTORED_LOCATION_PATHS.length,LOCATIONS.reduce((n,c)=>n+(INDEXED_MARKETS.includes(c.slug)?0:1)+c.cities.length,0));
+  for(const key of ['monaco/monaco','san-marino/san-marino','vatican-city/vatican-city'])assert.equal(bySource.has('/locations/'+key),false,key+' is a live city page and must not redirect (owner, 20 Nov 2026)');
 });
 
 test('redirect sources are unique and have no self redirects, chains or external targets',()=>{

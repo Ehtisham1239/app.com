@@ -891,8 +891,8 @@ export const LOCATIONS = [
 export const getLocation = (slug) => LOCATIONS.find((country) => country.slug === slug);
 export const locationPath = (country, city) => `/locations/${country.slug}${city ? `/${city.slug}` : ""}`;
 // City-states (Monaco, San Marino, Vatican City) have one "city" with the same
-// name as the country; that page duplicates the country page, so it points its
-// canonical at the country page and stays out of the sitemap and city links.
+// name as the country. Owner (20 Nov 2026): that city URL stays its own live page (no redirect);
+// like every city page it is noindex and out of the sitemap until the CMS approves it.
 export const isCityState = (country, city) => Boolean(city) && city.name === country.name;
 export const locationCmsSlug = (country, city) => `locations-${country.slug}${city ? `-${city.slug}` : ""}`;
 
@@ -914,9 +914,10 @@ export const countryInName = (country) => `${/^(United |Netherlands$|Czech Repub
 // (no article) as the CMS title. Only that exact generated text is corrected;
 // a title staff have rewritten is shown as saved.
 export function locationHeading(country, city, cmsTitle) {
-  const place = city ? `${city.name}, ${country.name}` : countryInName(country);
+  const place = city && !isCityState(country, city) ? `${city.name}, ${country.name}` : city ? country.name : countryInName(country);
   const generated = `Online Quran classes in ${city ? place : country.name}`;
-  return !cmsTitle || cmsTitle === generated ? `Online Quran classes in ${place}` : cmsTitle;
+  const doubled = city && isCityState(country, city) ? `Online Quran classes in ${city.name}, ${country.name}` : null;
+  return !cmsTitle || cmsTitle === generated || cmsTitle === doubled ? `Online Quran classes in ${place}` : cmsTitle;
 }
 // Country pages whose Search Console demand is for Arabic first (evidence per slug). Lithuania,
 // 28 Oct–6 Nov 2026: "arabic classes near me" 166 impressions at position ~5.7 and 0 clicks while the
@@ -964,12 +965,12 @@ export const defaultLocationNoindex = (country, city) => Boolean(city) || !INDEX
 // Routes remain available independently of indexability. The five target-market hubs
 // are indexable by default; other country and city pages require an explicit CMS
 // seo_noindex=false decision after genuinely unique local value is reviewed.
-// Thin/duplicate pages remain live but noindex and out of the sitemap. Duplicate
-// city-state pages that repeat their country page still 301 to that country page.
+// Thin/duplicate pages remain live but noindex and out of the sitemap. The city-state
+// city URLs (Monaco, San Marino, Vatican City) are live too: no location page redirects (owner, 20 Nov 2026).
 // Every page states that classes are online and does not claim a local branch.
 export const RESTORED_LOCATION_PATHS = LOCATIONS.flatMap((country) => [
   ...(INDEXED_MARKETS.includes(country.slug) ? [] : [country.slug]),
-  ...country.cities.filter((city) => city.name !== country.name).map((city) => `${country.slug}/${city.slug}`),
+  ...country.cities.map((city) => `${country.slug}/${city.slug}`),
 ]).sort();
 const RESTORED_SET = new Set(RESTORED_LOCATION_PATHS);
 export const isRestoredLocation = (country, city) => RESTORED_SET.has(`${country.slug}${city ? `/${city.slug}` : ""}`);

@@ -80,8 +80,8 @@ const nextConfig = {
   async redirects() {
     const courses = ["noorani-qaida", "quran-nazara", "hifz-quran", "arabic-language", "quran-translation", "hadith-translation"];
     const ukAliases = ["london", "birmingham", "manchester", "leeds", "bradford", "leicester"].map((slug) => [`online-quran-classes-${slug}`, `/locations/united-kingdom/${slug}`]);
-    // Owner decision (18 Nov 2026): every country and city page is live. Only the Monaco,
-    // San Marino and Vatican City city URLs (identical to their country page) still 301.
+    // Owner decision (18 Nov 2026): every country and city page is live. No location page redirects; the Monaco,
+    // San Marino and Vatican City city URLs are live pages of their own (owner, 20 Nov 2026).
     const retiredLocationTarget = (country) => (isLiveLocation(country, null) ? locationPath(country) : "/courses");
     const oldRelativeLinks = [
       ...["about", "contact", "pricing", "careers"].map((slug) => [slug, `/${slug}`]),

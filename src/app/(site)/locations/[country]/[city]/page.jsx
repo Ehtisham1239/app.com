@@ -5,7 +5,7 @@ import { getLocation, locationPath, locationCmsSlug, locationSearchTitle, locati
 import { getPage } from "@/lib/site-data";
 import { SEARCH_INTENTS } from "@/lib/search-intent";
 export const revalidate = 300;
-// Owner decision (18 Nov 2026): only the city pages in RESTORED_LOCATION_PATHS are live; next.config.mjs redirects every other city.
+// Owner decision (18 Nov 2026): every city page in RESTORED_LOCATION_PATHS is live.
 export function generateStaticParams() { return RESTORED_LOCATION_PATHS.filter((p) => p.includes("/")).map((p) => { const [country, city] = p.split("/"); return { country, city }; }); }
 async function resolve(params) {
   const p = await params;
