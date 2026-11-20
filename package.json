@@ -50,7 +50,8 @@
     "react-dom": "19.3.0",
     "sanitize-html": "2.18.1",
     "sharp": "0.35.5",
-    "sonner": "2.0.8"
+    "sonner": "2.0.8",
+    "turndown": "^7.2.5"
   },
   "devDependencies": {
     "@electric-sql/pglite": "0.5.11",
