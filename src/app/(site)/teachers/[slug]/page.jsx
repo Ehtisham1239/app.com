@@ -1,4 +1,5 @@
 import { ContentImage } from "@/components/site/content-image";
+import { teacherInitial } from "@/components/site/teacher-initial";
 import { PageHero } from "@/components/site/chrome";
 import { contentMetadata } from "@/lib/seo-metadata";
 import Link from "next/link";
@@ -43,7 +44,7 @@ export default async function TeacherPage({ params }) {
       {person && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", ...person }) }} />}
       <PageHero path={`/teachers/${t.slug}`} art="teachers" eyebrow="Meet your teacher" title={t.display_name} intro={t.headline}>
         <Link href="/teachers" className="mt-5 inline-block text-sm text-leaf-700 underline">All teachers</Link>
-        <div className="mt-5 flex items-center gap-4">{t.photo_url && <span className="teacher-profile-portrait block size-20 shrink-0 overflow-hidden border-4 border-white"><ContentImage src={t.photo_url} alt={t.display_name} sizes="80px" className="block size-full object-cover object-[50%_30%]" /></span>}<div className="flex flex-wrap gap-2 text-sm">{t.years_experience ? <span>{t.years_experience}+ years teaching</span> : null}{t.languages?.map(l => <span key={l} className="rounded-full bg-white px-3 py-1">{l}</span>)}</div></div>
+        <div className="mt-5 flex items-center gap-4">{t.photo_url ? <span className="teacher-profile-portrait block size-20 shrink-0 overflow-hidden border-4 border-white"><ContentImage src={t.photo_url} alt={t.display_name} sizes="80px" className="block size-full object-cover object-[50%_30%]" /></span> : <span className="teacher-profile-portrait grid size-20 shrink-0 place-items-center overflow-hidden border-4 border-white bg-white font-serif text-2xl font-bold text-leaf-700" aria-hidden="true">{teacherInitial(t.display_name)}</span>}<div className="flex flex-wrap gap-2 text-sm">{t.years_experience ? <span>{t.years_experience}+ years teaching</span> : null}{t.languages?.map(l => <span key={l} className="rounded-full bg-white px-3 py-1">{l}</span>)}</div></div>
       </PageHero>
       <div className="page-wrap grid gap-10 py-16 lg:grid-cols-[1fr_18rem]">
         <div className="prose-oqc">
