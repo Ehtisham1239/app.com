@@ -4,7 +4,7 @@ import { publicDb } from "@/lib/supabase/public";
 import { permitsMutation } from "@/lib/request-origin";
 import { readBoundedText } from "@/lib/site-health-fetch";
 import { SITE_URL } from "@/lib/config";
-import { buildLeadEmail, notificationConfig, parseNotificationRequest, sendLeadEmail } from "@/lib/usa-lead-notification";
+import { buildLeadEmail, notificationConfig, notificationConfigIssues, parseNotificationRequest, sendLeadEmail } from "@/lib/usa-lead-notification";
 
 // Emails admissions once for each lead saved from the USA landing page.
 // The browser saves the lead itself (public.submit_trial_application, so the
@@ -18,7 +18,7 @@ const MAX_BODY_BYTES = 2048;
 const reply = (body, status = 200) => NextResponse.json(body, { status, headers: { "Cache-Control": "private, no-store", "X-Robots-Tag": "noindex" } });
 // Only the outcome and the lead reference are logged: never the email address,
 // phone number, request body, provider response or API key.
-const log = (level, reason, reference) => console[level](JSON.stringify({ event: "usa_lead_notification", outcome: reason, reference: reference || null }));
+const log = (level, reason, reference, detail) => console[level](JSON.stringify({ event: "usa_lead_notification", outcome: reason, reference: reference || null, ...(detail ? { detail } : {}) }));
 
 export async function POST(request) {
   if (!permitsMutation(request)) return reply({ ok: false, error: "forbidden" }, 403);
@@ -36,7 +36,8 @@ export async function POST(request) {
   const config = notificationConfig();
   const highLevel = enabledHighLevelConfig();
   if ((!config && !highLevel) || !publicDb) {
-    log("error", "not_configured", parsed.reference);
+    // Setting names only, never values, so the owner can see which Hostinger variable to fix.
+    log("error", "not_configured", parsed.reference, [...notificationConfigIssues(), ...(publicDb ? [] : ["Supabase URL/key missing"])]);
     return reply({ ok: false, error: "not_configured" }, 503);
   }
 

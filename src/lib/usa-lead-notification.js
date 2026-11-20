@@ -27,17 +27,38 @@ export function parseNotificationRequest(body) {
   return { reference, email, notificationToken };
 }
 
-// RESEND_API_KEY, LEAD_NOTIFICATION_FROM and LEAD_NOTIFICATION_TO (comma-separated)
-// come from the Vercel environment. Returns null when any of them is missing or invalid.
-export function notificationConfig(env = process.env) {
-  const apiKey = String(env.RESEND_API_KEY || "").trim();
-  const from = String(env.LEAD_NOTIFICATION_FROM || "").trim();
-  const to = String(env.LEAD_NOTIFICATION_TO || "").split(",").map((item) => item.trim()).filter(Boolean);
+// Hosting panels often keep the quotes typed around a value ("re_…"), so one matching pair is dropped.
+const envValue = (value) => {
+  const text = String(value ?? "").trim();
+  return /^(["']).*\1$/s.test(text) && text.length >= 2 ? text.slice(1, -1).trim() : text;
+};
+
+function readNotificationEnv(env) {
+  const apiKey = envValue(env.RESEND_API_KEY);
+  const from = envValue(env.LEAD_NOTIFICATION_FROM);
+  // Commas or semicolons (as Outlook copies them) separate recipients.
+  const to = envValue(env.LEAD_NOTIFICATION_TO).split(/[,;]/).map((item) => item.trim()).filter(Boolean);
   const fromAddress = (from.match(/<([^<>]+)>\s*$/) || [null, from])[1].trim();
-  const valid = /^re_\S{8,}$/.test(apiKey)
-    && from.length <= 200 && !/[\r\n]/.test(from) && EMAIL.test(fromAddress)
-    && to.length > 0 && to.length <= 50 && to.every((address) => address.length <= 254 && EMAIL.test(address));
-  return valid ? { apiKey, from, to } : null;
+  return {
+    apiKey, from, to,
+    issues: [
+      !apiKey ? "RESEND_API_KEY missing" : !/^re_\S{8,}$/.test(apiKey) && "RESEND_API_KEY invalid (must start with re_)",
+      !from ? "LEAD_NOTIFICATION_FROM missing" : (from.length > 200 || /[\r\n]/.test(from) || !EMAIL.test(fromAddress)) && "LEAD_NOTIFICATION_FROM invalid (use leads@domain or Name <leads@domain>)",
+      !to.length ? "LEAD_NOTIFICATION_TO missing" : (to.length > 50 || !to.every((address) => address.length <= 254 && EMAIL.test(address))) && "LEAD_NOTIFICATION_TO invalid (comma-separated email addresses)",
+    ].filter(Boolean),
+  };
+}
+
+// RESEND_API_KEY, LEAD_NOTIFICATION_FROM and LEAD_NOTIFICATION_TO (comma-separated) come from the
+// server environment (Hostinger Node.js settings). Returns null when any of them is missing or invalid.
+export function notificationConfig(env = process.env) {
+  const { apiKey, from, to, issues } = readNotificationEnv(env);
+  return issues.length ? null : { apiKey, from, to };
+}
+
+// Which setting is wrong, by name only: never a value. Logged when a lead email cannot be sent.
+export function notificationConfigIssues(env = process.env) {
+  return readNotificationEnv(env).issues;
 }
 
 const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);

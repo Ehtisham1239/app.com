@@ -4,13 +4,13 @@ import { publicDb } from "@/lib/supabase/public";
 import { permitsMutation } from "@/lib/request-origin";
 import { readBoundedText } from "@/lib/site-health-fetch";
 import { SITE_URL } from "@/lib/config";
-import { buildContactEmail, buildLeadEmail, buildReviewEmail, notificationConfig, sendLeadEmail } from "@/lib/usa-lead-notification";
+import { buildContactEmail, buildLeadEmail, buildReviewEmail, notificationConfig, notificationConfigIssues, sendLeadEmail } from "@/lib/usa-lead-notification";
 
 export const dynamic = "force-dynamic";
 const MAX_BODY_BYTES = 2048;
 const EMAIL = /^[^@\s<>"',;]+@[^@\s<>"',;]+\.[^@\s<>"',;]+$/;
 const reply = (body, status = 200) => NextResponse.json(body, { status, headers: { "Cache-Control": "private, no-store", "X-Robots-Tag": "noindex" } });
-const log = (level, outcome, reference) => console[level](JSON.stringify({ event: "lead_notification", outcome, reference: reference || null }));
+const log = (level, outcome, reference, detail) => console[level](JSON.stringify({ event: "lead_notification", outcome, reference: reference || null, ...(detail ? { detail } : {}) }));
 
 function parseRequest(body) {
   if (!body || typeof body !== "object" || Array.isArray(body)) return null;
@@ -48,7 +48,8 @@ export async function POST(request) {
   // submitter (see public.lead_for_notification), so it runs with the public
   // key like the USA route; no server database secret is needed here.
   if ((!config && !highLevel) || !publicDb) {
-    log("error", "not_configured", parsed.reference);
+    // Setting names only, never values, so the owner can see which Hostinger variable to fix.
+    log("error", "not_configured", parsed.reference, [...notificationConfigIssues(), ...(publicDb ? [] : ["Supabase URL/key missing"])]);
     return reply({ ok: false, error: "not_configured" }, 503);
   }
   let lead = null;
