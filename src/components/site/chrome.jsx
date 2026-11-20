@@ -7,14 +7,30 @@ import { safeJsonLd } from "@/lib/seo";
 import { CmsPageSchema } from "./custom-code";
 import { SITE_URL } from "@/lib/config";
 
+// Top bar shows only clickable contact numbers (owner request, 20 Nov 2026); the old
+// free-trial announcement text is gone. The CMS "enabled" switch can still hide the bar.
+const TOP_BAR_NUMBERS = [
+  { key: "uk", label: "UK WhatsApp", display: "+44 7864 710821", href: "https://wa.me/447864710821", external: true },
+  { key: "usa", label: "USA", display: "+1 786 964 5678", href: "tel:+17869645678" },
+];
+
 export function TopBar({ announcement }) {
-  if (!announcement?.enabled || !announcement?.text) return null;
+  if (announcement?.enabled === false) return null;
   return (
     <div className="site-announcement relative z-50 bg-leaf-50 text-[0.85rem] text-mushaf-900">
-      <div className="page-wrap flex min-h-9 items-center justify-center gap-3 py-1.5 text-center">
-        <span className="hidden size-1.5 rotate-45 bg-gold-400 sm:inline-block" aria-hidden="true" />
-        <span>{announcement.text}</span>
-      </div>
+      <nav aria-label="Contact numbers" className="page-wrap flex min-h-9 flex-wrap items-center justify-center gap-x-5 gap-y-1 py-1.5 text-center">
+        {TOP_BAR_NUMBERS.map((n) => (
+          <a
+            key={n.key}
+            href={n.href}
+            {...(n.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            className="inline-flex items-center gap-2 font-semibold hover:underline focus-visible:underline"
+          >
+            <span className="size-1.5 rotate-45 bg-gold-400" aria-hidden="true" />
+            <span>{n.label}: {n.display}</span>
+          </a>
+        ))}
+      </nav>
     </div>
   );
 }
