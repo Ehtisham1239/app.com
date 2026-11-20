@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import { readFileSync, readdirSync } from "node:fs";
 import { PGlite } from "@electric-sql/pglite";
 import { pgcrypto } from "@electric-sql/pglite/contrib/pgcrypto";
-import { processLeadSyncBatch } from "../src/lib/server/lead-outbox.js";
+import { parseSyncSince, processLeadSyncBatch } from "../src/lib/server/lead-outbox.js";
 
 const db = new PGlite({ extensions: { pgcrypto } });
 const root = new URL("../", import.meta.url);
@@ -148,4 +148,34 @@ test("worker records a failed lookup and a missing email configuration instead o
   const noEmail = fakeDb([{ reference: "TR-2026-00001", lead_type: "trial", crm_done: true, email_done: false }], trialLead);
   await processLeadSyncBatch({ db: noEmail, highLevel, emailConfig: null, siteUrl: "https://example.test", fetchImpl });
   assert.equal(noEmail.completed[0].p_error, "email_not_configured");
+});
+
+test("LEAD_SYNC_SINCE closes older leads without calling HighLevel or the email provider", async () => {
+  const urls = [];
+  const fetchImpl = async (url) => { urls.push(String(url)); return new Response("{}", { status: 200 }); };
+  const fake = fakeDb([{ reference: "TR-2026-00001", lead_type: "trial", crm_done: false, email_done: false }], trialLead);
+  const summary = await processLeadSyncBatch({ db: fake, highLevel, emailConfig, siteUrl: "https://example.test", fetchImpl, since: Date.parse("2026-11-13T00:00:00Z") });
+  assert.equal(summary.skipped_before_since, 1);
+  assert.deepEqual(urls, [], "no outbound call for a lead older than the cutoff");
+  assert.deepEqual(fake.completed[0], { p_reference: "TR-2026-00001", p_crm_ok: null, p_email_ok: true, p_error: null }, "no CRM status row is claimed");
+});
+
+test("LEAD_SYNC_SINCE still delivers leads submitted on or after the cutoff", async () => {
+  const urls = [];
+  const fetchImpl = async (url) => {
+    urls.push(String(url));
+    return String(url).includes("resend") ? new Response(JSON.stringify({ id: "em_1" }), { status: 200 }) : new Response(JSON.stringify({ contact: { id: "c1" } }), { status: 200 });
+  };
+  const fake = fakeDb([{ reference: "TR-2026-00001", lead_type: "trial", crm_done: false, email_done: false }], trialLead);
+  const summary = await processLeadSyncBatch({ db: fake, highLevel, emailConfig, siteUrl: "https://example.test", fetchImpl, since: Date.parse("2026-11-12T10:00:00Z") });
+  assert.equal(summary.skipped_before_since, 0);
+  assert.ok(urls.some((u) => u.includes("api.resend.com")));
+  assert.equal(fake.completed[0].p_crm_ok, true);
+});
+
+test("parseSyncSince accepts empty and ISO dates and flags unreadable values", () => {
+  assert.deepEqual(parseSyncSince(undefined), { since: null, valid: true });
+  assert.deepEqual(parseSyncSince("  "), { since: null, valid: true });
+  assert.deepEqual(parseSyncSince("2026-11-21T00:00:00Z"), { since: Date.parse("2026-11-21T00:00:00Z"), valid: true });
+  assert.deepEqual(parseSyncSince("tomorrow-ish"), { since: null, valid: false });
 });
