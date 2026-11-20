@@ -34,3 +34,11 @@ test("wildcard policy preserves existing public crawling and sitemap discovery",
     assert.ok(sitemap.hostname);
   }
 });
+
+test("every robots group declares the owner's Content-Signal (20 Nov 2026: search, ai-input and ai-train all yes)", async () => {
+  const policy = await robots();
+  assert.ok(policy.rules.length >= 3);
+  for (const rule of policy.rules) {
+    assert.deepEqual(rule.other, { "Content-Signal": "search=yes, ai-input=yes, ai-train=yes" });
+  }
+});
