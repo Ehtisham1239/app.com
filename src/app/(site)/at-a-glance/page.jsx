@@ -5,7 +5,7 @@ import { organizationFacts } from "@/lib/org-facts";
 import { breadcrumbSchema, safeJsonLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 export const metadata = contentMetadata({ title: "Online Quran College at a Glance: Courses, Trial and Contact", seo_noindex: false }, { path: "/at-a-glance", description: "Everything about Online Quran College on one page: live one-to-one courses, the 3-day free trial, teachers, countries served online, FAQs and contact details." });
 
 const card = "rounded-2xl border border-line bg-white p-6 shadow-sm";

@@ -7,7 +7,7 @@ import { getPage, getPublishedSlugs, getRedirect, getSettings } from "@/lib/site
 import { reviewShortPath } from "@/lib/reviews-button";
 import { truncate, stripHtml } from "@/lib/format";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 export const dynamicParams = true;
 
 export async function generateStaticParams() {

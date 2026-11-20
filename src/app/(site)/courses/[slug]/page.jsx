@@ -16,7 +16,7 @@ import { getCourse, getCourses, getFaqs, getPlans, getPublishedSlugs, getSetting
 import { cleanHtml } from "@/lib/sanitize";
 import { formatMoney, truncate, stripHtml, whatsappLink } from "@/lib/format";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 export const dynamicParams = true;
 
 export async function generateStaticParams() {

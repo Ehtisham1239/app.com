@@ -10,7 +10,7 @@ import { SITE_URL } from "@/lib/config";
 import { courseListSchema } from "@/lib/course-schema";
 import { safeJsonLd } from "@/lib/seo";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 export const metadata = contentMetadata({ title: "Online Quran Courses", seo_noindex: false }, { path: "/courses", description: "Live one-to-one online Quran courses for children and adults: Noorani Qaida, Tajweed, Hifz, Arabic and Islamic studies. Compare courses and request a trial." });
 

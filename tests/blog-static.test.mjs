@@ -6,7 +6,7 @@ const read = (p) => readFileSync(new URL(`../${p}`, import.meta.url), "utf8");
 test("/blog is served from the static cache; filtered lists keep their address", async () => {
   const page = read("src/app/(site)/blog/page.jsx");
   assert.doesNotMatch(page, /searchParams/, "the first page must not read the query string");
-  assert.match(page, /export const revalidate = 300/);
+  assert.match(page, /export const revalidate = 3600/);
   const browse = read("src/app/(site)/blog/browse/page.jsx");
   assert.match(browse, /blogParams\(await searchParams\)/, "invalid filters still 404 via blogParams");
   const config = (await import("../next.config.mjs")).default;

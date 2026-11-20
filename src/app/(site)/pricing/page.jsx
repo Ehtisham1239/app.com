@@ -12,7 +12,7 @@ import { getUsdRates } from "@/lib/fx";
 import { feeAnswer } from "@/lib/fee-answer";
 import { INDEXED_MARKETS, getLocation, locationPath } from "@/lib/locations";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 export const metadata = contentMetadata({ title: "Online Quran Class Fees & Packages", seo_noindex: false }, { path: "/pricing", description: "Compare online Quran class fees and lesson schedules across the UK, USA, Canada, Australia and UAE. Check supported currencies and 3-day trial eligibility." });
 

@@ -26,7 +26,7 @@ import { CustomHeadCode } from "@/components/site/custom-code";
 const AREA_SERVED = INDEXED_MARKETS.map(getLocation).filter(Boolean).map((c) => ({ "@type": "Country", name: c.name }));
 const KNOWS_ABOUT = ["Quran recitation", "Tajweed", "Noorani Qaida", "Hifz (Quran memorisation)", "Quranic Arabic", "Quran translation and tafseer", "Islamic studies for children"];
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 export async function generateMetadata() {
   const settings = await getSettings();

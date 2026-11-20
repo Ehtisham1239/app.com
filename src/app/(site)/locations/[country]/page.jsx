@@ -6,7 +6,7 @@ import { SITE_URL } from "@/lib/config";
 import { getPage } from "@/lib/site-data";
 import { shouldIncludeInSitemap } from "@/lib/seo";
 import { SEARCH_INTENTS } from "@/lib/search-intent";
-export const revalidate = 300;
+export const revalidate = 3600;
 // Live: the five market hubs plus the country pages restored on 18 Nov 2026 (RESTORED_LOCATION_PATHS); next.config.mjs redirects the rest.
 export function generateStaticParams() { return LOCATIONS.filter((c) => isLiveLocation(c, null)).map((c) => ({ country: c.slug })); }
 async function resolve(params) {
