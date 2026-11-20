@@ -15,7 +15,7 @@ import { truncate } from "@/lib/format";
 import { normalizeSeoSettings } from "@/lib/search-settings";
 import { CmsPageSchema } from "@/components/site/custom-code";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 export async function generateMetadata() {
   const settings = await getSettings();

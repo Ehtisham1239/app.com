@@ -10,7 +10,7 @@ import { safeJsonLd } from "@/lib/seo";
 import { heroArt } from "@/lib/hero-art";
 import { CmsPageSchema } from "@/components/site/custom-code";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 export const metadata = contentMetadata({
   seo_title: "Contact Online Quran College | Admissions & Support",

@@ -13,7 +13,7 @@ import { SITE_URL } from "@/lib/config";
 import { heroArt } from "@/lib/hero-art";
 import { CmsPageSchema } from "@/components/site/custom-code";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 const COVER = heroArt("/free-trial");
 

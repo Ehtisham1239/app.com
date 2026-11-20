@@ -39,7 +39,7 @@ test("pricing and free-trial pages stay cacheable: no server-side searchParams",
   for (const path of ["src/app/(site)/pricing/page.jsx", "src/app/(site)/free-trial/page.jsx"]) {
     const source = read(path);
     assert.doesNotMatch(source, /\{\s*searchParams\s*\}|await searchParams/, path);
-    assert.match(source, /export const revalidate = 300/, path);
+    assert.match(source, /export const revalidate = 3600/, path);
   }
   assert.match(read("src/lib/use-visitor-currency.js"), /URLSearchParams\(window\.location\.search\)\.get\("currency"\)/);
   const trial = read("src/components/site/trial-intro.jsx");

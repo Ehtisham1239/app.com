@@ -1,6 +1,6 @@
 import { BlogIndex, blogIndexMetadata } from "@/components/site/blog-index";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 // The first page has no query string, so it is served from the static cache.
 // /blog?page= and /blog?category= are rewritten to /blog/browse (next.config.mjs).

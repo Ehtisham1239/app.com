@@ -4,7 +4,7 @@ import { LocationPage } from "@/components/site/location-page";
 import { getLocation, locationPath, locationCmsSlug, locationSearchTitle, locationLocale, locationSearchIntro, locationIndexRecord, locationHeading, isLiveLocation, RESTORED_LOCATION_PATHS } from "@/lib/locations";
 import { getPage } from "@/lib/site-data";
 import { SEARCH_INTENTS } from "@/lib/search-intent";
-export const revalidate = 300;
+export const revalidate = 3600;
 // Owner decision (18 Nov 2026): every city page in RESTORED_LOCATION_PATHS is live.
 export function generateStaticParams() { return RESTORED_LOCATION_PATHS.filter((p) => p.includes("/")).map((p) => { const [country, city] = p.split("/"); return { country, city }; }); }
 async function resolve(params) {

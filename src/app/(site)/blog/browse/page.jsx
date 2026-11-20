@@ -1,7 +1,7 @@
 import { BlogIndex, blogIndexMetadata } from "@/components/site/blog-index";
 import { blogParams } from "@/lib/blog-seo";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 // Filtered and paged article lists. Visitors reach this through /blog?page=… or
 // /blog?category=… (a rewrite keeps that address); canonical links point to those URLs.

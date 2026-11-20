@@ -11,7 +11,7 @@ import { getCourses, getPage, getPosts, getPublishedSlugs } from "@/lib/site-dat
 import { breadcrumbSchema, safeJsonLd, shouldIncludeInSitemap } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 export const metadata = contentMetadata({ title: "Quran Learning Guides for Families & Adults", seo_noindex: false }, { path: "/learn", description: "Compare Noorani Qaida, Quran reading, Tajweed and Hifz. Find a starting point, practical parent and adult guides, and questions to ask before a trial." });
 
 export default async function Page() {

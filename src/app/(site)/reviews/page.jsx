@@ -6,7 +6,7 @@ import { CmsPageSchema } from "@/components/site/custom-code";
 import { SITE_URL } from "@/lib/config";
 import { safeJsonLd } from "@/lib/seo";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 // The root layout template adds "· Online Quran College".
 export const metadata = {

@@ -11,7 +11,7 @@ import { teacherPerson } from "@/lib/teacher-schema";
 import { safeJsonLd, breadcrumbSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 export const dynamicParams = true;
 
 export async function generateStaticParams() {

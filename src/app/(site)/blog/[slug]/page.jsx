@@ -100,7 +100,7 @@ function supportingImage(slug, cover, html) {
   return candidates.map(key => supportingImages[key]).find(([src]) => new URL(publicImageUrl(src), SITE_URL).href !== coverUrl) || null;
 }
 
-export const revalidate = 300;
+export const revalidate = 3600;
 export const dynamicParams = true;
 
 export async function generateStaticParams() {

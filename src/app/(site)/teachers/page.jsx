@@ -10,7 +10,7 @@ import { whatsappLink } from "@/lib/format";
 import { teacherListSchema } from "@/lib/teacher-schema";
 import { SITE_URL } from "@/lib/config";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 export const metadata = contentMetadata({ title: "Our Teachers", seo_noindex: false }, { path: "/teachers", description: "Explore current public Quran teacher profiles and share any preference with Admissions. Suitability, language and availability are confirmed before enrolment." });
 
