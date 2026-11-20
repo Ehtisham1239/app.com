@@ -9,6 +9,7 @@ import { useAccess } from "@/lib/admin/access";
 import { db, fromLocalInput, notifyError, toLocalInput, useLoad } from "@/lib/admin/db";
 import { AGE_BANDS, CURRENCIES, LEVELS, TEACHER_PREFS, TIME_SLOTS, TRIAL_STATUSES, TRIAL_TRANSITIONS, labelFor } from "@/lib/constants";
 import { formatDateTime, toMinor, whatsappLink } from "@/lib/format";
+import { internationalPhone, trialReplyText } from "@/lib/phone";
 import { Badge, Card, ConfirmButton, ErrorState, Field, Loading, PageHeader, StatusBadge, When } from "@/components/admin/ui";
 import { CrmDetail, useCrmStatus } from "@/components/admin/crm-status";
 import { ShiftBadge } from "@/components/admin/lead-shift";
@@ -271,7 +272,9 @@ export default function TrialPage({ params }) {
   const t = trial.data;
   if (!t || t.deleted_at) return <PageHeader title="Request not found" back={{ href: "/admin/trials", label: "Free trials" }} />;
   const canEdit = can("trials:update");
-  const wa = whatsappLink(t.phone, `Assalamu alaikum${t.guardian_name ? ` ${t.guardian_name}` : ""}, this is Online Quran College about the free trial for ${t.learner_name} (${t.reference}).`);
+  // Local numbers ("0757…") get the calling code of the family's country, or wa.me opens the wrong chat.
+  const intl = internationalPhone(t.phone, t.country);
+  const wa = intl ? whatsappLink(intl.digits, trialReplyText(t)) : null;
   const transitions = (TRIAL_TRANSITIONS[t.status] || []).filter((s) => !["scheduled", "enrolled"].includes(s));
 
   const update = async (patch, label) => {
@@ -325,6 +328,11 @@ export default function TrialPage({ params }) {
               </Row>
               <Row label="Phone">
                 {t.phone} {t.phone_is_whatsapp && <Badge tone="green">WhatsApp</Badge>}
+                {intl?.added && (
+                  <span className="mt-1 block text-xs text-amber-700">
+                    Typed without a country code. Replies use +{intl.digits} (+{intl.code} for {t.country}) — check the number before sending.
+                  </span>
+                )}
               </Row>
               <Row label="Location">{[t.city, t.country].filter(Boolean).join(", ")}</Row>
               <Row label="Family’s time now">
@@ -337,7 +345,7 @@ export default function TrialPage({ params }) {
                   <MessageCircle className="size-4" /> WhatsApp
                 </a>
               )}
-              <a href={`tel:${t.phone}`} className="btn btn-outline btn-sm">
+              <a href={`tel:${intl ? `+${intl.digits}` : t.phone}`} className="btn btn-outline btn-sm">
                 <Phone className="size-4" /> Call
               </a>
               <a href={`mailto:${t.email}?subject=${encodeURIComponent(`Your free trial at Online Quran College (${t.reference})`)}`} className="btn btn-outline btn-sm">
