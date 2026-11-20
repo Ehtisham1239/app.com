@@ -17,9 +17,9 @@ export const PAGES = [
   "/locations/united-kingdom", "/locations/united-states", "/locations/canada", "/locations/australia", "/locations/united-arab-emirates",
 ];
 const HUBS = ["/locations/united-kingdom", "/locations/united-states", "/locations/canada", "/locations/australia", "/locations/united-arab-emirates"];
-// Every city page is live on its own address (owner decision 18 Nov 2026); only a city-state whose
-// city page would repeat its country page word for word lands on the country page.
-const CITY_PAGES = [["/locations/united-states/houston", "/locations/united-states/houston"], ["/locations/united-kingdom/london", "/locations/united-kingdom/london"], ["/locations/monaco/monaco", "/locations/monaco"]];
+// Every city page is live on its own address and none redirects, city-states included
+// (owner decisions 18 and 20 Nov 2026, #367).
+const CITY_PAGES = [["/locations/united-states/houston", "/locations/united-states/houston"], ["/locations/united-kingdom/london", "/locations/united-kingdom/london"], ["/locations/monaco/monaco", "/locations/monaco/monaco"]];
 
 // Runs in the page: elements that stick out past the right edge and are not
 // inside a box that scrolls or clips horizontally.

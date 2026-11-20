@@ -7,6 +7,7 @@ import { useAccess } from "@/lib/admin/access";
 import { db, notifyError, useLoad } from "@/lib/admin/db";
 import { CONTACT_STATUSES } from "@/lib/constants";
 import { formatDateTime, whatsappLink } from "@/lib/format";
+import { internationalPhone } from "@/lib/phone";
 import { Card, ErrorState, Field, Loading, PageHeader, StatusBadge, When } from "@/components/admin/ui";
 import { CrmDetail, useCrmStatus } from "@/components/admin/crm-status";
 import { ShiftBadge } from "@/components/admin/lead-shift";
@@ -38,7 +39,8 @@ export default function ContactPage({ params }) {
     toast.success(ok);
     msg.reload();
   };
-  const wa = m.phone ? whatsappLink(m.phone, `Assalamu alaikum ${m.name}, thank you for contacting Online Quran College about “${m.subject}”.`) : null;
+  const intl = internationalPhone(m.phone, m.country);
+  const wa = intl ? whatsappLink(intl.digits, `Assalamu alaikum ${m.name}, thank you for contacting Online Quran College about “${m.subject}”.`) : null;
   const mailto = `mailto:${m.email}?subject=${encodeURIComponent(`Re: ${m.subject}`)}&body=${encodeURIComponent(`Assalamu alaikum ${m.name},\n\n\n\nOnline Quran College\n\n> ${m.message.split("\n").join("\n> ")}`)}`;
 
   return (
@@ -56,7 +58,7 @@ export default function ContactPage({ params }) {
             <p className="whitespace-pre-wrap text-[0.97rem] leading-relaxed text-ink">{m.message}</p>
             <dl className="mt-5 grid gap-2 border-t border-line pt-4 text-sm sm:grid-cols-2">
               <div><dt className="text-ink-faint">Email</dt><dd><a href={`mailto:${m.email}`} className="text-leaf-700 hover:underline">{m.email}</a></dd></div>
-              <div><dt className="text-ink-faint">Phone</dt><dd>{m.phone || "—"}</dd></div>
+              <div><dt className="text-ink-faint">Phone</dt><dd>{m.phone || "—"}{intl?.added && <span className="mt-1 block text-xs text-amber-700">Typed without a country code. WhatsApp uses +{intl.digits} (+{intl.code} for {m.country}) — check it first.</span>}</dd></div>
               <div><dt className="text-ink-faint">Location</dt><dd>{[m.city, m.country].filter(Boolean).join(", ") || "—"}</dd></div>
               <div><dt className="text-ink-faint">Received</dt><dd>{formatDateTime(m.created_at)}</dd></div>
               <div className="sm:col-span-2"><dt className="text-ink-faint">GHL CRM</dt><dd><CrmDetail status={crm[m.reference]} /></dd></div>
