@@ -6,12 +6,18 @@ import { heroArt } from "@/lib/hero-art";
 import { safeJsonLd, modifiedIso } from "@/lib/seo";
 import { CmsPageSchema } from "./custom-code";
 import { SITE_URL } from "@/lib/config";
+import { whatsappLink } from "@/lib/format";
 
 // Top bar shows only clickable contact numbers (owner request, 20 Nov 2026); the old
 // free-trial announcement text is gone. The CMS "enabled" switch can still hide the bar.
+// Prefilled message the visitor sends when they tap a WhatsApp number (owner request, 21 Nov 2026).
+// It carries no name or request ID: the visitor adds their own details after it opens.
+const TOP_BAR_WHATSAPP_MESSAGE =
+  "Assalamu alaikum, I would like to request a 3-day free trial at Online Quran College. Please let me know which days and times are available in my time zone, and help me arrange a teacher and the class link. JazakAllah khair.";
+
 const TOP_BAR_NUMBERS = [
-  { key: "uk", label: "UK WhatsApp", display: "+44 7864 710821", href: "https://wa.me/447864710821", external: true },
-  { key: "usa", label: "USA WhatsApp", display: "+1 786 964 5678", href: "https://wa.me/17869645678", external: true },
+  { key: "uk", label: "UK WhatsApp", display: "+44 7864 710821", href: whatsappLink("447864710821", TOP_BAR_WHATSAPP_MESSAGE), external: true },
+  { key: "usa", label: "USA WhatsApp", display: "+1 786 964 5678", href: whatsappLink("17869645678", TOP_BAR_WHATSAPP_MESSAGE), external: true },
 ];
 
 export function TopBar({ announcement }) {
