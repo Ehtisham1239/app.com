@@ -8,10 +8,10 @@ const config = { apiKey: "re_test_0123456789abcdef", from: "OQC <leads@example.t
 const trial = (extra = {}) => ({ lead_type: "trial", reference: "TR-2026-00047", email: "jenet@example.test", guardian_name: "Jenet Muktar", learner_name: "Child", age_band: "child_8_12", timezone: "America/Chicago", ...extra });
 const contact = (extra = {}) => ({ lead_type: "contact", reference: "MSG-2026-00012", email: "sam@example.test", name: "Sam Parent", message: "Hello", ...extra });
 
-test("trial reply greets by name, asks for days and times in the visitor's time zone, and has no reference number", () => {
+test("trial reply greets by name, asks what time today suits them in the visitor's time zone, and has no reference number", () => {
   const mail = buildAutoReplyEmail(trial());
   assert.match(mail.text, /^Assalamu alaikum Jenet Muktar,/);
-  assert.match(mail.text, /Which days and times suit you in Chicago time\?/);
+  assert.match(mail.text, /What time today suits you in Chicago time\?/);
   assert.match(mail.text, /confirm a teacher and send the class link/);
   assert.match(mail.text, /wa\.me\/|UK \+44 7864 710821/);
   assert.match(mail.html, /https:\/\/wa\.me\/447864710821/);
@@ -20,12 +20,13 @@ test("trial reply greets by name, asks for days and times in the visitor's time 
   assert.deepEqual(buildAutoReplyEmail(trial()), mail, "deterministic across retries");
 });
 
-test("contact reply promises a reply within one working day and offers a trial", () => {
+test("contact reply promises a reply within one working day and offers a trial today", () => {
   const mail = buildAutoReplyEmail(contact());
   assert.match(mail.subject, /Thank you for contacting Online Quran College/);
   assert.match(mail.text, /^Assalamu alaikum Sam Parent,/);
   assert.match(mail.text, /within one working day/);
-  assert.match(mail.text, /3-day free trial/);
+  assert.match(mail.text, /start your 3-day free trial today/);
+  assert.match(mail.text, /time today that suits you/);
 });
 
 test("unsafe names fall back to the plain greeting and markup is escaped", () => {

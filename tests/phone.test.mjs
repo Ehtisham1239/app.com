@@ -37,7 +37,8 @@ test("trial reply names the family's local time zone", () => {
   assert.equal(localTimeLabel("America/Chicago"), "Chicago time");
   assert.equal(localTimeLabel("UTC"), "your local time");
   const text = trialReplyText({ guardian_name: "Amina", learner_name: "Yusuf", reference: "TR-2026-00001", timezone: "Europe/Brussels" });
-  assert.match(text, /^Assalamu alaikum Amina, .*3-day free trial request for Yusuf \(TR-2026-00001\)\. Which days and times suit you in Brussels time\?/);
+  assert.match(text, /^Assalamu alaikum Amina, .*3-day free trial request for Yusuf\. What time today suits you in Brussels time\?/);
+  assert.doesNotMatch(text, /TR-\d{4}-\d+/, "no reference number in the WhatsApp message");
   assert.doesNotMatch(trialReplyText({ guardian_name: "Sam", learner_name: "Sam", reference: "R", timezone: "Asia/Dubai" }), / for Sam/);
 });
 
