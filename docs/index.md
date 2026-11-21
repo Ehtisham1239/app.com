@@ -22,6 +22,7 @@ repository. The rules are in [`CLAUDE.md`](CLAUDE.md).
 ## subsystems
 
 - [[lead-sync]] -- durable outbox delivering leads to HighLevel and admissions email
+- [[assistant-facts]] -- /llms-full.txt facts file that trains the Hatchium chatbot
 
 ## decisions
 
