@@ -13,7 +13,7 @@ import { whatsappLink } from "@/lib/format";
 // Prefilled message the visitor sends when they tap a WhatsApp number (owner request, 21 Nov 2026).
 // It carries no name or request ID: the visitor adds their own details after it opens.
 const TOP_BAR_WHATSAPP_MESSAGE =
-  "Assalamu alaikum, I would like to request a 3-day free trial at Online Quran College. Please let me know which days and times are available in my time zone, and help me arrange a teacher and the class link. JazakAllah khair.";
+  "Assalamu alaikum, I would like to start a 3-day free trial at Online Quran College today. Please let me know which time today is available in my time zone, and help me arrange a teacher and the class link. JazakAllah khair.";
 
 const TOP_BAR_NUMBERS = [
   { key: "uk", label: "UK WhatsApp", display: "+44 7864 710821", href: whatsappLink("447864710821", TOP_BAR_WHATSAPP_MESSAGE), external: true },
