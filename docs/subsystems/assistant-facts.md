@@ -9,7 +9,7 @@ sources:
   - code: src/app/(site)/at-a-glance/page.jsx
   - code: HATCHIUM-INTEGRATION.md
   - code: tests/llms-txt.test.mjs
-verified_at: 5d18838
+verified_at: 0fad37a
 ---
 
 # Assistant facts file
