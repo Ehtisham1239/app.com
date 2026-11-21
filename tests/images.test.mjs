@@ -47,3 +47,17 @@ test('CMS SEO audit catches a cover without descriptive alt text',()=>{
  assert.equal(analyzeSeo({cover_url:'/test.webp'}).checks.find(c=>c.id==='alt').pass,false);
  assert.equal(analyzeSeo({cover_url:'/test.webp',cover_alt:'A learner studying a workbook'}).checks.find(c=>c.id==='alt').pass,true);
 });
+
+test('phone course cards can select a smaller 600px AVIF with a lower download cost', async () => {
+ const cms=JSON.parse(readFileSync(new URL('../src/lib/cms-image-manifest.json',import.meta.url)));
+ const cards=[...manifest,...cms].filter(image=>image.avif?.some(variant=>variant.width===600));
+ assert.equal(cards.length,6);
+ for(const image of cards){
+  const medium=image.avif.find(variant=>variant.width===600);
+  const large=image.avif.find(variant=>variant.width===800);
+  const file=new URL(`../public${medium.url}`,import.meta.url);
+  assert.equal((await sharp(readFileSync(file)).metadata()).width,600);
+  assert.equal(statSync(file).size,medium.bytes);
+  assert.ok(medium.bytes<large.bytes*0.85,`${medium.url}: meaningful byte saving`);
+ }
+});
