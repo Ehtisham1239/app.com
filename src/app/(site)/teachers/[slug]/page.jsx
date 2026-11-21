@@ -8,6 +8,7 @@ import { ArrowRight, Award, Languages, Sparkles } from "@/components/site/icons"
 import { getPublishedSlugs, getTeacher, getTeachers } from "@/lib/site-data";
 import { teacherCourses } from "@/lib/teacher-courses";
 import { truncate } from "@/lib/format";
+import { teacherDescription } from "@/lib/teacher-description";
 import { teacherPerson } from "@/lib/teacher-schema";
 import { safeJsonLd, breadcrumbSchema } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
@@ -20,8 +21,6 @@ export async function generateStaticParams() {
   return teachers.map((t) => ({ slug: t.slug }));
 }
 
-// A short bio makes a thin search snippet; add one factual sentence when it is under 110 characters.
-const teacherDescription = (t) => { const base = (t.bio || t.headline || "").trim(); return base.length >= 110 ? base : `${base}${base && !/[.!?]$/.test(base) ? "." : ""} Live one-to-one online Quran lessons with ${t.display_name}; request a free trial.`.trim(); };
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const t = await getTeacher(slug);
