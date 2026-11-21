@@ -5,6 +5,7 @@
 // the lead reference, so a retry or an overlapping browser call cannot create a
 // duplicate contact or a second email.
 import { syncHighLevelAdmission } from "./highlevel.js";
+import { sendAutoReply } from "../lead-auto-reply.js";
 import { buildContactEmail, buildLeadEmail, sendLeadEmail } from "../usa-lead-notification.js";
 
 const USA_LANDING = "/usa-quran-classes";
@@ -54,6 +55,9 @@ async function deliver(job, lead, { highLevel, emailConfig, siteUrl, fetchImpl, 
       result.emailOk = sent.ok === true;
       if (!sent.ok) {
         result.error ||= sent.reason;
+      } else {
+        // Automatic acknowledgement to the person who submitted; best effort, never fails the job.
+        await sendAutoReply({ config: emailConfig, lead, siteUrl, fetchImpl });
       }
     }
   }

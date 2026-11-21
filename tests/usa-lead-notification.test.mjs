@@ -47,7 +47,7 @@ test("the email carries every lead detail, escaped, with the timestamp, and is i
   for (const part of ["TR-2026-00042", "Test Parent", "Child of Test Parent", "parent@example.test", "+15552345678", "Hifz-ul-Quran",
     "Child (8–12)", "Female teacher", "Central (CT)", "5 Nov 2026, 3:12 pm Pakistan time", "5 Nov 2026, 4:12 am parent's time",
     "gclid: test-gclid", "campaign usa-search", "Mon & Wed after 5 pm", "https://www.onlinequrancollege.com/admin/trials/6f1d2c3b-1111-4222-8333-444455556666",
-    "Nothing was sent to the parent"]) {
+    "separate automatic acknowledgement email"]) {
     assert.ok(email.text.includes(part), `text: ${part}`);
   }
   assert.ok(email.html.includes("Mon &amp; Wed after 5 pm"));
@@ -116,6 +116,9 @@ before(async () => {
 });
 after(() => { globalThis.fetch = realFetch; process.env = realEnv; });
 
+const toAdmissions = (delivered) => delivered.filter((m) => m.to.includes("admissions@example.test"));
+const toParent = (delivered) => delivered.filter((m) => m.to.includes("parent@example.test"));
+
 // A Resend stand-in that honours Idempotency-Key the way the API documents it:
 // same key → the first response, no second email; in-flight duplicate → 409.
 function fakeResend({ status = 200, delay = 0 } = {}) {
@@ -149,8 +152,16 @@ test("a confirmed lead produces exactly one admissions email", async () => {
   const response = await route.POST(request(valid));
   assert.equal(response.status, 200); assert.deepEqual(await response.json(), { ok: true });
   assert.deepEqual(fixture.calls, [["usa_lead_for_notification", { p_reference: "TR-2026-00042", p_email: "parent@example.test", p_notification_token: "a".repeat(64) }]]);
-  assert.equal(resend.delivered.length, 1);
-  assert.match(resend.delivered[0].subject, /TR-2026-00042/);
+  assert.equal(toAdmissions(resend.delivered).length, 1);
+  assert.match(toAdmissions(resend.delivered)[0].subject, /TR-2026-00042/);
+  // The parent also gets one automatic acknowledgement: from the lead row, no reference number, replies go to info@.
+  const ack = toParent(resend.delivered);
+  assert.equal(ack.length, 1);
+  assert.deepEqual(ack[0].to, ["parent@example.test"]);
+  assert.equal(ack[0].reply_to, "info@onlinequrancollege.com");
+  assert.match(ack[0].text, /Assalamu alaikum Test Parent,/);
+  assert.match(ack[0].text, /Chicago time/);
+  assert.ok(!/TR-\d{4}-\d+/.test(ack[0].text + ack[0].html + ack[0].subject), "no reference number in the parent email");
   assert.match(response.headers.get("cache-control"), /no-store/); assert.match(response.headers.get("x-robots-tag"), /noindex/);
 });
 
@@ -159,11 +170,13 @@ test("repeated and simultaneous calls for the same lead still deliver one email"
   const burst = await Promise.all([1, 2, 3].map(() => route.POST(request(valid))));
   for (const response of burst) assert.equal(response.status, 200);
   for (let i = 0; i < 3; i += 1) assert.equal((await route.POST(request(valid))).status, 200);
-  assert.equal(resend.requests, 6);
-  assert.equal(resend.delivered.length, 1, "Resend delivered once for six calls");
+  assert.equal(resend.requests, 12);
+  assert.equal(toAdmissions(resend.delivered).length, 1, "Resend delivered one admissions email for six calls");
+  assert.equal(toParent(resend.delivered).length, 1, "and one acknowledgement to the parent");
   setup({ data: lead({ reference: "TR-2026-00043" }) });
   assert.equal((await route.POST(request({ ...valid, reference: "TR-2026-00043" }))).status, 200);
-  assert.equal(resend.delivered.length, 2, "a different lead gets its own email");
+  assert.equal(toAdmissions(resend.delivered).length, 2, "a different lead gets its own email");
+  assert.equal(toParent(resend.delivered).length, 2, "and its own acknowledgement");
 });
 
 test("requests that are not a just-saved landing-page lead never reach Resend", async () => {

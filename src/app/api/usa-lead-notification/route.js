@@ -4,6 +4,7 @@ import { publicDb } from "@/lib/supabase/public";
 import { permitsMutation } from "@/lib/request-origin";
 import { readBoundedText } from "@/lib/site-health-fetch";
 import { SITE_URL } from "@/lib/config";
+import { sendAutoReply } from "@/lib/lead-auto-reply";
 import { buildLeadEmail, notificationConfig, notificationConfigIssues, parseNotificationRequest, sendLeadEmail } from "@/lib/usa-lead-notification";
 
 // Emails admissions once for each lead saved from the USA landing page.
@@ -72,5 +73,8 @@ export async function POST(request) {
     return reply({ ok: false, error: "email_failed" }, 502);
   }
   log("info", sent.alreadySent ? "already_sent" : sent.pending ? "send_in_progress" : "sent", lead.reference);
+  // Automatic acknowledgement to the parent; best effort, never changes this response.
+  const auto = await sendAutoReply({ config, lead, siteUrl: SITE_URL });
+  if (!auto.ok) log("error", `auto_reply_${auto.reason}`, lead.reference);
   return reply({ ok: true });
 }
