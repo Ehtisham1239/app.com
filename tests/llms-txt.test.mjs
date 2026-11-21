@@ -78,3 +78,11 @@ test("the at-a-glance page reads the same facts and claims no local office", () 
   assert.match(page, /organizationFacts/); assert.match(page, /not local offices/);
   assert.match(page, /seo_noindex: false/);
 });
+test("llms-full.txt gives a chat assistant prices, enrolled-family help and answering rules", () => {
+  const full = read("src/app/llms-full.txt/route.js"), facts = read("src/lib/org-facts.js");
+  assert.match(facts, /prices: \(p\.prices/);
+  assert.match(full, /Published fee/); assert.match(full, /No free trial on this plan/);
+  assert.match(full, /For enrolled families/); assert.match(full, /\/verify-certificate/); assert.match(full, /Forgot your access code/);
+  assert.match(full, /How an assistant should answer/); assert.match(full, /never guess/); assert.match(full, /fatwa/);
+  assert.match(full, /Never ask for or accept card numbers, passwords, access codes/);
+});
