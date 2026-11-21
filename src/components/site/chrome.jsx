@@ -11,7 +11,7 @@ import { SITE_URL } from "@/lib/config";
 // free-trial announcement text is gone. The CMS "enabled" switch can still hide the bar.
 const TOP_BAR_NUMBERS = [
   { key: "uk", label: "UK WhatsApp", display: "+44 7864 710821", href: "https://wa.me/447864710821", external: true },
-  { key: "usa", label: "USA", display: "+1 786 964 5678", href: "tel:+17869645678" },
+  { key: "usa", label: "USA WhatsApp", display: "+1 786 964 5678", href: "https://wa.me/17869645678", external: true },
 ];
 
 export function TopBar({ announcement }) {
