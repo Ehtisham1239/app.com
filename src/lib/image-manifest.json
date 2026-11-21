@@ -31,6 +31,11 @@
         "bytes": 8049
       },
       {
+        "width": 600,
+        "url": "/images/learning/oqc-course-arabic-language-v3-600.avif",
+        "bytes": 15786
+      },
+      {
         "width": 800,
         "url": "/images/learning/oqc-course-arabic-language-v3-800.avif",
         "bytes": 19736
@@ -949,6 +954,11 @@
         "width": 400,
         "url": "/images/learning/oqc-course-hadith-translation-v3-400.avif",
         "bytes": 7765
+      },
+      {
+        "width": 600,
+        "url": "/images/learning/oqc-course-hadith-translation-v3-600.avif",
+        "bytes": 15450
       },
       {
         "width": 800,
@@ -11032,6 +11042,11 @@
         "width": 400,
         "url": "/images/learning/oqc-course-quran-translation-v3-400.avif",
         "bytes": 7820
+      },
+      {
+        "width": 600,
+        "url": "/images/learning/oqc-course-quran-translation-v3-600.avif",
+        "bytes": 16324
       },
       {
         "width": 800,
