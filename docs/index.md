@@ -33,7 +33,7 @@ repository. The rules are in [`CLAUDE.md`](CLAUDE.md).
 
 ## operations
 
-<!-- TODO: pages under Install, deploy, checks, incident response. `- [[page-name]] -- one line` -->
+- [[meta-description-audit]] -- Bing title/description length audit and where each kind of description is fixed
 
 ## history
 

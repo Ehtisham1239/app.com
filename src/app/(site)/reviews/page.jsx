@@ -11,7 +11,7 @@ export const revalidate = 3600;
 // The root layout template adds "· Online Quran College".
 export const metadata = {
   title: "Share your experience",
-  description: "Share honest feedback about your Online Quran College classes, privately with our team or publicly on Trustpilot.",
+  description: "Share honest feedback about your Online Quran College classes: send it privately to our admissions team or post it publicly on Trustpilot.",
   alternates: { canonical: "/reviews" },
 };
 

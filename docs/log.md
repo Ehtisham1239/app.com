@@ -13,3 +13,4 @@ Append-only. Newest entries at the bottom.
 
 - Started in grow mode; first page: `subsystems/lead-sync.md` (written from the outbox code, 20 Nov). Older dated reports in `docs/*.md` and `docs/brain/` are left untouched.
 
+- 2026-11-21: added [[meta-description-audit]] (SEO session; teacher description moved to src/lib/teacher-description.js)
