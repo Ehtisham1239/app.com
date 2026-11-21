@@ -55,11 +55,11 @@ export function buildAutoReplyEmail(lead, { siteUrl = "https://www.onlinequranco
   const paragraphs = contact
     ? [
       "Thank you for contacting Online Quran College. We have received your message, and a member of our admissions team will reply within one working day.",
-      `If you would like to arrange a 3-day free trial in the meantime, just reply to this email with the days and times that suit you ${when}.`,
+      `If you would like to start your 3-day free trial today, just reply to this email with the time today that suits you ${when}.`,
     ]
     : [
       "Thank you for contacting Online Quran College about your 3-day free trial request.",
-      `Which days and times suit you ${when}? Please reply to this email or message us on WhatsApp. We will confirm a teacher and send the class link.`,
+      `What time today suits you ${when}? Please reply to this email or message us on WhatsApp. We will confirm a teacher and send the class link.`,
     ];
   const subject = contact ? "Thank you for contacting Online Quran College" : "Your 3-day free trial request – Online Quran College";
   const site = String(siteUrl).replace(/\/$/, "");

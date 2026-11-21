@@ -57,6 +57,7 @@ export function localTimeLabel(timeZone) {
 export function trialReplyText(t) {
   const hello = `Assalamu alaikum${t.guardian_name ? ` ${t.guardian_name}` : ""}`;
   const learner = t.learner_name && t.learner_name !== t.guardian_name ? ` for ${t.learner_name}` : "";
-  return `${hello}, this is Online Quran College about your 3-day free trial request${learner} (${t.reference}). `
-    + `Which days and times suit you in ${localTimeLabel(t.timezone)}? We will confirm a teacher and send the class link.`;
+  // No TR number in the message, and only today's time is asked (owner, 21 Nov 2026).
+  return `${hello}, this is Online Quran College about your 3-day free trial request${learner}. `
+    + `What time today suits you in ${localTimeLabel(t.timezone)}? We will confirm a teacher and send the class link.`;
 }
