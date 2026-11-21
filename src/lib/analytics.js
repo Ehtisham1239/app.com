@@ -2,13 +2,27 @@ export const ANALYTICS_CONSENT_KEY = "oqc-analytics-consent-v1";
 export const ANALYTICS_CONSENT_EVENT = "oqc:analytics-consent";
 export const CONSENT_DENIED = { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" };
 
+// Owner request, 18 Nov 2026 (written, in chat): a second Tag Manager container and the
+// Google Ads tag run site-wide, including the contact and free-trial thank-you pages and
+// the USA trial pages. They load through the same cookieless, consent-denied loader as
+// GTM-W7CMZS53; the CMS setting can override either ID (an explicit empty value turns it off).
+export const DEFAULT_SECONDARY_GTM_ID = "GTM-52PTXDRF";
+export const DEFAULT_GOOGLE_ADS_ID = "AW-16564445897";
+
 export function analyticsConfig(value = {}) {
   value = value && typeof value === "object" ? value : {};
+  const pick = (key, fallback) => (typeof value[key] === "string" ? value[key].trim() : fallback);
+  const gtm2 = pick("gtm_secondary_container_id", DEFAULT_SECONDARY_GTM_ID);
+  const ads = pick("google_ads_id", DEFAULT_GOOGLE_ADS_ID);
+  const label = pick("google_ads_conversion_label", "");
   const ga4 = typeof value.ga4_measurement_id === "string" ? value.ga4_measurement_id.trim() : "";
   const gtm = typeof value.gtm_container_id === "string" ? value.gtm_container_id.trim() : "";
   const ga4Id = /^G-[A-Z0-9]{6,20}$/.test(ga4) ? ga4 : "";
   const gtmId = /^GTM-[A-Z0-9]{5,12}$/.test(gtm) ? gtm : "";
-  return { enabled: value.enabled === true && Boolean(gtmId || ga4Id), mode: gtmId ? "gtm" : ga4Id ? "ga4" : "off", ga4Id, gtmId };
+  const gtm2Id = /^GTM-[A-Z0-9]{5,12}$/.test(gtm2) && gtm2 !== gtmId ? gtm2 : "";
+  const adsId = /^AW-[0-9]{6,15}$/.test(ads) ? ads : "";
+  const adsLabel = adsId && /^[A-Za-z0-9_-]{6,40}$/.test(label) ? label : "";
+  return { enabled: value.enabled === true && Boolean(gtmId || ga4Id), mode: gtmId ? "gtm" : ga4Id ? "ga4" : "off", ga4Id, gtmId, gtm2Id, adsId, adsLabel };
 }
 
 // Site-wide mode since 26 Oct 2026: no consent banner, analytics granted, all ad
@@ -19,15 +33,26 @@ export function analyticsConfig(value = {}) {
 export function cookielessAnalyticsConfig(config) {
   const ga4Id = config?.ga4Id || "", gtmId = config?.gtmId || "";
   const mode = gtmId ? "gtm" : ga4Id ? "ga4" : "off";
-  return { ...config, enabled: Boolean(config?.enabled && mode !== "off"), mode, ga4Id, gtmId, cookieless: true };
+  return { ...config, enabled: Boolean(config?.enabled && mode !== "off"), mode, ga4Id, gtmId, gtm2Id: config?.gtm2Id || "", adsId: config?.adsId || "", adsLabel: config?.adsLabel || "", cookieless: true };
 }
 
 export function analyticsSettingsError(value = {}) {
   const config = analyticsConfig(value);
   if (value.ga4_measurement_id && !config.ga4Id) return "Enter only a valid GA4 Measurement ID beginning G-, without script code.";
   if (value.gtm_container_id && !config.gtmId) return "Enter only a valid Google Tag Manager Container ID beginning GTM-, without script code.";
+  if (value.gtm_secondary_container_id && !config.gtm2Id) return "Enter only a valid second Tag Manager Container ID beginning GTM- (different from the main one), without script code.";
+  if (value.google_ads_id && !config.adsId) return "Enter only a valid Google Ads ID beginning AW- followed by digits, without script code.";
+  if (value.google_ads_conversion_label && !config.adsLabel) return "Enter only the conversion label (letters, digits, - or _) and set a valid Google Ads ID first, without script code.";
   if (value.enabled && !config.enabled) return "Add your actual GA4 or GTM ID before enabling analytics.";
   return "";
+}
+
+// Only the production site reports to GA4. Vercel preview and other project
+// hosts load the same tag and otherwise mix test visits into the reports
+// (GA4, 28 days to 3 Nov 2026: 15 of 323 sessions came from *.vercel.app hosts).
+export const ANALYTICS_HOSTS = ["www.onlinequrancollege.com"];
+export function isAnalyticsHost(hostname) {
+  return ANALYTICS_HOSTS.includes(String(hostname || "").toLowerCase());
 }
 
 export function publicAnalyticsUrl(input, origin) {
@@ -97,6 +122,13 @@ export function shieldAnalyticsCookies(doc) {
   } catch { return false; }
 }
 
+const countedLeads = new Set();
+function leadAlreadyCounted(win, ref) {
+  const key = `lead_sent_${ref}`;
+  try { if (win.sessionStorage.getItem(key)) return true; win.sessionStorage.setItem(key, "1"); return false; }
+  catch { if (countedLeads.has(key)) return true; countedLeads.add(key); return false; } // Storage blocked: once per page session.
+}
+
 export function pageClientId(random = Math.random, now = Date.now) {
   return `${Math.floor(random() * 2147483647) + 1}.${Math.floor(now() / 1000)}`;
 }
@@ -134,17 +166,32 @@ export function createAnalyticsController(win, config) {
       // The container's Google tag reads these before its config: keep it
       // cookieless with Google signals and ad personalisation off.
       if (config.cookieless) command("set", { ...cookieless, allow_google_signals: false, allow_ad_personalization_signals: false });
+      // Ads click IDs travel in the page URL between pages instead of a cookie, so a landing page
+      // can still be tied to its thank-you page while ad storage stays denied (nothing is stored).
+      if (config.adsId) command("set", "url_passthrough", true);
       win.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js", page_location: location });
     }
     else {
       command("js", new Date());
       command("config", config.ga4Id, { send_page_view: false, page_location: location, page_referrer: previousPage, allow_google_signals: false, allow_ad_personalization_signals: false, ...cookieless });
     }
-    const id = "oqc-google-analytics";
-    if (!doc.getElementById(id)) {
-      const script = doc.createElement("script"); script.id = id; script.async = true;
-      script.src = config.mode === "gtm" ? `https://www.googletagmanager.com/gtm.js?id=${config.gtmId}` : `https://www.googletagmanager.com/gtag/js?id=${config.ga4Id}`;
+    const load = (id, src) => {
+      if (doc.getElementById(id)) return;
+      const script = doc.createElement("script"); script.id = id; script.async = true; script.src = src;
       doc.head.appendChild(script);
+    };
+    load("oqc-google-analytics", config.mode === "gtm" ? `https://www.googletagmanager.com/gtm.js?id=${config.gtmId}` : `https://www.googletagmanager.com/gtag/js?id=${config.ga4Id}`);
+    // One gtm.js event above serves every container: each one replays the dataLayer on load,
+    // so a second loader never pushes a second page-load event.
+    if (config.mode === "gtm" && config.gtm2Id) load("oqc-google-tag-manager-2", `https://www.googletagmanager.com/gtm.js?id=${config.gtm2Id}`);
+    if (config.adsId) {
+      // Google Ads tag. Ad storage, ad data and personalisation stay denied (owner decision,
+      // 26 Oct 2026), so it sends cookieless pings only and sets no advertising cookie.
+      command("js", new Date());
+      command("config", config.adsId, { allow_ad_personalization_signals: false, ...cookieless });
+      // With Tag Manager both containers already carry this Ads tag, so a separate gtag.js only
+      // loaded it a third time (155 KB, ~250 ms of mobile script). Owner approved removal, 19 Nov 2026.
+      if (config.mode !== "gtm") load("oqc-google-ads", `https://www.googletagmanager.com/gtag/js?id=${config.adsId}`);
     }
   }
   function pageView(path) {
@@ -152,19 +199,59 @@ export function createAnalyticsController(win, config) {
     if (!allowed() || !location || location === lastPage) return false;
     const sent = emit("page_view", { page_location: location, page_path: new URL(location).pathname, page_title: doc.title, page_referrer: previousPage });
     if (sent) { lastPage = location; previousPage = location; }
+    // Confirmation pages: one named event per page view so GTM triggers do not have to match URLs.
+    const thanks = sent && /^\/(contact|free-trial|usa-quran-classes)\/thank-you\/?$/.exec(new URL(location).pathname);
+    if (thanks) emit("thank_you_view", { form_type: thanks[1] === "contact" ? "contact" : "trial", page_path: new URL(location).pathname });
+    // The Tag Manager container counts a lead (GA4 generate_lead and the Google Ads conversion) when it sees
+    // `thanku_generate_lead`. It pushes that itself on /contact/thank-you only, so the free-trial thank-you page
+    // sends the same event here, once per lead reference (same sessionStorage key, so the two never double up).
+    if (sent && new URL(location).pathname.replace(/\/$/, "") === "/free-trial/thank-you") {
+      const ref = new URL(win.location.href).searchParams.get("ref") || "";
+      if (/^TR-[A-Z0-9-]{4,32}$/.test(ref) && ref !== "TR-RECEIVED" && !leadAlreadyCounted(win, ref)) win.dataLayer.push({ event: "thanku_generate_lead", lead_ref: ref });
+    }
     return sent;
   }
   const onLead = event => {
     const { form_type, market } = event.detail || {};
-    if (event.detail?.event !== "generate_lead" || !["trial", "contact"].includes(form_type) || !["USA", "Australia", "Other"].includes(market)) return;
-    emit("generate_lead", { form_type, market }); // Only a confirmed first-party save signal; no form field values.
+    if (event.detail?.event !== "generate_lead" || !["trial", "contact"].includes(form_type) || !["UK", "USA", "Canada", "Australia", "UAE", "Other"].includes(market)) return;
+    if (!emit("generate_lead", { form_type, market })) return; // Only a confirmed first-party save signal; no form field values.
+    // Google Ads conversion: only once the owner supplies the label. Fired from the saved-lead signal, never from a page view, so reloads do not count twice.
+    if (config.adsId && config.adsLabel) command("event", "conversion", { send_to: `${config.adsId}/${config.adsLabel}` });
+  };
+  const pagePath = () => {
+    const location = publicAnalyticsUrl(win.location.href, origin);
+    return location ? new URL(location).pathname : "";
   };
   const onClick = event => {
-    const href = event.target?.closest?.("a[href]")?.getAttribute("href") || "";
+    const anchor = event.target?.closest?.("a[href]");
+    const href = anchor?.getAttribute("href") || "";
     const channel = href.startsWith("tel:") ? "phone" : href.startsWith("mailto:") ? "email" : /^https:\/\/(?:wa\.me|api\.whatsapp\.com)\//.test(href) ? "whatsapp" : null;
     if (channel) emit("contact_click", { contact_channel: channel });
+    const path = href.split(/[?#]/, 1)[0];
+    const placement = anchor?.getAttribute?.("data-oqc-cta") || "";
+    if (path === "/free-trial" || path === "/usa-quran-classes") {
+      emit("trial_cta_click", {
+        cta_placement: /^[a-z0-9_-]{1,48}$/i.test(placement) ? placement : "internal_link",
+        destination: path === "/usa-quran-classes" ? "usa_landing_page" : "free_trial",
+        page_path: pagePath(),
+      });
+    }
   };
-  win.addEventListener("oqc:lead-saved", onLead); doc.addEventListener("click", onClick);
+  let trialFormStarted = false, trialFormAttempted = false;
+  const onFormFocus = event => {
+    if (trialFormStarted || !event.target?.closest?.('form[aria-label="Book a free trial"]')) return;
+    trialFormStarted = true;
+    emit("trial_form_start", { page_path: pagePath() });
+  };
+  const onFormSubmit = event => {
+    if (trialFormAttempted || !event.target?.matches?.('form[aria-label="Book a free trial"]')) return;
+    trialFormAttempted = true;
+    emit("trial_form_submit_attempt", { page_path: pagePath() });
+  };
+  win.addEventListener("oqc:lead-saved", onLead);
+  doc.addEventListener("click", onClick);
+  doc.addEventListener("focusin", onFormFocus);
+  doc.addEventListener("submit", onFormSubmit);
   // Core Web Vitals from real visits (Next.js useReportWebVitals). Only the
   // metric itself and the public page path are sent.
   const VITALS = new Set(["LCP", "INP", "CLS", "FCP", "TTFB"]);
@@ -185,7 +272,10 @@ export function createAnalyticsController(win, config) {
   return {
     setConsent, pageView, webVital,
     destroy() {
-      win.removeEventListener("oqc:lead-saved", onLead); doc.removeEventListener("click", onClick);
+      win.removeEventListener("oqc:lead-saved", onLead);
+      doc.removeEventListener("click", onClick);
+      doc.removeEventListener("focusin", onFormFocus);
+      doc.removeEventListener("submit", onFormSubmit);
       setConsent(false);
     },
   };

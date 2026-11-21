@@ -22,3 +22,9 @@ test('CSP rejects header injection and unsafe API origins; eval is development o
   for (const origin of ['http://college.supabase.co', 'https://user:password@college.supabase.co']) assert.throws(() => staffContentSecurityPolicy(nonce, origin));
   assert.ok(staffContentSecurityPolicy(nonce, 'https://college.supabase.co', true).includes("'unsafe-eval'"));
 });
+
+test('staff can play review videos from the project storage origin only', () => {
+  const csp = staffContentSecurityPolicy(randomBytes(16).toString('base64'), 'https://college.supabase.co');
+  const media = csp.split('; ').find(value => value.startsWith('media-src'));
+  assert.equal(media, "media-src 'self' blob: https://college.supabase.co");
+});

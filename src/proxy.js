@@ -7,6 +7,21 @@ const PUBLIC_ADMIN_PATHS = ["/admin/login", "/admin/forgot"];
 
 // Refreshes the admin session cookie and keeps the admin panel behind sign-in.
 export async function proxy(request) {
+  // Page-builder plugin requests (?jkit-ajax-request=...) are not pages and the plugin is gone.
+  // Google indexed one on 3 Nov 2026; 410 Gone removes it from the index (18 Nov 2026, owner).
+  if (request.nextUrl.searchParams.has("jkit-ajax-request")) {
+    return new NextResponse("Gone", { status: 410, headers: { "X-Robots-Tag": "noindex, nofollow", "Cache-Control": "no-store" } });
+  }
+  if (request.nextUrl.pathname === "/blog") {
+    // Next rewrites can collapse duplicate keys before the page validates them.
+    const params = request.nextUrl.searchParams;
+    // The ?category= topic filter was removed (18 Nov 2026): old links 301 to the plain blog index.
+    if (params.has("category")) return NextResponse.redirect(new URL("/blog", request.url), 301);
+    if (params.getAll("page").length > 1) {
+      return new NextResponse("Not found", { status: 404, headers: { "X-Robots-Tag": "noindex", "Cache-Control": "no-store" } });
+    }
+    return NextResponse.next();
+  }
   const nonce = Buffer.from(crypto.getRandomValues(new Uint8Array(16))).toString("base64");
   const csp = staffContentSecurityPolicy(nonce, SUPABASE_URL, process.env.NODE_ENV === "development");
   const next = () => {
@@ -79,5 +94,10 @@ export async function proxy(request) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/auth/:path*", "/parents", "/parents/:path*"],
+  matcher: [
+    "/admin/:path*", "/auth/:path*", "/parents", "/parents/:path*",
+    { "source": "/:path*", "has": [{ "type": "query", "key": "jkit-ajax-request" }] },
+    { "source": "/blog", "has": [{ "type": "query", "key": "page" }] },
+    { "source": "/blog", "has": [{ "type": "query", "key": "category" }] }
+  ],
 };

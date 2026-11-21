@@ -22,7 +22,7 @@ values
        'Apply first Tajweed rules: madd, sukoon, tashdeed, ghunnah and qalqalah',
        'Read complete verses and memorise short surahs from Juz Amma'],
  true, 1, 'published', 'Noorani Qaida Online for Kids & Adults | Online Quran College',
- 'Learn Noorani Qaida online with live 1-on-1 classes. Arabic letters, makharij, harakat and first Tajweed rules for kids from 4½ and adults. 7-day free trial.'),
+ 'Learn Noorani Qaida online with live 1-on-1 classes. Arabic letters, makharij, harakat and first Tajweed rules for kids from 4½ and adults. 3-day free trial.'),
 
 ('quran-nazara', 'Quran Reading with Tajweed (Nazara)', 'ناظرة القرآن',
  'Read the Quran fluently with correct makharij and Tajweed — from the short surahs of Juz Amma to longer passages.',
@@ -37,7 +37,7 @@ values
        'Recite fluently with proper rhythm and breath control',
        'Learn daily duas and remembrances with their meanings'],
  true, 2, 'published', 'Online Quran Reading with Tajweed (Nazara) | Online Quran College',
- 'Learn to read the Quran with Tajweed online. Live one-to-one Nazara classes for kids and adults with female & male teachers. Book a 7-day free trial.'),
+ 'Learn to read the Quran with Tajweed online. Live one-to-one Nazara classes for kids and adults with female & male teachers. Book a 3-day free trial.'),
 
 ('hifz-quran', 'Hifz ul Quran', 'حفظ القرآن',
  'Memorise the Quran with a structured Sabaq, Sabqi and Manzil revision system and regular oral assessments.',
@@ -72,7 +72,7 @@ values
        'Understand the meanings of duas and adhkar you recite',
        'Build reading, translation and conversation skills in Fusha'],
  false, 4, 'published', 'Learn Quranic Arabic Online | Online Quran College',
- 'Online Arabic classes for kids and adults: Quranic vocabulary, Nahw, Sarf and conversation in Classical Arabic. Live 1-on-1 lessons and a 7-day free trial.'),
+ 'Online Arabic classes for kids and adults: Quranic vocabulary, Nahw, Sarf and conversation in Classical Arabic. Live 1-on-1 lessons and a 3-day free trial.'),
 
 ('quran-translation', 'Quran Translation & Tafseer', 'ترجمة القرآن وتفسيره',
  'Understand the meaning of the Quran in simple English, with context and practical lessons for daily life.',
@@ -101,7 +101,7 @@ values
        'Know the stories of the Prophets and their lessons',
        'Build a foundation for further study of Tafseer and Fiqh'],
  false, 6, 'published', 'Online Hadith & Islamic Studies Classes | Online Quran College',
- 'Study Hadith, Wudu, Salah, daily duas and Islamic manners online with live one-to-one classes for kids and adults. 7-day free trial.')
+ 'Study Hadith, Wudu, Salah, daily duas and Islamic manners online with live one-to-one classes for kids and adults. 3-day free trial.')
 on conflict (slug) do nothing;
 
 insert into public.course_modules (course_id, title, objectives, topics, sort_order)
@@ -177,15 +177,15 @@ insert into public.pricing_plans (name, tagline, course_type, billing_period, cl
                                   features, is_featured, is_public, sort_order, status)
 select * from (values
   ('Package 1', 'A gentle start', 'Standard Quran Course', 'monthly', 2, 30, 7,
-   array['2 classes a week', '30-minute 1-on-1 classes', 'Certified tutor', '7-day free trial'], false, true, 1, 'published'),
+   array['2 classes a week', '30-minute 1-on-1 classes', 'Certified tutor', '3-day free trial'], false, true, 1, 'published'),
   ('Package 2', 'Steady progress', 'Standard Quran Course', 'monthly', 3, 30, 7,
-   array['3 classes a week', '30-minute 1-on-1 classes', 'Certified tutor', '7-day free trial'], true, true, 2, 'published'),
+   array['3 classes a week', '30-minute 1-on-1 classes', 'Certified tutor', '3-day free trial'], true, true, 2, 'published'),
   ('Package 3', 'Faster progress', 'Standard Quran Course', 'monthly', 4, 30, 7,
-   array['4 classes a week', '30-minute 1-on-1 classes', 'Certified tutor', '7-day free trial'], false, true, 3, 'published'),
+   array['4 classes a week', '30-minute 1-on-1 classes', 'Certified tutor', '3-day free trial'], false, true, 3, 'published'),
   ('Package 4', 'Specialised courses', 'Specialized Quran Course', 'monthly', 4, 30, 7,
-   array['4 classes a week', '30-minute 1-on-1 classes', 'Hifz, Tajweed, Arabic & more', '7-day free trial'], false, true, 4, 'published'),
+   array['4 classes a week', '30-minute 1-on-1 classes', 'Hifz, Tajweed, Arabic & more', '3-day free trial'], false, true, 4, 'published'),
   ('Leisure', 'Learn at a relaxed pace', 'Leisure Quran Lessons', 'monthly', 2, 30, 7,
-   array['2 classes a week', '30-minute 1-on-1 classes', 'Relaxed pace', '7-day free trial'], false, true, 5, 'published'),
+   array['2 classes a week', '30-minute 1-on-1 classes', 'Relaxed pace', '3-day free trial'], false, true, 5, 'published'),
   ('Weekend', 'Saturday & Sunday classes', 'Weekend Quran Studies', 'monthly', 2, 30, 0,
    array['2 weekend classes', '30-minute 1-on-1 classes', 'Ideal for busy weekdays'], false, true, 6, 'published')
 ) as p(name, tagline, course_type, billing_period, classes_per_week, duration_min, trial_days, features, is_featured, is_public, sort_order, status)
@@ -203,7 +203,7 @@ on conflict (plan_id, currency) do nothing;
 -- ---------------------------------------------------------------------------
 insert into public.faqs (question, answer, category, sort_order, status)
 select * from (values
-  ('Is there a free trial?', 'Yes. You get 7 days of free classes with no credit card required (all packages except the Weekend plan). It is a chance to meet your teacher, try the virtual classroom and settle on timings before you subscribe.', 'Getting started', 1, 'published'),
+  ('Is there a free trial?', 'Yes. You get 3 days of free classes with no credit card required (all packages except the Weekend plan). It is a chance to meet your teacher, try the virtual classroom and settle on timings before you subscribe.', 'Getting started', 1, 'published'),
   ('Can I choose a female teacher?', 'Yes. Female teachers are available for children and sisters, and male teachers for brothers. Choose your preference on the free-trial form.', 'Getting started', 2, 'published'),
   ('How do online classes work?', 'Every class is live and one-to-one with your teacher, using video, screen-sharing and an interactive whiteboard. You only need a laptop, tablet or phone with a camera, microphone and a stable internet connection.', 'Classes', 3, 'published'),
   ('Do I need to buy books?', 'No. Your teacher shows the Qaida or Mushaf on screen and shares PDF copies for practice at home.', 'Classes', 4, 'published'),

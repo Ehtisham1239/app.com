@@ -4,7 +4,14 @@ export function announceLeadSaved({ formType, country, reference, honeypot = "" 
   if (typeof window === "undefined" || !["trial", "contact"].includes(formType) || honeypot) return false;
   const prefix = formType === "trial" ? "TR-" : "MSG-";
   if (typeof reference !== "string" || !reference.startsWith(prefix) || reference === `${prefix}RECEIVED`) return false;
-  const market = country === "United States" ? "USA" : country === "Australia" ? "Australia" : "Other";
+  const marketByCountry = {
+    "United Kingdom": "UK",
+    "United States": "USA",
+    Canada: "Canada",
+    Australia: "Australia",
+    "United Arab Emirates": "UAE",
+  };
+  const market = marketByCountry[country] || "Other";
   try {
     window.dispatchEvent(new CustomEvent("oqc:lead-saved", { detail: { event: "generate_lead", form_type: formType, market } }));
     return true;

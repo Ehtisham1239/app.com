@@ -129,6 +129,14 @@ export const CONTACT_STATUSES = [
   { value: "archived", label: "Archived", tone: "muted" },
 ];
 
+export const REVIEW_STATUSES = [
+  { value: "new", label: "New", tone: "blue" },
+  { value: "approved", label: "Approved", tone: "green" },
+  { value: "rejected", label: "Not used", tone: "amber" },
+  { value: "spam", label: "Spam", tone: "red" },
+  { value: "archived", label: "Archived", tone: "muted" },
+];
+
 export const COMPLAINT_STATUSES = [
   { value: "open", label: "Open", tone: "red" },
   { value: "under_review", label: "Under review", tone: "amber" },
@@ -199,7 +207,8 @@ export const CERTIFICATE_STATUSES = [
   { value: "revoked", label: "Revoked", tone: "red" },
 ];
 
-export const CURRENCIES = [...new Set(["USD", "GBP", "CAD", "AUD", "EUR", "NZD", "HKD", "AED", "PKR", ...LOCATIONS.map((country) => country.currency)])];
+// Owner decision (8 Nov 2026): GBP, USD, AUD and AED only.
+export const CURRENCIES = ["USD", "GBP", "AUD", "AED"];
 
 export function labelFor(list, value) {
   return list.find((o) => o.value === value)?.label ?? value ?? "—";

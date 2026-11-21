@@ -1,4 +1,4 @@
-import { LOCATIONS, getLocation, locationPath, locationCmsSlug, defaultLocationNoindex } from "./src/lib/locations.js";
+import { LOCATIONS, INDEXED_MARKETS, isLiveLocation, locationPath, locationCmsSlug } from "./src/lib/locations.js";
 import { LEARNING_GUIDES } from "./src/lib/learning-guides.js";
 import { readFileSync } from "node:fs";
 import { legacyImageRedirects } from "./src/lib/legacy-image-redirects.js";
@@ -7,17 +7,25 @@ const imageManifest = JSON.parse(readFileSync(new URL("./src/lib/image-manifest.
 const securityHeaders = [
   // Disallow HTML event-handler attributes even on cacheable public pages.
   // This is separate from the nonce-based script policy on staff/auth routes.
-  { key: "Content-Security-Policy", value: "base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src-attr 'none'" },
+  { key: "Content-Security-Policy", value: "base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src-attr 'none'; upgrade-insecure-requests" },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=()" },
   { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
   { key: "Cross-Origin-Opener-Policy", value: "same-origin-allow-popups" },
+  { key: "X-Permitted-Cross-Domain-Policies", value: "none" },
+  { key: "Origin-Agent-Cluster", value: "?1" },
 ];
+
+// Hostinger's shared Node.js hosting caps threads and processes per account. Its
+// webpack build (`npm run build:hostinger`) sets OQC_BUILD_CPUS so page-data
+// collection starts a few workers instead of one per host CPU. Unset on Vercel.
+const hostBuildCpus = Number.parseInt(process.env.OQC_BUILD_CPUS ?? "", 10);
 
 const nextConfig = {
   poweredByHeader: false,
+  ...(hostBuildCpus > 0 ? { experimental: { cpus: hostBuildCpus } } : {}),
   // experimental.inlineCss was tried (26 Oct 2026) and rejected: Next 16 embeds
   // the CSS three times per page (style tag plus flight data), tripling HTML.
   // Only CMS uploads from this project's public storage bucket are optimised.
@@ -39,34 +47,119 @@ const nextConfig = {
       { source: "/images/islamic/:path*", headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }] },
       { source: "/icons/:path*", headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }] },
       { source: "/admin/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }, { key: "Cache-Control", value: "private, no-store, max-age=0" }] },
+      // The production alias (appcom-online-quran-college.vercel.app) serves the same pages as
+      // www.onlinequrancollege.com. Keep every *.vercel.app host out of search indexes so only the
+      // canonical domain is indexed; links stay followable. (From #65, 3 Nov 2026.)
+      { source: "/:path*", has: [{ type: "host", value: "(?<vercelhost>.+\\.vercel\\.app)" }], headers: [{ key: "X-Robots-Tag", value: "noindex, follow" }] },
+      // The Hostinger mirror (*.hostingersite.com) is the same site on a temporary host; keep it out
+      // of search indexes too so Google only ranks www.onlinequrancollege.com.
+      { source: "/:path*", has: [{ type: "host", value: "(?<hostingerhost>.+\\.hostingersite\\.com)" }], headers: [{ key: "X-Robots-Tag", value: "noindex, follow" }] },
     ];
+  },
+  // /blog stays static; only filtered or paged lists render per request, at the same address.
+  async rewrites() {
+    return {
+      beforeFiles: [
+        // Markdown for AI agents: only requests whose Accept header asks for text/markdown (browsers never do).
+        { source: "/", has: [{ type: "header", key: "accept", value: ".*text/markdown.*" }], destination: "/md" },
+        { source: "/:path((?!_next/|api/|admin|auth|parents|login|md/|gone).+)", has: [{ type: "header", key: "accept", value: ".*text/markdown.*" }], destination: "/md/:path" },
+        // Crawlers and browsers request /favicon.ico regardless of <link rel="icon">; serve the generated brand icon instead of a 404.
+        { source: "/favicon.ico", destination: "/icon" },
+        { source: "/blog", has: [{ type: "query", key: "page" }], destination: "/blog/browse" },
+        // USA Google Ads landing page: static, self-contained files in public/usa-quran-classes.
+        { source: "/usa-quran-classes", destination: "/usa-quran-classes/index.html" },
+        { source: "/usa-quran-classes/thank-you", destination: "/usa-quran-classes/thank-you/index.html" },
+        // Old WordPress URLs with no equivalent page (Search Console 404/403 list, 18 Nov 2026):
+        // answer 410 Gone instead of a vague 404. Equivalent pages are 301-redirected below instead.
+        { source: "/:slug(noorani-qaida-quiz|tajweed-quiz|islamic-quiz|quran-quiz|quiz|quiz-2|lp-profile|api-test|sign-in|importance-of-hajj-and-the-steps-of-hajj-2024|the-quran-a-guide-for-humanity)", destination: "/gone" },
+        { source: "/:dir(wp-content|wp-json|wp-admin|wp-includes)/:path*", destination: "/gone" },
+        { source: "/:file(wp-[a-z-]+\\.php|xmlrpc\\.php)", destination: "/gone" },
+        // WordPress date permalinks (/2012/10/17/post-name): the 2012-13 ones in the index are injected spam.
+        { source: "/:year(20\\d{2})/:month(\\d{2})/:day(\\d{2})/:slug*", destination: "/gone" },
+      ],
+    };
   },
   // Keep links from the previous WordPress site working
   async redirects() {
     const courses = ["noorani-qaida", "quran-nazara", "hifz-quran", "arabic-language", "quran-translation", "hadith-translation"];
+    const ukAliases = ["london", "birmingham", "manchester", "leeds", "bradford", "leicester"].map((slug) => [`online-quran-classes-${slug}`, `/locations/united-kingdom/${slug}`]);
+    // Owner decision (18 Nov 2026): every country and city page is live. No location page redirects; the Monaco,
+    // San Marino and Vatican City city URLs are live pages of their own (owner, 20 Nov 2026).
+    const retiredLocationTarget = (country) => (isLiveLocation(country, null) ? locationPath(country) : "/courses");
+    const oldRelativeLinks = [
+      ...["about", "contact", "pricing", "careers"].map((slug) => [slug, `/${slug}`]),
+      ...courses.map((slug) => [slug, `/courses/${slug}`]),
+      ...ukAliases,
+      ["online-quran-classes-uk", "/locations/united-kingdom"],
+      ["terms-conditions", "/terms-and-conditions"],
+    ];
     return [
+      // Canonical host: the bare domain always moves to www. Vercel did this at the domain
+      // level; on Hostinger both names reach the app, so the app does it (8 Nov 2026).
+      { source: "/:path*", has: [{ type: "host", value: "onlinequrancollege.com" }], destination: "https://www.onlinequrancollege.com/:path*", permanent: true },
+      // Short customer-review link (/review). /copoloit was shared briefly on 2 Nov 2026; keep it working.
+      { source: "/review", destination: "/reviews", permanent: true },
+      { source: "/copoloit", destination: "/reviews", permanent: true },
       ...legacyImageRedirects(imageManifest),
       { source: "/images/learning/map-:region([a-z-]+)-r2-:width(400|800|1200).webp", destination: "/images/learning/oqc-learning-:region-v3-:width.webp", permanent: true },
       { source: "/images/learning/map-:region([a-z-]+)-:width(400|800|1200).webp", destination: "/images/learning/oqc-learning-:region-v3-:width.webp", permanent: true },
-      ...LOCATIONS.flatMap((country) => [null, ...country.cities].map((city) => ({ source: `/${locationCmsSlug(country, city)}`, destination: locationPath(country, city), permanent: true }))),
+      ...LOCATIONS.filter((country) => !isLiveLocation(country, null)).map((country) => ({ source: locationPath(country), destination: "/courses", permanent: true })),
+      ...LOCATIONS.flatMap((country) => country.cities.filter((city) => !isLiveLocation(country, city)).map((city) => ({ source: locationPath(country, city), destination: retiredLocationTarget(country), permanent: true }))),
+      ...LOCATIONS.flatMap((country) => [null, ...country.cities].map((city) => ({ source: `/${locationCmsSlug(country, city)}`, destination: isLiveLocation(country, city) ? locationPath(country, city) : city ? retiredLocationTarget(country) : "/courses", permanent: true }))),
       ...LEARNING_GUIDES.map((guide) => ({ source: `/${guide.slug}`, destination: guide.path, permanent: true })),
       { source: "/online-quran-classes-usa", destination: "/locations/united-states", permanent: true },
       { source: "/online-quran-classes-australia", destination: "/locations/australia", permanent: true },
       { source: "/online-quran-classes-uk", destination: "/locations/united-kingdom", permanent: true },
-      // Old WordPress city URLs still rank in Search Console. Send them to an indexable
-      // page so that standing is not passed to a noindex city page.
-      ...["london", "birmingham", "manchester", "leeds", "bradford", "leicester"].map((slug) => {
-        const uk = getLocation("united-kingdom"), city = uk.cities.find((c) => c.slug === slug);
-        return { source: `/online-quran-classes-${slug}`, destination: defaultLocationNoindex(uk, city) ? locationPath(uk) : locationPath(uk, city), permanent: true };
-      }),
+      // Old WordPress city URLs still rank in Search Console. Send each to its own city page.
+      ...ukAliases.map(([slug, destination]) => ({ source: `/${slug}`, destination, permanent: true })),
+      // Recover relative links from the old public pages reported as 404 in Search Console.
+      ...oldRelativeLinks.map(([slug, destination]) => ({ source: `/:section(about|contact|pricing|privacy-policy)/${slug}`, destination, permanent: true })),
+      { source: "/book-now", destination: "/free-trial", permanent: true },
+      { source: "/op/book-now-online-quran-free-classes", destination: "/free-trial", permanent: true },
+      { source: "/noorani-qaida-course", destination: "/courses/noorani-qaida", permanent: true },
+      { source: "/hadith-translation-course", destination: "/courses/hadith-translation", permanent: true },
+      { source: "/our-blogs", destination: "/blog", permanent: true },
+      // Old WordPress feed, archive and sitemap URLs that crawlers still request (17 Nov 2026
+      // live check found them 404). Each goes to its current equivalent.
+      { source: "/feed", destination: "/blog/feed.xml", permanent: true },
+      { source: "/blog/feed", destination: "/blog/feed.xml", permanent: true },
+      { source: "/comments/feed", destination: "/blog/feed.xml", permanent: true },
+      { source: "/category/:slug*", destination: "/blog", permanent: true },
+      { source: "/tag/:slug*", destination: "/blog", permanent: true },
+      { source: "/author/:slug*", destination: "/about", permanent: true },
+      { source: "/blog/page/:n(\\d+)", destination: "/blog", permanent: true },
+      { source: "/page/:n(\\d+)", destination: "/blog", permanent: true },
+      { source: "/:name(sitemap_index|wp-sitemap|sitemap-index|post-sitemap|page-sitemap|category-sitemap|wp-sitemap-posts-post-1|wp-sitemap-posts-page-1).xml", destination: "/sitemap.xml", permanent: true },
+      { source: "/index.php", destination: "/", permanent: true },
+      { source: "/faqs", destination: "/faq", permanent: true },
+      // Duplicate CMS pages retired (18 Nov 2026, owner): an empty page, a noindex copy of /trial-video,
+      // and the old WordPress Perth URL whose canonical was already the Perth city page.
+      { source: "/online-quran-academy", destination: "/", permanent: true },
+      { source: "/free-trial-video-guide", destination: "/trial-video", permanent: true },
+      { source: "/online-quran-classes-in-perth-australia", destination: "/locations/australia/perth", permanent: true },
+      // Mistyped city links inside the CMS body of /locations/australia (found by the 19 Nov 2026 crawl;
+      // they returned 404). Send them to the real city pages until the CMS text is corrected.
+      { source: "/locations/australia/australia-melbourne", destination: "/locations/australia/melbourne", permanent: true },
+      { source: "/locations/australia/locations-australia-brisbane", destination: "/locations/australia/brisbane", permanent: true },
       ...courses.map((slug) => ({ source: `/${slug}`, destination: `/courses/${slug}`, permanent: true })),
       { source: "/hifz-ul-quran-course", destination: "/courses/hifz-quran", permanent: true },
+      // Duplicate course (17 Nov 2026, owner): "Quran Recitation" repeated the Nazara course's
+      // intent (fluent recitation with Tajweed). Nazara is kept; the duplicate is unpublished.
+      { source: "/courses/quran-recitation", destination: "/courses/quran-nazara", permanent: true },
+      // Old WordPress pages still in the search index (2 Nov 2026 site: check) that now 404.
+      // Only exact-intent targets: /ramzan-course has no current equivalent and stays a 404.
+      { source: "/quran-nazara-course", destination: "/courses/quran-nazara", permanent: true },
+      { source: "/services", destination: "/courses", permanent: true },
       // Recovered original articles reviewed in the 31 October migration proposal.
       { source: "/how-to-learn-quran-by-heart-2", destination: "/blog/memorization-techniques-for-beginners", permanent: true },
       { source: "/start-teaching-the-quran-to-your-children", destination: "/blog/help-your-kids-learn-quran-online", permanent: true },
+      { source: "/teaching-the-quran-to-your-children-2", destination: "/blog/help-your-kids-learn-quran-online", permanent: true },
       { source: "/terms-conditions", destination: "/terms-and-conditions", permanent: true },
-      { source: "/login.html", destination: "/admin/login", permanent: false },
-      { source: "/login", destination: "/admin/login", permanent: false },
+      // Teacher profile renamed in the CMS from ustadha-aisha to aisha; the old URL was a 404 in Search Console (17 Nov 2026).
+      { source: "/teachers/ustadha-aisha", destination: "/teachers/aisha", permanent: true },
+      // /login serves its own noindex page (src/app/login/route.js): redirecting it to the
+      // robots-blocked /admin/login left it "indexed, though blocked by robots.txt" (18 Nov 2026).
+      { source: "/login.html", destination: "/login", permanent: true },
       { source: "/register", destination: "/free-trial", permanent: false },
     ];
   },

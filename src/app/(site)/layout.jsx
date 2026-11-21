@@ -1,34 +1,37 @@
 import { HatchiumChat } from "@/components/site/hatchium-chat";
+import { SiteMotion } from "@/components/site/site-motion";
 import { MobileActionBar } from "@/components/site/mobile-action-bar";
-import { whatsappLink } from "@/lib/format";
+import { ReviewsButton } from "@/components/site/reviews-button";
+import { reviewsButtonConfig } from "@/lib/reviews-button";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { safeJsonLd } from "@/lib/seo";
+import { safeJsonLd, organizationPostalAddress, organizationIdentityProfiles } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
 import { CampaignAttribution } from "@/components/site/campaign-attribution";
 import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
+import { AyahBand } from "@/components/site/ayah-band";
 import { TopBar } from "@/components/site/chrome";
 import { getCourses, getMenus, getSettings } from "@/lib/site-data";
 import { WebsiteAnalytics } from "@/components/site/analytics";
 import { analyticsConfig, cookielessAnalyticsConfig } from "@/lib/analytics";
+import { MetaPixel } from "@/components/site/meta-pixel";
+import { metaPixelId } from "@/lib/meta-pixel";
 import { verificationCode } from "@/lib/search-settings";
+import { INDEXED_MARKETS, getLocation } from "@/lib/locations";
+import { customCodeFromSettings, mergeSiteGraph, validateSiteSchema } from "@/lib/custom-code";
+import { CustomHeadCode } from "@/components/site/custom-code";
 
-export const revalidate = 300;
+// Where lessons are offered online (the five indexed markets) and what is taught; both are
+// stated on the public pages. Online coverage, not physical offices.
+const AREA_SERVED = INDEXED_MARKETS.map(getLocation).filter(Boolean).map((c) => ({ "@type": "Country", name: c.name }));
+const KNOWS_ABOUT = ["Quran recitation", "Tajweed", "Noorani Qaida", "Hifz (Quran memorisation)", "Quranic Arabic", "Quran translation and tafseer", "Islamic studies for children"];
+
+export const revalidate = 3600;
 
 export async function generateMetadata() {
   const settings = await getSettings();
   const seo = settings["site.seo"] || {};
   return { verification: { google: verificationCode(seo.google_verification), other: verificationCode(seo.bing_verification) ? { "msvalidate.01": verificationCode(seo.bing_verification) } : undefined } };
-}
-
-// Only what the site settings state: a full street address when one is saved,
-// otherwise the country (no invented street, city or postcode).
-const COUNTRY_CODES = { "united kingdom": "GB", "uk": "GB", "united states": "US", "usa": "US", "canada": "CA", "australia": "AU", "pakistan": "PK" };
-function orgAddress(contact = {}) {
-  const a = contact.address;
-  if (a && typeof a === "object") return { "@type": "PostalAddress", ...a };
-  const country = COUNTRY_CODES[String(contact.location || "").trim().toLowerCase()];
-  return country ? { "@type": "PostalAddress", addressCountry: country } : null;
 }
 
 export default async function SiteLayout({ children }) {
@@ -44,26 +47,37 @@ export default async function SiteLayout({ children }) {
   const courseLinks = courses.map(({ slug, title, age_group }) => ({ slug, title, age_group }));
   const footerMenus = {
     ...menus,
-    footer_company: [...(menus.footer_company || []), ...[{ label: "Learning guides", href: "/learn" }, { label: "Careers", href: "/careers" }, { label: "Parent portal (results)", href: "/parents" }].filter(link => !(menus.footer_company || []).some(item => item.href === link.href))],
+    footer_company: [...(menus.footer_company || []), ...[{ label: "Learning guides", href: "/learn" }, { label: "Quran practice tools", href: "/quran-study" }, { label: "Careers", href: "/careers" }, { label: "Parent portal (results)", href: "/parents" }].filter(link => !(menus.footer_company || []).some(item => item.href === link.href))],
     footer_courses: menus.footer_courses?.length ? menus.footer_courses : courseLinks.map((c) => ({ label: c.title, href: `/courses/${c.slug}` })),
   };
 
+  // One site-wide graph. CMS "Site-wide schema" nodes for the Organization or WebSite merge into
+  // these nodes (same @id) instead of publishing a second copy; other CMS nodes are appended.
+  const customCode = customCodeFromSettings(settings);
+  const siteGraph = mergeSiteGraph([{ "@type": "WebSite", "@id": `${SITE_URL}/#website`, name: brandName, alternateName: "OQC", url: SITE_URL, inLanguage: "en-GB", publisher: { "@id": `${SITE_URL}/#organization` } }, { "@type": ["EducationalOrganization", "Organization"], "@id": `${SITE_URL}/#organization`, name: brandName, alternateName: "OQC", url: SITE_URL, logo: `${SITE_URL}/brand/logo.webp`, image: [`${SITE_URL}/brand/logo.webp`, `${SITE_URL}/brand/hero.webp`], ...(organizationPostalAddress(contact) ? { address: organizationPostalAddress(contact) } : {}), description: identity.description, email: contact.email, telephone: contact.phone, ...((contact.email || contact.phone) ? { contactPoint: { "@type": "ContactPoint", contactType: "Admissions enquiries", email: contact.email, telephone: contact.phone, url: `${SITE_URL}/contact` } } : {}), areaServed: AREA_SERVED, knowsAbout: KNOWS_ABOUT, publishingPrinciples: `${SITE_URL}/editorial-standards`, sameAs: organizationIdentityProfiles(settings["site.social"]) }], validateSiteSchema(customCode?.schema, SITE_URL).nodes, SITE_URL);
+
   return (
     <>
+      <CustomHeadCode value={customCode} seo={settings["site.seo"]} />
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:shadow-lg">
         Skip to content
       </a>
       <TopBar announcement={settings["site.announcement"]} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", "@graph": [{ "@type": "WebSite", "@id": `${SITE_URL}/#website`, name: brandName, url: SITE_URL, inLanguage: "en-GB", publisher: { "@id": `${SITE_URL}/#organization` } }, { "@type": ["EducationalOrganization", "Organization"], "@id": `${SITE_URL}/#organization`, name: brandName, legalName: identity.legal_name, url: SITE_URL, logo: `${SITE_URL}/brand/logo.webp`, image: [`${SITE_URL}/brand/logo.webp`, `${SITE_URL}/brand/hero.webp`], ...(orgAddress(contact) ? { address: orgAddress(contact) } : {}), description: identity.description, email: contact.email, telephone: contact.phone, ...((contact.email || contact.phone) ? { contactPoint: { "@type": "ContactPoint", contactType: "Admissions enquiries", email: contact.email, telephone: contact.phone, url: `${SITE_URL}/contact` } } : {}), ...(/^\d{4}$/.test(identity.established || "") ? { foundingDate: identity.established } : {}), sameAs: Object.values(settings["site.social"] || {}).filter(u => typeof u === "string" && u.startsWith("http")) }] }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", "@graph": siteGraph }) }} />
       <CampaignAttribution />
       <SiteHeader menu={header} courses={courseLinks} brandName={brandName} />
-      <main id="main">{children}</main>
+      <main id="main" data-site-motion><SiteMotion />{children}</main>
+      <AyahBand />
       <SiteFooter settings={settings} menus={footerMenus} />
-      <MobileActionBar whatsappHref={whatsappLink(contact.whatsapp, "Assalamu alaikum, I would like to know more about your Quran classes.")} chatEnabled={chatEnabled} />
+      <MobileActionBar chatEnabled={chatEnabled} />
+      <ReviewsButton config={reviewsButtonConfig(settings["site.reviews_button"], settings["site.social"])} consentText={settings["site.forms"]?.consent_text} />
       <HatchiumChat enabled={chatEnabled} widgetKey={chat.widget_key} />
-      {/* Vercel Speed Insights: cookieless real-visit Core Web Vitals per route. */}
-      <SpeedInsights />
+      {/* Vercel Speed Insights: cookieless real-visit Core Web Vitals per route. Its script
+          only exists on Vercel, so other hosts (Hostinger) skip it instead of loading a 404. */}
+      {process.env.VERCEL === "1" && <SpeedInsights />}
       {analytics.enabled && <WebsiteAnalytics config={analytics} />}
+      {/* Meta Pixel: off until META_PIXEL_ID is set; loads only after the visitor accepts (owner, 19 Nov 2026). */}
+      {metaPixelId(process.env.META_PIXEL_ID) && <MetaPixel pixelId={metaPixelId(process.env.META_PIXEL_ID)} />}
     </>
   );
 }

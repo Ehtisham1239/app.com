@@ -1,48 +1,64 @@
+import Link from "next/link";
 import { contentMetadata } from "@/lib/seo-metadata";
 import { CurrencyPricing } from "@/components/site/currency-pricing";
 import { FeeCompare } from "@/components/site/fee-compare";
-import { BadgePercent, CreditCard, ShieldCheck } from "@/components/site/icons";
+import { ArrowRight, CreditCard, ShieldCheck } from "@/components/site/icons";
 import { PageHero, SectionHeading } from "@/components/site/chrome";
 import { CtaBand, FaqList } from "@/components/site/sections";
 import { getFaqs, getPlans, getSettings } from "@/lib/site-data";
 import { whatsappLink } from "@/lib/format";
-import { faqSchema, safeJsonLd } from "@/lib/seo";
+import { faqSchema, safeJsonLd, STATIC_PAGES_REVIEWED } from "@/lib/seo";
 import { getUsdRates } from "@/lib/fx";
+import { feeAnswer } from "@/lib/fee-answer";
+import { INDEXED_MARKETS, getLocation, locationPath } from "@/lib/locations";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
-export const metadata = contentMetadata({ title: "Online Quran Class Fees & Packages", seo_noindex: false }, { path: "/pricing", description: "Compare monthly packages for live one-to-one Quran classes, with a 3-day free trial on eligible plans. The Weekend plan is excluded from the trial." });
+export const metadata = contentMetadata({ title: "Online Quran Class Fees & Packages", seo_noindex: false }, { path: "/pricing", description: "Compare online Quran class fees and lesson schedules across the UK, USA, Canada, Australia and UAE. Check supported currencies and 3-day trial eligibility." });
 
-export default async function PricingPage({ searchParams }) {
-  const requestedCurrency = (await searchParams)?.currency;
+// No searchParams here: the page stays statically cached; ?currency= is read in the browser.
+export default async function PricingPage() {
   const [plans, faqs, settings, fx] = await Promise.all([getPlans(), getFaqs(), getSettings(), getUsdRates()]);
   const packages = plans.filter((p) => /^package/i.test(p.name));
   const other = plans.filter((p) => !/^package/i.test(p.name));
   // General fee, payment and missed-class questions; country-specific answers stay on their country pages.
   const feeFaqs = faqs.filter((f) => !/^Market:/i.test(f.category || "") && /fee|pay|cancel|discount|reschedul|miss/i.test(`${f.category} ${f.question}`));
-  const currencies = [...new Set(plans.flatMap((p) => p.prices.map((x) => x.currency)))];
   const wa = whatsappLink(settings["site.contact"]?.whatsapp, "Assalamu alaikum, I have a question about your fees.");
+  // Direct answer for the most-searched fee question; built from the same published plans as the cards.
+  const quickAnswer = feeAnswer(plans, fx, "GBP", "the UK", settings["site.family_discount"]);
+  const familyDiscount = settings["site.family_discount"];
+  const familyDiscountCopy = familyDiscount?.enabled && Number(familyDiscount?.percent) > 0
+    ? `Each additional child from the same family receives ${Number(familyDiscount.percent)}% off their monthly fee.`
+    : "Ask the coordinator whether a sibling discount is available for your selected plan.";
+
+  const schemaFaqs = quickAnswer ? [{ question: quickAnswer.question, answer: quickAnswer.answer }, ...feeFaqs] : feeFaqs;
 
   return (
     <>
-      <PageHero immersive path="/pricing"
+      <PageHero path="/pricing" modified={STATIC_PAGES_REVIEWED}
         eyebrow="Fees"
         title="Online Quran class fees and packages"
         intro="Choose how many days a week suit your family. Compare lesson frequency, duration and fees below. A 3-day free trial is available on eligible plans; the Weekend plan is excluded."
-      />
-      <section className="page-wrap py-16 sm:py-20" aria-labelledby="monthly-packages">
-        <h2 id="monthly-packages" className="sr-only">Monthly class packages</h2>
-        {packages.length > 0 && <CurrencyPricing plans={packages} defaultCurrency={requestedCurrency} explicit={Boolean(requestedCurrency)} fx={fx} />}
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
+      >
+        <div className="mt-6 flex flex-wrap gap-3">
+          <a className="btn btn-gold" href="#monthly-packages">See monthly fees <ArrowRight className="size-4" aria-hidden="true" /></a>
+          {plans.length > 0 && <a className="btn btn-outline-light" href="#compare-plans">Compare plans</a>}
+        </div>
+      </PageHero>
+      <section id="monthly-packages" className="page-wrap py-11 sm:py-16" aria-labelledby="monthly-packages-title">
+        <h2 id="monthly-packages-title" className="mb-5 text-2xl text-mushaf-900 sm:text-3xl">Monthly class packages</h2>
+        {packages.length > 0
+          ? <CurrencyPricing plans={packages} fx={fx} />
+          : <p className="surface p-5 text-ink-soft">Ask Admissions about available monthly packages. <Link href="/contact" className="font-semibold text-leaf-700 underline">Contact the college</Link>.</p>}
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {[
-            { icon: BadgePercent, title: "15% sibling discount", text: "Each additional child from the same family receives 15% off their monthly fee." },
             { icon: ShieldCheck, title: "Free trial on eligible plans", text: "Try 3 days of classes before choosing an eligible package. The Weekend plan is excluded; confirm your plan with the coordinator." },
-            { icon: CreditCard, title: "Easy payment", text: `Pay monthly by card, PayPal or bank transfer${currencies.length ? ` — prices shown in ${currencies.join(", ")}` : ""}.` },
+            { icon: CreditCard, title: "Easy payment", text: "Pay monthly by card, PayPal or bank transfer. The coordinator confirms your payment currency." },
           ].map(({ icon: Icon, title, text }) => (
             <div key={title} className="flex gap-4 rounded-[var(--radius-card)] border border-line bg-white p-5">
               <Icon className="mt-0.5 size-6 shrink-0 text-gold-600" aria-hidden="true" />
               <div>
-                <h2 className="font-sans text-[1.02rem] font-bold text-mushaf-900">{title}</h2>
+                <h3 className="font-sans text-[1.02rem] font-bold text-mushaf-900">{title}</h3>
                 <p className="mt-1 text-[0.93rem] leading-relaxed text-ink-soft">{text}</p>
               </div>
             </div>
@@ -50,28 +66,59 @@ export default async function PricingPage({ searchParams }) {
         </div>
       </section>
 
-      <section className="border-t border-line bg-[#f5faf1] py-16 sm:py-20" aria-labelledby="compare-plans">
+      {plans.length > 0 && <section id="compare-plans" className="border-t border-line bg-[#f5faf1] py-16 sm:py-20" aria-labelledby="compare-plans-title">
         <div className="page-wrap">
-          <SectionHeading eyebrow="Compare" title={<span id="compare-plans">Compare plans and estimate your family’s fees</span>} intro="See every plan side by side, then work out a monthly total for more than one learner." />
-          <div className="mt-10"><FeeCompare plans={plans} fx={fx} defaultCurrency={requestedCurrency} explicit={Boolean(requestedCurrency)} /></div>
+          <SectionHeading eyebrow="Compare" title={<span id="compare-plans-title">Compare plans and estimate your family’s fees</span>} intro="See every plan side by side, then work out a monthly total for more than one learner." />
+          <div className="mt-10"><FeeCompare plans={plans} fx={fx} familyDiscount={settings["site.family_discount"]} /></div>
+          <p className="mx-auto mt-4 max-w-3xl text-center text-sm text-ink-soft">{familyDiscountCopy}</p>
         </div>
-      </section>
+      </section>}
 
       {other.length > 0 && (
         <section className="border-y border-line bg-white/60 py-16 sm:py-20">
           <div className="page-wrap">
             <SectionHeading eyebrow="More options" title="Weekend and flexible plans" intro="For busy weekdays or adults who prefer a lighter pace." />
             <div className="mt-12">
-              <CurrencyPricing plans={other} defaultCurrency={requestedCurrency} explicit={Boolean(requestedCurrency)} fx={fx} />
+              <CurrencyPricing plans={other} fx={fx} />
             </div>
           </div>
         </section>
       )}
 
+      {quickAnswer && (
+        <section className="page-wrap pt-12 sm:pt-16" aria-labelledby="fee-quick-answer">
+          <div className="mx-auto max-w-3xl rounded-[var(--radius-card)] border border-line bg-white p-6 sm:p-7">
+            <h2 id="fee-quick-answer" className="font-sans text-[1.15rem] font-bold text-mushaf-900">{quickAnswer.question}</h2>
+            <p className="mt-2 text-[0.98rem] leading-relaxed text-ink-soft">{quickAnswer.answer}</p>
+            <div className="mt-3 flex flex-wrap gap-x-5">
+              <Link href="#compare-plans" className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">Compare lesson plans</Link>
+              <Link href="/free-trial" className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">Request a free trial on an eligible plan</Link>
+            </div>
+          </div>
+        </section>
+      )}
+      <section className="page-wrap mt-8" aria-labelledby="fees-by-country">
+        <div className="mx-auto max-w-3xl rounded-[var(--radius-card)] border border-line bg-leaf-50 p-6 sm:p-7">
+          <h2 id="fees-by-country" className="text-xl text-mushaf-900">Quran lesson fees and schedules by country</h2>
+          <p className="mt-2 text-ink-soft">Use your country guide to check lesson times and fee guidance. Admissions confirms the exact fee, payment currency and teacher availability before enrolment.</p>
+          <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+            {INDEXED_MARKETS.map(getLocation).map(country => <li key={country.slug}><Link href={locationPath(country)} className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">{country.name} fees and scheduling</Link></li>)}
+            <li><Link href="/locations#new-zealand-lessons" className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">New Zealand lesson planning</Link></li>
+          </ul>
+        </div>
+      </section>
+      <section className="page-wrap py-10" aria-labelledby="international-course-options">
+        <div className="mx-auto max-w-3xl space-y-3">
+          <h2 id="international-course-options" className="text-xl text-mushaf-900">Choosing a Quran course from abroad?</h2>
+          <p className="text-ink-soft">Compare <Link href="/courses" className="text-leaf-700 underline">online Quran courses</Link> before selecting a package. Students in the UK, Europe, the USA, Canada and Australia can request lessons matched to their learning level and preferred local time, subject to teacher availability. Country guides explain scheduling; the coordinator confirms actual fees and currencies.</p>
+          <p><Link href="/free-trial" className="font-semibold text-leaf-700 underline">Ask about an eligible free trial</Link> before enrolling.</p>
+        </div>
+      </section>
+      {feeFaqs.length === 0 && quickAnswer && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema(schemaFaqs)) }} />}
       {feeFaqs.length > 0 && (
         <section className="page-wrap py-16 sm:py-20">
           <SectionHeading eyebrow="Questions" title="About fees and payments" />
-          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema(feeFaqs)) }} />
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema(schemaFaqs)) }} />
           <div className="mx-auto mt-10 max-w-3xl">
             <FaqList faqs={feeFaqs} defaultOpen={-1} />
           </div>

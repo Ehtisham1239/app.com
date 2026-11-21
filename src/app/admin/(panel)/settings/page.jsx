@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 import { Loader2, Plus, Save, Trash2 } from "lucide-react";
 import { clsx } from "clsx";
@@ -9,8 +9,10 @@ import { db, notifyError, refreshSite, useLoad } from "@/lib/admin/db";
 import { DEFAULT_SETTINGS } from "@/lib/default-settings";
 import { analyticsConfig, analyticsSettingsError } from "@/lib/analytics";
 import { normalizeSeoSettings, seoSettingsError } from "@/lib/search-settings";
+import { reviewsButtonError } from "@/lib/reviews-button";
 import { CONTENT_ICONS, ContentIcon } from "@/components/icon";
 import { Card, ErrorState, Field, Loading, PageHeader, TagInput, Toggle } from "@/components/admin/ui";
+import { SeoCodeSettings } from "@/components/admin/seo-code-settings";
 
 const t = (name, label, extra = {}) => ({ name, label, type: "text", ...extra });
 const area = (name, label, extra = {}) => ({ name, label, type: "textarea", ...extra });
@@ -22,11 +24,13 @@ const SECTIONS = [
   { key: "site.stats", title: "Numbers", text: "Short facts shown under the hero. Publish student counts, dates or other business claims only when you have verified evidence.", list: [t("value", "Number"), t("label", "Label")] },
   { key: "site.benefits", title: "Why choose us", text: "Benefits on the home page.", list: [{ name: "icon", label: "Icon", type: "icon" }, t("title", "Title"), area("text", "Text")] },
   { key: "site.steps", title: "How it works", text: "Three steps on the home page.", list: [t("title", "Title"), area("text", "Text")] },
-  { key: "site.social", title: "Social links", text: "Leave a link empty to hide it.", fields: [t("facebook", "Facebook"), t("instagram", "Instagram"), t("x", "X (Twitter)"), t("youtube", "YouTube"), t("tiktok", "TikTok")] },
-  { key: "site.forms", title: "Forms", text: "Consent wording and thank-you messages.", fields: [area("consent_text", "Consent text"), t("consent_version", "Consent version", { hint: "Change this date when you change the consent text." }), area("trial_success", "Free-trial thank-you"), area("contact_success", "Contact thank-you")] },
+  { key: "site.social", title: "Social links", text: "Leave a link empty to hide it.", fields: [t("facebook", "Facebook"), t("instagram", "Instagram"), t("x", "X (Twitter)"), t("youtube", "YouTube"), t("tiktok", "TikTok"), t("trustpilot", "Trustpilot reviews page")] },
+  { key: "site.reviews_button", title: "Reviews button", text: "Customer review entry point. Share link: /reviews (short: /review). The on-site form sends private feedback to Admissions → Reviews for moderation; it never auto-publishes. The site currently uses text-only Trustpilot profile/invitation links. Do not add manually copied TrustScore or review cards: a display widget requires an official TrustBox embed covered by your Business plan or approved API access, with Trustpilot refresh and noindex rules followed.", fields: [{ name: "enabled", label: "Show the button", type: "bool" }, t("label", "Button text", { hint: "Up to 40 characters, e.g. Review us on Trustpilot" }), t("sublabel", "Small text under it", { hint: "Optional, up to 40 characters, e.g. Parents & students" }), { name: "every_page", label: "Show on every page (off = home page only)", type: "bool" }, { name: "open_form", label: "Open OQC review form first (recommended)", type: "bool" }, t("page_url", "Short review link", { hint: "One word after the slash, e.g. /copoloit or /feedback. It opens the review page (/reviews) automatically, so you can change it here at any time. Leave as /reviews to share the full page address." }), area("invite_message", "Review invitation message", { hint: "Used by Admissions → Reviews → Invite a family. Write {link} where the review link should go. Keep it neutral: send it to every family after a PTM, never ask for a rating or offer anything in return. Leave empty for the standard PTM message." }), t("url", "Trustpilot link", { hint: "Direct Trustpilot review invitation URL. Default points to OQC’s verified invitation link; any custom URL must be an https://…trustpilot.com address." }), t("google_url", "Google review link", { hint: "Optional. Add only if OQC has a Google Business Profile that meets Google’s in-person customer-contact eligibility rules. An online-only business without face-to-face customer contact should not create a profile. Shown to every reviewer only when an eligible link is saved." })] },
+  { key: "site.forms", title: "Forms", text: "Consent wording and thank-you messages.", fields: [area("consent_text", "Consent text"), t("consent_version", "Consent version", { hint: "Change this date when you change the consent text." }), area("trial_success", "Free-trial thank-you"), area("contact_success", "Contact thank-you"), { name: "careers_form_hidden", label: "Hide public careers registration form", type: "bool" }, area("careers_consent", "Careers consent text")] },
   { key: "site.chat", title: "Website chat", text: "Hatchium chat widget on public pages. API secrets must never be entered here; the lead webhook lives in Supabase Vault (see Lead forwarding below).", fields: [{ name: "enabled", label: "Enable website chat", type: "bool" }, t("widget_key", "Hatchium public widget key")] },
-  { key: "site.analytics", title: "Google Analytics & tags", text: "Use your own public IDs, not script snippets or passwords. The current website uses cookieless analytics without a consent banner: analytics cookies stay in page memory, advertising consent stays denied and Google signals stay off. When a GTM ID is provided, Tag Manager manages GA4; the separate GA4 script is not loaded. Publish the matching Google tags inside your GTM container.", fields: [{ name: "enabled", label: "Enable website analytics", type: "bool" }, t("ga4_measurement_id", "GA4 Measurement ID", { hint: "Starts G-. Find it in GA4 Admin → Data streams → Web." }), t("gtm_container_id", "Tag Manager Container ID", { hint: "Starts GTM-. Leave empty for direct GA4." })] },
+  { key: "site.analytics", title: "Google Analytics & tags", text: "Use your own public IDs, not script snippets or passwords. The current website uses cookieless analytics without a consent banner: analytics cookies stay in page memory, advertising consent stays denied and Google signals stay off. When a GTM ID is provided, Tag Manager manages GA4; the separate GA4 script is not loaded. Publish the matching Google tags inside your GTM container.", fields: [{ name: "enabled", label: "Enable website analytics", type: "bool" }, t("ga4_measurement_id", "GA4 Measurement ID", { hint: "Starts G-. Find it in GA4 Admin → Data streams → Web." }), t("gtm_container_id", "Tag Manager Container ID", { hint: "Starts GTM-. Leave empty for direct GA4." }), t("gtm_secondary_container_id", "Second Tag Manager Container ID", { hint: "Starts GTM-. Loaded with the main container on every public page. Clear it to switch it off." }), t("google_ads_id", "Google Ads ID", { hint: "Starts AW-. Loaded on every public page with advertising consent denied. Clear it to switch it off." }), t("google_ads_conversion_label", "Google Ads conversion label", { hint: "The part after the slash in AW-…/LABEL from Google Ads → Goals → Conversions → Tag setup. Leave empty until you have it; then a saved enquiry sends one conversion." })] },
   { key: "site.seo", title: "Search engines", text: "Default search title and description. Google and Bing may choose different wording for a search result. Individual course, page and article metadata can override these defaults.", fields: [t("title", "Title"), area("description", "Description"), t("google_verification", "Google Search Console verification code", { hint: "Optional meta-tag method: paste only the content value supplied by your Search Console account. File or DNS verification does not require this field." }), t("bing_verification", "Bing Webmaster verification code", { hint: "Optional meta-tag method: paste only your Bing account's code. A saved code still needs confirmation in Bing Webmaster Tools." })] },
+  { key: "seo_code", custom: true, title: "SEO code & schema" },
 ];
 
 function Input({ id, f, value, onChange, disabled }) {
@@ -91,16 +95,21 @@ export default function SettingsPage() {
   const [value, setValue] = useState(null);
   const [busy, setBusy] = useState(false);
   const section = SECTIONS.find((s) => s.key === active);
-  useEffect(() => {
-    if (!rows.data) return;
-    const stored = rows.data.find((r) => r.key === active)?.value;
+  const [previous, setPrevious] = useState({ active, data: rows.data });
+  if (previous.active !== active || previous.data !== rows.data) {
+    setPrevious({ active, data: rows.data });
+    const stored = rows.data?.find((r) => r.key === active)?.value;
     const fallback = structuredClone(DEFAULT_SETTINGS[active] ?? (section.list ? [] : {}));
-    setValue(active === "site.seo" ? normalizeSeoSettings(stored) : stored ?? fallback);
-  }, [active, rows.data, section]);
+    setValue(rows.data && !section.custom ? (active === "site.seo" ? normalizeSeoSettings(stored) : stored ?? fallback) : null);
+  }
 
   const save = async () => {
     if (active === "site.analytics") {
       const error = analyticsSettingsError(value);
+      if (error) return toast.error(error);
+    }
+    if (active === "site.reviews_button") {
+      const error = reviewsButtonError(value);
       if (error) return toast.error(error);
     }
     const savedValue = active === "site.seo" ? normalizeSeoSettings(value) : value;
@@ -133,7 +142,8 @@ export default function SettingsPage() {
               </button>
             ))}
           </nav>
-          {value && (
+          {section.custom && <SeoCodeSettings rows={rows.data} seo={normalizeSeoSettings(rows.data.find((r) => r.key === "site.seo")?.value)} onSaved={rows.reload} />}
+          {value && !section.custom && (
             <Card
               title={section.title}
               actions={canEdit && (
@@ -173,7 +183,7 @@ export default function SettingsPage() {
                     </div>
                   ))}
                   {canEdit && (
-                    <button type="button" className="btn btn-outline btn-sm" onClick={() => setValue((arr) => [...(arr || []), Object.fromEntries(section.list.map((f) => [f.name, f.type === "icon" ? "sparkles" : ""]))])}>
+                    <button type="button" className="btn btn-outline btn-sm" onClick={() => setValue((arr) => [...(arr || []), Object.fromEntries(section.list.map((f) => [f.name, f.type === "icon" ? "sparkles" : f.type === "bool" ? false : ""]))])}>
                       <Plus className="size-4" /> Add item
                     </button>
                   )}

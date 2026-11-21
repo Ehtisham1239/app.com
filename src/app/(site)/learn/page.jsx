@@ -8,10 +8,10 @@ import { ContentImage } from "@/components/site/content-image";
 import { LEARNING_GUIDES } from "@/lib/learning-guides";
 import { COURSE_STARTING_POINTS, LEARNING_ARTICLE_PATHS } from "@/lib/learning-decisions";
 import { getCourses, getPage, getPosts, getPublishedSlugs } from "@/lib/site-data";
-import { breadcrumbSchema, safeJsonLd, shouldIncludeInSitemap } from "@/lib/seo";
+import { breadcrumbSchema, safeJsonLd, shouldIncludeInSitemap, STATIC_PAGES_REVIEWED } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 export const metadata = contentMetadata({ title: "Quran Learning Guides for Families & Adults", seo_noindex: false }, { path: "/learn", description: "Compare Noorani Qaida, Quran reading, Tajweed and Hifz. Find a starting point, practical parent and adult guides, and questions to ask before a trial." });
 
 export default async function Page() {
@@ -30,7 +30,13 @@ export default async function Page() {
     const record = published.posts.find(post => post.slug === slug);
     return post && record && shouldIncludeInSitemap(record, `/blog/${slug}`, SITE_URL) ? [post] : [];
   });
-  const resources = [...guides.map(guide => ({ name: guide.title, path: guide.path })), ...articles.map(post => ({ name: post.title, path: `/blog/${post.slug}` }))];
+  const printableResources = published.pages.find(page => page.slug === "free-quran-learning-resources");
+  const showPrintables = printableResources && shouldIncludeInSitemap(printableResources, "/free-quran-learning-resources", SITE_URL);
+  const resources = [
+    ...guides.map(guide => ({ name: guide.title, path: guide.path })),
+    ...articles.map(post => ({ name: post.title, path: `/blog/${post.slug}` })),
+    ...(showPrintables ? [{ name: "Free printable Quran practice resources", path: "/free-quran-learning-resources" }] : []),
+  ];
   const resourceList = {
     "@context": "https://schema.org", "@type": "ItemList", "@id": `${SITE_URL}/learn#resources`,
     name: "Quran learning guides and practical articles", numberOfItems: resources.length,
@@ -39,12 +45,13 @@ export default async function Page() {
   return <>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema([{ name: "Learning guides", path: "/learn" }], SITE_URL)) }} />
     {resources.length > 0 && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(resourceList) }} />}
-    <PageHero immersive path="/learn" eyebrow="Learning centre" title="Quran learning guides for families and adults" intro="Start with your learner’s current reading level and goals, then explore a course and discuss a trial." />
+    <PageHero immersive path="/learn" modified={STATIC_PAGES_REVIEWED} eyebrow="Learning centre" title="Quran learning guides for families and adults" intro="Start with your learner’s current reading level and goals, then explore a course and discuss a trial." />
     <div className="page-wrap py-12">
       <nav aria-label="On this learning guide" className="flex flex-wrap gap-3 text-sm font-semibold text-leaf-700">
         <a className="rounded-full border border-line px-4 py-2 hover:bg-leaf-50" href="#course-comparison">Compare courses</a>
         <a className="rounded-full border border-line px-4 py-2 hover:bg-leaf-50" href="#learning-guides">Choose a guide</a>
         <a className="rounded-full border border-line px-4 py-2 hover:bg-leaf-50" href="#before-enrolling">Before enrolling</a>
+        <a className="rounded-full border border-line px-4 py-2 hover:bg-leaf-50" href="#practice-resources">Practice resources</a>
         {articles.length > 0 && <a className="rounded-full border border-line px-4 py-2 hover:bg-leaf-50" href="#practical-articles">Practical articles</a>}
       </nav>
       <section id="course-comparison" aria-labelledby="course-comparison-heading" className="scroll-mt-28 py-10">
@@ -65,16 +72,24 @@ export default async function Page() {
       <div className="grid gap-6 sm:grid-cols-2">
         {guides.map(g => <Link prefetch={false} data-card-tone={cardTone(g.slug)} className="editorial-card card-tinted group flex flex-col" key={g.slug} href={g.path}>
           {<div className="relative mx-2 mt-2 aspect-[16/9] overflow-hidden rounded-[1.15rem]"><ContentImage src={contentVisual(g.content).src} alt={contentVisual(g.content).alt} sizes="(max-width: 639px) 100vw, 600px" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" /></div>}
-          <div className="flex flex-1 flex-col p-6"><p className="text-xs font-bold uppercase tracking-wider text-leaf-700">{g.audience}</p><h2 className="mt-3 text-2xl">{g.title}</h2>{g.content.excerpt && <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-soft">{g.content.excerpt}</p>}<span className="card-action mt-6">Read the guide <span className="card-arrow"><ArrowRight className="size-4" aria-hidden="true" /></span></span></div>
+          <div className="flex flex-1 flex-col p-6"><p className="text-xs font-bold uppercase tracking-wider text-leaf-700">{g.audience}</p><h3 className="mt-3 text-2xl">{g.title}</h3>{g.content.excerpt && <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-soft">{g.content.excerpt}</p>}<span className="card-action mt-6">Read the guide <span className="card-arrow"><ArrowRight className="size-4" aria-hidden="true" /></span></span></div>
         </Link>)}
       </div>
+    </section>
+    <section id="practice-resources" aria-labelledby="practice-resources-heading" className="page-wrap scroll-mt-28 pb-14">
+      <h2 id="practice-resources-heading" className="text-3xl">Practise between lessons</h2>
+      <p className="mt-4 max-w-3xl text-ink-soft">Use a practice tool to focus on one skill at a time, or keep a record of what you want to review with your teacher.</p>
+      <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+        <li className="surface p-5"><h3 className="text-xl"><Link prefetch={false} className="text-leaf-700 underline underline-offset-4" href="/quran-study">Online Quran practice tools</Link></h3><p className="mt-2 text-sm text-ink-soft">Explore reading, pronunciation and revision activities.</p></li>
+        {showPrintables && <li className="surface p-5"><h3 className="text-xl"><Link prefetch={false} className="text-leaf-700 underline underline-offset-4" href="/free-quran-learning-resources">Free printable Quran practice resources</Link></h3><p className="mt-2 text-sm text-ink-soft">Download trackers for Noorani Qaida, Makharij and Hifz revision.</p></li>}
+      </ul>
     </section>
     <section id="before-enrolling" aria-labelledby="before-enrolling-heading" className="scroll-mt-28 border-y border-line bg-leaf-50/40 py-14">
       <div className="page-wrap"><h2 id="before-enrolling-heading" className="text-3xl">What should I check before enrolling?</h2>
         <div className="mt-7 grid gap-7 md:grid-cols-3">
-          <div><h3 className="text-xl">Teacher and lesson fit</h3><p className="mt-3 text-ink-soft">Ask about teaching language, experience with your learner’s level, lesson materials and how progress is reviewed. You can request a female or male teacher; the coordinator confirms availability. For children, discuss parent supervision and how to raise a concern.</p><Link prefetch={false} className="mt-4 inline-block font-semibold text-leaf-700 underline" href="/teachers">Meet the teachers</Link></div>
+          <div><h3 className="text-xl">Teacher and lesson fit</h3><p className="mt-3 text-ink-soft">Ask about teaching language, experience with your learner’s level, lesson materials and how progress is reviewed. You can share a teacher preference; Admissions confirms whether a suitable teacher is available for the requested course, language and time. For children, discuss parent supervision and how to raise a concern.</p><Link prefetch={false} className="mt-4 inline-block font-semibold text-leaf-700 underline" href="/teachers">Meet the teachers</Link></div>
           <div><h3 className="text-xl">Local time and fees</h3><p className="mt-3 text-ink-soft">Confirm the date, local time zone, lesson length, weekly frequency and fee currency. Check rescheduling and refund terms before choosing a package. Country pages describe online class coverage, rather than local teaching offices.</p><p className="mt-4"><Link prefetch={false} className="font-semibold text-leaf-700 underline" href="/locations">Check your country and time zone</Link></p><p className="mt-2"><Link prefetch={false} className="font-semibold text-leaf-700 underline" href="/pricing">Compare published packages</Link></p></div>
-          <div><h3 className="text-xl">The three-day free trial</h3><p className="mt-3 text-ink-soft">Tell us the learner’s age group, reading level, course interest and preferred times. The team contacts you to arrange suitable lessons. The three-day free trial applies to eligible plans; the Weekend plan is excluded. Review the teacher’s feedback before deciding on regular classes.</p><Link prefetch={false} className="btn btn-primary mt-5" href="/free-trial">Request a three-day trial <ArrowRight className="size-4" aria-hidden="true" /></Link></div>
+          <div><h3 className="text-xl">The three-day free trial</h3><p className="mt-3 text-ink-soft">Tell us the learner’s age group, reading level, course interest and preferred times. The team contacts you to arrange suitable lessons. The three-day free trial applies to eligible plans; the Weekend plan is excluded. Review the teacher’s feedback before deciding on regular classes.</p><Link prefetch={false} className="btn btn-primary mt-5 max-w-full whitespace-normal text-center" href="/free-trial">Request a three-day trial <ArrowRight className="size-4" aria-hidden="true" /></Link></div>
         </div>
       </div>
     </section>

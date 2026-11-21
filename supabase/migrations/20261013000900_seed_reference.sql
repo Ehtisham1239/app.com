@@ -88,9 +88,9 @@ insert into public.settings (key, is_public, label, description, value) values
   'eyebrow', 'Live 1-on-1 online Quran classes',
   'title', 'Empowering minds with online Quranic education',
   'subtitle', 'Professional one-to-one classes for children and adults in Noorani Qaida, Tajweed, Hifz, Arabic and Islamic studies — taught live by male and female teachers at times that suit your family.',
-  'primary_label', 'Book a 7-day free trial',
+  'primary_label', 'Book a 3-day free trial',
   'secondary_label', 'Explore courses',
-  'badges', jsonb_build_array('7-day free trial — no card needed', 'Female & male teachers', 'Classes in any time zone')
+  'badges', jsonb_build_array('3-day free trial — no card needed', 'Female & male teachers', 'Classes in any time zone')
 )),
 ('site.stats', true, 'Numbers', 'Short facts shown under the hero', jsonb_build_array(
   jsonb_build_object('value', '2018', 'label', 'Teaching since'),
@@ -113,7 +113,7 @@ insert into public.settings (key, is_public, label, description, value) values
 )),
 ('site.announcement', true, 'Top bar announcement', 'Small banner above the header', jsonb_build_object(
   'enabled', true,
-  'text', '7 days of free classes — no credit card required.',
+  'text', '3 days of free classes — no credit card required.',
   'link_label', 'Book now',
   'link', '/free-trial'
 )),
@@ -125,7 +125,7 @@ insert into public.settings (key, is_public, label, description, value) values
 )),
 ('site.seo', true, 'Search engines', 'Default title and description', jsonb_build_object(
   'title', 'Online Quran College — Live 1-on-1 Online Quran Classes',
-  'description', 'Learn Quran online with live one-to-one classes: Noorani Qaida, Tajweed, Hifz, Arabic and Islamic studies for kids and adults. Female & male teachers. 7-day free trial.'
+  'description', 'Learn Quran online with live one-to-one classes: Noorani Qaida, Tajweed, Hifz, Arabic and Islamic studies for kids and adults. Female & male teachers. 3-day free trial.'
 )),
 ('finance.defaults', false, 'Finance defaults', 'Invoice currency, payment terms and footer', jsonb_build_object(
   'currency', 'USD',

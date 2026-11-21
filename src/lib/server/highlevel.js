@@ -1,0 +1,188 @@
+import process from "node:process";
+import { trialContact, websiteFormProperties } from "./highlevel-trial.js";
+
+const HIGHLEVEL_ORIGIN = "https://services.leadconnectorhq.com";
+const EMAIL = /^[^@\s<>]+@[^@\s<>]+\.[^@\s<>]+$/;
+const INTERNATIONAL_PHONE = /^\+[1-9]\d{6,14}$/;
+const trim = (value) => typeof value === "string" ? value.trim() : "";
+
+export function highLevelConfig(environment = process.env) {
+  const token = trim(environment.GHL_PRIVATE_INTEGRATION_TOKEN);
+  const locationId = trim(environment.GHL_LOCATION_ID);
+  if (!token || !locationId) return null;
+  const pipelineId = trim(environment.GHL_ADMISSIONS_PIPELINE_ID);
+  const stageId = trim(environment.GHL_ADMISSIONS_STAGE_ID);
+  if (Boolean(pipelineId) !== Boolean(stageId)) return null;
+  return pipelineId ? { token, locationId, pipelineId, stageId } : { token, locationId };
+}
+
+// Accept only the adult contact details needed for admissions. The caller owns
+// lead authorization, field selection, and durable delivery.
+export async function upsertHighLevelContact(contact, {
+  config = highLevelConfig(), fetchImpl = fetch, trial, website,
+} = {}) {
+  if (!config) return { ok: false, reason: "not_configured", retryable: false };
+  const email = trim(contact?.email).toLowerCase();
+  if (email.length > 254 || !EMAIL.test(email)) {
+    return { ok: false, reason: "invalid_contact", retryable: false };
+  }
+
+  const payload = { locationId: config.locationId, email };
+  const name = trim(contact.name);
+  const phone = trim(contact.phone).replace(/[\s().-]/g, "");
+  if (name) payload.name = name;
+  if (INTERNATIONAL_PHONE.test(phone)) payload.phone = phone;
+
+  let result;
+  if (trial) {
+    const fieldIds = await trialFieldIds(config, fetchImpl);
+    if (!fieldIds.ok) return fieldIds;
+    if (trial.fields.some(([key]) => !fieldIds.ids.has(key))) {
+      return { ok: false, reason: "missing_custom_fields", retryable: false };
+    }
+    const { tags, ...properties } = trial.properties;
+    Object.assign(payload, properties, {
+      customFields: trial.fields.map(([key, value]) => ({ id: fieldIds.ids.get(key), fieldValue: value })),
+    });
+    result = await trialRequest("/contacts/upsert", config, fetchImpl, payload);
+    if (!result.ok) return result;
+    const contactId = trim(result.data?.contact?.id);
+    if (!contactId) return invalidResponse();
+    // Upsert replaces all existing tags. Add these separately to preserve CRM history.
+    const tagged = await trialRequest(`/contacts/${encodeURIComponent(contactId)}/tags`, config, fetchImpl, { tags });
+    return tagged.ok ? { ok: true, contactId } : tagged;
+  }
+  if (website) payload.source = website.source;
+  result = await highLevelRequest("/contacts/upsert", config, fetchImpl, payload);
+  if (!result.ok) return result;
+  const contactId = trim(result.data?.contact?.id);
+  if (!contactId) return invalidResponse();
+  if (!website?.tags?.length) return { ok: true, contactId };
+  const tagged = await trialRequest(`/contacts/${encodeURIComponent(contactId)}/tags`, config, fetchImpl, { tags: website.tags });
+  return tagged.ok ? { ok: true, contactId } : tagged;
+}
+
+function invalidResponse() {
+  return { ok: false, reason: "invalid_provider_response", retryable: true };
+}
+
+async function highLevelRequest(path, config, fetchImpl, payload, { version = "v3", timeout = 8000 } = {}) {
+  try {
+    const response = await fetchImpl(HIGHLEVEL_ORIGIN + path, {
+      method: payload ? "POST" : "GET",
+      headers: {
+        Authorization: `Bearer ${config.token}`,
+        Version: version,
+        Accept: "application/json",
+        ...(payload ? { "Content-Type": "application/json" } : {}),
+      },
+      body: payload ? JSON.stringify(payload) : undefined,
+      redirect: "error",
+      signal: AbortSignal.timeout(timeout),
+    });
+    if (!response.ok) {
+      const retryable = response.status === 408 || response.status === 429 || response.status >= 500;
+      return { ok: false, reason: "provider_rejected", status: response.status, retryable };
+    }
+    return { ok: true, data: await response.json() };
+  } catch {
+    return { ok: false, reason: "provider_unavailable", retryable: true };
+  }
+}
+
+async function trialRequest(path, config, fetchImpl, payload) {
+  const options = { version: "2021-07-28", timeout: 10000 };
+  const result = await highLevelRequest(path, config, fetchImpl, payload, options);
+  return result.retryable ? highLevelRequest(path, config, fetchImpl, payload, options) : result;
+}
+
+// Share a successful lookup across requests within this server instance. A
+// provider error or incomplete field set is checked again on the next lead.
+const fieldCache = new WeakMap();
+async function trialFieldIds(config, fetchImpl) {
+  const key = config.locationId;
+  const locations = fieldCache.get(fetchImpl) || new Map();
+  fieldCache.set(fetchImpl, locations);
+  const previous = locations.get(key);
+  if (previous?.token === config.token && previous.expires > Date.now()) return previous.result;
+  const pending = (async () => {
+    const result = await trialRequest(`/locations/${encodeURIComponent(key)}/customFields?model=contact`, config, fetchImpl);
+    if (!result.ok) return result;
+    if (!Array.isArray(result.data?.customFields)) return invalidResponse();
+    const ids = new Map();
+    for (const field of result.data.customFields) {
+      if (typeof field?.fieldKey === "string" && field.fieldKey.startsWith("contact.") && trim(field.id)) {
+        ids.set(field.fieldKey.slice("contact.".length), field.id);
+      }
+    }
+    return { ok: true, ids };
+  })();
+  const entry = { token: config.token, expires: Date.now() + 300000, result: pending };
+  locations.set(key, entry);
+  const result = await pending;
+  if ((!result.ok || result.ids.size < 10) && locations.get(key) === entry) locations.delete(key);
+  return result;
+}
+
+async function ensureOpenOpportunity(contactId, reference, config, fetchImpl) {
+  const { locationId, pipelineId, stageId } = config;
+  const filters = new URLSearchParams({ locationId, pipelineId, contactId, status: "open", limit: "1" });
+  const searchPath = `/opportunities/search?${filters}`;
+  const find = async () => {
+    const result = await highLevelRequest(searchPath, config, fetchImpl);
+    if (!result.ok) return result;
+    const opportunities = result.data?.opportunities;
+    if (!Array.isArray(opportunities)) return invalidResponse();
+    if (!opportunities.length) return { ok: true, opportunityId: null };
+    const opportunity = opportunities[0];
+    return opportunity?.contactId === contactId && opportunity?.pipelineId === pipelineId
+      && opportunity?.status === "open" && trim(opportunity.id)
+      ? { ok: true, opportunityId: opportunity.id } : invalidResponse();
+  };
+
+  const existing = await find();
+  if (!existing.ok || existing.opportunityId) return existing;
+  const created = await highLevelRequest("/opportunities/", config, fetchImpl, {
+    locationId, pipelineId, contactId, pipelineStageId: stageId, status: "open",
+    name: `OQC admissions ${reference}`,
+  });
+  if (!created.ok) {
+    // A concurrent submission can win the create. Verify that the opportunity
+    // exists before treating a conflict as success.
+    if (created.status === 400 || created.status === 409) {
+      const concurrent = await find();
+      if (concurrent.ok && concurrent.opportunityId) return concurrent;
+    }
+    return created;
+  }
+  const opportunityId = trim(created.data?.opportunity?.id);
+  return opportunityId ? { ok: true, opportunityId } : invalidResponse();
+}
+
+// Only call this after the submission proof has been validated by the database.
+export async function syncHighLevelAdmission(lead, kind, {
+  config = highLevelConfig(), fetchImpl = fetch, trialSiteUrl, form,
+} = {}) {
+  if (kind !== "trial" && kind !== "contact") return { ok: false, reason: "not_an_admission" };
+  if (kind === "trial" && trialSiteUrl && typeof lead.utm?.ghl_trial_query === "string") {
+    return upsertHighLevelContact({ email: lead.email, phone: lead.phone }, {
+      config, fetchImpl, trial: trialContact(lead, trialSiteUrl),
+    });
+  }
+  const name = kind === "contact"
+    ? lead.name
+    : trim(lead.guardian_name) || (lead.age_band === "adult" ? lead.learner_name : undefined);
+  const reference = trim(lead.reference);
+  if (config?.pipelineId && !/^(TR|MSG)-\d{4}-\d{5,7}$/.test(reference)) {
+    return { ok: false, reason: "invalid_reference", retryable: false };
+  }
+  const website = form ? websiteFormProperties(form, lead.country) : null;
+  const result = await upsertHighLevelContact({ email: lead.email, phone: lead.phone, name }, { config, fetchImpl, website });
+  if (!result.ok || !config.pipelineId) return result;
+  const opportunity = await ensureOpenOpportunity(result.contactId, reference, config, fetchImpl);
+  return opportunity.ok ? { ...result, opportunityId: opportunity.opportunityId } : opportunity;
+}
+
+export function enabledHighLevelConfig(environment = process.env) {
+  return environment.GHL_ADMISSIONS_SYNC === "true" ? highLevelConfig(environment) : null;
+}

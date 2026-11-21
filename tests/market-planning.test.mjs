@@ -13,11 +13,18 @@ test('western Canada future bookings use the 2026 provincial rules and preserve 
   assert.equal(schedulePreview('2026-11-01', '01:30', 'America/Los_Angeles').ambiguous, true);
 });
 
+test('Winnipeg uses permanent Manitoba UTC-5 from 1 November 2026, without changing historical rules', () => {
+  assert.equal(schedulePreview('2026-11-10', '18:00', 'America/Winnipeg').utc, '2026-11-10T23:00:00.000Z');
+  assert.equal(schedulePreview('2026-11-01', '01:30', 'America/Winnipeg').ambiguous, false);
+  assert.equal(schedulePreview('2026-01-15', '18:00', 'America/Winnipeg').utc, '2026-01-16T00:00:00.000Z');
+});
+
 test('Canadian planner includes half-hour and non-seasonal clocks without inventing indexed city pages', () => {
   const country = getLocation('canada'), places = schedulingLocations(country);
   assert.equal(schedulePreview('2026-11-10', '18:00', places.find(p => p.slug === 'st-johns').timezone).utc, '2026-11-10T21:30:00.000Z');
   assert.equal(schedulePreview('2026-07-15', '18:00', places.find(p => p.slug === 'regina').timezone).utc, '2026-07-16T00:00:00.000Z');
   assert.equal(places.find(p => p.slug === 'halifax').timezone, 'America/Halifax');
+  assert.equal(places.find(p => p.slug === 'winnipeg').timezone, 'America/Winnipeg');
   assert.equal(country.cities.some(p => p.slug === 'st-johns'), false);
   assert.equal(new Set(places.map(p => p.slug)).size, places.length);
 });

@@ -5,13 +5,14 @@
   "description": "Online Quran College — public website and admin panel (Next.js + Supabase).",
   "type": "module",
   "engines": {
-    "node": ">=20.9.0"
+    "node": ">=20.9.0 <25"
   },
   "scripts": {
     "dev": "node scripts/prepare-responsive-learning.mjs && next dev",
     "prebuild": "node scripts/prepare-production-build.mjs",
     "build": "node scripts/prepare-responsive-learning.mjs && next build",
     "postbuild": "node scripts/verify-build-assets.mjs",
+    "build:hostinger": "node scripts/prepare-production-build.mjs && node scripts/prepare-responsive-learning.mjs && OQC_BUILD_CPUS=2 TOKIO_WORKER_THREADS=2 RAYON_NUM_THREADS=2 next build --webpack && node scripts/verify-build-assets.mjs",
     "start": "next start",
     "lint": "eslint .",
     "test": "node scripts/prepare-responsive-learning.mjs && node --test tests/*.test.mjs",
@@ -19,6 +20,7 @@
     "test:browser": "node scripts/browser-smoke.mjs",
     "verify:site": "node scripts/run-site-quality.mjs",
     "audit:performance": "node scripts/performance-audit.mjs",
+    "audit:responsive": "node scripts/responsive-audit.mjs",
     "db:bundle": "node scripts/bundle-database.mjs",
     "seed:snapshot": "node scripts/export-seed-content.mjs",
     "seo:agent": "node scripts/seo-agent-audit.mjs",
@@ -33,6 +35,7 @@
     "@fontsource-variable/inter": "5.3.0",
     "@fontsource-variable/outfit": "5.3.0",
     "@fontsource/amiri": "5.3.0",
+    "@fontsource/amiri-quran": "5.3.0",
     "@supabase/ssr": "0.12.7",
     "@supabase/supabase-js": "2.117.3",
     "@tiptap/pm": "3.31.4",
@@ -42,12 +45,13 @@
     "clsx": "2.1.1",
     "lucide-react": "1.55.0",
     "luxon": "3.7.2",
-    "next": "16.4.3",
+    "next": "16.4.6",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "sanitize-html": "2.18.1",
     "sharp": "0.35.5",
-    "sonner": "2.0.8"
+    "sonner": "2.0.8",
+    "turndown": "^7.2.5"
   },
   "devDependencies": {
     "@electric-sql/pglite": "0.5.11",
@@ -56,7 +60,7 @@
     "chrome-launcher": "1.2.2",
     "esbuild": "0.28.2",
     "eslint": "9.39.5",
-    "eslint-config-next": "16.4.3",
+    "eslint-config-next": "16.4.6",
     "lighthouse": "13.6.0",
     "playwright": "1.64.1",
     "tailwindcss": "4.3.3"

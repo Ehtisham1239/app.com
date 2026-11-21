@@ -11710,5 +11710,48 @@
         "bytes": 45713
       }
     ]
+  },
+  {
+    "name": "contact-admissions-desk-v5",
+    "url": "/images/learning/contact-admissions-desk-v5-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Laptop, headphones and a closed green book on a wooden reading stand in an online learning setup",
+    "kind": "illustration",
+    "provenance": "AI-generated editorial visual; no real OQC premises or people depicted",
+    "variants": [
+      {
+        "url": "/images/learning/contact-admissions-desk-v5-400.webp",
+        "width": 400,
+        "bytes": 18918
+      },
+      {
+        "url": "/images/learning/contact-admissions-desk-v5-800.webp",
+        "width": 800,
+        "bytes": 57548
+      },
+      {
+        "url": "/images/learning/contact-admissions-desk-v5-1200.webp",
+        "width": 1200,
+        "bytes": 109730
+      }
+    ],
+    "avif": [
+      {
+        "url": "/images/learning/contact-admissions-desk-v5-400.avif",
+        "width": 400,
+        "bytes": 8838
+      },
+      {
+        "url": "/images/learning/contact-admissions-desk-v5-800.avif",
+        "width": 800,
+        "bytes": 26611
+      },
+      {
+        "url": "/images/learning/contact-admissions-desk-v5-1200.avif",
+        "width": 1200,
+        "bytes": 50769
+      }
+    ]
   }
 ]

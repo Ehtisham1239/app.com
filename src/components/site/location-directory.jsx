@@ -1,19 +1,24 @@
 "use client";
 import { cardTone } from "@/lib/card-presentation";
-import { useState } from "react";
+import { useDeferredValue, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight, Globe2, Search } from "@/components/site/icons";
 
 const aliases = { 'united-kingdom': 'uk britain england scotland wales', 'united-states': 'usa us america', australia: 'aus' };
 export function LocationDirectory({ countries }) {
   const [query, setQuery] = useState('');
-  const term = query.trim().toLocaleLowerCase();
-  const matches = countries.filter(country => `${country.name} ${aliases[country.slug] || ''} ${country.cities.map(city => city.name).join(' ')}`.toLocaleLowerCase().includes(term));
+  // INP (GA4 web vitals, 28 days to 3 Nov 2026: /locations averaged ~350 ms): the input updates
+  // at once; the card grid re-renders from a deferred copy, and the search text per country is
+  // built once instead of on every keystroke.
+  const deferredQuery = useDeferredValue(query);
+  const term = deferredQuery.trim().toLocaleLowerCase();
+  const haystacks = useMemo(() => countries.map(country => `${country.name} ${aliases[country.slug] || ''} ${country.cities.map(city => city.name).join(' ')}`.toLocaleLowerCase()), [countries]);
+  const matches = useMemo(() => countries.filter((country, index) => haystacks[index].includes(term)), [countries, haystacks, term]);
   return <>
     <div className="mb-8 max-w-xl">
       <label htmlFor="location-search" className="field-label">Find your country or city</label>
       <div className="relative"><Search className="pointer-events-none absolute left-4 top-3.5 size-5 text-leaf-700" aria-hidden="true" /><input id="location-search" type="search" className="input pl-12" value={query} onChange={event => setQuery(event.target.value)} placeholder="Try USA, Australia or Sydney" autoComplete="off" aria-describedby="location-results" /></div>
-      <p id="location-results" role="status" className="mt-3 text-sm text-ink-soft">{matches.length} {matches.length === 1 ? 'country' : 'countries'}{term ? ' found' : ' available'}</p>
+      <p id="location-results" role="status" className="mt-3 text-sm text-ink-soft">{matches.length} {matches.length === 1 ? 'country guide' : 'country guides'}{term ? ' found' : ''}</p>
       {term && <button type="button" className="mt-2 rounded-lg px-3 py-3 text-sm font-semibold text-leaf-700 underline" onClick={() => setQuery('')}>Clear search</button>}
     </div>
     {!matches.length ? <div className="surface p-8"><h2 className="text-xl">No matching location</h2><p className="mt-3 text-ink-soft">Try a country name or <Link className="font-semibold text-leaf-700 underline" href="/contact">ask us about classes in your time zone</Link>.</p></div> : <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{matches.map(country => <article data-card-tone={cardTone(country.slug)} className="location-country-card editorial-card card-tinted flex flex-col p-6" key={country.slug}>

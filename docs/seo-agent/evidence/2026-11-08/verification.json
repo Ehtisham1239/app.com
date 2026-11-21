@@ -1,0 +1,917 @@
+{
+  "date": "2026-11-08",
+  "timezone": "Asia/Karachi",
+  "source_reviewed": "4d44bdb57277c3f2d9496c18485ffa654a076b7f",
+  "master_sha256": "494a59b40dcce7465ba29855fa4fe9abda09e62c2a9cc7d9cd47938e7e67c8f9",
+  "cms": {
+    "published_articles": 35,
+    "prior_articles_selected_fields_unchanged": 32,
+    "new_article_slugs": [
+      "arabic-for-quran-readers",
+      "is-my-child-ready-for-hifz",
+      "quran-translation-tafseer-beginners"
+    ],
+    "new_article_inclusive_word_counts": [
+      407,
+      453,
+      413
+    ],
+    "new_article_body_matches": 3,
+    "new_article_title_formatter_matches": 3,
+    "new_article_canonical_h1_description_schema_cover_toc_checks": "pass",
+    "new_articles_noindex": true,
+    "contextual_destinations": 8,
+    "contextual_destination_errors": 0
+  },
+  "sitemap": {
+    "page_count": 84,
+    "blog_count": 32,
+    "new_review_articles_in_sitemap": []
+  },
+  "prior_lighthouse_artifact": {
+    "run_id": 42332020428,
+    "artifact_id": 13557922409,
+    "created": "2026-11-07T03:05:55Z",
+    "failing_elements": [
+      {
+        "report": "locations-united-kingdom-mobile.json",
+        "audit_id": "aria-prohibited-attr",
+        "nodes": [
+          {
+            "selector": "section.space-y-5 > div.grid > figure.flex > p.mt-4",
+            "snippet": "<p class=\"mt-4 flex gap-0.5 text-gold-500\" aria-label=\"Rated 5 out of 5\">",
+            "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on \"p\" elements with no valid role attribute."
+          },
+          {
+            "selector": "section.space-y-5 > div.grid > figure.flex > p.mt-4",
+            "snippet": "<p class=\"mt-4 flex gap-0.5 text-gold-500\" aria-label=\"Rated 5 out of 5\">",
+            "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on \"p\" elements with no valid role attribute."
+          },
+          {
+            "selector": "section.space-y-5 > div.grid > figure.flex > p.mt-4",
+            "snippet": "<p class=\"mt-4 flex gap-0.5 text-gold-500\" aria-label=\"Rated 5 out of 5\">",
+            "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on \"p\" elements with no valid role attribute."
+          }
+        ]
+      },
+      {
+        "report": "mobile.json",
+        "audit_id": "aria-prohibited-attr",
+        "nodes": [
+          {
+            "selector": "div.mt-12 > div.grid > figure.flex > p.mt-4",
+            "snippet": "<p class=\"mt-4 flex gap-0.5 text-gold-500\" aria-label=\"Rated 5 out of 5\">",
+            "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on \"p\" elements with no valid role attribute."
+          },
+          {
+            "selector": "div.mt-12 > div.grid > figure.flex > p.mt-4",
+            "snippet": "<p class=\"mt-4 flex gap-0.5 text-gold-500\" aria-label=\"Rated 5 out of 5\">",
+            "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on \"p\" elements with no valid role attribute."
+          },
+          {
+            "selector": "div.mt-12 > div.grid > figure.flex > p.mt-4",
+            "snippet": "<p class=\"mt-4 flex gap-0.5 text-gold-500\" aria-label=\"Rated 5 out of 5\">",
+            "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on \"p\" elements with no valid role attribute."
+          },
+          {
+            "selector": "div.mt-12 > div.grid > figure.flex > p.mt-4",
+            "snippet": "<p class=\"mt-4 flex gap-0.5 text-gold-500\" aria-label=\"Rated 4 out of 5\">",
+            "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on \"p\" elements with no valid role attribute."
+          },
+          {
+            "selector": "div.mt-12 > div.grid > figure.flex > p.mt-4",
+            "snippet": "<p class=\"mt-4 flex gap-0.5 text-gold-500\" aria-label=\"Rated 5 out of 5\">",
+            "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on \"p\" elements with no valid role attribute."
+          },
+          {
+            "selector": "div.mt-12 > div.grid > figure.flex > p.mt-4",
+            "snippet": "<p class=\"mt-4 flex gap-0.5 text-gold-500\" aria-label=\"Rated 5 out of 5\">",
+            "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on \"p\" elements with no valid role attribute."
+          }
+        ]
+      },
+      {
+        "report": "desktop.json",
+        "audit_id": "aria-prohibited-attr",
+        "nodes": [
+          {
+            "selector": "div.mt-12 > div.grid > figure.flex > p.mt-4",
+            "snippet": "<p class=\"mt-4 flex gap-0.5 text-gold-500\" aria-label=\"Rated 5 out of 5\">",
+            "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on \"p\" elements with no valid role attribute."
+          },
+          {
+            "selector": "div.mt-12 > div.grid > figure.flex > p.mt-4",
+            "snippet": "<p class=\"mt-4 flex gap-0.5 text-gold-500\" aria-label=\"Rated 5 out of 5\">",
+            "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on \"p\" elements with no valid role attribute."
+          },
+          {
+            "selector": "div.mt-12 > div.grid > figure.flex > p.mt-4",
+            "snippet": "<p class=\"mt-4 flex gap-0.5 text-gold-500\" aria-label=\"Rated 5 out of 5\">",
+            "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on \"p\" elements with no valid role attribute."
+          },
+          {
+            "selector": "div.mt-12 > div.grid > figure.flex > p.mt-4",
+            "snippet": "<p class=\"mt-4 flex gap-0.5 text-gold-500\" aria-label=\"Rated 4 out of 5\">",
+            "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on \"p\" elements with no valid role attribute."
+          },
+          {
+            "selector": "div.mt-12 > div.grid > figure.flex > p.mt-4",
+            "snippet": "<p class=\"mt-4 flex gap-0.5 text-gold-500\" aria-label=\"Rated 5 out of 5\">",
+            "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on \"p\" elements with no valid role attribute."
+          },
+          {
+            "selector": "div.mt-12 > div.grid > figure.flex > p.mt-4",
+            "snippet": "<p class=\"mt-4 flex gap-0.5 text-gold-500\" aria-label=\"Rated 5 out of 5\">",
+            "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on \"p\" elements with no valid role attribute."
+          }
+        ]
+      },
+      {
+        "report": "locations-united-states-mobile.json",
+        "audit_id": "aria-prohibited-attr",
+        "nodes": [
+          {
+            "selector": "section.space-y-5 > div.grid > figure.flex > p.mt-4",
+            "snippet": "<p class=\"mt-4 flex gap-0.5 text-gold-500\" aria-label=\"Rated 5 out of 5\">",
+            "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on \"p\" elements with no valid role attribute."
+          },
+          {
+            "selector": "section.space-y-5 > div.grid > figure.flex > p.mt-4",
+            "snippet": "<p class=\"mt-4 flex gap-0.5 text-gold-500\" aria-label=\"Rated 5 out of 5\">",
+            "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on \"p\" elements with no valid role attribute."
+          },
+          {
+            "selector": "section.space-y-5 > div.grid > figure.flex > p.mt-4",
+            "snippet": "<p class=\"mt-4 flex gap-0.5 text-gold-500\" aria-label=\"Rated 5 out of 5\">",
+            "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on \"p\" elements with no valid role attribute."
+          }
+        ]
+      },
+      {
+        "report": "locations-united-states-mobile.json",
+        "audit_id": "label-content-name-mismatch",
+        "nodes": [
+          {
+            "selector": "div.page-wrap > div.min-w-0 > div.mt-4 > a.btn",
+            "snippet": "<a class=\"btn btn-outline border-white text-white hover:bg-white hover:text-mushaf-9\u2026\" href=\"tel:+17869645678\" aria-label=\"Call Online Quran College USA at +1 786 964 5678\">",
+            "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "selector": "section.page-wrap > div.rounded-3xl > div.mt-5 > a.btn",
+            "snippet": "<a class=\"btn btn-outline border-white text-white hover:bg-white hover:text-mushaf-9\u2026\" href=\"tel:+17869645678\" aria-label=\"Call Online Quran College USA at +1 786 964 5678\">",
+            "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      },
+      {
+        "report": "locations-united-states-desktop.json",
+        "audit_id": "aria-prohibited-attr",
+        "nodes": [
+          {
+            "selector": "section.space-y-5 > div.grid > figure.flex > p.mt-4",
+            "snippet": "<p class=\"mt-4 flex gap-0.5 text-gold-500\" aria-label=\"Rated 5 out of 5\">",
+            "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on \"p\" elements with no valid role attribute."
+          },
+          {
+            "selector": "section.space-y-5 > div.grid > figure.flex > p.mt-4",
+            "snippet": "<p class=\"mt-4 flex gap-0.5 text-gold-500\" aria-label=\"Rated 5 out of 5\">",
+            "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on \"p\" elements with no valid role attribute."
+          },
+          {
+            "selector": "section.space-y-5 > div.grid > figure.flex > p.mt-4",
+            "snippet": "<p class=\"mt-4 flex gap-0.5 text-gold-500\" aria-label=\"Rated 5 out of 5\">",
+            "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on \"p\" elements with no valid role attribute."
+          }
+        ]
+      },
+      {
+        "report": "locations-united-states-desktop.json",
+        "audit_id": "label-content-name-mismatch",
+        "nodes": [
+          {
+            "selector": "div.page-wrap > div.min-w-0 > div.mt-4 > a.btn",
+            "snippet": "<a class=\"btn btn-outline border-white text-white hover:bg-white hover:text-mushaf-9\u2026\" href=\"tel:+17869645678\" aria-label=\"Call Online Quran College USA at +1 786 964 5678\">",
+            "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "selector": "section.page-wrap > div.rounded-3xl > div.mt-5 > a.btn",
+            "snippet": "<a class=\"btn btn-outline border-white text-white hover:bg-white hover:text-mushaf-9\u2026\" href=\"tel:+17869645678\" aria-label=\"Call Online Quran College USA at +1 786 964 5678\">",
+            "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      },
+      {
+        "report": "locations-united-kingdom-desktop.json",
+        "audit_id": "aria-prohibited-attr",
+        "nodes": [
+          {
+            "selector": "section.space-y-5 > div.grid > figure.flex > p.mt-4",
+            "snippet": "<p class=\"mt-4 flex gap-0.5 text-gold-500\" aria-label=\"Rated 5 out of 5\">",
+            "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on \"p\" elements with no valid role attribute."
+          },
+          {
+            "selector": "section.space-y-5 > div.grid > figure.flex > p.mt-4",
+            "snippet": "<p class=\"mt-4 flex gap-0.5 text-gold-500\" aria-label=\"Rated 5 out of 5\">",
+            "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on \"p\" elements with no valid role attribute."
+          },
+          {
+            "selector": "section.space-y-5 > div.grid > figure.flex > p.mt-4",
+            "snippet": "<p class=\"mt-4 flex gap-0.5 text-gold-500\" aria-label=\"Rated 5 out of 5\">",
+            "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on \"p\" elements with no valid role attribute."
+          }
+        ]
+      }
+    ]
+  },
+  "current_live_rating_review": [
+    {
+      "path": "/",
+      "rating_aria": [],
+      "phone_buttons": []
+    },
+    {
+      "path": "/locations/united-kingdom",
+      "rating_aria": [],
+      "phone_buttons": []
+    },
+    {
+      "path": "/locations/united-states",
+      "rating_aria": [],
+      "phone_buttons": [
+        "<a class=\"btn btn-outline border-white text-white hover:bg-white hover:text-mushaf-900\" href=\"tel:+17869645678\" aria-label=\"Call Online Quran College USA at +1 786 964 5678\">Call our US team \u00b7 +1 (786) 964-5678</a>",
+        "<a class=\"btn btn-outline border-white text-white hover:bg-white hover:text-mushaf-900\" href=\"tel:+17869645678\" aria-label=\"Call Online Quran College USA at +1 786 964 5678\">Call +1 (786) 964-5678</a>"
+      ]
+    }
+  ],
+  "change": {
+    "pull_request": 146,
+    "commit": "8ccdb80fc5968d732b0f3d7ba0a1fb1fdb429027",
+    "production_source": "c30c4968ec9e7d7fe794fd2d44746ea0016f1b52",
+    "description": "Two telephone links use visible text as accessible name by removing redundant aria-label",
+    "scope": "src/components/site/location-page.jsx",
+    "local_tests_passed": 9,
+    "focused_eslint": "pass",
+    "ci_test_lint_dependency_build": "pass",
+    "preview_ready": "dpl_3QjpqCkZ8J9gQasyoTG9arnrpfN5",
+    "production_deployment": "dpl_DqcE8bmmzHcvE32hymFE8V8siU1v",
+    "production_status": "READY and production verified",
+    "live_check_utc": "2026-11-08T03:11:07.957015+00:00",
+    "live_status": 200,
+    "telephone_buttons_checked": 2,
+    "old_aria_overrides_present": false,
+    "telephone_href": "tel:+17869645678",
+    "ci_tests_passed": 331,
+    "ci_responsive": "success",
+    "ci_live_lab_and_crawl": "success",
+    "production_smoke_on_pr": "skipped"
+  },
+  "browser_attempt": {
+    "status": "Blocked",
+    "result": "SIGSEGV at local Chromium startup, before article navigation",
+    "new_articles_browser_cases_completed": 0
+  },
+  "boundaries": {
+    "enquiries_submitted": 0,
+    "outreach_sent": 0,
+    "new_acquired_backlinks": 0,
+    "cms_writes": 0,
+    "account_settings_changes": 0,
+    "prices_or_gbp_changes": 0
+  },
+  "pending": [
+    "Qualified Academics review for newly public noindex articles",
+    "GTM/GA4 receipt of trial funnel events",
+    "Seven city approval reconciliation",
+    "Field Core Web Vitals p75/window/device evidence",
+    "Verified OQC sender and explicit named RISE submission authorization",
+    "External Claude Docs pathway connector"
+  ],
+  "current_remote_lab": {
+    "run_id": 42441251344,
+    "job_id": 128611027999,
+    "artifact_id": 13602070333,
+    "scope": "Live observations03:07\u201303:09UTC, before the call-link release. Not field data or a post-release accessibility certification.",
+    "results": [
+      {
+        "device": "mobile",
+        "url": "https://www.onlinequrancollege.com",
+        "fetchTime": "2026-11-08T03:07:50.540Z",
+        "lighthouseVersion": "13.6.0",
+        "mode": "remote lab",
+        "scores": {
+          "performance": 96,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": 1138.487,
+          "largest-contentful-paint": 1138.487,
+          "total-blocking-time": 213,
+          "cumulative-layout-shift": 0.005337226671419965,
+          "speed-index": 1256.4021059143195
+        },
+        "diagnostics": [
+          {
+            "id": "first-contentful-paint",
+            "title": "First Contentful Paint",
+            "value": "1.1\u00a0s"
+          },
+          {
+            "id": "total-blocking-time",
+            "title": "Total Blocking Time",
+            "value": "210\u00a0ms"
+          },
+          {
+            "id": "max-potential-fid",
+            "title": "Max Potential First Input Delay",
+            "value": "240\u00a0ms"
+          },
+          {
+            "id": "interactive",
+            "title": "Time to Interactive",
+            "value": "3.2\u00a0s"
+          },
+          {
+            "id": "unused-javascript",
+            "title": "Reduce unused JavaScript",
+            "value": "Est savings of 27\u00a0KiB"
+          },
+          {
+            "id": "image-delivery-insight",
+            "title": "Improve image delivery",
+            "value": "Est savings of 97\u00a0KiB"
+          },
+          {
+            "id": "legacy-javascript-insight",
+            "title": "Legacy JavaScript",
+            "value": "Est savings of 14\u00a0KiB"
+          },
+          {
+            "id": "network-dependency-tree-insight",
+            "title": "Network dependency tree"
+          },
+          {
+            "id": "render-blocking-insight",
+            "title": "Render-blocking requests"
+          }
+        ]
+      },
+      {
+        "device": "desktop",
+        "url": "https://www.onlinequrancollege.com",
+        "fetchTime": "2026-11-08T03:08:12.439Z",
+        "lighthouseVersion": "13.6.0",
+        "mode": "remote lab",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": 309.092,
+          "largest-contentful-paint": 557.092,
+          "total-blocking-time": 10,
+          "cumulative-layout-shift": 0.004596671795624821,
+          "speed-index": 407.4815993591345
+        },
+        "diagnostics": [
+          {
+            "id": "unused-javascript",
+            "title": "Reduce unused JavaScript",
+            "value": "Est savings of 53\u00a0KiB"
+          },
+          {
+            "id": "legacy-javascript-insight",
+            "title": "Legacy JavaScript",
+            "value": "Est savings of 14\u00a0KiB"
+          },
+          {
+            "id": "network-dependency-tree-insight",
+            "title": "Network dependency tree"
+          },
+          {
+            "id": "render-blocking-insight",
+            "title": "Render-blocking requests"
+          }
+        ]
+      },
+      {
+        "device": "mobile",
+        "url": "https://www.onlinequrancollege.com/pricing",
+        "fetchTime": "2026-11-08T03:08:23.104Z",
+        "lighthouseVersion": "13.6.0",
+        "mode": "remote lab",
+        "scores": {
+          "performance": 92,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": 1080.733,
+          "largest-contentful-paint": 2865.733,
+          "total-blocking-time": 195,
+          "cumulative-layout-shift": 0.0003349822669389545,
+          "speed-index": 1080.733
+        },
+        "diagnostics": [
+          {
+            "id": "first-contentful-paint",
+            "title": "First Contentful Paint",
+            "value": "1.1\u00a0s"
+          },
+          {
+            "id": "largest-contentful-paint",
+            "title": "Largest Contentful Paint",
+            "value": "2.9\u00a0s"
+          },
+          {
+            "id": "total-blocking-time",
+            "title": "Total Blocking Time",
+            "value": "200\u00a0ms"
+          },
+          {
+            "id": "max-potential-fid",
+            "title": "Max Potential First Input Delay",
+            "value": "210\u00a0ms"
+          },
+          {
+            "id": "interactive",
+            "title": "Time to Interactive",
+            "value": "2.9\u00a0s"
+          },
+          {
+            "id": "unused-javascript",
+            "title": "Reduce unused JavaScript",
+            "value": "Est savings of 27\u00a0KiB"
+          },
+          {
+            "id": "image-delivery-insight",
+            "title": "Improve image delivery",
+            "value": "Est savings of 18\u00a0KiB"
+          },
+          {
+            "id": "legacy-javascript-insight",
+            "title": "Legacy JavaScript",
+            "value": "Est savings of 14\u00a0KiB"
+          },
+          {
+            "id": "network-dependency-tree-insight",
+            "title": "Network dependency tree"
+          },
+          {
+            "id": "render-blocking-insight",
+            "title": "Render-blocking requests"
+          }
+        ]
+      },
+      {
+        "device": "desktop",
+        "url": "https://www.onlinequrancollege.com/pricing",
+        "fetchTime": "2026-11-08T03:08:32.153Z",
+        "lighthouseVersion": "13.6.0",
+        "mode": "remote lab",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": 302.312,
+          "largest-contentful-paint": 535.312,
+          "total-blocking-time": 3.5,
+          "cumulative-layout-shift": 0.0002337981181185483,
+          "speed-index": 322.7760418529263
+        },
+        "diagnostics": [
+          {
+            "id": "unused-javascript",
+            "title": "Reduce unused JavaScript",
+            "value": "Est savings of 53\u00a0KiB"
+          },
+          {
+            "id": "image-delivery-insight",
+            "title": "Improve image delivery",
+            "value": "Est savings of 18\u00a0KiB"
+          },
+          {
+            "id": "legacy-javascript-insight",
+            "title": "Legacy JavaScript",
+            "value": "Est savings of 14\u00a0KiB"
+          },
+          {
+            "id": "network-dependency-tree-insight",
+            "title": "Network dependency tree"
+          },
+          {
+            "id": "render-blocking-insight",
+            "title": "Render-blocking requests"
+          }
+        ]
+      },
+      {
+        "device": "mobile",
+        "url": "https://www.onlinequrancollege.com/free-trial",
+        "fetchTime": "2026-11-08T03:08:41.371Z",
+        "lighthouseVersion": "13.6.0",
+        "mode": "remote lab",
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": 913.692,
+          "largest-contentful-paint": 913.692,
+          "total-blocking-time": 121.5,
+          "cumulative-layout-shift": 0.001139586522945275,
+          "speed-index": 1066.71488901142
+        },
+        "diagnostics": [
+          {
+            "id": "total-blocking-time",
+            "title": "Total Blocking Time",
+            "value": "120\u00a0ms"
+          },
+          {
+            "id": "max-potential-fid",
+            "title": "Max Potential First Input Delay",
+            "value": "240\u00a0ms"
+          },
+          {
+            "id": "interactive",
+            "title": "Time to Interactive",
+            "value": "2.0\u00a0s"
+          },
+          {
+            "id": "mainthread-work-breakdown",
+            "title": "Minimize main-thread work",
+            "value": "2.2\u00a0s"
+          },
+          {
+            "id": "bootup-time",
+            "title": "Reduce JavaScript execution time",
+            "value": "1.3\u00a0s"
+          },
+          {
+            "id": "unused-javascript",
+            "title": "Reduce unused JavaScript",
+            "value": "Est savings of 25\u00a0KiB"
+          },
+          {
+            "id": "image-delivery-insight",
+            "title": "Improve image delivery",
+            "value": "Est savings of 8\u00a0KiB"
+          },
+          {
+            "id": "legacy-javascript-insight",
+            "title": "Legacy JavaScript",
+            "value": "Est savings of 14\u00a0KiB"
+          },
+          {
+            "id": "network-dependency-tree-insight",
+            "title": "Network dependency tree"
+          },
+          {
+            "id": "render-blocking-insight",
+            "title": "Render-blocking requests",
+            "value": "Est savings of 70\u00a0ms"
+          }
+        ]
+      },
+      {
+        "device": "desktop",
+        "url": "https://www.onlinequrancollege.com/free-trial",
+        "fetchTime": "2026-11-08T03:08:50.417Z",
+        "lighthouseVersion": "13.6.0",
+        "mode": "remote lab",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": 252.9145,
+          "largest-contentful-paint": 522.9145,
+          "total-blocking-time": 17.5,
+          "cumulative-layout-shift": 0.0006518219646401835,
+          "speed-index": 333.0586718064021
+        },
+        "diagnostics": [
+          {
+            "id": "max-potential-fid",
+            "title": "Max Potential First Input Delay",
+            "value": "70\u00a0ms"
+          },
+          {
+            "id": "unused-javascript",
+            "title": "Reduce unused JavaScript",
+            "value": "Est savings of 24\u00a0KiB"
+          },
+          {
+            "id": "image-delivery-insight",
+            "title": "Improve image delivery",
+            "value": "Est savings of 21\u00a0KiB"
+          },
+          {
+            "id": "legacy-javascript-insight",
+            "title": "Legacy JavaScript",
+            "value": "Est savings of 14\u00a0KiB"
+          },
+          {
+            "id": "network-dependency-tree-insight",
+            "title": "Network dependency tree"
+          },
+          {
+            "id": "render-blocking-insight",
+            "title": "Render-blocking requests"
+          }
+        ]
+      },
+      {
+        "device": "mobile",
+        "url": "https://www.onlinequrancollege.com/locations/united-kingdom",
+        "fetchTime": "2026-11-08T03:09:09.768Z",
+        "lighthouseVersion": "13.6.0",
+        "mode": "remote lab",
+        "scores": {
+          "performance": 97,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": 1066.499,
+          "largest-contentful-paint": 1066.499,
+          "total-blocking-time": 183.5,
+          "cumulative-layout-shift": 0,
+          "speed-index": 1066.499
+        },
+        "diagnostics": [
+          {
+            "id": "total-blocking-time",
+            "title": "Total Blocking Time",
+            "value": "180\u00a0ms"
+          },
+          {
+            "id": "max-potential-fid",
+            "title": "Max Potential First Input Delay",
+            "value": "220\u00a0ms"
+          },
+          {
+            "id": "interactive",
+            "title": "Time to Interactive",
+            "value": "2.9\u00a0s"
+          },
+          {
+            "id": "unused-javascript",
+            "title": "Reduce unused JavaScript",
+            "value": "Est savings of 27\u00a0KiB"
+          },
+          {
+            "id": "image-delivery-insight",
+            "title": "Improve image delivery",
+            "value": "Est savings of 18\u00a0KiB"
+          },
+          {
+            "id": "legacy-javascript-insight",
+            "title": "Legacy JavaScript",
+            "value": "Est savings of 14\u00a0KiB"
+          },
+          {
+            "id": "network-dependency-tree-insight",
+            "title": "Network dependency tree"
+          },
+          {
+            "id": "render-blocking-insight",
+            "title": "Render-blocking requests",
+            "value": "Est savings of 90\u00a0ms"
+          }
+        ]
+      },
+      {
+        "device": "desktop",
+        "url": "https://www.onlinequrancollege.com/locations/united-kingdom",
+        "fetchTime": "2026-11-08T03:09:18.795Z",
+        "lighthouseVersion": "13.6.0",
+        "mode": "remote lab",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": 304.166,
+          "largest-contentful-paint": 560.1659999999999,
+          "total-blocking-time": 7.5,
+          "cumulative-layout-shift": 0.000163138176251715,
+          "speed-index": 382.7544130818743
+        },
+        "diagnostics": [
+          {
+            "id": "unused-javascript",
+            "title": "Reduce unused JavaScript",
+            "value": "Est savings of 29\u00a0KiB"
+          },
+          {
+            "id": "legacy-javascript-insight",
+            "title": "Legacy JavaScript",
+            "value": "Est savings of 14\u00a0KiB"
+          },
+          {
+            "id": "network-dependency-tree-insight",
+            "title": "Network dependency tree"
+          },
+          {
+            "id": "render-blocking-insight",
+            "title": "Render-blocking requests"
+          }
+        ]
+      },
+      {
+        "device": "mobile",
+        "url": "https://www.onlinequrancollege.com/locations/united-states",
+        "fetchTime": "2026-11-08T03:09:28.282Z",
+        "lighthouseVersion": "13.6.0",
+        "mode": "remote lab",
+        "scores": {
+          "performance": 98,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": 1085.653,
+          "largest-contentful-paint": 1085.653,
+          "total-blocking-time": 177,
+          "cumulative-layout-shift": 0,
+          "speed-index": 1085.653
+        },
+        "diagnostics": [
+          {
+            "id": "first-contentful-paint",
+            "title": "First Contentful Paint",
+            "value": "1.1\u00a0s"
+          },
+          {
+            "id": "total-blocking-time",
+            "title": "Total Blocking Time",
+            "value": "180\u00a0ms"
+          },
+          {
+            "id": "max-potential-fid",
+            "title": "Max Potential First Input Delay",
+            "value": "240\u00a0ms"
+          },
+          {
+            "id": "interactive",
+            "title": "Time to Interactive",
+            "value": "2.3\u00a0s"
+          },
+          {
+            "id": "label-content-name-mismatch",
+            "title": "Elements with visible text labels do not have matching accessible names."
+          },
+          {
+            "id": "unused-javascript",
+            "title": "Reduce unused JavaScript",
+            "value": "Est savings of 27\u00a0KiB"
+          },
+          {
+            "id": "image-delivery-insight",
+            "title": "Improve image delivery",
+            "value": "Est savings of 16\u00a0KiB"
+          },
+          {
+            "id": "legacy-javascript-insight",
+            "title": "Legacy JavaScript",
+            "value": "Est savings of 14\u00a0KiB"
+          },
+          {
+            "id": "network-dependency-tree-insight",
+            "title": "Network dependency tree"
+          },
+          {
+            "id": "render-blocking-insight",
+            "title": "Render-blocking requests"
+          }
+        ]
+      },
+      {
+        "device": "desktop",
+        "url": "https://www.onlinequrancollege.com/locations/united-states",
+        "fetchTime": "2026-11-08T03:09:37.402Z",
+        "lighthouseVersion": "13.6.0",
+        "mode": "remote lab",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "first-contentful-paint": 292.7445,
+          "largest-contentful-paint": 517.7445,
+          "total-blocking-time": 13,
+          "cumulative-layout-shift": 0.000163138176251715,
+          "speed-index": 346.0538480926989
+        },
+        "diagnostics": [
+          {
+            "id": "label-content-name-mismatch",
+            "title": "Elements with visible text labels do not have matching accessible names."
+          },
+          {
+            "id": "unused-javascript",
+            "title": "Reduce unused JavaScript",
+            "value": "Est savings of 29\u00a0KiB"
+          },
+          {
+            "id": "legacy-javascript-insight",
+            "title": "Legacy JavaScript",
+            "value": "Est savings of 14\u00a0KiB"
+          },
+          {
+            "id": "network-dependency-tree-insight",
+            "title": "Network dependency tree"
+          },
+          {
+            "id": "render-blocking-insight",
+            "title": "Render-blocking requests"
+          }
+        ]
+      },
+      {
+        "checkedAt": "2026-11-08T03:09:52.738Z",
+        "base": "https://www.onlinequrancollege.com",
+        "canonicalOrigin": "https://www.onlinequrancollege.com",
+        "declaredSitemapUrls": 84,
+        "uniqueSitemapUrls": 84,
+        "audited": 84,
+        "cap": 250,
+        "workers": 3,
+        "robotsStatus": 200,
+        "sitemapStatus": 200,
+        "robotsReferencesSitemap": true,
+        "robotsSkipped": [],
+        "errors": [],
+        "findings": 0,
+        "scope": "All declared sitemap URLs plus explicit probes; raw HTML, not Google index status or field CWV. External search and backlink metrics unavailable."
+      },
+      {
+        "checkedAt": "2026-11-08T03:09:56.740Z",
+        "base": "https://www.onlinequrancollege.com",
+        "pages": 84,
+        "declared": 84,
+        "topImagesChecked": 57,
+        "failures": [],
+        "robots": "static text/plain, public pages allowed, staff/API paths excluded",
+        "scope": "Public response/metadata/JSON-LD/hero-image checks; not a ranking or rich-result guarantee"
+      },
+      {
+        "checkedAt": "2026-11-08T03:09:57.701Z",
+        "base": "https://www.onlinequrancollege.com",
+        "declared": 84,
+        "mapped": 84,
+        "curatedTopics": 27,
+        "failures": [],
+        "stopped": false,
+        "evidence": "Topic relevance and visible placement only. Search volumes, top-ten rankings, difficulty and traffic are unverified. No meta-keywords tag or hidden keyword list added."
+      },
+      {
+        "checkedAt": "2026-11-08T03:09:57.887Z",
+        "timezone": "Asia/Karachi",
+        "mode": "READ_ONLY",
+        "base": "https://www.onlinequrancollege.com",
+        "canonicalOrigin": "https://www.onlinequrancollege.com",
+        "sitemapUrls": 84,
+        "audited": 84,
+        "technicalFindings": 0,
+        "qualityFailures": 0,
+        "keywordPages": 84,
+        "keywordFailures": 0,
+        "topImages": 57,
+        "requestMethods": [
+          "GET"
+        ],
+        "integrationMetrics": {
+          "gsc": "Not Checked: authenticated property/export required",
+          "ga4": "Not Checked: authenticated property/export required",
+          "semrush": "Not Checked: entitlement and fresh audit export required"
+        },
+        "limitations": [
+          "Raw HTML and response checks; not Google index status or Rich Results Test",
+          "No physical-device test, field CWV, actual keyword positions or organic attribution",
+          "Offer wording is observed, not documentary substantiation",
+          "No form submissions, authenticated staff operations or external messages"
+        ]
+      }
+    ]
+  }
+}

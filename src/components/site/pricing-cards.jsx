@@ -25,26 +25,32 @@ export function PricingCards({ plans, compact = false, currency, fx }) {
         // An approved price in the chosen currency wins; otherwise show an approximate conversion.
         const price = mainPrice(p.prices, currency) ?? (currency ? displayPrice(p.prices, currency, fx) : null);
         const others = currency ? [] : (p.prices ?? []).filter((x) => x !== price);
-        const features = (Array.isArray(p.features) ? p.features : []).slice(0, compact ? 4 : 12);
+        // The structured lesson count also drives the fee comparison and per-class estimate.
+        const features = (Array.isArray(p.features) ? p.features : [])
+          .filter((feature) => !p.classes_per_week || !/^\s*\d+\s+(?:classes?|lessons?|days?)\s+(?:a|per)\s+week[.!]?\s*$/i.test(feature))
+          .slice(0, compact ? 4 : 12);
         const featured = Boolean(p.is_featured);
         return (
           <div
             key={p.id}
             data-card-tone={cardTone(p.name)}
+            data-featured={featured ? "true" : undefined}
             className={clsx(
               "pricing-card editorial-card card-tinted relative flex flex-col p-6",
               featured ? "ring-2 ring-leaf-700" : "",
             )}
           >
-            <div className="package-caption"><span className="text-xs font-semibold uppercase tracking-wider text-leaf-700">Personal lessons</span>{featured && <span className="rounded-full bg-leaf-700 px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-wider text-white">Featured</span>}</div>
-            <h3 className="text-[1.15rem] font-bold text-mushaf-900">{p.name}</h3>
+            <div className="package-caption">
+              <h3 className="text-xl font-bold leading-tight text-mushaf-900">{p.name}</h3>
+              {featured && <span className="rounded-full bg-leaf-700 px-2.5 py-1 text-xs font-semibold text-white">Featured</span>}
+            </div>
             {p.tagline && <p className="mt-1 text-[0.9rem] leading-snug text-ink-soft">{p.tagline}</p>}
             <p className="mt-5 flex flex-wrap items-baseline gap-x-1.5">
               {price ? (
                 <>
-                  <span className="font-display text-[2.6rem] leading-none text-mushaf-900">{price.approximate && <span className="mr-1 text-[1.6rem] text-ink-soft" title="Approximate">≈</span>}{formatMoney(price.amount_minor, price.currency)}</span>
+                  <span className="font-display text-[2.6rem] font-bold tabular-nums leading-none text-mushaf-900">{price.approximate && <span className="mr-1 text-[1.6rem] text-ink-soft" title="Approximate">≈</span>}{formatMoney(price.amount_minor, price.currency)}</span>
                   <span className="text-[0.9rem] text-ink-faint">{PERIOD[p.billing_period] ?? ""}</span>
-                  {price.approximate && <span className="basis-full text-[0.8rem] text-ink-faint">Approx. from {formatMoney(price.from.amount_minor, price.from.currency)} at today’s rate</span>}
+                  {price.approximate && <span className="basis-full text-[0.8rem] text-ink-faint">Approx. from {formatMoney(price.from.amount_minor, price.from.currency)} at the latest available exchange rate</span>}
                 </>
               ) : (
                 <span className="font-display text-[1.6rem] text-mushaf-900">{currency ? `Ask for the fee in ${currency}` : "Ask for the fee"}</span>
@@ -54,7 +60,7 @@ export function PricingCards({ plans, compact = false, currency, fx }) {
             <p className="mt-4 flex flex-wrap gap-2">
               {p.classes_per_week ? (
                 <span className="chip">
-                  {p.classes_per_week} {p.classes_per_week === 1 ? "day" : "days"} a week
+                  {p.classes_per_week} {p.classes_per_week === 1 ? "class" : "classes"} a week
                 </span>
               ) : null}
               {p.duration_min ? <span className="chip">{p.duration_min}-minute classes</span> : null}

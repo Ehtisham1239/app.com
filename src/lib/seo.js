@@ -18,17 +18,27 @@ export function searchTitle(record) {
 export function searchDescription(record) {
   return record.seo_description || record.excerpt || record.summary || textContent(record.body_html || record.description_html).slice(0, 158);
 }
-export function analyzeSeo(record = {}) {
+export function analyzeSeo(record = {}, siteUrl = "https://www.onlinequrancollege.com") {
   const title = searchTitle(record), description = searchDescription(record);
   const html = record.body_html || record.description_html || "";
   const text = textContent(html), words = text ? text.split(/\s+/).length : 0;
   const images = html.match(/<img\b[^>]*>/gi) || [];
   const missingAlt = (record.cover_url && !record.cover_alt?.trim() ? 1 : 0) + images.filter((tag) => !/(?:^|\s)alt\s*=/i.test(tag)).length;
-  const brokenLinks = (html.match(/<a\b[^>]*>/gi) || []).filter((tag) => {
+  const siteHost = new URL(siteUrl).hostname.replace(/^www\./, "");
+  const linkCounts = { internal: 0, external: 0, anchors: 0, invalid: 0 };
+  for (const tag of html.match(/<a\b[^>]*>/gi) || []) {
     const match = tag.match(/\bhref\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/i);
     const href = (match?.[1] ?? match?.[2] ?? match?.[3] ?? "").trim();
-    return !href || href === "#" || /^(javascript|data|vbscript):/i.test(href);
-  }).length;
+    if (!href || href === "#") { linkCounts.invalid++; continue; }
+    if (href.startsWith("#")) { linkCounts.anchors++; continue; }
+    try {
+      const url = new URL(href, siteUrl);
+      if (url.protocol === "mailto:" || url.protocol === "tel:") continue;
+      if (!["http:", "https:"].includes(url.protocol) || url.username || url.password) linkCounts.invalid++;
+      else if (url.hostname.replace(/^www\./, "") === siteHost) linkCounts.internal++;
+      else linkCounts.external++;
+    } catch { linkCounts.invalid++; }
+  }
   const keyword = String(record.seo_focus_keyword || "").trim().toLowerCase();
   const checks = [
     { id: "title", label: `Search title: ${title.length} characters`, pass: title.length >= 30 && title.length <= 60, advice: "Aim for a descriptive title around 30–60 characters. Search engines may rewrite it." },
@@ -38,10 +48,10 @@ export function analyzeSeo(record = {}) {
     { id: "h1", label: "Content avoids an extra H1", pass: !/<h1\b/i.test(html), advice: "The page template already renders the main H1. Use H2 for content sections." },
     { id: "content", label: `${words} words in the main content`, pass: words >= 150, advice: "Add useful, original detail where it helps readers. Word count alone is not a ranking factor." },
     { id: "alt", label: `${missingAlt} images without an alt attribute`, pass: missingAlt === 0, advice: "Describe informative images. Keep alt=\"\" for purely decorative images." },
-    { id: "links", label: `${brokenLinks} empty or placeholder links`, pass: brokenLinks === 0, advice: "Replace empty and # links with a useful destination." },
+    { id: "links", label: `${linkCounts.invalid} empty or unsafe links`, pass: linkCounts.invalid === 0, advice: "Replace empty and # links with a useful destination." },
   ];
   if (keyword) checks.push({ id: "focus", label: "Focus phrase appears naturally in the title or content", pass: `${title} ${text}`.toLowerCase().includes(keyword), advice: "Use your focus phrase naturally where relevant. Do not repeat it just to satisfy this check." });
-  return { title, description, words, checks, recommendations: checks.filter((c) => !c.pass), score: Math.round(100 * checks.filter((c) => c.pass).length / checks.length) };
+  return { title, description, words, linkCounts, checks, recommendations: checks.filter((c) => !c.pass), score: Math.round(100 * checks.filter((c) => c.pass).length / checks.length) };
 }
 export function duplicateMetadata(records) {
   const groups = new Map();
@@ -57,6 +67,15 @@ export function shouldIncludeInSitemap(record, path, siteUrl) {
   return !record?.seo_noindex && (!record?.canonical_url || canonicalUrl(record.canonical_url, path, siteUrl) === new URL(path, siteUrl).href);
 }
 export function safeJsonLd(value) { return JSON.stringify(value).replace(/</g, "\\u003c"); }
+/** Date the owner-reviewed static pages (home hubs, FAQ, courses, pricing, learn, locations) were last checked. Update it only when their content is actually reviewed or changed. */
+export const STATIC_PAGES_REVIEWED = "2026-11-21T00:00:00.000Z";
+
+/** ISO 8601 `dateModified` from a stored timestamp; undefined when the value is missing or not a real date (never invent one). */
+export function modifiedIso(value) {
+  if (!value) return undefined;
+  const d = new Date(value);
+  return Number.isNaN(d.getTime()) ? undefined : d.toISOString();
+}
 
 export function breadcrumbSchema(items, siteUrl) {
   return { "@context": "https://schema.org", "@type": "BreadcrumbList",
@@ -75,9 +94,53 @@ export function locationServiceSchema({ country, city, placeName, url, siteUrl }
     "@type": "Service",
     name: `Online Quran classes in ${placeName}`,
     serviceType: "Online one-to-one Quran tuition",
+    // Same audience the page names; no price, rating or branch implied.
+    audience: { "@type": "PeopleAudience", audienceType: "Children and adults learning the Quran" },
+    availableLanguage: "en",
     url,
     provider: { "@id": `${siteUrl}/#organization` },
     areaServed: city ? { "@type": "City", name: city.name, containedInPlace: countryPlace } : countryPlace,
     availableChannel: { "@type": "ServiceChannel", serviceUrl: `${siteUrl}/free-trial` },
   };
+}
+
+// Only publish a postal address when a complete street address is explicitly configured.
+// A country-only business setting is not a physical or mailing address.
+export function organizationPostalAddress(contact = {}) {
+  const address = contact.address;
+  if (!address || typeof address !== "object" || Array.isArray(address)) return null;
+  const streetAddress = String(address.streetAddress || "").trim();
+  const addressCountry = String(address.addressCountry || "").trim().toUpperCase();
+  if (!streetAddress || !/^[A-Z]{2}$/.test(addressCountry)) return null;
+  const optional = ["addressLocality", "addressRegion", "postalCode"];
+  return {
+    "@type": "PostalAddress",
+    streetAddress,
+    ...Object.fromEntries(optional.filter((key) => String(address[key] || "").trim()).map((key) => [key, String(address[key]).trim()])),
+    addressCountry,
+  };
+}
+
+
+// Organization sameAs lists only the exact OQC profiles the owner confirmed
+// OQC controls (Trustpilot; Facebook, Instagram and X on 9 Nov 2026). A CMS
+// edit pointing a key at any other page is ignored, not published.
+const IDENTITY_PROFILES = [
+  ["trustpilot", "www.trustpilot.com", "/review/onlinequrancollege.com"],
+  ["facebook", "www.facebook.com", "/OnlineQuranCollegeLtdUK"],
+  ["instagram", "www.instagram.com", "/online_quran_college"],
+  ["x", "x.com", "/OnlineQuranClg"],
+];
+export function organizationIdentityProfiles(social = {}) {
+  return IDENTITY_PROFILES.flatMap(([key, host, path]) => {
+    const value = social?.[key];
+    if (typeof value !== "string") return [];
+    try {
+      const url = new URL(value);
+      if (url.protocol !== "https:" || url.hostname !== host || url.search || url.hash || url.pathname.replace(/\/+$/, "") !== path) return [];
+      return [`https://${host}${path}`];
+    } catch {
+      return [];
+    }
+  });
 }

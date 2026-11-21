@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "@/components/site/icons";
 import { SectionHeading } from "@/components/site/chrome";
+import { ContentImage } from "@/components/site/content-image";
 import { Benefits, CoursesGrid, CtaBand, FaqList, PricingCards, Steps, TeacherCard, Testimonials } from "@/components/site/sections";
 import { cleanHtml } from "@/lib/sanitize";
 
@@ -32,7 +33,10 @@ function limit(list, n) {
 function Block({ section, data }) {
   const d = section.data && typeof section.data === "object" ? section.data : {};
   switch (section.type) {
-    case "hero":
+    case "hero": {
+      // A hero without its own image falls back to the page cover, so every
+      // landing page opens with a visual (public-page-quality "top visual").
+      const heroImage = d.image_url ? { src: d.image_url, alt: d.image_alt } : data.heroImage?.src ? data.heroImage : null;
       return (
         <section className="relative overflow-hidden bg-mushaf-950 text-white">
           <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.08]" aria-hidden="true" />
@@ -47,10 +51,11 @@ function Block({ section, data }) {
                 </Link>
               </div>
             </div>
-            {d.image_url && <img src={d.image_url} alt={d.image_alt || ""} className="aspect-[4/3] w-full rounded-[1.5rem] object-cover ring-4 ring-gold-400/30" />}
+            {heroImage && <div data-hero-visual><ContentImage src={heroImage.src} alt={heroImage.alt || ""} sizes="(max-width: 1023px) calc(100vw - 2.5rem), (max-width: 1599px) 42vw, 42rem" priority className="aspect-[4/3] w-full rounded-[1.5rem] object-cover ring-4 ring-gold-400/30" /></div>}
           </div>
         </section>
       );
+    }
 
     case "rich_text": {
       const html = cleanHtml(d.html ?? "");
@@ -192,7 +197,7 @@ function Block({ section, data }) {
         <section className="page-wrap py-16 sm:py-20">
           <div className={`grid items-center gap-10 lg:grid-cols-2 ${d.reverse ? "lg:[&>*:first-child]:order-2" : ""}`}>
             {d.image_url ? (
-              <img src={d.image_url} alt={d.image_alt || ""} className="aspect-[4/3] w-full rounded-[1.5rem] object-cover" loading="lazy" />
+              <ContentImage src={d.image_url} alt={d.image_alt || ""} sizes="(max-width: 1023px) calc(100vw - 2.5rem), (max-width: 1599px) 42vw, 42rem" className="aspect-[4/3] w-full rounded-[1.5rem] object-cover" />
             ) : (
               <div className="pattern-girih flex aspect-[4/3] items-center justify-center rounded-[1.5rem] bg-mushaf-900">
                 <span className="brand-mark block size-28 text-gold-400 opacity-80" aria-hidden="true" />

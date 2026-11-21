@@ -81,4 +81,29 @@ const covers = {
     "alt": "Mother and young son watering a small indoor plant together as a lesson in kindness"
   }
 };
-export function contentVisual(record) { const fallback = covers[record.slug] || { src: "/images/islamic/islamic-library-v1-1200.webp", alt: "Islamic study books and a writing desk in an arched library" }; return { src: record.cover_url?.trim() || fallback.src, alt: record.cover_alt?.trim() || fallback.alt }; }
+// Improve the legacy covers on these articles while allowing an editor to
+// replace any cover with a newly uploaded image.
+const articleCoverUpdates = {
+  "tajweed-rules-for-beginners": {
+    previous: ["oqc-learning-australia-melbourne-v3-1200.webp", "map-australia-melbourne-r2-1200.webp", "map-australia-melbourne-1200.webp"],
+    replacement: "importance-of-reciting-quran-with-tajweed",
+  },
+  "online-quran-class-fees-usa-comparison": {
+    previous: ["blog-usa-teacher-r2-1200.webp", "blog-usa-teacher-1200.webp"],
+    replacement: "online-quran-class-fees-uk-comparison",
+  },
+};
+
+export function contentVisual(record) {
+  const src = record.cover_url?.trim();
+  const update = articleCoverUpdates[record.slug];
+  const file = src?.split(/[?#]/, 1)[0].split("/").at(-1);
+  const replaceLegacy = update && (!src || update.previous.includes(file));
+  if (replaceLegacy) return covers[update.replacement];
+
+  const fallback = covers[record.slug] || {
+    src: "/images/islamic/islamic-library-v1-1200.webp",
+    alt: "Islamic study books and a writing desk in an arched library",
+  };
+  return { src: src || fallback.src, alt: record.cover_alt?.trim() || fallback.alt };
+}

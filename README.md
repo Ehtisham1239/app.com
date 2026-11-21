@@ -36,3 +36,8 @@ The [site-wide keyword release](docs/seo-agent/SITEWIDE-KEYWORDS-2026-10-25.md) 
 # Mobile imagery update
 
 The complete regional/course learning-image set and responsive footer are documented in [the 26 October implementation notes](docs/MOBILE-LEARNING-IMAGERY-2026-10-26.md). Development, tests and builds automatically prepare missing responsive AVIF/WebP files from the saved image masters. Production deployment status is recorded separately in those notes.
+
+
+## Single-repository source of truth
+
+The canonical OQC site is https://www.onlinequrancollege.com and all maintained website, CMS, admin, parent-portal and API code lives in this repository, released from `main` to the single `appcom-online-quran-college` Vercel project. See [the consolidation map and duplicate-host migration rules](docs/architecture/SINGLE-REPOSITORY-SOURCE-OF-TRUTH.md). Do not create separate app repositories for portals or country pages.

@@ -1,7 +1,8 @@
 import { test } from "node:test";
+import { readFileSync } from "node:fs";
 import assert from "node:assert/strict";
-import { analyzeSeo, validCanonical, canonicalUrl, duplicateMetadata, shouldIncludeInSitemap, safeJsonLd } from "../src/lib/seo.js";
-import { locationFromCmsSlug, locationPath } from "../src/lib/locations.js";
+import { analyzeSeo, validCanonical, canonicalUrl, duplicateMetadata, shouldIncludeInSitemap, safeJsonLd, organizationPostalAddress } from "../src/lib/seo.js";
+import { locationFromCmsSlug, locationPath, getLocation, defaultLocationNoindex, locationIndexRecord } from "../src/lib/locations.js";
 test("canonical validation rejects unsafe schemes, fragments and credentials", () => {
   for (const value of ["javascript:alert(1)", "//outside.test/x", "https://user:pass@example.com/", "/page#section", "/two words", "<script>"]) assert.equal(validCanonical(value), false, value);
   for (const value of ["", "/courses/quran", "https://example.com/course"]) assert.equal(validCanonical(value), true, value);
@@ -79,9 +80,244 @@ test("location pages describe online tuition for the place without claiming a lo
   assert.ok(us.sources.every((s) => new URL(s.url).hostname.endsWith(".gov")));
   assert.notEqual(us.title, guide.title);
 });
-test("location sitemap dates include the latest shared template change", async () => {
+test("location sitemap dates use the later of the template date and a country guide update", async () => {
   const { locationLastModified, LOCATION_TEMPLATE_UPDATED } = await import("../src/lib/locations.js");
-  assert.equal(locationLastModified({ updated_at: "2026-10-29T09:49:43Z" }), new Date(LOCATION_TEMPLATE_UPDATED).toISOString());
+  const { MARKET_GUIDES } = await import("../src/lib/market-guides.js");
+  const templateDate = new Date(LOCATION_TEMPLATE_UPDATED).toISOString();
+  // The later of the guide date and the shared template date wins.
+  const australiaGuideDate = new Date(Math.max(new Date(MARKET_GUIDES.australia.updatedAt), new Date(LOCATION_TEMPLATE_UPDATED))).toISOString();
+
+  assert.equal(locationLastModified({ updated_at: "2026-10-29T09:49:43Z" }), templateDate);
   assert.equal(locationLastModified({ updated_at: "2099-01-02T03:04:05Z" }), "2099-01-02T03:04:05.000Z");
-  assert.equal(locationLastModified(null), new Date(LOCATION_TEMPLATE_UPDATED).toISOString());
+  assert.equal(locationLastModified(null), templateDate);
+  assert.equal(locationLastModified({ updated_at: "2026-10-29T09:49:43Z" }, MARKET_GUIDES.australia.updatedAt), australiaGuideDate);
+  assert.equal(locationLastModified(null, MARKET_GUIDES.australia.updatedAt), australiaGuideDate);
+  assert.equal(locationLastModified(null, undefined), templateDate);
+});
+
+test("organization schema never turns a country-only setting into a postal address", () => {
+  assert.equal(organizationPostalAddress({ location: "United Kingdom" }), null);
+  assert.equal(organizationPostalAddress({ address: { addressCountry: "GB" } }), null);
+  assert.deepEqual(organizationPostalAddress({ address: { streetAddress: "10 Example Street", addressLocality: "London", postalCode: "SW1A 1AA", addressCountry: "GB" } }), {
+    "@type": "PostalAddress", streetAddress: "10 Example Street", addressLocality: "London", postalCode: "SW1A 1AA", addressCountry: "GB"
+  });
+});
+
+test("priority country hubs remain indexable while city pages stay noindex by default", () => {
+  for (const slug of ["united-kingdom", "united-states", "australia", "united-arab-emirates"]) {
+    const country = getLocation(slug);
+    assert.ok(country, slug);
+    assert.equal(defaultLocationNoindex(country, null), false, slug);
+    assert.equal(locationIndexRecord(null, country, null).seo_noindex, false, slug);
+    assert.equal(defaultLocationNoindex(country, country.cities[0]), true, `${slug} city`);
+  }
+});
+
+test("robots explicitly permits Perplexity search crawling on public pages and blocks private routes", async () => {
+  const { default: robots } = await import("../src/app/robots.js");
+  const config = robots();
+  const perplexity = config.rules.find((rule) => rule.userAgent === "PerplexityBot");
+  const wildcard = config.rules.find((rule) => rule.userAgent === "*");
+  assert.ok(perplexity);
+  assert.ok(perplexity.allow.includes("/"));
+  for (const path of ["/admin", "/auth", "/api/", "/parents"]) assert.ok(perplexity.disallow.includes(path), path);
+  assert.ok(wildcard.allow.includes("/"));
+  for (const path of ["/admin", "/auth", "/api/", "/parents"]) assert.ok(wildcard.disallow.includes(path), path);
+});
+
+test("free-trial benefits render once and avoid an absolute data-sharing promise", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const page = await readFile(new URL("../src/app/(site)/free-trial/page.jsx", import.meta.url), "utf8");
+  // The list is rendered in the browser (trial-intro.jsx) so the page stays cached.
+  const intro = await readFile(new URL("../src/components/site/trial-intro.jsx", import.meta.url), "utf8");
+  const source = page + intro;
+  assert.equal((intro.match(/promises\.map\(/g) || []).length, 1);
+  assert.equal((page.match(/<TrialPromises /g) || []).length, 1, "rendered once on the page");
+  assert.equal(source.includes("never sold or shared"), false);
+  assert.ok(source.includes("privacy policy"));
+  assert.equal(source.includes("within 24 hours"), false);
+});
+
+test("UAE market hub has a distinct online-only guide and all seven emirates", async () => {
+  const { getLocation } = await import("../src/lib/locations.js");
+  const { MARKET_GUIDES } = await import("../src/lib/market-guides.js");
+  const uae = getLocation("united-arab-emirates");
+  assert.ok(uae);
+  assert.equal(uae.currency, "AED");
+  assert.equal(uae.timezone, "Asia/Dubai");
+  assert.equal(uae.cities.length, 7);
+  assert.ok(MARKET_GUIDES["united-arab-emirates"].sections.length >= 4);
+  assert.ok(MARKET_GUIDES["united-arab-emirates"].sections.some((section) => section.text.includes("does not claim a UAE office")));
+});
+
+test("each primary-market hub links visibly to its own published planning article", async () => {
+  const { MARKET_ARTICLES, MARKET_GUIDES } = await import("../src/lib/market-guides.js");
+  const { INDEXED_MARKETS } = await import("../src/lib/locations.js");
+  assert.deepEqual(Object.keys(MARKET_ARTICLES).sort(), [...INDEXED_MARKETS].sort());
+  for (const slug of INDEXED_MARKETS) {
+    assert.ok(MARKET_GUIDES[slug], `${slug} has a market guide section to host the link`);
+    assert.match(MARKET_ARTICLES[slug].path, /^\/blog\/[a-z0-9-]+$/, slug);
+  }
+  assert.equal(new Set(Object.values(MARKET_ARTICLES).map((a) => a.path)).size, INDEXED_MARKETS.length, "no two hubs share an article");
+  const { readFileSync } = await import("node:fs");
+  const page = readFileSync(new URL("../src/components/site/location-page.jsx", import.meta.url), "utf8");
+  assert.match(page, /const article = !city \? MARKET_ARTICLES\[country\.slug\] : null;/);
+  assert.match(page, /\{article && <p[^>]*>Read the full planning guide: <Link[^>]*href=\{article\.path\}>\{article\.label\}<\/Link><\/p>\}/);
+});
+
+test("teachers page answers the female-teacher question without unverified claims", async () => {
+  const { readFileSync } = await import("node:fs");
+  const page = readFileSync(new URL("../src/app/(site)/teachers/page.jsx", import.meta.url), "utf8");
+  assert.match(page, /question: "Can I choose a female Quran teacher\?"/);
+  assert.match(page, /safeJsonLd\(faqSchema\(TEACHER_FAQS\)\)/, "FAQPage data comes from the same visible list");
+  assert.match(page, /<FaqList faqs=\{TEACHER_FAQS\}/);
+  assert.doesNotMatch(page, /trained in Tajweed|experienced and caring|Qualified female and male/, "no credential claims while profiles are not shown");
+  assert.doesNotMatch(page, /you choose your preference when booking/, "a preference is requested, not guaranteed");
+  assert.match(page, /cannot be guaranteed/);
+});
+
+test("entity names and market hubs carry the 3 Nov keyword and schema updates", async () => {
+  const { readFileSync } = await import("node:fs");
+  const layout = readFileSync(new URL("../src/app/(site)/layout.jsx", import.meta.url), "utf8");
+  assert.equal((layout.match(/alternateName: "OQC"/g) || []).length, 2, "WebSite and Organization");
+  const { locationServiceSchema } = await import("../src/lib/seo.js");
+  const svc = locationServiceSchema({ country: { name: "Australia" }, city: null, placeName: "Australia", url: "https://x/locations/australia", siteUrl: "https://x" });
+  assert.equal(svc.audience["@type"], "PeopleAudience");
+  assert.doesNotMatch(JSON.stringify(svc), /aggregateRating|PostalAddress|price/);
+  const { SEARCH_INTENTS } = await import("../src/lib/search-intent.js");
+  assert.equal(SEARCH_INTENTS["/locations/australia"].heading, "Online Quran classes in Australia");
+  assert.match(SEARCH_INTENTS["/locations/australia"].intro, /Sydney, Melbourne, Brisbane, Adelaide or Perth/);
+  const { COUNTRY_HUBS } = await import("../src/lib/country-hubs.js");
+  for (const slug of ["united-states", "australia"]) {
+    const qs = COUNTRY_HUBS[slug].faqs().map((f) => f.question);
+    assert.ok(qs.some((q) => /suitable for kids/.test(q)) && qs.some((q) => /online Hifz classes/.test(q)), slug);
+  }
+});
+
+test("teacher page includes a factual parent pre-enrolment checklist", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const source = await readFile(new URL("../src/app/(site)/teachers/page.jsx", import.meta.url), "utf8");
+  assert.match(source, /Questions parents can confirm before regular lessons/);
+  assert.match(source, /These are questions to ask, not claims that every arrangement is automatically included/);
+  assert.match(source, /whether sessions are recorded/);
+  assert.match(source, /The Weekend plan is excluded/);
+});
+
+test("organization JSON-LD does not publish an unverified CMS founding year", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const source = await readFile(new URL("../src/app/(site)/layout.jsx", import.meta.url), "utf8");
+  assert.doesNotMatch(source, /legalName:/);
+  assert.match(source, /organizationPostalAddress\(contact\)/);
+  assert.doesNotMatch(source, /foundingDate/);
+});
+
+
+test("Organization sameAs includes only the exact owner-confirmed OQC profiles", async () => {
+  const { organizationIdentityProfiles } = await import("../src/lib/seo.js");
+  assert.deepEqual(organizationIdentityProfiles({
+    trustpilot: "https://www.trustpilot.com/review/onlinequrancollege.com",
+    facebook: "https://www.facebook.com/OnlineQuranCollegeLtdUK",
+    instagram: "https://www.instagram.com/online_quran_college/",
+    x: "https://x.com/OnlineQuranClg",
+    youtube: "https://www.youtube.com/@someone",
+  }), [
+    "https://www.trustpilot.com/review/onlinequrancollege.com",
+    "https://www.facebook.com/OnlineQuranCollegeLtdUK",
+    "https://www.instagram.com/online_quran_college",
+    "https://x.com/OnlineQuranClg",
+  ]);
+  assert.deepEqual(organizationIdentityProfiles({ facebook: "https://www.facebook.com/SomeoneElse" }), []);
+  assert.deepEqual(organizationIdentityProfiles({ x: "https://x.com/OnlineQuranClg?ref=spam" }), []);
+  assert.deepEqual(organizationIdentityProfiles({ instagram: "http://www.instagram.com/online_quran_college" }), []);
+  assert.deepEqual(organizationIdentityProfiles({ trustpilot: "https://www.trustpilot.com/review/onlinequrancollege.com/" }), ["https://www.trustpilot.com/review/onlinequrancollege.com"]);
+  assert.deepEqual(organizationIdentityProfiles({ trustpilot: "https://www.trustpilot.com/review/another-company.com" }), []);
+  assert.deepEqual(organizationIdentityProfiles({ trustpilot: "http://www.trustpilot.com/review/onlinequrancollege.com" }), []);
+  assert.deepEqual(organizationIdentityProfiles({}), []);
+});
+
+test("UAE advertiser guidance points to the official Media Council guidelines", async () => {
+  const { MARKET_GUIDES } = await import("../src/lib/market-guides.js");
+  const source = MARKET_GUIDES["united-arab-emirates"].sources.find((item) => item.name.includes("Advertiser Permit"));
+  assert.equal(source.url, "https://uaemc.gov.ae/en/guidelines/");
+});
+
+test("CMS link counts distinguish internal routes, external references and unsafe placeholders", () => {
+  const body_html = '<a href="/pricing">Fees</a><a href="https://onlinequrancollege.com/courses">Courses</a><a href="https://example.test">Source</a><a href="#faq">FAQ</a><a href="mailto:info@example.test">Email</a><a href="javascript:bad()">Unsafe</a><a href="#">Empty</a>';
+  assert.deepEqual(analyzeSeo({ body_html }).linkCounts, { internal: 2, external: 1, anchors: 1, invalid: 2 });
+});
+
+
+test("sitemap lists the five market hubs plus the 52 restored pages, with market-guide lastmod on hubs", async () => {
+  const sitemap = readFileSync(new URL("../src/app/sitemap.js", import.meta.url), "utf8");
+  assert.match(sitemap, /INDEXED_MARKETS\.map\(\(slug\) => \[slug, null\]\)/);
+  assert.match(sitemap, /RESTORED_LOCATION_PATHS\.map/);
+  assert.match(sitemap, /MARKET_GUIDES\[country\.slug\]\?\.updatedAt/);
+});
+
+test("thank-you page titles name the brand once (the layout template adds it)", async () => {
+  const { readFileSync } = await import("node:fs");
+  for (const f of ["contact/thank-you", "free-trial/thank-you"]) {
+    const src = readFileSync(new URL(`../src/app/(site)/${f}/page.jsx`, import.meta.url), "utf8");
+    const title = src.match(/\n  title: "([^"]+)"/)[1];
+    assert.doesNotMatch(title, /Online Quran College|OQC/, f);
+  }
+});
+
+test("site-wide ayah band uses sourced verses with references and stays script-free (19 Nov 2026)", async () => {
+  const { readFileSync } = await import("node:fs");
+  const { AYAT, ayahForDate } = await import("../src/lib/ayat.js");
+  assert.ok(AYAT.length >= 5);
+  for (const a of AYAT) {
+    assert.match(a.ref, /^\d{1,3}:\d{1,3}(–\d{1,3})?$/);
+    assert.match(a.ar, /[؀-ۿ]/);
+    assert.ok(a.en.length > 10);
+  }
+  assert.equal(ayahForDate(new Date("2026-11-19T01:00:00Z")), ayahForDate(new Date("2026-11-19T23:00:00Z")), "one verse per UTC day");
+  const band = readFileSync(new URL("../src/components/site/ayah-band.jsx", import.meta.url), "utf8");
+  assert.doesNotMatch(band, /"use client"/);
+  assert.match(band, /aria-hidden="true">\{ayah\.ar\}/, "the colour layer is hidden from screen readers");
+  const css = readFileSync(new URL("../src/app/globals.css", import.meta.url), "utf8");
+  const motion = css.slice(css.indexOf(".ayah-band {"));
+  assert.match(motion, /prefers-reduced-motion: no-preference\) \{\s*\.ayah-glow/);
+  assert.doesNotMatch(motion.slice(0, motion.indexOf("Gold lattice")), /@keyframes ayah-[a-z]+ \{[^}]*(width|height|top|left|background-position)/, "animations use opacity/transform only");
+});
+
+test("the ayah band never repeats the footer's 20:114 and its ornaments are silent", async () => {
+  const { readFileSync } = await import("node:fs");
+  const { AYAT } = await import("../src/lib/ayat.js");
+  assert.equal(AYAT.some(a => a.ref.startsWith("20:114")), false);
+  const css = readFileSync(new URL("../src/app/globals.css", import.meta.url), "utf8");
+  assert.match(css, /\.ayah-kicker::before, \.ayah-kicker::after \{ content: "۞" \/ "";/);
+});
+
+test("every page hero carries a sourced verse that fits the page (19 Nov 2026)", async () => {
+  const { readFileSync } = await import("node:fs");
+  const { HERO_AYAT, heroAyahFor } = await import("../src/lib/hero-ayat.js");
+  for (const a of Object.values(HERO_AYAT)) { assert.match(a.ref, /^\d{1,3}:\d{1,3}(–\d{1,3})?$/); assert.match(a.ar, /[؀-ۿ]/); assert.ok(a.ar.length < 90); }
+  assert.equal(heroAyahFor("/courses/hifz-quran").ref, "75:17");
+  assert.equal(heroAyahFor("/free-trial").ref, "20:25–26");
+  assert.equal(heroAyahFor("/locations/france/paris"), heroAyahFor("/locations/france/paris"), "stable per path");
+  const chrome = readFileSync(new URL("../src/components/site/chrome.jsx", import.meta.url), "utf8");
+  assert.equal((chrome.match(/<HeroAyah path=\{path \|\| title\} \/>/g) || []).length, 2, "both hero variants");
+  const hero = readFileSync(new URL("../src/components/site/hero-ayah.jsx", import.meta.url), "utf8");
+  assert.doesNotMatch(hero, /"use client"/);
+  assert.match(hero, /aria-hidden="true">\{ayah\.ar\}/);
+});
+
+test("verse animations stay cheap: hero glow is finite and the band renders only when near the viewport", async () => {
+  const { readFileSync } = await import("node:fs");
+  const css = readFileSync(new URL("../src/app/globals.css", import.meta.url), "utf8");
+  assert.match(css, /\.hero-ayah-glow \{ animation: ayah-glow 10s ease-in-out 1\.5s 2; \}/);
+  assert.match(css, /\.ayah-band \{[^}]*content-visibility: auto; contain-intrinsic-size: auto 26rem;/);
+});
+
+test("Arabic-first country titles follow Search Console demand (Lithuania, 19 Nov 2026)", async () => {
+  const { getLocation, locationSearchTitle, locationSearchIntro, ARABIC_FIRST_COUNTRIES } = await import("../src/lib/locations.js");
+  assert.deepEqual([...ARABIC_FIRST_COUNTRIES], ["lithuania"]);
+  const lt = getLocation("lithuania"); const country = lt.country || lt;
+  assert.equal(locationSearchTitle(country), "Online Arabic & Quran Classes in Lithuania | OQC");
+  assert.match(locationSearchIntro(country), /^Live one-to-one online Arabic classes in Lithuania/);
+  assert.ok(locationSearchIntro(country).length <= 175);
+  const uk = getLocation("united-kingdom"); assert.match(locationSearchTitle(uk.country || uk), /^Online Quran & Arabic Classes/);
+  const city = country.cities[0]; assert.match(locationSearchTitle(country, city), /^Quran & Arabic Classes in /, "city pages keep the shared pattern");
 });

@@ -112,7 +112,7 @@ test("growth planning is private, editable by content staff and requires complet
   assert.equal((await db.query('select * from public.seo_growth_tasks')).rows.length,0);
   await assert.rejects(db.query('select public.market_lead_report(current_date,current_date)'),/permission/);
   await role('authenticated',editorId);
-  assert.equal((await db.query("select count(*)::int n from public.seo_growth_tasks where task_key like 'keyword-%'")).rows[0].n,60);
+  assert.equal((await db.query("select count(*)::int n from public.seo_growth_tasks where task_key like 'keyword-%'")).rows[0].n,68);
   await assert.rejects(db.query("update public.seo_growth_tasks set status='complete' where task_key='regional'"),/check constraint/);
   await db.query("update public.seo_growth_tasks set status='complete',evidence_url='Reviewed release and route checks' where task_key='regional'");
   await assert.rejects(db.query("insert into public.seo_growth_metrics(title,market,source,period_start,period_end,clicks,evidence_url) values('Bad sample','USA','Search Console',current_date,current_date,-1,'https://example.test/source')"),/check constraint/);
@@ -139,4 +139,52 @@ test("growth launch preserves edits on repeat and publishes distinct guide/artic
  assert.equal((await db.query("select title from blog_posts where slug='quran-translation-and-arabic-difference'")).rows[0].title,'Owner reviewed title');
  assert.equal((await db.query("select body_html from pages where slug='locations-australia'")).rows[0].body_html,original);
  assert.equal(original.split('oqc-market-guide-australia-v1').length-1,1);
+});
+
+test("country hubs seeded without the article are corrected once, leaving staff edits alone", async () => {
+  await role();
+  const migration = sql("supabase/migrations/20261102044950_location_country_article.sql");
+  const read = async (slug) => (await db.query("select body_html, excerpt from public.pages where slug=$1", [slug])).rows[0];
+  for (const [slug, place] of [["locations-united-states", "the United States"], ["locations-netherlands", "the Netherlands"]]) {
+    const page = await read(slug);
+    assert.match(page.body_html, new RegExp(`<h2>Quran learning from home in ${place}</h2>`), slug);
+    assert.match(page.excerpt, new RegExp(`online in ${place}\\.`), slug);
+  }
+  await db.exec(migration);
+  assert.doesNotMatch((await read("locations-united-states")).body_html, /in the the /, "re-running is a no-op");
+  await db.query("update public.pages set body_html='<h2>Staff heading in United States</h2>' where slug='locations-united-states'");
+  await db.exec(migration);
+  assert.equal((await read("locations-united-states")).body_html, "<h2>Staff heading in United States</h2>", "custom copy is preserved");
+});
+
+test("visitors can send a review only with a comment; reviews and media stay staff-only", async () => {
+  await role("anon");
+  const base = { name: "Amina Parent", email: "Amina@Example.test", relation: "Parent", rating: 5, comment: "My daughter now reads with Tajweed.", consent: true };
+  await assert.rejects(db.query("select public.submit_review($1::jsonb)", [{ ...base, comment: "   " }]), /write your comment/);
+  await assert.rejects(db.query("select public.submit_review($1::jsonb)", [{ ...base, rating: 0 }]), /star rating/);
+  await assert.rejects(db.query("select public.submit_review($1::jsonb)", [{ ...base, consent: false }]), /privacy notice/);
+  await assert.rejects(db.query("select public.submit_review($1::jsonb)", [{ ...base, upload_token: "3f2b8c1e-9a4d-4e6f-8b2a-1c3d5e7f9a0b", media: ["pending/3f2b8c1e-9a4d-4e6f-8b2a-1c3d5e7f9a0b/1-x.jpg"] }]), /could not be matched/, "media must really exist in the bucket");
+  const saved = await db.query("select public.submit_review($1::jsonb) as result", [base]);
+  assert.match(saved.rows[0].result.reference, /^REV-\d{4}-\d{5}$/);
+  await assert.rejects(db.query("select * from public.review_submissions"), /permission denied/);
+  await role();
+  const row = (await db.query("select email, status, media_paths from public.review_submissions where reference=$1", [saved.rows[0].result.reference])).rows[0];
+  assert.deepEqual(row, { email: "amina@example.test", status: "new", media_paths: [] });
+  assert.equal((await db.query("select public from storage.buckets where id='review-media'")).rows[0].public, false);
+});
+
+test("CMS video metadata inherits page visibility and rejects non-object data", async () => {
+  const video = { url: "https://youtu.be/a1B2c3D4e5F", title: "Draft fixture" };
+  await role();
+  const makePage = (slug, status) => db.query("insert into public.pages (slug,title,status,video) values ($1,$1,$2,$3) returning id", [slug, status, video]);
+  const draft = (await makePage("draft-video-fixture", "draft")).rows[0].id;
+  const live = (await makePage("live-video-fixture", "published")).rows[0].id;
+  await assert.rejects(db.query("update public.pages set video='[]'::jsonb where id=$1", [live]), /check constraint/);
+  const bucket = (await db.query("select file_size_limit, allowed_mime_types from storage.buckets where id='media'")).rows[0];
+  assert.equal(Number(bucket.file_size_limit), 10485760);
+  assert.ok(bucket.allowed_mime_types.includes("video/mp4"));
+  await role("anon");
+  const publicRows = (await db.query("select id, video from public.pages where id in ($1,$2)", [draft, live])).rows;
+  assert.deepEqual(publicRows, [{ id: live, video }]);
+  await role();
 });

@@ -76,6 +76,7 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
       setCompact(next);
       if (!next) setOpen(false);
     };
+    update();
     window.addEventListener("resize", update);
     const observer = new ResizeObserver(update);
     observer.observe(document.documentElement);
@@ -93,15 +94,15 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
     >
       <div className="page-wrap flex h-[4.5rem] items-center gap-3 sm:gap-6">
         {/* No prefetch for "/": its payload preloads the homepage hero image on every page. */}
-        <Link href="/" prefetch={false} className="header-brand group flex min-w-0 items-center gap-3" aria-label={`${brandName} — home`}>
-          <img src="/brand/mark-v2-128.png" srcSet="/brand/mark-v2-64.png 64w, /brand/mark-v2-128.png 128w, /brand/mark-v2-176.png 176w" sizes="(max-width: 639px) 64px, 56px" alt="" width={176} height={176} className="size-12 shrink-0 object-contain sm:size-14" />
+        <Link href="/" prefetch={false} className="header-brand group flex min-w-0 items-center gap-2 rounded-2xl pr-2 sm:gap-3" aria-label={`${brandName} — home`}>
+          <img src="/brand/mark-v2-128.png" srcSet="/brand/mark-v2-64.png 64w, /brand/mark-v2-128.png 128w, /brand/mark-v2-176.png 176w" sizes="(max-width: 639px) 48px, 56px" alt="" width={176} height={176} className="header-brand-mark size-12 shrink-0 object-contain sm:size-14" />
           <span className="flex flex-col leading-none">
-            <span className="font-display text-[1.02rem] font-semibold uppercase tracking-[0.05em] text-leaf-700 sm:text-[1.2rem]">{(brandName || "Online Quran College").replace(/\s+college(\s+ltd\.?)?$/i, "")}</span>
+            <span className="header-brand-name font-display text-[clamp(.86rem,3.9vw,1.02rem)] font-semibold uppercase tracking-[0.05em] text-leaf-700 sm:text-[1.2rem]">{(brandName || "Online Quran College").replace(/\s+college(\s+ltd\.?)?$/i, "")}</span>
             {" "}<span className="mt-1 flex items-center gap-1.5 text-[0.75rem] font-semibold uppercase tracking-[0.24em] text-gold-600 sm:text-[0.8rem]"><span className="h-px w-3 bg-gold-500" />College<span className="h-px w-3 bg-gold-500" /></span>
           </span>
         </Link>
 
-        <nav className={clsx("ml-auto hidden items-center gap-1", !compact && "xl:flex")} aria-label="Main">
+        <nav className={clsx("nav-primary ml-auto hidden items-center gap-1", !compact && "xl:flex")} aria-label="Main">
           {menu.map((item) =>
             item.href === "/courses" && courses.length > 0 ? (
               <div key={item.href} ref={coursesRef} className="relative"
@@ -170,9 +171,9 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
         <div className={clsx("ml-auto flex items-center gap-2", !compact && "xl:ml-2")}>
           {/* A full document navigation removes the public third-party chat runtime before staff sign-in. */}
           {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-          <a href="/admin" className="btn portal-button header-portal whitespace-nowrap px-3 text-xs sm:px-5 sm:text-sm"><ShieldCheck className="size-4" aria-hidden="true" />Portal</a>
+          <a href="/admin" rel="nofollow" className="btn portal-button header-portal whitespace-nowrap px-3 text-xs sm:px-5 sm:text-sm"><ShieldCheck className="size-4" aria-hidden="true" />Portal</a>
           <Link href="/free-trial" className="btn btn-primary hidden sm:inline-flex">
-            Free trial
+            Request a free trial
             <ArrowRight className="size-4" aria-hidden="true" />
           </Link>
           <button
@@ -199,7 +200,7 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
         />
         <div
           className={clsx(
-            "absolute inset-y-0 right-0 flex max-h-[100dvh] w-[min(22rem,88vw)] flex-col bg-paper shadow-2xl transition-transform duration-300",
+            "mobile-menu-panel absolute inset-y-0 right-0 flex max-h-[100dvh] w-[min(22rem,92vw)] flex-col bg-white shadow-2xl transition-transform duration-300",
             open ? "translate-x-0" : "translate-x-full",
           )}
           ref={dialogRef}
@@ -208,13 +209,13 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
           aria-modal="true"
           aria-label="Menu"
         >
-          <div className="flex h-[4.5rem] shrink-0 items-center justify-between gap-2 border-b border-line px-5">
-            <span className="font-display text-lg text-mushaf-900">{brandName}</span>
-            <button type="button" className="flex size-11 items-center justify-center rounded-full hover:bg-leaf-50" onClick={() => setOpen(false)} aria-label="Close menu">
+          <div className="flex min-h-[4.5rem] shrink-0 items-center justify-between gap-2 border-b border-line bg-paper px-5 py-2">
+            <span className="min-w-0 break-words font-display text-lg text-mushaf-900">{brandName}</span>
+            <button type="button" className="flex size-11 shrink-0 items-center justify-center rounded-full bg-white text-mushaf-900 hover:bg-leaf-50" onClick={() => setOpen(false)} aria-label="Close menu">
               <X className="size-5" aria-hidden="true" />
             </button>
           </div>
-          <nav className="flex-1 overflow-y-auto px-3 py-4" aria-label="Mobile">
+          <nav className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-3 py-4" aria-label="Mobile">
             {menu.map((item) => (
               <div key={item.href}>
                 <Link
@@ -247,9 +248,9 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
           <div className="shrink-0 space-y-2 border-t border-line p-5">
             {/* Full document navigation keeps public chat isolated from staff sign-in. */}
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            <a href="/admin" className="btn portal-button w-full sm:hidden"><ShieldCheck className="size-4" aria-hidden="true" />Portal</a>
+            <a href="/admin" rel="nofollow" className="btn portal-button w-full sm:hidden"><ShieldCheck className="size-4" aria-hidden="true" />Portal</a>
             <Link href="/free-trial" onClick={() => setOpen(false)} className="btn btn-primary w-full">
-              Book a 3-day free trial
+              Request a 3-day free trial
             </Link>
 
           </div>

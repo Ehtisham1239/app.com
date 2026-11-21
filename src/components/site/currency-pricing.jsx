@@ -1,6 +1,5 @@
 "use client";
 import { PricingCards } from "@/components/site/pricing-cards";
-import { LOCATIONS } from "@/lib/locations";
 import { currencyOptions, FX_SOURCE } from "@/lib/fx";
 import { useVisitorCurrency } from "@/lib/use-visitor-currency";
 
@@ -8,7 +7,7 @@ import { useVisitorCurrency } from "@/lib/use-visitor-currency";
 // country preselects one. Rates come from the server (`fx`); without them, unpriced
 // currencies show a quote request instead of a converted figure.
 export function CurrencyPricing({ plans, defaultCurrency = "USD", explicit = false, fx = null }) {
-  const currencies = currencyOptions(plans, fx, LOCATIONS.map((c) => c.currency));
+  const currencies = currencyOptions(plans, fx);
   const [currency, setCurrency] = useVisitorCurrency(currencies, defaultCurrency, explicit);
   return (
     <div>

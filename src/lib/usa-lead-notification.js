@@ -1,0 +1,267 @@
+// Internal email to admissions for each lead saved from the USA landing page
+// (/usa-quran-classes). Owner request, 5 Nov 2026.
+//
+// Server-only: this module reads the Resend API key from the environment. Do not
+// import it from client components or static pages.
+//
+// The email is built from the database row returned by
+// public.usa_lead_for_notification, never from what the browser sent, and every
+// send carries an Idempotency-Key tied to the lead reference, so retries and
+// repeated calls cannot produce a second email for the same lead.
+import { createHash } from "node:crypto";
+
+export const RESEND_ENDPOINT = "https://api.resend.com/emails";
+export const STAFF_TIME_ZONE = "Asia/Karachi";
+
+const REFERENCE = /^TR-\d{4}-\d{5,7}$/;
+const EMAIL = /^[^@\s<>"',;]+@[^@\s<>"',;]+\.[^@\s<>"',;]+$/;
+
+// Browser request: reference, email and the short-lived notification token returned
+// by the just-completed submission. Any other fields are ignored.
+export function parseNotificationRequest(body) {
+  if (!body || typeof body !== "object" || Array.isArray(body)) return null;
+  const reference = typeof body.reference === "string" ? body.reference.trim() : "";
+  const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
+  const notificationToken = typeof body.notification_token === "string" ? body.notification_token.trim().toLowerCase() : "";
+  if (!REFERENCE.test(reference) || !email || email.length > 254 || !EMAIL.test(email) || !/^[0-9a-f]{64}$/.test(notificationToken)) return null;
+  return { reference, email, notificationToken };
+}
+
+// Hosting panels often keep the quotes typed around a value ("re_…"), so one matching pair is dropped.
+const envValue = (value) => {
+  const text = String(value ?? "").trim();
+  return /^(["']).*\1$/s.test(text) && text.length >= 2 ? text.slice(1, -1).trim() : text;
+};
+
+function readNotificationEnv(env) {
+  const apiKey = envValue(env.RESEND_API_KEY);
+  const from = envValue(env.LEAD_NOTIFICATION_FROM);
+  // Commas or semicolons (as Outlook copies them) separate recipients.
+  const to = envValue(env.LEAD_NOTIFICATION_TO).split(/[,;]/).map((item) => item.trim()).filter(Boolean);
+  const fromAddress = (from.match(/<([^<>]+)>\s*$/) || [null, from])[1].trim();
+  return {
+    apiKey, from, to,
+    issues: [
+      !apiKey ? "RESEND_API_KEY missing" : !/^re_\S{8,}$/.test(apiKey) && "RESEND_API_KEY invalid (must start with re_)",
+      !from ? "LEAD_NOTIFICATION_FROM missing" : (from.length > 200 || /[\r\n]/.test(from) || !EMAIL.test(fromAddress)) && "LEAD_NOTIFICATION_FROM invalid (use leads@domain or Name <leads@domain>)",
+      !to.length ? "LEAD_NOTIFICATION_TO missing" : (to.length > 50 || !to.every((address) => address.length <= 254 && EMAIL.test(address))) && "LEAD_NOTIFICATION_TO invalid (comma-separated email addresses)",
+    ].filter(Boolean),
+  };
+}
+
+// RESEND_API_KEY, LEAD_NOTIFICATION_FROM and LEAD_NOTIFICATION_TO (comma-separated) come from the
+// server environment (Hostinger Node.js settings). Returns null when any of them is missing or invalid.
+export function notificationConfig(env = process.env) {
+  const { apiKey, from, to, issues } = readNotificationEnv(env);
+  return issues.length ? null : { apiKey, from, to };
+}
+
+// Which setting is wrong, by name only: never a value. Logged when a lead email cannot be sent.
+export function notificationConfigIssues(env = process.env) {
+  return readNotificationEnv(env).issues;
+}
+
+export const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+export const oneLine = (value, max = 200) => String(value ?? "").replace(/[\u0000-\u001f\u007f]+/g, " ").replace(/\s{2,}/g, " ").trim().slice(0, max);
+
+const AGE_BAND = { child_4_7: "Child (4–7)", child_8_12: "Child (8–12)", teen_13_17: "Teen (13–17)", adult: "Adult (18+)" };
+const TEACHER = { female: "Female teacher", male: "Male teacher", any: "No preference" };
+const US_ZONES = {
+  "America/New_York": "Eastern (ET)", "America/Chicago": "Central (CT)", "America/Denver": "Mountain (MT)",
+  "America/Phoenix": "Arizona (MST)", "America/Los_Angeles": "Pacific (PT)", "America/Anchorage": "Alaska (AKT)", "Pacific/Honolulu": "Hawaii (HT)",
+};
+
+export function formatLeadTime(iso, timeZone) {
+  try {
+    return new Intl.DateTimeFormat("en-GB", { timeZone, day: "numeric", month: "short", year: "numeric", hour: "numeric", minute: "2-digit", hour12: true })
+      .format(new Date(iso)).replace(/[  ]/g, " ");
+  } catch { return ""; }
+}
+
+// Subject, HTML and plain-text bodies for one lead. Pure and deterministic, so a
+// retry produces exactly the same request (required by Resend idempotency).
+export function buildLeadEmail(lead, { siteUrl = "https://www.onlinequrancollege.com", sourceLabel = "USA landing page" } = {}) {
+  const reference = oneLine(lead.reference, 20);
+  const utm = lead.utm && typeof lead.utm === "object" ? lead.utm : {};
+  const adult = lead.age_band === "adult";
+  const course = oneLine(lead.course, 120) || "Not sure yet";
+  const zone = oneLine(lead.timezone, 60);
+  const usTime = formatLeadTime(lead.created_at, zone || "America/New_York");
+  const clickId = ["gclid", "gbraid", "wbraid"].filter((key) => utm[key]).map((key) => `${key}: ${oneLine(utm[key], 120)}`).join(", ");
+  const campaign = [utm.utm_campaign && `campaign ${oneLine(utm.utm_campaign, 120)}`, utm.utm_term && `keyword ${oneLine(utm.utm_term, 120)}`].filter(Boolean).join(", ");
+  const repeat = lead.repeat_of
+    ? `Yes — same email or phone and course as ${oneLine(lead.repeat_of, 20)} (${formatLeadTime(lead.repeat_of_created_at, STAFF_TIME_ZONE)} Pakistan time)`
+    : "No";
+  const adminUrl = `${String(siteUrl).replace(/\/$/, "")}/admin/trials/${encodeURIComponent(oneLine(lead.id, 64))}`;
+
+  const rows = [
+    ["Reference", reference],
+    ["Received", `${formatLeadTime(lead.created_at, STAFF_TIME_ZONE)} Pakistan time${usTime ? ` · ${usTime} parent's time` : ""}`],
+    [adult ? "Adult learner" : "Parent or guardian", oneLine(adult ? lead.learner_name : lead.guardian_name || lead.learner_name, 120)],
+    ["Learner", oneLine(lead.learner_name, 120)],
+    ["Email", oneLine(lead.email, 254)],
+    ["Phone", oneLine(lead.phone, 30)],
+    ["Course", course],
+    ["Age group", AGE_BAND[lead.age_band] || oneLine(lead.age_band, 40)],
+    ["Teacher", TEACHER[lead.teacher_gender_pref] || "No preference"],
+    ["Time zone", US_ZONES[zone] || zone],
+    ["Country", oneLine(lead.country, 80)],
+    ["Source", oneLine(lead.source, 60) + (campaign ? ` (${campaign})` : "")],
+    ["Google Ads click", clickId || "None"],
+    ["Repeat request", repeat],
+  ];
+  const details = String(lead.notes ?? "").split(/\r?\n/).map((line) => oneLine(line, 400)).filter(Boolean).slice(0, 30);
+
+  const subjectPrefix = sourceLabel === "USA landing page" ? "New USA trial request" : "New website trial request";
+  const subject = oneLine(`${subjectPrefix} ${reference}${lead.repeat_of ? " (repeat)" : ""} – ${course}`, 180);
+  const text = [
+    sourceLabel === "USA landing page" ? "New trial request from the USA landing page (/usa-quran-classes)." : `New trial request from the ${oneLine(sourceLabel, 60)}.`,
+    "",
+    ...rows.map(([label, value]) => `${label}: ${value}`),
+    "",
+    "Details from the form:",
+    ...details.map((line) => `- ${line}`),
+    "",
+    `Open in Admin → Trials: ${adminUrl}`,
+    "",
+    "Internal notification. The parent receives a separate automatic acknowledgement email.",
+  ].join("\n");
+  const cell = "padding:6px 10px;border-bottom:1px solid #e3ead8;vertical-align:top;text-align:left;";
+  const html = `<!doctype html><html lang="en"><body style="margin:0;padding:16px;background:#f6f8f3;font-family:Arial,Helvetica,sans-serif;color:#1d2a1f;">
+<div style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #dfe7d6;border-radius:12px;overflow:hidden;">
+<div style="background:#0D4A1C;color:#ffffff;padding:14px 18px;font-size:17px;font-weight:bold;">${escapeHtml(subjectPrefix)} · ${escapeHtml(reference)}</div>
+<table role="presentation" style="width:100%;border-collapse:collapse;font-size:14px;">
+${rows.map(([label, value]) => `<tr><th scope="row" style="${cell}width:34%;color:#4a5a4c;font-weight:normal;">${escapeHtml(label)}</th><td style="${cell}font-weight:bold;">${escapeHtml(value)}</td></tr>`).join("\n")}
+</table>
+<div style="padding:12px 18px;font-size:14px;"><p style="margin:0 0 6px;color:#4a5a4c;">Details from the form</p><ul style="margin:0;padding-left:18px;">${details.map((line) => `<li style="margin:3px 0;">${escapeHtml(line)}</li>`).join("")}</ul></div>
+<div style="padding:4px 18px 18px;"><a href="${escapeHtml(adminUrl)}" style="display:inline-block;background:#0C6C0C;color:#ffffff;text-decoration:none;padding:10px 16px;border-radius:999px;font-weight:bold;">Open in Admin → Trials</a></div>
+<div style="padding:10px 18px;background:#fbf6e8;color:#6b5a2a;font-size:12px;">Internal notification from onlinequrancollege.com. The parent receives a separate automatic acknowledgement email.</div>
+</div></body></html>`;
+  return { subject, html, text };
+}
+
+
+
+// Internal notification for a saved contact enquiry. The message is loaded from
+// the database by the reference/email RPC; never trust browser-supplied content.
+export function buildContactEmail(lead, { siteUrl = "https://www.onlinequrancollege.com" } = {}) {
+  const reference = oneLine(lead.reference, 24);
+  const adminUrl = `${String(siteUrl).replace(/\/$/, "")}/admin/contacts`;
+  const utm = lead.utm && typeof lead.utm === "object" ? lead.utm : {};
+  const rows = [
+    ["Reference", reference],
+    ["Received", `${formatLeadTime(lead.created_at, STAFF_TIME_ZONE)} Pakistan time`],
+    ["Name", oneLine(lead.name, 120)],
+    ["Email", oneLine(lead.email, 254)],
+    ["Phone", oneLine(lead.phone, 32) || "Not provided"],
+    ["Country", oneLine(lead.country, 80) || "Not provided"],
+    ["City", oneLine(lead.city, 80) || "Not provided"],
+    ["Subject", oneLine(lead.subject, 160) || "General enquiry"],
+    ["Source", oneLine(lead.source, 80) || "website"],
+    ["Campaign", oneLine(utm.utm_campaign, 120) || "Not attributed"],
+  ];
+  const message = oneLine(lead.message, 5000);
+  const subject = oneLine(`New OQC website enquiry ${reference} – ${rows[7][1]}`, 180);
+  const text = [
+    "A new contact enquiry was saved in Online Quran College CMS.",
+    "",
+    ...rows.map(([label, value]) => `${label}: ${value}`),
+    "",
+    "Message:",
+    message,
+    "",
+    `Open in Admin → Contacts: ${adminUrl}`,
+    "",
+    "Internal notification only. The person who submitted the form receives a separate automatic acknowledgement email.",
+  ].join("\n");
+  const cell = "padding:7px 10px;border-bottom:1px solid #e3ead8;vertical-align:top;text-align:left;";
+  const html = `<!doctype html><html lang="en"><body style="margin:0;padding:16px;background:#f6f8f3;font-family:Arial,Helvetica,sans-serif;color:#1d2a1f;">
+<div style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #dfe7d6;border-radius:12px;overflow:hidden;">
+<div style="background:#0D4A1C;color:#ffffff;padding:14px 18px;font-size:17px;font-weight:bold;">New OQC website enquiry · ${escapeHtml(reference)}</div>
+<table role="presentation" style="width:100%;border-collapse:collapse;font-size:14px;">
+${rows.map(([label, value]) => `<tr><th scope="row" style="${cell}width:34%;color:#4a5a4c;font-weight:normal;">${escapeHtml(label)}</th><td style="${cell}font-weight:bold;">${escapeHtml(value)}</td></tr>`).join("\n")}
+</table>
+<div style="padding:14px 18px;font-size:14px;"><p style="margin:0 0 6px;color:#4a5a4c;">Message</p><p style="margin:0;white-space:pre-wrap;">${escapeHtml(message)}</p></div>
+<div style="padding:4px 18px 18px;"><a href="${escapeHtml(adminUrl)}" style="display:inline-block;background:#0C6C0C;color:#ffffff;text-decoration:none;padding:10px 16px;border-radius:999px;font-weight:bold;">Open in Admin → Contacts</a></div>
+<div style="padding:10px 18px;background:#fbf6e8;color:#6b5a2a;font-size:12px;">Internal notification from onlinequrancollege.com. The sender receives a separate automatic acknowledgement email.</div>
+</div></body></html>`;
+  return { subject, html, text };
+}
+
+
+
+// Internal notification for a saved review submission. Media files remain private
+// in the review-media bucket and are never attached to staff email.
+export function buildReviewEmail(review, { siteUrl = "https://www.onlinequrancollege.com" } = {}) {
+  const reference = oneLine(review.reference, 24);
+  const adminUrl = `${String(siteUrl).replace(/\/$/, "")}/admin/reviews`;
+  const rows = [
+    ["Reference", reference],
+    ["Received", `${formatLeadTime(review.created_at, STAFF_TIME_ZONE)} Pakistan time`],
+    ["Name", oneLine(review.name, 80)],
+    ["Email", oneLine(review.email, 254)],
+    ["Relation", oneLine(review.relation, 20)],
+    ["Country", oneLine(review.country, 80) || "Not provided"],
+    ["Rating", `${Math.max(1, Math.min(5, Number(review.rating) || 0))}/5`],
+    ["Website publication permission", review.publish_consent ? "Yes — optional checkbox selected" : "No — do not publish"],
+    ["Submitted from", oneLine(review.page_path, 300) || "Not recorded"],
+    ["Private media files", `${Math.max(0, Number(review.media_count) || 0)} attachment(s); not included in email`],
+  ];
+  const comment = oneLine(review.comment, 2000);
+  const subject = oneLine(`New OQC review submission ${reference} – ${rows[6][1]}`, 180);
+  const text = [
+    "A new review was saved in Online Quran College CMS.",
+    "",
+    ...rows.map(([label, value]) => `${label}: ${value}`),
+    "",
+    "Review comment:",
+    comment,
+    "",
+    `Open in Admin → Reviews: ${adminUrl}`,
+    "",
+    "Internal notification only. No email was sent to the reviewer. Review-media files remain private.",
+  ].join("\n");
+  const cell = "padding:7px 10px;border-bottom:1px solid #e3ead8;vertical-align:top;text-align:left;";
+  const html = `<!doctype html><html lang="en"><body style="margin:0;padding:16px;background:#f6f8f3;font-family:Arial,Helvetica,sans-serif;color:#1d2a1f;">
+<div style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #dfe7d6;border-radius:12px;overflow:hidden;">
+<div style="background:#0D4A1C;color:#ffffff;padding:14px 18px;font-size:17px;font-weight:bold;">New OQC review submission · ${escapeHtml(reference)}</div>
+<table role="presentation" style="width:100%;border-collapse:collapse;font-size:14px;">
+${rows.map(([label, value]) => `<tr><th scope="row" style="${cell}width:38%;color:#4a5a4c;font-weight:normal;">${escapeHtml(label)}</th><td style="${cell}font-weight:bold;">${escapeHtml(value)}</td></tr>`).join("\n")}
+</table>
+<div style="padding:14px 18px;font-size:14px;"><p style="margin:0 0 6px;color:#4a5a4c;">Review comment</p><p style="margin:0;white-space:pre-wrap;">${escapeHtml(comment)}</p></div>
+<div style="padding:4px 18px 18px;"><a href="${escapeHtml(adminUrl)}" style="display:inline-block;background:#0C6C0C;color:#ffffff;text-decoration:none;padding:10px 16px;border-radius:999px;font-weight:bold;">Open in Admin → Reviews</a></div>
+<div style="padding:10px 18px;background:#fbf6e8;color:#6b5a2a;font-size:12px;">Internal notification only. Media attachments are not included and remain private.</div>
+</div></body></html>`;
+  return { subject, html, text };
+}
+
+// Same lead reference and same sender/recipients → same key, so Resend returns the
+// first result instead of sending again (keys are kept for 24 hours; the database
+// only matches a lead for 30 minutes after it was saved).
+export function idempotencyKey(reference, config) {
+  const route = createHash("sha256").update(`${config.from}|${config.to.join(",")}`).digest("hex").slice(0, 12);
+  return `oqc-usa-lead/${reference}/${route}`;
+}
+
+export async function sendLeadEmail({ config, message, reference, source = "usa_landing_page", fetchImpl = fetch, timeoutMs = 10000, to = config.to, key = idempotencyKey(reference, config), extra = {} }) {
+  let response;
+  try {
+    response = await fetchImpl(RESEND_ENDPOINT, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${config.apiKey}`, "Content-Type": "application/json", "Idempotency-Key": key },
+      body: JSON.stringify({ from: config.from, to, subject: message.subject, html: message.html, text: message.text, tags: [{ name: "source", value: source }], ...extra }),
+      signal: AbortSignal.timeout(timeoutMs),
+    });
+  } catch (error) {
+    return { ok: false, reason: error?.name === "TimeoutError" ? "resend_timeout" : "resend_network" };
+  }
+  let body = {};
+  try { body = await response.json(); } catch { body = {}; }
+  const name = String(body?.name || "").replace(/[^a-z_]/gi, "").slice(0, 40);
+  if (response.ok && typeof body?.id === "string") return { ok: true, id: body.id };
+  // Another request with this key is still sending: that one delivers the email.
+  if (response.status === 409 && name === "concurrent_idempotent_requests") return { ok: true, pending: true };
+  // The key was already used for this lead: the email has been sent before.
+  if (response.status === 409 && name === "invalid_idempotent_request") return { ok: true, alreadySent: true };
+  return { ok: false, reason: `resend_${response.status}${name ? `_${name}` : ""}` };
+}

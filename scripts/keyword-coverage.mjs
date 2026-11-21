@@ -11,7 +11,7 @@ const decode = s => String(s || '').replace(/&quot;/g, '"').replace(/&#x([0-9a-f
 const normal = s => decode(s).toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
 async function get(path) { const r = await fetch(base.origin + path, { redirect: 'manual', signal: AbortSignal.timeout(30000) }); if ([401, 403, 429].includes(r.status)) throw Error('Access/rate wall; stopped'); if (r.status !== 200) throw Error(`${path}: HTTP ${r.status}`); const body = await r.text(); if (Buffer.byteLength(body) > 2500000) throw Error('Response cap'); return body; }
 const xml = await get('/sitemap.xml'), paths = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => new URL(decode(m[1])).pathname);
-if (!paths.length || paths.length > 250 || new Set(paths).size !== paths.length) throw Error('Unexpected sitemap size/duplicates');
+if (!paths.length || paths.length > 400 || new Set(paths).size !== paths.length) throw Error('Unexpected sitemap size/duplicates');
 const rows = [], failures = []; let index = 0, stopped = false;
 await Promise.all(Array.from({ length: 3 }, async () => {
   while (!stopped && index < paths.length) {
@@ -38,4 +38,6 @@ const summary = { checkedAt: new Date().toISOString(), base: base.origin, declar
 writeFileSync(output + '/map.json', JSON.stringify({ checkedAt: summary.checkedAt, evidence: summary.evidence, rows }, null, 2) + '\n');
 writeFileSync(output + '/summary.json', JSON.stringify(summary, null, 2) + '\n');
 console.log(JSON.stringify(summary, null, 2));
-if (failures.length || rows.length !== paths.length) process.exitCode = 1;
+const reportOnly = process.env.OQC_KEYWORD_COVERAGE_REPORT_ONLY === '1';
+if (reportOnly && failures.length) console.warn('Report-only mode: live-production keyword findings are recorded but do not fail a pull-request audit; re-check after deployment.');
+if ((failures.length || rows.length !== paths.length) && !reportOnly) process.exitCode = 1;

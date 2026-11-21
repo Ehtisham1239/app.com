@@ -1,0 +1,313 @@
+{
+  "reviewed": "2026-11-08",
+  "timezone": "Asia/Karachi",
+  "source_reviewed": "4d44bdb57277c3f2d9496c18485ffa654a076b7f",
+  "published_cms_articles": 35,
+  "indexable_blog_sitemap_urls": 32,
+  "prior_register": "docs/seo-agent/BLOG-ACTION-REGISTER-2026-11-05.json",
+  "unchanged_prior_articles": 32,
+  "new_articles": [
+    {
+      "slug": "arabic-for-quran-readers",
+      "url": "https://www.onlinequrancollege.com/blog/arabic-for-quran-readers",
+      "final_url": "https://www.onlinequrancollege.com/blog/arabic-for-quran-readers",
+      "status": 200,
+      "title": [
+        "Learning Arabic as a Quran Reader: Where to Start \u00b7 OQC"
+      ],
+      "description": "How Arabic language study differs from Quran reading practice and translation, and what to ask before choosing where to begin.",
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/arabic-for-quran-readers"
+      ],
+      "robots": "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "h1": [
+        "Learning Arabic as a Quran reader: where to start"
+      ],
+      "body_words": 368,
+      "body_matches_cms": true,
+      "body_sha256": "a046dd2ff0e11e0e921ace10d9f04a7c4ef4dad3c2a23f8cc54f5b7344eb639d",
+      "contextual_links": [
+        "/courses/quran-nazara",
+        "/courses/arabic-language",
+        "/courses/quran-translation",
+        "/blog/quran-translation-and-arabic-difference",
+        "/free-trial"
+      ],
+      "toc_valid": true,
+      "cover": {
+        "src": "/images/islamic/islamic-library-v1-1200.webp",
+        "alt": "Islamic study books and a writing desk in an arched library",
+        "width": "1200",
+        "height": "800",
+        "srcset": "/images/islamic/islamic-library-v1-400.webp 400w, /images/islamic/islamic-library-v1-800.webp 800w, /images/islamic/islamic-library-v1-1200.webp 1200w",
+        "sizes": "(max-width: 1024px) 100vw, 600px",
+        "loading": "eager",
+        "fetchpriority": "high",
+        "decoding": "async",
+        "class": "aspect-[3/2] w-full object-cover"
+      },
+      "article_schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://www.onlinequrancollege.com/blog/arabic-for-quran-readers#article",
+        "headline": "Learning Arabic as a Quran reader: where to start",
+        "description": "How Arabic language study differs from Quran reading practice and translation, and what to ask before choosing where to begin.",
+        "inLanguage": "en-GB",
+        "articleSection": "Adult learning",
+        "keywords": "Adult learning",
+        "datePublished": "2026-11-07T14:56:21.861Z",
+        "dateModified": "2026-11-07T14:56:21.861Z",
+        "image": "https://www.onlinequrancollege.com/images/islamic/islamic-library-v1-1200.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "Online Quran College",
+          "url": "https://www.onlinequrancollege.com/about"
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.onlinequrancollege.com/#organization",
+          "name": "Online Quran College",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.onlinequrancollege.com/brand/logo.webp"
+          }
+        },
+        "wordCount": 378,
+        "mainEntityOfPage": "https://www.onlinequrancollege.com/blog/arabic-for-quran-readers",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://www.onlinequrancollege.com/blog#blog",
+          "url": "https://www.onlinequrancollege.com/blog",
+          "name": "Quran learning articles"
+        }
+      },
+      "schema_errors": [],
+      "issues": [],
+      "title_matches_formatter": true,
+      "expected_rendered_title": "Learning Arabic as a Quran Reader: Where to Start \u00b7 OQC",
+      "noindex_matches_current_cms": true,
+      "inclusive_words": 407
+    },
+    {
+      "slug": "is-my-child-ready-for-hifz",
+      "url": "https://www.onlinequrancollege.com/blog/is-my-child-ready-for-hifz",
+      "final_url": "https://www.onlinequrancollege.com/blog/is-my-child-ready-for-hifz",
+      "status": 200,
+      "title": [
+        "Is My Child Ready for Hifz? Questions to Ask \u00b7 OQC"
+      ],
+      "description": "Practical questions about reading level, routine and home support to discuss with a teacher before a child starts Quran memorisation.",
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/is-my-child-ready-for-hifz"
+      ],
+      "robots": "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "h1": [
+        "Is my child ready for Hifz? Questions to discuss first"
+      ],
+      "body_words": 413,
+      "body_matches_cms": true,
+      "body_sha256": "35ac8fdefeec4246dd1fa730154433aad37fae43a358d3150e87814db18e58c4",
+      "contextual_links": [
+        "/courses/hifz-quran",
+        "/courses/noorani-qaida",
+        "/courses/quran-nazara",
+        "/blog/hifz-revision-with-school",
+        "/free-trial"
+      ],
+      "toc_valid": true,
+      "cover": {
+        "src": "/images/islamic/islamic-library-v1-1200.webp",
+        "alt": "Islamic study books and a writing desk in an arched library",
+        "width": "1200",
+        "height": "800",
+        "srcset": "/images/islamic/islamic-library-v1-400.webp 400w, /images/islamic/islamic-library-v1-800.webp 800w, /images/islamic/islamic-library-v1-1200.webp 1200w",
+        "sizes": "(max-width: 1024px) 100vw, 600px",
+        "loading": "eager",
+        "fetchpriority": "high",
+        "decoding": "async",
+        "class": "aspect-[3/2] w-full object-cover"
+      },
+      "article_schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://www.onlinequrancollege.com/blog/is-my-child-ready-for-hifz#article",
+        "headline": "Is my child ready for Hifz? Questions to discuss first",
+        "description": "Practical questions about reading level, routine and home support to discuss with a teacher before a child starts Quran memorisation.",
+        "inLanguage": "en-GB",
+        "articleSection": "Hifz",
+        "keywords": "Hifz",
+        "datePublished": "2026-11-07T14:56:21.861Z",
+        "dateModified": "2026-11-07T14:56:21.861Z",
+        "image": "https://www.onlinequrancollege.com/images/islamic/islamic-library-v1-1200.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "Online Quran College",
+          "url": "https://www.onlinequrancollege.com/about"
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.onlinequrancollege.com/#organization",
+          "name": "Online Quran College",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.onlinequrancollege.com/brand/logo.webp"
+          }
+        },
+        "wordCount": 423,
+        "mainEntityOfPage": "https://www.onlinequrancollege.com/blog/is-my-child-ready-for-hifz",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://www.onlinequrancollege.com/blog#blog",
+          "url": "https://www.onlinequrancollege.com/blog",
+          "name": "Quran learning articles"
+        }
+      },
+      "schema_errors": [],
+      "issues": [],
+      "title_matches_formatter": true,
+      "expected_rendered_title": "Is My Child Ready for Hifz? Questions to Ask \u00b7 OQC",
+      "noindex_matches_current_cms": true,
+      "inclusive_words": 453
+    },
+    {
+      "slug": "quran-translation-tafseer-beginners",
+      "url": "https://www.onlinequrancollege.com/blog/quran-translation-tafseer-beginners",
+      "final_url": "https://www.onlinequrancollege.com/blog/quran-translation-tafseer-beginners",
+      "status": 200,
+      "title": [
+        "Quran Translation and Tafseer for Beginners \u00b7 OQC"
+      ],
+      "description": "A beginner\u2019s approach to studying Quran translation and tafseer with a teacher, using a notebook and context rather than isolated phrases.",
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/quran-translation-tafseer-beginners"
+      ],
+      "robots": "noindex, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "h1": [
+        "Starting Quran translation and tafseer study as a beginner"
+      ],
+      "body_words": 372,
+      "body_matches_cms": true,
+      "body_sha256": "d8ef28e89ed3e8c8e96722fa61981d04c12cdb1944a2c6547e600818968d6682",
+      "contextual_links": [
+        "/courses/quran-translation",
+        "/courses/arabic-language",
+        "/blog/quran-translation-and-arabic-difference",
+        "/free-trial"
+      ],
+      "toc_valid": true,
+      "cover": {
+        "src": "/images/islamic/islamic-library-v1-1200.webp",
+        "alt": "Islamic study books and a writing desk in an arched library",
+        "width": "1200",
+        "height": "800",
+        "srcset": "/images/islamic/islamic-library-v1-400.webp 400w, /images/islamic/islamic-library-v1-800.webp 800w, /images/islamic/islamic-library-v1-1200.webp 1200w",
+        "sizes": "(max-width: 1024px) 100vw, 600px",
+        "loading": "eager",
+        "fetchpriority": "high",
+        "decoding": "async",
+        "class": "aspect-[3/2] w-full object-cover"
+      },
+      "article_schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://www.onlinequrancollege.com/blog/quran-translation-tafseer-beginners#article",
+        "headline": "Starting Quran translation and tafseer study as a beginner",
+        "description": "A beginner\u2019s approach to studying Quran translation and tafseer with a teacher, using a notebook and context rather than isolated phrases.",
+        "inLanguage": "en-GB",
+        "articleSection": "Adult learning",
+        "keywords": "Adult learning",
+        "datePublished": "2026-11-07T14:56:21.861Z",
+        "dateModified": "2026-11-07T14:56:21.861Z",
+        "image": "https://www.onlinequrancollege.com/images/islamic/islamic-library-v1-1200.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "Online Quran College",
+          "url": "https://www.onlinequrancollege.com/about"
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.onlinequrancollege.com/#organization",
+          "name": "Online Quran College",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.onlinequrancollege.com/brand/logo.webp"
+          }
+        },
+        "wordCount": 383,
+        "mainEntityOfPage": "https://www.onlinequrancollege.com/blog/quran-translation-tafseer-beginners",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://www.onlinequrancollege.com/blog#blog",
+          "url": "https://www.onlinequrancollege.com/blog",
+          "name": "Quran learning articles"
+        }
+      },
+      "schema_errors": [],
+      "issues": [],
+      "title_matches_formatter": true,
+      "expected_rendered_title": "Quran Translation and Tafseer for Beginners \u00b7 OQC",
+      "noindex_matches_current_cms": true,
+      "inclusive_words": 413
+    }
+  ],
+  "contextual_link_checks": [
+    {
+      "url": "https://www.onlinequrancollege.com/blog/hifz-revision-with-school",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/blog/quran-translation-and-arabic-difference",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/courses/arabic-language",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/courses/hifz-quran",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/courses/noorani-qaida",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/courses/quran-nazara",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/courses/quran-translation",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/free-trial",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    }
+  ],
+  "mobile_verification": {
+    "status": "Blocked",
+    "date": "2026-11-08",
+    "result": "Local Chromium terminated at startup with SIGSEGV before any article navigation. No fresh mobile/desktop pass claimed for these three articles."
+  },
+  "religious_review": {
+    "status": "Awaiting qualified review",
+    "result": "Three new public articles retain explicit CMS noindex=true and are omitted from sitemap. No qualified Academics sign-off was found in inspected repository records. No indexing or religious-text change performed."
+  },
+  "evidence": "docs/seo-agent/evidence/2026-11-08/verification.json"
+}

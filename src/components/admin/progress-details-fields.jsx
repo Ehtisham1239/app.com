@@ -1,7 +1,7 @@
 "use client";
 
 import { Field } from "@/components/admin/ui";
-import { CATEGORIES, SCORE_MAX } from "@/lib/progress/constants";
+import { ASSESSMENT_AREAS, CATEGORIES, COURSE_STANDARD_OPTIONS, CURRICULUM_STAGES, EFFORT_OPTIONS, SCORE_MAX } from "@/lib/progress/constants";
 
 // Marks, attendance and syllabus inputs shared by the teacher form and the admin edit.
 // `details` is the string form from detailsForm(); onChange(group, key, value).
@@ -24,12 +24,72 @@ export function ProgressDetailsFields({ details, onChange, idPrefix = "details" 
           <Field label="Classes attended"><input inputMode="numeric" className="adm-input" placeholder="e.g. 11" value={details.attendance.attended} onChange={(e) => onChange("attendance", "attended", e.target.value.trim())} /></Field>
         </div>
       </section>
+      <section className="rounded-2xl border border-line bg-paper/60 p-4" aria-labelledby={`${idPrefix}-curriculum`}>
+        <h3 id={`${idPrefix}-curriculum`} className="text-sm font-bold text-mushaf-900">Curriculum pathway · Qaida to Tafseer</h3>
+        <p className="mt-1 text-xs text-ink-faint">Choose the learner’s current strand. These are flexible pathways, not a fixed sequence; follow the approved syllabus and learner’s level.</p>
+        <div className="mt-3 grid gap-3">
+          <Field label="Current curriculum stage">
+            <select className="adm-input" value={details.syllabus.stage || ""} onChange={(e) => onChange("syllabus", "stage", e.target.value)}>
+              <option value="">Select current stage</option>
+              {CURRICULUM_STAGES.map((stage) => <option key={stage.value} value={stage.value}>{stage.label}</option>)}
+            </select>
+          </Field>
+          <Field label="Lessons completed" hint="Use lesson numbers/pages actually completed">
+            <input className="adm-input" maxLength={100} value={details.syllabus.lessons_completed || ""} onChange={(e) => onChange("syllabus", "lessons_completed", e.target.value)} placeholder="e.g. Qaida lessons 5–8" />
+          </Field>
+        </div>
+        <div className="mt-4 grid gap-3">
+          <Field label="Overall performance" hint={`${(details.performance?.overall || "").length}/300`}>
+            <textarea className="adm-input" rows={2} maxLength={300} value={details.performance?.overall || ""} onChange={(e) => onChange("performance", "overall", e.target.value)} placeholder="Concise overall progress statement" />
+          </Field>
+          <Field label="Improvement targets" hint={`${(details.performance?.improvement_targets || "").length}/1000`}>
+            <textarea className="adm-input" rows={3} maxLength={1000} value={details.performance?.improvement_targets || ""} onChange={(e) => onChange("performance", "improvement_targets", e.target.value)} placeholder="Specific skills to practise next" />
+          </Field>
+          <Field label="Personal development" hint={`${(details.performance?.personal_development || "").length}/500`}>
+            <textarea className="adm-input" rows={2} maxLength={500} value={details.performance?.personal_development || ""} onChange={(e) => onChange("performance", "personal_development", e.target.value)} placeholder="Participation, confidence, consistency and conduct observed" />
+          </Field>
+        </div>
+      </section>
       <section className="rounded-2xl border border-line bg-paper/60 p-4" aria-labelledby={`${idPrefix}-syllabus`}>
         <h3 id={`${idPrefix}-syllabus`} className="text-sm font-bold text-mushaf-900">Syllabus</h3>
         <div className="mt-3 grid gap-3">
           <Field label="Current level" hint={`${details.syllabus.level.length}/120`}><input className="adm-input" maxLength={120} value={details.syllabus.level} onChange={(e) => onChange("syllabus", "level", e.target.value)} placeholder="e.g. Noorani Qaida lesson 12 / Juz 2, page 30" /></Field>
           <Field label="Covered this month" hint={`${details.syllabus.covered.length}/1000`}><textarea className="adm-input" rows={3} maxLength={1000} value={details.syllabus.covered} onChange={(e) => onChange("syllabus", "covered", e.target.value)} placeholder="Lessons, surahs, tajweed rules and duas covered" /></Field>
           <Field label="Memorised" hint={`${details.syllabus.memorised.length}/600`}><textarea className="adm-input" rows={2} maxLength={600} value={details.syllabus.memorised} onChange={(e) => onChange("syllabus", "memorised", e.target.value)} placeholder="Surahs or duas learnt by heart this month" /></Field>
+        </div>
+      </section>
+      <section className="rounded-2xl border border-line bg-paper/60 p-4" aria-labelledby={`${idPrefix}-assessment-areas`}>
+        <h3 id={`${idPrefix}-assessment-areas`} className="text-sm font-bold text-mushaf-900">11 learning-area assessment <span className="font-normal text-ink-faint">(all areas required)</span></h3>
+        <p className="mt-1 text-xs text-ink-faint">Complete both selectors for every area. Choose “Not applicable” where an area is not part of this learner’s current course or was not assessed this month. Do not leave either selector blank.</p>
+        <div className="mt-3 space-y-4">
+          {ASSESSMENT_AREAS.map((area) => {
+            const item = details.assessment_areas?.[area.key] || { summary: "", effort: "", standard: "" };
+            return (
+              <div key={area.key} className="rounded-xl border border-line bg-white p-3">
+                <div className="mb-2">
+                  <p className="text-sm font-semibold text-ink">{area.label} <span className="text-rose-700">*</span></p>
+                  <p className="text-xs text-ink-faint">{area.hint}</p>
+                </div>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <Field label="Effort" required>
+                    <select className="adm-input" required aria-label={`${area.label} effort`} value={item.effort || ""} onChange={(e) => onChange("assessment_areas", area.key, { ...item, effort: e.target.value })}>
+                      <option value="">Select effort</option>
+                      {EFFORT_OPTIONS.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
+                    </select>
+                  </Field>
+                  <Field label="Course standard" required>
+                    <select className="adm-input" required aria-label={`${area.label} course standard`} value={item.standard || ""} onChange={(e) => onChange("assessment_areas", area.key, { ...item, standard: e.target.value })}>
+                      <option value="">Select course standard</option>
+                      {COURSE_STANDARD_OPTIONS.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
+                    </select>
+                  </Field>
+                </div>
+                <Field label="Teacher note (optional)" hint={`${(item.summary || "").length}/500`}>
+                  <textarea className="adm-input" rows={2} maxLength={500} value={item.summary || ""} onChange={(e) => onChange("assessment_areas", area.key, { ...item, summary: e.target.value })} placeholder="Brief evidence or topic covered, if relevant" />
+                </Field>
+              </div>
+            );
+          })}
         </div>
       </section>
     </>

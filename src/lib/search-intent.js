@@ -10,6 +10,16 @@ export const SEARCH_INTENTS = {
     "heading": "Online Quran classes for kids",
     "intro": "Start with your child’s reading level, a short practice routine and a parent-supported trial. Ask the coordinator about the most suitable teacher and pace."
   },
+  "/learn/female-quran-teacher": {
+    "phrase": "online Quran classes with a female teacher",
+    "heading": "Online Quran classes with a female teacher",
+    "intro": "Live one-to-one Quran lessons for sisters, girls and young children with a female teacher. Choose your preference when booking; the coordinator confirms the available teacher, language and lesson times."
+  },
+  "/learn/quran-for-reverts": {
+    "phrase": "Quran classes for reverts",
+    "heading": "Quran classes for reverts and new Muslims",
+    "intro": "Start reading the Quran from the first Arabic letters, study its meaning in a language you understand and ask questions freely in one-to-one lessons at your own pace."
+  },
   "/learn/quran-for-adults": {
     "phrase": "learn Quran online for adults",
     "heading": "Learn Quran online for adults",
@@ -42,18 +52,34 @@ export const SEARCH_INTENTS = {
   },
   "/teachers": {
     "phrase": "female Quran teacher online",
-    "heading": "Female and male Quran teachers",
-    "intro": "Request a female Quran teacher online for your preferred learning language and class time. The coordinator confirms which online Quran teacher is available before lessons are arranged."
+    "heading": "Meet our Quran teachers",
+    "intro": "If you are looking for a female Quran teacher online, explore current public teacher profiles and share any preference with Admissions. The team confirms suitability, teaching language and availability before lessons are arranged."
+  },
+  "/locations/united-arab-emirates": {
+    "phrase": "online Quran classes in the UAE",
+    "heading": "Online Quran classes in the UAE",
+    "description": "Live one-to-one online Quran classes for children and adults in the UAE: Noorani Qaida, Tajweed and Hifz, with lesson times in Gulf Standard Time.",
+    "intro": "Find online Quran classes in the UAE with live one-to-one lessons for children and adults. Explore Noorani Qaida, Quran reading, Tajweed and Hifz, and arrange lesson times in Gulf Standard Time (Asia/Dubai). Classes are delivered online; no UAE teaching-centre or branch is represented."
+  },
+  "/locations/united-kingdom": {
+    "phrase": "online Quran classes in the UK",
+    "heading": "Online Quran classes in the UK",
+    "intro": "Learn Quran online in the UK with live one-to-one lessons for children and adults across England, Scotland, Wales and Northern Ireland. Plan around GMT or British Summer Time, compare Noorani Qaida, Tajweed and Hifz pathways, and request a written GBP fee quote. Lessons are delivered online; no UK classroom or local branch is represented."
+  },
+  "/locations/canada": {
+    "phrase": "online Quran classes in Canada",
+    "heading": "Online Quran classes in Canada",
+    "intro": "Live one-to-one online Quran lessons for children and adults across Canadian provinces and time zones. Choose the learner's city and lesson date, explore Noorani Qaida, Tajweed and Hifz, and request a written fee quote in USD. Lessons are delivered online; no Canadian office or local branch is represented."
   },
   "/locations/australia": {
-    "phrase": "online Quran tuition in Australia",
+    "phrase": "online Quran classes in Australia",
     "heading": "Online Quran classes in Australia",
-    "intro": "Online Quran tuition in Australia, taught live one-to-one at home: Noorani Qaida, Tajweed and Hifz at your state’s local time. Book a 3-day free trial."
+    "intro": "Learn Quran online in Australia with live one-to-one online Quran classes for kids and adults. Plan lessons in Sydney, Melbourne, Brisbane, Adelaide or Perth time, including daylight saving, explore Noorani Qaida, Tajweed, Hifz and Tafseer, and see monthly fees in Australian dollars. Lessons are delivered online; no Australian office or local branch is represented."
   },
   "/locations/united-states": {
     "phrase": "online Quran classes in the USA",
     "heading": "Online Quran classes in the USA",
-    "intro": "Online Quran classes in the USA, delivered one-to-one from home. Select your city’s time zone, explore courses and confirm the available USD package before enrolling."
+    "intro": "Find online Quran classes in the USA with live one-to-one lessons for kids and adults. Plan lessons in Eastern, Central, Mountain or Pacific time, see monthly fees in US dollars, and explore Noorani Qaida, Tajweed, Hifz and Tafseer. Lessons are delivered online; no US office or local branch is represented."
   },
   "/courses/hadith-translation": {"phrase": "online Hadith translation classes", "heading": "Online Hadith translation classes", "intro": "Explore Hadith meanings with teacher guidance. Ask about the texts, teaching language and reading level covered by the available course."},
   "/courses/tajweed": {"phrase": "learn Tajweed online", "heading": "Learn Tajweed online", "intro": "Understand how listening, pronunciation feedback and supported Quran reading work together. Discuss the most suitable reading course with the coordinator."},

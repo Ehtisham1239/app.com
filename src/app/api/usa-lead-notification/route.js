@@ -1,0 +1,80 @@
+import { NextResponse } from "next/server";
+import { enabledHighLevelConfig, syncHighLevelAdmission } from "@/lib/server/highlevel";
+import { publicDb } from "@/lib/supabase/public";
+import { permitsMutation } from "@/lib/request-origin";
+import { readBoundedText } from "@/lib/site-health-fetch";
+import { SITE_URL } from "@/lib/config";
+import { sendAutoReply } from "@/lib/lead-auto-reply";
+import { buildLeadEmail, notificationConfig, notificationConfigIssues, parseNotificationRequest, sendLeadEmail } from "@/lib/usa-lead-notification";
+
+// Emails admissions once for each lead saved from the USA landing page.
+// The browser saves the lead itself (public.submit_trial_application, so the
+// database's per-visitor rate limit sees the parent's address) and then sends
+// only { reference, email, notification_token } here. The lead is confirmed in the database and the
+// email is built from the database row; Resend's Idempotency-Key makes repeated
+// calls for the same reference return the first result instead of sending again.
+export const dynamic = "force-dynamic";
+
+const MAX_BODY_BYTES = 2048;
+const reply = (body, status = 200) => NextResponse.json(body, { status, headers: { "Cache-Control": "private, no-store", "X-Robots-Tag": "noindex" } });
+// Only the outcome and the lead reference are logged: never the email address,
+// phone number, request body, provider response or API key.
+const log = (level, reason, reference, detail) => console[level](JSON.stringify({ event: "usa_lead_notification", outcome: reason, reference: reference || null, ...(detail ? { detail } : {}) }));
+
+export async function POST(request) {
+  if (!permitsMutation(request)) return reply({ ok: false, error: "forbidden" }, 403);
+  if (!/^application\/json\b/i.test(request.headers.get("content-type") || "")) return reply({ ok: false, error: "bad_request" }, 415);
+  if (Number(request.headers.get("content-length") || 0) > MAX_BODY_BYTES) return reply({ ok: false, error: "bad_request" }, 413);
+
+  let parsed = null;
+  try {
+    parsed = parseNotificationRequest(JSON.parse(await readBoundedText(request, MAX_BODY_BYTES)));
+  } catch (error) {
+    if (error instanceof RangeError) return reply({ ok: false, error: "bad_request" }, 413);
+  }
+  if (!parsed) return reply({ ok: false, error: "bad_request" }, 400);
+
+  const config = notificationConfig();
+  const highLevel = enabledHighLevelConfig();
+  if ((!config && !highLevel) || !publicDb) {
+    // Setting names only, never values, so the owner can see which Hostinger variable to fix.
+    log("error", "not_configured", parsed.reference, [...notificationConfigIssues(), ...(publicDb ? [] : ["Supabase URL/key missing"])]);
+    return reply({ ok: false, error: "not_configured" }, 503);
+  }
+
+  let lead = null;
+  try {
+    const { data, error } = await publicDb.rpc("usa_lead_for_notification", { p_reference: parsed.reference, p_email: parsed.email, p_notification_token: parsed.notificationToken });
+    if (error) throw error;
+    lead = data;
+  } catch {
+    log("error", "lookup_failed", parsed.reference);
+    return reply({ ok: false, error: "unavailable" }, 503);
+  }
+  // Unknown reference, different email, older than 30 minutes or not from this page.
+  if (!lead || lead.reference !== parsed.reference) return reply({ ok: false, error: "not_found" }, 404);
+
+  let crm = null;
+  if (highLevel) {
+    crm = await syncHighLevelAdmission(lead, "trial", { config: highLevel, form: "usa" });
+    log(crm.ok ? "info" : "error", crm.ok ? "highlevel_synced" : `highlevel_${crm.reason}`, lead.reference);
+    try {
+      await publicDb.rpc("record_lead_crm_sync", { p_reference: parsed.reference, p_email: parsed.email, p_token: parsed.notificationToken, p_ok: crm.ok === true, p_detail: crm.ok ? null : crm.reason });
+    } catch { /* best effort: staff status only */ }
+  }
+  if (!config) {
+    if (!crm) return reply({ ok: false, error: "not_configured" }, 503);
+    return crm.ok ? reply({ ok: true }) : reply({ ok: false, error: "notification_failed" }, 502);
+  }
+
+  const sent = await sendLeadEmail({ config, message: buildLeadEmail(lead, { siteUrl: SITE_URL }), reference: lead.reference });
+  if (!sent.ok) {
+    log("error", sent.reason, lead.reference);
+    return reply({ ok: false, error: "email_failed" }, 502);
+  }
+  log("info", sent.alreadySent ? "already_sent" : sent.pending ? "send_in_progress" : "sent", lead.reference);
+  // Automatic acknowledgement to the parent; best effort, never changes this response.
+  const auto = await sendAutoReply({ config, lead, siteUrl: SITE_URL });
+  if (!auto.ok) log("error", `auto_reply_${auto.reason}`, lead.reference);
+  return reply({ ok: true });
+}

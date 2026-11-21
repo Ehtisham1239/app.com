@@ -1,0 +1,964 @@
+{
+  "date": "2026-11-11",
+  "timezone": "Asia/Karachi",
+  "source_reviewed": "b50fff04ca65b22915f642510cba41f67986cbbd",
+  "master_sha256": "494a59b40dcce7465ba29855fa4fe9abda09e62c2a9cc7d9cd47938e7e67c8f9",
+  "cms_delta": {
+    "published": 35,
+    "changed_selected_fields": 0,
+    "comparison": "10 November snapshot against fresh read of title, excerpt, body, SEO title/description, cover URL/alt, publish/update timestamps and noindex"
+  },
+  "source_tests": {
+    "passed": 15,
+    "failed": 0,
+    "files": [
+      "tests/market-planning.test.mjs",
+      "tests/redirects.test.mjs",
+      "tests/page-schema.test.mjs"
+    ]
+  },
+  "deployment": {
+    "id": "dpl_GJLsdRA67gpC7Y2cxxa3QsitDRR3",
+    "state": "READY",
+    "source": "b50fff04ca65b22915f642510cba41f67986cbbd"
+  },
+  "public_checks": {
+    "checked_at_utc": "2026-11-11T03:00:21.715852+00:00",
+    "redirects": [
+      {
+        "source": "/about/about",
+        "destination": "/about",
+        "status": 308,
+        "location": "https://www.onlinequrancollege.com/about?oqc_probe=1",
+        "pass": true
+      },
+      {
+        "source": "/contact/contact",
+        "destination": "/contact",
+        "status": 308,
+        "location": "https://www.onlinequrancollege.com/contact?oqc_probe=1",
+        "pass": true
+      },
+      {
+        "source": "/pricing/pricing",
+        "destination": "/pricing",
+        "status": 308,
+        "location": "https://www.onlinequrancollege.com/pricing?oqc_probe=1",
+        "pass": true
+      },
+      {
+        "source": "/privacy-policy/careers",
+        "destination": "/careers",
+        "status": 308,
+        "location": "https://www.onlinequrancollege.com/careers?oqc_probe=1",
+        "pass": true
+      },
+      {
+        "source": "/about/noorani-qaida",
+        "destination": "/courses/noorani-qaida",
+        "status": 308,
+        "location": "https://www.onlinequrancollege.com/courses/noorani-qaida?oqc_probe=1",
+        "pass": true
+      },
+      {
+        "source": "/contact/quran-nazara",
+        "destination": "/courses/quran-nazara",
+        "status": 308,
+        "location": "https://www.onlinequrancollege.com/courses/quran-nazara?oqc_probe=1",
+        "pass": true
+      },
+      {
+        "source": "/pricing/hifz-quran",
+        "destination": "/courses/hifz-quran",
+        "status": 308,
+        "location": "https://www.onlinequrancollege.com/courses/hifz-quran?oqc_probe=1",
+        "pass": true
+      },
+      {
+        "source": "/privacy-policy/arabic-language",
+        "destination": "/courses/arabic-language",
+        "status": 308,
+        "location": "https://www.onlinequrancollege.com/courses/arabic-language?oqc_probe=1",
+        "pass": true
+      },
+      {
+        "source": "/about/quran-translation",
+        "destination": "/courses/quran-translation",
+        "status": 308,
+        "location": "https://www.onlinequrancollege.com/courses/quran-translation?oqc_probe=1",
+        "pass": true
+      },
+      {
+        "source": "/contact/hadith-translation",
+        "destination": "/courses/hadith-translation",
+        "status": 308,
+        "location": "https://www.onlinequrancollege.com/courses/hadith-translation?oqc_probe=1",
+        "pass": true
+      },
+      {
+        "source": "/pricing/online-quran-classes-london",
+        "destination": "/locations/united-kingdom",
+        "status": 308,
+        "location": "https://www.onlinequrancollege.com/locations/united-kingdom?oqc_probe=1",
+        "pass": true
+      },
+      {
+        "source": "/privacy-policy/online-quran-classes-birmingham",
+        "destination": "/locations/united-kingdom",
+        "status": 308,
+        "location": "https://www.onlinequrancollege.com/locations/united-kingdom?oqc_probe=1",
+        "pass": true
+      },
+      {
+        "source": "/about/online-quran-classes-manchester",
+        "destination": "/locations/united-kingdom",
+        "status": 308,
+        "location": "https://www.onlinequrancollege.com/locations/united-kingdom?oqc_probe=1",
+        "pass": true
+      },
+      {
+        "source": "/contact/online-quran-classes-leeds",
+        "destination": "/locations/united-kingdom",
+        "status": 308,
+        "location": "https://www.onlinequrancollege.com/locations/united-kingdom?oqc_probe=1",
+        "pass": true
+      },
+      {
+        "source": "/pricing/online-quran-classes-bradford",
+        "destination": "/locations/united-kingdom",
+        "status": 308,
+        "location": "https://www.onlinequrancollege.com/locations/united-kingdom?oqc_probe=1",
+        "pass": true
+      },
+      {
+        "source": "/privacy-policy/online-quran-classes-leicester",
+        "destination": "/locations/united-kingdom",
+        "status": 308,
+        "location": "https://www.onlinequrancollege.com/locations/united-kingdom?oqc_probe=1",
+        "pass": true
+      },
+      {
+        "source": "/about/online-quran-classes-uk",
+        "destination": "/locations/united-kingdom",
+        "status": 308,
+        "location": "https://www.onlinequrancollege.com/locations/united-kingdom?oqc_probe=1",
+        "pass": true
+      },
+      {
+        "source": "/contact/terms-conditions",
+        "destination": "/terms-and-conditions",
+        "status": 308,
+        "location": "https://www.onlinequrancollege.com/terms-and-conditions?oqc_probe=1",
+        "pass": true
+      },
+      {
+        "source": "/book-now",
+        "destination": "/free-trial",
+        "status": 308,
+        "location": "https://www.onlinequrancollege.com/free-trial?oqc_probe=1",
+        "pass": true
+      },
+      {
+        "source": "/op/book-now-online-quran-free-classes",
+        "destination": "/free-trial",
+        "status": 308,
+        "location": "https://www.onlinequrancollege.com/free-trial?oqc_probe=1",
+        "pass": true
+      },
+      {
+        "source": "/noorani-qaida-course",
+        "destination": "/courses/noorani-qaida",
+        "status": 308,
+        "location": "https://www.onlinequrancollege.com/courses/noorani-qaida?oqc_probe=1",
+        "pass": true
+      },
+      {
+        "source": "/hadith-translation-course",
+        "destination": "/courses/hadith-translation",
+        "status": 308,
+        "location": "https://www.onlinequrancollege.com/courses/hadith-translation?oqc_probe=1",
+        "pass": true
+      },
+      {
+        "source": "/our-blogs",
+        "destination": "/blog",
+        "status": 308,
+        "location": "https://www.onlinequrancollege.com/blog?oqc_probe=1",
+        "pass": true
+      },
+      {
+        "source": "/faqs",
+        "destination": "/faq",
+        "status": 308,
+        "location": "https://www.onlinequrancollege.com/faq?oqc_probe=1",
+        "pass": true
+      }
+    ],
+    "pages": [
+      {
+        "path": "/about",
+        "status": 200,
+        "canonicals": [
+          "https://www.onlinequrancollege.com/about"
+        ],
+        "robots": [
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "h1": [
+          "About Online Quran College"
+        ],
+        "schema_types": [
+          null,
+          "WebPage"
+        ],
+        "schema_parse_errors": [],
+        "checks": {
+          "has_practice_section": false,
+          "has_practice_jump": false,
+          "has_practice_tools": true,
+          "has_printable_resources": false,
+          "has_contact_phone": true,
+          "has_contact_email": true,
+          "has_whatsapp": true
+        },
+        "item_lists": []
+      },
+      {
+        "path": "/blog",
+        "status": 200,
+        "canonicals": [
+          "https://www.onlinequrancollege.com/blog"
+        ],
+        "robots": [
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "h1": [
+          "Quran learning articles for learners and parents"
+        ],
+        "schema_types": [
+          null,
+          "Blog",
+          "WebPage"
+        ],
+        "schema_parse_errors": [],
+        "checks": {
+          "has_practice_section": false,
+          "has_practice_jump": false,
+          "has_practice_tools": true,
+          "has_printable_resources": false,
+          "has_contact_phone": true,
+          "has_contact_email": true,
+          "has_whatsapp": true
+        },
+        "item_lists": []
+      },
+      {
+        "path": "/careers",
+        "status": 200,
+        "canonicals": [
+          "https://www.onlinequrancollege.com/careers"
+        ],
+        "robots": [
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "h1": [
+          "Teaching & careers enquiries"
+        ],
+        "schema_types": [
+          null,
+          "WebPage"
+        ],
+        "schema_parse_errors": [],
+        "checks": {
+          "has_practice_section": false,
+          "has_practice_jump": false,
+          "has_practice_tools": true,
+          "has_printable_resources": false,
+          "has_contact_phone": true,
+          "has_contact_email": true,
+          "has_whatsapp": true
+        },
+        "item_lists": []
+      },
+      {
+        "path": "/contact",
+        "status": 200,
+        "canonicals": [
+          "https://www.onlinequrancollege.com/contact"
+        ],
+        "robots": [
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "h1": [
+          "Contact Online Quran College"
+        ],
+        "schema_types": [
+          null,
+          "ContactPage"
+        ],
+        "schema_parse_errors": [],
+        "checks": {
+          "has_practice_section": false,
+          "has_practice_jump": false,
+          "has_practice_tools": true,
+          "has_printable_resources": false,
+          "has_contact_phone": true,
+          "has_contact_email": true,
+          "has_whatsapp": true
+        },
+        "item_lists": []
+      },
+      {
+        "path": "/courses/arabic-language",
+        "status": 200,
+        "canonicals": [
+          "https://www.onlinequrancollege.com/courses/arabic-language"
+        ],
+        "robots": [
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "h1": [
+          "Learn Quranic Arabic online"
+        ],
+        "schema_types": [
+          null,
+          "BreadcrumbList",
+          "FAQPage",
+          "Course",
+          "WebPage"
+        ],
+        "schema_parse_errors": [],
+        "checks": {
+          "has_practice_section": false,
+          "has_practice_jump": false,
+          "has_practice_tools": true,
+          "has_printable_resources": false,
+          "has_contact_phone": true,
+          "has_contact_email": true,
+          "has_whatsapp": true
+        },
+        "item_lists": []
+      },
+      {
+        "path": "/courses/hadith-translation",
+        "status": 200,
+        "canonicals": [
+          "https://www.onlinequrancollege.com/courses/hadith-translation"
+        ],
+        "robots": [
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "h1": [
+          "Online Hadith and Islamic studies classes"
+        ],
+        "schema_types": [
+          null,
+          "BreadcrumbList",
+          "FAQPage",
+          "Course",
+          "WebPage"
+        ],
+        "schema_parse_errors": [],
+        "checks": {
+          "has_practice_section": false,
+          "has_practice_jump": false,
+          "has_practice_tools": true,
+          "has_printable_resources": false,
+          "has_contact_phone": true,
+          "has_contact_email": true,
+          "has_whatsapp": true
+        },
+        "item_lists": []
+      },
+      {
+        "path": "/courses/hifz-quran",
+        "status": 200,
+        "canonicals": [
+          "https://www.onlinequrancollege.com/courses/hifz-quran"
+        ],
+        "robots": [
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "h1": [
+          "Online Hifz ul Quran classes"
+        ],
+        "schema_types": [
+          null,
+          "BreadcrumbList",
+          "FAQPage",
+          "Course",
+          "WebPage"
+        ],
+        "schema_parse_errors": [],
+        "checks": {
+          "has_practice_section": false,
+          "has_practice_jump": false,
+          "has_practice_tools": true,
+          "has_printable_resources": false,
+          "has_contact_phone": true,
+          "has_contact_email": true,
+          "has_whatsapp": true
+        },
+        "item_lists": []
+      },
+      {
+        "path": "/courses/noorani-qaida",
+        "status": 200,
+        "canonicals": [
+          "https://www.onlinequrancollege.com/courses/noorani-qaida"
+        ],
+        "robots": [
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "h1": [
+          "Noorani Qaida online classes for kids and adults"
+        ],
+        "schema_types": [
+          null,
+          "BreadcrumbList",
+          "FAQPage",
+          "Course",
+          "WebPage"
+        ],
+        "schema_parse_errors": [],
+        "checks": {
+          "has_practice_section": false,
+          "has_practice_jump": false,
+          "has_practice_tools": true,
+          "has_printable_resources": false,
+          "has_contact_phone": true,
+          "has_contact_email": true,
+          "has_whatsapp": true
+        },
+        "item_lists": []
+      },
+      {
+        "path": "/courses/quran-nazara",
+        "status": 200,
+        "canonicals": [
+          "https://www.onlinequrancollege.com/courses/quran-nazara"
+        ],
+        "robots": [
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "h1": [
+          "Online Quran reading classes with Tajweed (Nazara)"
+        ],
+        "schema_types": [
+          null,
+          "BreadcrumbList",
+          "FAQPage",
+          "Course",
+          "WebPage"
+        ],
+        "schema_parse_errors": [],
+        "checks": {
+          "has_practice_section": false,
+          "has_practice_jump": false,
+          "has_practice_tools": true,
+          "has_printable_resources": false,
+          "has_contact_phone": true,
+          "has_contact_email": true,
+          "has_whatsapp": true
+        },
+        "item_lists": []
+      },
+      {
+        "path": "/courses/quran-translation",
+        "status": 200,
+        "canonicals": [
+          "https://www.onlinequrancollege.com/courses/quran-translation"
+        ],
+        "robots": [
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "h1": [
+          "Online Quran translation and Tafseer classes"
+        ],
+        "schema_types": [
+          null,
+          "BreadcrumbList",
+          "FAQPage",
+          "Course",
+          "WebPage"
+        ],
+        "schema_parse_errors": [],
+        "checks": {
+          "has_practice_section": false,
+          "has_practice_jump": false,
+          "has_practice_tools": true,
+          "has_printable_resources": false,
+          "has_contact_phone": true,
+          "has_contact_email": true,
+          "has_whatsapp": true
+        },
+        "item_lists": []
+      },
+      {
+        "path": "/faq",
+        "status": 200,
+        "canonicals": [
+          "https://www.onlinequrancollege.com/faq"
+        ],
+        "robots": [
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "h1": [
+          "Questions about online Quran classes"
+        ],
+        "schema_types": [
+          null,
+          "FAQPage",
+          "WebPage"
+        ],
+        "schema_parse_errors": [],
+        "checks": {
+          "has_practice_section": false,
+          "has_practice_jump": false,
+          "has_practice_tools": true,
+          "has_printable_resources": false,
+          "has_contact_phone": true,
+          "has_contact_email": true,
+          "has_whatsapp": true
+        },
+        "item_lists": []
+      },
+      {
+        "path": "/free-quran-learning-resources",
+        "status": 200,
+        "canonicals": [
+          "https://www.onlinequrancollege.com/free-quran-learning-resources"
+        ],
+        "robots": [
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "h1": [
+          "Free printable Quran learning trackers"
+        ],
+        "schema_types": [
+          null,
+          "WebPage"
+        ],
+        "schema_parse_errors": [],
+        "checks": {
+          "has_practice_section": false,
+          "has_practice_jump": false,
+          "has_practice_tools": true,
+          "has_printable_resources": false,
+          "has_contact_phone": true,
+          "has_contact_email": true,
+          "has_whatsapp": true
+        },
+        "item_lists": []
+      },
+      {
+        "path": "/free-trial",
+        "status": 200,
+        "canonicals": [
+          "https://www.onlinequrancollege.com/free-trial"
+        ],
+        "robots": [
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "h1": [
+          "Book a free 3-day trial"
+        ],
+        "schema_types": [
+          null,
+          "WebPage",
+          "FAQPage"
+        ],
+        "schema_parse_errors": [],
+        "checks": {
+          "has_practice_section": false,
+          "has_practice_jump": false,
+          "has_practice_tools": true,
+          "has_printable_resources": false,
+          "has_contact_phone": true,
+          "has_contact_email": true,
+          "has_whatsapp": true
+        },
+        "item_lists": []
+      },
+      {
+        "path": "/learn",
+        "status": 200,
+        "canonicals": [
+          "https://www.onlinequrancollege.com/learn"
+        ],
+        "robots": [
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "h1": [
+          "Quran learning guides for families and adults"
+        ],
+        "schema_types": [
+          null,
+          "BreadcrumbList",
+          "ItemList",
+          "WebPage"
+        ],
+        "schema_parse_errors": [],
+        "checks": {
+          "has_practice_section": true,
+          "has_practice_jump": true,
+          "has_practice_tools": true,
+          "has_printable_resources": true,
+          "has_contact_phone": true,
+          "has_contact_email": true,
+          "has_whatsapp": true
+        },
+        "item_lists": [
+          {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "@id": "https://www.onlinequrancollege.com/learn#resources",
+            "name": "Quran learning guides and practical articles",
+            "numberOfItems": 15,
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Learning Quran with Tajweed",
+                "url": "https://www.onlinequrancollege.com/courses/tajweed"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Online Quran Learning for Kids",
+                "url": "https://www.onlinequrancollege.com/learn/quran-for-kids"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Quran Learning for Adult Beginners",
+                "url": "https://www.onlinequrancollege.com/learn/quran-for-adults"
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "name": "Islamic Learning for Children",
+                "url": "https://www.onlinequrancollege.com/learn/islamic-studies-for-kids"
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "name": "Online Quran Classes with a Female Teacher",
+                "url": "https://www.onlinequrancollege.com/learn/female-quran-teacher"
+              },
+              {
+                "@type": "ListItem",
+                "position": 6,
+                "name": "Learning the Quran as a New Muslim",
+                "url": "https://www.onlinequrancollege.com/learn/quran-for-reverts"
+              },
+              {
+                "@type": "ListItem",
+                "position": 7,
+                "name": "Noorani Qaida or Quran reading: where to start?",
+                "url": "https://www.onlinequrancollege.com/blog/noorani-qaida-or-quran-reading"
+              },
+              {
+                "@type": "ListItem",
+                "position": 8,
+                "name": "Preparing a child for a first online Quran trial",
+                "url": "https://www.onlinequrancollege.com/blog/prepare-child-first-online-quran-trial"
+              },
+              {
+                "@type": "ListItem",
+                "position": 9,
+                "name": "An adult beginner\u2019s first month of Quran study",
+                "url": "https://www.onlinequrancollege.com/blog/adult-quran-beginner-first-month"
+              },
+              {
+                "@type": "ListItem",
+                "position": 10,
+                "name": "Turning Tajweed feedback into useful practice",
+                "url": "https://www.onlinequrancollege.com/blog/tajweed-practice-with-feedback"
+              },
+              {
+                "@type": "ListItem",
+                "position": 11,
+                "name": "Planning Hifz revision alongside school",
+                "url": "https://www.onlinequrancollege.com/blog/hifz-revision-with-school"
+              },
+              {
+                "@type": "ListItem",
+                "position": 12,
+                "name": "Quran Translation or Arabic: comparing learning goals",
+                "url": "https://www.onlinequrancollege.com/blog/quran-translation-and-arabic-difference"
+              },
+              {
+                "@type": "ListItem",
+                "position": 13,
+                "name": "Questions to ask before enrolling in a Quran course",
+                "url": "https://www.onlinequrancollege.com/blog/questions-before-quran-course-enrolment"
+              },
+              {
+                "@type": "ListItem",
+                "position": 14,
+                "name": "A useful parent\u2013teacher Quran progress conversation",
+                "url": "https://www.onlinequrancollege.com/blog/parent-teacher-quran-progress-review"
+              },
+              {
+                "@type": "ListItem",
+                "position": 15,
+                "name": "Free printable Quran practice resources",
+                "url": "https://www.onlinequrancollege.com/free-quran-learning-resources"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "path": "/locations/canada",
+        "status": 200,
+        "canonicals": [
+          "https://www.onlinequrancollege.com/locations/canada"
+        ],
+        "robots": [
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "h1": [
+          "Online Quran classes in Canada"
+        ],
+        "schema_types": [
+          null,
+          "FAQPage",
+          "BreadcrumbList",
+          "Service",
+          "WebPage"
+        ],
+        "schema_parse_errors": [],
+        "checks": {
+          "has_practice_section": false,
+          "has_practice_jump": false,
+          "has_practice_tools": true,
+          "has_printable_resources": false,
+          "has_contact_phone": true,
+          "has_contact_email": true,
+          "has_whatsapp": true
+        },
+        "item_lists": []
+      },
+      {
+        "path": "/locations/united-kingdom",
+        "status": 200,
+        "canonicals": [
+          "https://www.onlinequrancollege.com/locations/united-kingdom"
+        ],
+        "robots": [
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "h1": [
+          "Online Quran classes in the United Kingdom"
+        ],
+        "schema_types": [
+          null,
+          "FAQPage",
+          "BreadcrumbList",
+          "Service",
+          "WebPage"
+        ],
+        "schema_parse_errors": [],
+        "checks": {
+          "has_practice_section": false,
+          "has_practice_jump": false,
+          "has_practice_tools": true,
+          "has_printable_resources": false,
+          "has_contact_phone": true,
+          "has_contact_email": true,
+          "has_whatsapp": true
+        },
+        "item_lists": []
+      },
+      {
+        "path": "/pricing",
+        "status": 200,
+        "canonicals": [
+          "https://www.onlinequrancollege.com/pricing"
+        ],
+        "robots": [
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "h1": [
+          "Online Quran class fees and packages"
+        ],
+        "schema_types": [
+          null,
+          "WebPage",
+          "FAQPage"
+        ],
+        "schema_parse_errors": [],
+        "checks": {
+          "has_practice_section": false,
+          "has_practice_jump": false,
+          "has_practice_tools": true,
+          "has_printable_resources": false,
+          "has_contact_phone": true,
+          "has_contact_email": true,
+          "has_whatsapp": true
+        },
+        "item_lists": []
+      },
+      {
+        "path": "/quran-study",
+        "status": 200,
+        "canonicals": [
+          "https://www.onlinequrancollege.com/quran-study"
+        ],
+        "robots": [
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "h1": [
+          "Build a steady Quran reading and recitation routine"
+        ],
+        "schema_types": [
+          null,
+          "WebPage",
+          "WebPage"
+        ],
+        "schema_parse_errors": [],
+        "checks": {
+          "has_practice_section": false,
+          "has_practice_jump": false,
+          "has_practice_tools": true,
+          "has_printable_resources": false,
+          "has_contact_phone": true,
+          "has_contact_email": true,
+          "has_whatsapp": true
+        },
+        "item_lists": []
+      },
+      {
+        "path": "/terms-and-conditions",
+        "status": 200,
+        "canonicals": [
+          "https://www.onlinequrancollege.com/terms-and-conditions"
+        ],
+        "robots": [
+          "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+        ],
+        "h1": [
+          "Terms & Conditions"
+        ],
+        "schema_types": [
+          null,
+          "WebPage"
+        ],
+        "schema_parse_errors": [],
+        "checks": {
+          "has_practice_section": false,
+          "has_practice_jump": false,
+          "has_practice_tools": true,
+          "has_printable_resources": false,
+          "has_contact_phone": true,
+          "has_contact_email": true,
+          "has_whatsapp": true
+        },
+        "item_lists": []
+      }
+    ],
+    "sitemap": {
+      "status": 200,
+      "pages": 87,
+      "blogs": 35,
+      "printable_resources_included": true
+    }
+  },
+  "contact_and_resource_target": {
+    "/contact": {
+      "status": 200,
+      "canonical": [
+        "https://www.onlinequrancollege.com/contact"
+      ],
+      "robots": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "main_has_email": true,
+      "main_has_phone": true,
+      "main_has_whatsapp": true,
+      "enquiry_fragment_resolves": true,
+      "contact_hero_images": [
+        {
+          "srcset": "/images/learning/contact-admissions-desk-v5-400.avif 400w, /images/learning/contact-admissions-desk-v5-800.avif 800w, /images/learning/contact-admissions-desk-v5-1200.avif 1200w",
+          "type": "image/avif",
+          "sizes": "(max-width: 1024px) 100vw, 70vw"
+        },
+        {
+          "src": "/images/learning/contact-admissions-desk-v5-1200.webp",
+          "srcset": "/images/learning/contact-admissions-desk-v5-400.webp 400w, /images/learning/contact-admissions-desk-v5-800.webp 800w, /images/learning/contact-admissions-desk-v5-1200.webp 1200w",
+          "alt": "Laptop, headphones and a closed green book on a wooden reading stand in an online learning setup",
+          "width": "1200",
+          "height": "800",
+          "sizes": "(max-width: 1024px) 100vw, 70vw"
+        }
+      ],
+      "image_variant_checks": [
+        {
+          "path": "/images/learning/contact-admissions-desk-v5-1200.avif",
+          "status": 200,
+          "type": "image/avif",
+          "bytes": "50769"
+        },
+        {
+          "path": "/images/learning/contact-admissions-desk-v5-1200.webp",
+          "status": 200,
+          "type": "image/webp",
+          "bytes": "109730"
+        },
+        {
+          "path": "/images/learning/contact-admissions-desk-v5-400.avif",
+          "status": 200,
+          "type": "image/avif",
+          "bytes": "8838"
+        },
+        {
+          "path": "/images/learning/contact-admissions-desk-v5-400.webp",
+          "status": 200,
+          "type": "image/webp",
+          "bytes": "18918"
+        },
+        {
+          "path": "/images/learning/contact-admissions-desk-v5-800.avif",
+          "status": 200,
+          "type": "image/avif",
+          "bytes": "26611"
+        },
+        {
+          "path": "/images/learning/contact-admissions-desk-v5-800.webp",
+          "status": 200,
+          "type": "image/webp",
+          "bytes": "57548"
+        }
+      ]
+    },
+    "/blog/online-quran-lesson-setup-accessibility": {
+      "status": 200,
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/online-quran-lesson-setup-accessibility"
+      ],
+      "robots": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+    }
+  },
+  "rise_preflight": {
+    "reviewed": "2026-11-11",
+    "source": "https://resourcesforislamicschools.com/connect",
+    "terms": "https://resourcesforislamicschools.com/privacy",
+    "observed": "The current form invites useful resources for Muslim educators and families across countries and curricula, and requests audience and authorship with curriculum context where applicable.",
+    "editorial_fit": "Potential family-resource fit. The original eligibility enquiry and truthful authorship disclosure remain appropriate.",
+    "ai_policy": "No AI rule found on inspected public submission and terms pages. Publisher acceptance remains unconfirmed.",
+    "target_oqc_url": "https://www.onlinequrancollege.com/blog/online-quran-lesson-setup-accessibility",
+    "status": "Prepared. Verified sender and explicit authorization for the named RISE enquiry pending.",
+    "outreach_sent": false,
+    "acquired_backlink": false
+  },
+  "scope": "Source tests, CMS comparison, public HTML, redirects and asset headers. Mobile and field measurements remain pending.",
+  "dependencies": [
+    "Qualified sign-off and indexing authorization for three review articles",
+    "Seven city approval records",
+    "Supported 390px browser checks",
+    "Field Core Web Vitals",
+    "Windsor reporting access or dated exports",
+    "Verified sender and named RISE authorization",
+    "External Claude Docs pathway access"
+  ]
+}

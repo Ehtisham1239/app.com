@@ -8,5 +8,9 @@ export function articleNavigation(cleanedHtml) {
     while(used.has(id))id=`${base}-${suffix++}`;
     used.add(id);headings.push({id,title});return `<h2 id="${id}">${inner}</h2>`;
   });
-  return {html,headings};
+  let tableNumber = 0;
+  const readableHtml = html
+    .replace(/<table>/g, () => `<div class="article-table-scroll" role="region" aria-label="Scrollable table ${++tableNumber}" tabindex="0"><table>`)
+    .replace(/<\/table>/g, "</table></div>");
+  return {html: readableHtml, headings};
 }

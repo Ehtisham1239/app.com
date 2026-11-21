@@ -155,7 +155,7 @@ def main():
     if sitemap["status"] != 200: raise RuntimeError("Cannot inspect sitemap; stop")
     root = ET.fromstring(sitemap["body"])
     urls = [node.text for node in root.findall("{*}url/{*}loc")]
-    if len(urls) > 250: raise RuntimeError("Sitemap exceeds the deliberate 250 URL cap")
+    if len(urls) > 400: raise RuntimeError("Sitemap exceeds the deliberate 400 URL cap")
     paths = ["/", "/courses", "/pricing", "/contact", "/blog/choose-online-quran-teacher-usa", "/locations/united-kingdom/london", "/locations/united-states", "/free-trial"]
     paths += [up.urlsplit(url).path for url in urls if up.urlsplit(url).path.startswith("/courses/")]
     paths = list(dict.fromkeys(paths))

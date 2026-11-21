@@ -1,9 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { analyticsConfig, analyticsSettingsError, publicAnalyticsUrl, createAnalyticsController, saveAnalyticsConsent, readAnalyticsConsent, cookielessAnalyticsConfig, shieldAnalyticsCookies, pageClientId, ANALYTICS_CONSENT_KEY } from "../src/lib/analytics.js";
+import { readFileSync } from "node:fs";
+import { analyticsConfig, analyticsSettingsError, publicAnalyticsUrl, createAnalyticsController, saveAnalyticsConsent, readAnalyticsConsent, cookielessAnalyticsConfig, shieldAnalyticsCookies, pageClientId, ANALYTICS_CONSENT_KEY, isAnalyticsHost } from "../src/lib/analytics.js";
 
 // Test-only IDs. The fake document records script loads; no network requests occur.
 const ga4Id = "G-TEST123456", gtmId = "GTM-TEST123";
+// The base tests check the single-container behaviour; the extra container and Ads tag have their own tests below.
+const noExtras = { gtm_secondary_container_id: "", google_ads_id: "" };
 function fakeBrowser() {
   const win = new EventTarget(), document = new EventTarget(), scripts = [], storage = new Map();
   document.title = "Online Quran College";
@@ -20,7 +23,7 @@ test("analytics cannot activate without a real-shaped ID and GTM owns dual-ID mo
   assert.equal(analyticsConfig({ enabled: true, ga4_measurement_id: '<script>alert(1)</script>' }).enabled, false);
   assert.ok(analyticsSettingsError({ enabled: true }));
   assert.ok(analyticsSettingsError({ gtm_container_id: "GTM-bad<script>" }));
-  assert.equal(analyticsConfig({ enabled: true, ga4_measurement_id: ga4Id, gtm_container_id: gtmId }).mode, "gtm");
+  assert.equal(analyticsConfig({ ...noExtras, enabled: true, ga4_measurement_id: ga4Id, gtm_container_id: gtmId }).mode, "gtm");
 });
 
 test("analytics URLs strip query/fragment values and reject private or unsafe paths", () => {
@@ -31,7 +34,7 @@ test("analytics URLs strip query/fragment values and reject private or unsafe pa
 
 test("Google loads only after consent and GA4 receives one page view per actual path transition", () => {
   const { win, scripts } = fakeBrowser();
-  const adapter = createAnalyticsController(win, analyticsConfig({ enabled: true, ga4_measurement_id: ga4Id }));
+  const adapter = createAnalyticsController(win, analyticsConfig({ ...noExtras, enabled: true, ga4_measurement_id: ga4Id }));
   adapter.pageView("/contact"); assert.equal(scripts.length, 0);
   adapter.setConsent(false); assert.equal(scripts.length, 0);
   adapter.setConsent(true); adapter.pageView(win.location.href); adapter.pageView("/contact?private=value");
@@ -47,7 +50,7 @@ test("Google loads only after consent and GA4 receives one page view per actual 
 
 test("GTM mode never loads direct GA4 and lead events contain only allowlisted fields", () => {
   const { win, scripts } = fakeBrowser();
-  const adapter = createAnalyticsController(win, analyticsConfig({ enabled: true, ga4_measurement_id: ga4Id, gtm_container_id: gtmId }));
+  const adapter = createAnalyticsController(win, analyticsConfig({ ...noExtras, enabled: true, ga4_measurement_id: ga4Id, gtm_container_id: gtmId }));
   const detail = { event: "generate_lead", form_type: "contact", market: "USA", email: "private@example.test", reference: "MSG-123" };
   win.dispatchEvent(leadEvent(detail));
   assert.equal(win.dataLayer.filter(item => item.event === "oqc_generate_lead").length, 0);
@@ -68,9 +71,9 @@ test("analytics preference expires and a choice still applies when browser stora
 });
 
 test("cookieless mode uses direct GA4 with no device storage", () => {
-  const gtmOnly = cookielessAnalyticsConfig(analyticsConfig({ enabled: true, gtm_container_id: gtmId }));
+  const gtmOnly = cookielessAnalyticsConfig(analyticsConfig({ ...noExtras, enabled: true, gtm_container_id: gtmId }));
   assert.equal(gtmOnly.enabled, true); assert.equal(gtmOnly.mode, "gtm");
-  const config = cookielessAnalyticsConfig(analyticsConfig({ enabled: true, ga4_measurement_id: ga4Id }));
+  const config = cookielessAnalyticsConfig(analyticsConfig({ ...noExtras, enabled: true, ga4_measurement_id: ga4Id }));
   assert.equal(config.mode, "ga4");
   const { win, scripts } = fakeBrowser();
   const adapter = createAnalyticsController(win, config);
@@ -93,7 +96,7 @@ test("cookieless mode uses direct GA4 with no device storage", () => {
 });
 
 test("web vitals reach GA4 as named events with only the metric and public path", () => {
-  const config = cookielessAnalyticsConfig(analyticsConfig({ enabled: true, ga4_measurement_id: ga4Id }));
+  const config = cookielessAnalyticsConfig(analyticsConfig({ ...noExtras, enabled: true, ga4_measurement_id: ga4Id }));
   const { win } = fakeBrowser();
   const adapter = createAnalyticsController(win, config);
   assert.equal(adapter.webVital({ name: "LCP", value: 1800, delta: 1800, id: "v1", rating: "good" }), false); // nothing before load
@@ -109,7 +112,7 @@ test("web vitals reach GA4 as named events with only the metric and public path"
 });
 
 test("with a GTM container set, GTM owns GA4: no direct gtag, same cookieless consent", () => {
-  const config = cookielessAnalyticsConfig(analyticsConfig({ enabled: true, ga4_measurement_id: ga4Id, gtm_container_id: gtmId }));
+  const config = cookielessAnalyticsConfig(analyticsConfig({ ...noExtras, enabled: true, ga4_measurement_id: ga4Id, gtm_container_id: gtmId }));
   assert.equal(config.mode, "gtm");
   const { win, scripts } = fakeBrowser();
   const adapter = createAnalyticsController(win, config);
@@ -151,5 +154,117 @@ test("cookieless analytics sends a fresh page-level client id in both transports
     const settings = win.dataLayer.map(item => Array.from(item)).filter(item => item[0] === "set" || item[0] === "config").map(item => item.at(-1));
     assert.ok(settings.some(s => s.client_storage === "none" && /^\d+\.\d+$/.test(s.client_id)), JSON.stringify(settings));
     adapter.destroy();
+  }
+});
+
+test("only the production host reports to GA4", () => {
+  assert.equal(isAnalyticsHost("www.onlinequrancollege.com"), true);
+  assert.equal(isAnalyticsHost("WWW.OnlineQuranCollege.com"), true);
+  for (const host of ["onlinequrancollege.com", "appcom-online-quran-college.vercel.app", "project-umber-three-93.vercel.app", "localhost", "", undefined]) {
+    assert.equal(isAnalyticsHost(host), false, String(host));
+  }
+});
+
+test("the analytics component does not start GA4 on preview or other hosts", () => {
+  const src = readFileSync(new URL("../src/components/site/analytics.jsx", import.meta.url), "utf8");
+  assert.match(src, /!isAnalyticsHost\(window\.location\.hostname\)\) return;/);
+});
+
+test("tags start after load when the browser is idle, never during first paint, with no interaction wait (19 Nov 2026)", () => {
+  const src = readFileSync(new URL("../src/components/site/analytics.jsx", import.meta.url), "utf8");
+  assert.match(src, /requestIdleCallback\(start, \{ timeout: 2000 \}\)/);
+  assert.match(src, /addEventListener\("load", schedule, \{ once: true \}\)/);
+  assert.doesNotMatch(src, /pointerdown|keydown|touchstart/, "no wait for a first interaction");
+  assert.doesNotMatch(src, /\n\s*start\(\);\n\s*return/, "tags no longer start synchronously during hydration");
+});
+
+test("second GTM container and Google Ads tag load site-wide under denied ad consent (owner request, 18 Nov 2026)", () => {
+  const config = cookielessAnalyticsConfig(analyticsConfig({ enabled: true, ga4_measurement_id: ga4Id, gtm_container_id: gtmId }));
+  assert.equal(config.gtm2Id, "GTM-52PTXDRF"); assert.equal(config.adsId, "AW-16564445897");
+  const { win, scripts } = fakeBrowser();
+  const adapter = createAnalyticsController(win, config);
+  adapter.setConsent(true);
+  assert.deepEqual(scripts.map(s => s.src), [
+    "https://www.googletagmanager.com/gtm.js?id=" + gtmId,
+    "https://www.googletagmanager.com/gtm.js?id=GTM-52PTXDRF",
+  ], "no separate Ads gtag.js: both containers carry AW-16564445897 (owner, 19 Nov 2026)");
+  assert.equal(win.dataLayer.filter(item => item.event === "gtm.js").length, 1, "one page-load event serves both containers");
+  const adsConfig = win.dataLayer.map(item => Array.from(item ?? [])).find(item => item[0] === "config" && item[1] === "AW-16564445897");
+  assert.equal(adsConfig[2].allow_ad_personalization_signals, false);
+  const consents = win.dataLayer.map(item => Array.from(item ?? [])).filter(item => item[0] === "consent");
+  assert.equal(consents.at(-1)[2].ad_storage, "denied");
+  adapter.destroy();
+});
+
+test("the extra IDs can be changed or switched off from settings and are validated", () => {
+  const off = analyticsConfig({ enabled: true, gtm_container_id: gtmId, gtm_secondary_container_id: "", google_ads_id: "" });
+  assert.equal(off.gtm2Id, ""); assert.equal(off.adsId, "");
+  assert.equal(analyticsConfig({ enabled: true, gtm_container_id: gtmId, gtm_secondary_container_id: gtmId }).gtm2Id, "", "never the same container twice");
+  assert.ok(analyticsSettingsError({ gtm_secondary_container_id: "GTM-bad<script>" }));
+  assert.ok(analyticsSettingsError({ google_ads_id: "AW-1<script>" }));
+  const { win, scripts } = fakeBrowser();
+  const adapter = createAnalyticsController(win, cookielessAnalyticsConfig(off));
+  adapter.setConsent(true);
+  assert.equal(scripts.length, 1); adapter.destroy();
+});
+
+test("thank-you pages send one named event and Ads conversion fires only from a saved lead with a label", () => {
+  const base = { ...noExtras, enabled: true, ga4_measurement_id: ga4Id, gtm_container_id: gtmId, google_ads_id: "AW-16564445897" };
+  assert.equal(analyticsConfig(base).adsLabel, "", "no label until the owner supplies one");
+  assert.ok(analyticsSettingsError({ ...base, google_ads_conversion_label: "bad<script>" }));
+  const run = settings => {
+    const { win } = fakeBrowser(); win.location = new URL("https://college.test/free-trial/thank-you?x=private");
+    const adapter = createAnalyticsController(win, cookielessAnalyticsConfig(analyticsConfig(settings)));
+    adapter.setConsent(true); adapter.pageView(win.location.href); adapter.pageView(win.location.href);
+    win.dispatchEvent(leadEvent({ event: "generate_lead", form_type: "trial", market: "UK", email: "private@example.test" }));
+    return { win, conversions: win.dataLayer.map(i => Array.from(i ?? [])).filter(i => i[0] === "event" && i[1] === "conversion") };
+  };
+  const without = run(base);
+  assert.equal(without.conversions.length, 0);
+  const views = without.win.dataLayer.filter(i => i.event === "oqc_thank_you_view");
+  assert.deepEqual(views, [{ event: "oqc_thank_you_view", form_type: "trial", page_path: "/free-trial/thank-you" }]);
+  assert.ok(!JSON.stringify(without.win.dataLayer).includes("private"));
+  const withLabel = run({ ...base, google_ads_conversion_label: "AbC_123-xyz" });
+  assert.deepEqual(withLabel.conversions.map(c => c[2]), [{ send_to: "AW-16564445897/AbC_123-xyz" }]);
+});
+
+test("url_passthrough is on with the Ads tag while every ad consent signal stays denied", () => {
+  const { win } = fakeBrowser();
+  const adapter = createAnalyticsController(win, cookielessAnalyticsConfig(analyticsConfig({ ...noExtras, enabled: true, gtm_container_id: gtmId, google_ads_id: "AW-16564445897" })));
+  adapter.setConsent(true);
+  const sets = win.dataLayer.map(i => Array.from(i ?? [])).filter(i => i[0] === "set" && i[1] === "url_passthrough");
+  assert.equal(sets.length, 1); assert.equal(sets[0][2], true);
+  const consents = win.dataLayer.map(i => Array.from(i ?? [])).filter(i => i[0] === "consent");
+  assert.equal(consents.at(-1)[2].ad_storage, "denied"); assert.equal(consents.at(-1)[2].ad_user_data, "denied");
+  const { win: win2 } = fakeBrowser();
+  createAnalyticsController(win2, cookielessAnalyticsConfig(analyticsConfig({ ...noExtras, enabled: true, gtm_container_id: gtmId }))).setConsent(true);
+  assert.equal(win2.dataLayer.map(i => Array.from(i ?? [])).filter(i => i[1] === "url_passthrough").length, 0, "off without an Ads ID");
+});
+
+test("free-trial thank-you sends thanku_generate_lead once per lead reference, never for contact, bad or missing refs", () => {
+  const run = (path, store) => {
+    const { win } = fakeBrowser(); win.location = new URL("https://college.test" + path);
+    win.sessionStorage = store ?? new Map(Object.entries({})); if (!store) { const m = new Map(); win.sessionStorage = { getItem: k => m.get(k) ?? null, setItem: (k, v) => m.set(k, v) }; }
+    const adapter = createAnalyticsController(win, cookielessAnalyticsConfig(analyticsConfig({ ...noExtras, enabled: true, gtm_container_id: gtmId })));
+    adapter.setConsent(true); adapter.pageView(win.location.href);
+    return win.dataLayer.filter(i => i.event === "thanku_generate_lead");
+  };
+  assert.deepEqual(run("/free-trial/thank-you?ref=TR-ABCD1234"), [{ event: "thanku_generate_lead", lead_ref: "TR-ABCD1234" }]);
+  for (const path of ["/free-trial/thank-you", "/free-trial/thank-you?ref=TR-RECEIVED", "/free-trial/thank-you?ref=MSG-ABCD1234", "/free-trial/thank-you?ref=x", "/contact/thank-you?ref=MSG-ABCD1234", "/free-trial?ref=TR-ABCD1234"]) assert.deepEqual(run(path), [], path);
+  const keys = new Map(); const shared = { getItem: k => keys.get(k) ?? null, setItem: (k, v) => keys.set(k, v) };
+  assert.equal(run("/free-trial/thank-you?ref=TR-SAME1234", shared).length, 1);
+  assert.equal(run("/free-trial/thank-you?ref=TR-SAME1234", shared).length, 0, "a reload does not count twice");
+});
+
+test("Ads gtag.js loads only when no Tag Manager container carries the Ads tag (owner, 19 Nov 2026)", () => {
+  const config = cookielessAnalyticsConfig(analyticsConfig({ enabled: true, ga4_measurement_id: ga4Id, gtm_container_id: "", google_ads_id: "AW-16564445897" }));
+  assert.equal(config.mode, "ga4");
+  const { win, scripts } = fakeBrowser();
+  const adapter = createAnalyticsController(win, config);
+  adapter.setConsent(true);
+  assert.ok(scripts.some(s => s.src === "https://www.googletagmanager.com/gtag/js?id=AW-16564445897"), "GA4-only set-up still loads the Ads tag itself");
+  adapter.destroy();
+  for (const page of ["../public/usa-quran-classes/index.html", "../public/usa-quran-classes/thank-you/index.html"]) {
+    assert.doesNotMatch(readFileSync(new URL(page, import.meta.url), "utf8"), /gtag\/js\?id=' \+ c\.adsId/, page);
   }
 });

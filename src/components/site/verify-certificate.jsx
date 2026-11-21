@@ -11,15 +11,17 @@ export function VerifyCertificate() {
   const [number, setNumber] = useState(initial);
   const [state, setState] = useState({ loading: initial.length >= 4, checked: initial, result: undefined, error: "" });
 
-  const lookup = useCallback(async (n) => {
+  const lookup = useCallback(async (n, isCurrent = () => true) => {
     try {
       const { data, error } = await (await import("@/lib/supabase/public")).getPublicBrowserClient().rpc("verify_certificate", { p_number: n });
+      if (!isCurrent()) return;
       if (error) {
         setState({ loading: false, checked: n, result: undefined, error: "We could not check the certificate right now. Please try again in a moment." });
         return;
       }
       setState({ loading: false, checked: n, result: data ?? null, error: "" });
     } catch {
+      if (!isCurrent()) return;
       setState({ loading: false, checked: n, result: undefined, error: "We could not check the certificate right now. Please try again in a moment." });
     }
   }, []);
@@ -27,16 +29,19 @@ export function VerifyCertificate() {
   const check = (value) => {
     const n = String(value || "").trim().toUpperCase();
     if (n.length < 4) {
-      setState({ loading: false, checked: "", result: undefined, error: "Enter the certificate number printed on the certificate, for example OQC-CERT-2026-0001." });
+      setState({ loading: false, checked: "", result: undefined, error: "Enter the certificate number printed on the certificate, for example OQC-CERT-2026-0002-K7QM." });
       return;
     }
     setState({ loading: true, checked: n, result: undefined, error: "" });
     lookup(n);
   };
 
-  // A link like /verify-certificate?number=OQC-CERT-2026-0001 checks straight away.
+  // A link like /verify-certificate?number=OQC-CERT-2026-0002-K7QM checks straight away.
   useEffect(() => {
-    if (initial.length >= 4) lookup(initial);
+    if (initial.length < 4) return;
+    let current = true;
+    void Promise.resolve().then(() => { if (current) return lookup(initial, () => current); });
+    return () => { current = false; };
   }, [initial, lookup]);
 
   const r = state.result;
@@ -57,7 +62,7 @@ export function VerifyCertificate() {
           <input
             id="cert-number"
             className="input font-mono uppercase tracking-wide"
-            placeholder="OQC-CERT-2026-0001"
+            placeholder="OQC-CERT-2026-0002-K7QM"
             value={number}
             onChange={(e) => setNumber(e.target.value)}
             autoComplete="off"
@@ -103,9 +108,10 @@ export function VerifyCertificate() {
             </div>
           </div>
           <dl className="relative grid gap-5 px-6 py-6 sm:grid-cols-2">
-            <div className="sm:col-span-2">
-              <dt className="text-xs font-bold uppercase tracking-[0.16em] text-ink-faint">Awarded to</dt>
-              <dd className="mt-1 font-display text-[2rem] leading-tight text-mushaf-900">{r.student}</dd>
+            <div className="sm:col-span-2 rounded-xl bg-leaf-50 px-4 py-3">
+              <dt className="text-xs font-bold uppercase tracking-[0.16em] text-ink-faint">Learner identity</dt>
+              <dd className="mt-1 font-semibold text-mushaf-900">Withheld for privacy</dd>
+              <p className="mt-1 text-sm text-ink-soft">The certificate number confirms issuance without displaying the learner’s personal details.</p>
             </div>
             <div>
               <dt className="text-xs font-bold uppercase tracking-[0.16em] text-ink-faint">Certificate</dt>

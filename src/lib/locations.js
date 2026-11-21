@@ -102,7 +102,7 @@ export const LOCATIONS = [
   {
     "name": "Canada",
     "slug": "canada",
-    "currency": "CAD",
+    "currency": "USD",
     "timezone": "America/Toronto",
     "cities": [
       {
@@ -134,7 +134,7 @@ export const LOCATIONS = [
   {
     "name": "France",
     "slug": "france",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Paris",
     "cities": [
       {
@@ -158,7 +158,7 @@ export const LOCATIONS = [
   {
     "name": "Germany",
     "slug": "germany",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Berlin",
     "cities": [
       {
@@ -182,7 +182,7 @@ export const LOCATIONS = [
   {
     "name": "Ireland",
     "slug": "ireland",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Dublin",
     "cities": [
       {
@@ -198,7 +198,7 @@ export const LOCATIONS = [
   {
     "name": "Netherlands",
     "slug": "netherlands",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Amsterdam",
     "cities": [
       {
@@ -214,7 +214,7 @@ export const LOCATIONS = [
   {
     "name": "Belgium",
     "slug": "belgium",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Brussels",
     "cities": [
       {
@@ -230,7 +230,7 @@ export const LOCATIONS = [
   {
     "name": "Spain",
     "slug": "spain",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Madrid",
     "cities": [
       {
@@ -246,7 +246,7 @@ export const LOCATIONS = [
   {
     "name": "Portugal",
     "slug": "portugal",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Lisbon",
     "cities": [
       {
@@ -262,7 +262,7 @@ export const LOCATIONS = [
   {
     "name": "Italy",
     "slug": "italy",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Rome",
     "cities": [
       {
@@ -278,7 +278,7 @@ export const LOCATIONS = [
   {
     "name": "Austria",
     "slug": "austria",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Vienna",
     "cities": [
       {
@@ -294,7 +294,7 @@ export const LOCATIONS = [
   {
     "name": "Switzerland",
     "slug": "switzerland",
-    "currency": "CHF",
+    "currency": "USD",
     "timezone": "Europe/Zurich",
     "cities": [
       {
@@ -310,7 +310,7 @@ export const LOCATIONS = [
   {
     "name": "Sweden",
     "slug": "sweden",
-    "currency": "SEK",
+    "currency": "USD",
     "timezone": "Europe/Stockholm",
     "cities": [
       {
@@ -326,7 +326,7 @@ export const LOCATIONS = [
   {
     "name": "Norway",
     "slug": "norway",
-    "currency": "NOK",
+    "currency": "USD",
     "timezone": "Europe/Oslo",
     "cities": [
       {
@@ -342,7 +342,7 @@ export const LOCATIONS = [
   {
     "name": "Denmark",
     "slug": "denmark",
-    "currency": "DKK",
+    "currency": "USD",
     "timezone": "Europe/Copenhagen",
     "cities": [
       {
@@ -358,7 +358,7 @@ export const LOCATIONS = [
   {
     "name": "Finland",
     "slug": "finland",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Helsinki",
     "cities": [
       {
@@ -374,7 +374,7 @@ export const LOCATIONS = [
   {
     "name": "Iceland",
     "slug": "iceland",
-    "currency": "ISK",
+    "currency": "USD",
     "timezone": "Atlantic/Reykjavik",
     "cities": [
       {
@@ -390,7 +390,7 @@ export const LOCATIONS = [
   {
     "name": "Poland",
     "slug": "poland",
-    "currency": "PLN",
+    "currency": "USD",
     "timezone": "Europe/Warsaw",
     "cities": [
       {
@@ -406,7 +406,7 @@ export const LOCATIONS = [
   {
     "name": "Czechia",
     "slug": "czechia",
-    "currency": "CZK",
+    "currency": "USD",
     "timezone": "Europe/Prague",
     "cities": [
       {
@@ -422,7 +422,7 @@ export const LOCATIONS = [
   {
     "name": "Slovakia",
     "slug": "slovakia",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Bratislava",
     "cities": [
       {
@@ -438,7 +438,7 @@ export const LOCATIONS = [
   {
     "name": "Hungary",
     "slug": "hungary",
-    "currency": "HUF",
+    "currency": "USD",
     "timezone": "Europe/Budapest",
     "cities": [
       {
@@ -454,7 +454,7 @@ export const LOCATIONS = [
   {
     "name": "Romania",
     "slug": "romania",
-    "currency": "RON",
+    "currency": "USD",
     "timezone": "Europe/Bucharest",
     "cities": [
       {
@@ -470,7 +470,7 @@ export const LOCATIONS = [
   {
     "name": "Bulgaria",
     "slug": "bulgaria",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Sofia",
     "cities": [
       {
@@ -486,7 +486,7 @@ export const LOCATIONS = [
   {
     "name": "Greece",
     "slug": "greece",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Athens",
     "cities": [
       {
@@ -502,7 +502,7 @@ export const LOCATIONS = [
   {
     "name": "Croatia",
     "slug": "croatia",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Zagreb",
     "cities": [
       {
@@ -518,7 +518,7 @@ export const LOCATIONS = [
   {
     "name": "Slovenia",
     "slug": "slovenia",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Ljubljana",
     "cities": [
       {
@@ -534,7 +534,7 @@ export const LOCATIONS = [
   {
     "name": "Estonia",
     "slug": "estonia",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Tallinn",
     "cities": [
       {
@@ -550,7 +550,7 @@ export const LOCATIONS = [
   {
     "name": "Latvia",
     "slug": "latvia",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Riga",
     "cities": [
       {
@@ -566,7 +566,7 @@ export const LOCATIONS = [
   {
     "name": "Lithuania",
     "slug": "lithuania",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Vilnius",
     "cities": [
       {
@@ -582,7 +582,7 @@ export const LOCATIONS = [
   {
     "name": "Luxembourg",
     "slug": "luxembourg",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Luxembourg",
     "cities": [
       {
@@ -598,7 +598,7 @@ export const LOCATIONS = [
   {
     "name": "Malta",
     "slug": "malta",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Malta",
     "cities": [
       {
@@ -614,7 +614,7 @@ export const LOCATIONS = [
   {
     "name": "Cyprus",
     "slug": "cyprus",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Asia/Nicosia",
     "cities": [
       {
@@ -630,7 +630,7 @@ export const LOCATIONS = [
   {
     "name": "Albania",
     "slug": "albania",
-    "currency": "ALL",
+    "currency": "USD",
     "timezone": "Europe/Tirane",
     "cities": [
       {
@@ -646,7 +646,7 @@ export const LOCATIONS = [
   {
     "name": "Bosnia and Herzegovina",
     "slug": "bosnia-and-herzegovina",
-    "currency": "BAM",
+    "currency": "USD",
     "timezone": "Europe/Sarajevo",
     "cities": [
       {
@@ -662,7 +662,7 @@ export const LOCATIONS = [
   {
     "name": "Serbia",
     "slug": "serbia",
-    "currency": "RSD",
+    "currency": "USD",
     "timezone": "Europe/Belgrade",
     "cities": [
       {
@@ -678,7 +678,7 @@ export const LOCATIONS = [
   {
     "name": "Montenegro",
     "slug": "montenegro",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Podgorica",
     "cities": [
       {
@@ -694,7 +694,7 @@ export const LOCATIONS = [
   {
     "name": "North Macedonia",
     "slug": "north-macedonia",
-    "currency": "MKD",
+    "currency": "USD",
     "timezone": "Europe/Skopje",
     "cities": [
       {
@@ -710,7 +710,7 @@ export const LOCATIONS = [
   {
     "name": "Kosovo",
     "slug": "kosovo",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Belgrade",
     "cities": [
       {
@@ -726,7 +726,7 @@ export const LOCATIONS = [
   {
     "name": "Moldova",
     "slug": "moldova",
-    "currency": "MDL",
+    "currency": "USD",
     "timezone": "Europe/Chisinau",
     "cities": [
       {
@@ -742,7 +742,7 @@ export const LOCATIONS = [
   {
     "name": "Ukraine",
     "slug": "ukraine",
-    "currency": "UAH",
+    "currency": "USD",
     "timezone": "Europe/Kyiv",
     "cities": [
       {
@@ -758,7 +758,7 @@ export const LOCATIONS = [
   {
     "name": "Belarus",
     "slug": "belarus",
-    "currency": "BYN",
+    "currency": "USD",
     "timezone": "Europe/Minsk",
     "cities": [
       {
@@ -774,7 +774,7 @@ export const LOCATIONS = [
   {
     "name": "Turkey",
     "slug": "turkey",
-    "currency": "TRY",
+    "currency": "USD",
     "timezone": "Europe/Istanbul",
     "cities": [
       {
@@ -790,7 +790,7 @@ export const LOCATIONS = [
   {
     "name": "Russia",
     "slug": "russia",
-    "currency": "RUB",
+    "currency": "USD",
     "timezone": "Europe/Moscow",
     "cities": [
       {
@@ -806,7 +806,7 @@ export const LOCATIONS = [
   {
     "name": "Andorra",
     "slug": "andorra",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Andorra",
     "cities": [
       {
@@ -822,7 +822,7 @@ export const LOCATIONS = [
   {
     "name": "Liechtenstein",
     "slug": "liechtenstein",
-    "currency": "CHF",
+    "currency": "USD",
     "timezone": "Europe/Vaduz",
     "cities": [
       {
@@ -838,7 +838,7 @@ export const LOCATIONS = [
   {
     "name": "Monaco",
     "slug": "monaco",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Monaco",
     "cities": [
       {
@@ -850,7 +850,7 @@ export const LOCATIONS = [
   {
     "name": "San Marino",
     "slug": "san-marino",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/San_Marino",
     "cities": [
       {
@@ -862,7 +862,7 @@ export const LOCATIONS = [
   {
     "name": "Vatican City",
     "slug": "vatican-city",
-    "currency": "EUR",
+    "currency": "USD",
     "timezone": "Europe/Vatican",
     "cities": [
       {
@@ -870,14 +870,29 @@ export const LOCATIONS = [
         "slug": "vatican-city"
       }
     ]
+  },
+  {
+    "name": "United Arab Emirates",
+    "slug": "united-arab-emirates",
+    "currency": "AED",
+    "timezone": "Asia/Dubai",
+    "cities": [
+      { "name": "Dubai", "slug": "dubai" },
+      { "name": "Abu Dhabi", "slug": "abu-dhabi" },
+      { "name": "Sharjah", "slug": "sharjah" },
+      { "name": "Ajman", "slug": "ajman" },
+      { "name": "Ras Al Khaimah", "slug": "ras-al-khaimah" },
+      { "name": "Fujairah", "slug": "fujairah" },
+      { "name": "Umm Al Quwain", "slug": "umm-al-quwain" }
+    ]
   }
 ];
 
 export const getLocation = (slug) => LOCATIONS.find((country) => country.slug === slug);
 export const locationPath = (country, city) => `/locations/${country.slug}${city ? `/${city.slug}` : ""}`;
 // City-states (Monaco, San Marino, Vatican City) have one "city" with the same
-// name as the country; that page duplicates the country page, so it points its
-// canonical at the country page and stays out of the sitemap and city links.
+// name as the country. Owner (20 Nov 2026): that city URL stays its own live page (no redirect);
+// like every city page it is noindex and out of the sitemap until the CMS approves it.
 export const isCityState = (country, city) => Boolean(city) && city.name === country.name;
 export const locationCmsSlug = (country, city) => `locations-${country.slug}${city ? `-${city.slug}` : ""}`;
 
@@ -892,19 +907,28 @@ export function locationFromCmsSlug(slug) {
 
 // Country defaults are fallbacks; named cities can have a different IANA zone.
 export const locationTimeZone = (country, city) => city?.timezone || country.timezone;
-export const locationLocale = (country) => ({ "united-states": "en_US", "united-kingdom": "en_GB", canada: "en_CA", australia: "en_AU" }[country.slug] || "en_GB");
+export const locationLocale = (country) => ({ "united-states": "en_US", "united-kingdom": "en_GB", canada: "en_CA", australia: "en_AU", "united-arab-emirates": "en_AE" }[country.slug] || "en_GB");
 // "in the United Kingdom", "in the Netherlands", but "in Canada".
 export const countryInName = (country) => `${/^(United |Netherlands$|Czech Republic$)/.test(country.name) ? "the " : ""}${country.name}`;
 // The 22 Oct 2026 location seed saved "Online Quran classes in United Kingdom"
 // (no article) as the CMS title. Only that exact generated text is corrected;
 // a title staff have rewritten is shown as saved.
 export function locationHeading(country, city, cmsTitle) {
-  const place = city ? `${city.name}, ${country.name}` : countryInName(country);
+  const place = city && !isCityState(country, city) ? `${city.name}, ${country.name}` : city ? country.name : countryInName(country);
   const generated = `Online Quran classes in ${city ? place : country.name}`;
-  return !cmsTitle || cmsTitle === generated ? `Online Quran classes in ${place}` : cmsTitle;
+  const doubled = city && isCityState(country, city) ? `Online Quran classes in ${city.name}, ${country.name}` : null;
+  return !cmsTitle || cmsTitle === generated || cmsTitle === doubled ? `Online Quran classes in ${place}` : cmsTitle;
 }
+// Country pages whose Search Console demand is for Arabic first (evidence per slug). Lithuania,
+// 28 Oct–6 Nov 2026: "arabic classes near me" 166 impressions at position ~5.7 and 0 clicks while the
+// title led with Quran. These lead with Arabic; the page and its courses stay the same.
+export const ARABIC_FIRST_COUNTRIES = new Set(["lithuania"]);
+const arabicFirst = (country, city) => !city && ARABIC_FIRST_COUNTRIES.has(country?.slug);
 export function locationSearchTitle(country, city) {
-  return `${city ? "Quran classes" : "Online Quran classes"} in ${city?.name || countryInName(country)} | OQC`;
+  // Search Console (18 Nov 2026): location pages rank for "arabic classes near me" and city queries
+  // but earn few clicks, so the title names both services the page offers.
+  if (arabicFirst(country, city)) return `Online Arabic & Quran Classes in ${countryInName(country)} | OQC`;
+  return `${city ? "Quran & Arabic Classes" : "Online Quran & Arabic Classes"} in ${city?.name || countryInName(country)} | OQC`;
 }
 export function locationBreadcrumbs(country, city) {
   return [{ name: "Countries & cities", path: "/locations" },
@@ -914,9 +938,10 @@ export function locationBreadcrumbs(country, city) {
 
 export function locationSearchIntro(country, city) {
   const place = city ? `${city.name}, ${country.name}` : country.name;
+  if (arabicFirst(country, city)) return `Live one-to-one online Arabic classes in ${countryInName(country)} for adults and kids: from the alphabet to Quranic Arabic grammar, plus Quran reading and Tajweed. Book a 3-day free trial.`;
   return city
-    ? `Online Quran classes in ${place} for children and adults. Plan lessons using ${locationTimeZone(country, city)} and confirm the course and ${country.currency} fee with a coordinator.`
-    : `Live one-to-one online Quran classes for families in ${countryInName(country)}: Noorani Qaida, Tajweed and Hifz at local class times. Book a 3-day free trial.`;
+    ? `Live one-to-one online Quran and Arabic classes in ${place} for kids and adults: Noorani Qaida, Tajweed, Hifz and Quranic Arabic, planned in ${locationTimeZone(country, city)}. Book a 3-day free trial.`
+    : `Live one-to-one online Quran and Arabic classes for families in ${countryInName(country)}: Noorani Qaida, Tajweed, Hifz and Quranic Arabic at local class times. Book a 3-day free trial.`;
 }
 
 // Pathway decision (26–28 Oct 2026): only the country hubs for approved markets
@@ -924,8 +949,60 @@ export function locationSearchIntro(country, city) {
 // unless the CMS row explicitly says otherwise (after local proof is added).
 // Last substantive change to the shared location-page template (guides, FAQs, intros,
 // schema). Update when that code changes so sitemap lastmod reflects the visible page.
-export const LOCATION_TEMPLATE_UPDATED = "2026-10-31";
-export const locationLastModified = (page) => [page?.updated_at, LOCATION_TEMPLATE_UPDATED].filter(Boolean).map((d) => new Date(d)).filter((d) => !Number.isNaN(d.getTime())).sort((a, b) => b - a)[0].toISOString();
-export const INDEXED_MARKETS = ["united-kingdom", "united-states", "australia", "canada"];
+export const LOCATION_TEMPLATE_UPDATED = "2026-11-18";
+export const locationLastModified = (page, guideUpdatedAt) => [page?.updated_at, LOCATION_TEMPLATE_UPDATED, guideUpdatedAt].filter(Boolean).map((d) => new Date(d)).filter((d) => !Number.isNaN(d.getTime())).sort((a, b) => b - a)[0].toISOString();
+export const INDEXED_MARKETS = ["united-kingdom", "united-states", "australia", "canada", "united-arab-emirates"];
+// hreflang for the five country hubs: same service, one English page per market, so
+// Google can show the UK hub in the UK, the Australia hub in Australia, and so on.
+// x-default is the country directory. Only hubs carry these tags, and every hub lists
+// all five (the tags must be reciprocal).
+export const MARKET_HREFLANG = { "united-kingdom": "en-GB", "united-states": "en-US", canada: "en-CA", australia: "en-AU", "united-arab-emirates": "en-AE" };
+export function marketHreflang(siteUrl) {
+  const languages = Object.fromEntries(INDEXED_MARKETS.map((slug) => [MARKET_HREFLANG[slug], `${siteUrl}/locations/${slug}`]));
+  return { ...languages, "x-default": `${siteUrl}/locations` };
+}
 export const defaultLocationNoindex = (country, city) => Boolean(city) || !INDEXED_MARKETS.includes(country.slug);
-export const locationIndexRecord = (page, country, city) => ({ ...(page || {}), seo_noindex: page?.seo_noindex ?? defaultLocationNoindex(country, city) });
+// Routes remain available independently of indexability. The five target-market hubs
+// are indexable by default; other country and city pages require an explicit CMS
+// seo_noindex=false decision after genuinely unique local value is reviewed.
+// Thin/duplicate pages remain live but noindex and out of the sitemap. The city-state
+// city URLs (Monaco, San Marino, Vatican City) are live too: no location page redirects (owner, 20 Nov 2026).
+// Every page states that classes are online and does not claim a local branch.
+export const RESTORED_LOCATION_PATHS = LOCATIONS.flatMap((country) => [
+  ...(INDEXED_MARKETS.includes(country.slug) ? [] : [country.slug]),
+  ...country.cities.map((city) => `${country.slug}/${city.slug}`),
+]).sort();
+const RESTORED_SET = new Set(RESTORED_LOCATION_PATHS);
+export const isRestoredLocation = (country, city) => RESTORED_SET.has(`${country.slug}${city ? `/${city.slug}` : ""}`);
+export const isLiveLocation = (country, city) => (!city && INDEXED_MARKETS.includes(country.slug)) || isRestoredLocation(country, city);
+export const APPROVED_CITY_PAGES = [];
+export const isApprovedCityPage = (country, city) => Boolean(city) && APPROVED_CITY_PAGES.includes(`${country.slug}/${city.slug}`);
+export const locationIndexRecord = (page, country, city) => ({
+  ...(page || {}),
+  // The published CMS decision is authoritative. Without an explicit approval,
+  // city and non-hub country pages default to noindex; the five market hubs default
+  // to indexable. This same record is used by page metadata and sitemap generation.
+  seo_noindex: page?.seo_noindex ?? defaultLocationNoindex(country, city),
+});
+
+// Internal links between live location pages so none depends on a single inbound link: the parent country,
+// the live cities of the same country, and the next three pages in the sorted restored list (a ring, so
+// every restored page receives at least three extra links). Hubs link to their live cities only.
+export function relatedLocationLinks(country, city) {
+  const self = `${country.slug}${city ? `/${city.slug}` : ""}`;
+  const toLink = (path) => {
+    const [cs, ci] = path.split("/");
+    const c = getLocation(cs), ct = ci ? c?.cities.find((x) => x.slug === ci) : null;
+    return c && (!ci || ct) ? { name: ct ? `${ct.name}, ${c.name}` : c.name, path: locationPath(c, ct) } : null;
+  };
+  const live = (c, ct) => isLiveLocation(c, ct);
+  const paths = [];
+  if (city && live(country, null)) paths.push(country.slug);
+  paths.push(...RESTORED_LOCATION_PATHS.filter((p) => p.startsWith(`${country.slug}/`) && p !== self));
+  if (isRestoredLocation(country, city)) {
+    const i = RESTORED_LOCATION_PATHS.indexOf(self);
+    for (let k = 1; k <= 3; k++) paths.push(RESTORED_LOCATION_PATHS[(i + k) % RESTORED_LOCATION_PATHS.length]);
+  }
+  const seen = new Set([self]);
+  return paths.filter((p) => !seen.has(p) && seen.add(p)).map(toLink).filter(Boolean).slice(0, 8);
+}

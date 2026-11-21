@@ -1,0 +1,186 @@
+name: OQC quality checks
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: oqc-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-and-lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
+      - name: Run automated tests
+        run: npm test
+      - name: Run ESLint
+        run: npm run lint
+      - name: Build production application
+        run: npm run build
+
+  production-smoke:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: test-and-lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Wait for the current Australia hub content to reach production
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://www.onlinequrancollege.com"
+          ready=0
+          for attempt in $(seq 1 60); do
+            home_status=$(curl -sS -o /tmp/oqc-home.html -w '%{http_code}' "$base/")
+            australia_status=$(curl -sS -o /tmp/oqc-australia.html -w '%{http_code}' "$base/locations/australia")
+            if [ "$home_status" = "200" ] && [ "$australia_status" = "200" ] \
+              && grep -Fq "Arrange online Quran classes from Perth" /tmp/oqc-australia.html \
+              && grep -Fq "city=Perth" /tmp/oqc-australia.html; then
+              ready=1
+              break
+            fi
+            sleep 10
+          done
+          test "$ready" = "1" || { echo "Production did not serve the Perth-specific Australia hub content after the main deployment"; exit 1; }
+      - name: Smoke-test public routes
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://www.onlinequrancollege.com"
+          for path in /reviews /free-trial /locations/united-kingdom /locations/united-states /locations/canada /locations/australia /locations/united-arab-emirates /robots.txt /sitemap.xml; do
+            status=$(curl -sS --retry 6 --retry-delay 10 -o /tmp/oqc-response -w '%{http_code}' "$base$path")
+            test "$status" = "200" || { echo "$path returned $status"; exit 1; }
+          done
+      - name: Verify legacy pricing slash and course market links
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://www.onlinequrancollege.com"
+          pricing_redirect=$(curl -sS -o /dev/null -w '%{http_code} %{redirect_url}' "$base/pricing/")
+          echo "/pricing/ -> $pricing_redirect"
+          test "$pricing_redirect" = "308 $base/pricing"
+          curl -fsS "$base/pricing" -o /tmp/oqc-pricing.html
+          grep -Fq "rel=\"canonical\" href=\"$base/pricing\"" /tmp/oqc-pricing.html
+          curl -fsS "$base/courses/noorani-qaida" -o /tmp/oqc-course.html
+          grep -Fq 'href="/locations/united-arab-emirates"' /tmp/oqc-course.html
+
+      - name: Verify review short links redirect to the canonical page
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://www.onlinequrancollege.com"
+          for path in /review /copoloit; do
+            result=$(curl -sS -o /dev/null -w '%{http_code} %{redirect_url}' "$base$path")
+            echo "$path -> $result"
+            case "$result" in
+              "308 $base/reviews"|"307 $base/reviews") ;;
+              *) echo "Unexpected redirect for $path"; exit 1 ;;
+            esac
+          done
+
+  # Opens the live public pages at 320–1440px and fails if any page scrolls
+  # sideways; also checks the country-hub hreflang cluster and city-page indexing.
+  # On a pull request it audits current production; on main it runs after deploy.
+  responsive-audit:
+    if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    # A PR is audited against current production, so a fix in the PR only shows
+    # after deploy: report on PRs, enforce on main.
+    continue-on-error: ${{ github.event_name == 'pull_request' }}
+    needs: [test-and-lint]
+    runs-on: ubuntu-latest
+    timeout-minutes: 45 # 252 sequential page loads; Hostinger's WAF answers 403 to parallel loads (17 Nov 2026)
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Wait for the production deployment of this commit
+        if: github.event_name == 'push'
+        run: sleep 120
+      - name: Responsive audit of the live site
+        env:
+          RESPONSIVE_SHOTS_DIR: responsive-shots
+        run: npm run audit:responsive
+      - name: Upload 390px screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: responsive-screenshots
+          path: responsive-shots
+          if-no-files-found: ignore
+          retention-days: 14
+
+# Lab performance (Lighthouse), the read-only SEO crawl and the duplicate-host
+  # noindex header, measured against live production from a GitHub runner
+  # (register E-02, E-16, E-31). Report-only: it never fails the PR or main.
+  live-performance-audit:
+    if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    continue-on-error: true
+    needs: [test-and-lint]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Wait for the production deployment of this commit
+        if: github.event_name == 'push'
+        run: sleep 120
+      - name: Duplicate-host noindex header (E-02)
+        shell: bash
+        run: |
+          set -uo pipefail
+          for host in https://appcom-online-quran-college.vercel.app https://www.onlinequrancollege.com; do
+            echo "== $host"
+            curl -sSI "$host/" | grep -i -E '^HTTP|^x-robots-tag' || true
+          done
+      - name: Lighthouse lab audit of key pages (E-31)
+        env:
+          OQC_QA_OUTPUT: artifacts/performance
+          OQC_PERF_PATHS: /,/pricing,/free-trial,/locations/united-kingdom,/locations/united-states
+        run: npm run audit:performance -- https://www.onlinequrancollege.com
+      - name: Read-only SEO crawl of the sitemap (E-16)
+        env:
+          OQC_KEYWORD_COVERAGE_REPORT_ONLY: ${{ github.event_name == 'pull_request' && '1' || '0' }}
+        run: npm run seo:agent -- https://www.onlinequrancollege.com artifacts/seo-agent/ci
+      - name: Upload audit reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-performance-and-seo-audit
+          path: artifacts
+          if-no-files-found: ignore
+          retention-days: 30

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { use, useEffect, useState } from "react";
+import { use, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { CalendarClock, CheckCircle2, Clock, GraduationCap, Loader2, Mail, MessageCircle, Phone, Save, Send, Trash2 } from "lucide-react";
@@ -9,7 +9,10 @@ import { useAccess } from "@/lib/admin/access";
 import { db, fromLocalInput, notifyError, toLocalInput, useLoad } from "@/lib/admin/db";
 import { AGE_BANDS, CURRENCIES, LEVELS, TEACHER_PREFS, TIME_SLOTS, TRIAL_STATUSES, TRIAL_TRANSITIONS, labelFor } from "@/lib/constants";
 import { formatDateTime, toMinor, whatsappLink } from "@/lib/format";
+import { internationalPhone, trialReplyText } from "@/lib/phone";
 import { Badge, Card, ConfirmButton, ErrorState, Field, Loading, PageHeader, StatusBadge, When } from "@/components/admin/ui";
+import { CrmDetail, useCrmStatus } from "@/components/admin/crm-status";
+import { ShiftBadge } from "@/components/admin/lead-shift";
 
 const SELECT = "*, courses(id, title), teachers(id, display_name), profiles(id, full_name), students!trial_applications_student_id_fkey(student_code, full_name)";
 const ACTION_LABEL = { reviewed: "Mark reviewed", completed: "Trial done", no_show: "No-show", cancelled: "Cancel request", reviewed_again: "Re-open" };
@@ -52,6 +55,20 @@ function ScheduleCard({ trial, onDone, canEdit }) {
   };
   return (
     <Card title={["new", "reviewed"].includes(trial.status) ? "Schedule the trial class" : "Trial class"}>
+      {canEdit && trial.status === "reviewed" && (
+        <div className="mb-4 space-y-2 rounded-xl border border-line p-3 text-sm text-ink-soft">
+          <p>Confirm the family’s plan and teacher preference before sharing this three-day booking calendar. The Weekend plan is excluded.</p>
+          <a
+            href="https://api.leadconnectorhq.com/widget/booking/bze6bj5nt4ttPJikEp7f"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-outline"
+          >
+            Open GHL trial calendar (new tab)
+          </a>
+          <p>Once the family books, record the agreed time below so it appears in this portal.</p>
+        </div>
+      )}
       {!open ? (
         <div className="space-y-1 text-sm text-ink-soft">
           <p>{trial.trial_at ? formatDateTime(trial.trial_at) : "No trial time recorded."}</p>
@@ -99,11 +116,13 @@ function EnrolCard({ trial, onDone }) {
   const [fee, setFee] = useState("");
   const [start, setStart] = useState(new Date().toLocaleDateString("en-CA"));
   const [busy, setBusy] = useState(false);
-  useEffect(() => {
-    const plan = (plans.data || []).find((p) => p.id === planId);
-    const price = plan?.pricing_plan_prices?.find((p) => p.currency === currency);
-    if (price) setFee(String(price.amount_minor / 100));
-  }, [planId, currency, plans.data]);
+  const plan = plans.data?.find((item) => item.id === planId);
+  const price = plan?.pricing_plan_prices?.find((item) => item.currency === currency);
+  const [previousPrice, setPreviousPrice] = useState(price);
+  if (previousPrice !== price) {
+    setPreviousPrice(price);
+    setFee(price ? String(price.amount_minor / 100) : "");
+  }
   const enrol = async () => {
     if (!courseId) return toast.error("Choose the course.");
     setBusy(true);
@@ -237,17 +256,25 @@ export default function TrialPage({ params }) {
   const router = useRouter();
   const { can, access } = useAccess();
   const trial = useLoad(() => db().from("trial_applications").select(SELECT).eq("id", id).maybeSingle(), [id]);
+  const crm = useCrmStatus(trial.data?.reference ? [trial.data.reference] : []);
   const staff = useLoad(() => db().from("profiles").select("id, full_name, role").eq("is_active", true).order("full_name"), []);
   const [outcome, setOutcome] = useState("");
   const [busy, setBusy] = useState("");
-  useEffect(() => setOutcome(trial.data?.outcome_note || ""), [trial.data?.outcome_note]);
+  const savedOutcome = trial.data?.outcome_note || "";
+  const [previousOutcome, setPreviousOutcome] = useState(savedOutcome);
+  if (previousOutcome !== savedOutcome) {
+    setPreviousOutcome(savedOutcome);
+    setOutcome(savedOutcome);
+  }
 
   if (trial.loading && !trial.data) return <Loading rows={8} />;
   if (trial.error) return <ErrorState error={trial.error} onRetry={trial.reload} />;
   const t = trial.data;
   if (!t || t.deleted_at) return <PageHeader title="Request not found" back={{ href: "/admin/trials", label: "Free trials" }} />;
   const canEdit = can("trials:update");
-  const wa = whatsappLink(t.phone, `Assalamu alaikum${t.guardian_name ? ` ${t.guardian_name}` : ""}, this is Online Quran College about the free trial for ${t.learner_name} (${t.reference}).`);
+  // Local numbers ("0757…") get the calling code of the family's country, or wa.me opens the wrong chat.
+  const intl = internationalPhone(t.phone, t.country);
+  const wa = intl ? whatsappLink(intl.digits, trialReplyText(t)) : null;
   const transitions = (TRIAL_TRANSITIONS[t.status] || []).filter((s) => !["scheduled", "enrolled"].includes(s));
 
   const update = async (patch, label) => {
@@ -280,6 +307,7 @@ export default function TrialPage({ params }) {
           <span>
             Requested <When value={t.created_at} />
           </span>
+          <ShiftBadge shift={t.lead_shift} date={t.shift_date} />
           {t.duplicate_of_id && (
             <Link href={`/admin/trials/${t.duplicate_of_id}`}>
               <Badge tone="amber">Possible repeat — see earlier request</Badge>
@@ -300,6 +328,11 @@ export default function TrialPage({ params }) {
               </Row>
               <Row label="Phone">
                 {t.phone} {t.phone_is_whatsapp && <Badge tone="green">WhatsApp</Badge>}
+                {intl?.added && (
+                  <span className="mt-1 block text-xs text-amber-700">
+                    Typed without a country code. Replies use +{intl.digits} (+{intl.code} for {t.country}) — check the number before sending.
+                  </span>
+                )}
               </Row>
               <Row label="Location">{[t.city, t.country].filter(Boolean).join(", ")}</Row>
               <Row label="Family’s time now">
@@ -307,12 +340,12 @@ export default function TrialPage({ params }) {
               </Row>
             </dl>
             <div className="mt-4 flex flex-wrap gap-2">
-              {wa && (
+              {t.phone_is_whatsapp && wa && (
                 <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-sm">
                   <MessageCircle className="size-4" /> WhatsApp
                 </a>
               )}
-              <a href={`tel:${t.phone}`} className="btn btn-outline btn-sm">
+              <a href={`tel:${intl ? `+${intl.digits}` : t.phone}`} className="btn btn-outline btn-sm">
                 <Phone className="size-4" /> Call
               </a>
               <a href={`mailto:${t.email}?subject=${encodeURIComponent(`Your free trial at Online Quran College (${t.reference})`)}`} className="btn btn-outline btn-sm">
@@ -335,6 +368,9 @@ export default function TrialPage({ params }) {
               <Row label="Source">
                 {t.source}
                 {t.utm && Object.keys(t.utm).length > 0 && <span className="text-ink-faint"> · {Object.entries(t.utm).map(([k, v]) => `${k}=${v}`).join(" ")}</span>}
+              </Row>
+              <Row label="GHL CRM">
+                <CrmDetail status={crm[t.reference]} />
               </Row>
               <Row label="Consent">
                 Given {formatDateTime(t.consent_at)} {t.marketing_opt_in && <Badge tone="blue">Happy to receive news</Badge>}

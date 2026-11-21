@@ -3,12 +3,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-// Pages that already lead with the trial form or a contact route.
 const HIDDEN_ON = ["/free-trial", "/contact"];
 
-// Phones only: once the visitor scrolls past the first screen, keep the trial
-// and WhatsApp actions within reach. Space on the right is left for the chat button.
-export function MobileActionBar({ whatsappHref, chatEnabled }) {
+export function MobileActionBar({ chatEnabled }) {
   const pathname = usePathname();
   const [shown, setShown] = useState(false);
   useEffect(() => {
@@ -27,7 +24,6 @@ export function MobileActionBar({ whatsappHref, chatEnabled }) {
       >
         <div className="flex gap-2">
           <Link href="/free-trial" className="btn btn-primary min-h-11 flex-1 justify-center px-3 text-[0.95rem]">Book free trial</Link>
-          {whatsappHref && <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="btn btn-outline min-h-11 flex-1 justify-center px-3 text-[0.95rem]">WhatsApp us</a>}
         </div>
       </div>
     </>

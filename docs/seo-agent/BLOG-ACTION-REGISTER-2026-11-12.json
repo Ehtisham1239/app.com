@@ -1,0 +1,273 @@
+{
+  "reviewed": "2026-11-12",
+  "site": "https://www.onlinequrancollege.com",
+  "source_reviewed": "54c658a1b4495b0c06c3dce42216f41e08b6da62",
+  "prior_register": "docs/seo-agent/BLOG-ACTION-REGISTER-2026-11-10.json",
+  "published_articles": 36,
+  "unchanged_prior_articles": 34,
+  "new_articles": 1,
+  "updated_articles": 1,
+  "sitemap_blog_urls": 36,
+  "articles": [
+    {
+      "slug": "online-quran-lessons-usa-time-zones",
+      "url": "https://www.onlinequrancollege.com/blog/online-quran-lessons-usa-time-zones",
+      "final_url": "https://www.onlinequrancollege.com/blog/online-quran-lessons-usa-time-zones",
+      "status": 200,
+      "title": [
+        "Online Quran Lessons in the USA: Time Zones & Tips \u00b7 OQC"
+      ],
+      "description": "Plan online Quran lessons in the USA: give your city, date and local time, check the March 14 clock change, and get the course and USD quote in writing.",
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/online-quran-lessons-usa-time-zones"
+      ],
+      "robots": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "h1": [
+        "Planning online Quran lessons across US time zones"
+      ],
+      "body_words": 653,
+      "body_matches_cms": true,
+      "body_sha256": "5af8c66664e70dbfc0d93bf94f69734b0b99a5ed62c2daaba6db52c8540bb339",
+      "contextual_links": [
+        "/locations/united-states",
+        "/blog/family-quran-learning-multiple-children",
+        "/courses/noorani-qaida",
+        "/courses/quran-nazara",
+        "/pricing",
+        "/blog/online-quran-class-fees-usa-comparison",
+        "/free-trial?country=United%20States&currency=USD"
+      ],
+      "toc_valid": true,
+      "cover": {
+        "src": "/images/learning/oqc-learning-united-states-v3-1200.webp",
+        "alt": "A mother in an ivory hijab and her young daughter, both attentive to a female teacher on a laptop in a calm home study with Quran learning materials",
+        "width": "1200",
+        "height": "800",
+        "srcset": "/images/learning/oqc-learning-united-states-v3-400.webp 400w, /images/learning/oqc-learning-united-states-v3-800.webp 800w, /images/learning/oqc-learning-united-states-v3-1200.webp 1200w",
+        "sizes": "(max-width: 1024px) 100vw, 600px",
+        "loading": "eager",
+        "fetchpriority": "high",
+        "decoding": "async",
+        "class": "aspect-[3/2] w-full object-cover"
+      },
+      "article_schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://www.onlinequrancollege.com/blog/online-quran-lessons-usa-time-zones#article",
+        "headline": "Planning online Quran lessons across US time zones",
+        "description": "Plan online Quran lessons in the USA: give your city, date and local time, check the March 14 clock change, and get the course and USD quote in writing.",
+        "inLanguage": "en-GB",
+        "articleSection": "USA & Australia",
+        "keywords": "USA & Australia, online Quran classes USA, Quran lesson time zones",
+        "datePublished": "2026-11-11T03:58:22.847Z",
+        "dateModified": "2026-11-11T03:58:22.847Z",
+        "image": "https://www.onlinequrancollege.com/images/learning/oqc-learning-united-states-v3-1200.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "Online Quran College",
+          "url": "https://www.onlinequrancollege.com/about"
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.onlinequrancollege.com/#organization",
+          "name": "Online Quran College",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.onlinequrancollege.com/brand/logo.webp"
+          }
+        },
+        "wordCount": 669,
+        "mainEntityOfPage": "https://www.onlinequrancollege.com/blog/online-quran-lessons-usa-time-zones",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://www.onlinequrancollege.com/blog#blog",
+          "url": "https://www.onlinequrancollege.com/blog",
+          "name": "Quran learning articles"
+        }
+      },
+      "schema_errors": [],
+      "issues": [],
+      "expected_title": "Online Quran Lessons in the USA: Time Zones & Tips \u00b7 OQC",
+      "title_matches_formatter": true,
+      "inclusive_words": 701
+    },
+    {
+      "slug": "quran-lessons-australia-time-zones",
+      "url": "https://www.onlinequrancollege.com/blog/quran-lessons-australia-time-zones",
+      "final_url": "https://www.onlinequrancollege.com/blog/quran-lessons-australia-time-zones",
+      "status": 200,
+      "title": [
+        "Australian Quran Lesson Time Zones \u00b7 Online Quran College"
+      ],
+      "description": "Use an actual city, date and local time when arranging Australian online lessons. Understand why one national time label can be misleading.",
+      "canonical": [
+        "https://www.onlinequrancollege.com/blog/quran-lessons-australia-time-zones"
+      ],
+      "robots": "index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
+      "h1": [
+        "Planning Quran lessons across Australian time zones"
+      ],
+      "body_words": 505,
+      "body_matches_cms": true,
+      "body_sha256": "e525525047bcabd9b2d09b81d3c67b378bebfe735a331c6a7b02500d73529f55",
+      "contextual_links": [
+        "/locations/australia",
+        "/learn/quran-for-kids",
+        "/learn/quran-for-adults",
+        "/locations/australia",
+        "/locations/australia/sydney",
+        "/locations/australia/melbourne",
+        "/locations/australia/brisbane",
+        "/locations/australia/adelaide",
+        "/locations/australia/perth"
+      ],
+      "toc_valid": true,
+      "cover": {
+        "src": "/images/learning/blog-australia-schedule-r2-1200.webp",
+        "alt": "Sunlit study desk with a clock, weekly planner and laptop for scheduling online lessons",
+        "width": "1200",
+        "height": "800",
+        "srcset": "/images/learning/blog-australia-schedule-r2-400.webp 400w, /images/learning/blog-australia-schedule-r2-800.webp 800w, /images/learning/blog-australia-schedule-r2-1200.webp 1200w",
+        "sizes": "(max-width: 1024px) 100vw, 600px",
+        "loading": "eager",
+        "fetchpriority": "high",
+        "decoding": "async",
+        "class": "aspect-[3/2] w-full object-cover"
+      },
+      "article_schema": {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "https://www.onlinequrancollege.com/blog/quran-lessons-australia-time-zones#article",
+        "headline": "Planning Quran lessons across Australian time zones",
+        "description": "Use an actual city, date and local time when arranging Australian online lessons. Understand why one national time label can be misleading.",
+        "inLanguage": "en-GB",
+        "articleSection": "USA & Australia",
+        "keywords": "USA & Australia, online Quran classes Australia, Quran lesson time zones",
+        "datePublished": "2026-10-22T10:51:29.770Z",
+        "dateModified": "2026-11-11T04:32:44.422Z",
+        "image": "https://www.onlinequrancollege.com/images/learning/blog-australia-schedule-r2-1200.webp",
+        "author": {
+          "@type": "Organization",
+          "name": "Online Quran College",
+          "url": "https://www.onlinequrancollege.com/about"
+        },
+        "publisher": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.onlinequrancollege.com/#organization",
+          "name": "Online Quran College",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.onlinequrancollege.com/brand/logo.webp"
+          }
+        },
+        "wordCount": 521,
+        "mainEntityOfPage": "https://www.onlinequrancollege.com/blog/quran-lessons-australia-time-zones",
+        "isPartOf": {
+          "@type": "Blog",
+          "@id": "https://www.onlinequrancollege.com/blog#blog",
+          "url": "https://www.onlinequrancollege.com/blog",
+          "name": "Quran learning articles"
+        }
+      },
+      "schema_errors": [],
+      "issues": [],
+      "expected_title": "Australian Quran Lesson Time Zones \u00b7 Online Quran College",
+      "title_matches_formatter": true,
+      "inclusive_words": 550
+    }
+  ],
+  "contextual_link_checks": [
+    {
+      "url": "https://www.onlinequrancollege.com/blog/family-quran-learning-multiple-children",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/blog/online-quran-class-fees-usa-comparison",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/courses/noorani-qaida",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/courses/quran-nazara",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/free-trial?country=United%20States&currency=USD",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/learn/quran-for-adults",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/learn/quran-for-kids",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/australia",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/australia/adelaide",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/australia/brisbane",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/australia/melbourne",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/australia/perth",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/australia/sydney",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/locations/united-states",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    },
+    {
+      "url": "https://www.onlinequrancollege.com/pricing",
+      "status": 200,
+      "fragment_valid": null,
+      "ok": true
+    }
+  ],
+  "mobile": "Blocked before navigation by Chromium startup socket denial",
+  "evidence": "docs/seo-agent/evidence/2026-11-12/verification.json"
+}

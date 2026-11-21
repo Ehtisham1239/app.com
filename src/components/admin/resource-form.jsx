@@ -14,6 +14,7 @@ import { CONTENT_STATUSES, CURRENCIES } from "@/lib/constants";
 import { fromMinor, slugify, toMinor, validPriceAmount } from "@/lib/format";
 import { ContentIcon } from "@/components/icon";
 import { RichText } from "@/components/admin/rich-text";
+import { PageVideoField } from "@/components/admin/page-video-field";
 import { ImageField } from "@/components/admin/media";
 import { Card, ConfirmButton, ErrorState, Field, Loading, PageHeader, StatusBadge, TagInput, Toggle, When } from "@/components/admin/ui";
 
@@ -31,7 +32,7 @@ function RelationSelect({ id, table, labelField, value, onChange }) {
   );
 }
 
-function Input({ id, field, value, onChange, form, setSlugTouched, canPublish, userId }) {
+function Input({ id, field, value, onChange, form, setSlugTouched, canPublish, userId, canUpload }) {
   switch (field.type) {
     case "slug":
       return (
@@ -99,6 +100,8 @@ function Input({ id, field, value, onChange, form, setSlugTouched, canPublish, u
       return <TagInput id={id} value={value} onChange={onChange} />;
     case "datetime":
       return <input id={id} type="datetime-local" className="adm-input" value={toLocalInput(value)} onChange={(e) => onChange(fromLocalInput(e.target.value))} />;
+    case "page-video":
+      return <PageVideoField value={value} onChange={onChange} userId={userId} canUpload={canUpload} />;
     case "image":
       return <ImageField id={id} value={value} onChange={onChange} userId={userId} />;
     case "status":
@@ -130,9 +133,11 @@ export function ResourceForm({ rkey, id }) {
   const [dirty, setDirty] = useState(false);
   const record = useLoad(() => (isNew ? { data: null } : db().from(cfg.table).select("*").eq("id", id).maybeSingle()), [rkey, id]);
 
-  useEffect(() => {
-    if (!isNew && record.data) setForm(record.data);
-  }, [isNew, record.data]);
+  const [previousRecord, setPreviousRecord] = useState(record.data);
+  if (previousRecord !== record.data) {
+    setPreviousRecord(record.data);
+    if (!isNew) setForm(record.data);
+  }
   useEffect(() => {
     const warn = (e) => {
       if (dirty) {
@@ -190,7 +195,8 @@ export function ResourceForm({ rkey, id }) {
     const payload = {};
     for (const f of cfg.fields) {
       if (form[f.name] === undefined) continue;
-      payload[f.name] = form[f.name] === "" && f.type !== "text" ? null : form[f.name];
+      const preserveEmpty = f.type === "text" || f.preserveEmpty;
+      payload[f.name] = form[f.name] === "" && !preserveEmpty ? null : form[f.name];
     }
     if (cfg.statusField) payload.scheduled_at = form.status === "scheduled" ? form.scheduled_at : null;
     if (cfg.defaults.locale) payload.locale = form.locale || cfg.defaults.locale;
@@ -235,7 +241,7 @@ export function ResourceForm({ rkey, id }) {
   const viewUrl = !isNew && cfg.publicPath && (!cfg.statusField || form.status === "published") ? cfg.publicPath(form) : null;
   const field = (f) => (
     <Field key={f.name} label={f.label} hint={f.hint} required={f.required} className={clsx(f.half ? "sm:col-span-1" : "sm:col-span-2")}>
-      <Input field={f} value={form[f.name]} onChange={(v) => set(f.name, v)} form={form} setSlugTouched={setSlugTouched} canPublish={canPublish} userId={access?.id} />
+      <Input field={f} value={form[f.name]} onChange={(v) => set(f.name, v)} form={form} setSlugTouched={setSlugTouched} canPublish={canPublish} userId={access?.id} canUpload={can("media:create")} />
     </Field>
   );
   const statusField = cfg.fields.find((f) => f.type === "status");
@@ -336,7 +342,11 @@ function ChildRows({ title, rows, render, onAdd, canEdit, addLabel, empty }) {
 function ModulesEditor({ courseId, canEdit }) {
   const mods = useLoad(() => db().from("course_modules").select("*").eq("course_id", courseId).order("sort_order"), [courseId]);
   const [rows, setRows] = useState([]);
-  useEffect(() => setRows(mods.data || []), [mods.data]);
+  const [previousModules, setPreviousModules] = useState(mods.data);
+  if (previousModules !== mods.data) {
+    setPreviousModules(mods.data);
+    setRows(mods.data || []);
+  }
   const update = (i, k, v) => setRows((r) => r.map((x, j) => (j === i ? { ...x, [k]: v, _dirty: true } : x)));
   const saveRow = async (row) => {
     const payload = { course_id: courseId, title: row.title, objectives: row.objectives || "", topics: row.topics || [], sort_order: Number(row.sort_order) || 0 };
@@ -393,7 +403,11 @@ function ModulesEditor({ courseId, canEdit }) {
 function PricesEditor({ planId, canEdit }) {
   const prices = useLoad(() => db().from("pricing_plan_prices").select("*").eq("plan_id", planId).order("currency"), [planId]);
   const [rows, setRows] = useState([]);
-  useEffect(() => setRows((prices.data || []).map((p) => ({ ...p, amount: fromMinor(p.amount_minor) }))), [prices.data]);
+  const [previousPrices, setPreviousPrices] = useState(prices.data);
+  if (previousPrices !== prices.data) {
+    setPreviousPrices(prices.data);
+    setRows((prices.data || []).map((p) => ({ ...p, amount: fromMinor(p.amount_minor) })));
+  }
   const update = (i, k, v) => setRows((r) => r.map((x, j) => (j === i ? { ...x, [k]: v, _dirty: true } : x)));
   const saveRow = async (row) => {
     if (!validPriceAmount(row.amount, row.currency)) return toast.error("Enter a valid non-negative amount with the currency’s supported decimal places.");
