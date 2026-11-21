@@ -139,6 +139,23 @@ Focus: podcasts and parent publishers (search pattern "Quran education podcast U
 
 Learning from batch 4: established Muslim magazines with an editorial desk score higher than directories or podcasts; the next batch should screen UK and Canada equivalents (community magazines and mosque newsletters with named editors).
 
+### Gate scores, batch 5 (21 Nov 2026, scheduled run; web search plus pages opened, nothing submitted)
+
+Focus: UK and Canada Muslim magazines, community publications and homeschool writers, as batch 4 recommended. Same scoring. None reached 75, so nothing joins the queue.
+
+| Prospect | Evidence from the live page | Score | Decision |
+|---|---|---:|---|
+| Amaliah contribute (amaliah.com/contribute) | UK-based media for Muslim women; pitches through one form, reviewed by "a member of our editorial team" (no editor named); Quran-reflection and parenting-adjacent pieces but no Quran-education or homeschool section; "We offer a contribution fee for every new piece published"; wants researched pieces; no dated articles visible | 66 | Below gate: audience is women's lifestyle, not families choosing Quran lessons; re-check if an education/parenting section appears |
+| Riwaya write for us (riwaya.co.uk/write-for-us) | UK Islamic shop blog; price list: guest post £100, sponsored post £250 with backlinks, "Link Insertion £50" | 0 (rejected) | Reject: paid links |
+| British Muslim Magazine (britishmuslim-magazine.com) | UK travel and lifestyle magazine; Editor-in-Chief Natasha Syed named on the author archive; travel, dining and business content; no Quran or homeschool content and no contributor route seen on the page opened | 53 | Below gate: low service relevance |
+| Asma Ahmad, "Homeschool choices 2024/2025" (asmaahmad.substack.com) | Personal Substack of a Canadian Muslim homeschool parent; covers Qur'an routine and Arabic tutoring; no contribution route; the author sells her own consultations and praises a competing Arabic provider | 50 | Below gate: personal blog, no editorial route |
+| Healthy Muslim Families Youth Magazine 2026 (healthymuslimfamilies.ca PDF) | Winnipeg youth magazine; named editor and supervisor; contributions limited to the organisation's youth programme; personal essays, not education | 30 | Not a fit: closed contributor list |
+| Productive Muslim write for us (archive.productivemuslim.com/write-for-us/) | Global faith-and-productivity site; content@ contact and editing for accuracy; family and Ramadan productivity sections; verses from quran.com, hadith from sunnah.com; "we may add … ads about our other services in relevant articles"; page sits on an "archive." subdomain and no dates are visible | 53 | Below gate: activity unconfirmed and inserted ads; re-check the live main site |
+| Voice of Unity Magazine (ius.org.uk) | 272-character stub; "volunteer editorial team of youth and young professionals"; no names, dates or submission route | 25 | Not a fit: no route, activity unknown |
+| Islamic Horizons (ISNA, US/Canada) | Search found only issuu issues (latest seen May/June 2024); no submission guidelines found | — | Hold: a person should check ISNA's current contributor route before scoring |
+
+Learning from batch 5: UK and Canada Muslim lifestyle magazines either pay for content, sell links or have no education section. Open searches have stopped finding new 75+ prospects; the December batch should start from named mosque newsletters and homeschool co-ops supplied by the owner's team, as batch 3 already advised.
+
 Next batch (batch 2 note): follow the search patterns below with UK/Canada parent newsletters and homeschool co-ops, which the plan names for December; generic Muslim business directories have now mostly been screened.
 
 ## Linkable assets
