@@ -4,6 +4,7 @@ import { publicDb } from "@/lib/supabase/public";
 import { permitsMutation } from "@/lib/request-origin";
 import { readBoundedText } from "@/lib/site-health-fetch";
 import { SITE_URL } from "@/lib/config";
+import { sendAutoReply } from "@/lib/lead-auto-reply";
 import { buildContactEmail, buildLeadEmail, buildReviewEmail, notificationConfig, notificationConfigIssues, sendLeadEmail } from "@/lib/usa-lead-notification";
 
 export const dynamic = "force-dynamic";
@@ -90,5 +91,10 @@ export async function POST(request) {
     return reply({ ok: false, error: "email_failed" }, 502);
   }
   log("info", sent.alreadySent ? "already_sent" : sent.pending ? "send_in_progress" : "sent", lead.reference);
+  // Automatic acknowledgement to the person who submitted (trial and contact only); best effort.
+  if (!isReview) {
+    const auto = await sendAutoReply({ config, lead, siteUrl: SITE_URL });
+    if (!auto.ok) log("error", `auto_reply_${auto.reason}`, lead.reference);
+  }
   return reply({ ok: true });
 }

@@ -61,8 +61,8 @@ export function notificationConfigIssues(env = process.env) {
   return readNotificationEnv(env).issues;
 }
 
-const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
-const oneLine = (value, max = 200) => String(value ?? "").replace(/[\u0000-\u001f\u007f]+/g, " ").replace(/\s{2,}/g, " ").trim().slice(0, max);
+export const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+export const oneLine = (value, max = 200) => String(value ?? "").replace(/[\u0000-\u001f\u007f]+/g, " ").replace(/\s{2,}/g, " ").trim().slice(0, max);
 
 const AGE_BAND = { child_4_7: "Child (4–7)", child_8_12: "Child (8–12)", teen_13_17: "Teen (13–17)", adult: "Adult (18+)" };
 const TEACHER = { female: "Female teacher", male: "Male teacher", any: "No preference" };
@@ -124,7 +124,7 @@ export function buildLeadEmail(lead, { siteUrl = "https://www.onlinequrancollege
     "",
     `Open in Admin → Trials: ${adminUrl}`,
     "",
-    "Internal notification. Nothing was sent to the parent.",
+    "Internal notification. The parent receives a separate automatic acknowledgement email.",
   ].join("\n");
   const cell = "padding:6px 10px;border-bottom:1px solid #e3ead8;vertical-align:top;text-align:left;";
   const html = `<!doctype html><html lang="en"><body style="margin:0;padding:16px;background:#f6f8f3;font-family:Arial,Helvetica,sans-serif;color:#1d2a1f;">
@@ -135,7 +135,7 @@ ${rows.map(([label, value]) => `<tr><th scope="row" style="${cell}width:34%;colo
 </table>
 <div style="padding:12px 18px;font-size:14px;"><p style="margin:0 0 6px;color:#4a5a4c;">Details from the form</p><ul style="margin:0;padding-left:18px;">${details.map((line) => `<li style="margin:3px 0;">${escapeHtml(line)}</li>`).join("")}</ul></div>
 <div style="padding:4px 18px 18px;"><a href="${escapeHtml(adminUrl)}" style="display:inline-block;background:#0C6C0C;color:#ffffff;text-decoration:none;padding:10px 16px;border-radius:999px;font-weight:bold;">Open in Admin → Trials</a></div>
-<div style="padding:10px 18px;background:#fbf6e8;color:#6b5a2a;font-size:12px;">Internal notification from onlinequrancollege.com. Nothing was sent to the parent.</div>
+<div style="padding:10px 18px;background:#fbf6e8;color:#6b5a2a;font-size:12px;">Internal notification from onlinequrancollege.com. The parent receives a separate automatic acknowledgement email.</div>
 </div></body></html>`;
   return { subject, html, text };
 }
@@ -172,7 +172,7 @@ export function buildContactEmail(lead, { siteUrl = "https://www.onlinequrancoll
     "",
     `Open in Admin → Contacts: ${adminUrl}`,
     "",
-    "Internal notification only. No email was sent to the person who submitted the form.",
+    "Internal notification only. The person who submitted the form receives a separate automatic acknowledgement email.",
   ].join("\n");
   const cell = "padding:7px 10px;border-bottom:1px solid #e3ead8;vertical-align:top;text-align:left;";
   const html = `<!doctype html><html lang="en"><body style="margin:0;padding:16px;background:#f6f8f3;font-family:Arial,Helvetica,sans-serif;color:#1d2a1f;">
@@ -183,7 +183,7 @@ ${rows.map(([label, value]) => `<tr><th scope="row" style="${cell}width:34%;colo
 </table>
 <div style="padding:14px 18px;font-size:14px;"><p style="margin:0 0 6px;color:#4a5a4c;">Message</p><p style="margin:0;white-space:pre-wrap;">${escapeHtml(message)}</p></div>
 <div style="padding:4px 18px 18px;"><a href="${escapeHtml(adminUrl)}" style="display:inline-block;background:#0C6C0C;color:#ffffff;text-decoration:none;padding:10px 16px;border-radius:999px;font-weight:bold;">Open in Admin → Contacts</a></div>
-<div style="padding:10px 18px;background:#fbf6e8;color:#6b5a2a;font-size:12px;">Internal notification from onlinequrancollege.com. Nothing was sent to the parent or learner.</div>
+<div style="padding:10px 18px;background:#fbf6e8;color:#6b5a2a;font-size:12px;">Internal notification from onlinequrancollege.com. The sender receives a separate automatic acknowledgement email.</div>
 </div></body></html>`;
   return { subject, html, text };
 }
@@ -243,13 +243,13 @@ export function idempotencyKey(reference, config) {
   return `oqc-usa-lead/${reference}/${route}`;
 }
 
-export async function sendLeadEmail({ config, message, reference, source = "usa_landing_page", fetchImpl = fetch, timeoutMs = 10000 }) {
+export async function sendLeadEmail({ config, message, reference, source = "usa_landing_page", fetchImpl = fetch, timeoutMs = 10000, to = config.to, key = idempotencyKey(reference, config), extra = {} }) {
   let response;
   try {
     response = await fetchImpl(RESEND_ENDPOINT, {
       method: "POST",
-      headers: { Authorization: `Bearer ${config.apiKey}`, "Content-Type": "application/json", "Idempotency-Key": idempotencyKey(reference, config) },
-      body: JSON.stringify({ from: config.from, to: config.to, subject: message.subject, html: message.html, text: message.text, tags: [{ name: "source", value: source }] }),
+      headers: { Authorization: `Bearer ${config.apiKey}`, "Content-Type": "application/json", "Idempotency-Key": key },
+      body: JSON.stringify({ from: config.from, to, subject: message.subject, html: message.html, text: message.text, tags: [{ name: "source", value: source }], ...extra }),
       signal: AbortSignal.timeout(timeoutMs),
     });
   } catch (error) {
