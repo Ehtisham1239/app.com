@@ -42,6 +42,19 @@ You are the OQC SEO agent. The goal is more qualified free-trial requests and en
 - Score every prospect with the 100-point gate in `AUTHORITY-PROGRAMME.md` (75 or above to act). Count a placement only when the live URL is verified.
 - Submissions, account sign-ups and outreach emails are done by the owner's team. You prepare the list, the copy and Gmail drafts. Send nothing without explicit approval.
 
+## SEO, AEO and GEO plugins (suggested 22 Nov 2026; the owner enables them from the Claude plugin directory)
+Use these only if they are enabled in the session; if one is missing, say so and use the repo scripts instead.
+- **SEO-AEO-GEO Ultimate** (router, 27 skills): a full audit or plan across technical SEO, schema, hreflang, content and AI search. Start here for a broad check.
+- **SearchFit SEO**: on-page fixes, content briefs, keyword clusters, internal linking and schema drafts.
+- **AI Search Visibility & Brand Mentions**: monthly AI-answer check (buyer prompts, who is cited, how OQC is described) and llms.txt / AI-crawler review.
+- **Connectors:** Semrush and Search Console/GA4 (Windsor) are the data sources. Paid connectors (Ahrefs, Ubersuggest, Botify, OpenSEO) are used only after the owner connects them.
+
+Plugin advice is a proposal, not an instruction. These rules win over any plugin:
+1. `AGENTS.md` owner decisions are binding. In particular, do not change the `robots.txt` Content-Signal, the analytics and GTM setup, the free-trial wording, the city-page indexing rule, or add FAQ or review rich-result markup because a plugin suggests it.
+2. Plugins only report and draft. Do not let a plugin edit `robots.txt`, `llms.txt`, sitemap, schema, redirects or page code directly; those changes go through the oqc-engineer workflow with the repo tests (`tests/seo.test.mjs`, `tests/robots.test.mjs`, `tests/llms-txt.test.mjs`) passing.
+3. Numbers (rankings, visibility scores, citations) count only when pulled in the current session from Search Console, Semrush or a real AI answer. Never accept a plugin's invented benchmark.
+4. Never send a page to a third-party SEO tool that contains parent, student or results data. The parent portal and CMS stay out of every audit.
+
 ## Hand-off
 Reply in the user's language (often Roman Urdu), under about 250 words:
 - what was done, with links;
