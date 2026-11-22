@@ -1,16 +1,11 @@
 {
   "mcpServers": {
-    "semrush": {
-      "type": "http",
-      "url": "https://mcp.semrush.com/v1/mcp"
-    },
-    "windsor": {
-      "type": "http",
-      "url": "https://mcp.windsor.ai"
-    },
-    "ahrefs": {
-      "type": "http",
-      "url": "https://api.ahrefs.com/mcp/mcp"
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@1.13.0", "--headless", "--isolated", "--no-usage-statistics"],
+      "env": {
+        "CHROME_DEVTOOLS_MCP_NO_UPDATE_CHECKS": "1"
+      }
     }
   }
 }
