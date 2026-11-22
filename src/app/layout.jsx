@@ -127,15 +127,22 @@ export default function RootLayout({ children }) {
               t.src="https://www.clarity.ms/tag/"+i;
               l.head.appendChild(t);
             }
-            function scheduleTag() {
+            // Owner decision (22 Nov 2026): Clarity starts on the visitor's first
+            // interaction, not during load. It cost ~155 ms of main-thread time in
+            // the desktop PageSpeed run; GA4/GTM loading is unchanged.
+            var started=false;
+            var events=["pointerdown","keydown","touchstart","scroll"];
+            function start() {
+              if (started) return;
+              started=true;
+              for (var n=0;n<events.length;n++) l.removeEventListener(events[n],start,true);
               if (typeof c.requestIdleCallback==="function") {
-                c.requestIdleCallback(loadTag,{timeout:2500});
+                c.requestIdleCallback(loadTag,{timeout:1000});
               } else {
-                c.setTimeout(loadTag,1000);
+                c.setTimeout(loadTag,0);
               }
             }
-            if (l.readyState==="complete") scheduleTag();
-            else c.addEventListener("load",scheduleTag,{once:true});
+            for (var n=0;n<events.length;n++) l.addEventListener(events[n],start,{capture:true,passive:true});
           })(window,document,"clarity","script","zdo7gxbgkn");
         ` }} />
       </head>
