@@ -1,6 +1,6 @@
 import { cardTone, courseVisual } from "@/lib/card-presentation";
 import { ContentImage } from "@/components/site/content-image";
-import Link from "next/link";
+import { NavigationLink as Link } from "@/components/site/navigation-link";
 import { clsx } from "clsx";
 import { ArrowRight, MessageCircle, Plus, Quote, Star } from "@/components/site/icons";
 import { teacherInitial } from "@/components/site/teacher-initial";

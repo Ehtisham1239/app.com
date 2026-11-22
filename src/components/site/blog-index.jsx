@@ -3,7 +3,7 @@ import { cardTone } from "@/lib/card-presentation";
 import { contentMetadata } from "@/lib/seo-metadata";
 import { ContentImage } from "@/components/site/content-image";
 import { notFound } from "next/navigation";
-import Link from "next/link";
+import { NavigationLink as Link } from "@/components/site/navigation-link";
 import { ArrowRight, Clock3 } from "@/components/site/icons";
 import { PageHero } from "@/components/site/chrome";
 import { getPostPage } from "@/lib/site-data";

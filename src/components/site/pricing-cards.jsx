@@ -1,6 +1,6 @@
 import { cardTone } from "@/lib/card-presentation";
 import { isTrialEligible } from "@/lib/trial-eligibility";
-import Link from "next/link";
+import { NavigationLink as Link } from "@/components/site/navigation-link";
 import { clsx } from "clsx";
 import { Check } from "@/components/site/icons";
 import { formatMoney } from "@/lib/format";

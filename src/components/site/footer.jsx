@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { NavigationLink as Link } from "@/components/site/navigation-link";
 import { ArrowUpRight, Mail, MessageCircle, Phone } from "@/components/site/icons";
 import { whatsappLink } from "@/lib/format";
 
