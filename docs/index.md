@@ -34,6 +34,7 @@ repository. The rules are in [`CLAUDE.md`](CLAUDE.md).
 
 ## operations
 
+- [[mcp-servers]] -- project MCP servers (Semrush, Windsor, Ahrefs) for the SEO agent
 - [[meta-description-audit]] -- Bing title/description length audit and where each kind of description is fixed
 
 ## history

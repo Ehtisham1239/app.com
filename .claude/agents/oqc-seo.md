@@ -47,7 +47,7 @@ Use these only if they are enabled in the session; if one is missing, say so and
 - **SEO-AEO-GEO Ultimate** (router, 27 skills): a full audit or plan across technical SEO, schema, hreflang, content and AI search. Start here for a broad check.
 - **SearchFit SEO**: on-page fixes, content briefs, keyword clusters, internal linking and schema drafts.
 - **AI Search Visibility & Brand Mentions**: monthly AI-answer check (buyer prompts, who is cited, how OQC is described) and llms.txt / AI-crawler review.
-- **Connectors:** Semrush and Search Console/GA4 (Windsor) are the data sources. Paid connectors (Ahrefs, Ubersuggest, Botify, OpenSEO) are used only after the owner connects them.
+- **MCP servers for Claude Code:** `.mcp.json` registers Semrush, Windsor.ai (Search Console and GA4) and Ahrefs (AI search and Brand Radar). Each needs a one-time approval and sign-in; see `docs/operations/mcp-servers.md`. Ahrefs needs a paid plan. Ubersuggest, Botify, OpenSEO and OpenRush are used only after the owner connects them.
 
 Plugin advice is a proposal, not an instruction. These rules win over any plugin:
 1. `AGENTS.md` owner decisions are binding. In particular, do not change the `robots.txt` Content-Signal, the analytics and GTM setup, the free-trial wording, the city-page indexing rule, or add FAQ or review rich-result markup because a plugin suggests it.

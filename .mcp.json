@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "semrush": {
+      "type": "http",
+      "url": "https://mcp.semrush.com/v1/mcp"
+    },
+    "windsor": {
+      "type": "http",
+      "url": "https://mcp.windsor.ai"
+    },
+    "ahrefs": {
+      "type": "http",
+      "url": "https://api.ahrefs.com/mcp/mcp"
+    }
+  }
+}
