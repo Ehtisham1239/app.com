@@ -31,3 +31,13 @@ test("the privacy policy discloses Microsoft Clarity and its cookieless denied-c
   assert.match(section, /Microsoft’s own servers \(clarity\.ms and bing\.com\) may still place their cookies/);
   assert.match(section, /not loaded on staff, parent-portal, sign-in or API pages/);
 });
+
+test("Clarity loads only after the visitor's first interaction (owner decision, 22 Nov 2026)", () => {
+  const start = layout.indexOf('id="oqc-clarity"');
+  const block = layout.slice(start, layout.indexOf("</head>", start));
+  for (const type of ["pointerdown", "keydown", "touchstart", "scroll"]) {
+    assert.ok(block.includes(`"${type}"`), `${type} must start Clarity`);
+  }
+  assert.ok(!block.includes('addEventListener("load"'), "Clarity must not start from the page load event");
+  assert.ok(!/setTimeout\(loadTag,\s*[1-9]/.test(block), "no timed fallback that starts Clarity without interaction");
+});
