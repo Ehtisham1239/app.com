@@ -9,7 +9,7 @@ sources:
   - ext: https://developer.semrush.com/api/basics/semrush-mcp/
   - ext: https://docs.ahrefs.com/mcp/docs/claude-code
   - ext: https://windsor.ai/documentation/windsor-mcp/how-to-connect-windsor-mcp-to-any-ai-client/
-verified_at: ed14a43
+verified_at: 41fbab7
 ---
 
 # MCP servers for Claude Code
