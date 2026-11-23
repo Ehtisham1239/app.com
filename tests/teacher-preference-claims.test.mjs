@@ -39,7 +39,7 @@ test("teacher preference is presented as a request with availability confirmatio
 
 
 test("homepage trial CTA confirms availability instead of promising a teacher or start date", () => {
-  assert.match(homePage, /Request a 3-day free trial\. Admissions will discuss your course and teacher preferences, confirm availability and agree a suitable time/i);
+  assert.match(homePage, /Register for a 3-day free trial\. Admissions will discuss your course and teacher preferences, confirm availability and agree a suitable time/i);
   assert.doesNotMatch(homePage, /journey this week|We will match you with a teacher/i);
 });
 
