@@ -41,11 +41,14 @@ export default async function TeachersPage() {
       <PageHero immersive path="/teachers" eyebrow="Teachers" title={SEARCH_INTENTS["/teachers"].heading} intro={SEARCH_INTENTS["/teachers"].intro} />
       <section className="page-wrap py-16 sm:py-20">
         {teachers.length > 0 ? (
+          <>
+          <h2 className="sr-only">Our teachers</h2>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {teachers.map((t) => (
               <TeacherCard key={t.id} teacher={t} />
             ))}
           </div>
+          </>
         ) : (
           <div className="grid gap-5 md:grid-cols-2">
             {STANDARDS.map(({ icon: Icon, title, text }) => (
