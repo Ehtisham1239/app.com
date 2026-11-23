@@ -29,7 +29,7 @@ export const DEFAULT_SETTINGS = {
     title: "Live one-to-one online Quran classes for children and adults",
     subtitle:
       "Personal Quran lessons for children and adults, including Noorani Qaida, Tajweed, Hifz and Arabic. Discuss teacher availability and class times with our admissions team.",
-    primary_label: "Request a 3-day free trial",
+    primary_label: "Register for free",
     secondary_label: "Explore courses",
     badges: ["3-day free trial on eligible plans", "No card needed on eligible plans", "Teacher preference discussed", "Class times confirmed with admissions"],
   },

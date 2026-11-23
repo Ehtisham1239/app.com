@@ -11,7 +11,7 @@ const HERO_AVIF = "/brand/hero-320.avif 320w, /brand/hero.avif 440w";
 const DEFAULT_HERO = {
   eyebrow: "Live 1-on-1 online Quran classes", title: "Empowering minds with online Quranic education",
   subtitle: "Live Quran lessons for children and adults. Choose your course and a time that suits your family.",
-  primary_label: "Book a free trial", secondary_label: "Explore courses", badges: [],
+  primary_label: "Register for free", secondary_label: "Explore courses", badges: [],
 };
 export function HomeHero({ hero, stats }) {
   preload("/brand/hero.avif", {
