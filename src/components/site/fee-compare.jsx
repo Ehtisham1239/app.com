@@ -105,7 +105,7 @@ export function FeeCompare({ plans, fx = null, defaultCurrency = "USD", explicit
               {learners > 1 && discountEnabled && !planEligible && <p className="mt-1 text-xs text-ink-soft">This discount is not configured for the selected plan.</p>}
             </div>
             <Link href={`/free-trial?${new URLSearchParams({ plan: selectedRow.plan.id, currency })}`} className="btn btn-primary mt-5 w-full">
-              {isTrialEligible(selectedRow.plan) ? "Book a free trial for this plan" : "Ask about this plan"}
+              {isTrialEligible(selectedRow.plan) ? "Register for free" : "Ask about this plan"}
             </Link>
             <p className="mt-3 text-xs text-ink-soft">An estimate, not a quote. Confirm the plan, currency and total with the coordinator before enrolling.</p>
           </div>

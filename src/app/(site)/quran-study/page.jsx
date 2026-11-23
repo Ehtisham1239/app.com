@@ -122,7 +122,7 @@ export default function QuranStudyPage() {
         <h2 className="mt-4 text-3xl text-mushaf-900">Want a teacher-guided practice plan?</h2>
         <p className="mx-auto mt-4 max-w-2xl text-ink-soft">Tell our admissions team whether you are beginning Quran reading, improving Tajweed, memorising or revising. The team can discuss suitable course options and teacher availability.</p>
         <div className="mt-7 flex flex-wrap justify-center gap-3">
-          <Link href="/free-trial" className="btn btn-primary">Request a free trial <ArrowRight className="size-4" aria-hidden="true" /></Link>
+          <Link href="/free-trial" className="btn btn-primary">Register for free <ArrowRight className="size-4" aria-hidden="true" /></Link>
           <Link href="/learn" className="btn btn-outline">Browse learning guides</Link>
         </div>
       </section>

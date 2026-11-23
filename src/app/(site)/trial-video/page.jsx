@@ -27,7 +27,7 @@ export default function TrialVideoPage() {
             <li>Tell Admissions your time zone and preferred course.</li>
             <li>Agree a lesson time with Admissions. No card is needed. The Weekend plan is excluded.</li>
           </ol>
-          <Link className="btn btn-primary" href="/free-trial#trial-form">Request my free trial</Link>
+          <Link className="btn btn-primary" href="/free-trial#trial-form">Register for free</Link>
         </div>
       </section>
     </>

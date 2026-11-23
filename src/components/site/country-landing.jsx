@@ -19,7 +19,7 @@ export function CountryLanding({ hub, fee, teachers = [], trialHref, trustpilotP
           <p className="mt-3 max-w-3xl leading-relaxed text-ink">{fee.answer}</p>
           <div className="mt-5 flex flex-wrap gap-3">
             <Link className="btn btn-primary" href={`/pricing?currency=${hub.currency || "USD"}`}>See all packages</Link>
-            <Link className="btn btn-outline" href={trialHref}>Book a free trial</Link>
+            <Link className="btn btn-outline" href={trialHref}>Register for free</Link>
           </div>
         </section>
       )}

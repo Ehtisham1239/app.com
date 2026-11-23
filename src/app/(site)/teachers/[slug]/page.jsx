@@ -86,7 +86,7 @@ export default async function TeacherPage({ params }) {
             </h2>
             <p className="mt-2 text-[0.93rem] text-ink-soft">Request this teacher in your free-trial booking notes.</p>
             <Link href="/free-trial" className="btn btn-primary mt-4 w-full">
-              Book a free trial <ArrowRight className="size-4" aria-hidden="true" />
+              Register for free <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
             <Link href="/trial-video" className="mt-3 block text-center text-sm text-leaf-700 underline">Watch the 15-second trial guide</Link>
           </div>

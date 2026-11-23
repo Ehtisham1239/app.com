@@ -47,7 +47,7 @@ function Block({ section, data }) {
               {d.text && <p className="mt-5 max-w-xl text-[1.08rem] leading-relaxed text-white/75">{d.text}</p>}
               <div className="mt-8">
                 <Link href={d.button_href || "/free-trial"} className="btn btn-gold btn-lg">
-                  {d.button_label || "Book a free trial"} <ArrowRight className="size-5" aria-hidden="true" />
+                  {d.button_label || "Register for free"} <ArrowRight className="size-5" aria-hidden="true" />
                 </Link>
               </div>
             </div>
@@ -187,7 +187,7 @@ function Block({ section, data }) {
           text={d.text}
           whatsappHref={data.whatsappHref}
           primaryHref={d.button_href || "/free-trial"}
-          primaryLabel={d.button_label || "Book a free trial"}
+          primaryLabel={d.button_label || "Register for free"}
         />
       );
 
