@@ -226,7 +226,7 @@ export function Testimonials({ items }) {
             {t.avatar_url ? (
               <ContentImage src={t.avatar_url} alt="" sizes="44px" className="size-11 rounded-full object-cover" />
             ) : (
-              <span className="flex size-11 items-center justify-center rounded-full bg-mushaf-900 font-display text-gold-300">{initials(t.name)}</span>
+              <span aria-hidden="true" className="flex size-11 items-center justify-center rounded-full bg-mushaf-900 font-display text-gold-300">{initials(t.name)}</span>
             )}
             <span>
               <span className="block font-semibold text-mushaf-900">{t.name}</span>
