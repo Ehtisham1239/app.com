@@ -80,7 +80,7 @@ export function CoursesGrid({ courses, swipe = false }) {
 // ---------------------------------------------------------------------------
 // Call to action band
 // ---------------------------------------------------------------------------
-export function CtaBand({ title, text, whatsappHref, primaryHref = "/free-trial", primaryLabel = "Book a free trial" }) {
+export function CtaBand({ title, text, whatsappHref, primaryHref = "/free-trial", primaryLabel = "Register for free" }) {
   return (
     <section className="page-wrap py-16 sm:py-20">
       <div className="public-cta relative overflow-hidden rounded-[2rem] border border-leaf-200 px-7 py-14 text-mushaf-900 sm:px-14 sm:py-16">

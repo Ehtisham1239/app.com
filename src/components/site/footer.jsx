@@ -48,7 +48,7 @@ export function SiteFooter({ settings, menus }) {
         </figure>
         <div className="footer-invitation flex flex-wrap items-center justify-between gap-5 rounded-3xl border border-leaf-200 bg-white/80 p-6 sm:p-8">
           <div><h2 className="max-w-xl text-2xl text-mushaf-900 sm:text-3xl">Find a Quran class that fits your schedule</h2><p className="mt-3 max-w-xl text-sm text-ink-soft">Tell us what you’d like to learn and when you’re available.</p></div>
-          <Link href="/free-trial" className="btn btn-gold">Arrange a free trial <ArrowUpRight className="size-4" aria-hidden="true" /></Link>
+          <Link href="/free-trial" className="btn btn-gold">Register for free <ArrowUpRight className="size-4" aria-hidden="true" /></Link>
         </div>
       </div>
       <div className="page-wrap relative grid gap-10 py-10 sm:py-14 lg:grid-cols-12 lg:gap-14">

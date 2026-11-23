@@ -78,7 +78,7 @@ export function PricingCards({ plans, compact = false, currency, fx }) {
               <div className="flex-1" />
             )}
             <Link href={`/free-trial?${new URLSearchParams({ plan: p.id, ...(currency ? { currency } : {}) })}`} className={clsx("btn mt-6 w-full", featured ? "btn-gold" : "btn-primary")}>
-              {isTrialEligible(p) ? "Start with a free trial" : "Enquire about this plan"}
+              {isTrialEligible(p) ? "Register for free" : "Enquire about this plan"}
             </Link>
           </div>
         );

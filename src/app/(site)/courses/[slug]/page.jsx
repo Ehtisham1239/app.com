@@ -55,7 +55,7 @@ export default async function CoursePage({ params }) {
       {jsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />}
       <PageHero path={`/courses/${course.slug}`} eyebrow="Live one-to-one course" title={courseHeading(course)} intro={truncate(course.summary || "", 180)} arabic={course.arabic_title} visual={course.cover_url ? <ContentImage src={course.cover_url} alt={course.cover_alt} priority sizes="(max-width: 1024px) 100vw, 600px" className="aspect-[3/2] w-full object-cover" /> : undefined}>
         <nav aria-label="Breadcrumb" className="mt-5 text-sm text-ink-soft"><Link href="/courses" className="underline">Courses</Link> / <span aria-current="page">{course.title}</span></nav>
-        <div className="mt-6 flex flex-wrap gap-3"><Link href={`/free-trial?course=${course.id}`} className="btn btn-gold">Book a free trial <ArrowRight className="size-5" aria-hidden="true" /></Link>{wa && <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-outline-light"><MessageCircle className="size-5" aria-hidden="true" /> Ask a question</a>}</div>
+        <div className="mt-6 flex flex-wrap gap-3"><Link href={`/free-trial?course=${course.id}`} className="btn btn-gold">Register for free <ArrowRight className="size-5" aria-hidden="true" /></Link>{wa && <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-outline-light"><MessageCircle className="size-5" aria-hidden="true" /> Ask a question</a>}</div>
       </PageHero>
 
       <div className="page-wrap grid gap-12 py-16 lg:grid-cols-[1fr_20rem]">
@@ -157,7 +157,7 @@ export default async function CoursePage({ params }) {
             </dl>
             <div className="space-y-2 p-6 pt-2">
               <Link href={`/free-trial?course=${course.id}`} className="btn btn-primary w-full">
-                Start with a free trial
+                Register for free
               </Link>
               <Link href="/pricing" className="btn btn-ghost w-full">
                 Compare packages
