@@ -51,12 +51,13 @@ try {
         await page.goto(base + '/free-trial', { waitUntil: 'load' });
         const reject = page.getByRole('button', { name: 'Reject analytics', exact: true });
         if (await reject.count()) await reject.click();
-        await page.getByRole('button', { name: 'Book my free trial', exact: true }).click();
+        await page.getByRole('button', { name: 'Request my free trial', exact: true }).click();
         await page.locator('#q-learner_name-error').waitFor();
-        assert.equal(await page.locator('#q-learner_name').evaluate(input => document.activeElement === input), true);
+        assert.equal(await page.locator('#q-age-0').evaluate(input => document.activeElement === input), true);
         await page.locator('#q-learner_name').fill('Local QA Learner');
         await page.getByRole('button', { name: 'Adult (18+)', exact: true }).click();
         await page.locator('#q-country').selectOption('United States');
+        await page.locator('details.trial-option > summary').click();
         await page.locator('#q-zone').selectOption('America/Los_Angeles');
         await page.locator('#q-email').fill('local-qa@example.invalid');
         await page.locator('#q-phone').fill('+12025550123');
