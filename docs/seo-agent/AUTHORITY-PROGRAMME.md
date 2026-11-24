@@ -156,6 +156,22 @@ Focus: UK and Canada Muslim magazines, community publications and homeschool wri
 
 Learning from batch 5: UK and Canada Muslim lifestyle magazines either pay for content, sell links or have no education section. Open searches have stopped finding new 75+ prospects; the December batch should start from named mosque newsletters and homeschool co-ops supplied by the owner's team, as batch 3 already advised.
 
+### Gate scores, batch 6 (23 Nov 2026, scheduled run; web search plus pages opened, nothing submitted)
+
+Focus: established Muslim publications with editorial desks in the USA, UK, Canada and Australia that batches 1–5 had not screened. Same scoring. None reached 75, so nothing joins the queue.
+
+| Prospect | Evidence from the live page | Score | Decision |
+|---|---|---:|---|
+| Sound Vision (soundvision.com, Chicago) | US nonprofit for Muslim families "particularly in the West"; Muslim Home parenting newsletter still publishing (an issue dated 18 Nov 2026 linked from the homepage); bylined writers, no named editor; Quran-based and Islamic-education content, including its own children's programme; no contributor or resource-submission route seen; the newsletter promotes its own paid ticketed sessions | 72 | Below gate: strong audience fit but no placement route. A person could ask through its contact page whether Muslim Home features outside parent resources such as the practice planner (owner sends, no link request) |
+| Traversing Tradition content guide (traversingtradition.com/content-guide/) | Muslim readers, no market stated; "an editorial team that reviews each submission"; 1,000–3,000-word essays with MLA citations; no payment or paid links mentioned; theology, society and book reviews, no Quran-education, homeschool or parenting section; page modified 19 Jan 2026 | 57 | Below gate: low service relevance; essays exceed OQC's 1,000-word rule |
+| Muslim Link (muslimlink.ca, Ottawa) | Canadian community site; newest pages seen date from 2015 (sponsorships, an "exchange of services") and about 2021 (arts interview); no editor named; no education section | 30 | Not a fit: activity not confirmed in 2025–26 |
+| The Muslim News, letters (muslimnews.co.uk) | UK; only an old letters page opened (about 2015–16, Muslim school results); no editor named on the page; no contributor terms seen | — | Hold: a person should check the current site and editor before scoring |
+| AMUST, Australasian Muslim Times (Australia) | Named managing editors in 2016 (SBS) and 2020 (Medianet profile); newest issues found on issuu are from 2023; no contributor route found; the Medianet page is a paid press-release platform's marketing | — | Hold: confirm the publication is active and has a contributor route before scoring; do not use paid press-release distribution |
+| Islamic Horizons (ISNA, US/Canada) | Still only issuu issues (latest seen May/June 2024); no contributor guidelines found (same as batch 5) | — | Hold, unchanged |
+| Hyphen (hyphenonline.com, UK) | British Muslim news and lifestyle site; Press Gazette, 21 Oct 2026: the parent "will cease funding the website from 2027" and staff face redundancy | 0 (rejected) | Reject: closing |
+
+Learning from batch 6: the active US family publisher (Sound Vision) has no placement route, and the Canadian and Australian community papers show no current activity online. The pattern from batches 3–5 holds: new 75+ prospects now need names supplied by the owner's team (mosque newsletters, homeschool co-ops, teachers' own community contacts) rather than open web search.
+
 Next batch (batch 2 note): follow the search patterns below with UK/Canada parent newsletters and homeschool co-ops, which the plan names for December; generic Muslim business directories have now mostly been screened.
 
 ## Linkable assets
