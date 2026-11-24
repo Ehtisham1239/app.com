@@ -77,3 +77,8 @@ test("chatbot facts list academic subjects without promising a trial", () => {
   assert.match(full, /never promise it for an academic subject/);
   assert.match(read("src/app/llms.txt/route.js"), /\/academic-subjects/);
 });
+
+test("hub share image is the neutral academic hero, not the default Quran lesson art", () => {
+  const page = read("src/app/(site)/academic-subjects/page.jsx");
+  assert.match(page, /cover_url: ACADEMIC_HERO\.src, cover_alt: ACADEMIC_HERO\.alt/);
+});
