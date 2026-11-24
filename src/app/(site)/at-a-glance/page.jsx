@@ -33,7 +33,7 @@ export default async function Page() {
         <h2 id="trial-h" className="text-3xl">Free trial and packages</h2>
         <p className="mt-4 max-w-3xl text-ink-soft">A 3-day free trial is available, with no card needed; the Weekend plan is excluded. A coordinator confirms the lesson time, teacher and the fee and payment currency before enrolment.{f.familyDiscount ? ` Each additional child from the same family receives ${f.familyDiscount}% off the monthly fee.` : ""}</p>
         <ul className="mt-6 grid gap-5 md:grid-cols-3">{f.plans.map(p => <li key={p.name} className={card}><h3 className="text-xl">{p.name}</h3>{p.tagline && <p className="text-sm text-ink-soft">{p.tagline}</p>}<ul className="mt-3 space-y-1 text-sm text-ink-soft">{p.features.map(x => <li key={x}>✓ {x}</li>)}</ul></li>)}</ul>
-        <p className="mt-6 flex flex-wrap gap-3"><Link className="btn-primary" href="/free-trial" prefetch={false}>Book a free trial</Link><Link className={chip} href="/pricing" prefetch={false}>See fees</Link></p>
+        <p className="mt-6 flex flex-wrap gap-3"><Link className="btn-primary" href="/free-trial" prefetch={false}>Register for free</Link><Link className={chip} href="/pricing" prefetch={false}>See fees</Link></p>
       </section>
       {f.teachers.length > 0 && <section id="teachers" aria-labelledby="teachers-h" className="scroll-mt-28 py-10">
         <h2 id="teachers-h" className="text-3xl">Teachers</h2>

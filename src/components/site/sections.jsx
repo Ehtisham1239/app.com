@@ -80,7 +80,7 @@ export function CoursesGrid({ courses, swipe = false }) {
 // ---------------------------------------------------------------------------
 // Call to action band
 // ---------------------------------------------------------------------------
-export function CtaBand({ title, text, whatsappHref, primaryHref = "/free-trial", primaryLabel = "Book a free trial" }) {
+export function CtaBand({ title, text, whatsappHref, primaryHref = "/free-trial", primaryLabel = "Register for free" }) {
   return (
     <section className="page-wrap py-16 sm:py-20">
       <div className="public-cta relative overflow-hidden rounded-[2rem] border border-leaf-200 px-7 py-14 text-mushaf-900 sm:px-14 sm:py-16">
@@ -226,7 +226,7 @@ export function Testimonials({ items }) {
             {t.avatar_url ? (
               <ContentImage src={t.avatar_url} alt="" sizes="44px" className="size-11 rounded-full object-cover" />
             ) : (
-              <span className="flex size-11 items-center justify-center rounded-full bg-mushaf-900 font-display text-gold-300">{initials(t.name)}</span>
+              <span aria-hidden="true" className="flex size-11 items-center justify-center rounded-full bg-mushaf-900 font-display text-gold-300">{initials(t.name)}</span>
             )}
             <span>
               <span className="block font-semibold text-mushaf-900">{t.name}</span>

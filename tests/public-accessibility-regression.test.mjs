@@ -13,6 +13,11 @@ test("testimonial ratings expose a screen-reader label without aria-label on a p
   assert.doesNotMatch(sections, /<p[^>]*aria-label=/);
 });
 
+test("testimonial initial avatar is hidden from assistive tech so names are not read as 'RRida'", () => {
+  const sections = read("src/components/site/sections.jsx");
+  assert.match(sections, /<span aria-hidden="true" className="flex size-11[^"]*">\{initials\(t\.name\)\}<\/span>/);
+});
+
 test("USA phone links use their visible text as accessible names", () => {
   const locationPage = read("src/components/site/location-page.jsx");
   assert.doesNotMatch(locationPage, /href="tel:\+17869645678" aria-label=/);

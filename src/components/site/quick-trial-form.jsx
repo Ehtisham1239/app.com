@@ -204,7 +204,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
     <form ref={topRef} onSubmit={submit} noValidate aria-busy={state.sending} aria-label={eligible ? "Book a free trial" : "Package enquiry"} className="surface trial-card @container min-w-0 scroll-mt-28 space-y-5 bg-white p-5 shadow-[var(--shadow-lift)] sm:space-y-6 sm:p-8">
       <div className="absolute -left-[9999px]" aria-hidden="true"><label>Website<input tabIndex={-1} autoComplete="off" value={form.website} onChange={(e) => set("website", e.target.value)} /></label></div>
       <div className="border-b border-line pb-5">
-        <h2 className="text-2xl leading-tight text-mushaf-900">{eligible ? "Request a 3-day free trial" : `Ask about ${selectedPlan.name}`}</h2>
+        <h2 className="text-2xl leading-tight text-mushaf-900">{eligible ? "Register for a 3-day free trial" : `Ask about ${selectedPlan.name}`}</h2>
         <p className="mt-2 max-w-md text-sm leading-relaxed text-ink-soft">
           {eligible ? "Tell us who’ll be learning and how to reach you. A coordinator will be in touch to find a time that suits you. No payment card needed." : "A coordinator will be in touch to discuss lesson times and fees. The Weekend plan is excluded from the free trial."}
         </p>

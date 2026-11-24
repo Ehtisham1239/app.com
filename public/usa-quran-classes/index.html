@@ -475,7 +475,7 @@ html:not(.ty-confirmed):not(.ty-generic) [data-ty="confirmed"] { display: none; 
 
 /* Tracking log (preview / ?lp_debug=1) */
 .lp-log { position: fixed; right: 12px; bottom: 84px; z-index: 60; width: min(380px, calc(100vw - 24px)); max-height: 46vh; overflow: auto; background: var(--mushaf-950); color: #e6eefb; border-radius: 14px; padding: 12px; font: 12px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; box-shadow: 0 10px 30px rgba(0, 0, 0, .3); }
-.lp-log h4 { margin: 0 0 6px; font: 600 12px/1.3 var(--font-body); color: var(--gold-100); }
+.lp-log .lp-log-title { margin: 0 0 6px; font: 600 12px/1.3 var(--font-body); color: var(--gold-100); }
 .lp-log ol { margin: 0; padding-left: 18px; }
 .lp-log li { margin-bottom: 6px; word-break: break-word; }
 @media (min-width: 980px) { .lp-log { bottom: 12px; } }
@@ -1080,7 +1080,7 @@ window.OQC_LP_CONFIG = {
   <a class="btn btn-outline" href="#trial" data-cta="trial" data-cta-location="sticky">Free trial</a>
 </div>
 
-<aside class="lp-log" hidden data-log aria-label="Tracking log"><h4>dataLayer events (this page view)</h4><ol></ol></aside>
+<aside class="lp-log" hidden data-log aria-label="Tracking log"><p class="lp-log-title">dataLayer events (this page view)</p><ol></ol></aside>
 
 
 
