@@ -11,7 +11,7 @@ sources:
   - code: src/app/sitemap.js
   - code: src/lib/admin/resources.js
   - code: tests/academic-subjects.test.mjs
-verified_at: 46d7ce8
+verified_at: 9a91b18
 ---
 
 # Academic subjects
