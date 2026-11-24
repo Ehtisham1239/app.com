@@ -26,7 +26,7 @@ repository. The rules are in [`CLAUDE.md`](CLAUDE.md).
 
 ## decisions
 
-<!-- TODO: pages under Why it was decided that way (ADRs, known defects). `- [[page-name]] -- one line` -->
+- [[ai-admissions-audit-and-plan]] -- audit of the chatbot, courses and booking, and the phased plan for an AI admissions assistant
 
 ## reference
 
@@ -34,6 +34,7 @@ repository. The rules are in [`CLAUDE.md`](CLAUDE.md).
 
 ## operations
 
+- [[mcp-servers]] -- free project MCP server (Chrome DevTools) for the SEO agent, and why paid ones are left out
 - [[meta-description-audit]] -- Bing title/description length audit and where each kind of description is fixed
 
 ## history
