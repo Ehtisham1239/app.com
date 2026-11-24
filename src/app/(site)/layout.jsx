@@ -11,7 +11,7 @@ import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
 import { AyahBand } from "@/components/site/ayah-band";
 import { TopBar } from "@/components/site/chrome";
-import { getCourses, getMenus, getSettings } from "@/lib/site-data";
+import { getMenus, getQuranCourses, getSettings } from "@/lib/site-data";
 import { WebsiteAnalytics } from "@/components/site/analytics";
 import { analyticsConfig, cookielessAnalyticsConfig } from "@/lib/analytics";
 import { MetaPixel } from "@/components/site/meta-pixel";
@@ -35,7 +35,7 @@ export async function generateMetadata() {
 }
 
 export default async function SiteLayout({ children }) {
-  const [settings, menus, courses] = await Promise.all([getSettings(), getMenus(), getCourses()]);
+  const [settings, menus, courses] = await Promise.all([getSettings(), getMenus(), getQuranCourses()]);
   const chat = settings["site.chat"] ?? {};
   const chatEnabled = Boolean(chat.enabled && /^[A-Za-z0-9_-]{10,200}$/.test(chat.widget_key || ""));
   const analytics = cookielessAnalyticsConfig(analyticsConfig(settings["site.analytics"]));

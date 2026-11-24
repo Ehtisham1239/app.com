@@ -16,7 +16,7 @@ import { breadcrumbSchema, safeJsonLd, faqSchema, locationServiceSchema } from "
 import { SITE_URL } from "@/lib/config";
 import { PageHero } from "@/components/site/chrome";
 import { FaqList } from "@/components/site/sections";
-import { getCourses, getPage, getPlans, getSettings, getTeachers, getTestimonials } from "@/lib/site-data";
+import { getQuranCourses, getPage, getPlans, getSettings, getTeachers, getTestimonials } from "@/lib/site-data";
 import { locationPath, locationCmsSlug, locationBreadcrumbs, locationLocale, locationSearchIntro, isCityState, locationHeading, countryInName } from "@/lib/locations";
 import { locationImage } from "@/lib/location-image";
 import { cleanHtml } from "@/lib/sanitize";
@@ -33,7 +33,7 @@ export async function LocationPage({ country, city }) {
   const image = locationImage(country, city);
   // Country landing sections on the five indexed hubs; city pages keep the standard layout.
   const hub = !city ? COUNTRY_HUBS[country.slug] || null : null;
-  const [courses, plans, cms, fx, teachers, settings, testimonials] = await Promise.all([getCourses(), getPlans(), getPage(locationCmsSlug(country, city)), getUsdRates(), hub ? getTeachers() : [], hub ? getSettings() : {}, hub ? getTestimonials() : []]);
+  const [courses, plans, cms, fx, teachers, settings, testimonials] = await Promise.all([getQuranCourses(), getPlans(), getPage(locationCmsSlug(country, city)), getUsdRates(), hub ? getTeachers() : [], hub ? getSettings() : {}, hub ? getTestimonials() : []]);
   const query = new URLSearchParams({ country: country.name, currency: country.currency, ...(city ? { city: city.name } : {}) });
   const breadcrumbs = locationBreadcrumbs(country, city);
   const places = schedulingLocations(country, city);

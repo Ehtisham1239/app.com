@@ -7,7 +7,7 @@ import { PageHero } from "@/components/site/chrome";
 import { ContentImage } from "@/components/site/content-image";
 import { LEARNING_GUIDES } from "@/lib/learning-guides";
 import { COURSE_STARTING_POINTS, LEARNING_ARTICLE_PATHS } from "@/lib/learning-decisions";
-import { getCourses, getPage, getPosts, getPublishedSlugs } from "@/lib/site-data";
+import { getQuranCourses, getPage, getPosts, getPublishedSlugs } from "@/lib/site-data";
 import { breadcrumbSchema, safeJsonLd, shouldIncludeInSitemap, STATIC_PAGES_REVIEWED } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
 
@@ -17,7 +17,7 @@ export const metadata = contentMetadata({ title: "Quran Learning Guides for Fami
 export default async function Page() {
   const [guideRecords, courses, posts, published] = await Promise.all([
     Promise.all(LEARNING_GUIDES.map(async guide => ({ ...guide, content: await getPage(guide.slug) }))),
-    getCourses(), getPosts(50), getPublishedSlugs(),
+    getQuranCourses(), getPosts(50), getPublishedSlugs(),
   ]);
   const guides = guideRecords.filter(guide => guide.content && shouldIncludeInSitemap(guide.content, guide.path, SITE_URL));
   const courseChoices = COURSE_STARTING_POINTS.flatMap(choice => {

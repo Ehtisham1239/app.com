@@ -1,4 +1,5 @@
 import { textContent } from "./seo.js";
+import { isAcademicCourse } from "./academic.js";
 
 // Lessons are arranged individually, so the instance states only what is true
 // for every course: live online, 30-minute classes, repeated weekly, sold as
@@ -15,12 +16,12 @@ export function courseSchema(course, siteUrl, providerName = "Online Quran Colle
     name: course.title,
     description,
     ...(course.cover_url ? { image: new URL(course.cover_url, siteUrl).href } : {}),
-    hasCourseInstance: {
-      "@type": "CourseInstance",
-      courseMode: "Online",
-      courseSchedule: { "@type": "Schedule", duration: "PT30M", repeatFrequency: "Weekly" },
-    },
-    offers: { "@type": "Offer", category: "Subscription", url: new URL("/pricing", siteUrl).href },
+    // Class length and the monthly-package model are confirmed for the Quran packages only; academic
+    // tuition states just that it is taught live online, until admissions confirms more.
+    hasCourseInstance: isAcademicCourse(course)
+      ? { "@type": "CourseInstance", courseMode: "Online" }
+      : { "@type": "CourseInstance", courseMode: "Online", courseSchedule: { "@type": "Schedule", duration: "PT30M", repeatFrequency: "Weekly" } },
+    ...(isAcademicCourse(course) ? {} : { offers: { "@type": "Offer", category: "Subscription", url: new URL("/pricing", siteUrl).href } }),
     provider: {
       "@type": "EducationalOrganization",
       "@id": new URL("/#organization", siteUrl).href,

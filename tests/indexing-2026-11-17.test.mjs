@@ -10,7 +10,8 @@ test("/reviews and /verify-certificate are indexable and listed in the sitemap",
   assert.doesNotMatch(read("src/app/(site)/reviews/page.jsx"), /index: false/);
   assert.match(read("src/app/(site)/verify-certificate/page.jsx"), /seo_noindex: false/);
   const sitemap = read("src/app/sitemap.js");
-  assert.match(sitemap, /"\/reviews", "\/verify-certificate", "\/usa-quran-classes", "\/at-a-glance"\]/);
+  // The academic hub is appended after /at-a-glance only when subjects are published (tests/academic-subjects.test.mjs).
+  assert.match(sitemap, /"\/reviews", "\/verify-certificate", "\/usa-quran-classes", "\/at-a-glance"(, \.\.\.\(courses\.some[^\]]*\] : \[\]\))?\]/);
 });
 
 test("/sitemap.txt lists the same URLs as sitemap.xml as plain text", () => {

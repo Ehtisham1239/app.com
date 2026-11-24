@@ -9,7 +9,7 @@ import { ArrowRight } from "@/components/site/icons";
 import { HomeHero } from "@/components/site/hero";
 import { SectionHeading } from "@/components/site/chrome";
 import { Benefits, CoursesGrid, CtaBand, FaqList, PricingCards, Steps, TeacherCard, Testimonials } from "@/components/site/sections";
-import { getCourses, getFaqs, getPlans, getPosts, getSettings, getTeachers, getTestimonials } from "@/lib/site-data";
+import { getQuranCourses, getFaqs, getPlans, getPosts, getSettings, getTeachers, getTestimonials } from "@/lib/site-data";
 import { SITE_URL } from "@/lib/config";
 import { truncate } from "@/lib/format";
 import { normalizeSeoSettings } from "@/lib/search-settings";
@@ -32,7 +32,7 @@ export async function generateMetadata() {
 export default async function HomePage() {
   const [settings, courses, plans, faqs, teachers, testimonials, posts] = await Promise.all([
     getSettings(),
-    getCourses(),
+    getQuranCourses(),
     getPlans(),
     getFaqs(),
     getTeachers(),

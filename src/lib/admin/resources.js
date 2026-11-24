@@ -83,6 +83,12 @@ export const RESOURCES = {
       { name: "outcomes", label: "What the student will achieve", type: "tags" },
       { name: "age_group", label: "Who it is for", type: "text", half: true },
       { name: "level", label: "Level", type: "text", half: true },
+      { name: "category", label: "Category", type: "select", half: true, hint: "Academic subject courses are listed on the Academic subjects page, not with the Quran courses.", options: [
+        { value: "quran", label: "Quran" },
+        { value: "arabic", label: "Arabic" },
+        { value: "studies", label: "Islamic studies" },
+        { value: "academic", label: "Academic subject" },
+      ] },
       { name: "duration_text", label: "Typical duration", type: "text", half: true },
       { name: "icon", label: "Icon", type: "icon", options: iconOptions, half: true },
       { name: "cover_url", label: "Cover image", type: "image" },

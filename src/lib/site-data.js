@@ -1,4 +1,5 @@
 import { DEFAULT_SETTINGS } from "@/lib/default-settings";
+import { isAcademicCourse } from "@/lib/academic";
 import { seedFallback } from "@/lib/seed-fallback";
 import { cache } from "react";
 import { publicDb } from "@/lib/supabase/public";
@@ -81,6 +82,10 @@ export const getCourses = cache(async () =>
     "courses",
   ),
 );
+
+// Quran and Islamic courses vs academic tuition; the public pages never mix the two.
+export const getQuranCourses = cache(async () => (await getCourses()).filter((course) => !isAcademicCourse(course)));
+export const getAcademicCourses = cache(async () => (await getCourses()).filter(isAcademicCourse));
 
 export const getCourse = cache(async (slug) => {
   const course = await safe(() =>
@@ -211,7 +216,7 @@ export const getPublishedPageVideos = cache(async () =>
 
 export const getPublishedSlugs = cache(async () => {
   const [courses, posts, pages, teachers] = await Promise.all([
-    safe(() => publicDb.from("courses").select("slug, updated_at, seo_noindex, canonical_url, cover_url").eq("status", "published").is("deleted_at", null), [], "slugs courses"),
+    safe(() => publicDb.from("courses").select("slug, category, updated_at, seo_noindex, canonical_url, cover_url").eq("status", "published").is("deleted_at", null), [], "slugs courses"),
     safe(() => publicDb.from("blog_posts").select("slug, updated_at, seo_noindex, canonical_url, cover_url").eq("status", "published").is("deleted_at", null), [], "slugs posts"),
     safe(() => publicDb.from("pages").select("slug, updated_at, seo_noindex, canonical_url, cover_url").eq("status", "published").is("deleted_at", null), [], "slugs pages"),
     safe(() => publicDb.from("teachers").select("slug, updated_at").eq("is_public", true).eq("is_active", true).is("deleted_at", null), [], "slugs teachers"),

@@ -4,7 +4,7 @@ import { ArrowRight, BookA, BookMarked, BookOpen } from "@/components/site/icons
 import { PageHero } from "@/components/site/chrome";
 import CourseFinder from "@/components/site/course-finder";
 import { CourseCard, CoursesGrid, CtaBand } from "@/components/site/sections";
-import { getCourses, getSettings } from "@/lib/site-data";
+import { getAcademicCourses, getQuranCourses, getSettings } from "@/lib/site-data";
 import { whatsappLink } from "@/lib/format";
 import { SITE_URL } from "@/lib/config";
 import { courseListSchema } from "@/lib/course-schema";
@@ -35,7 +35,7 @@ const startingPoints = [
 ];
 
 export default async function CoursesPage() {
-  const [courses, settings] = await Promise.all([getCourses(), getSettings()]);
+  const [courses, academic, settings] = await Promise.all([getQuranCourses(), getAcademicCourses(), getSettings()]);
   const courseSlugs = new Set(courses.map(({ slug }) => slug));
   const availableStartingPoints = startingPoints.filter(({ slug }) => courseSlugs.has(slug));
   const goals = learningGoals.filter(({ slugs }) => slugs.some((slug) => courseSlugs.has(slug)))
@@ -118,6 +118,17 @@ export default async function CoursesPage() {
           <p>Compare <Link href="/pricing" className="text-leaf-700 underline">fees and packages</Link> or <Link href="/free-trial" className="text-leaf-700 underline">request a trial in your time zone</Link>. Admissions confirms teacher availability, lesson language, currency and fees before enrolment.</p>
         </div>
       </section>
+      {academic.length > 0 && (
+        <section className="page-wrap pb-12" aria-labelledby="academic-subjects-teaser">
+          <div className="surface flex flex-wrap items-center justify-between gap-5 p-6 sm:p-8">
+            <div>
+              <h2 id="academic-subjects-teaser" className="text-2xl">Academic tuition for school and college subjects</h2>
+              <p className="mt-2 max-w-2xl text-ink-soft">Live one-to-one online tutoring in {academic.length} school and college subjects. Admissions confirms tutor availability, fees and trial eligibility before lessons begin.</p>
+            </div>
+            <Link href="/academic-subjects" className="btn btn-outline">View academic subjects <ArrowRight className="size-4" aria-hidden="true" /></Link>
+          </div>
+        </section>
+      )}
       <CtaBand
         title="Not sure where to start?"
         text="Tell us the learner’s age and current level. A coordinator will recommend a course and arrange a free assessment class."
