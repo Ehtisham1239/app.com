@@ -255,8 +255,8 @@ export function createAnalyticsController(win, config) {
   };
   // Engagement: scroll depth milestones (once each per page view) and a "blog_read" when an article
   // is scrolled to 75% after at least 20 seconds. Only the public path, type and milestone are sent.
-  let depthSeen = new Set(), pageShownAt = Date.now(), blogReadSent = false, scrollFrame = false;
-  function resetEngagement() { depthSeen = new Set(); pageShownAt = Date.now(); blogReadSent = false; }
+  let depthSeen = new Set(), pageShownAt = Date.now(), blogReadSent = false, scrollFrame = false, readTimer = null;
+  function resetEngagement() { depthSeen = new Set(); pageShownAt = Date.now(); blogReadSent = false; clearTimeout(readTimer); readTimer = null; }
   function scrollPercent() {
     const root = doc.documentElement, height = win.innerHeight || 0;
     const total = Math.max(root?.scrollHeight || 0, doc.body?.scrollHeight || 0);
@@ -273,9 +273,15 @@ export function createAnalyticsController(win, config) {
       depthSeen.add(mark);
       emit("scroll_depth", { percent_scrolled: mark, page_path: path, page_type: type, non_interaction: true });
     }
-    if (type === "blog_article" && !blogReadSent && depthSeen.has(75) && Date.now() - pageShownAt >= BLOG_READ_MIN_SECONDS * 1000) {
-      blogReadSent = true;
-      emit("blog_read", { page_path: path, article_slug: path.split("/").pop() });
+    if (type === "blog_article" && !blogReadSent && depthSeen.has(75)) {
+      const wait = BLOG_READ_MIN_SECONDS * 1000 - (Date.now() - pageShownAt);
+      if (wait <= 0) {
+        blogReadSent = true;
+        emit("blog_read", { page_path: path, article_slug: path.split("/").pop() });
+      } else if (!readTimer) {
+        // A reader who stops at the end of the article scrolls no more: check again when the 20 seconds are up.
+        readTimer = setTimeout(() => { readTimer = null; checkScroll(); }, wait + 50);
+      }
     }
   }
   const onScroll = () => { if (scrollFrame) return; scrollFrame = true; (win.requestAnimationFrame ? win.requestAnimationFrame.bind(win) : fn => setTimeout(fn, 100))(checkScroll); };
@@ -331,6 +337,7 @@ export function createAnalyticsController(win, config) {
       doc.removeEventListener("submit", onFormSubmit);
       doc.removeEventListener("click", onOutbound);
       win.removeEventListener("scroll", onScroll);
+      clearTimeout(readTimer);
       setConsent(false);
     },
   };
