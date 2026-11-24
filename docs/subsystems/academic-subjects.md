@@ -15,7 +15,7 @@ sources:
   - code: src/components/site/quick-trial-form.jsx
   - code: src/app/(site)/free-trial/page.jsx
   - code: tests/academic-subjects.test.mjs
-verified_at: 23bf227
+verified_at: efd101e
 ---
 
 # Academic subjects
