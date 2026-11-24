@@ -90,3 +90,17 @@ test("academic detail pages carry no generic Quran FAQs, trial wording or packag
   assert.match(page, /\{!academic && <section className="surface mt-10 space-y-3 p-6"><h2 className="text-2xl">Plan lessons around your family/);
   assert.match(page, /\{!academic && \(\s*<Link href="\/pricing"/);
 });
+
+test("free-trial page does not promise a trial for an academic subject", () => {
+  const page = read("src/app/(site)/free-trial/page.jsx");
+  assert.match(page, /courses\.filter\(isAcademicCourse\)/);
+  assert.match(page, /<TrialHeading plans=\{planList\} academic=\{academic\} \/>/);
+  assert.match(page, /<TrialPromises plans=\{planList\} academic=\{academic\}/);
+  assert.match(page, /<QuickTrialForm academic=\{academic\}/);
+  const intro = read("src/components/site/trial-intro.jsx");
+  assert.match(intro, /eligible=\{eligible && !subject\}/);
+  assert.match(intro, /Subject request/);
+  const form = read("src/components/site/quick-trial-form.jsx");
+  assert.match(form, /const eligible = isTrialEligible\(selectedPlan\) && !subject;/);
+  assert.match(form, /subject \? "Send my request"/);
+});

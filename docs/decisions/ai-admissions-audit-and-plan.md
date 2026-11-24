@@ -12,7 +12,7 @@ sources:
   - code: next.config.mjs
   - code: src/app/llms-full.txt/route.js
   - raw: owner brief "Intelligent Course Selection & Booking System" (pasted in chat, 24 Nov 2026)
-verified_at: e2283aa
+verified_at: efd101e
 ---
 
 # AI admissions assistant: audit and plan
