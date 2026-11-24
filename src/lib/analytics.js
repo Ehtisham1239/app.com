@@ -122,6 +122,22 @@ export function shieldAnalyticsCookies(doc) {
   } catch { return false; }
 }
 
+// Content grouping for GA4/GTM reports: one stable label per kind of page, no query strings.
+export function pageTypeFor(pathname = "") {
+  const path = String(pathname).replace(/\/+$/, "") || "/";
+  if (/\/thank-you$/.test(path)) return "thank_you";
+  if (path === "/") return "home";
+  if (path === "/blog") return "blog_index";
+  if (/^\/blog\/[^/]+$/.test(path)) return "blog_article";
+  if (/^\/courses(\/|$)/.test(path)) return "course";
+  if (/^\/locations(\/|$)/.test(path)) return "location";
+  if (/^\/learn(\/|$)/.test(path)) return "learn";
+  if (["/pricing", "/free-trial", "/contact", "/reviews", "/usa-quran-classes"].includes(path)) return path.slice(1);
+  return "other";
+}
+export const SCROLL_MILESTONES = [25, 50, 75, 100];
+export const BLOG_READ_MIN_SECONDS = 20;
+
 const countedLeads = new Set();
 function leadAlreadyCounted(win, ref) {
   const key = `lead_sent_${ref}`;
@@ -197,8 +213,8 @@ export function createAnalyticsController(win, config) {
   function pageView(path) {
     const location = publicAnalyticsUrl(path, origin);
     if (!allowed() || !location || location === lastPage) return false;
-    const sent = emit("page_view", { page_location: location, page_path: new URL(location).pathname, page_title: doc.title, page_referrer: previousPage });
-    if (sent) { lastPage = location; previousPage = location; }
+    const sent = emit("page_view", { page_location: location, page_path: new URL(location).pathname, page_title: doc.title, page_referrer: previousPage, page_type: pageTypeFor(new URL(location).pathname) });
+    if (sent) { lastPage = location; previousPage = location; resetEngagement(); }
     // Confirmation pages: one named event per page view so GTM triggers do not have to match URLs.
     const thanks = sent && /^\/(contact|free-trial|usa-quran-classes)\/thank-you\/?$/.exec(new URL(location).pathname);
     if (thanks) emit("thank_you_view", { form_type: thanks[1] === "contact" ? "contact" : "trial", page_path: new URL(location).pathname });
@@ -237,6 +253,41 @@ export function createAnalyticsController(win, config) {
       });
     }
   };
+  // Engagement: scroll depth milestones (once each per page view) and a "blog_read" when an article
+  // is scrolled to 75% after at least 20 seconds. Only the public path, type and milestone are sent.
+  let depthSeen = new Set(), pageShownAt = Date.now(), blogReadSent = false, scrollFrame = false;
+  function resetEngagement() { depthSeen = new Set(); pageShownAt = Date.now(); blogReadSent = false; }
+  function scrollPercent() {
+    const root = doc.documentElement, height = win.innerHeight || 0;
+    const total = Math.max(root?.scrollHeight || 0, doc.body?.scrollHeight || 0);
+    if (!height || !total) return 0;
+    if (total <= height * 1.15) return 0; // Nothing meaningful to scroll on a short page.
+    return Math.min(100, Math.round(((win.scrollY || 0) + height) / total * 100));
+  }
+  function checkScroll() {
+    scrollFrame = false;
+    if (!allowed()) return;
+    const percent = scrollPercent(), path = pagePath(), type = pageTypeFor(path);
+    for (const mark of SCROLL_MILESTONES) {
+      if (percent < mark || depthSeen.has(mark)) continue;
+      depthSeen.add(mark);
+      emit("scroll_depth", { percent_scrolled: mark, page_path: path, page_type: type, non_interaction: true });
+    }
+    if (type === "blog_article" && !blogReadSent && depthSeen.has(75) && Date.now() - pageShownAt >= BLOG_READ_MIN_SECONDS * 1000) {
+      blogReadSent = true;
+      emit("blog_read", { page_path: path, article_slug: path.split("/").pop() });
+    }
+  }
+  const onScroll = () => { if (scrollFrame) return; scrollFrame = true; (win.requestAnimationFrame ? win.requestAnimationFrame.bind(win) : fn => setTimeout(fn, 100))(checkScroll); };
+  const onOutbound = event => {
+    const href = event.target?.closest?.("a[href]")?.getAttribute("href") || "";
+    if (!/^https?:\/\//i.test(href)) return;
+    try {
+      const url = new URL(href);
+      if (url.origin === origin || /^(?:wa\.me|api\.whatsapp\.com)$/.test(url.hostname)) return; // WhatsApp is already contact_click.
+      emit("outbound_click", { link_domain: url.hostname, page_path: pagePath() });
+    } catch { /* Malformed link: nothing to report. */ }
+  };
   let trialFormStarted = false, trialFormAttempted = false;
   const onFormFocus = event => {
     if (trialFormStarted || !event.target?.closest?.('form[aria-label="Book a free trial"]')) return;
@@ -252,6 +303,8 @@ export function createAnalyticsController(win, config) {
   doc.addEventListener("click", onClick);
   doc.addEventListener("focusin", onFormFocus);
   doc.addEventListener("submit", onFormSubmit);
+  doc.addEventListener("click", onOutbound);
+  win.addEventListener("scroll", onScroll, { passive: true });
   // Core Web Vitals from real visits (Next.js useReportWebVitals). Only the
   // metric itself and the public page path are sent.
   const VITALS = new Set(["LCP", "INP", "CLS", "FCP", "TTFB"]);
@@ -276,6 +329,8 @@ export function createAnalyticsController(win, config) {
       doc.removeEventListener("click", onClick);
       doc.removeEventListener("focusin", onFormFocus);
       doc.removeEventListener("submit", onFormSubmit);
+      doc.removeEventListener("click", onOutbound);
+      win.removeEventListener("scroll", onScroll);
       setConsent(false);
     },
   };
