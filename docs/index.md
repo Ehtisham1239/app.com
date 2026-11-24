@@ -26,7 +26,7 @@ repository. The rules are in [`CLAUDE.md`](CLAUDE.md).
 
 ## decisions
 
-<!-- TODO: pages under Why it was decided that way (ADRs, known defects). `- [[page-name]] -- one line` -->
+- [[ai-admissions-audit-and-plan]] -- audit of the chatbot, courses and booking, and the phased plan for an AI admissions assistant
 
 ## reference
 
