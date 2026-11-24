@@ -31,6 +31,7 @@ export async function GET() {
     f.familyDiscount ? `- Each additional child from the same family receives ${f.familyDiscount}% off the monthly fee.` : "", "",
     rule, "## 5. Courses", rule, "",
     ...f.courses.flatMap(row => [`### [${row.title}](${row.path})`, row.summary, [row.age && `Learners: ${row.age}`, row.level && `Level: ${row.level}`, row.duration && `Duration: ${row.duration}`].filter(Boolean).join(". "), ""]),
+    ...(f.academic.length ? ["### Academic tuition (school and college subjects)", `Subjects: ${f.academic.map(a => a.title).join("; ")}. [See all subjects and book](/academic-subjects)`, "Live one-to-one online tuition. Tutor availability, fees and trial eligibility are confirmed by admissions before lessons begin. The 3-day free trial applies only to eligible plans, so never promise it for an academic subject.", ""] : []),
     rule, "## 6. Packages and free trial", rule, "",
     "- A 3-day free trial is available; the Weekend plan is excluded. No card is needed to request it.",
     "- Fees are shown on /pricing and can be converted into the visitor's currency for guidance. The coordinator confirms the fee and payment currency before enrolment.", "",

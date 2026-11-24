@@ -23,7 +23,7 @@ export const revalidate = 3600;
 export default async function sitemap() {
   const [{ courses, posts, pages, teachers }, videoPages] = await Promise.all([getPublishedSlugs(), getPublishedPageVideos()]);
   const videos = new Map(videoPages.filter((page) => page.template === "standard" && isVideoPageSlug(page.slug) && !guideForSlug(page.slug)).map((page) => [page.slug, pageVideo(page.video)]));
-  const fixed = ["", "/courses", "/pricing", "/free-trial", "/teachers", "/blog", "/faq", "/contact", "/careers", "/locations", "/learn", "/quran-study", "/reviews", "/verify-certificate", "/usa-quran-classes", "/at-a-glance"].map((path) => ({ url: `${SITE_URL}${path}`, ...(fixedImages[path] ? { images: [imageUrl(fixedImages[path])] } : {}), changeFrequency: path === "" ? "weekly" : "monthly", priority: path === "" ? 1 : 0.7 }));
+  const fixed = ["", "/courses", "/pricing", "/free-trial", "/teachers", "/blog", "/faq", "/contact", "/careers", "/locations", "/learn", "/quran-study", "/reviews", "/verify-certificate", "/usa-quran-classes", "/at-a-glance", ...(courses.some((c) => c.category === "academic") ? ["/academic-subjects"] : [])].map((path) => ({ url: `${SITE_URL}${path}`, ...(fixedImages[path] ? { images: [imageUrl(fixedImages[path])] } : {}), changeFrequency: path === "" ? "weekly" : "monthly", priority: path === "" ? 1 : 0.7 }));
   const locationPages = new Map(pages.map((p) => [p.slug, p]));
   const locationEntries = [...INDEXED_MARKETS.map((slug) => [slug, null]), ...RESTORED_LOCATION_PATHS.map((p) => p.split("/"))];
   const locations = locationEntries.flatMap(([countrySlug, citySlug]) => {

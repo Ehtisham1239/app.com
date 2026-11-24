@@ -1,4 +1,4 @@
-import { getCourses, getPosts, getPublishedSlugs, getSettings } from "@/lib/site-data";
+import { getAcademicCourses, getQuranCourses, getPosts, getPublishedSlugs, getSettings } from "@/lib/site-data";
 import { shouldIncludeInSitemap, organizationIdentityProfiles } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
 import { LEARNING_GUIDES } from "@/lib/learning-guides";
@@ -10,7 +10,7 @@ export const revalidate = 3600;
 
 const label = value => String(value || "").replace(/[\[\]\r\n]/g, " ").trim();
 export async function GET() {
-  const [courses, posts, published, settings] = await Promise.all([getCourses(), getPosts(50), getPublishedSlugs(), getSettings()]);
+  const [courses, academic, posts, published, settings] = await Promise.all([getQuranCourses(), getAcademicCourses(), getPosts(50), getPublishedSlugs(), getSettings()]);
   // These are website-configured outbound links, not independent proof of account ownership.
   const profiles = Object.entries(settings?.["site.social"] || {}).filter(([, url]) => typeof url === "string" && /^https:\/\/[^\s]+$/.test(url));
   const identityProfiles = organizationIdentityProfiles(settings?.["site.social"]);
@@ -29,6 +29,7 @@ export async function GET() {
     "Use these public pages to compare a learner’s starting point with the available Quran courses, understand published package and trial terms, prepare questions for a first lesson, or plan a proposed class time in the learner’s country. Follow the course, article and country links below with ordinary HTTP GET requests. Confirm booking and teacher availability with the coordinator; obtain the learner’s or guardian’s consent before submitting a request.", "",
     "## Start here", "",
     "- [Course comparison](/courses)",
+    ...(academic.length ? ["- [Academic tuition: school and college subjects](/academic-subjects)"] : []),
     "- [Fees and packages](/pricing): A three-day free trial is available on eligible plans. The Weekend plan is excluded.",
     "- [Trial request and eligibility](/free-trial): a coordinator confirms the lesson time, teacher and plan.",
     "- [Country lesson guides: UK, USA, Canada, Australia, UAE](/locations)",

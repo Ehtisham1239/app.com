@@ -17,7 +17,7 @@ verified_at: e2283aa
 
 # AI admissions assistant: audit and plan
 
-Status: **read-only audit done, nothing implemented.** The owner's brief asks for an AI assistant that
+Status: **audit done; academic subjects published on 24 Nov 2026 at the owner's request ([[academic-subjects]]); everything else in the plan is not started.** The owner's brief asks for an AI assistant that
 shows each course as its own card with a Book Now button, adds academic subjects, checks trial
 eligibility and books a class. The brief itself says "audit first, then plan, then a pull request, no
 merge or deploy without approval". This page is that audit and plan.
@@ -45,7 +45,7 @@ merge or deploy without approval". This page is that audit and plan.
 ## Owner decisions needed
 
 1. **Chatbot path.** (A) Keep Hatchium: train it, give each course its own line and link; no cards. (B) Build our own chat widget with a Claude API backend: real cards and buttons, but it costs per message, needs a server-side key, rate limits and prompt-injection tests. Recommended: start with the free, no-LLM Course Finder in Phase 1 and decide on (B) with real usage numbers.
-2. **Scope.** Which of categories B, C and D (academic, programming, exam) are really offered, with which tutors and prices? Until approved they stay out of the site, the CMS and the bot.
+2. **Scope.** *Decided 24 Nov 2026:* category B (academic subjects) is published on `/academic-subjects` with no fee or trial claim. Programming (C) and exam preparation (D) are not approved and stay out of the site, the CMS and the bot until the owner says otherwise.
 3. **`quran-recitation`.** Unpublish it, or make it a real separate course and remove the redirect.
 4. **Availability source.** Admissions fills `teacher_availability`, or HighLevel calendars become the source (needs calendar ids and a token with calendar scope, supplied by the owner).
 

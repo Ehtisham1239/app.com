@@ -9,7 +9,7 @@ import { CtaBand } from "@/components/site/sections";
 import { PageSections } from "@/components/site/page-sections";
 import { cleanHtml } from "@/lib/sanitize";
 import { formatDate, slugify, whatsappLink } from "@/lib/format";
-import { getCourses, getFaqs, getPlans, getPageVideo, getSettings, getTeachers, getTestimonials } from "@/lib/site-data";
+import { getQuranCourses, getFaqs, getPlans, getPageVideo, getSettings, getTeachers, getTestimonials } from "@/lib/site-data";
 import { analyticsConfig, cookielessAnalyticsConfig } from "@/lib/analytics";
 import { CmsPageSchema } from "@/components/site/custom-code";
 import { safeJsonLd, shouldIncludeInSitemap, modifiedIso } from "@/lib/seo";
@@ -48,7 +48,7 @@ export async function CmsPage({ page }) {
   const needs = new Set(sections.map((s) => s.type));
   const [settings, courses, plans, faqs, teachers, testimonials, videoRecord] = await Promise.all([
     getSettings(),
-    needs.has("courses") ? getCourses() : [],
+    needs.has("courses") ? getQuranCourses() : [],
     needs.has("pricing") ? getPlans() : [],
     needs.has("faq") ? getFaqs() : [],
     needs.has("teachers") ? getTeachers() : [],
