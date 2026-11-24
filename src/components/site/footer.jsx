@@ -43,7 +43,7 @@ export function SiteFooter({ settings, menus }) {
             <p className="mt-1 text-sm leading-relaxed">“My Lord, increase me in knowledge.”</p>
           </blockquote>
           <figcaption className="mt-2 text-sm">
-            <a href="https://quran.com/20/114" className="font-semibold underline underline-offset-4">Qur’an 20:114 · excerpt</a>
+            <a href="https://quran.com/20/114" className="inline-flex min-h-11 items-center font-semibold underline underline-offset-4">Qur’an 20:114 · excerpt</a>
           </figcaption>
         </figure>
         <div className="footer-invitation flex flex-wrap items-center justify-between gap-5 rounded-3xl border border-leaf-200 bg-white/80 p-6 sm:p-8">
