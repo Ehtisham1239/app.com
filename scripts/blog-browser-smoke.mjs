@@ -13,20 +13,12 @@ try {
     const session = await auditPage(browser, base, report, { viewport: { width, height: 1000 } });
     const { page } = session;
     const r = await page.goto(base + "/blog", { waitUntil: "load" }); assert.equal(r.status(), 200);
-    const topics = page.getByRole("navigation", { name: "Article topics" });
-    const topicLinks = await topics.getByRole("link").all();
-    const topicDestinations = await Promise.all(topicLinks.map(link => link.getAttribute("href")));
-    assert.ok(topicLinks.length >= 4, "All articles plus the established topic categories");
-    assert.equal(new Set(topicDestinations).size, topicLinks.length, "No duplicate topic destinations");
-    for (const category of ["Parents", "Tajweed", "Hifz"]) {
-      await topics.getByRole("link", { name: category, exact: true }).click();
-      await page.waitForURL(url => url.searchParams.get("category") === category);
-      await page.locator('a[aria-current="page"]').filter({ hasText: category }).waitFor();
-      assert.ok(await page.locator('main a[href^="/blog/"]').count() > 0);
-      assert.match(await page.locator('meta[name="robots"]').getAttribute("content"), /noindex/);
-      await topics.getByRole("link", { name: "All articles", exact: true }).click();
-      await page.waitForURL(url => url.pathname === "/blog" && !url.search);
-    }
+    // Owner decision (#306): /blog?category= filters 301 to /blog, so no topic navigation is rendered.
+    assert.equal(await page.getByRole("navigation", { name: "Article topics" }).count(), 0, "No category filter navigation");
+    const categoryResponse = await page.goto(base + "/blog?category=Tajweed", { waitUntil: "load" });
+    assert.equal(new URL(page.url()).pathname + new URL(page.url()).search, "/blog", "Category filters redirect to /blog");
+    assert.equal(categoryResponse.status(), 200);
+    assert.ok(await page.locator('main a[href^="/blog/"]').count() > 0);
     await page.getByRole("link", { name: "Next articles" }).click();
     await page.waitForURL(url => url.searchParams.get("page") === "2");
     await page.getByRole("heading", { level: 1 }).filter({ hasText: "Page 2" }).waitFor();
@@ -50,7 +42,7 @@ try {
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
     await page.screenshot({ path: `${out}/article-${width}.png` });
-    report.cases.push({ width, categories: topicLinks.length - 1, pagination: true, imageLoaded: true, dateVisible: true, tableOfContents: true, overflow: false });
+    report.cases.push({ width, categoryFiltersRedirect: true, pagination: true, imageLoaded: true, dateVisible: true, tableOfContents: true, overflow: false });
     await page.evaluate(() => { navigator.clipboard.writeText = async value => { window.__copiedArticle = value; }; window.print = () => { window.__printedArticle = true; }; });
     const reject = page.getByRole('button', { name: 'Reject analytics', exact: true });
     if (await reject.count()) await reject.click();

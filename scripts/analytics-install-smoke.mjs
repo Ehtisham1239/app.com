@@ -5,6 +5,9 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 const base = (process.argv[2] || 'http://127.0.0.1:3017').replace(/\/$/, '');
 const expectedId = process.argv[3] || 'G-57TGPTDNT4';
 const expectedGtm = process.env.OQC_EXPECTED_GTM || 'GTM-W7CMZS53';
+// Owner decision 18 Nov 2026: a second container loads site-wide through the same loader. Set OQC_EXPECTED_GTM2='' to expect one container only.
+const expectedAds = process.env.OQC_EXPECTED_ADS ?? 'AW-16564445897';
+const expectedGtm2 = process.env.OQC_EXPECTED_GTM2 ?? 'GTM-52PTXDRF';
 const out = process.argv[4] || 'artifacts/analytics-install';
 const realLibrary = process.argv.includes('--real-google-script');
 const report = { base, expectedId, mode: 'Owner-approved cookieless analytics; GTM owns GA4 when configured', cases: [], browserErrors: [], collectionRequestsBlocked: 0, formSubmissions: 0, googleLibrary: realLibrary ? 'Actual Google loader; collection and other external requests intercepted' : 'Inert vendor stubs; installation checks, not a GA4 reporting receipt or container-cookie audit' };
@@ -27,17 +30,28 @@ for (const width of realLibrary ? [390] : [390, 1440]) {
     await page.waitForFunction(() => !!document.getElementById('oqc-google-analytics'));
     await page.waitForFunction(() => window.dataLayer?.some(item => item.event === 'oqc_page_view' || item[0] === 'event' && item[1] === 'page_view'));
     assert.equal(await page.getByRole('region', { name: 'Analytics preferences', exact: true }).count(), 0);
-    assert.equal(loads.length, 1);
-    const url = new URL(loads[0]), gtm = url.pathname === '/gtm.js';
-    assert.equal(url.searchParams.get('id'), gtm ? expectedGtm : expectedId);
+    // The containers start from the same idle callback; give both a moment to request before counting.
+    for (let i = 0; i < 50 && loads.length < 1 + Number(Boolean(expectedGtm2)) && loads.some(href => href.includes('/gtm.js')); i++) await page.waitForTimeout(100);
+    await page.waitForTimeout(500);
+    const loaded = loads.map(href => new URL(href)), gtm = loaded.some(item => item.pathname === '/gtm.js');
+    const loaderCount = loads.length;
+    if (gtm) {
+      assert.deepEqual(loaded.map(item => item.pathname), loaded.map(() => '/gtm.js'), 'No separate gtag/js loader beside Tag Manager');
+      assert.deepEqual(loaded.map(item => item.searchParams.get('id')).sort(), [expectedGtm, expectedGtm2].filter(Boolean).sort(), 'Each configured container loads exactly once');
+    } else {
+      assert.equal(loaderCount, 1);
+      assert.equal(loaded[0].searchParams.get('id'), expectedId);
+    }
     await page.locator('header a[href="/"]').first().click();
     await page.waitForURL(url => url.pathname === '/');
     await page.waitForFunction(() => window.dataLayer.filter(item => item.event === 'oqc_page_view' || item[0] === 'event' && item[1] === 'page_view').length === 2);
-    assert.equal(loads.length, 1);
+    assert.equal(loads.length, loaderCount, 'No extra loader after a route change');
     const commands = await page.evaluate(() => window.dataLayer.filter(item => typeof item.length === 'number').map(item => Array.from(item)));
     const configurations = commands.filter(item => item[0] === 'config');
     if (gtm) {
-      assert.equal(configurations.length, 0, 'GTM must not be combined with direct GA4');
+      // Owner decision 18 Nov 2026: the site still pushes the Google Ads config command; GA4 stays inside the container.
+      assert.equal(configurations.some(item => /^G-/.test(String(item[1]))), false, 'GTM must not be combined with direct GA4');
+      assert.deepEqual(configurations.map(item => item[1]), expectedAds ? [expectedAds] : [], 'Only the Google Ads config is pushed beside Tag Manager');
       const settings = commands.find(item => item[0] === 'set')?.[1];
       assert.equal(settings?.client_storage, 'none');
       assert.equal(settings?.allow_google_signals, false);
@@ -57,7 +71,7 @@ for (const width of realLibrary ? [390] : [390, 1440]) {
     assert.deepEqual(storage.analyticsCookies, []);
     assert.equal(storage.preference, null);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
-    report.cases.push({ width, transport: gtm ? 'GTM' : 'GA4', loaderCount: 1, routeViews: 2, noDuplicateTransport: true, analyticsGrantedWithClientStorageNone: true, adsDenied: true, legacyCookieRemoved: true, noBanner: true });
+    report.cases.push({ width, transport: gtm ? 'GTM' : 'GA4', loaderCount, routeViews: 2, noDuplicateTransport: true, analyticsGrantedWithClientStorageNone: true, adsDenied: true, legacyCookieRemoved: true, noBanner: true });
   } finally { await session?.close(); await browser.close(); }
 }
 assert.deepEqual(report.browserErrors, []);
