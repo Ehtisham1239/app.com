@@ -10,7 +10,7 @@ import { ACADEMIC_HERO } from "@/lib/academic";
 import { getAcademicCourses, getSettings } from "@/lib/site-data";
 
 export const revalidate = 300;
-export const metadata = contentMetadata({ title: "Online Academic Tuition: Maths, English & Science | OQC", seo_noindex: false }, {
+export const metadata = contentMetadata({ title: "Online Academic Tuition: Maths, English & Science | OQC", seo_noindex: false, cover_url: ACADEMIC_HERO.src, cover_alt: ACADEMIC_HERO.alt }, {
   path: "/academic-subjects",
   description: "Live one-to-one online tuition in school and college subjects such as Maths, English and Science. Choose a subject and send a request to admissions.",
 });

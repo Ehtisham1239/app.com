@@ -11,7 +11,7 @@ sources:
   - code: src/app/sitemap.js
   - code: src/lib/admin/resources.js
   - code: tests/academic-subjects.test.mjs
-verified_at: c2e9160
+verified_at: 46d7ce8
 ---
 
 # Academic subjects
@@ -44,6 +44,14 @@ published.
 
 > ⚠️ Academic pages use `ACADEMIC_HERO`, a neutral laptop-and-book scene. Every other hero image shows a
 > Quran lesson and its alt text says so.
+
+## Live state (24 Nov 2026)
+
+The 17 subjects were inserted as published rows (slugs `<subject>-tuition`, sort order 100-116, `seo_noindex` true on detail pages) after the code deployed. The hub went live on its next revalidation. The duplicate course `quran-recitation` was archived the same day; its permanent redirect to `/courses/quran-nazara` stays in `next.config.mjs`, so old links still work and the sitemap no longer lists it.
+
+> ⚠️ Right after a deploy, the hub's `<head>` can show the old 404 title and `noindex` for up to two 5-minute revalidation cycles while the body is already correct. It clears itself; check again before treating it as a bug.
+
+> ⚠️ Programming and exam-preparation subjects are not published (not approved). Do not add them without the owner's written approval.
 
 ## Not covered
 Real booking and tutor availability (the availability tables are empty), pricing, programming and exam
