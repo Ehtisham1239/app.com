@@ -10,8 +10,9 @@ sources:
   - code: src/lib/course-schema.js
   - code: src/app/sitemap.js
   - code: src/lib/admin/resources.js
+  - code: src/app/(site)/courses/[slug]/page.jsx
   - code: tests/academic-subjects.test.mjs
-verified_at: e040ed7
+verified_at: ce52f35
 ---
 
 # Academic subjects
