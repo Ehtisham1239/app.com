@@ -11,8 +11,11 @@ sources:
   - code: src/app/sitemap.js
   - code: src/lib/admin/resources.js
   - code: src/app/(site)/courses/[slug]/page.jsx
+  - code: src/components/site/trial-intro.jsx
+  - code: src/components/site/quick-trial-form.jsx
+  - code: src/app/(site)/free-trial/page.jsx
   - code: tests/academic-subjects.test.mjs
-verified_at: ce52f35
+verified_at: 23bf227
 ---
 
 # Academic subjects
@@ -53,6 +56,8 @@ The 17 subjects were inserted as published rows (slugs `<subject>-tuition`, sort
 > ⚠️ Right after a deploy, the hub's `<head>` can show the old 404 title and `noindex` for up to two 5-minute revalidation cycles while the body is already correct. It clears itself; check again before treating it as a bug.
 
 > ⚠️ An academic course detail page must not render the global Quran FAQs (they answer "Is there a free trial? Yes, 3 days" and quote fees), the "before requesting a trial" family section, or the "Compare packages" link. `courses/[slug]/page.jsx` switches these off for `category = academic`; keep that when editing the page.
+
+> ⚠️ `/free-trial?course=<academic id>` must not show the "3-day free trial" heading, promise or button. The page passes the academic course list down; `TrialHeading`, `TrialPromises` and `QuickTrialForm` treat a selected academic subject like an ineligible plan and show "Subject request" wording instead (checked in a browser: academic, Quran and no-course cases). The page itself is cached, so the choice is read from the URL and the form's course field in the browser.
 
 > ⚠️ Programming and exam-preparation subjects are not published (not approved). Do not add them without the owner's written approval.
 

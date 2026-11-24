@@ -31,24 +31,33 @@ function PromiseList({ promises, className }) {
   );
 }
 
-export function TrialHeading({ plans = [] }) {
-  const { plan, eligible } = useSelectedPlan(plans);
-  return <TrialHeadingView eligible={eligible} planName={plan?.name} />;
+// An academic subject (?course=<id> of a course with category "academic") carries no free-trial
+// promise: admissions confirms trial eligibility per subject, so the page asks for a request.
+function useSelectedSubject(academic) {
+  const params = useSearchParams();
+  return academic.find((c) => c.id === params?.get("course"));
 }
 
-export function TrialHeadingView({ eligible = true, planName }) {
+export function TrialHeading({ plans = [], academic = [] }) {
+  const { plan, eligible } = useSelectedPlan(plans);
+  const subject = useSelectedSubject(academic);
+  return <TrialHeadingView eligible={eligible && !subject} planName={plan?.name} subjectName={subject?.title} />;
+}
+
+export function TrialHeadingView({ eligible = true, planName, subjectName }) {
   return (
     <>
-      <p className="text-xs font-bold uppercase tracking-[0.24em] text-gold-300">{eligible ? "Free trial" : "Package enquiry"}</p>
-      <h1 id="trial-title" className="mt-2 text-[clamp(1.9rem,4.6vw,3rem)] leading-[1.1] text-white">{eligible ? <>Book a free <span className="text-gold-300">3-day</span> trial</> : `Enquire about ${planName}`}</h1>
-      <p className="mt-3 max-w-xl text-[1.02rem] leading-relaxed text-white/85">{eligible ? "Request a free online Quran trial with 3 days of live one-to-one classes. A coordinator will arrange a time that suits your family." : "This package is not eligible for a free trial. Ask the coordinator about its schedule and terms before enrolling."}</p>
+      <p className="text-xs font-bold uppercase tracking-[0.24em] text-gold-300">{eligible ? "Free trial" : subjectName ? "Subject request" : "Package enquiry"}</p>
+      <h1 id="trial-title" className="mt-2 text-[clamp(1.9rem,4.6vw,3rem)] leading-[1.1] text-white">{eligible ? <>Book a free <span className="text-gold-300">3-day</span> trial</> : `Enquire about ${subjectName || planName}`}</h1>
+      <p className="mt-3 max-w-xl text-[1.02rem] leading-relaxed text-white/85">{eligible ? "Request a free online Quran trial with 3 days of live one-to-one classes. A coordinator will arrange a time that suits your family." : subjectName ? "Send a request for this subject. Admissions confirms the tutor, the time, the fee and whether a trial class is available. Nothing is booked until admissions confirms it." : "This package is not eligible for a free trial. Ask the coordinator about its schedule and terms before enrolling."}</p>
     </>
   );
 }
 
-export function TrialPromises({ plans = [], className }) {
+export function TrialPromises({ plans = [], academic = [], className }) {
   const { eligible } = useSelectedPlan(plans);
-  return <TrialPromisesView eligible={eligible} className={className} />;
+  const subject = useSelectedSubject(academic);
+  return <TrialPromisesView eligible={eligible && !subject} className={className} />;
 }
 
 export function TrialPromisesView({ eligible = true, className }) {

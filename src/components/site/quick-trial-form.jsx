@@ -52,7 +52,7 @@ function FieldError({ id, children }) {
 }
 
 // One short step: only what the coordinator needs to call back and book a slot.
-export function QuickTrialForm({ courses = [], plans = [], currencies = [], consentText, successText, whatsappHref }) {
+export function QuickTrialForm({ courses = [], academic = [], plans = [], currencies = [], consentText, successText, whatsappHref }) {
   const params = useSearchParams();
   const router = useRouter();
   // Booking preferences chosen on a country page (currency, lesson date/time) arrive in the
@@ -67,7 +67,6 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preferenceKey]);
   const selectedPlan = plans.find(p => p.id === params.get("plan"));
-  const eligible = isTrialEligible(selectedPlan);
   const topRef = useRef(null);
   const successHeading = useRef(null);
   const submitting = useRef(false);
@@ -105,6 +104,9 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
     return () => cancelAnimationFrame(frame);
   }, []);
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
+  // An academic subject carries no free-trial promise; admissions confirms trial eligibility per subject.
+  const subject = academic.find((c) => c.id === form.course_id);
+  const eligible = isTrialEligible(selectedPlan) && !subject;
   const requestedCountry = params.get("country");
   const matchingCountry = !requestedCountry || requestedCountry === form.country;
   const initialPreferenceNotes = matchingCountry && preferences?.key === preferenceKey ? preferences.notes : "";
@@ -201,12 +203,12 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
 
   const err = (k) => (errors[k] ? { "aria-invalid": true, "aria-describedby": `q-${k}-error` } : {});
   return (
-    <form ref={topRef} onSubmit={submit} noValidate aria-busy={state.sending} aria-label={eligible ? "Book a free trial" : "Package enquiry"} className="surface trial-card @container min-w-0 scroll-mt-28 space-y-5 bg-white p-5 shadow-[var(--shadow-lift)] sm:space-y-6 sm:p-8">
+    <form ref={topRef} onSubmit={submit} noValidate aria-busy={state.sending} aria-label={eligible ? "Book a free trial" : subject ? "Subject request" : "Package enquiry"} className="surface trial-card @container min-w-0 scroll-mt-28 space-y-5 bg-white p-5 shadow-[var(--shadow-lift)] sm:space-y-6 sm:p-8">
       <div className="absolute -left-[9999px]" aria-hidden="true"><label>Website<input tabIndex={-1} autoComplete="off" value={form.website} onChange={(e) => set("website", e.target.value)} /></label></div>
       <div className="border-b border-line pb-5">
-        <h2 className="text-2xl leading-tight text-mushaf-900">{eligible ? "Register for a 3-day free trial" : `Ask about ${selectedPlan.name}`}</h2>
+        <h2 className="text-2xl leading-tight text-mushaf-900">{eligible ? "Register for a 3-day free trial" : subject ? `Request ${subject.title}` : `Ask about ${selectedPlan.name}`}</h2>
         <p className="mt-2 max-w-md text-sm leading-relaxed text-ink-soft">
-          {eligible ? "Tell us who’ll be learning and how to reach you. A coordinator will be in touch to find a time that suits you. No payment card needed." : "A coordinator will be in touch to discuss lesson times and fees. The Weekend plan is excluded from the free trial."}
+          {eligible ? "Tell us who’ll be learning and how to reach you. A coordinator will be in touch to find a time that suits you. No payment card needed." : subject ? "A coordinator will be in touch to confirm the tutor, the time, the fee and whether a trial class is available. Nothing is booked until admissions confirms it." : "A coordinator will be in touch to discuss lesson times and fees. The Weekend plan is excluded from the free trial."}
         </p>
       </div>
       {(selectedPlan || initialPreferenceNotes) && <div className="rounded-xl border border-leaf-100 bg-leaf-50 p-4 text-sm text-ink-soft" role="group" aria-label="Your enquiry preferences">{selectedPlan && <p>Selected package: <strong>{selectedPlan.name}</strong></p>}{initialPreferenceNotes && <p className="mt-1 whitespace-pre-line">{initialPreferenceNotes}</p>}</div>}
@@ -301,7 +303,7 @@ export function QuickTrialForm({ courses = [], plans = [], currencies = [], cons
       {state.error && <p className="rounded-xl bg-rose-600/10 px-4 py-3 text-[0.92rem] font-medium text-rose-600" role="alert">{state.error}</p>}
       <button type="submit" className="btn btn-primary btn-lg w-full whitespace-normal text-center" disabled={state.sending}>
         {state.sending ? <Loader2 className="size-5 animate-spin" aria-hidden="true" /> : <CheckCircle2 className="size-5" aria-hidden="true" />}
-        {state.sending ? "Sending…" : eligible ? "Request my free trial" : "Send package enquiry"}
+        {state.sending ? "Sending…" : eligible ? "Request my free trial" : subject ? "Send my request" : "Send package enquiry"}
       </button>
     </form>
   );
