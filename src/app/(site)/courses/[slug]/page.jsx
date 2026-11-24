@@ -40,7 +40,9 @@ export default async function CoursePage({ params }) {
   const [courses, faqs, plans, settings] = await Promise.all([getCourses(), getFaqs(), getPlans(), getSettings()]);
   const savedCourseFaqs = faqs.filter((f) => f.course_id === course.id);
   const courseFaqs = savedCourseFaqs.length ? savedCourseFaqs : supplementalCourseFaqs(course.slug);
-  const generalFaqs = faqs.filter((f) => !f.course_id && !f.category.startsWith("Market:")).slice(0, Math.max(0, 5 - courseFaqs.length));
+  const academic = isAcademicCourse(course);
+  // Academic subjects get no generic Quran FAQs: they carry the 3-day trial and fee answers, which are not promised for tuition.
+  const generalFaqs = academic ? [] : faqs.filter((f) => !f.course_id && !f.category.startsWith("Market:")).slice(0, Math.max(0, 5 - courseFaqs.length));
   const others = courses.filter((c) => c.slug !== course.slug && isAcademicCourse(c) === isAcademicCourse(course)).slice(0, 3);
   const prices = plans.filter((p) => p.course_id === course.id && p.billing_period === "monthly").flatMap((p) => p.prices.filter((x) => x.currency === "USD").map((x) => x.amount_minor));
   const fromPrice = prices.length ? Math.min(...prices) : null;
@@ -56,7 +58,7 @@ export default async function CoursePage({ params }) {
       {jsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />}
       <PageHero path={`/courses/${course.slug}`} eyebrow="Live one-to-one course" title={courseHeading(course)} intro={truncate(course.summary || "", 180)} arabic={course.arabic_title} imageOverride={!course.cover_url && isAcademicCourse(course) ? ACADEMIC_HERO : undefined} visual={course.cover_url ? <ContentImage src={course.cover_url} alt={course.cover_alt} priority sizes="(max-width: 1024px) 100vw, 600px" className="aspect-[3/2] w-full object-cover" /> : undefined}>
         <nav aria-label="Breadcrumb" className="mt-5 text-sm text-ink-soft"><Link href="/courses" className="underline">Courses</Link> / <span aria-current="page">{course.title}</span></nav>
-        <div className="mt-6 flex flex-wrap gap-3"><Link href={`/free-trial?course=${course.id}`} className="btn btn-gold">Register for free <ArrowRight className="size-5" aria-hidden="true" /></Link>{wa && <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-outline-light"><MessageCircle className="size-5" aria-hidden="true" /> Ask a question</a>}</div>
+        <div className="mt-6 flex flex-wrap gap-3"><Link href={`/free-trial?course=${course.id}`} className="btn btn-gold">{academic ? "Send a request" : "Register for free"} <ArrowRight className="size-5" aria-hidden="true" /></Link>{wa && <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-outline-light"><MessageCircle className="size-5" aria-hidden="true" /> Ask a question</a>}</div>
       </PageHero>
 
       <div className="page-wrap grid gap-12 py-16 lg:grid-cols-[1fr_20rem]">
@@ -67,7 +69,7 @@ export default async function CoursePage({ params }) {
           {!course.description_html?.includes("oqc-course-support-20261029") && COURSE_SUPPORT[course.slug]?.length > 0 && <section className="prose-oqc mt-10" aria-labelledby="course-preparation"><h2 id="course-preparation">Prepare for this learning path</h2><ul>{COURSE_SUPPORT[course.slug].map(([path, label, detail]) => <li key={path}><Link href={path}>{label}</Link>. {detail}</li>)}</ul><p>Compare the <Link href="/learn#course-comparison">course starting points and learning goals</Link>, then discuss a suitable plan with the coordinator.</p></section>}
 
           {courseReading(course.slug).length > 0 && <nav aria-labelledby="course-reading" className="mt-10"><h2 id="course-reading" className="text-2xl">Further reading</h2><ul className="mt-4 grid gap-2 sm:grid-cols-2">{courseReading(course.slug).map(({ label, href }) => <li key={href}><Link href={href} className="flex items-center gap-2 rounded-xl border border-line bg-white px-4 py-3 font-semibold text-leaf-700 hover:border-gold-300 hover:bg-gold-50"><ArrowRight className="size-4 shrink-0" aria-hidden="true" />{label}</Link></li>)}</ul></nav>}
-          <section className="surface mt-10 space-y-3 p-6"><h2 className="text-2xl">Plan lessons around your family</h2><p>Explore local scheduling and fee guidance before requesting a trial.</p><div className="flex flex-wrap gap-3"><Link href="/locations/united-states" className="btn btn-outline">USA families</Link><Link href="/locations/united-kingdom" className="btn btn-outline">UK families</Link><Link href="/locations/canada" className="btn btn-outline">Canadian families</Link><Link href="/locations/australia" className="btn btn-outline">Australian families</Link><Link href="/locations/united-arab-emirates" className="btn btn-outline">UAE families</Link><Link href="/learn" className="btn btn-outline">Learning guides</Link></div></section>
+          {!academic && <section className="surface mt-10 space-y-3 p-6"><h2 className="text-2xl">Plan lessons around your family</h2><p>Explore local scheduling and fee guidance before requesting a trial.</p><div className="flex flex-wrap gap-3"><Link href="/locations/united-states" className="btn btn-outline">USA families</Link><Link href="/locations/united-kingdom" className="btn btn-outline">UK families</Link><Link href="/locations/canada" className="btn btn-outline">Canadian families</Link><Link href="/locations/australia" className="btn btn-outline">Australian families</Link><Link href="/locations/united-arab-emirates" className="btn btn-outline">UAE families</Link><Link href="/learn" className="btn btn-outline">Learning guides</Link></div></section>}
           {course.outcomes?.length > 0 && (
             <section className="mt-12">
               <h2 className="text-[1.9rem] text-mushaf-900">Learning goals</h2>
@@ -158,11 +160,13 @@ export default async function CoursePage({ params }) {
             </dl>
             <div className="space-y-2 p-6 pt-2">
               <Link href={`/free-trial?course=${course.id}`} className="btn btn-primary w-full">
-                Register for free
+                {academic ? "Send a request" : "Register for free"}
               </Link>
-              <Link href="/pricing" className="btn btn-ghost w-full">
-                Compare packages
-              </Link>
+              {!academic && (
+                <Link href="/pricing" className="btn btn-ghost w-full">
+                  Compare packages
+                </Link>
+              )}
             </div>
           </div>
         </aside>

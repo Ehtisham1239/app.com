@@ -82,3 +82,11 @@ test("hub share image is the neutral academic hero, not the default Quran lesson
   const page = read("src/app/(site)/academic-subjects/page.jsx");
   assert.match(page, /cover_url: ACADEMIC_HERO\.src, cover_alt: ACADEMIC_HERO\.alt/);
 });
+
+test("academic detail pages carry no generic Quran FAQs, trial wording or package links", () => {
+  const page = read("src/app/(site)/courses/[slug]/page.jsx");
+  assert.match(page, /const generalFaqs = academic \? \[\] : faqs\.filter/);
+  assert.match(page, /\{academic \? "Send a request" : "Register for free"\}/);
+  assert.match(page, /\{!academic && <section className="surface mt-10 space-y-3 p-6"><h2 className="text-2xl">Plan lessons around your family/);
+  assert.match(page, /\{!academic && \(\s*<Link href="\/pricing"/);
+});
