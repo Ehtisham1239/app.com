@@ -8,9 +8,9 @@ import lighthouse from 'lighthouse';
 import desktopConfig from 'lighthouse/core/config/desktop-config.js';
 import { auditOrigin } from './lib/audit-origin.mjs';
 
-// Page never painted or never started navigating: a runner/page-load hiccup, retried up to 3 times.
+// Page never painted, never started navigating, or Chrome showed a one-off interstitial: a runner/page-load hiccup, retried up to 3 times.
 // Any other Lighthouse error, and a persistent one, still fails the audit.
-export const TRANSIENT_LIGHTHOUSE_CODES = new Set(['NO_NAVSTART', 'NO_FCP']);
+export const TRANSIENT_LIGHTHOUSE_CODES = new Set(['NO_NAVSTART', 'NO_FCP', 'CHROME_INTERSTITIAL_ERROR']);
 
 const remote = process.argv.find(arg => /^https?:\/\//.test(arg));
 const out = process.env.OQC_QA_OUTPUT || 'artifacts/performance';

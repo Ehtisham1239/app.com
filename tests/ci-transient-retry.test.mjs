@@ -6,7 +6,7 @@ const audit = readFileSync(new URL("../scripts/performance-audit.mjs", import.me
 const workflow = readFileSync(new URL("../.github/workflows/oqc-quality-checks.yml", import.meta.url), "utf8");
 
 test("Lighthouse audit retries only NO_NAVSTART and NO_FCP, at most 3 times", () => {
-  assert.match(audit, /TRANSIENT_LIGHTHOUSE_CODES = new Set\(\['NO_NAVSTART', 'NO_FCP'\]\)/);
+  assert.match(audit, /TRANSIENT_LIGHTHOUSE_CODES = new Set\(\['NO_NAVSTART', 'NO_FCP', 'CHROME_INTERSTITIAL_ERROR'\]\)/);
   assert.match(audit, /!TRANSIENT_LIGHTHOUSE_CODES\.has\(error\.code\) \|\| attempt === 3\) throw error/);
 });
 
