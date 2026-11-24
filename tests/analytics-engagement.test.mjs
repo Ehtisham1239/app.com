@@ -70,6 +70,21 @@ test("blog_read needs 75% depth and 20 seconds, on articles only, once", () => {
   } finally { Date.now = realNow; }
 });
 
+test("blog_read still fires when the reader stops scrolling at the end", () => {
+  const realNow = Date.now, realSet = globalThis.setTimeout; let now = realNow(); const timers = [];
+  Date.now = () => now; globalThis.setTimeout = fn => { timers.push(fn); return timers.length; };
+  try {
+    const { scrollTo, events } = setup();
+    now += 3000; scrollTo(3200);
+    assert.equal(events("oqc_blog_read").length, 0);
+    assert.equal(timers.length, 1, "one timer is waiting for the 20 seconds");
+    scrollTo(3200);
+    assert.equal(timers.length, 1, "no second timer");
+    now += 18000; timers[0]();
+    assert.equal(events("oqc_blog_read").length, 1);
+  } finally { Date.now = realNow; globalThis.setTimeout = realSet; }
+});
+
 test("outbound_click reports only the domain of external links", () => {
   const { click, events } = setup("/");
   click("https://www.trustpilot.com/review/onlinequrancollege.com?x=1");
