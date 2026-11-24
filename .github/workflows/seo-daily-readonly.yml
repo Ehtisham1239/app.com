@@ -1,0 +1,31 @@
+name: OQC SEO Read-Only Audit
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * *'
+permissions:
+  contents: read
+concurrency:
+  group: oqc-seo-readonly
+  cancel-in-progress: false
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Run SEO audit
+        run: npm run seo:agent
+      - name: Upload audit artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oqc-seo-audit
+          path: artifacts/seo-agent/latest/
+          if-no-files-found: warn
+          retention-days: 14
