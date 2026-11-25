@@ -92,6 +92,14 @@ These changes reproduce the intent of PR #430 against the current main tree, avo
 - `.env.example` contains blank placeholders; recursive tree inspection did not find committed `.env` files or obvious private-key filenames. This is not a historical secret scan and cannot establish that credentials were never committed.
 - No production database advisor, DAST, authenticated role review or credential rotation was performed.
 
+
+### P2 — Two overlapping quality workflows create duplicate CI work
+
+- Both `.github/workflows/oqc-quality.yml` and `.github/workflows/oqc-quality-checks.yml` trigger on pull requests to `main`.
+- Both run locked dependency installation, tests, lint and a production build. One uses Node 20 and the other Node 22; only the latter also runs the production dependency audit and the live responsive/performance jobs.
+- The draft PR therefore queues two overlapping quality workflows. This adds CI minutes and can create confusing duplicate check names/results.
+- Recommendation: consolidate into one clearly versioned workflow after comparing required Node runtime, dependency audit, production smoke, responsive and performance behavior. Preserve the strongest checks and avoid removing release protections.
+
 ### P2 — Architecture and test coverage
 
 - The repository is the documented single source for the public site, CMS/admin, parent portal, API routes, SEO logic, scripts and migrations.
