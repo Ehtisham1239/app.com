@@ -10,7 +10,8 @@ import { teacherInitial } from "../src/components/site/teacher-initial.js";
 
 const read = (p) => readFileSync(new URL(`../${p}`, import.meta.url), "utf8");
 const migrations = readdirSync(new URL("../supabase/migrations/", import.meta.url)).map((f) => read(`supabase/migrations/${f}`)).join("\n");
-const CMS_POSTS = ["noorani-qaida-home-practice-checklist", "online-quran-lessons-canada-time-zones", "online-quran-lessons-uae-families", "online-quran-class-fees-uk-comparison"]; // published in the CMS (checked 3 Nov 2026)
+// USA fee guide verified in the live sitemap and on the public page on 25 Nov 2026.
+const CMS_POSTS = ["online-quran-class-fees-usa-comparison", "noorani-qaida-home-practice-checklist", "online-quran-lessons-canada-time-zones", "online-quran-lessons-uae-families", "online-quran-class-fees-uk-comparison"]; // published in the CMS (checked 3 Nov 2026)
 const guides = new Set(LEARNING_GUIDES.map((g) => g.path));
 
 test("all five indexed hubs get a landing block in their own currency", () => {
