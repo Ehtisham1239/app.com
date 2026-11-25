@@ -107,6 +107,14 @@ These changes reproduce the intent of PR #430 against the current main tree, avo
 - Main commit `fcb673a` had successful GitHub checks at audit time: test/lint/build, production smoke, responsive audit and live performance audit. The CI workflow's report-only caveat above still applies.
 - The repository README describes 205 existing public pages/topic placements; that is a dated documented inventory, not a fresh independent count of live indexed URLs.
 
+
+## Branch verification status
+
+- A regression test was added at `tests/adsense-removal.test.mjs`. It asserts that the public layout has no AdSense account meta/loader/publisher ID and that `public/ads.txt` is absent.
+- The draft PR's initial CI runs began, and the production dependency audit step completed successfully. The two overlapping workflow runs were later cancelled when the branch advanced with the audit-document update; they did not complete lint, tests and build.
+- The latest branch head therefore has **no completed CI pass yet**. Vercel preview status was pending at the last check. Do not treat this branch as tested or ready to merge until fresh checks complete.
+- The main-branch baseline checks had passed before this audit, but that is not a substitute for checks on this branch.
+
 ## Recommended release sequence
 
 1. Review this branch diff and the AdSense removal intent against owner approval.
