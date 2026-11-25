@@ -58,6 +58,13 @@ export default async function SiteLayout({ children }) {
 
   return (
     <>
+      <meta name="google-adsense-account" content="ca-pub-4481593080893962" />
+      {/* React hoists the asynchronous AdSense script into the public document head. */}
+      <script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4481593080893962"
+        crossOrigin="anonymous"
+      />
       <CustomHeadCode value={customCode} seo={settings["site.seo"]} />
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:shadow-lg">
         Skip to content
