@@ -27,10 +27,12 @@ test("USA country hub copy makes no price, office, credential, guarantee or resp
 
 test("every USA country hub link leads to a published guide or article", () => {
   const migrations = readdirSync(new URL("../supabase/migrations/", import.meta.url)).map((f) => read(`supabase/migrations/${f}`)).join("\n");
+  // Published directly through the CMS and verified live on 25 Nov 2026.
+  const cmsPosts = new Set(["online-quran-class-fees-usa-comparison"]);
   const guides = new Set(LEARNING_GUIDES.map((g) => g.path));
   for (const href of [...US_HUB.paths.map((p) => p.href), ...US_HUB.reading.map((r) => r.href)]) {
     const blog = href.match(/^\/blog\/([a-z0-9-]+)$/);
-    assert.ok(guides.has(href) || (blog && migrations.includes(`'${blog[1]}'`)), href);
+    assert.ok(guides.has(href) || (blog && (migrations.includes(`'${blog[1]}'`) || cmsPosts.has(blog[1]))), href);
   }
 });
 
