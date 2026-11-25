@@ -102,7 +102,7 @@ export default async function ContactPage() {
           <div className="max-w-2xl">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-leaf-700">Helpful next steps</p>
             <h2 id="contact-help-heading" className="mt-2 text-[1.7rem] text-mushaf-900">Explore before you decide</h2>
-            <p className="mt-2 leading-relaxed text-ink-soft">Compare course options or find answers about lessons, teacher requests and scheduling.</p>
+            <p className="mt-2 leading-relaxed text-ink-soft">Read the <Link href="/at-a-glance" className="text-leaf-700 underline">college overview</Link> for course options, teacher preferences and trial details.</p>
           </div>
           <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[{ href: "/courses", icon: BookOpen, title: "Explore Quran courses", text: "Compare Quran reading, Noorani Qaida, Tajweed, Hifz and other learning paths." }, { href: "/pricing", icon: Clock3, title: "Compare fees and packages", text: "See lesson frequency, prices and which plans include a free trial." }, { href: "/faq", icon: HelpCircle, title: "Read common questions", text: "Learn how online lessons, teacher preferences and class scheduling work." }].map(({ href, icon: Icon, title, text }) => <Link key={href} href={href} className="group flex min-w-0 items-start gap-4 rounded-2xl border border-line bg-white p-5 transition-colors hover:border-leaf-500"><Icon className="mt-1 size-6 shrink-0 text-leaf-700" /><span className="min-w-0 flex-1"><span className="block font-semibold text-mushaf-900">{title}</span><span className="mt-1 block text-sm leading-relaxed text-ink-soft">{text}</span></span><ArrowRight className="mt-1 size-5 shrink-0 text-leaf-700" /></Link>)}
