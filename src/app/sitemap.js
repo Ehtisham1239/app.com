@@ -23,7 +23,8 @@ export const revalidate = 3600;
 export default async function sitemap() {
   const [{ courses, posts, pages, teachers }, videoPages] = await Promise.all([getPublishedSlugs(), getPublishedPageVideos()]);
   const videos = new Map(videoPages.filter((page) => page.template === "standard" && isVideoPageSlug(page.slug) && !guideForSlug(page.slug)).map((page) => [page.slug, pageVideo(page.video)]));
-  const fixed = ["", "/courses", "/pricing", "/free-trial", "/teachers", "/blog", "/faq", "/contact", "/careers", "/locations", "/learn", "/quran-study", "/reviews", "/verify-certificate", "/usa-quran-classes", "/at-a-glance", "/usa-quran-classes/states", "/maryland-quran-classes", "/massachusetts-quran-classes", "/north-carolina-quran-classes", "/minnesota-quran-classes", "/arizona-quran-classes", "/wisconsin-quran-classes", "/missouri-quran-classes", "/connecticut-quran-classes", "/indiana-quran-classes", "/tennessee-quran-classes", ...(courses.some((c) => c.category === "academic") ? ["/academic-subjects"] : [])].map((path) => ({ url: `${SITE_URL}${path}`, ...(fixedImages[path] ? { images: [imageUrl(fixedImages[path])] } : {}), changeFrequency: path === "" ? "weekly" : "monthly", priority: path === "" ? 1 : 0.7 }));
+  const fixed = ["", "/courses", "/pricing", "/free-trial", "/teachers", "/blog", "/faq", "/contact", "/careers", "/locations", "/learn", "/quran-study", "/reviews", "/verify-certificate", "/usa-quran-classes", "/at-a-glance", ...(courses.some((c) => c.category === "academic") ? ["/academic-subjects"] : [])].map((path) => ({ url: `${SITE_URL}${path}`, ...(fixedImages[path] ? { images: [imageUrl(fixedImages[path])] } : {}), changeFrequency: path === "" ? "weekly" : "monthly", priority: path === "" ? 1 : 0.7 }));
+  const statePages = ["/usa-quran-classes/states", "/maryland-quran-classes", "/massachusetts-quran-classes", "/north-carolina-quran-classes", "/minnesota-quran-classes", "/arizona-quran-classes", "/wisconsin-quran-classes", "/missouri-quran-classes", "/connecticut-quran-classes", "/indiana-quran-classes", "/tennessee-quran-classes"].map((path) => ({ url: `${SITE_URL}${path}`, changeFrequency: "monthly", priority: 0.6 }));
   const locationPages = new Map(pages.map((p) => [p.slug, p]));
   const locationEntries = [...INDEXED_MARKETS.map((slug) => [slug, null]), ...RESTORED_LOCATION_PATHS.map((p) => p.split("/"))];
   const locations = locationEntries.flatMap(([countrySlug, citySlug]) => {
@@ -39,5 +40,5 @@ export default async function sitemap() {
     return shouldIncludeInSitemap(row, path, SITE_URL) ? [{ url: `${SITE_URL}${path}`, lastModified: row.updated_at, ...(cover ? { images: [imageUrl(cover)] } : {}), ...(video?.primary ? { videos: [videoSitemapEntry(video)] } : {}), priority }] : [];
   });
   const trialVideo = { url: `${SITE_URL}/trial-video`, videos: [videoSitemapEntry(pageVideo(TRIAL_GUIDE_VIDEO))] };
-  return [...fixed, trialVideo, ...locations, ...content(courses, "/courses", 0.8), ...content(pages.filter((p) => !p.slug.startsWith("locations-")), "", 0.5), ...content(posts, "/blog", 0.6), ...content(teachers, "/teachers", 0.5)];
+  return [...fixed, ...statePages, trialVideo, ...locations, ...content(courses, "/courses", 0.8), ...content(pages.filter((p) => !p.slug.startsWith("locations-")), "", 0.5), ...content(posts, "/blog", 0.6), ...content(teachers, "/teachers", 0.5)];
 }
