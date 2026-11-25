@@ -21,6 +21,7 @@ export const US_HUB = {
   ],
   reading: [
     { label: "Planning online Quran lessons across US time zones", href: "/blog/online-quran-lessons-usa-time-zones" },
+    { label: "Compare monthly Quran class fees in the USA", href: "/blog/online-quran-class-fees-usa-comparison" },
     { label: "Choosing an online Quran teacher in the USA", href: "/blog/choose-online-quran-teacher-usa" },
     { label: "Tajweed rules for beginners, with examples", href: "/blog/tajweed-rules-for-beginners" },
     { label: "Online Tafseer classes: what you learn", href: "/blog/online-tafseer-classes-what-you-learn" },

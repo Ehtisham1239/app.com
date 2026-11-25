@@ -14,7 +14,7 @@ import { INDEXED_MARKETS, getLocation, locationPath } from "@/lib/locations";
 
 export const revalidate = 3600;
 
-export const metadata = contentMetadata({ title: "Online Quran Class Fees & Packages", seo_noindex: false }, { path: "/pricing", description: "Compare online Quran class fees and lesson schedules across the UK, USA, Canada, Australia and UAE. Check supported currencies and 3-day trial eligibility." });
+export const metadata = contentMetadata({ title: "Online Quran Class Fees and Monthly Plans", seo_noindex: false }, { path: "/pricing", description: "Compare monthly Quran class fees by lesson length and days per week for the UK, USA, Canada, Australia and UAE. Check family pricing and 3-day trial eligibility." });
 
 // No searchParams here: the page stays statically cached; ?currency= is read in the browser.
 export default async function PricingPage() {
@@ -45,6 +45,18 @@ export default async function PricingPage() {
           {plans.length > 0 && <a className="btn btn-outline-light" href="#compare-plans">Compare plans</a>}
         </div>
       </PageHero>
+      {quickAnswer && (
+        <section className="page-wrap pt-12 sm:pt-16" aria-labelledby="fee-quick-answer">
+          <div className="mx-auto max-w-3xl rounded-[var(--radius-card)] border border-line bg-white p-6 sm:p-7">
+            <h2 id="fee-quick-answer" className="font-sans text-[1.15rem] font-bold text-mushaf-900">{quickAnswer.question}</h2>
+            <p className="mt-2 text-[0.98rem] leading-relaxed text-ink-soft">{quickAnswer.answer}</p>
+            <div className="mt-3 flex flex-wrap gap-x-5">
+              <Link href="#compare-plans" className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">Compare lesson plans</Link>
+              <Link href="/free-trial" className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">Request a free trial on an eligible plan</Link>
+            </div>
+          </div>
+        </section>
+      )}
       <section id="monthly-packages" className="page-wrap py-11 sm:py-16" aria-labelledby="monthly-packages-title">
         <h2 id="monthly-packages-title" className="mb-5 text-2xl text-mushaf-900 sm:text-3xl">Monthly class packages</h2>
         {packages.length > 0
@@ -85,18 +97,6 @@ export default async function PricingPage() {
         </section>
       )}
 
-      {quickAnswer && (
-        <section className="page-wrap pt-12 sm:pt-16" aria-labelledby="fee-quick-answer">
-          <div className="mx-auto max-w-3xl rounded-[var(--radius-card)] border border-line bg-white p-6 sm:p-7">
-            <h2 id="fee-quick-answer" className="font-sans text-[1.15rem] font-bold text-mushaf-900">{quickAnswer.question}</h2>
-            <p className="mt-2 text-[0.98rem] leading-relaxed text-ink-soft">{quickAnswer.answer}</p>
-            <div className="mt-3 flex flex-wrap gap-x-5">
-              <Link href="#compare-plans" className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">Compare lesson plans</Link>
-              <Link href="/free-trial" className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">Request a free trial on an eligible plan</Link>
-            </div>
-          </div>
-        </section>
-      )}
       <section className="page-wrap mt-8" aria-labelledby="fees-by-country">
         <div className="mx-auto max-w-3xl rounded-[var(--radius-card)] border border-line bg-leaf-50 p-6 sm:p-7">
           <h2 id="fees-by-country" className="text-xl text-mushaf-900">Quran lesson fees and schedules by country</h2>
