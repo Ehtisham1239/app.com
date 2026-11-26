@@ -146,8 +146,12 @@ async function auditTableResponsiveness(page, width, failures) {
     return result;
   });
 
-  if (width === 320 && (report.actual.tableCount !== 2 || report.actual.wrapperCount !== 2)) {
+  if (report.actual.tableCount !== 2 || report.actual.wrapperCount !== 2) {
     failures.push(`${TABLE_PAGE} @${width}px: expected 2 real tables in 2 responsive wrappers, got ${report.actual.tableCount} tables / ${report.actual.wrapperCount} wrappers`);
+  }
+  const actualShape = report.actual.tables.map(({ rows, columns }) => [rows, columns]);
+  if (JSON.stringify(actualShape) !== JSON.stringify([[5, 2], [4, 2]])) {
+    failures.push(`${TABLE_PAGE} @${width}px: table rows/columns changed: ${JSON.stringify(actualShape)}`);
   }
   if (report.actual.tables.some((table) => table.display !== "table" || !["auto", "scroll"].includes(table.parentOverflowX))) {
     failures.push(`${TABLE_PAGE} @${width}px: a real table is not displayed as a table inside a horizontal scroll wrapper: ${JSON.stringify(report.actual.tables)}`);
