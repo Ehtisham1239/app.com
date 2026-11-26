@@ -106,6 +106,7 @@ export default async function PricingPage() {
           <p className="mt-2 text-ink-soft">Use your country guide to check lesson times and fee guidance. Admissions confirms the exact fee, payment currency and teacher availability before enrolment.</p>
           <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
             {INDEXED_MARKETS.map(getLocation).map(country => <li key={country.slug}><Link href={locationPath(country)} className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">{country.name} fees and scheduling</Link></li>)}
+            <li><Link href="/locations#europe-lessons" prefetch={false} className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">Europe lesson planning</Link></li>
             <li><Link href="/locations#new-zealand-lessons" className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">New Zealand lesson planning</Link></li>
           </ul>
         </div>
