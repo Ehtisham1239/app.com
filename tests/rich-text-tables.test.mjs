@@ -78,7 +78,32 @@ test("ordinary paragraphs and incomplete bold-label sequences are not converted"
 const publicStyles = await readFile(new URL("../src/app/globals.css", import.meta.url), "utf8");
 
 test("public and CMS tables have horizontal scroll containers for narrow screens", () => {
-  assert.match(publicStyles, /\.prose-oqc \.article-table-scroll \{[^}]*overflow-x: auto/s);
+  assert.match(publicStyles, /\.article-table-scroll \{[^}]*overflow-x: auto/s);
   assert.match(publicStyles, /\.rich-content \.tableWrapper \{[^}]*overflow-x: auto/s);
   assert.match(publicStyles, /\.prose-oqc :where\(table\) \{[^}]*width: max-content/s);
+  assert.match(publicStyles, /table:not\(:has\(tr > :nth-child\(3\)[^}]*width: 100%/s);
+});
+
+
+test("tables with more than two columns retain spans, authored formatting and nested structure", () => {
+  const source = '<table><caption>Plans</caption><tbody><tr><th colspan="3" scope="colgroup">Weekly lessons</th></tr><tr><td rowspan="2" style="text-align:center;background-color:#f1f9ec"><em>Plan A</em></td><td>Two lessons</td><td><table><tr><td>Included</td></tr></table></td></tr><tr><td>Three lessons</td><td>Optional</td></tr></tbody></table><p>More information follows.</p>';
+  const html = cleanHtml(source);
+
+  assert.equal((html.match(/class="article-table-scroll"/g) || []).length, 1);
+  assert.match(html, /<caption>Plans<\/caption>/);
+  assert.match(html, /<th colspan="3" scope="colgroup">Weekly lessons<\/th>/);
+  assert.match(html, /rowspan="2"[^>]*text-align:center;background-color:#f1f9ec"><em>Plan A<\/em>/);
+  assert.match(html, /<\/tbody><\/table><\/div><p>More information follows/);
+});
+
+test("authored table cells do not trigger the legacy paragraph table recovery", () => {
+  const cell = "<p><strong>Morning</strong></p><p><strong>Evening</strong></p><p>Monday</p><p>Tuesday</p><p>Wednesday</p><p>Thursday</p>";
+  const source = "<table><tr><td>" + cell + "</td></tr></table>";
+  assert.equal(restoreLegacyParagraphTables(source), source);
+});
+
+test("editorial images retain the authored alternative text and dimensions and decode asynchronously", () => {
+  const html = cleanHtml('<figure><img src="/images/example.webp" alt="A learner at home" width="800" height="600"><figcaption>Illustrative lesson</figcaption></figure>');
+  assert.match(html, /alt="A learner at home" width="800" height="600" loading="lazy" decoding="async"/);
+  assert.match(html, /<figcaption>Illustrative lesson<\/figcaption>/);
 });

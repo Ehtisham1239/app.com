@@ -268,15 +268,72 @@
   .prose-oqc :where(strong) { font-weight: 700; color: var(--color-mushaf-950); }
   .prose-oqc :where(em) { font-style: italic; }
   .prose-oqc :where(blockquote) { border-left: 3px solid var(--color-gold-500); padding: .2rem 0 .2rem 1.1rem; margin: 1.4rem 0; color: var(--color-ink-soft); font-style: italic; }
-  .prose-oqc :where(img) { border-radius: 1rem; margin: 1.5rem 0; }
+  .prose-oqc :where(img) {
+    border-radius: 1rem;
+    margin-block: 1.5rem;
+    border: 1px solid var(--color-leaf-200);
+  }
+  .prose-oqc :where(figure) { margin-block: 1.5rem; }
+  .prose-oqc :where(figure > img) { margin-block: 0; }
+  .prose-oqc :where(figcaption) {
+    margin-block-start: .5rem;
+    font-size: .875rem;
+    color: var(--color-ink-soft);
+  }
   .prose-oqc :where(p, li, a, blockquote) { overflow-wrap: anywhere; }
   .prose-oqc :where(img, video) { max-width: 100%; height: auto; }
   .prose-oqc :where(pre) { overflow-x: auto; padding: 1rem; border-radius: .75rem; background: var(--color-paper); }
-  .prose-oqc .article-table-scroll { max-width: 100%; overflow-x: auto; overscroll-behavior-inline: contain; -webkit-overflow-scrolling: touch; margin-block: 1.5rem; }
-  .prose-oqc :where(table) { display: table; width: max-content; min-width: 100%; max-width: none; border-collapse: collapse; margin: 0; }
-  .prose-oqc .article-table-scroll :where(caption) { padding-block: .5rem; font-weight: 600; text-align: start; color: var(--color-mushaf-900); }
-  .prose-oqc :where(th, td) { min-width: 9rem; padding: .75rem; border: 1px solid var(--color-line); vertical-align: top; text-align: start; }
-  .prose-oqc :where(th) { background: var(--color-leaf-50); font-weight: 600; }
+  .article-table-scroll {
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+    margin-block: 1.5rem;
+    border: 1px solid var(--color-leaf-200);
+    border-radius: 1rem;
+    background: var(--color-surface);
+  }
+  .article-table-scroll:focus-visible {
+    outline: 3px solid var(--color-mushaf-900);
+    outline-offset: 2px;
+  }
+  .article-table-scroll :where(table), .prose-oqc :where(table) {
+    display: table;
+    width: max-content;
+    min-width: 100%;
+    max-width: none;
+    border-collapse: collapse;
+    margin: 0;
+  }
+  .article-table-scroll > table:not(:has(tr > :nth-child(3), [colspan]:not([colspan="1"]), [rowspan]:not([rowspan="1"]))) {
+    width: 100%;
+  }
+  .article-table-scroll > table:not(:has(tr > :nth-child(3), [colspan]:not([colspan="1"]), [rowspan]:not([rowspan="1"]))) :where(th, td) {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .article-table-scroll :where(caption) {
+    padding: .65rem .8rem;
+    text-align: start;
+    font-weight: 600;
+    color: var(--color-mushaf-900);
+  }
+  .article-table-scroll :where(th, td), .prose-oqc :where(th, td) {
+    min-width: 8rem;
+    padding: clamp(.5rem, 2vw, .75rem);
+    border: 1px solid var(--color-line);
+    vertical-align: top;
+    text-align: start;
+  }
+  .article-table-scroll :where(th), .prose-oqc :where(th) {
+    background: var(--color-leaf-50);
+    color: var(--color-mushaf-900);
+    font-weight: 600;
+  }
+  .article-table-scroll :where(tbody tr:nth-child(even) td) {
+    background: var(--color-paper);
+  }
 
   /* The CMS editor uses the same table proportions and header treatment as public content. */
   .rich-content .tableWrapper { max-width: 100%; overflow-x: auto; overscroll-behavior-inline: contain; -webkit-overflow-scrolling: touch; }

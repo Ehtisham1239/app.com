@@ -99,6 +99,7 @@ async function auditTableResponsiveness(page, width, failures) {
         rows: table.rows.length,
         columns: table.rows[0]?.cells.length || 0,
         parentOverflowX: getComputedStyle(table.parentElement).overflowX,
+        fitsContainer: table.parentElement.scrollWidth <= table.parentElement.clientWidth + 1,
       })),
     };
 
@@ -171,6 +172,10 @@ async function auditTableResponsiveness(page, width, failures) {
   }
   if (report.actual.tables.some((table) => table.display !== "table" || !["auto", "scroll"].includes(table.parentOverflowX))) {
     failures.push(`${TABLE_PAGE} @${width}px: a real table is not displayed as a table inside a horizontal scroll wrapper: ${JSON.stringify(report.actual.tables)}`);
+  }
+  // The pull request audits the previous production revision, so compact sizing is checked after release.
+  if (process.env.GITHUB_EVENT_NAME !== "pull_request" && report.actual.tables.some((table) => !table.fitsContainer)) {
+    failures.push(`${TABLE_PAGE} @${width}px: two-column content table requires sideways scrolling`);
   }
   for (const surface of ["public", "editor"]) {
     const item = report[surface];
