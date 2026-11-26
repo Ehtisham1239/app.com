@@ -1,5 +1,6 @@
 "use client";
 import { useEffect } from "react";
+import { scheduleVisualWork } from "@/lib/visual-work";
 
 // One-time reveals: server-rendered content remains visible without JavaScript.
 export function HomeMotion() {
@@ -8,9 +9,11 @@ export function HomeMotion() {
     const root = document.querySelector("[data-home-motion]");
     if (!root || !("IntersectionObserver" in window)) return;
     let observer;
-    const nodes = [...root.querySelectorAll("section:not(.home-hero) h2, section .surface, section figure, [data-motion-item]")];
-    const targets = nodes.filter(node => !node.parentElement.closest(".surface, [data-motion-item]"));
+    let nodes;
     function setup() {
+      if (media.matches && !nodes) return;
+      nodes ??= [...root.querySelectorAll("section:not(.home-hero) h2, section .surface, section figure, [data-motion-item]")];
+      const targets = nodes.filter(node => !node.parentElement.closest(".surface, [data-motion-item]"));
       observer?.disconnect();
       nodes.forEach(node => { node.classList.remove("home-reveal"); node.style.removeProperty("--reveal-delay"); });
       if (media.matches) return;
@@ -38,9 +41,17 @@ export function HomeMotion() {
       // Avoid re-animating the first screen or nesting two transforms on one card.
       targets.forEach(node => observer.observe(node));
     }
-    setup();
-    media.addEventListener("change", setup);
-    return () => { observer?.disconnect(); media.removeEventListener("change", setup); };
+    let cancel = scheduleVisualWork(setup);
+    const update = () => {
+      cancel();
+      setup();
+    };
+    media.addEventListener("change", update);
+    return () => {
+      cancel();
+      observer?.disconnect();
+      media.removeEventListener("change", update);
+    };
   }, []);
   return null;
 }
