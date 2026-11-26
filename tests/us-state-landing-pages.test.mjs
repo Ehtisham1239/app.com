@@ -127,6 +127,6 @@ test("US state pages use the light hero, framed photo and colour hover styles", 
   assert.match(css, /:is\(\.directory-photo, \.state-photo\)::after/);
   assert.doesNotMatch(css, /\.cta \{[^}]*#0d4a1c, #0c6c0c/, "the closing CTA is a light panel");
   assert.match(css, /prefers-reduced-motion: reduce/);
-  assert.match(script, /prefers-reduced-motion: reduce/);
+  assert.match(script, /prefers-reduced-motion: no-preference/);
   assert.match(script, /pointer: fine/);
 });
