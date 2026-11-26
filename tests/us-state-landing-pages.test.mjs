@@ -71,6 +71,9 @@ test("US state hub is indexable and links to all ten pages", () => {
   assert.ok(hub.includes('"@type":"CollectionPage"'));
   assert.ok(hub.includes('"EducationalOrganization"'));
   assert.ok(hub.includes('data-hero-visual'));
+  assert.match(hub, /class="hero directory-hero"/);
+  assert.match(hub, /class="hero-photo directory-photo"/);
+  assert.doesNotMatch(hub, /Online classes, not local branches/);
   assert.ok(hub.includes('width="1200" height="800"'));
   assert.match(hub, /<link rel="canonical" href="https:\/\/www\.onlinequrancollege\.com\/usa-quran-classes\/states">/);
   for (const [slug] of states) assert.ok(hub.includes(`href="/${slug}-quran-classes"`));

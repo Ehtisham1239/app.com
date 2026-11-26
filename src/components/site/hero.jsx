@@ -7,14 +7,15 @@ import { ArrowRight, Check } from "@/components/site/icons";
 const AL_ALAQ_1 = "اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ";
 // The portrait is beside the copy on desktop and follows it on narrow screens.
 const HERO_SIZES = "(max-width: 471px) calc(100vw - 48px), (min-width: 768px) and (max-width: 1023px) calc(45vw - 61px), 424px";
-const HERO_AVIF = "/brand/hero-320.avif 320w, /brand/hero.avif 440w";
+const HERO_AVIF = "/brand/oqc-home-hero-v3-320.avif 320w, /brand/oqc-home-hero-v3-440.avif 440w, /brand/oqc-home-hero-v3-640.avif 640w";
+const HERO_WEBP = "/brand/oqc-home-hero-v3-320.webp 320w, /brand/oqc-home-hero-v3-440.webp 440w, /brand/oqc-home-hero-v3-640.webp 640w";
 const DEFAULT_HERO = {
   eyebrow: "Live 1-on-1 online Quran classes", title: "Empowering minds with online Quranic education",
   subtitle: "Live Quran lessons for children and adults. Choose your course and a time that suits your family.",
   primary_label: "Register for free", secondary_label: "Explore courses", badges: [],
 };
 export function HomeHero({ hero, stats }) {
-  preload("/brand/hero.avif", {
+  preload("/brand/oqc-home-hero-v3-440.avif", {
     as: "image",
     type: "image/avif",
     imageSrcSet: HERO_AVIF,
@@ -58,7 +59,7 @@ export function HomeHero({ hero, stats }) {
         <div className="hero-portrait relative mx-auto w-full max-w-[440px]">
           <picture data-hero-visual className="block overflow-hidden">
             <source type="image/avif" srcSet={HERO_AVIF} sizes={HERO_SIZES} />
-            <img src="/brand/hero.webp" srcSet="/brand/hero-320.webp 320w, /brand/hero.webp 440w" alt="An adult and child learning Quran together during an online lesson" width={440} height={480} sizes={HERO_SIZES} loading="eager" decoding="async" className="aspect-[11/12] w-full object-cover" />
+            <img data-oqc-image="" src="/brand/oqc-home-hero-v3-440.webp" srcSet={HERO_WEBP} alt="A mother and her daughter learning Quran together at home" width={440} height={480} sizes={HERO_SIZES} loading="eager" decoding="async" className="aspect-[11/12] w-full object-cover" />
           </picture>
         </div>
       </div>
