@@ -36,9 +36,10 @@ OQC is an online-only academy. Country pages explain online service enquiries an
 |---|---|---|---|
 | 1 | United Kingdom | online Quran classes for kids/adults, Tajweed, Hifz, Qaida | GBP context, GMT/BST, UK spelling |
 | 2 | United States | online Quran classes, Quran tutor online, kids/adults | USD context, multiple time zones, US spelling |
-| 3 | Canada | online Quran classes, Quran lessons for children/adults | CAD context, multiple time zones |
+| 3 | Canada | online Quran classes, Quran lessons for children/adults | USD fee quotes, multiple time zones |
 | 4 | Australia | online Quran classes, Quran teacher online | AUD context, Australian spelling, time zones |
 | 5 | UAE | online Quran classes, family schedules | AED context, Gulf Standard Time |
+| 6 | Europe | online Quran lessons, local lesson times and clock changes | Use the [European scheduling guide](https://www.onlinequrancollege.com/blog/online-quran-classes-europe-time-zones) and country-specific pages where useful |
 
 **Page ownership**
 - Homepage = global brand and primary service overview.

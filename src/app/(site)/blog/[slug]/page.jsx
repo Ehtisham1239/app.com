@@ -141,9 +141,7 @@ export default async function PostPage({ params }) {
   const jsonLd = blogPosting(post, { siteUrl: SITE_URL, visual: { ...visual, src: publicImageUrl(visual.src) }, html, description: post.seo_description || post.excerpt || truncate(stripHtml(html), 158) });
   // One FAQPage per article: the computed quick answer (fee posts) plus the article's own visible question headings.
   const faqs = [...(quick ? [quick] : []), ...articleQuestionAnswers(html).filter(f => f.question !== quick?.question)];
-  const readingMinutes = Number(post.reading_minutes) > 0
-    ? Number(post.reading_minutes)
-    : Math.ceil(jsonLd.wordCount / 220);
+  const readingMinutes = Math.ceil(jsonLd.wordCount / 220);
 
   return (
     <>
