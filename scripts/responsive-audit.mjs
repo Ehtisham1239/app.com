@@ -14,8 +14,9 @@ export const PAGES = [
   "/", "/courses", "/courses/hifz-quran", "/courses/noorani-qaida", "/pricing", "/free-trial", "/teachers",
   "/reviews", "/learn", "/learn/quran-for-adults", "/blog", "/blog/online-quran-class-fees-uk-comparison",
   "/faq", "/about", "/contact", "/locations",
-  "/locations/united-kingdom", "/locations/united-states", "/locations/canada", "/locations/australia", "/locations/united-arab-emirates",
+  "/locations/united-kingdom", "/locations/united-states", "/locations/united-states/dallas", "/locations/canada", "/locations/australia", "/locations/united-arab-emirates",
 ];
+const TABLE_PAGE = "/locations/united-states/dallas";
 const HUBS = ["/locations/united-kingdom", "/locations/united-states", "/locations/canada", "/locations/australia", "/locations/united-arab-emirates"];
 // Every city page is live on its own address and none redirects, city-states included
 // (owner decisions 18 and 20 Nov 2026, #367).
@@ -70,6 +71,102 @@ async function auditedGoto(page, url) {
   return response;
 }
 
+async function auditTableResponsiveness(page, width, failures) {
+  const report = await page.evaluate(() => {
+    const tables = [...document.querySelectorAll(".prose-oqc .article-table-scroll > table")];
+    const wrappers = [...document.querySelectorAll(".prose-oqc .article-table-scroll")];
+    const actual = {
+      tableCount: tables.length,
+      wrapperCount: wrappers.length,
+      tables: tables.map((table) => ({
+        display: getComputedStyle(table).display,
+        rows: table.rows.length,
+        columns: table.rows[0]?.cells.length || 0,
+        parentOverflowX: getComputedStyle(table.parentElement).overflowX,
+      })),
+    };
+
+    // Exercise genuinely wide tables in both the public renderer and CMS editor.
+    // This verifies that horizontal scrolling stays inside the table wrapper at
+    // phone, tablet, laptop and large desktop widths instead of widening the page.
+    const makeWideTable = () => {
+      const table = document.createElement("table");
+      const row = document.createElement("tr");
+      for (let index = 0; index < 20; index += 1) {
+        const cell = document.createElement("th");
+        cell.textContent = `Wide column ${index + 1}`;
+        row.append(cell);
+      }
+      const head = document.createElement("thead");
+      head.append(row);
+      table.append(head);
+      const body = document.createElement("tbody");
+      const bodyRow = document.createElement("tr");
+      for (let index = 0; index < 20; index += 1) {
+        const cell = document.createElement("td");
+        cell.textContent = `Column value ${index + 1}`;
+        bodyRow.append(cell);
+      }
+      body.append(bodyRow);
+      table.append(body);
+      return table;
+    };
+    const publicProbe = document.createElement("div");
+    publicProbe.className = "prose-oqc";
+    publicProbe.style.cssText = "position:absolute;left:0;top:0;width:100%;max-width:100%;visibility:hidden;pointer-events:none";
+    const publicWrapper = document.createElement("div");
+    publicWrapper.className = "article-table-scroll";
+    publicWrapper.append(makeWideTable());
+    publicProbe.append(publicWrapper);
+
+    const editorProbe = document.createElement("div");
+    editorProbe.className = "rich-content";
+    editorProbe.style.cssText = "position:absolute;left:0;top:0;width:100%;max-width:100%;visibility:hidden;pointer-events:none";
+    const editorWrapper = document.createElement("div");
+    editorWrapper.className = "tableWrapper";
+    editorWrapper.append(makeWideTable());
+    editorProbe.append(editorWrapper);
+    document.body.append(publicProbe, editorProbe);
+
+    const measure = (wrapper) => ({
+      overflowX: getComputedStyle(wrapper).overflowX,
+      clientWidth: wrapper.clientWidth,
+      scrollWidth: wrapper.scrollWidth,
+      containsOverflow: wrapper.scrollWidth > wrapper.clientWidth + 1,
+    });
+    const result = {
+      actual,
+      public: measure(publicWrapper),
+      editor: measure(editorWrapper),
+      viewportWidth: document.documentElement.clientWidth,
+      documentScrollWidth: document.documentElement.scrollWidth,
+    };
+    publicProbe.remove();
+    editorProbe.remove();
+    return result;
+  });
+
+  if (report.actual.tableCount !== 2 || report.actual.wrapperCount !== 2) {
+    failures.push(`${TABLE_PAGE} @${width}px: expected 2 real tables in 2 responsive wrappers, got ${report.actual.tableCount} tables / ${report.actual.wrapperCount} wrappers`);
+  }
+  const actualShape = report.actual.tables.map(({ rows, columns }) => [rows, columns]);
+  if (JSON.stringify(actualShape) !== JSON.stringify([[5, 2], [4, 2]])) {
+    failures.push(`${TABLE_PAGE} @${width}px: table rows/columns changed: ${JSON.stringify(actualShape)}`);
+  }
+  if (report.actual.tables.some((table) => table.display !== "table" || !["auto", "scroll"].includes(table.parentOverflowX))) {
+    failures.push(`${TABLE_PAGE} @${width}px: a real table is not displayed as a table inside a horizontal scroll wrapper: ${JSON.stringify(report.actual.tables)}`);
+  }
+  for (const surface of ["public", "editor"]) {
+    const item = report[surface];
+    if (!["auto", "scroll"].includes(item.overflowX) || !item.containsOverflow) {
+      failures.push(`${surface} wide table @${width}px: expected an internally scrollable wrapper, got ${JSON.stringify(item)}`);
+    }
+  }
+  if (report.documentScrollWidth > report.viewportWidth + 1) {
+    failures.push(`wide public/editor table @${width}px: table caused page overflow (${report.documentScrollWidth}px document / ${report.viewportWidth}px viewport)`);
+  }
+}
+
 async function main() {
   if (shots) mkdirSync(shots, { recursive: true });
   const browser = await chromium.launch({ headless: true, ...(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {}) });
@@ -87,6 +184,7 @@ async function main() {
       if (report.scrollWidth > report.width + 1) {
         failures.push(`${path} @${width}px: page is ${report.scrollWidth}px wide on a ${report.width}px screen; ${report.offenders.map((o) => `<${o.tag} class="${o.cls}"> "${o.text}" ends at ${o.right}px`).join(" | ") || "offender not identified"}`);
       }
+      if (path === TABLE_PAGE) await auditTableResponsiveness(page, width, failures);
       if (width === 390 && shots) await page.screenshot({ path: `${shots}/${(path.replace(/\//g, "_") || "_home")}-390.png`, fullPage: true });
     }
     await context.close();
