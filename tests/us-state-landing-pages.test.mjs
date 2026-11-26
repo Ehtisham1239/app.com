@@ -72,3 +72,22 @@ test("priority commercial metadata descriptions stay within the snippet guardrai
   const description = pricing.match(/description: "([^"]+)"/)?.[1] || "";
   assert.ok(description.length >= 100 && description.length <= 160, "pricing description is concise and complete");
 });
+
+test("priority states offer answer-first scheduling and direct course and fee links", () => {
+  for (const [slug, state] of states.slice(0, 7)) {
+    const html = read(`public/${slug}-quran-classes/index.html`);
+    const graph = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1])["@graph"];
+    const page = graph.find((node) => node["@type"] === "WebPage");
+    const service = graph.find((node) => node["@type"] === "Service");
+    assert.equal(page.mainEntity["@id"], service["@id"], state);
+    assert.match(html, /href="#main-content"/);
+    assert.match(html, /id="main-content"/);
+    assert.match(html, /id="local-schedule"/);
+    assert.match(html, /href="\/locations\/united-states"/);
+    assert.match(html, /href="\/pricing\?currency=USD"/);
+    assert.match(html, /href="\/courses\/noorani-qaida"/);
+    assert.match(html, /href="\/courses\/quran-nazara"/);
+    assert.match(html, /href="\/courses\/hifz-quran"/);
+    assert.doesNotMatch(html, /<link rel="preload" as="image"/);
+  }
+});
