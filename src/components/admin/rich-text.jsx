@@ -3,16 +3,34 @@
 import { useEffect } from "react";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { Bold, Heading2, Heading3, Italic, Link2, List, ListOrdered, Quote, Redo2, Undo2, Unlink } from "lucide-react";
+import { TableKit } from "@tiptap/extension-table";
+import {
+  Bold, Columns3, Heading2, Heading3, Italic, Link2, List, ListOrdered,
+  Quote, Redo2, Rows3, Table, Trash2, Undo2, Unlink
+} from "lucide-react";
 import { clsx } from "clsx";
 
 // Rich text editor for page, post and course bodies (stored as HTML, sanitised before display).
+// TableKit keeps real table structure in the saved HTML instead of flattening cells into paragraphs.
 export function RichText({ value, onChange, placeholder }) {
   const editor = useEditor({
     immediatelyRender: false,
-    extensions: [StarterKit.configure({ heading: { levels: [2, 3] }, link: { openOnClick: false, autolink: true } })],
+    extensions: [
+      StarterKit.configure({
+        heading: { levels: [2, 3] },
+        link: { openOnClick: false, autolink: true }
+      }),
+      TableKit.configure({
+        table: { resizable: true, cellMinWidth: 120 }
+      })
+    ],
     content: value || "",
-    editorProps: { attributes: { class: "rich-content min-h-[14rem] px-4 py-3 text-[0.97rem] leading-relaxed", "aria-label": placeholder || "Content" } },
+    editorProps: {
+      attributes: {
+        class: "rich-content min-h-[14rem] px-4 py-3 text-[0.97rem] leading-relaxed",
+        "aria-label": placeholder || "Content"
+      }
+    },
     onUpdate: ({ editor }) => onChange(editor.isEmpty ? "" : editor.getHTML()),
   });
 
@@ -55,6 +73,15 @@ export function RichText({ value, onChange, placeholder }) {
         {btn(editor.isActive("blockquote"), () => editor.chain().focus().toggleBlockquote().run(), Quote, "Quote")}
         {btn(editor.isActive("link"), setLink, Link2, "Add link")}
         {editor.isActive("link") && btn(false, () => editor.chain().focus().unsetLink().run(), Unlink, "Remove link")}
+        <span className="mx-1 w-px bg-line" />
+        {btn(editor.isActive("table"), () => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run(), Table, "Insert 3 × 3 table")}
+        {editor.isActive("table") && (
+          <>
+            {btn(false, () => editor.chain().focus().addRowAfter().run(), Rows3, "Add row below")}
+            {btn(false, () => editor.chain().focus().addColumnAfter().run(), Columns3, "Add column after")}
+            {btn(false, () => editor.chain().focus().deleteTable().run(), Trash2, "Delete table")}
+          </>
+        )}
         <span className="mx-1 w-px bg-line" />
         {btn(false, () => editor.chain().focus().undo().run(), Undo2, "Undo")}
         {btn(false, () => editor.chain().focus().redo().run(), Redo2, "Redo")}
