@@ -69,6 +69,19 @@ jobs:
             status=$(curl -sS --retry 6 --retry-delay 10 -o /tmp/oqc-response -w '%{http_code}' "$base$path")
             test "$status" = "200" || { echo "$path returned $status"; exit 1; }
           done
+      - name: Verify Dallas CMS tables are server-rendered and responsive
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://www.onlinequrancollege.com"
+          curl -fsS "$base/locations/united-states/dallas" -o /tmp/oqc-dallas.html
+          grep -Fq 'class="article-table-scroll"' /tmp/oqc-dallas.html
+          grep -Fq '<table' /tmp/oqc-dallas.html
+          for term in "Course" "Learning Objective" "Time Zone" "UTC Offset"; do
+            grep -Fq "$term" /tmp/oqc-dallas.html || { echo "Missing Dallas table content: $term"; exit 1; }
+          done
+          table_count=$(grep -o '<table' /tmp/oqc-dallas.html | wc -l)
+          test "$table_count" -ge 2 || { echo "Expected two Dallas tables, found $table_count"; exit 1; }
       - name: Verify legacy pricing slash and course market links
         shell: bash
         run: |
