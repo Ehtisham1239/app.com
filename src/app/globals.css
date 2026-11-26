@@ -360,7 +360,6 @@ main section[id], main [id^="c-"], main [id^="t-"] { scroll-margin-top: 7rem; }
   [data-home-motion] .btn svg { transition: transform .2s ease; }
 }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  [data-home-motion] a.surface:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
   [data-home-motion] a.surface:hover img { transform: scale(1.035); }
   [data-home-motion] .btn:hover svg { transform: translateX(3px); }
   .portal-button:hover svg { transform: rotate(-8deg); }
@@ -720,42 +719,12 @@ a.card-tinted:focus-visible .card-arrow { background: var(--card-ink); color: #f
   }
 }
 
-/* Premium visual polish — CSS-only, low-cost effects for public pages. */
-@media (prefers-reduced-motion: no-preference) {
-  @keyframes oqc-ambient-breathe {
-    0%, 100% { opacity: .42; transform: scale(1); }
-    50% { opacity: .65; transform: scale(1.045); }
-  }
-  .hero-immersive::before, .inner-hero::before {
-    animation: oqc-ambient-breathe 12s ease-in-out infinite;
-  }
-}
+/* The page hero keeps its green and gold wash without continuous background animation. */
 .hero-immersive, .inner-hero { position: relative; isolation: isolate; }
 .hero-immersive::before, .inner-hero::before {
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background: radial-gradient(ellipse 38% 54% at 94% 5%, rgb(219 185 96 / .13), transparent 75%),
     radial-gradient(ellipse 40% 60% at 3% 90%, rgb(36 156 12 / .09), transparent 76%);
-}
-/* Wider screens only: the mobile header is solid white (rule above), where a blur costs GPU work on
-   every scroll frame and changes nothing visible. */
-@media (min-width: 640px) { .site-header { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); } }
-:where(#main[data-site-motion]) :where(.editorial-card, a.surface, .course-card) {
-  transition: box-shadow .25s ease, border-color .25s ease, transform .25s ease;
-}
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  :where(#main[data-site-motion]) :where(.editorial-card, a.surface, .course-card):hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 40px -22px rgb(12 75 35 / .32), 0 0 0 1px rgb(201 161 59 / .2);
-  }
-  :where(#main[data-site-motion]) :where(.editorial-card, a.surface, .course-card):hover img {
-    transform: scale(1.035);
-  }
-  :where(#main[data-site-motion]) :where(.editorial-card, a.surface, .course-card) img {
-    transition: transform .45s cubic-bezier(.2,.65,.3,1);
-  }
-  .btn-primary:hover:not(:disabled), .btn-gold:hover:not(:disabled) {
-    box-shadow: 0 10px 24px -10px rgb(12 108 12 / .5), 0 0 0 3px rgb(219 185 96 / .22), 0 0 26px rgb(219 185 96 / .14);
-  }
 }
 @media (max-width: 767px) {
   .hero-immersive::before, .inner-hero::before { opacity: .5; }
@@ -780,9 +749,7 @@ a.card-tinted:focus-visible .card-arrow { background: var(--card-ink); color: #f
 @keyframes verse-shimmer { 0%, 100% { background-position: 0% 0; } 50% { background-position: 100% 0; } }
 @media (forced-colors: active) { .verse-word { background: none; color: CanvasText; -webkit-text-fill-color: CanvasText; } }
 
-/* Site-wide ayah band (19 Nov 2026): deep-green panel, gold eight-point lattice border,
-   verse in Amiri Quran that cross-fades from ivory to an illumination-gold gradient, and two
-   floating khatam stars. Opacity/transform animations only; all off for reduced motion. */
+/* The verse panel uses the brand colours, with a gold highlight on pointer hover. */
 /* Quran text outside the band and heroes. Amiri Quran is already loaded for the verse band on every
    page and covers the full Uthmani set; the small display subset lacks letters such as zay, so the
    footer verse used to pull the complete 109 KB Amiri face on every page (19 Nov 2026). */
@@ -807,13 +774,7 @@ a.card-tinted:focus-visible .card-arrow { background: var(--card-ink); color: #f
 .ayah-star { position: absolute; width: clamp(2.25rem, 5vw, 3.5rem); color: var(--color-gold-400); opacity: .75; }
 .ayah-star-start { top: -1.1rem; left: clamp(.75rem, 4vw, 2.5rem); }
 .ayah-star-end { bottom: -1.1rem; right: clamp(.75rem, 4vw, 2.5rem); }
-@media (prefers-reduced-motion: no-preference) {
-  .ayah-glow { animation: ayah-glow 9s ease-in-out infinite; }
-  .ayah-star-start { animation: ayah-float 7s ease-in-out infinite; }
-  .ayah-star-end { animation: ayah-float 8s ease-in-out -3.5s infinite; }
-}
 @keyframes ayah-glow { 0%, 18%, 100% { opacity: 0; } 45%, 72% { opacity: 1; } }
-@keyframes ayah-float { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-9px) rotate(22.5deg); } }
 @media (forced-colors: active) { .ayah-glow { display: none; } .ayah-ar { color: CanvasText; } }
 @media print { .ayah-band { display: none; } }
 
@@ -864,15 +825,56 @@ a.card-tinted:focus-visible .card-arrow { background: var(--card-ink); color: #f
   .ayah-frame:hover .ayah-star { opacity: 1; filter: drop-shadow(0 0 6px rgb(232 207 134 / .8)); }
 }
 
-/* Site-wide Islamic hover accent (19 Nov 2026): interactive cards gain a gold double rule
-   (outline, so no layout shift) and their titles turn illumination gold; outline buttons
-   turn gold. Colour and outline only; motion stays with the existing card rules. */
-:where(a.surface, a.card-tinted, .course-card, .editorial-card) { transition: box-shadow .25s ease, border-color .25s ease, transform .25s ease, outline-color .25s ease; outline: 1px solid transparent; outline-offset: 4px; }
+/* Shared public-card and navigation states. Keep borders stable as emphasis changes. */
+main[data-site-motion] :where(.surface, .editorial-card) {
+  border-color: var(--card-accent, var(--color-leaf-200));
+}
+main[data-site-motion] :where(.card-tinted) {
+  border-block-start-color: var(--card-edge);
+}
+main[data-site-motion] :where(.card-tinted[data-featured="true"]) {
+  border-color: var(--color-leaf-700);
+}
+main[data-site-motion] a:is(.surface, .editorial-card, .card-tinted) {
+  outline-offset: 4px;
+}
+main[data-site-motion] a:is(.surface, .editorial-card, .card-tinted):focus-visible {
+  outline-color: var(--card-ink, var(--color-mushaf-900));
+}
+main[data-site-motion] :where(.card-tinted, .pricing-card):focus-within {
+  border-color: var(--card-edge, var(--color-leaf-700));
+}
+main[data-site-motion] .faq-toggle:focus-visible {
+  background-color: var(--color-leaf-50);
+}
 @media (hover: hover) and (pointer: fine) {
-  :where(a.surface, a.card-tinted, .course-card, .editorial-card):hover { outline-color: rgb(201 161 59 / .45); border-color: var(--color-gold-400); }
-  :where(a.surface, a.card-tinted, .course-card, .editorial-card):hover :where(h2, h3, .course-title) { color: var(--color-gold-700); transition: color .25s ease; }
-  .btn-outline:hover:not(:disabled) { border-color: var(--color-gold-500); color: var(--color-gold-700); background: var(--color-gold-50); box-shadow: 0 6px 14px -8px rgb(143 108 28 / .45); }
-  .prose-oqc a:hover { text-decoration-color: var(--color-gold-500); color: var(--color-leaf-800); }
+  main[data-site-motion] a:is(.surface, .editorial-card, .card-tinted):hover {
+    border-color: var(--card-edge, var(--color-leaf-600));
+  }
+  main[data-site-motion] :where(.card-tinted, .pricing-card):has(:where(a[href], button:not(:disabled), summary)):hover {
+    border-color: var(--card-edge, var(--color-leaf-600));
+  }
+  main[data-site-motion] a:is(.surface, .editorial-card, .card-tinted):hover :where(h2, h3, .course-title, .card-action),
+  main[data-site-motion] a:is(.surface, .editorial-card, .card-tinted):focus-visible :where(h2, h3, .course-title, .card-action) {
+    color: var(--card-ink, var(--color-mushaf-900));
+  }
+  main[data-site-motion] .faq-toggle:hover {
+    background-color: var(--color-leaf-50);
+    color: var(--color-mushaf-900);
+  }
+  .site-header .nav-primary :is(a, button):hover {
+    background-color: var(--color-gold-50);
+    color: var(--color-mushaf-900);
+  }
+  .btn-outline:hover:not(:disabled) {
+    border-color: var(--color-gold-500);
+    color: var(--color-gold-700);
+    background: var(--color-gold-50);
+  }
+  .prose-oqc a:hover {
+    text-decoration-color: var(--color-gold-500);
+    color: var(--color-leaf-800);
+  }
 }
 
 /* Article headings carry a small gold eight-point star (decorative, no text). */

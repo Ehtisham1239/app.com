@@ -31,9 +31,12 @@ test("home verse shimmer (a repainting background-position animation) runs on ho
   assert.match(motion, /@media \(hover: hover\) and \(pointer: fine\) and \(prefers-reduced-motion: no-preference\) \{\s*\.verse-card:hover \.verse-word \{ animation: verse-shimmer/);
 });
 
-test("the solid white mobile header gets no backdrop blur", () => {
-  assert.doesNotMatch(css, /^\.site-header \{ backdrop-filter: blur/m, "an unscoped blur overrides the mobile rule");
-  assert.match(css, /@media \(min-width: 640px\) \{ \.site-header \{ backdrop-filter: blur\(12px\)/);
+test("the solid white header stays clear without backdrop blur at any viewport", () => {
+  assert.doesNotMatch(css, /\.site-header\s*\{[^}]*backdrop-filter:\s*blur\(/);
+  const header = readFileSync(new URL("../src/components/site/header.jsx", import.meta.url), "utf8");
+  const stickyHeaderClasses = header.split("\n").find((line) => line.includes('scrolled ? "border-b'));
+  assert.match(stickyHeaderClasses, /bg-white/);
+  assert.doesNotMatch(stickyHeaderClasses, /backdrop-blur/);
 });
 
 test("the Outfit heading face is preloaded so the desktop home hero does not shift (CLS 0.098 → 0, 19 Nov 2026)", () => {

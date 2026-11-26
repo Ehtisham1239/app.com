@@ -183,6 +183,31 @@ async function auditTableResponsiveness(page, width, failures) {
   }
 }
 
+async function auditDesktopBranding(page, failures) {
+  const selector = "#courses a.course-card";
+  const course = page.locator(selector).first();
+  try {
+    const initialBorder = await course.evaluate((node) => getComputedStyle(node).borderLeftColor);
+    await course.hover();
+    await page.waitForFunction(({ selector, initialBorder }) => {
+      const card = document.querySelector(selector);
+      return Boolean(card && getComputedStyle(card).borderLeftColor !== initialBorder);
+    }, { selector, initialBorder }, { timeout: 3000 });
+
+    await course.press("Tab");
+    const keyboardFocus = await page.evaluate((selector) => {
+      const target = document.activeElement;
+      return target.matches(selector) && target.matches(":focus-visible") && getComputedStyle(target).outlineStyle === "solid";
+    }, selector);
+    if (!keyboardFocus) failures.push("Homepage course cards: missing visible keyboard focus");
+
+    const blurredHeader = await page.locator(".site-header").evaluate((node) => getComputedStyle(node).backdropFilter !== "none");
+    if (blurredHeader) failures.push("Homepage desktop header: unexpected backdrop filter");
+  } catch (err) {
+    failures.push(`Homepage desktop branding: ${err.message}`);
+  }
+}
+
 async function main() {
   if (shots) mkdirSync(shots, { recursive: true });
   const browser = await chromium.launch({ headless: true, ...(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {}) });
@@ -201,6 +226,10 @@ async function main() {
         failures.push(`${path} @${width}px: page is ${report.scrollWidth}px wide on a ${report.width}px screen; ${report.offenders.map((o) => `<${o.tag} class="${o.cls}"> "${o.text}" ends at ${o.right}px`).join(" | ") || "offender not identified"}`);
       }
       if (path === TABLE_PAGE) await auditTableResponsiveness(page, width, failures);
+      // A pull request checks the previous production revision.
+      if (path === "/" && width === 1440 && process.env.GITHUB_EVENT_NAME !== "pull_request") {
+        await auditDesktopBranding(page, failures);
+      }
       if (width === 390 && shots) await page.screenshot({ path: `${shots}/${(path.replace(/\//g, "_") || "_home")}-390.png`, fullPage: true });
     }
     await context.close();

@@ -278,7 +278,8 @@ test("site-wide ayah band uses sourced verses with references and stays script-f
   assert.match(band, /aria-hidden="true">\{ayah\.ar\}/, "the colour layer is hidden from screen readers");
   const css = readFileSync(new URL("../src/app/globals.css", import.meta.url), "utf8");
   const motion = css.slice(css.indexOf(".ayah-band {"));
-  assert.match(motion, /prefers-reduced-motion: no-preference\) \{\s*\.ayah-glow/);
+  assert.match(motion, /\.ayah-frame:hover \.ayah-glow\s*\{[^}]*opacity:\s*1/);
+  assert.doesNotMatch(motion.slice(0, motion.indexOf("Gold lattice")), /animation:[^;{}]*\binfinite\b/, "the site-wide panel stays static between interactions");
   assert.doesNotMatch(motion.slice(0, motion.indexOf("Gold lattice")), /@keyframes ayah-[a-z]+ \{[^}]*(width|height|top|left|background-position)/, "animations use opacity/transform only");
 });
 
