@@ -79,6 +79,13 @@ export async function LocationPage({ country, city }) {
       ].map(([label, value]) => <div key={label} className="surface p-5"><dt className="text-sm text-ink-soft">{label}</dt><dd className="mt-2 font-semibold text-mushaf-900">{value}</dd></div>)}</dl>
       <LocationSchedule countryName={country.name} currency={country.currency} places={places} />
       {!hub && <LocationTimeFacts placeName={city ? `${city.name}, ${country.name}` : country.name} timeZone={city?.timezone || country.timezone} />}
+      {!city && country.slug === "united-states" && (
+        <p className="text-sm leading-relaxed text-ink-soft">
+          <Link className="font-semibold text-leaf-700 underline underline-offset-4" href="/usa-quran-classes/states">
+            Find online Quran classes by US state
+          </Link>
+        </p>
+      )}
       {hub && <CountryLanding hub={hub} fee={hubFee} teachers={teachers} trialHref={`/free-trial?${query}`} trustpilotProfile={trustpilotProfile} testimonials={testimonials} />}
       {guide && <section aria-labelledby="local-guide-title" className="space-y-5">
         <h2 id="local-guide-title" className="text-2xl">{guide.title}</h2>

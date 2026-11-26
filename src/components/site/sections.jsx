@@ -41,6 +41,7 @@ export function CourseCard({ course }) {
   return (
     <Link
       href={`/courses/${course.slug}`}
+      prefetch={false}
       data-card-tone={cardTone(course.slug)}
       className="course-card editorial-card card-tinted group flex h-full flex-col"
     >
@@ -174,6 +175,7 @@ export function TeacherCard({ teacher: t }) {
   return (
     <Link
       href={`/teachers/${t.slug}`}
+      prefetch={false}
       data-card-tone={cardTone(t.slug)}
       className="editorial-card card-tinted teacher-profile-card group flex h-full flex-col"
     >

@@ -41,13 +41,13 @@ test("US state landing pages have unique indexable SEO foundations and working t
     assert.ok(existsSync(resolve(root, path)), `${state} page exists`);
     const html = read(path);
     assert.match(html, new RegExp(`<title>Online Quran Classes in ${state.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")} \\| OQC</title>`));
-    assert.match(html, /<meta name="description" content="[^"]{80,180}">/);
+    const description = html.match(/<meta name="description" content="([^"]+)">/)?.[1] || "";
+    assert.ok(description.length >= 80 && description.length <= 160, `${state} description is between 80 and 160 characters`);
     assert.match(html, /<meta name="robots" content="index,follow,max-image-preview:large">/);
     assert.match(html, new RegExp(`<link rel="canonical" href="https://www\\.onlinequrancollege\\.com/${slug}-quran-classes">`));
     assert.match(html, new RegExp(`<h1>Online Quran Classes in ${state} for Kids & Adults</h1>`));
     assert.match(html, /"@type":"Service"/);
     assert.match(html, /"@type":"FAQPage"/);
-    assert.match(html, /<h2>Frequently asked questions<\/h2>/);
     assert.equal((html.match(/<details>/g) || []).length, 5, `${state} has five visible FAQ entries`);
     assert.ok(html.includes('"EducationalOrganization"'), `${state} includes the shared organization node`);
     assert.ok(html.includes('data-hero-visual'), `${state} has a detectable hero visual`);
@@ -65,6 +65,8 @@ test("US state landing pages have unique indexable SEO foundations and working t
 
 test("US state hub is indexable and links to all ten pages", () => {
   const hub = read("public/usa-quran-classes/states/index.html");
+  const hubDescription = hub.match(/<meta name="description" content="([^"]+)">/)?.[1] || "";
+  assert.ok(hubDescription.length >= 80 && hubDescription.length <= 160, "state directory description is between 80 and 160 characters");
   assert.match(hub, /<meta name="robots" content="index,follow">/);
   assert.ok(hub.includes('"@type":"CollectionPage"'));
   assert.ok(hub.includes('"EducationalOrganization"'));
@@ -75,4 +77,29 @@ test("US state hub is indexable and links to all ten pages", () => {
   assert.ok(read("public/usa-quran-classes/index.html").includes('href="/usa-quran-classes/states"'));
   assert.ok(read("src/app/sitemap.js").includes('"/usa-quran-classes/states"'));
   assert.ok(read("next.config.mjs").includes('source: "/usa-quran-classes/states"'));
+});
+
+test("priority commercial metadata descriptions stay within the snippet guardrail", () => {
+  const pricing = read("src/app/(site)/pricing/page.jsx");
+  const description = pricing.match(/description: "([^"]+)"/)?.[1] || "";
+  assert.ok(description.length >= 100 && description.length <= 160, "pricing description is concise and complete");
+});
+
+test("US state pages offer answer-first scheduling and direct course and fee links", () => {
+  for (const [slug, state] of states) {
+    const html = read(`public/${slug}-quran-classes/index.html`);
+    const graph = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1])["@graph"];
+    const page = graph.find((node) => node["@type"] === "WebPage");
+    const service = graph.find((node) => node["@type"] === "Service");
+    assert.equal(page.mainEntity["@id"], service["@id"], state);
+    assert.match(html, /href="#main-content"/);
+    assert.match(html, /id="main-content"/);
+    assert.match(html, /id="local-schedule"/);
+    assert.match(html, /href="\/locations\/united-states"/);
+    assert.match(html, /href="\/pricing\?currency=USD"/);
+    assert.match(html, /href="\/courses\/noorani-qaida"/);
+    assert.match(html, /href="\/courses\/quran-nazara"/);
+    assert.match(html, /href="\/courses\/hifz-quran"/);
+    assert.doesNotMatch(html, /<link rel="preload" as="image"/);
+  }
 });

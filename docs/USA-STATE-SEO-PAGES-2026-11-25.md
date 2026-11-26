@@ -1,6 +1,6 @@
 # USA state Quran landing pages — implementation and QA record
 
-**Status:** Implemented in the main branch at commit `d464ee1d53a3709d88fcdd195c7c77289c3991ed`. The ten state pages, state directory, route rewrites and sitemap entries are present in the production release. This record replaces the earlier draft-only status.
+**Status:** Published on the production domain. The ten state pages, state directory, route rewrites and sitemap entries are present in the production release. This record replaces the earlier draft-only status.
 
 ## Scope and priority
 
