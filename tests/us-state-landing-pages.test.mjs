@@ -118,10 +118,14 @@ test("US state pages use the light hero, framed photo and colour hover styles", 
     assert.doesNotMatch(html, /class="btn light" href="\/free-trial">Request your/, `${state} hero uses the green primary button`);
     assert.match(html, /<script src="\/usa-state-pages\/state-pages\.js\?v=\w+" defer><\/script>/, `${state} loads the pointer glow without blocking`);
     assert.doesNotMatch(html, /style="color:#/, `${state} has no dark-theme inline colours`);
+    assert.match(html, /<link rel="preload" href="\/fonts\/oqc-outfit-text-v1\.woff2" as="font" type="font\/woff2" crossorigin>/, `${state} preloads the heading font (no layout shift)`);
+    assert.match(html, /<link rel="preload" href="\/fonts\/oqc-inter-text-v1\.woff2" as="font" type="font\/woff2" crossorigin>/, `${state} preloads the text font`);
   }
   assert.match(css, /\.hero:is\(\.directory-hero, \.state-hero\)/);
   assert.match(css, /\.state-table tbody tr:hover > \*/);
   assert.match(css, /\.faq details\[open\] summary::after/);
+  assert.match(css, /:is\(\.directory-photo, \.state-photo\)::after/);
+  assert.doesNotMatch(css, /\.cta \{[^}]*#0d4a1c, #0c6c0c/, "the closing CTA is a light panel");
   assert.match(css, /prefers-reduced-motion: reduce/);
   assert.match(script, /prefers-reduced-motion: reduce/);
   assert.match(script, /pointer: fine/);

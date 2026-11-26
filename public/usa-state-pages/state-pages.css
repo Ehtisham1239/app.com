@@ -117,7 +117,6 @@
   transition: background-color .2s ease, border-color .2s ease, box-shadow .2s ease, color .2s ease, transform .2s ease;
 }
 .btn.outline { background: var(--white); color: var(--green) !important; border-color: var(--green); box-shadow: 0 2px 6px rgb(13 74 28 / .06); }
-.cta .btn.light { background: var(--white); }
 
 /* Light hero: soft gold and leaf washes, copy on the left, the framed photo on the right. */
 .hero:is(.directory-hero, .state-hero) {
@@ -157,12 +156,12 @@
   border-radius: .75rem;
   background: white url("/brand/oqc-logo-v3-160.webp") center / contain no-repeat;
 }
-/* The directory photo keeps the slightly darker wash the owner chose on 26 Nov 2026. */
-.directory-photo::after {
+/* Hero photos are shaded slightly darker (owner, 26 Nov 2026) with a neutral, not green, wash. */
+:is(.directory-photo, .state-photo)::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgb(6 47 12 / .15);
+  background: linear-gradient(180deg, rgb(10 16 12 / .2) 0%, rgb(10 16 12 / .38) 100%);
   pointer-events: none;
 }
 
@@ -283,20 +282,31 @@
 .state-table tbody th::before { content: ""; display: inline-block; width: .55rem; height: .55rem; margin-inline-end: .55rem; border-radius: 2px; background: var(--row-edge); transform: rotate(45deg); vertical-align: .1em; }
 .state-table tbody :is(th, td) { transition: background-color .2s ease, box-shadow .2s ease; }
 
-/* The CTA keeps its deep green with gold and leaf light in the corners. */
+/* The closing CTA is a light panel like the main site's footer invitation, with a green button. */
 .cta {
+  color: var(--green);
   background:
-    radial-gradient(ellipse 40% 70% at 100% 0%, rgb(219 185 96 / .3), transparent 70%),
-    radial-gradient(ellipse 45% 80% at 0% 100%, rgb(36 156 12 / .4), transparent 72%),
-    linear-gradient(135deg, #0d4a1c, #0c6c0c);
+    radial-gradient(ellipse 40% 70% at 100% 0%, rgb(219 185 96 / .2), transparent 70%),
+    radial-gradient(ellipse 45% 80% at 0% 100%, rgb(36 156 12 / .08), transparent 72%),
+    linear-gradient(135deg, #f7fbf3, #fffaf0);
+  border: 1px solid var(--leaf-200);
+  border-block-start: 4px solid var(--gold-400);
+}
+.cta h2 { color: var(--green); }
+.cta p { color: var(--muted); }
+.cta .btn.light {
+  background: linear-gradient(135deg, #0f7d0f 0%, var(--leaf-700) 55%, var(--leaf-800) 100%);
+  color: var(--white) !important;
+  border-color: transparent;
+  box-shadow: 0 7px 18px #0d4a1c22;
 }
 
 /* Pointer colour changes: fine pointers only; motion only when the visitor allows it. */
 @media (hover: hover) and (pointer: fine) {
   .btn:hover { box-shadow: 0 10px 24px -10px rgb(12 108 12 / .5), 0 0 0 3px rgb(219 185 96 / .28); }
   .btn.outline:hover { background: var(--leaf-50); border-color: var(--leaf-700); color: var(--leaf-800) !important; }
-  .cta .btn.light:hover { background: var(--gold-300); color: var(--green) !important; }
   .top a:hover, .foot a:hover { color: var(--gold-700); }
+  .cta .btn.light:hover { background: linear-gradient(135deg, var(--leaf-700), #0a3a16); color: var(--white) !important; }
   .card:hover { border-color: var(--card-edge); box-shadow: 0 18px 36px -22px var(--card-edge); }
   .card:hover::after { opacity: 1; }
   .steps .card:hover::before { background: var(--card-ink); border-color: var(--card-ink); color: var(--white); }
