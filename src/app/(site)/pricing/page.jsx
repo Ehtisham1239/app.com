@@ -83,6 +83,9 @@ export default async function PricingPage() {
           <SectionHeading eyebrow="Compare" title={<span id="compare-plans-title">Compare plans and estimate your family’s fees</span>} intro="See every plan side by side, then work out a monthly total for more than one learner." />
           <div className="mt-10"><FeeCompare plans={plans} fx={fx} familyDiscount={settings["site.family_discount"]} /></div>
           <p className="mx-auto mt-4 max-w-3xl text-center text-sm text-ink-soft">{familyDiscountCopy}</p>
+          <p className="mx-auto mt-3 max-w-3xl text-center text-sm text-ink-soft">
+            Booking for more than one child? Read our <Link href="/blog/family-quran-learning-multiple-children" prefetch={false} className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">guide to arranging Quran classes for siblings</Link>.
+          </p>
         </div>
       </section>}
 
