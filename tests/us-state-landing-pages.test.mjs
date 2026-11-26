@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { PAGES, STATE_LANDING_PAGES } from "../scripts/responsive-audit.mjs";
 
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const states = [
@@ -19,6 +20,16 @@ const states = [
 ];
 
 const read = (path) => readFileSync(resolve(root, path), "utf8");
+
+test("all ten US state pages and the state directory are included in live responsive audits", () => {
+  assert.deepEqual(STATE_LANDING_PAGES, [
+    "/usa-quran-classes/states",
+    ...states.map(([slug]) => `/${slug}-quran-classes`),
+  ]);
+  for (const path of STATE_LANDING_PAGES) {
+    assert.ok(PAGES.includes(path), `${path} is included in the viewport audit`);
+  }
+});
 
 test("US state landing pages have unique indexable SEO foundations and working trial paths", () => {
   const sitemap = read("src/app/sitemap.js");
@@ -37,6 +48,7 @@ test("US state landing pages have unique indexable SEO foundations and working t
     assert.match(html, new RegExp(`<h1>Online Quran Classes in ${state} for Kids & Adults</h1>`));
     assert.match(html, /"@type":"Service"/);
     assert.match(html, /"@type":"FAQPage"/);
+    assert.equal((html.match(/<details>/g) || []).length, 5, `${state} has five visible FAQ entries`);
     assert.ok(html.includes('"EducationalOrganization"'), `${state} includes the shared organization node`);
     assert.ok(html.includes('data-hero-visual'), `${state} has a detectable hero visual`);
     assert.ok(html.includes('width="1200" height="800"'), `${state} hero image reserves its actual dimensions`);
@@ -73,8 +85,8 @@ test("priority commercial metadata descriptions stay within the snippet guardrai
   assert.ok(description.length >= 100 && description.length <= 160, "pricing description is concise and complete");
 });
 
-test("priority states offer answer-first scheduling and direct course and fee links", () => {
-  for (const [slug, state] of states.slice(0, 7)) {
+test("US state pages offer answer-first scheduling and direct course and fee links", () => {
+  for (const [slug, state] of states) {
     const html = read(`public/${slug}-quran-classes/index.html`);
     const graph = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1])["@graph"];
     const page = graph.find((node) => node["@type"] === "WebPage");

@@ -12,7 +12,7 @@ function FooterColumn({ title, items }) {
       <ul className="mt-3 space-y-0.5">
         {items.map((item) => (
           <li key={item.href + item.label}>
-            <Link href={item.href} className="footer-link">
+            <Link href={item.href} prefetch={false} className="footer-link">
               {item.label}
             </Link>
           </li>

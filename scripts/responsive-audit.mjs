@@ -8,6 +8,20 @@ import { mkdirSync } from "node:fs";
 
 const base = (process.env.SMOKE_BASE_URL || "https://www.onlinequrancollege.com").replace(/\/$/, "");
 const shots = process.env.RESPONSIVE_SHOTS_DIR || "";
+
+export const STATE_LANDING_PAGES = [
+  "/usa-quran-classes/states",
+  "/maryland-quran-classes",
+  "/massachusetts-quran-classes",
+  "/north-carolina-quran-classes",
+  "/minnesota-quran-classes",
+  "/arizona-quran-classes",
+  "/wisconsin-quran-classes",
+  "/missouri-quran-classes",
+  "/connecticut-quran-classes",
+  "/indiana-quran-classes",
+  "/tennessee-quran-classes",
+];
 const WIDTHS = [320, 360, 390, 430, 768, 820, 1024, 1280, 1440, 1600, 1920, 2560];
 const DEVICE_PROFILES = ["iPhone 13", "iPhone 14 Pro Max", "Pixel 7", "iPad Pro 11"];
 export const PAGES = [
@@ -15,12 +29,14 @@ export const PAGES = [
   "/reviews", "/learn", "/learn/quran-for-adults", "/blog", "/blog/online-quran-class-fees-uk-comparison",
   "/faq", "/about", "/contact", "/locations",
   "/locations/united-kingdom", "/locations/united-states", "/locations/united-states/dallas", "/locations/canada", "/locations/australia", "/locations/united-arab-emirates",
+  ...STATE_LANDING_PAGES,
 ];
 const TABLE_PAGE = "/locations/united-states/dallas";
 const HUBS = ["/locations/united-kingdom", "/locations/united-states", "/locations/canada", "/locations/australia", "/locations/united-arab-emirates"];
 // Every city page is live on its own address and none redirects, city-states included
 // (owner decisions 18 and 20 Nov 2026, #367).
 const CITY_PAGES = [["/locations/united-states/houston", "/locations/united-states/houston"], ["/locations/united-kingdom/london", "/locations/united-kingdom/london"], ["/locations/monaco/monaco", "/locations/monaco/monaco"]];
+const DEVICE_PAGES = ["/", "/pricing", "/free-trial", "/courses", ...STATE_LANDING_PAGES];
 
 // Runs in the page: elements that stick out past the right edge and are not
 // inside a box that scrolls or clips horizontally.
@@ -196,7 +212,7 @@ async function main() {
     if (!descriptor) { failures.push(`Playwright device descriptor missing: ${deviceName}`); continue; }
     const context = await browser.newContext({ ...descriptor });
     const devicePage = await context.newPage();
-    for (const path of ["/", "/pricing", "/free-trial", "/courses"]) {
+    for (const path of DEVICE_PAGES) {
       const response = await auditedGoto(devicePage, `${base}${path}`);
       if (!response || response.status() !== 200) { failures.push(`${path} on ${deviceName}: HTTP ${response?.status()}`); continue; }
       const report = await devicePage.evaluate(overflowReport);
@@ -219,7 +235,7 @@ async function main() {
     if (new URL(page.url()).pathname !== hub) failures.push(`${path}: landed on ${new URL(page.url()).pathname}, expected ${hub}`);
   }
   await browser.close();
-  console.log(`Responsive audit: ${checks} checks on ${base} (${PAGES.length} pages × ${WIDTHS.length} widths, ${DEVICE_PROFILES.length} device profiles, hreflang on ${HUBS.length} hubs, ${CITY_PAGES.length} city-page checks)`);
+  console.log(`Responsive audit: ${checks} checks on ${base} (${PAGES.length} pages × ${WIDTHS.length} widths, ${DEVICE_PAGES.length} pages on ${DEVICE_PROFILES.length} device profiles, hreflang on ${HUBS.length} hubs, ${CITY_PAGES.length} city-page checks)`);
   if (failures.length) { console.log(`FAIL (${failures.length}):\n- ${failures.join("\n- ")}`); process.exit(1); }
   console.log("PASS: no sideways scrolling at any width; hreflang as expected; city pages stay on their own address");
 }
