@@ -66,7 +66,7 @@ export async function LocationPage({ country, city }) {
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema(faqs)) }} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema(breadcrumbs, SITE_URL)) }} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(locationServiceSchema({ country, city, placeName: city ? `${city.name}, ${country.name}` : countryInName(country), url: `${SITE_URL}${locationPath(country, city)}`, siteUrl: SITE_URL })) }} />
-    <PageHero path={locationPath(country, city)} eyebrow={`Learn from ${city?.name || countryInName(country)} · ${country.currency}`} title={title} intro={!city && country.slug === "united-states" ? "Our online Quran classes in the USA are live and one-to-one, with lessons from home. Children and adults can start with Noorani Qaida, work on Tajweed, or build a Hifz routine. Compare monthly USD fees and choose a lesson time in your own time zone." : !city && country.slug === "united-arab-emirates" ? "Explore online Quran classes in the UAE with live one-to-one lessons, local-time scheduling and course guidance for children and adults. Classes are delivered online; this page does not represent a local teaching branch." : (!city && SEARCH_INTENTS[locationPath(country)]?.intro) || locationSearchIntro(country, city)} visual={<figure className="relative">
+    <PageHero path={locationPath(country, city)} eyebrow={`Learn from ${city?.name || countryInName(country)} · ${country.currency}`} title={title} intro={(!city && SEARCH_INTENTS[locationPath(country)]?.intro) || locationSearchIntro(country, city)} visual={<figure className="relative">
       <ContentImage src={image.url} alt={image.alt} priority sizes="(max-width: 639px) 90vw, (max-width: 1023px) 85vw, 600px" className="aspect-[3/2] w-full object-cover" />
       <figcaption className="flex flex-wrap items-center justify-between gap-3 bg-leaf-50 px-5 py-4 text-mushaf-900"><div className="min-w-0"><p className="text-sm font-semibold sm:text-base">Online learning for {city?.name || countryInName(country)}</p><p className="mt-1 break-words text-xs text-ink-soft">{city ? zones[0] : country.timezone} · {country.currency}</p></div><span className="rounded-full border border-leaf-200 bg-white px-3 py-1 text-xs font-semibold">Live lessons</span></figcaption>
     </figure>}><Link className="btn btn-gold mt-6" href={`/free-trial?${query}`}>Request a free trial</Link><p className="mt-3 max-w-xl text-sm leading-relaxed text-ink-soft">{country.slug === "united-states" ? "3-day free trial with Package 1, Package 2, Package 3, Package 4 and Leisure. Weekend does not include a free trial; no card is needed." : "3-day free trial on eligible plans. No card is needed; the Weekend plan is excluded."}</p>{country.slug === "united-states" && <div className="mt-4 flex flex-wrap items-center gap-3"><a className="btn btn-outline-light" href="tel:+17869645678">Call our US team · +1 (786) 964-5678</a><Link className="text-sm font-semibold text-leaf-700 underline underline-offset-4" href="/contact">Unable to call? Contact us</Link></div>}</PageHero>
@@ -77,15 +77,16 @@ export async function LocationPage({ country, city }) {
         ["Monthly fees", lowest !== null ? `From ${formatMoney(lowest, country.currency)}` : approx !== null ? `From ≈ ${formatMoney(approx, country.currency)} (approx.)` : `Request a ${country.currency} quote`],
         ["Lesson format", "Live online · One learner, one teacher"],
       ].map(([label, value]) => <div key={label} className="surface p-5"><dt className="text-sm text-ink-soft">{label}</dt><dd className="mt-2 font-semibold text-mushaf-900">{value}</dd></div>)}</dl>
-      <LocationSchedule countryName={country.name} currency={country.currency} places={places} />
-      {!hub && <LocationTimeFacts placeName={city ? `${city.name}, ${country.name}` : country.name} timeZone={city?.timezone || country.timezone} />}
-      {!city && country.slug === "united-states" && (
-        <nav aria-label="Explore US Quran classes" className="flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-leaf-700">
-          {hubFee && <Link href="#hub-fee" className="underline underline-offset-4">Monthly fees in USD</Link>}
+      {hub && (
+        <nav aria-label="Plan your Quran lessons" className="flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-leaf-700">
+          <Link href="#schedule-title" className="underline underline-offset-4">Check lesson times</Link>
+          {hubFee && <Link href="#hub-fee" className="underline underline-offset-4">{country.currency === "AUD" ? "Monthly fee estimates in AUD" : `Monthly fees in ${country.currency}`}</Link>}
           <Link href="#local-courses" className="underline underline-offset-4">Compare Quran courses</Link>
-          <Link href="/usa-quran-classes/states" prefetch={false} className="underline underline-offset-4">Find online Quran classes by US state</Link>
+          {country.slug === "united-states" ? <Link href="/usa-quran-classes/states" prefetch={false} className="underline underline-offset-4">Find online Quran classes by US state</Link> : article && <Link href={article.path} prefetch={false} className="underline underline-offset-4">{article.label}</Link>}
         </nav>
       )}
+      <LocationSchedule countryName={country.name} currency={country.currency} places={places} />
+      {!hub && <LocationTimeFacts placeName={city ? `${city.name}, ${country.name}` : country.name} timeZone={city?.timezone || country.timezone} />}
       {hub && <CountryLanding hub={hub} fee={hubFee} teachers={teachers} trialHref={`/free-trial?${query}`} trustpilotProfile={trustpilotProfile} testimonials={testimonials} />}
       {guide && <section aria-labelledby="local-guide-title" className="space-y-5">
         <h2 id="local-guide-title" className="text-2xl">{guide.title}</h2>

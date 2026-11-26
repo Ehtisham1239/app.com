@@ -58,13 +58,14 @@ export const SEARCH_INTENTS = {
   "/locations/united-arab-emirates": {
     "phrase": "online Quran classes in the UAE",
     "heading": "Online Quran classes in the UAE",
-    "description": "Live one-to-one online Quran classes for children and adults in the UAE: Noorani Qaida, Tajweed and Hifz, with lesson times in Gulf Standard Time.",
-    "intro": "Find online Quran classes in the UAE with live one-to-one lessons for children and adults. Explore Noorani Qaida, Quran reading, Tajweed and Hifz, and arrange lesson times in Gulf Standard Time (Asia/Dubai). Classes are delivered online; no UAE teaching-centre or branch is represented."
+    "description": "Live one-to-one online Quran classes in the UAE for children and adults. Compare courses, arrange lessons in Gulf Standard Time and ask for an AED quote.",
+    "intro": "Online Quran classes in the UAE are live and one-to-one for children and adults. Suggest a weekday after school or work in Gulf Standard Time. Compare Noorani Qaida, Tajweed and Hifz, and discuss the lesson language, teacher preference and AED fees with Admissions."
   },
   "/locations/united-kingdom": {
     "phrase": "online Quran classes in the UK",
     "heading": "Online Quran classes in the UK",
-    "intro": "Learn Quran online in the UK with live one-to-one lessons for children and adults across England, Scotland, Wales and Northern Ireland. Plan around GMT or British Summer Time, compare Noorani Qaida, Tajweed and Hifz pathways, and request a written GBP fee quote. Lessons are delivered online; no UK classroom or local branch is represented."
+    "description": "Live one-to-one online Quran classes in the UK for children and adults. Plan around GMT or BST, compare courses and ask for a written GBP fee quote.",
+    "intro": "Online Quran classes in the UK are live and one-to-one for children and adults. Suggest a time after school or work in GMT or British Summer Time. Choose a starting point in Noorani Qaida, Tajweed or Hifz, and ask Admissions for a written GBP quote."
   },
   "/locations/canada": {
     "phrase": "online Quran classes in Canada",
@@ -74,12 +75,14 @@ export const SEARCH_INTENTS = {
   "/locations/australia": {
     "phrase": "online Quran classes in Australia",
     "heading": "Online Quran classes in Australia",
-    "intro": "Learn Quran online in Australia with live one-to-one online Quran classes for kids and adults. Plan lessons in Sydney, Melbourne, Brisbane, Adelaide or Perth time, including daylight saving, explore Noorani Qaida, Tajweed, Hifz and Tafseer, and see monthly fees in Australian dollars. Lessons are delivered online; no Australian office or local branch is represented."
+    "description": "Live one-to-one online Quran classes in Australia for kids and adults. Compare a time in your city, see indicative AUD fees and discuss a trial.",
+    "intro": "Online Quran classes in Australia are live and one-to-one for children and adults. Choose your suburb or city and lesson date when enquiring. Sydney, Melbourne, Brisbane, Adelaide and Perth can differ, so use the planner for your own time zone and check the indicative AUD fees before requesting a trial."
   },
   "/locations/united-states": {
     "phrase": "online Quran classes in the USA",
     "heading": "Online Quran classes in the USA",
-    "intro": "Find online Quran classes in the USA with live one-to-one lessons for kids and adults. Plan lessons in Eastern, Central, Mountain or Pacific time, see monthly fees in US dollars, and explore Noorani Qaida, Tajweed, Hifz and Tafseer. Lessons are delivered online; no US office or local branch is represented."
+    "description": "Discover live one-to-one online Quran classes in the USA for kids and adults. Compare USD fees and choose a lesson time in your local time zone.",
+    "intro": "Our online Quran classes in the USA are live and one-to-one, with lessons from home. Children and adults can start with Noorani Qaida, work on Tajweed, or build a Hifz routine. Compare monthly USD fees and choose a lesson time in your own time zone."
   },
   "/courses/hadith-translation": {"phrase": "online Hadith translation classes", "heading": "Online Hadith translation classes", "intro": "Explore Hadith meanings with teacher guidance. Ask about the texts, teaching language and reading level covered by the available course."},
   "/courses/tajweed": {"phrase": "learn Tajweed online", "heading": "Learn Tajweed online", "intro": "Understand how listening, pronunciation feedback and supported Quran reading work together. Discuss the most suitable reading course with the coordinator."},
