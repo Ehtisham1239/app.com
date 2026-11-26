@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { cleanHtml } from "../src/lib/sanitize.js";
+import { restoreLegacyParagraphTables } from "../src/lib/legacy-table-markup.js";
 
 test("authored HTML tables retain semantic structure and safe formatting", () => {
   const source = '<table style="width:100%;border-collapse:collapse"><colgroup><col style="width:120px"></colgroup><thead><tr><th scope="col">Course</th><th scope="col">Learning objective</th></tr></thead><tbody><tr><td style="text-align:center;vertical-align:middle;width:120px"><strong>Noorani Qaida</strong></td><td>Arabic letters and foundational reading</td></tr></tbody></table>';
@@ -34,6 +35,10 @@ test("legacy two-column paragraph tables are restored as real tables", () => {
     "<p>Memorization and revision</p>",
     "<p><strong>Noorani Qaida:</strong> Beginners can learn letters and pronunciation.</p>"
   ].join("");
+
+  const editorHtml = restoreLegacyParagraphTables(source);
+  assert.match(editorHtml, /<table><thead>/);
+  assert.equal((editorHtml.match(/<tr>/g) || []).length, 5);
 
   const html = cleanHtml(source);
   assert.match(html, /<th scope="col">Course<\/th>/);

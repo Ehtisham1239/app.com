@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { TableKit } from "@tiptap/extension-table";
+import { restoreLegacyParagraphTables } from "@/lib/legacy-table-markup";
 import {
   Bold, Columns3, Heading2, Heading3, Italic, Link2, List, ListOrdered,
   Quote, Redo2, Rows3, Table, Trash2, Undo2, Unlink
@@ -24,7 +25,7 @@ export function RichText({ value, onChange, placeholder }) {
         table: { resizable: true, cellMinWidth: 120 }
       })
     ],
-    content: value || "",
+    content: restoreLegacyParagraphTables(value || ""),
     editorProps: {
       attributes: {
         class: "rich-content min-h-[14rem] px-4 py-3 text-[0.97rem] leading-relaxed",
@@ -36,8 +37,9 @@ export function RichText({ value, onChange, placeholder }) {
 
   // keep in sync when the record loads after the editor
   useEffect(() => {
-    if (editor && value !== undefined && value !== editor.getHTML() && !editor.isFocused) {
-      editor.commands.setContent(value || "", { emitUpdate: false });
+    const normalizedValue = restoreLegacyParagraphTables(value || "");
+    if (editor && value !== undefined && normalizedValue !== editor.getHTML() && !editor.isFocused) {
+      editor.commands.setContent(normalizedValue, { emitUpdate: false });
     }
   }, [editor, value]);
 
