@@ -13,9 +13,7 @@ function Khatam({ className }) {
   );
 }
 
-// Site-wide verse band above the footer. Server-rendered, no client script: the colour change
-// is two stacked copies of the text cross-fading (opacity only), the ornaments float with
-// transform only, and every animation stops for prefers-reduced-motion.
+// Server-rendered verse band. The decorative colour layer is highlighted on hover.
 export function AyahBand({ date }) {
   const ayah = ayahForDate(date);
   return (
