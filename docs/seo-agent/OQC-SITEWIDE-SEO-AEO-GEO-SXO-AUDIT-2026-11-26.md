@@ -34,7 +34,7 @@ The 121-page metadata inventory contains two descriptions longer than 160 charac
 - Public metadata, canonical URLs, structured data and hero-image responses were checked in the live HTML.
 
 ### Improvements applied in this branch
-- Shortened the pricing meta description from 161 to 142 characters without changing the offer, prices, URL or page copy.
+- Shortened the pricing meta description from 161 to 154 characters without changing the offer, prices, URL or page copy.
 - Shortened the US state directory description from 172 to 152 characters and kept the same description in the CollectionPage JSON-LD.
 - Added regression checks for the 160-character metadata limit on these high-priority pages and all ten state pages.
 
