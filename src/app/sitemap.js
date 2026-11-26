@@ -15,6 +15,7 @@ const fixedImages = {
   "": "/brand/oqc-home-hero-v3-640.webp",
   "/courses": "/images/quran-courses-family.webp",
   "/quran-study": "/images/quran-study-rehal-1200.webp",
+  "/blog": heroArt("/blog").src,
   "/contact": heroArt("/contact").src,
   "/free-trial": heroArt("/free-trial").src,
   "/pricing": heroArt("/pricing").src,

@@ -33,6 +33,8 @@ export async function GET() {
     "- [Fees and packages](/pricing): A three-day free trial is available on eligible plans. The Weekend plan is excluded.",
     "- [Trial request and eligibility](/free-trial): a coordinator confirms the lesson time, teacher and plan.",
     "- [Country lesson guides: UK, USA, Canada, Australia, UAE](/locations)",
+    ...(postSlugs.has("online-quran-classes-europe-time-zones") ? ["- [Planning lessons across European time zones](/blog/online-quran-classes-europe-time-zones): compare local lesson times and seasonal clock changes."] : []),
+    ...(postSlugs.has("arabic-for-quran-readers") ? ["- [How to start learning Quranic Arabic](/blog/arabic-for-quran-readers): a vocabulary exercise and guidance on choosing reading foundations or Arabic study."] : []),
     "- [Learning guides](/learn)",
     "- [Frequently asked questions](/faq): trial, scheduling, teachers, payments and getting started.",
     "- [Teachers](/teachers): current public teacher profiles and a preference-request process; Admissions confirms suitability, language and availability.",

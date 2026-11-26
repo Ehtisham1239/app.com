@@ -4,7 +4,7 @@ import { contentMetadata } from "@/lib/seo-metadata";
 import { ContentImage } from "@/components/site/content-image";
 import { notFound } from "next/navigation";
 import { NavigationLink as Link } from "@/components/site/navigation-link";
-import { ArrowRight, Clock3 } from "@/components/site/icons";
+import { ArrowRight } from "@/components/site/icons";
 import { PageHero } from "@/components/site/chrome";
 import { getPostPage } from "@/lib/site-data";
 import { blogUrl } from "@/lib/blog-seo";
@@ -37,11 +37,6 @@ function PostCard({ post, large = false }) {
       <div className={`flex min-w-0 flex-1 flex-col px-6 pb-6 pt-4 ${large ? "md:py-7" : ""}`}>
         <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.7rem] font-semibold uppercase tracking-wider text-leaf-700">
           {post.category}
-          {post.reading_minutes ? (
-            <span className="flex items-center gap-1 font-medium normal-case tracking-normal text-ink-faint">
-              <Clock3 className="size-3.5" aria-hidden="true" /> {post.reading_minutes} min read
-            </span>
-          ) : null}
         </p>
         <h3 id={titleId} className={`mt-3 font-sans font-bold leading-snug text-mushaf-900 ${large ? "text-[1.6rem]" : "text-[1.2rem]"}`}>{post.title}</h3>
         <p className="mt-3 flex-1 text-[0.97rem] leading-relaxed text-ink-soft">{truncate(post.excerpt || "", large ? 165 : 120)}</p>
@@ -62,6 +57,15 @@ export async function BlogIndex({ filters }) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(collection) }} />
       <PageHero path={blogUrl(page)} eyebrow="Blog" title={`Quran learning articles for learners and parents${page > 1 ? ` · Page ${page}` : ""}`} arabic="عِلْم" intro="Practical guides to Quran reading, Tajweed, memorisation and building a routine at home." />
+      {page === 1 && <nav aria-label="Quran learning topics" className="page-wrap pt-10">
+        <h2 className="text-2xl text-mushaf-900">Find a guide for your next lesson</h2>
+        <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-leaf-700">
+          <li><Link prefetch={false} className="underline underline-offset-4" href="/learn/quran-for-kids">Help a child learn Quran</Link></li>
+          <li><Link prefetch={false} className="underline underline-offset-4" href="/blog/arabic-for-quran-readers">Start learning Quranic Arabic</Link></li>
+          <li><Link prefetch={false} className="underline underline-offset-4" href="/blog/tajweed-rules-for-beginners">Practise beginner Tajweed rules</Link></li>
+          <li><Link prefetch={false} className="underline underline-offset-4" href="/blog/online-quran-classes-europe-time-zones">Plan lessons across European time zones</Link></li>
+        </ul>
+      </nav>}
       <section className="page-wrap py-10 sm:py-14" aria-labelledby="blog-articles">
         <h2 id="blog-articles" className="sr-only">Articles</h2>
         {posts.length === 0 ? (

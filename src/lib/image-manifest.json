@@ -11768,5 +11768,173 @@
         "bytes": 50769
       }
     ]
+  },
+  {
+    "name": "oqc-contact-editorial-v1",
+    "url": "/images/learning/oqc-contact-editorial-v1-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "Illustrative scene of a woman using a headset and laptop at a sunlit admissions desk",
+    "variants": [
+      {
+        "width": 480,
+        "url": "/images/learning/oqc-contact-editorial-v1-480.webp",
+        "bytes": 15284
+      },
+      {
+        "width": 768,
+        "url": "/images/learning/oqc-contact-editorial-v1-768.webp",
+        "bytes": 27490
+      },
+      {
+        "width": 1200,
+        "url": "/images/learning/oqc-contact-editorial-v1-1200.webp",
+        "bytes": 45590
+      }
+    ],
+    "avif": [
+      {
+        "width": 480,
+        "url": "/images/learning/oqc-contact-editorial-v1-480.avif",
+        "bytes": 8641
+      },
+      {
+        "width": 768,
+        "url": "/images/learning/oqc-contact-editorial-v1-768.avif",
+        "bytes": 15733
+      },
+      {
+        "width": 1200,
+        "url": "/images/learning/oqc-contact-editorial-v1-1200.avif",
+        "bytes": 28373
+      }
+    ],
+    "kind": "photo"
+  },
+  {
+    "name": "oqc-blog-editorial-v1",
+    "url": "/images/learning/oqc-blog-editorial-v1-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "A woman taking Quran study notes beside a book on a wooden stand",
+    "variants": [
+      {
+        "width": 480,
+        "url": "/images/learning/oqc-blog-editorial-v1-480.webp",
+        "bytes": 19308
+      },
+      {
+        "width": 768,
+        "url": "/images/learning/oqc-blog-editorial-v1-768.webp",
+        "bytes": 37796
+      },
+      {
+        "width": 1200,
+        "url": "/images/learning/oqc-blog-editorial-v1-1200.webp",
+        "bytes": 74242
+      }
+    ],
+    "avif": [
+      {
+        "width": 480,
+        "url": "/images/learning/oqc-blog-editorial-v1-480.avif",
+        "bytes": 10219
+      },
+      {
+        "width": 768,
+        "url": "/images/learning/oqc-blog-editorial-v1-768.avif",
+        "bytes": 20211
+      },
+      {
+        "width": 1200,
+        "url": "/images/learning/oqc-blog-editorial-v1-1200.avif",
+        "bytes": 40660
+      }
+    ],
+    "kind": "photo"
+  },
+  {
+    "name": "oqc-arabic-editorial-v1",
+    "url": "/images/learning/oqc-arabic-editorial-v1-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "An adult learner consulting a reference book while studying Quranic Arabic at home",
+    "variants": [
+      {
+        "width": 480,
+        "url": "/images/learning/oqc-arabic-editorial-v1-480.webp",
+        "bytes": 21146
+      },
+      {
+        "width": 768,
+        "url": "/images/learning/oqc-arabic-editorial-v1-768.webp",
+        "bytes": 40166
+      },
+      {
+        "width": 1200,
+        "url": "/images/learning/oqc-arabic-editorial-v1-1200.webp",
+        "bytes": 75048
+      }
+    ],
+    "avif": [
+      {
+        "width": 480,
+        "url": "/images/learning/oqc-arabic-editorial-v1-480.avif",
+        "bytes": 11476
+      },
+      {
+        "width": 768,
+        "url": "/images/learning/oqc-arabic-editorial-v1-768.avif",
+        "bytes": 22633
+      },
+      {
+        "width": 1200,
+        "url": "/images/learning/oqc-arabic-editorial-v1-1200.avif",
+        "bytes": 43639
+      }
+    ],
+    "kind": "photo"
+  },
+  {
+    "name": "oqc-europe-editorial-v1",
+    "url": "/images/learning/oqc-europe-editorial-v1-1200.webp",
+    "width": 1200,
+    "height": 800,
+    "alt": "A mother and daughter choosing a lesson time with a planner and laptop at home",
+    "variants": [
+      {
+        "width": 480,
+        "url": "/images/learning/oqc-europe-editorial-v1-480.webp",
+        "bytes": 24850
+      },
+      {
+        "width": 768,
+        "url": "/images/learning/oqc-europe-editorial-v1-768.webp",
+        "bytes": 50200
+      },
+      {
+        "width": 1200,
+        "url": "/images/learning/oqc-europe-editorial-v1-1200.webp",
+        "bytes": 95594
+      }
+    ],
+    "avif": [
+      {
+        "width": 480,
+        "url": "/images/learning/oqc-europe-editorial-v1-480.avif",
+        "bytes": 13094
+      },
+      {
+        "width": 768,
+        "url": "/images/learning/oqc-europe-editorial-v1-768.avif",
+        "bytes": 26567
+      },
+      {
+        "width": 1200,
+        "url": "/images/learning/oqc-europe-editorial-v1-1200.avif",
+        "bytes": 52944
+      }
+    ],
+    "kind": "photo"
   }
 ]
