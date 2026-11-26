@@ -21,8 +21,8 @@ assert.ok(globalOrganization,"homepage must define the shared EducationalOrganiz
 const rows=[],failures=[],images=new Set();let cursor=0;
 const stylesheetCache=new Map();
 async function hasCssHeroBackground(body,pageUrl){
- if(!/<section\\b[^>]*class="[^"]*\\bhero\\b[^"]*"/i.test(body))return false;
- const links=[...body.matchAll(/<link\\b[^>]*>/g)].map(m=>attrs(m[0]));
+ if(!/<section\b[^>]*class="[^"]*\bhero\b[^"]*"/i.test(body))return false;
+ const links=[...body.matchAll(/<link\b[^>]*>/g)].map(m=>attrs(m[0]));
  let found=false;
  for(const link of links){
   if(link.rel!=="stylesheet"||!link.href)continue;
