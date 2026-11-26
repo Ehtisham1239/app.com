@@ -971,3 +971,14 @@ main[data-site-motion] :where(img[data-oqc-image], .prose-oqc img) {
 @media (forced-colors: active) {
   :where(.hero-portrait, .inner-hero-visual, .hero-immersive-media)::after { display: none; }
 }
+
+/* Public table rows (26 Nov 2026): the row under the pointer takes a gold wash with a leaf
+   edge, matching the US state page tables. Colour only, so no layout shift. */
+main[data-site-motion] tbody :where(th, td) { transition: background-color .2s ease, box-shadow .2s ease; }
+@media (hover: hover) and (pointer: fine) {
+  main[data-site-motion] tbody tr:hover > :where(th, td) { background-color: var(--color-gold-50); }
+  main[data-site-motion] tbody tr:hover > :first-child { box-shadow: inset 3px 0 0 var(--color-leaf-500); }
+}
+@media (prefers-reduced-motion: reduce) {
+  main[data-site-motion] tbody :where(th, td) { transition: none; }
+}

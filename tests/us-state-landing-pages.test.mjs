@@ -106,3 +106,23 @@ test("US state pages offer answer-first scheduling and direct course and fee lin
     assert.doesNotMatch(html, /<link rel="preload" as="image"/);
   }
 });
+
+test("US state pages use the light hero, framed photo and colour hover styles", () => {
+  const css = read("public/usa-state-pages/state-pages.css");
+  const script = read("public/usa-state-pages/state-pages.js");
+  for (const [slug, state] of states) {
+    const html = read(`public/${slug}-quran-classes/index.html`);
+    assert.match(html, /<section class="hero state-hero" data-hero-visual>/, `${state} has the light hero`);
+    assert.match(html, /<picture class="hero-photo state-photo">/, `${state} frames the hero photo`);
+    assert.doesNotMatch(html, /class="quick"|Quran classes from home in/, `${state} has no dark side panel`);
+    assert.doesNotMatch(html, /class="btn light" href="\/free-trial">Request your/, `${state} hero uses the green primary button`);
+    assert.match(html, /<script src="\/usa-state-pages\/state-pages\.js\?v=\w+" defer><\/script>/, `${state} loads the pointer glow without blocking`);
+    assert.doesNotMatch(html, /style="color:#/, `${state} has no dark-theme inline colours`);
+  }
+  assert.match(css, /\.hero:is\(\.directory-hero, \.state-hero\)/);
+  assert.match(css, /\.state-table tbody tr:hover > \*/);
+  assert.match(css, /\.faq details\[open\] summary::after/);
+  assert.match(css, /prefers-reduced-motion: reduce/);
+  assert.match(script, /prefers-reduced-motion: reduce/);
+  assert.match(script, /pointer: fine/);
+});

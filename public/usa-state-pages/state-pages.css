@@ -79,27 +79,60 @@
 .state-table tbody tr:nth-child(even) { background: var(--paper); }
 .state-table tbody tr:last-child > * { border-bottom: 0; }
 
+/* Light brand match with the main site (26 Nov 2026): light hero with a framed photo,
+   colourful card, FAQ, chip and table tones, and pointer-driven hover colour.
+   Tones mirror .card-tinted in src/app/globals.css. */
 :root {
   --oqc-logo-leaf: #21930a;
   --oqc-logo-deep: #08670b;
-  --oqc-logo-paper: #f4faef;
+  --leaf-50: #f1f9ec;
+  --leaf-100: #ddf1d3;
+  --leaf-200: #b6e0a5;
+  --leaf-500: #249c0c;
+  --leaf-700: #0c6c0c;
+  --leaf-800: #0a560b;
+  --gold-50: #fbf6e7;
+  --gold-100: #f5eacb;
+  --gold-300: #e8cf86;
+  --gold-400: #dbb960;
+  --gold-700: #7a5e16;
 }
-.hero .quick::before, .directory-photo::before {
-  content: "";
-  width: 4rem;
-  aspect-ratio: 1;
-  display: block;
-  border: 1px solid #b5d7b3;
-  border-radius: .75rem;
-  background: white url("/brand/oqc-logo-v3-160.webp") center / contain no-repeat;
+
+/* Top bar, eyebrows and footer follow the main site's light chrome. */
+.top { background: var(--leaf-50); color: var(--green); border-bottom: 1px solid var(--leaf-200); }
+.top a { color: var(--leaf-700); text-underline-offset: 3px; }
+.eyebrow { display: flex; align-items: center; gap: .65rem; color: var(--leaf-700); }
+.eyebrow::before { content: ""; flex: none; width: 2rem; height: 1px; background: rgb(201 161 59 / .7); }
+.foot { background: linear-gradient(150deg, #f6f9ee, #fffaf0); color: var(--green); border-top: 1px solid var(--leaf-200); }
+.foot a { color: var(--leaf-700); text-underline-offset: 3px; }
+.foot .small { color: var(--muted); }
+.cta-note { margin: 16px auto 0; }
+.page-links { text-align: center; margin-top: 22px; }
+
+/* Buttons: green primary with a gold halo, white outline secondary. */
+.btn {
+  gap: .4rem;
+  border: 1.5px solid transparent;
+  background: linear-gradient(135deg, #0f7d0f 0%, var(--leaf-700) 55%, var(--leaf-800) 100%);
+  transition: background-color .2s ease, border-color .2s ease, box-shadow .2s ease, color .2s ease, transform .2s ease;
 }
-.hero .quick::before { float: inline-end; margin: 0 0 .6rem .8rem; }
-.directory-hero { background: var(--oqc-logo-paper); color: var(--green); }
-.directory-hero::before { display: none; }
-.directory-hero .eyebrow { color: var(--oqc-logo-deep); }
-.directory-hero h1 { color: var(--green); }
-.directory-hero p { color: var(--muted); }
-.directory-hero .directory-photo {
+.btn.outline { background: var(--white); color: var(--green) !important; border-color: var(--green); box-shadow: 0 2px 6px rgb(13 74 28 / .06); }
+.cta .btn.light { background: var(--white); }
+
+/* Light hero: soft gold and leaf washes, copy on the left, the framed photo on the right. */
+.hero:is(.directory-hero, .state-hero) {
+  color: var(--green);
+  background:
+    radial-gradient(ellipse 42% 62% at 97% 2%, rgb(219 185 96 / .17), transparent 72%),
+    radial-gradient(ellipse 40% 64% at 2% 98%, rgb(36 156 12 / .08), transparent 74%),
+    linear-gradient(160deg, #fcfdfa 0%, #f7fbf3 55%, #fffbf2 100%);
+  border-bottom: 1px solid #e4efdf;
+}
+.hero:is(.directory-hero, .state-hero)::before { display: none; }
+.hero:is(.directory-hero, .state-hero) .eyebrow { color: var(--oqc-logo-deep); }
+.hero:is(.directory-hero, .state-hero) h1 { color: var(--green); }
+.hero:is(.directory-hero, .state-hero) p { color: var(--muted); }
+.hero :is(.directory-photo, .state-photo) {
   position: relative;
   inset: auto;
   overflow: hidden;
@@ -109,8 +142,22 @@
   border-block-start: 3px solid var(--oqc-logo-leaf);
   border-radius: var(--radius);
   background: #e6f3e2;
+  /* Two offset colour plates behind the photo: gold to the lower right, leaf to the upper left. */
+  box-shadow: 14px 14px 0 -2px var(--gold-100), -12px -12px 0 -2px var(--leaf-100), 0 26px 50px -30px rgb(13 74 28 / .45);
 }
-.directory-photo::before { position: absolute; inset: auto .75rem .75rem auto; z-index: 1; }
+:is(.directory-photo, .state-photo)::before {
+  content: "";
+  position: absolute;
+  inset: auto .75rem .75rem auto;
+  z-index: 1;
+  width: 4rem;
+  aspect-ratio: 1;
+  display: block;
+  border: 1px solid #b5d7b3;
+  border-radius: .75rem;
+  background: white url("/brand/oqc-logo-v3-160.webp") center / contain no-repeat;
+}
+/* The directory photo keeps the slightly darker wash the owner chose on 26 Nov 2026. */
 .directory-photo::after {
   content: "";
   position: absolute;
@@ -118,6 +165,170 @@
   background: rgb(6 47 12 / .15);
   pointer-events: none;
 }
+
+/* Cards: the main site's six tones, a coloured top edge and a pointer glow (see state-pages.js). */
+.card {
+  --card-wash: #e0f6d5;
+  --card-glow: rgb(157 207 136 / .5);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(155deg, var(--card-wash), var(--white) 88%);
+  transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+}
+.card:nth-child(6n + 2) { --card-wash: #fff0c5; --card-glow: rgb(233 196 121 / .55); }
+.card:nth-child(6n + 3) { --card-wash: #dbf0ff; --card-glow: rgb(157 204 232 / .55); }
+.card:nth-child(6n + 4) { --card-wash: #efe2ff; --card-glow: rgb(205 182 236 / .55); }
+.card:nth-child(6n + 5) { --card-wash: #ffe3eb; --card-glow: rgb(233 173 191 / .55); }
+.card:nth-child(6n + 6) { --card-wash: #d4f6ee; --card-glow: rgb(143 210 196 / .55); }
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 0%), var(--card-glow), transparent 72%);
+  opacity: 0;
+  transition: opacity .3s ease;
+  pointer-events: none;
+}
+.card > * { position: relative; z-index: 1; }
+.card h3, .card a { color: var(--card-ink); }
+.card p:last-child { margin-bottom: 0; }
+.card-more { margin-top: auto; padding-top: 14px; font-weight: 650; }
+
+/* Step numbers become coloured tiles in each card's tone. */
+.steps .card { padding-top: 24px; }
+.steps .card::before {
+  position: relative;
+  z-index: 1;
+  top: auto;
+  left: auto;
+  display: inline-grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: 14px;
+  border: 1.5px solid var(--card-accent);
+  border-radius: .85rem;
+  background: var(--card-wash);
+  color: var(--card-ink);
+  font: 800 1.15rem/1 Outfit, Arial, sans-serif;
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease, transform .25s ease;
+}
+
+/* City chips rotate through the same tones with a small diamond. */
+.cities li {
+  --chip-dot: #449833; --chip-wash: #f1f9ec; --chip-line: #b6e0a5; --chip-ink: #245c21;
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  background: var(--chip-wash);
+  border-color: var(--chip-line);
+  color: var(--chip-ink);
+  font-weight: 600;
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease;
+}
+.cities li::before { content: ""; flex: none; width: .5rem; height: .5rem; border-radius: 2px; background: var(--chip-dot); transform: rotate(45deg); }
+.cities li:nth-child(6n + 2) { --chip-dot: #b47513; --chip-wash: #fbf6e7; --chip-line: #e9c479; --chip-ink: #774908; }
+.cities li:nth-child(6n + 3) { --chip-dot: #367fa9; --chip-wash: #edf7fd; --chip-line: #9dcce8; --chip-ink: #225b7c; }
+.cities li:nth-child(6n + 4) { --chip-dot: #8b56ba; --chip-wash: #f5eefc; --chip-line: #cdb6ec; --chip-ink: #663693; }
+.cities li:nth-child(6n + 5) { --chip-dot: #bc5277; --chip-wash: #fdf0f4; --chip-line: #e9adbf; --chip-ink: #8f3153; }
+.cities li:nth-child(6n + 6) { --chip-dot: #2b907f; --chip-wash: #ebf8f4; --chip-line: #8fd2c4; --chip-ink: #246458; }
+
+/* Planning note: gold rule and wash, matching the main site's trial card. */
+.local-planning { background: linear-gradient(120deg, var(--gold-50), var(--white) 85%); border-inline-start-color: var(--gold-400); box-shadow: 0 12px 28px -24px rgb(122 94 22 / .45); }
+.local-planning h3 { color: var(--gold-700); }
+
+/* FAQ: a coloured edge per question, a round +/× marker and a tinted open state. */
+.faq details {
+  --faq-edge: #449833; --faq-wash: #eaf7e0; --faq-line: #9dcf88; --faq-ink: #245c21;
+  position: relative;
+  border-inline-start: 4px solid var(--faq-edge);
+  transition: border-color .25s ease, background-color .25s ease, box-shadow .25s ease;
+}
+.faq details:nth-child(6n + 2) { --faq-edge: #b47513; --faq-wash: #fdf3d8; --faq-line: #e9c479; --faq-ink: #774908; }
+.faq details:nth-child(6n + 3) { --faq-edge: #367fa9; --faq-wash: #e4f3fd; --faq-line: #9dcce8; --faq-ink: #225b7c; }
+.faq details:nth-child(6n + 4) { --faq-edge: #8b56ba; --faq-wash: #f3eafd; --faq-line: #cdb6ec; --faq-ink: #663693; }
+.faq details:nth-child(6n + 5) { --faq-edge: #bc5277; --faq-wash: #fdebf1; --faq-line: #e9adbf; --faq-ink: #8f3153; }
+.faq details:nth-child(6n + 6) { --faq-edge: #2b907f; --faq-wash: #e1f6f1; --faq-line: #8fd2c4; --faq-ink: #246458; }
+.faq details[open] { border-color: var(--faq-line); border-inline-start-color: var(--faq-edge); background: linear-gradient(155deg, var(--faq-wash), var(--white) 92%); }
+.faq summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; list-style: none; transition: background-color .2s ease, color .2s ease; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+";
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border: 1px solid var(--faq-line);
+  border-radius: 50%;
+  background: var(--faq-wash);
+  color: var(--faq-ink);
+  font: 700 1.25rem/1 Inter, Arial, sans-serif;
+  transition: transform .25s ease, background-color .25s ease, color .25s ease;
+}
+.faq details[open] summary { color: var(--faq-ink); }
+.faq details[open] summary::after { transform: rotate(45deg); background: var(--faq-ink); border-color: var(--faq-ink); color: var(--white); }
+.faq summary:focus-visible { background: var(--faq-wash); }
+
+/* Tables: light header like the main site, a coloured marker per row and a highlighted row on hover. */
+.state-table-wrap { border-color: var(--leaf-200); box-shadow: 0 14px 30px -26px rgb(13 74 28 / .45); }
+.state-table thead { background: linear-gradient(120deg, #e0f6d5, var(--gold-50)); color: var(--green); }
+.state-table thead th { font-weight: 750; border-bottom: 2px solid var(--leaf-500); }
+.state-table tbody tr { --row-edge: #449833; --row-wash: #eaf7e0; }
+.state-table tbody tr:nth-child(4n + 2) { --row-edge: #b47513; --row-wash: #fdf3d8; }
+.state-table tbody tr:nth-child(4n + 3) { --row-edge: #367fa9; --row-wash: #e4f3fd; }
+.state-table tbody tr:nth-child(4n + 4) { --row-edge: #8b56ba; --row-wash: #f3eafd; }
+.state-table tbody th::before { content: ""; display: inline-block; width: .55rem; height: .55rem; margin-inline-end: .55rem; border-radius: 2px; background: var(--row-edge); transform: rotate(45deg); vertical-align: .1em; }
+.state-table tbody :is(th, td) { transition: background-color .2s ease, box-shadow .2s ease; }
+
+/* The CTA keeps its deep green with gold and leaf light in the corners. */
+.cta {
+  background:
+    radial-gradient(ellipse 40% 70% at 100% 0%, rgb(219 185 96 / .3), transparent 70%),
+    radial-gradient(ellipse 45% 80% at 0% 100%, rgb(36 156 12 / .4), transparent 72%),
+    linear-gradient(135deg, #0d4a1c, #0c6c0c);
+}
+
+/* Pointer colour changes: fine pointers only; motion only when the visitor allows it. */
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover { box-shadow: 0 10px 24px -10px rgb(12 108 12 / .5), 0 0 0 3px rgb(219 185 96 / .28); }
+  .btn.outline:hover { background: var(--leaf-50); border-color: var(--leaf-700); color: var(--leaf-800) !important; }
+  .cta .btn.light:hover { background: var(--gold-300); color: var(--green) !important; }
+  .top a:hover, .foot a:hover { color: var(--gold-700); }
+  .card:hover { border-color: var(--card-edge); box-shadow: 0 18px 36px -22px var(--card-edge); }
+  .card:hover::after { opacity: 1; }
+  .steps .card:hover::before { background: var(--card-ink); border-color: var(--card-ink); color: var(--white); }
+  .cities li:hover { background: var(--chip-ink); border-color: var(--chip-ink); color: var(--white); }
+  .cities li:hover::before { background: var(--white); }
+  .faq details:hover { border-color: var(--faq-line); border-inline-start-color: var(--faq-edge); box-shadow: 0 10px 24px -20px var(--faq-edge); }
+  .faq summary:hover { background: var(--faq-wash); color: var(--faq-ink); }
+  .local-planning:hover { box-shadow: 0 16px 32px -22px rgb(122 94 22 / .55); }
+  .state-table tbody tr:hover > * { background: var(--row-wash); }
+  .state-table tbody tr:hover > :first-child { box-shadow: inset 4px 0 0 var(--row-edge); }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .btn:hover { transform: translateY(-1px); }
+  .card:has(a[href]):hover { transform: translateY(-4px); }
+  .steps .card:hover::before { transform: rotate(-6deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card, .card::after, .steps .card::before, .faq details, .faq summary, .faq summary::after, .cities li, .btn { transition: none; }
+}
+@media (forced-colors: active) {
+  :is(.directory-photo, .state-photo)::before, .card::after { display: none; }
+}
+@media (max-width: 800px) {
+  .hero :is(.directory-photo, .state-photo) { box-shadow: 10px 10px 0 -2px var(--gold-100), 0 20px 40px -28px rgb(13 74 28 / .45); }
+}
 @media (max-width: 560px) {
-  .hero .quick::before, .directory-photo::before { width: 3.25rem; }
+  :is(.directory-photo, .state-photo)::before { width: 3.25rem; }
+}
+/* Phones: keep the header button on one line and let the brand name wrap instead. */
+.head .btn { white-space: nowrap; flex: none; }
+@media (max-width: 560px) {
+  .brand { font-size: 14px; letter-spacing: .02em; }
+  .brand img { width: 40px; height: 40px; }
+  .brand small { font-size: 9px; letter-spacing: .14em; }
 }
