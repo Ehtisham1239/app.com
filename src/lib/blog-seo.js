@@ -44,7 +44,7 @@ export function blogPosting(post, { siteUrl, visual, html, description }) {
     ...(dates.modified ? { dateModified: dates.modified } : {}),
     image: new URL(visual.src, siteUrl).href,
     author: { ...author, ...(author["@type"] === "Organization" ? { url: `${siteUrl}/about` } : {}) },
-    publisher: { "@type": "EducationalOrganization", "@id": `${siteUrl}/#organization`, name: "Online Quran College", logo: { "@type": "ImageObject", url: `${siteUrl}/brand/logo.webp` } },
+    publisher: { "@type": "EducationalOrganization", "@id": `${siteUrl}/#organization`, name: "Online Quran College", logo: { "@type": "ImageObject", url: `${siteUrl}/brand/oqc-logo-v3-320.webp` } },
     wordCount: words ? words.split(/\s+/).length : 0,
     mainEntityOfPage: url,
     isPartOf: { "@type": "Blog", "@id": `${siteUrl}/blog#blog`, url: `${siteUrl}/blog`, name: "Quran learning articles" },

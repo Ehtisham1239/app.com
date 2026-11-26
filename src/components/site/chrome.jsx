@@ -77,7 +77,7 @@ function ImmersiveHero({ eyebrow, title, titleAccent, intro, children, arabic, i
       {jsonLd}
       {backdrop ? <picture data-hero-visual className="hero-immersive-media">
         <source type="image/avif" srcSet={backdrop.avif.map(v => `${v.url} ${v.width}w`).join(", ")} sizes="(max-width: 1024px) 100vw, 70vw" />
-        <img src={backdrop.src} srcSet={backdrop.webp.map(v => `${v.url} ${v.width}w`).join(", ")} sizes="(max-width: 1024px) 100vw, 70vw" width={backdrop.width} height={backdrop.height} alt={backdrop.alt} loading="eager" fetchPriority="high" decoding="async" />
+        <img data-oqc-image="" src={backdrop.src} srcSet={backdrop.webp.map(v => `${v.url} ${v.width}w`).join(", ")} sizes="(max-width: 1024px) 100vw, 70vw" width={backdrop.width} height={backdrop.height} alt={backdrop.alt} loading="eager" fetchPriority="high" decoding="async" />
       </picture> : <div data-hero-visual className="hero-immersive-media"><ContentImage src={image.src} alt={image.alt} priority sizes="(max-width: 1024px) 100vw, 70vw" /></div>}
       <div className="hero-immersive-shade" aria-hidden="true" />
       <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.06]" aria-hidden="true" />

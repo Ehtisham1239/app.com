@@ -78,3 +78,46 @@
 .state-table tbody th { color: var(--green); font-weight: 650; }
 .state-table tbody tr:nth-child(even) { background: var(--paper); }
 .state-table tbody tr:last-child > * { border-bottom: 0; }
+
+:root {
+  --oqc-logo-leaf: #21930a;
+  --oqc-logo-deep: #08670b;
+  --oqc-logo-paper: #f4faef;
+}
+.hero .quick::before, .directory-photo::before {
+  content: "";
+  width: 4rem;
+  aspect-ratio: 1;
+  display: block;
+  border: 1px solid #b5d7b3;
+  border-radius: .75rem;
+  background: white url("/brand/oqc-logo-v3-160.webp") center / contain no-repeat;
+}
+.hero .quick::before { float: inline-end; margin: 0 0 .6rem .8rem; }
+.directory-hero { background: var(--oqc-logo-paper); color: var(--green); }
+.directory-hero::before { display: none; }
+.directory-hero .eyebrow { color: var(--oqc-logo-deep); }
+.directory-hero h1 { color: var(--green); }
+.directory-hero p { color: var(--muted); }
+.directory-hero .directory-photo {
+  position: relative;
+  inset: auto;
+  overflow: hidden;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  border: 1px solid #b5d7b3;
+  border-block-start: 3px solid var(--oqc-logo-leaf);
+  border-radius: var(--radius);
+  background: #e6f3e2;
+}
+.directory-photo::before { position: absolute; inset: auto .75rem .75rem auto; z-index: 1; }
+.directory-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgb(6 47 12 / .15);
+  pointer-events: none;
+}
+@media (max-width: 560px) {
+  .hero .quick::before, .directory-photo::before { width: 3.25rem; }
+}

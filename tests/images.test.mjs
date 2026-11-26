@@ -61,3 +61,20 @@ test('phone course cards can select a smaller 600px AVIF with a lower download c
   assert.ok(medium.bytes<large.bytes*0.85,`${medium.url}: meaningful byte saving`);
  }
 });
+
+
+test('new homepage images have bounded responsive variants and the supplied logo retains a square aspect', async () => {
+ for (const width of [320, 440, 640]) {
+  for (const format of ['avif', 'webp']) {
+   const file = new URL(`../public/brand/oqc-home-hero-v3-${width}.${format}`, import.meta.url);
+   const { width: actualWidth, height } = await sharp(readFileSync(file)).metadata();
+   assert.equal(actualWidth, width);
+   assert.equal(height, Math.round(width * 12 / 11));
+   assert.ok(statSync(file).size < 75000);
+  }
+ }
+ const logo = new URL('../public/brand/oqc-logo-v3-320.webp', import.meta.url);
+ const { width, height } = await sharp(readFileSync(logo)).metadata();
+ assert.equal(width, 320);
+ assert.equal(height, 320);
+});

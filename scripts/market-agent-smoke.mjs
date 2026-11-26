@@ -67,7 +67,7 @@ try {
       }
       await page.goto(base + '/', { waitUntil: 'load' });
       assert.equal(new URL(page.url()).pathname, '/'); assert.equal(await page.locator('#c-name,#t-name').count(), 0);
-      assert.equal(await page.locator('.home-hero .hero-portrait img').getAttribute('src'), '/brand/hero.webp');
+      assert.equal(await page.locator('.home-hero .hero-portrait img').getAttribute('src'), '/brand/oqc-home-hero-v3-440.webp');
     } finally { await browser.close(); }
   }
   assert.equal(report.layouts.length, 8); assert.equal(report.olderClockDatabase, true);

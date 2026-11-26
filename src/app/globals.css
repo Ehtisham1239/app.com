@@ -938,3 +938,36 @@ main[data-site-motion] .faq-toggle:focus-visible {
 .prose-oqc :where(h2)::before { content: ""; display: inline-block; width: .62em; height: .62em; margin-inline-end: .45em; vertical-align: .08em;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M24 3 30 18 45 24 30 30 24 45 18 30 3 24 18 18Z' fill='%23c9a13b'/%3E%3C/svg%3E") center / contain no-repeat; }
 @media print { .prose-oqc :where(h2)::before { display: none; } }
+
+
+/* Media frames use the two greens sampled from the supplied college logo. */
+:root {
+  --oqc-logo-leaf: #21930a;
+  --oqc-logo-deep: #08670b;
+  --oqc-logo-paper: #f4faef;
+}
+main[data-site-motion] :where(img[data-oqc-image], .prose-oqc img) {
+  outline: 1px solid rgb(33 147 10 / .32);
+  outline-offset: -1px;
+  background-color: var(--oqc-logo-paper);
+}
+.hero-portrait, .inner-hero-visual {
+  position: relative;
+  border-color: rgb(33 147 10 / .48);
+}
+:where(.hero-portrait, .inner-hero-visual, .hero-immersive-media)::after {
+  content: "";
+  position: absolute;
+  inset: auto .85rem .85rem auto;
+  z-index: 1;
+  width: clamp(3.1rem, 6vw, 4.5rem);
+  aspect-ratio: 1;
+  border: 1px solid rgb(33 147 10 / .42);
+  border-radius: .75rem;
+  background: white url("/brand/oqc-logo-v3-160.webp") center / contain no-repeat;
+  pointer-events: none;
+}
+.hero-immersive-media::after { inset: 1rem 1rem auto auto; }
+@media (forced-colors: active) {
+  :where(.hero-portrait, .inner-hero-visual, .hero-immersive-media)::after { display: none; }
+}

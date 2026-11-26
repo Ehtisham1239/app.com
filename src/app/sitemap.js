@@ -11,7 +11,7 @@ import { publicImageUrl } from "@/lib/seo-metadata";
 import { heroArt } from "@/lib/hero-art";
 const imageUrl = (src) => new URL(publicImageUrl(src), SITE_URL).href;
 const fixedImages = {
-  "": "/brand/hero.webp",
+  "": "/brand/oqc-home-hero-v3-640.webp",
   "/courses": "/images/quran-courses-family.webp",
   "/quran-study": "/images/quran-study-rehal-1200.webp",
   "/contact": heroArt("/contact").src,

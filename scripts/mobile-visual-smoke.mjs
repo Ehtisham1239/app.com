@@ -40,7 +40,7 @@ try {
       if (path === '/') {
         assert.equal(new URL(page.url()).pathname, '/');
         assert.equal(await page.locator('[role="dialog"][aria-modal="true"]:visible').count(), 0);
-        assert.equal(await page.locator('.home-hero img').getAttribute('src'), '/brand/hero.webp');
+        assert.equal(await page.locator('.home-hero img').getAttribute('src'), '/brand/oqc-home-hero-v3-440.webp');
       }
       if (width === 390 && ['/courses/noorani-qaida', '/locations/united-states', '/locations/united-kingdom/london'].includes(path)) await page.screenshot({ path: `${out}/${path.split('/').filter(Boolean).join('-')}-390.png` });
       report.pages.push({ width, path, status: response.status(), overflow: false });
