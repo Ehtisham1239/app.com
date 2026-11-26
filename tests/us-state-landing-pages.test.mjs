@@ -36,6 +36,9 @@ test("US state landing pages have unique indexable SEO foundations and working t
     assert.match(html, new RegExp(`<h1>Online Quran Classes in ${state} for Kids & Adults</h1>`));
     assert.match(html, /"@type":"Service"/);
     assert.match(html, /"@type":"FAQPage"/);
+    assert.ok(html.includes('"EducationalOrganization"'), `${state} includes the shared organization node`);
+    assert.ok(html.includes('data-hero-visual'), `${state} has a detectable hero visual`);
+    assert.ok(html.includes('width="1200" height="800"'), `${state} hero image reserves its actual dimensions`);
     assert.match(html, /href="\/free-trial"/);
     assert.match(html, /\/usa-state-pages\/state-pages\.css/);
     assert.match(config, new RegExp(`source: "/${slug}-quran-classes"`));
@@ -50,6 +53,10 @@ test("US state landing pages have unique indexable SEO foundations and working t
 test("US state hub is indexable and links to all ten pages", () => {
   const hub = read("public/usa-quran-classes/states/index.html");
   assert.match(hub, /<meta name="robots" content="index,follow">/);
+  assert.ok(hub.includes('"@type":"CollectionPage"'));
+  assert.ok(hub.includes('"EducationalOrganization"'));
+  assert.ok(hub.includes('data-hero-visual'));
+  assert.ok(hub.includes('width="1200" height="800"'));
   assert.match(hub, /<link rel="canonical" href="https:\/\/www\.onlinequrancollege\.com\/usa-quran-classes\/states">/);
   for (const [slug] of states) assert.ok(hub.includes(`href="/${slug}-quran-classes"`));
   assert.ok(read("public/usa-quran-classes/index.html").includes('href="/usa-quran-classes/states"'));
