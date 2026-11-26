@@ -89,7 +89,7 @@ function HeaderForPath({ menu, courses, brandName, pathname }) {
     <header
       className={clsx(
         "site-header sticky top-0 z-40 transition-[background-color,box-shadow,border-color] duration-200",
-        scrolled ? "border-b border-line bg-white/90 shadow-[0_8px_30px_-18px_rgb(13_58_43/0.35)] backdrop-blur-md" : "border-b border-transparent bg-white/90 backdrop-blur-sm",
+        scrolled ? "border-b border-line bg-white shadow-[0_6px_18px_-14px_rgb(13_58_43/0.3)]" : "border-b border-transparent bg-white",
       )}
     >
       <div className="page-wrap flex h-[4.5rem] items-center gap-3 sm:gap-6">
