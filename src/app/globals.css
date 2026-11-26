@@ -812,23 +812,23 @@ a.card-tinted:focus-visible .card-arrow { background: var(--card-ink); color: #f
    footer verse used to pull the complete 109 KB Amiri face on every page (19 Nov 2026). */
 .quran-text { font-family: var(--font-amiri-quran), var(--font-arabic); }
 .ayah-band { --font-quran: var(--font-amiri-quran), var(--font-arabic); position: relative; isolation: isolate; overflow: hidden; content-visibility: auto; contain-intrinsic-size: auto 26rem;
-  background: radial-gradient(90% 120% at 50% 0%, #135a26 0%, var(--color-mushaf-900) 55%, var(--color-mushaf-950) 100%); color: #fff; padding-block: clamp(2.75rem, 6vw, 4.5rem); }
-.ayah-band::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .16; pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23e8cf86' stroke-width='1'%3E%3Cpath d='M36 11 61 36 36 61 11 36Z'/%3E%3Cpath d='M18 18h36v36H18z'/%3E%3Cpath d='M36 0v11M36 61v11M0 36h11M61 36h11'/%3E%3C/g%3E%3C/svg%3E");
+  background: radial-gradient(90% 120% at 50% 0%, var(--color-leaf-100) 0%, var(--color-leaf-50) 55%, var(--color-gold-50) 100%); color: var(--color-mushaf-900); border-block: 1px solid var(--color-leaf-100); padding-block: clamp(2.75rem, 6vw, 4.5rem); }
+.ayah-band::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .35; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23c9a13b' stroke-width='1'%3E%3Cpath d='M36 11 61 36 36 61 11 36Z'/%3E%3Cpath d='M18 18h36v36H18z'/%3E%3Cpath d='M36 0v11M36 61v11M0 36h11M61 36h11'/%3E%3C/g%3E%3C/svg%3E");
   background-size: 72px 72px; -webkit-mask-image: radial-gradient(70% 90% at 50% 50%, transparent 30%, #000 100%); mask-image: radial-gradient(70% 90% at 50% 50%, transparent 30%, #000 100%); }
 .ayah-frame { position: relative; max-width: 58rem; margin-inline: auto; text-align: center; padding: clamp(1.75rem, 4vw, 2.75rem) clamp(1.25rem, 4vw, 3rem);
-  border: 1px solid rgb(232 207 134 / .55); border-radius: 1.75rem; outline: 1px solid rgb(232 207 134 / .22); outline-offset: 7px;
-  background: linear-gradient(180deg, rgb(255 255 255 / .05), rgb(255 255 255 / .015)); box-shadow: 0 30px 60px -30px rgb(0 0 0 / .45), inset 0 1px 0 rgb(255 255 255 / .08); }
-.ayah-kicker { font-family: var(--font-sans); font-size: .78rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--color-gold-300); }
-.ayah-kicker::before, .ayah-kicker::after { content: "۞" / ""; font-family: var(--font-quran); letter-spacing: 0; margin-inline: .6em; color: var(--color-gold-400); }
+  border: 1px solid var(--color-gold-300); border-radius: 1.75rem; outline: 1px solid rgb(201 161 59 / .3); outline-offset: 7px;
+  background: rgb(255 255 255 / .82); box-shadow: 0 24px 50px -30px rgb(13 74 28 / .35), inset 0 1px 0 #fff; }
+.ayah-kicker { font-family: var(--font-sans); font-size: .78rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--color-gold-700); }
+.ayah-kicker::before, .ayah-kicker::after { content: "۞" / ""; font-family: var(--font-quran); letter-spacing: 0; margin-inline: .6em; color: var(--color-gold-600); }
 .ayah-figure { margin: 1rem 0 0; }
-.ayah-ar { position: relative; display: inline-grid; margin: 0; font-family: var(--font-quran); font-size: clamp(1.85rem, 4.6vw, 3.1rem); line-height: 2; color: #fffaf0; text-wrap: balance; }
+.ayah-ar { position: relative; display: inline-grid; margin: 0; font-family: var(--font-quran); font-size: clamp(1.85rem, 4.6vw, 3.1rem); line-height: 2; color: var(--color-mushaf-900); text-wrap: balance; }
 .ayah-ar > span { grid-area: 1 / 1; }
-.ayah-glow { opacity: 0; background: linear-gradient(100deg, var(--color-gold-300) 0%, #fff4cf 35%, var(--color-gold-400) 60%, var(--color-leaf-200) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; text-shadow: none; }
-.ayah-ink { text-shadow: 0 0 22px rgb(232 207 134 / .25); }
-.ayah-meaning { margin-top: .9rem; font-size: clamp(1rem, 1.6vw, 1.12rem); line-height: 1.6; color: #f3ead2; max-width: 46rem; margin-inline: auto; }
-.ayah-ref { display: inline-block; margin-top: .35rem; font-style: normal; font-weight: 700; color: var(--color-gold-300); }
-.ayah-star { position: absolute; width: clamp(2.25rem, 5vw, 3.5rem); color: var(--color-gold-400); opacity: .75; }
+.ayah-glow { opacity: 0; background: linear-gradient(100deg, var(--color-gold-600) 0%, var(--color-leaf-700) 50%, var(--color-gold-700) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; text-shadow: none; }
+.ayah-ink { text-shadow: none; }
+.ayah-meaning { margin-top: .9rem; font-size: clamp(1rem, 1.6vw, 1.12rem); line-height: 1.6; color: #3b4a3f; max-width: 46rem; margin-inline: auto; }
+.ayah-ref { display: inline-block; margin-top: .35rem; font-style: normal; font-weight: 700; color: var(--color-gold-700); }
+.ayah-star { position: absolute; width: clamp(2.25rem, 5vw, 3.5rem); color: var(--color-gold-500); opacity: .85; }
 .ayah-star-start { top: -1.1rem; left: clamp(.75rem, 4vw, 2.5rem); }
 .ayah-star-end { bottom: -1.1rem; right: clamp(.75rem, 4vw, 2.5rem); }
 @keyframes ayah-glow { 0%, 18%, 100% { opacity: 0; } 45%, 72% { opacity: 1; } }

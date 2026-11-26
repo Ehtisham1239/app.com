@@ -46,13 +46,13 @@ export default async function FreeTrialPage() {
   return (
     <>
       <CmsPageSchema path="/free-trial" />
-    <section id="trial-form" aria-labelledby="trial-title" className="relative overflow-hidden bg-mushaf-900 pb-12 pt-7 sm:pt-10 lg:pb-16">
+    <section id="trial-form" aria-labelledby="trial-title" className="relative overflow-hidden bg-gradient-to-br from-leaf-100 via-leaf-50 to-gold-50 pb-12 pt-7 sm:pt-10 lg:pb-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />
       <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.07]" aria-hidden="true" />
       <div className="page-wrap relative grid items-start gap-7 lg:grid-cols-[1fr_1.1fr] lg:grid-rows-[auto_1fr] lg:gap-x-12">
-        <div className="text-white">
+        <div className="text-mushaf-900">
           <Suspense fallback={<TrialHeadingView />}><TrialHeading plans={planList} academic={academic} /></Suspense>
-          <div data-hero-visual className="mt-6 hidden overflow-hidden rounded-[1.5rem] border border-white/15 lg:block">
+          <div data-hero-visual className="mt-6 hidden overflow-hidden rounded-[1.5rem] border border-leaf-100 shadow-[0_18px_40px_-28px_rgb(13_74_28/0.4)] lg:block">
             <ContentImage src={COVER.src} alt={COVER.alt} sizes="560px" className="aspect-[16/9] w-full object-cover" />
           </div>
         </div>
@@ -62,7 +62,7 @@ export default async function FreeTrialPage() {
           </Suspense>
         </div>
         <div className="space-y-4 lg:col-start-1 lg:row-start-2">
-          <Link className="inline-flex min-h-11 items-center rounded-xl border border-white/25 px-4 font-semibold text-white hover:bg-white/10" href="/trial-video">Watch the 15-second trial guide</Link>
+          <Link className="inline-flex min-h-11 items-center rounded-xl border border-leaf-200 bg-white px-4 font-semibold text-mushaf-900 hover:bg-leaf-50" href="/trial-video">Watch the 15-second trial guide</Link>
           <Suspense fallback={<TrialPromisesView className="grid gap-4 sm:grid-cols-2" />}><TrialPromises plans={planList} academic={academic} className="grid gap-4 sm:grid-cols-2" /></Suspense>
         </div>
       </div>

@@ -489,6 +489,28 @@ html:not(.ty-confirmed):not(.ty-generic) [data-ty="confirmed"] { display: none; 
 .pv-tools a { color: #FFFFFF; text-decoration: underline; text-underline-offset: 2px; }
 .pv-tools a[aria-current="true"] { color: #FFE7A3; font-weight: 600; text-decoration: none; }
 
+
+/* Light brand match with the main site and state pages (26 Nov 2026) */
+.hero { color: var(--mushaf-900); background-color: #f1f9ec; background-image: linear-gradient(180deg, rgba(241, 249, 236, .96) 0%, rgba(251, 246, 231, .92) 100%), url("/images/learning/usa-online-quran-learning-r2-800.webp"); border-bottom: 1px solid #ddf1d3; }
+@media (min-width: 980px) { .hero { background-image: linear-gradient(100deg, rgba(241, 249, 236, .97) 0%, rgba(241, 249, 236, .92) 50%, rgba(251, 246, 231, .8) 100%), url("/images/learning/usa-online-quran-learning-r2-1200.webp"); } }
+.hero h1, .hero .verse, .hero .verse-note strong, .hero .hero-points li { color: var(--mushaf-900); }
+.hero .verse-note, .hero .hero-sub, .hero .call-hours { color: #3b4a3f; }
+.hero .hero-eyebrow { color: #7a5e16; }
+.hero .hero-points .icon { color: var(--leaf-700); }
+.hero .hero-ctas .btn-primary { background: var(--leaf-700); color: #fff; }
+.hero .hero-ctas .btn-primary:hover { background: var(--leaf-800); color: #fff; }
+.hero .hero-ctas .btn-outline { background: #fff; color: var(--mushaf-900); border-color: #b6e0a5; }
+.hero .hero-ctas .btn-outline:hover { border-color: var(--leaf-700); color: var(--leaf-800); background: #f1f9ec; }
+.final-card { background-color: #f1f9ec; background-image: linear-gradient(110deg, rgba(241, 249, 236, .97) 0%, rgba(241, 249, 236, .93) 55%, rgba(251, 246, 231, .8) 100%), url("/images/hero/online-lesson-child-v1-800.webp"); border: 1px solid #ddf1d3; border-top: 4px solid #dbb960; }
+@media (min-width: 980px) { .final-card { background-image: linear-gradient(110deg, rgba(241, 249, 236, .97) 0%, rgba(241, 249, 236, .93) 55%, rgba(251, 246, 231, .8) 100%), url("/images/hero/online-lesson-child-v1-1200.webp"); } }
+.final-card::before { opacity: .06; }
+.final-glow { background: rgba(219, 185, 96, .25); }
+.final h2, .final .wa a { color: var(--mushaf-900); }
+.final p, .final .call-hours { color: #3b4a3f; }
+.final .btn-light { background: var(--leaf-700); color: #fff; border-color: var(--leaf-700); }
+.final .btn-light:hover { background: var(--leaf-800); color: #fff; }
+.final .btn-outline-light { background: #fff; color: var(--mushaf-900); border: 2px solid #b6e0a5; }
+.final .btn-outline-light:hover { background: #f1f9ec; border-color: var(--leaf-700); color: var(--leaf-800); }
 </style>
 <script>/*
  * Online Quran College — USA Google Ads landing page configuration
