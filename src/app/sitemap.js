@@ -3,6 +3,7 @@ import { isVideoPageSlug, pageVideo, videoSitemapEntry } from "@/lib/page-video"
 import { guideForSlug } from "@/lib/learning-guides";
 import { INDEXED_MARKETS, RESTORED_LOCATION_PATHS, getLocation, locationPath, locationCmsSlug, locationIndexRecord, locationLastModified } from "@/lib/locations";
 import { MARKET_GUIDES } from "@/lib/market-guides";
+import { locationImage } from "@/lib/location-image";
 import { getPublishedPageVideos, getPublishedSlugs } from "@/lib/site-data";
 import { SITE_URL } from "@/lib/config";
 import { shouldIncludeInSitemap } from "@/lib/seo";
@@ -31,7 +32,7 @@ export default async function sitemap() {
     const country = getLocation(countrySlug), city = citySlug ? country?.cities.find((c) => c.slug === citySlug) : null;
     if (!country || (citySlug && !city)) return [];
     const path = locationPath(country, city), page = locationPages.get(locationCmsSlug(country, city));
-    return shouldIncludeInSitemap(locationIndexRecord(page, country, city), path, SITE_URL) ? [{ url: `${SITE_URL}${path}`, lastModified: locationLastModified(page, city ? undefined : MARKET_GUIDES[country.slug]?.updatedAt), ...(page?.cover_url ? { images: [imageUrl(page.cover_url)] } : {}), changeFrequency: "monthly", priority: city ? 0.5 : 0.7 }] : [];
+    return shouldIncludeInSitemap(locationIndexRecord(page, country, city), path, SITE_URL) ? [{ url: `${SITE_URL}${path}`, lastModified: locationLastModified(page, city ? undefined : MARKET_GUIDES[country.slug]?.updatedAt), images: [imageUrl(locationImage(country, city).url)], changeFrequency: "monthly", priority: city ? 0.5 : 0.7 }] : [];
   });
   const content = (rows, prefix, priority) => rows.flatMap((row) => {
     const path = prefix === "" && guideForSlug(row.slug) ? guideForSlug(row.slug).path : `${prefix}/${row.slug}`;

@@ -14,7 +14,7 @@ import { INDEXED_MARKETS, getLocation, locationPath } from "@/lib/locations";
 
 export const revalidate = 3600;
 
-export const metadata = contentMetadata({ title: "Online Quran Class Fees and Monthly Plans", seo_noindex: false }, { path: "/pricing", description: "Compare monthly Quran fees by lesson length and days per week in the UK, USA, Canada, Australia and UAE. Check family pricing and 3-day trial eligibility." });
+export const metadata = contentMetadata({ title: "Online Quran Class Fees & Sibling Pricing", seo_noindex: false }, { path: "/pricing", description: "Compare monthly fees for live one-to-one Quran classes by lesson length and days per week. Estimate sibling tuition and check 3-day trial eligibility." });
 
 // No searchParams here: the page stays statically cached; ?currency= is read in the browser.
 export default async function PricingPage() {
@@ -37,7 +37,7 @@ export default async function PricingPage() {
     <>
       <PageHero path="/pricing" modified={STATIC_PAGES_REVIEWED}
         eyebrow="Fees"
-        title="Online Quran class fees and packages"
+        title="Online Quran class fees and sibling pricing"
         intro="Choose how many days a week suit your family. Compare lesson frequency, duration and fees below. A 3-day free trial is available on eligible plans; the Weekend plan is excluded."
       >
         <div className="mt-6 flex flex-wrap gap-3">
