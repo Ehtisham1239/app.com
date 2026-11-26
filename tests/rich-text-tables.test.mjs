@@ -9,7 +9,7 @@ test("authored HTML tables retain semantic structure and safe formatting", () =>
   assert.match(html, /class="article-table-scroll" role="region" aria-label="Scrollable table 1" tabindex="0"/);
   assert.match(html, /<thead><tr><th scope="col">Course<\/th><th scope="col">Learning objective<\/th><\/tr><\/thead>/);
   assert.match(html, /<tbody><tr><td[^>]*><strong>Noorani Qaida<\/strong><\/td><td>Arabic letters and foundational reading<\/td><\/tr><\/tbody>/);
-  assert.match(html, /<colgroup><col style="width:120px"><\/colgroup>/);
+  assert.match(html, /<colgroup><col style="width:120px"\s*\/?>\s*<\/colgroup>/);
   assert.match(html, /text-align:center/);
   assert.match(html, /vertical-align:middle/);
 });
