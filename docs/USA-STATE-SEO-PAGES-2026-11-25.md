@@ -1,10 +1,10 @@
-# USA state Quran landing pages — draft for owner review
+# USA state Quran landing pages — implementation and QA record
 
-**Status:** Draft PR only. Not merged, not deployed, and not published to the production domain.
+**Status:** Implemented in the main branch at commit `d464ee1d53a3709d88fcdd195c7c77289c3991ed`. The ten state pages, state directory, route rewrites and sitemap entries are present in the production release. This record replaces the earlier draft-only status.
 
-## Scope
+## Scope and priority
 
-The supplied state-priority PDF was used to select these ten pages, in its exact order:
+The ten pages follow the supplied priority order:
 
 1. Maryland — `/maryland-quran-classes`
 2. Massachusetts — `/massachusetts-quran-classes`
@@ -17,37 +17,37 @@ The supplied state-priority PDF was used to select these ten pages, in its exact
 9. Indiana — `/indiana-quran-classes`
 10. Tennessee — `/tennessee-quran-classes`
 
-A directory page is available at `/usa-quran-classes/states`. The existing `/usa-quran-classes` page is retained and gets one footer link to the state directory.
+The directory is `/usa-quran-classes/states`. The main USA page links to this directory. All ten page routes and the directory are included in the sitemap generator and Next.js rewrites.
 
 ## Design and conversion
 
-- Uses OQC's existing green, gold, typography, logo mark and existing optimized USA Quran-learning hero image; no new unapproved brand assets or stock imagery were introduced.
-- Mobile-responsive page layout, course cards, clear trial CTA, local scheduling note, example cities, FAQs and breadcrumbs.
-- Main conversion path goes to the existing `/free-trial` workflow. No copied USA lead form, new database path, or new email integration is introduced.
-- All pages clearly say lessons are online and do not imply OQC has a physical branch or classroom in any state.
+- Uses OQC's established green-and-gold palette, Inter/Outfit typography, logo mark and optimised USA Quran-learning hero image.
+- Responsive hero, course cards, local scheduling notes, city examples, five visible FAQs, breadcrumbs and prominent free-trial CTAs.
+- Conversion uses the existing `/free-trial` workflow; no duplicate lead form, database path or email integration was added.
+- Every page explains that OQC provides online lessons and does not claim a physical office, campus or classroom in the state.
+- State-specific content includes local city examples and time-zone guidance. Indiana and Tennessee note their time-zone splits; Arizona explains its daylight-saving exception.
 
-## SEO / AEO / GEO foundations
+## SEO and structured data
 
-- Unique state title, meta description, H1, canonical URL and Open Graph metadata.
-- Index/follow directives; each page has a self-referencing canonical.
-- State-specific explanatory copy, example city names and local time-zone guidance. Indiana and Tennessee explicitly note their time-zone split; Arizona notes its daylight-saving exception.
-- JSON-LD: WebPage, Service with state areaServed, FAQPage and BreadcrumbList. No fabricated LocalBusiness, address, rating, testimonial or state Muslim-population statistic.
-- State directory and existing USA landing page link to the new pages; all new URLs are included in the XML and text sitemap via the shared sitemap generator.
-- Existing robots policy already permits search and AI input for public pages; no crawler policy or consent setting was changed.
+- Unique title, meta description, H1, canonical URL and Open Graph metadata per state.
+- Index/follow directives and self-referencing canonicals.
+- JSON-LD includes WebPage, Service with state areaServed, FAQPage, BreadcrumbList and the shared EducationalOrganization entity.
+- The directory uses CollectionPage structured data and links to all ten state pages.
+- State routes are explicitly included in the XML sitemap generator and text sitemap.
+- No LocalBusiness schema, false local address, fabricated review/rating, unverified testimonial or unsupported population claim is used.
 
-## Data integrity
+## Population-data integrity
 
-The PDF's population values are retained as planning context only and are not published on the pages because the source/estimate methodology is not documented in the supplied file. City names are examples for local relevance and scheduling context, not claimed office locations.
+The supplied Muslim-population figures were used to prioritise the states, but are not published on the landing pages. The source and estimation methodology are not documented in the supplied table. The US Census does not collect religious affiliation as a standard population count, so these figures should not be presented as official census counts. They can be published later only with a clearly identified, credible source, reference year and methodology.
 
-## Verification still required before merge/publish
+## Verification
 
-- Run `npm test`, lint and production build on the branch.
-- Browser-check all 11 URLs at mobile and desktop sizes; verify the hero image and CSS load.
-- Test CTA path to `/free-trial`, forms and analytics event behavior.
-- Validate JSON-LD and canonical/robots/sitemap output on the preview host.
-- Review factual wording and SEO content; only then approve merge and a separate deployment.
-- After deployment, verify each URL returns 200, is self-canonical, indexable, present in sitemap, and request indexing through Search Console. Indexing/ranking/traffic are not guaranteed by page publication.
+- Static tests check that all ten HTML pages exist, have unique state-specific SEO foundations, city examples, hero image dimensions, visible FAQs, trial CTAs, route rewrites and sitemap entries.
+- The state-directory test checks its canonical, indexability, structured data, links to all ten pages and link from the main USA page.
+- The production responsive audit now includes the state directory and all ten state URLs at 12 viewport widths (320–2560 px) and on four Playwright device profiles (iPhone 13, iPhone 14 Pro Max, Pixel 7 and iPad Pro 11).
+- The live audit fails on non-200 responses or page-level horizontal overflow. It also checks the existing responsive table renderer/editor and the wider site routing checks.
+- GitHub Actions logs are the authoritative record for each run's live HTTP and viewport results. Passing a deployment audit does not guarantee search-engine indexing, ranking or traffic.
 
 ## Rollback
 
-Close the draft PR or revert its branch changes. No production database, DNS, environment variables, Hostinger settings or production content has been changed.
+Revert the QA commit or close its pull request. The QA change does not modify production data, DNS, environment variables, forms, lead routing or hosting settings.
