@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import { cleanHtml } from "../src/lib/sanitize.js";
 import { restoreLegacyParagraphTables } from "../src/lib/legacy-table-markup.js";
 
@@ -72,4 +73,12 @@ test("ordinary paragraphs and incomplete bold-label sequences are not converted"
   const source = "<p><strong>Course</strong></p><p><strong>Learning Objective</strong></p><p>Noorani Qaida</p><p>Foundational reading</p>";
   const html = cleanHtml(source);
   assert.doesNotMatch(html, /<table|article-table-scroll/);
+});
+
+const publicStyles = await readFile(new URL("../src/app/globals.css", import.meta.url), "utf8");
+
+test("public and CMS tables have horizontal scroll containers for narrow screens", () => {
+  assert.match(publicStyles, /\\.prose-oqc \\.article-table-scroll \\{[^}]*overflow-x: auto/s);
+  assert.match(publicStyles, /\\.rich-content \\.tableWrapper \\{[^}]*overflow-x: auto/s);
+  assert.match(publicStyles, /\\.prose-oqc :where\\(table\\) \\{[^}]*width: max-content/s);
 });
