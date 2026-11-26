@@ -38,7 +38,24 @@ The directory is `/usa-quran-classes/states`. The main USA page links to this di
 
 ## Population-data integrity
 
-The supplied Muslim-population figures were used to prioritise the states, but are not published on the landing pages. The source and estimation methodology are not documented in the supplied table. The US Census does not collect religious affiliation as a standard population count, so these figures should not be presented as official census counts. They can be published later only with a clearly identified, credible source, reference year and methodology.
+The supplied figures match the 2020 "Muslim Estimate" adherent counts in the Association of Religion Data Archives (ARDA) U.S. Religion Census state reports:
+
+| Priority | State | 2020 ARDA Muslim Estimate (adherents) | ARDA state report |
+|---:|---|---:|---|
+| 1 | Maryland | 188,914 | https://www.thearda.com/us-religion/census/congregational-membership?c=24&t=1&y=2020 |
+| 2 | Massachusetts | 131,749 | https://www.thearda.com/us-religion/census/congregational-membership?c=25&t=1&y=2020 |
+| 3 | North Carolina | 130,661 | https://www.thearda.com/us-religion/census/congregational-membership?c=37&t=1&y=2020 |
+| 4 | Minnesota | 114,590 | https://www.thearda.com/us-religion/census/congregational-membership?c=27&t=1&y=2020 |
+| 5 | Arizona | 109,765 | https://www.thearda.com/us-religion/census/congregational-membership?c=04&t=1&y=2020 |
+| 6 | Wisconsin | 68,699 | https://www.thearda.com/us-religion/census/congregational-membership?c=55&t=1&y=2020 |
+| 7 | Missouri | 53,443 | https://www.thearda.com/us-religion/census/congregational-membership?c=29&t=1&y=2020 |
+| 8 | Connecticut | 43,905 | https://www.thearda.com/us-religion/census/congregational-membership?c=09&t=1&y=2020 |
+| 9 | Indiana | 41,400 | https://www.thearda.com/us-religion/census/congregational-membership?c=18&t=1&y=2020 |
+| 10 | Tennessee | 39,745 | https://www.thearda.com/us-religion/census/congregational-membership?c=47&t=1&y=2020 |
+
+**Important interpretation:** These are not official U.S. Census Bureau counts and must not be described as a complete count of all Muslim residents. ARDA labels them "Muslim Estimate" in its adherent column. ARDA explains that adherents can include full members, non-member children and other regular participants. The Muslim estimates draw on the 2019–2020 Mosque Survey: the survey identified 2,771 mosques and interviewed a random sample of 700, of which 470 completed questionnaires. ARDA also notes that some Muslim organizations outside the American Muslim community mainstream were not included. See [ARDA's data-source and methodology notes](https://www.thearda.com/us-religion/sources-for-religious-congregations-membership-data), especially its sections "What are adherents?" and "How were the Muslim estimates computed?"
+
+The figures remain internal market-prioritisation context and are not displayed on public landing pages. If a future owner-approved page displays them, use the label **"2020 ARDA Muslim Estimate (adherents)"**, cite the relevant state report, and show the methodology caveat adjacent to the figures. Do not shorten the label to "Muslim population" or imply that the figures measure every Muslim resident.
 
 ## Verification
 
