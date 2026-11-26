@@ -78,7 +78,7 @@ test("ordinary paragraphs and incomplete bold-label sequences are not converted"
 const publicStyles = await readFile(new URL("../src/app/globals.css", import.meta.url), "utf8");
 
 test("public and CMS tables have horizontal scroll containers for narrow screens", () => {
-  assert.match(publicStyles, /\\.prose-oqc \\.article-table-scroll \\{[^}]*overflow-x: auto/s);
-  assert.match(publicStyles, /\\.rich-content \\.tableWrapper \\{[^}]*overflow-x: auto/s);
-  assert.match(publicStyles, /\\.prose-oqc :where\\(table\\) \\{[^}]*width: max-content/s);
+  assert.match(publicStyles, /\.prose-oqc \.article-table-scroll \{[^}]*overflow-x: auto/s);
+  assert.match(publicStyles, /\.rich-content \.tableWrapper \{[^}]*overflow-x: auto/s);
+  assert.match(publicStyles, /\.prose-oqc :where\(table\) \{[^}]*width: max-content/s);
 });
