@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { contentMetadata } from "@/lib/seo-metadata";
 import { PageHero } from "@/components/site/chrome";
 import { CtaBand, FaqList } from "@/components/site/sections";
@@ -33,7 +34,7 @@ export default async function FaqPage() {
       <PageHero immersive path="/faq" modified={STATIC_PAGES_REVIEWED} eyebrow="FAQ" title="Questions about online Quran classes" intro="Find answers about trial lessons, teacher preferences, class times and fees. Choose a topic to jump straight to its questions.">
         <div className="mt-6 flex flex-wrap gap-3">
           <a href="#faq-topics" className="btn btn-primary">Browse questions</a>
-          <a href="/contact" className="btn btn-outline">Ask admissions</a>
+          <Link href="/contact" prefetch={false} className="btn btn-outline">Ask admissions</Link>
         </div>
       </PageHero>
       <section id="faq-topics" aria-label="Frequently asked questions by topic" className="page-wrap grid scroll-mt-28 gap-10 py-16 sm:py-20 lg:grid-cols-[14rem_1fr]">
