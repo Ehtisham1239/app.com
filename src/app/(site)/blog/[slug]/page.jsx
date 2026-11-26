@@ -141,9 +141,7 @@ export default async function PostPage({ params }) {
   const jsonLd = blogPosting(post, { siteUrl: SITE_URL, visual: { ...visual, src: publicImageUrl(visual.src) }, html, description: post.seo_description || post.excerpt || truncate(stripHtml(html), 158) });
   // One FAQPage per article: the computed quick answer (fee posts) plus the article's own visible question headings.
   const faqs = [...(quick ? [quick] : []), ...articleQuestionAnswers(html).filter(f => f.question !== quick?.question)];
-  const readingMinutes = Number(post.reading_minutes) > 0
-    ? Number(post.reading_minutes)
-    : Math.ceil(jsonLd.wordCount / 220);
+  const readingMinutes = Math.ceil(jsonLd.wordCount / 220);
 
   return (
     <>
@@ -180,6 +178,13 @@ export default async function PostPage({ params }) {
             <figure className="mb-8 max-w-[68ch] overflow-hidden rounded-2xl">
               <ContentImage src={supporting[0]} alt={supporting[1]} sizes="auto, (max-width: 767px) calc(100vw - 2rem), 680px" className="block h-auto w-full" />
             </figure>
+          )}
+          {post.slug === "arabic-for-quran-readers" && (
+            <section className="mb-8 rounded-2xl border border-leaf-200 bg-leaf-50 p-5 sm:p-6" aria-labelledby="quranic-arabic-first-exercise">
+              <h2 id="quranic-arabic-first-exercise" className="text-xl text-mushaf-900">How to start learning Quranic Arabic</h2>
+              <p className="mt-2 leading-relaxed text-ink-soft">Pick one short passage you already recite and follow it with a translation you understand. Ask your teacher to explain two or three recurring words in context. Close the notes, reread the passage, and see which words you can recognise on your own.</p>
+              <p className="mt-3 leading-relaxed text-ink-soft">If recognising letters still takes most of your attention, start with <Link href="/courses/noorani-qaida" prefetch={false} className="font-semibold text-leaf-700 underline">Arabic reading foundations</Link>. If you can read the script and want to recognise vocabulary and grammar, explore the <Link href="/courses/arabic-language" prefetch={false} className="font-semibold text-leaf-700 underline">online Arabic language course</Link>.</p>
+            </section>
           )}
           <div className="prose-oqc long-article-copy" dangerouslySetInnerHTML={{ __html: html }} />
           {post.tags?.length > 0 && (

@@ -1,5 +1,6 @@
 const ART = {
-  contact: { src: "/images/learning/contact-admissions-desk-v5-1200.webp", alt: "Laptop, headphones and a closed green book on a wooden reading stand in an online learning setup" },
+  contact: { src: "/images/learning/oqc-contact-editorial-v1-1200.webp", alt: "Illustrative scene of a woman using a headset and laptop at a sunlit admissions desk" },
+  blog: { src: "/images/learning/oqc-blog-editorial-v1-1200.webp", alt: "A woman taking Quran study notes beside a book on a wooden stand" },
   maleLesson: { src: "/images/learning/online-lesson-male-v4-1200.webp", alt: "Illustrative scene of a boy reading at home with a male Quran teacher guiding him over a laptop video call" },
   femaleLesson: { src: "/images/learning/online-lesson-female-v4-1200.webp", alt: "Illustrative scene of a girl following her lesson at home with a female Quran teacher on a laptop video call" },
   study: { src: "/images/islamic/online-lesson-adult-v1-1200.webp", alt: "A woman studies the Quran at home while a female teacher guides her over a live video lesson" },
@@ -23,6 +24,7 @@ export const IMMERSIVE_ART = {
 // mosque, or documented students and teachers.
 export function heroArt(key = "") {
   if (/contact/.test(key)) return ART.contact;
+  if (/^\/blog(?:\?|$)/.test(key)) return ART.blog;
   if (/trial|pricing|teacher|career/.test(key)) return ART.femaleLesson;
   if (/learn|blog|course|quran|tajweed|hifz|arabic|faq|locations/.test(key)) return { ...ART.maleLesson, immersive: IMMERSIVE_ART };
   if (/privacy|terms|refund|policy|certificate|faq/.test(key)) return ART.geometry;

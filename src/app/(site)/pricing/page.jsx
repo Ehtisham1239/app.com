@@ -14,7 +14,7 @@ import { INDEXED_MARKETS, getLocation, locationPath } from "@/lib/locations";
 
 export const revalidate = 3600;
 
-export const metadata = contentMetadata({ title: "Online Quran Class Fees and Monthly Plans", seo_noindex: false }, { path: "/pricing", description: "Compare monthly Quran fees by lesson length and days per week in the UK, USA, Canada, Australia and UAE. Check family pricing and 3-day trial eligibility." });
+export const metadata = contentMetadata({ title: "Online Quran Class Fees & Sibling Pricing", seo_noindex: false }, { path: "/pricing", description: "Compare one-to-one Quran class fees for the UK, USA, Canada, Australia and UAE. Estimate sibling tuition and check 3-day trial eligibility." });
 
 // No searchParams here: the page stays statically cached; ?currency= is read in the browser.
 export default async function PricingPage() {
@@ -37,7 +37,7 @@ export default async function PricingPage() {
     <>
       <PageHero path="/pricing" modified={STATIC_PAGES_REVIEWED}
         eyebrow="Fees"
-        title="Online Quran class fees and packages"
+        title="Online Quran class fees and sibling pricing"
         intro="Choose how many days a week suit your family. Compare lesson frequency, duration and fees below. A 3-day free trial is available on eligible plans; the Weekend plan is excluded."
       >
         <div className="mt-6 flex flex-wrap gap-3">
@@ -106,6 +106,7 @@ export default async function PricingPage() {
           <p className="mt-2 text-ink-soft">Use your country guide to check lesson times and fee guidance. Admissions confirms the exact fee, payment currency and teacher availability before enrolment.</p>
           <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
             {INDEXED_MARKETS.map(getLocation).map(country => <li key={country.slug}><Link href={locationPath(country)} className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">{country.name} fees and scheduling</Link></li>)}
+            <li><Link href="/locations#europe-lessons" prefetch={false} className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">Europe lesson planning</Link></li>
             <li><Link href="/locations#new-zealand-lessons" className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">New Zealand lesson planning</Link></li>
           </ul>
         </div>

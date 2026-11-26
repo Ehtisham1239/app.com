@@ -6,7 +6,7 @@ import { STATIC_PAGES_REVIEWED } from "@/lib/seo";
 import { PageHero } from "@/components/site/chrome";
 import { INDEXED_MARKETS, RESTORED_LOCATION_PATHS, getLocation, locationPath } from "@/lib/locations";
 
-export const metadata = contentMetadata({ title: "Online Quran classes by country", seo_noindex: false }, { path: "/locations", description: "Browse UK, USA, Canada, Australia and UAE time-zone guides for online Quran lessons. Admissions confirms teacher availability and fees before enrolment." });
+export const metadata = contentMetadata({ title: "Online Quran classes by country", seo_noindex: false }, { path: "/locations", description: "Browse local-time guides for online Quran lessons in the UK, USA, Canada, Australia, UAE and Europe. Check courses, fee guidance and trial options." });
 export default function LocationsPage() {
   return <><PageHero immersive path="/locations" modified={STATIC_PAGES_REVIEWED} eyebrow="Learn from anywhere" title="Online Quran lesson guides by country" titleAccent="by country" intro="Explore online Quran classes by country with practical scheduling guides for local time zones. Admissions confirms availability, teacher matching and payment options before enrolment." />
     <section className="page-wrap py-16"><p className="mb-8 text-ink-soft">Browse online Quran classes by country using these practical time-zone and currency guides. Lessons are live and online only; a guide does not represent a local branch or guarantee that a specific teacher or payment option is available in every country.</p>
@@ -15,9 +15,17 @@ export default function LocationsPage() {
         <p className="mt-2 text-ink-soft">Use these country guides to compare lesson times, then check fees and teacher availability with Admissions.</p>
         <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
           {INDEXED_MARKETS.map(getLocation).map(country => <li key={country.slug}><Link className="font-semibold text-leaf-700 underline underline-offset-4" href={locationPath(country)}>{country.name} lesson guide</Link></li>)}
-          <li><Link prefetch={false} className="font-semibold text-leaf-700 underline underline-offset-4" href="/usa-quran-classes">USA admissions and free trial</Link></li>
+          <li><a className="font-semibold text-leaf-700 underline underline-offset-4" href="#europe-lessons">Europe lesson planning</a></li>
           <li><a className="font-semibold text-leaf-700 underline underline-offset-4" href="#new-zealand-lessons">New Zealand lesson planning</a></li>
         </ul>
+        <div id="europe-lessons" className="mt-6 scroll-mt-24 border-t border-leaf-100 pt-5">
+          <h3 className="text-lg">Online Quran lessons across Europe</h3>
+          <p className="mt-2 max-w-3xl text-ink-soft">Families in Ireland, France, Germany, the Netherlands and elsewhere in Europe can arrange live lessons in their own local time. Share your city, the date you want to start, and a preferred time after school or work. Ask Admissions to confirm the timetable and fee currency in writing.</p>
+          <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
+            <li><Link prefetch={false} className="font-semibold text-leaf-700 underline underline-offset-4" href="/blog/online-quran-classes-europe-time-zones">Compare European lesson times</Link></li>
+            <li><Link prefetch={false} className="font-semibold text-leaf-700 underline underline-offset-4" href="/free-trial">Request a trial in your local time</Link></li>
+          </ul>
+        </div>
         <div id="new-zealand-lessons" className="mt-6 border-t border-leaf-100 pt-5">
           <h3 className="text-lg">Online Quran lessons for families in New Zealand</h3>
           <p className="mt-2 max-w-3xl text-ink-soft">For Auckland, Wellington or Christchurch, suggest a date and time in your local clock, such as after school or early evening. New Zealand moves between NZST and NZDT, so include the date when you ask about a recurring slot. The coordinator confirms the teacher, timetable and payment currency before enrolment.</p>
@@ -27,8 +35,8 @@ export default function LocationsPage() {
           </ul>
         </div>
       </section>
-      <section className="mt-10" aria-labelledby="more-places"><h2 id="more-places" className="text-2xl">More countries and cities</h2><p className="mt-2 text-ink-soft">Time-zone and fee guides for other places. Lessons are live and online; none of these pages is a local branch.</p><ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2">{RESTORED_LOCATION_PATHS.map((path) => { const [countrySlug, citySlug] = path.split("/"); const country = getLocation(countrySlug), city = citySlug ? country?.cities.find((c) => c.slug === citySlug) : null; return country ? <li key={path}><Link className="text-leaf-700 underline underline-offset-4" href={locationPath(country, city)}>{city ? `${city.name}, ${country.name}` : country.name}</Link></li> : null; })}</ul></section>
       <LocationDirectory countries={INDEXED_MARKETS.map(getLocation).map(country => { const image = locationImage(country); return { name: country.name, slug: country.slug, currency: country.currency, image: { src: image.url, alt: image.alt, variants: image.variants, avif: image.avif, width: image.width, height: image.height }, path: locationPath(country), cities: [] }; })} />
+      <section className="mt-10" aria-labelledby="more-places"><h2 id="more-places" className="text-2xl">More countries and cities</h2><p className="mt-2 text-ink-soft">Time-zone and fee guides for other places. Lessons are live and online; none of these pages is a local branch.</p><ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2">{RESTORED_LOCATION_PATHS.map((path) => { const [countrySlug, citySlug] = path.split("/"); const country = getLocation(countrySlug), city = citySlug ? country?.cities.find((c) => c.slug === citySlug) : null; return country ? <li key={path}><Link className="text-leaf-700 underline underline-offset-4" href={locationPath(country, city)}>{city ? `${city.name}, ${country.name}` : country.name}</Link></li> : null; })}</ul></section>
       <details className="mt-8 text-xs text-ink-soft"><summary className="cursor-pointer py-3">About the learning imagery</summary><p>AI-generated editorial scenes illustrate Quran learning at home. They do not depict documented students, teachers or local college branches.</p></details>
     </section></>;
 }

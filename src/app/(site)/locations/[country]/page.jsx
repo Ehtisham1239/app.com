@@ -1,4 +1,5 @@
 import { contentMetadata } from "@/lib/seo-metadata";
+import { locationImage } from "@/lib/location-image";
 import { notFound } from "next/navigation";
 import { LocationPage } from "@/components/site/location-page";
 import { getLocation, locationPath, locationCmsSlug, locationSearchTitle, locationLocale, locationSearchIntro, locationIndexRecord, locationHeading, INDEXED_MARKETS, LOCATIONS, isLiveLocation, marketHreflang } from "@/lib/locations";
@@ -37,6 +38,7 @@ export async function generateMetadata({ params }) {
   const languages = INDEXED_MARKETS.includes(country.slug)
     ? await indexableMarketLanguages(country.slug, page)
     : undefined;
-  return contentMetadata({ ...locationIndexRecord(page, country, city), seo_title: page?.seo_title || locationSearchTitle(country, city) }, { path: locationPath(country, city), locale: locationLocale(country), languages, title: locationHeading(country, city, page?.title), description: page?.seo_description || SEARCH_INTENTS[locationPath(country)]?.description || SEARCH_INTENTS[locationPath(country)]?.intro || locationSearchIntro(country, city) });
+  const image = locationImage(country, city);
+  return contentMetadata({ ...locationIndexRecord(page, country, city), cover_url: page?.cover_url || image.url, cover_alt: page?.cover_url ? page.cover_alt : image.alt, seo_title: page?.seo_title || locationSearchTitle(country, city) }, { path: locationPath(country, city), locale: locationLocale(country), languages, title: locationHeading(country, city, page?.title), description: page?.seo_description || SEARCH_INTENTS[locationPath(country)]?.description || SEARCH_INTENTS[locationPath(country)]?.intro || locationSearchIntro(country, city) });
 }
 export default async function Page({ params }) { return <LocationPage {...await resolve(params)} />; }

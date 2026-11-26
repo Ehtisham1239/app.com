@@ -1,4 +1,6 @@
 const covers = {
+  "arabic-for-quran-readers": { src: "/images/learning/oqc-arabic-editorial-v1-1200.webp", alt: "An adult learner consulting a reference book while studying Quranic Arabic at home" },
+  "online-quran-classes-europe-time-zones": { src: "/images/learning/oqc-europe-editorial-v1-1200.webp", alt: "A mother and daughter choosing a lesson time with a planner and laptop at home" },
   "choose-online-quran-classes-kids": {"src":"/images/blog-20261028/choose-online-quran-classes-kids-1200.webp","alt":"Mother and daughter reviewing a lesson checklist beside a laptop at a sunlit home desk"},
   "noorani-qaida-home-practice-checklist": {"src":"/images/blog-20261028/noorani-qaida-home-practice-checklist-1200.webp","alt":"Mother supporting a child with simple learning shapes beside a blank practice notebook"},
   "returning-to-quran-study-adults": {"src":"/images/blog-20261028/returning-to-quran-study-adults-1200.webp","alt":"Adult learner planning a return to study beside a laptop, notebook and wooden book stand"},
@@ -84,6 +86,14 @@ const covers = {
 // Improve the legacy covers on these articles while allowing an editor to
 // replace any cover with a newly uploaded image.
 const articleCoverUpdates = {
+  "arabic-for-quran-readers": {
+    previous: ["blog-translation-arabic-r2-1200.webp", "blog-translation-arabic-1200.webp"],
+    replacement: "arabic-for-quran-readers",
+  },
+  "online-quran-classes-europe-time-zones": {
+    previous: ["home-learning-paths-r2-1200.webp", "home-learning-paths-1200.webp"],
+    replacement: "online-quran-classes-europe-time-zones",
+  },
   "tajweed-rules-for-beginners": {
     previous: ["oqc-learning-australia-melbourne-v3-1200.webp", "map-australia-melbourne-r2-1200.webp", "map-australia-melbourne-1200.webp"],
     replacement: "importance-of-reciting-quran-with-tajweed",

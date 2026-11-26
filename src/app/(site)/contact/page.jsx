@@ -44,6 +44,7 @@ export default async function ContactPage() {
         </div>
         <p className="mt-5 max-w-xl text-sm leading-relaxed text-ink-soft">Course advice · Teacher preferences · Fees · Class scheduling · Existing student support</p>
       </PageHero>
+      <p className="page-wrap pt-3 text-xs text-ink-soft">Admissions image is an editorial illustration.</p>
 
       <section aria-label="Contact options and enquiry form" className="page-wrap grid items-start gap-8 py-12 sm:gap-12 sm:py-16 lg:grid-cols-[0.88fr_1.12fr]">
         <div className="min-w-0">
