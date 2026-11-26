@@ -1,3 +1,4 @@
+import Script from "next/script";
 import { HatchiumChat } from "@/components/site/hatchium-chat";
 import { SiteMotion } from "@/components/site/site-motion";
 import { MobileActionBar } from "@/components/site/mobile-action-bar";
@@ -66,6 +67,7 @@ export default async function SiteLayout({ children }) {
       <TopBar announcement={settings["site.announcement"]} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd({ "@context": "https://schema.org", "@graph": siteGraph }) }} />
       <CampaignAttribution />
+      <Script src="/usa-state-pages/state-pages.js?v=20261126e" strategy="lazyOnload" />
       <SiteHeader menu={header} courses={courseLinks} brandName={brandName} />
       <main id="main" data-site-motion><SiteMotion />{children}<ExploreLinks /></main>
       <AyahBand />

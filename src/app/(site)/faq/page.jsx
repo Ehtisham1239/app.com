@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { contentMetadata } from "@/lib/seo-metadata";
 import { PageHero } from "@/components/site/chrome";
 import { CtaBand, FaqList } from "@/components/site/sections";
@@ -5,6 +6,7 @@ import { getFaqs, getSettings } from "@/lib/site-data";
 import { whatsappLink } from "@/lib/format";
 import { safeJsonLd, STATIC_PAGES_REVIEWED } from "@/lib/seo";
 import { LOCATIONS } from "@/lib/locations";
+import { cardTone } from "@/lib/card-presentation";
 import { HelpCircle } from "@/components/site/icons";
 
 export const revalidate = 3600;
@@ -29,14 +31,19 @@ export default async function FaqPage() {
   return (
     <>
       {faqs.length > 0 && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />}
-      <PageHero immersive path="/faq" modified={STATIC_PAGES_REVIEWED} eyebrow="FAQ" title="Questions about online Quran classes" intro="Quick answers about trials, teachers, timings and fees." />
-      <section className="page-wrap grid gap-10 py-16 sm:py-20 lg:grid-cols-[14rem_1fr]">
+      <PageHero immersive path="/faq" modified={STATIC_PAGES_REVIEWED} eyebrow="FAQ" title="Questions about online Quran classes" intro="Find answers about trial lessons, teacher preferences, class times and fees. Choose a topic to jump straight to its questions.">
+        <div className="mt-6 flex flex-wrap gap-3">
+          <a href="#faq-topics" className="btn btn-primary">Browse questions</a>
+          <Link href="/contact" prefetch={false} className="btn btn-outline">Ask admissions</Link>
+        </div>
+      </PageHero>
+      <section id="faq-topics" aria-label="Frequently asked questions by topic" className="page-wrap grid scroll-mt-28 gap-10 py-16 sm:py-20 lg:grid-cols-[14rem_1fr]">
         {entries.length > 1 && (
           <nav className="lg:sticky lg:top-24 lg:self-start" aria-label="FAQ topics">
             <p className="mb-4 text-xs font-bold uppercase tracking-wider text-leaf-700">Browse a topic</p><ul className="grid grid-cols-2 gap-3 lg:grid-cols-1">
               {entries.map(([cat, items]) => (
                 <li key={cat}>
-                  <a href={`#${cat.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`} className="flex h-full items-center justify-between gap-3 rounded-2xl border border-line bg-leaf-50/50 px-4 py-4 text-sm font-semibold text-leaf-700 hover:border-leaf-700 hover:bg-leaf-50">
+                  <a href={`#${cat.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`} data-card-tone={cardTone(cat)} className="editorial-card card-tinted flex h-full items-center justify-between gap-3 px-4 py-4 text-sm font-semibold text-mushaf-900">
                     {cat} <span className="rounded-full bg-white px-2 py-1 text-xs">{items.length}</span>
                   </a>
                 </li>

@@ -24,9 +24,9 @@ export default async function ContactPage() {
   const forms = settings["site.forms"] ?? {};
   const wa = whatsappLink(contact.whatsapp, "Assalamu alaikum, I have a question about Online Quran College.");
   const cards = [
-    wa && { icon: MessageCircle, label: "WhatsApp", value: "Chat with an advisor", href: wa, external: true, highlight: true, detail: "Ask a quick question" },
-    contact.phone && { icon: Phone, label: "Call us", value: contact.phone, href: `tel:${contact.phone.replace(/[^+\d]/g, "")}`, detail: "Talk to our team" },
-    contact.email && { icon: Mail, label: "Email", value: contact.email, href: `mailto:${contact.email}`, detail: "Email our team" },
+    wa && { icon: MessageCircle, label: "WhatsApp", value: "Chat with an advisor", href: wa, external: true, highlight: true, detail: "Ask about availability, teacher preferences or class times" },
+    contact.phone && { icon: Phone, label: "Call us", value: contact.phone, href: `tel:${contact.phone.replace(/[^+\d]/g, "")}`, detail: "Discuss enrolment or an existing class with our team" },
+    contact.email && { icon: Mail, label: "Email", value: contact.email, href: `mailto:${contact.email}`, detail: "Send a detailed enquiry about lessons or fees" },
   ].filter(Boolean);
 
   return (
@@ -50,7 +50,7 @@ export default async function ContactPage() {
           <div id="contact-options" className="mb-6 scroll-mt-24">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-leaf-700">Direct contact</p>
             <h2 className="mt-2 text-[1.8rem] text-mushaf-900">WhatsApp, phone and email</h2>
-            <p className="mt-3 leading-relaxed text-ink-soft">Choose a contact method below or use the enquiry form.</p>
+            <p className="mt-3 leading-relaxed text-ink-soft">Use WhatsApp for a quick question, call to talk through your options, or use email or the enquiry form to share details.</p>
           </div>
           <div className="space-y-3">
             {cards.map(({ icon: Icon, label, value, href, external, highlight, detail }) => {
@@ -60,16 +60,16 @@ export default async function ContactPage() {
                     <Icon className="size-5" aria-hidden="true" />
                   </span>
                   <span className="min-w-0 flex-1 break-words">
-                    <span className={`block text-xs font-bold uppercase tracking-[0.16em] ${highlight ? "text-gold-300" : "text-ink-faint"}`}>{label}</span>
-                    <span className={`mt-0.5 block text-[1.02rem] font-semibold ${highlight ? "text-white" : "text-mushaf-900"}`}>{value}</span>
-                    <span className={`mt-1 block text-sm leading-relaxed ${highlight ? "text-white/75" : "text-ink-soft"}`}>{detail}</span>
+                    <span className={`block text-xs font-bold uppercase tracking-[0.16em] ${highlight ? "text-gold-700" : "text-ink-soft"}`}>{label}</span>
+                    <span className={`mt-0.5 block text-[1.02rem] font-semibold text-mushaf-900`}>{value}</span>
+                    <span className={`mt-1 block text-sm leading-relaxed text-ink-soft`}>{detail}</span>
                   </span>
-                  {href && <ArrowRight className={`size-4 shrink-0 ${highlight ? "text-gold-300" : "text-leaf-700"}`} aria-hidden="true" />}
+                  {href && <ArrowRight className={`size-4 shrink-0 ${highlight ? "text-gold-700" : "text-leaf-700"}`} aria-hidden="true" />}
                 </>
               );
-              const cls = `flex items-center gap-4 rounded-[var(--radius-card)] p-5 transition-all ${highlight ? "bg-mushaf-900 hover:bg-mushaf-800" : "border border-line bg-white hover:border-gold-300"}`;
+              const cls = "editorial-card card-tinted flex items-center gap-4 p-5";
               return (
-                <a key={label} href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined} className={cls}>
+                <a key={label} href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined} className={cls} data-card-tone={highlight ? 1 : label === "Email" ? 2 : 5}>
                   {inner}
                 </a>
               );

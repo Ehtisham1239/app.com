@@ -360,3 +360,14 @@
   .explore a { transition: transform .2s ease, box-shadow .2s ease; }
   .explore a:hover { transform: translateY(-3px); box-shadow: 0 16px 30px -18px var(--t-edge, #249c0c); }
 }
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .card:has(a[href]):hover, .explore a:hover { transform: translateY(-7px); }
+  :is(.directory-photo, .state-photo) { transition: transform .35s cubic-bezier(.2,.8,.25,1); }
+  :is(.directory-photo, .state-photo):hover { transform: translateY(-8px) rotate(-.55deg); }
+  :is(.directory-photo, .state-photo):hover::before { animation: oqc-state-badge-float 1.6s ease-in-out 2; }
+}
+@keyframes oqc-state-badge-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px) rotate(3deg); }
+}

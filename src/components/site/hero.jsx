@@ -59,7 +59,7 @@ export function HomeHero({ hero, stats }) {
         <div className="hero-portrait relative mx-auto w-full max-w-[440px]">
           <picture data-hero-visual className="block overflow-hidden">
             <source type="image/avif" srcSet={HERO_AVIF} sizes={HERO_SIZES} />
-            <img data-oqc-image="" src="/brand/oqc-home-hero-v3-440.webp" srcSet={HERO_WEBP} alt="A mother and her daughter learning Quran together at home" width={440} height={480} sizes={HERO_SIZES} loading="eager" decoding="async" className="aspect-[11/12] w-full object-cover" />
+            <img data-oqc-image="" src="/brand/oqc-home-hero-v3-440.webp" srcSet={HERO_WEBP} alt="A mother and her daughter learning Quran together at home" width={440} height={480} sizes={HERO_SIZES} loading="eager" fetchPriority="high" decoding="async" className="aspect-[11/12] w-full object-cover" />
           </picture>
         </div>
       </div>

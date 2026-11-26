@@ -993,3 +993,46 @@ main[data-site-motion] tbody :where(th, td) { transition: background-color .2s e
 }
 .explore-card:focus-visible { outline: 3px solid var(--card-edge); outline-offset: 2px; }
 @media print { .explore-links { display: none; } }
+
+/* Move the highlight layer rather than repainting the card's background on every pointer event. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  #main :is(a.editorial-card, .explore-card) {
+    position: relative;
+    overflow: hidden;
+    transition: transform .28s cubic-bezier(.2,.8,.25,1), border-color .2s ease, box-shadow .22s ease;
+  }
+  #main :is(a.editorial-card, .explore-card):hover { transform: translateY(-7px); }
+  #main :is(a.editorial-card, .explore-card)::after {
+    content: "";
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 12rem;
+    height: 12rem;
+    margin: -6rem;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgb(239 203 112 / .43), rgb(81 164 53 / .12) 54%, transparent 72%);
+    transform: translate3d(var(--mx, 0px), var(--my, 0px), 0);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .22s ease;
+  }
+  #main :is(a.editorial-card, .explore-card)[data-pointer-highlight]::after { opacity: 1; }
+  .hero-portrait, .inner-hero-visual { transition: transform .35s cubic-bezier(.2,.8,.25,1); }
+  .hero-portrait:hover, .inner-hero-visual:hover { transform: translateY(-8px) rotate(-.55deg); }
+  .hero-portrait:hover::after, .inner-hero-visual:hover::after {
+    animation: oqc-badge-float 1.6s ease-in-out 2;
+  }
+}
+@keyframes oqc-badge-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px) rotate(3deg); }
+}
+@media (forced-colors: active) {
+  #main :is(a.editorial-card, .explore-card)::after { display: none; }
+}
+
+#main .faq-toggle:focus-visible { background-color: var(--color-gold-50); }
+@media (hover: hover) and (pointer: fine) {
+  #main .faq-card > .faq-toggle:hover { background-color: var(--card-wash, var(--color-leaf-50)); color: var(--card-ink, var(--color-mushaf-900)); }
+  #main :where(input, select, textarea):hover:not(:disabled) { border-color: var(--color-leaf-600); }
+}
