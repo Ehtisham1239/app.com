@@ -342,3 +342,21 @@
   .brand img { width: 40px; height: 40px; }
   .brand small { font-size: 9px; letter-spacing: .14em; }
 }
+
+/* Keep exploring: internal links with the same coloured tones and pointer hover (26 Nov 2026). */
+.explore { padding: 2.25rem 0 2.5rem; background: var(--leaf-50); border-top: 1px solid var(--leaf-100); }
+.explore h2 { margin: 0 0 1rem; font-size: 1.5rem; }
+.explore ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .85rem; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+.explore a { display: block; height: 100%; padding: 1rem 1.1rem; border-radius: 1rem; border: 1px solid var(--t-line, #b6e0a5); border-top: 3px solid var(--t-edge, #249c0c); background: linear-gradient(155deg, var(--t-wash, #ddf1d3), #fff 88%); color: #14301b; text-decoration: none; }
+.explore a strong { display: block; color: var(--t-ink, #0d4a1c); font-size: 1.02rem; }
+.explore a span { display: block; margin-top: .2rem; font-size: .88rem; color: #3b4a3f; }
+.explore li:nth-child(6n+2) a { --t-wash:#fff0c5; --t-line:#e9c479; --t-edge:#b47513; --t-ink:#774908; }
+.explore li:nth-child(6n+3) a { --t-wash:#dbf0ff; --t-line:#9dcce8; --t-edge:#367fa9; --t-ink:#225b7c; }
+.explore li:nth-child(6n+4) a { --t-wash:#efe2ff; --t-line:#cdb6ec; --t-edge:#8b56ba; --t-ink:#663693; }
+.explore li:nth-child(6n+5) a { --t-wash:#ffe3eb; --t-line:#e9adbf; --t-edge:#bc5277; --t-ink:#8f3153; }
+.explore li:nth-child(6n+6) a { --t-wash:#d4f6ee; --t-line:#9bd9cb; --t-edge:#2b907f; --t-ink:#1b6659; }
+.explore a:focus-visible { outline: 3px solid var(--t-edge, #249c0c); outline-offset: 2px; }
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  .explore a { transition: transform .2s ease, box-shadow .2s ease; }
+  .explore a:hover { transform: translateY(-3px); box-shadow: 0 16px 30px -18px var(--t-edge, #249c0c); }
+}

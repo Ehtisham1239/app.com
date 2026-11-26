@@ -982,3 +982,14 @@ main[data-site-motion] tbody :where(th, td) { transition: background-color .2s e
 @media (prefers-reduced-motion: reduce) {
   main[data-site-motion] tbody :where(th, td) { transition: none; }
 }
+
+/* Keep-exploring strip: spacing plus coloured hover that matches the card tones (26 Nov 2026). */
+.explore-links { padding-block: clamp(2.25rem, 5vw, 3.5rem); }
+.explore-card { transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .explore-card:hover { transform: translateY(-3px); box-shadow: 0 16px 30px -18px var(--card-edge); border-color: var(--card-edge); }
+  .explore-card:hover .explore-arrow { transform: translateX(4px); }
+  .explore-arrow { transition: transform .2s ease; }
+}
+.explore-card:focus-visible { outline: 3px solid var(--card-edge); outline-offset: 2px; }
+@media print { .explore-links { display: none; } }
