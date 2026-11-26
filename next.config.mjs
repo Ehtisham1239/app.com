@@ -67,6 +67,18 @@ const nextConfig = {
         { source: "/favicon.ico", destination: "/icon" },
         { source: "/blog", has: [{ type: "query", key: "page" }], destination: "/blog/browse" },
         // USA Google Ads landing page: static, self-contained files in public/usa-quran-classes.
+        // State-specific USA organic landing pages; each is a self-contained static page.
+        { source: "/usa-quran-classes/states", destination: "/usa-quran-classes/states/index.html" },
+        { source: "/maryland-quran-classes", destination: "/maryland-quran-classes/index.html" },
+        { source: "/massachusetts-quran-classes", destination: "/massachusetts-quran-classes/index.html" },
+        { source: "/north-carolina-quran-classes", destination: "/north-carolina-quran-classes/index.html" },
+        { source: "/minnesota-quran-classes", destination: "/minnesota-quran-classes/index.html" },
+        { source: "/arizona-quran-classes", destination: "/arizona-quran-classes/index.html" },
+        { source: "/wisconsin-quran-classes", destination: "/wisconsin-quran-classes/index.html" },
+        { source: "/missouri-quran-classes", destination: "/missouri-quran-classes/index.html" },
+        { source: "/connecticut-quran-classes", destination: "/connecticut-quran-classes/index.html" },
+        { source: "/indiana-quran-classes", destination: "/indiana-quran-classes/index.html" },
+        { source: "/tennessee-quran-classes", destination: "/tennessee-quran-classes/index.html" },
         { source: "/usa-quran-classes", destination: "/usa-quran-classes/index.html" },
         { source: "/usa-quran-classes/thank-you", destination: "/usa-quran-classes/thank-you/index.html" },
         // Old WordPress URLs with no equivalent page (Search Console 404/403 list, 18 Nov 2026):
