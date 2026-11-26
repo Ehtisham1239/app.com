@@ -37,10 +37,17 @@ function nextMeaningfulToken(tokens, start) {
 // Recover only unambiguous two-column blocks; leave ordinary prose untouched.
 export function restoreLegacyParagraphTables(html) {
   const tokens = html.split(/(<p\b[^>]*>[\s\S]*?<\/p>)/gi);
+  let tableDepth = 0;
 
   for (let index = 0; index < tokens.length; index += 1) {
     const firstHeader = paragraphParts(tokens[index]);
-    if (!firstHeader) continue;
+    if (!firstHeader) {
+      for (const [, closing] of tokens[index].matchAll(/<(\/?)table\b[^>]*>/gi)) {
+        tableDepth = Math.max(0, tableDepth + (closing ? -1 : 1));
+      }
+      continue;
+    }
+    if (tableDepth > 0) continue;
     const firstLabel = boldOnly(firstHeader.inner);
     if (!firstLabel) continue;
 

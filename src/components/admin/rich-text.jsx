@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { EditorContent, useEditor } from "@tiptap/react";
+import { EditorContent, useEditor, useEditorState } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { TableKit } from "@tiptap/extension-table";
 import { restoreLegacyParagraphTables } from "@/lib/legacy-table-markup";
@@ -43,6 +43,13 @@ export function RichText({ value, onChange, placeholder }) {
     }
   }, [editor, value]);
 
+  const selection = useEditorState({
+    editor,
+    selector: ({ editor: activeEditor }) => ({
+      table: activeEditor?.isActive("table") ?? false,
+    }),
+  });
+
   if (!editor) return <div className="adm-input h-56 animate-pulse bg-leaf-50" />;
   const btn = (active, onClick, Icon, label) => (
     <button
@@ -76,8 +83,8 @@ export function RichText({ value, onChange, placeholder }) {
         {btn(editor.isActive("link"), setLink, Link2, "Add link")}
         {editor.isActive("link") && btn(false, () => editor.chain().focus().unsetLink().run(), Unlink, "Remove link")}
         <span className="mx-1 w-px bg-line" />
-        {btn(editor.isActive("table"), () => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run(), Table, "Insert 3 × 3 table")}
-        {editor.isActive("table") && (
+        {btn(selection?.table, () => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run(), Table, "Insert 3 × 3 table")}
+        {selection?.table && (
           <>
             {btn(false, () => editor.chain().focus().addRowAfter().run(), Rows3, "Add row below")}
             {btn(false, () => editor.chain().focus().addColumnAfter().run(), Columns3, "Add column after")}

@@ -17,7 +17,7 @@ const options = {
   ],
   allowedAttributes: {
     a: ["href", "title", "target", "rel"],
-    img: ["src", "alt", "title", "width", "height", "loading"],
+    img: ["src", "alt", "title", "width", "height", "loading", "decoding"],
     span: ["lang", "dir", "class"],
     p: ["dir", "lang"],
     table: ["style"],
@@ -68,16 +68,33 @@ const options = {
         attribs: external ? { ...attribs, target: "_blank", rel: "noopener noreferrer" } : attribs,
       };
     },
-    img: (tagName, attribs) => ({ tagName, attribs: { ...attribs, loading: "lazy" } }),
+    img: (tagName, attribs) => ({ tagName, attribs: { ...attribs, alt: attribs.alt ?? "", loading: "lazy", decoding: "async" } }),
   },
 };
 
 function addResponsiveTableRegions(html) {
+  let depth = 0;
+  let tableStart = 0;
+  let copiedUntil = 0;
   let tableNumber = 0;
-  return html.replace(/<table\b[^>]*>[\s\S]*?<\/table>/gi, (table) => {
-    tableNumber += 1;
-    return `<div class="article-table-scroll" role="region" aria-label="Scrollable table ${tableNumber}" tabindex="0">${table}</div>`;
-  });
+  let result = "";
+
+  for (const tag of html.matchAll(/<(\/?)table\b[^>]*>/gi)) {
+    if (!tag[1]) {
+      if (depth === 0) tableStart = tag.index;
+      depth += 1;
+    } else if (depth > 0) {
+      depth -= 1;
+      if (depth !== 0) continue;
+
+      const end = tag.index + tag[0].length;
+      result += html.slice(copiedUntil, tableStart);
+      result += '<div class="article-table-scroll" role="region" aria-label="Scrollable table ' + ++tableNumber + '" tabindex="0">' + html.slice(tableStart, end) + "</div>";
+      copiedUntil = end;
+    }
+  }
+
+  return result + html.slice(copiedUntil);
 }
 
 export function cleanHtml(html = "") {
