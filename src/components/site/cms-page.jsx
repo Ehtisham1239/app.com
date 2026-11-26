@@ -1,5 +1,6 @@
 import { PageVideo } from "@/components/site/page-video";
 import { SITE_URL } from "@/lib/config";
+import { cardTone } from "@/lib/card-presentation";
 import { pageVideo } from "@/lib/page-video";
 import { ContentImage } from "@/components/site/content-image";
 import Link from "next/link";
@@ -74,7 +75,25 @@ export async function CmsPage({ page }) {
       {watch && <div className="page-wrap pt-10"><h1>{page.title}</h1></div>}
       {watch && <PageVideo video={video} path={`/${page.slug}`} structured={shouldIncludeInSitemap(page, `/${page.slug}`, SITE_URL)} />}
       {!watch && page.template !== "landing" && <PageHero path={`/${page.slug}`} modified={page.updated_at} published={page.published_at} eyebrow={isPolicy ? "Policy" : isAbout ? "Our college" : undefined} title={page.title} titleAccent={isAbout ? "Quran College" : undefined} intro={page.excerpt} immersive={isAbout} imageOverride={isAbout && page.cover_url ? { src: page.cover_url, alt: page.cover_alt } : undefined} visual={page.cover_url ? <ContentImage src={page.cover_url} alt={page.cover_alt} priority sizes="(max-width: 1024px) 100vw, 600px" className="aspect-[3/2] w-full object-cover" /> : undefined}>{isAbout && <div className="mt-7 flex flex-wrap gap-3"><Link className="btn btn-gold" href="/courses">Explore our courses <ArrowRight className="size-4" aria-hidden="true" /></Link><Link className="btn btn-outline-light" href="/teachers">Meet our teachers</Link></div>}</PageHero>}
-      {isAbout && html && <section className="page-wrap py-14 sm:py-20">{aboutLead && <div className="prose-oqc mb-10 max-w-3xl text-lg" dangerouslySetInnerHTML={{ __html: aboutLead }} />}<div className="grid items-start gap-6 md:grid-cols-2">{aboutParts.map((part, index) => { const Icon = aboutIcons[index % aboutIcons.length]; return <article className="editorial-card p-7 sm:p-8" key={index}><span className="mb-5 inline-flex size-12 items-center justify-center rounded-2xl bg-leaf-50 text-leaf-700"><Icon className="size-6" aria-hidden="true" /></span><div className="prose-oqc [&_h2]:mt-0 [&_h2]:text-2xl" dangerouslySetInnerHTML={{ __html: part }} /></article>; })}</div></section>}
+      {isAbout && (
+        <section className="page-wrap pt-12 sm:pt-16" aria-labelledby="about-learning-heading">
+          <h2 id="about-learning-heading" className="text-3xl text-mushaf-900">How learning with us works</h2>
+          <div className="mt-6 grid gap-5 sm:grid-cols-3">
+            {[
+              { href: "/courses", title: "Choose a starting point", detail: "Compare Noorani Qaida, Tajweed and Hifz by the learner’s current level." },
+              { href: "/teachers", title: "Discuss teacher preferences", detail: "Explore teacher profiles and tell admissions what works for your family." },
+              { href: "/free-trial", title: "Arrange a trial lesson", detail: "Share your time zone and availability so admissions can discuss class times." },
+            ].map(({ href, title, detail }) => (
+              <Link key={href} href={href} prefetch={false} data-card-tone={cardTone(href)} className="editorial-card card-tinted block p-6">
+                <h3 className="text-xl font-semibold text-mushaf-900">{title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{detail}</p>
+                <ArrowRight className="mt-4 size-5 text-leaf-700" aria-hidden="true" />
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+      {isAbout && html && <section className="page-wrap py-14 sm:py-20">{aboutLead && <div className="prose-oqc mb-10 max-w-3xl text-lg" dangerouslySetInnerHTML={{ __html: aboutLead }} />}<div className="grid items-start gap-6 md:grid-cols-2">{aboutParts.map((part, index) => { const Icon = aboutIcons[index % aboutIcons.length]; return <article className="editorial-card card-tinted p-7 sm:p-8" data-card-tone={index % 6} key={index}><span className="mb-5 inline-flex size-12 items-center justify-center rounded-2xl bg-leaf-50 text-leaf-700"><Icon className="size-6" aria-hidden="true" /></span><div className="prose-oqc [&_h2]:mt-0 [&_h2]:text-2xl" dangerouslySetInnerHTML={{ __html: part }} /></article>; })}</div></section>}
       {html && !isAbout && (
         <div className={`page-wrap py-14 sm:py-16 ${isPolicy && toc.length > 2 ? "grid gap-12 lg:grid-cols-[15rem_1fr]" : ""}`}>
           {isPolicy && toc.length > 2 && (

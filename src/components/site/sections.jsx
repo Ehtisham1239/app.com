@@ -116,7 +116,7 @@ export function FaqList({ faqs, defaultOpen = 0 }) {
   return (
     <div className="space-y-3">
       {list.map((f, i) => (
-        <details key={f.id ?? i} className="faq-card group rounded-2xl border border-line bg-white open:border-leaf-200 open:bg-leaf-50/40" open={i === defaultOpen}>
+        <details key={f.id ?? i} data-card-tone={cardTone(f.category || f.question)} className="faq-card card-tinted group rounded-2xl border border-line bg-white open:border-leaf-200 open:bg-leaf-50/40" open={i === defaultOpen}>
           <summary className="faq-toggle">
             <span className="text-[1.02rem] font-semibold leading-snug text-mushaf-900">{f.question}</span>
             <span className="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full bg-leaf-50 text-leaf-700 ring-1 ring-leaf-100 transition-transform duration-200 group-open:rotate-45">

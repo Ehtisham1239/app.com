@@ -199,6 +199,19 @@ async function auditDesktopBranding(page, failures) {
       return Boolean(card && getComputedStyle(card).borderLeftColor !== initialBorder);
     }, { selector, initialBorder }, { timeout: 3000 });
 
+    await page.waitForFunction(() => document.documentElement.hasAttribute("data-oqc-pointer-motion"));
+    await page.mouse.move(1, 1);
+    await course.hover({ position: { x: 20, y: 28 } });
+    await page.waitForFunction((selector) => document.querySelector(selector)?.hasAttribute("data-pointer-highlight"), selector, { timeout: 3000 });
+    const initialPointer = await course.evaluate((node) => node.style.getPropertyValue("--mx"));
+    await course.hover({ position: { x: 80, y: 28 } });
+    await page.waitForFunction(({ selector, initialPointer }) => {
+      const card = document.querySelector(selector);
+      return Boolean(card && card.hasAttribute("data-pointer-highlight") && card.style.getPropertyValue("--mx") !== initialPointer);
+    }, { selector, initialPointer }, { timeout: 3000 });
+    await page.mouse.move(1, 1);
+    if (await course.getAttribute("data-pointer-highlight") !== null) failures.push("Homepage course cards: cursor highlight stays active after leaving");
+
     await course.press("Tab");
     const keyboardFocus = await page.evaluate((selector) => {
       const target = document.activeElement;
