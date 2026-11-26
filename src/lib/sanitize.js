@@ -3,10 +3,10 @@ import sanitizeHtml from "sanitize-html";
 // Admin-written HTML is cleaned before it is rendered on the public site.
 // Keep table structure and a narrow, safe set of presentation attributes so the
 // public page preserves the rows, columns, widths and alignment authored in CMS.
-const tableLength = /^(?:\\d+(?:\\.\\d+)?(?:px|%|em|rem)|auto)$/i;
+const tableLength = /^(?:\d+(?:\.\d+)?(?:px|%|em|rem)|auto)$/i;
 const tableAlignment = /^(?:left|center|right|justify|start|end)$/i;
 const verticalAlignment = /^(?:top|middle|bottom)$/i;
-const safeColour = /^(?:#[0-9a-f]{3,8}|(?:rgb|rgba|hsl|hsla)\\([\\d\\s.,%]+\\)|transparent)$/i;
+const safeColour = /^(?:#[0-9a-f]{3,8}|(?:rgb|rgba|hsl|hsla)\([\d\s.,%]+\)|transparent)$/i;
 
 const options = {
   allowedTags: [
@@ -61,7 +61,7 @@ const options = {
   allowedSchemes: ["http", "https", "mailto", "tel"],
   transformTags: {
     a: (tagName, attribs) => {
-      const external = /^https?:\\/\\//i.test(attribs.href || "");
+      const external = /^https?:\/\//i.test(attribs.href || "");
       return {
         tagName,
         attribs: external ? { ...attribs, target: "_blank", rel: "noopener noreferrer" } : attribs,
@@ -72,18 +72,18 @@ const options = {
 };
 
 function paragraphParts(token) {
-  const match = token.match(/^<p\\b[^>]*>([\\s\\S]*?)<\\/p>$/i);
+  const match = token.match(/^<p\b[^>]*>([\s\S]*?)<\/p>$/i);
   return match ? { inner: match[1] } : null;
 }
 
 function boldOnly(inner) {
-  const match = inner.trim().match(/^<(strong|b)\\b[^>]*>([\\s\\S]*?)<\\/\\1>$/i);
+  const match = inner.trim().match(/^<(strong|b)\b[^>]*>([\s\S]*?)<\/\1>$/i);
   return match ? match[2] : null;
 }
 
 function startsWithBoldLabel(inner) {
   const value = inner.trim();
-  return /^<(strong|b)\\b[^>]*>[\\s\\S]*?<\\/\\1>/i.test(value) && !boldOnly(value);
+  return /^<(strong|b)\b[^>]*>[\s\S]*?<\/\1>/i.test(value) && !boldOnly(value);
 }
 
 function looksLikeProse(inner) {
@@ -91,7 +91,7 @@ function looksLikeProse(inner) {
     .replace(/<[^>]+>/g, " ")
     .replace(/&nbsp;/gi, " ")
     .replace(/&amp;/gi, "&")
-    .replace(/\\s+/g, " ")
+    .replace(/\s+/g, " ")
     .trim();
   return /[.!?]["'’”)]?$/.test(text) || text.length > 160;
 }
@@ -107,7 +107,7 @@ function nextMeaningfulToken(tokens, start) {
 // sequence of bold column labels followed by alternating cell paragraphs.
 // Recover only unambiguous two-column blocks; leave ordinary prose untouched.
 function convertLegacyParagraphTables(html) {
-  const tokens = html.split(/(<p\\b[^>]*>[\\s\\S]*?<\\/p>)/gi);
+  const tokens = html.split(/(<p\b[^>]*>[\s\S]*?<\/p>)/gi);
 
   for (let index = 0; index < tokens.length; index += 1) {
     const firstHeader = paragraphParts(tokens[index]);
@@ -150,7 +150,7 @@ function convertLegacyParagraphTables(html) {
 
 function addResponsiveTableRegions(html) {
   let tableNumber = 0;
-  return html.replace(/<table\\b[^>]*>[\\s\\S]*?<\\/table>/gi, (table) => {
+  return html.replace(/<table\b[^>]*>[\s\S]*?<\/table>/gi, (table) => {
     tableNumber += 1;
     return `<div class="article-table-scroll" role="region" aria-label="Scrollable table ${tableNumber}" tabindex="0">${table}</div>`;
   });
