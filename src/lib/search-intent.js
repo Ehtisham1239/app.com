@@ -76,13 +76,13 @@ export const SEARCH_INTENTS = {
     "phrase": "online Quran classes in Australia",
     "heading": "Online Quran classes in Australia",
     "description": "Live one-to-one online Quran classes in Australia for kids and adults. Compare a time in your city, see indicative AUD fees and discuss a trial.",
-    "intro": "Looking for a one-to-one Quran lesson after school or work in Australia? Choose your city and a lesson date in the planner to account for daylight saving. Compare estimated fees in AUD before you request a trial."
+    "intro": "Looking for a one-to-one Quran lesson after school or work in Australia? Choose Sydney, Melbourne, Brisbane, Adelaide or Perth and enter a lesson date so the planner can account for daylight saving. Compare estimated fees in AUD before you request a trial."
   },
   "/locations/united-states": {
     "phrase": "online Quran classes in the USA",
     "heading": "Online Quran classes in the USA",
     "description": "Discover live one-to-one online Quran classes in the USA for kids and adults. Compare USD fees and choose a lesson time in your local time zone.",
-    "intro": "Take live one-to-one Quran classes from home in the USA. Choose Noorani Qaida, Tajweed or Hifz, then compare monthly fees in USD and use the city planner to find a lesson time after school or work."
+    "intro": "Find online Quran classes in the USA with live one-to-one lessons from home. Compare monthly fees in USD, then check a time after school or work in Eastern, Central, Mountain or Pacific time."
   },
   "/courses/hadith-translation": {"phrase": "online Hadith translation classes", "heading": "Online Hadith translation classes", "intro": "Explore Hadith meanings with teacher guidance. Ask about the texts, teaching language and reading level covered by the available course."},
   "/courses/tajweed": {"phrase": "learn Tajweed online", "heading": "Learn Tajweed online", "intro": "Understand how listening, pronunciation feedback and supported Quran reading work together. Discuss the most suitable reading course with the coordinator."},
