@@ -47,12 +47,13 @@ export function createMetaPixelController(win, pixelId) {
   function grant() {
     if (!id || active) return false;
     const fbq = ensureFbq(win);
+    fbq("consent", "grant");
     if (!doc.getElementById("oqc-meta-pixel")) {
+      fbq("init", id);
       const script = doc.createElement("script");
       script.id = "oqc-meta-pixel"; script.async = true; script.src = "https://connect.facebook.net/en_US/fbevents.js";
       doc.head.appendChild(script);
     }
-    fbq("init", id);
     fbq("track", "PageView"); // later route changes are picked up by the Pixel's own history tracking
     win.addEventListener("oqc:lead-saved", onLead);
     active = true;
