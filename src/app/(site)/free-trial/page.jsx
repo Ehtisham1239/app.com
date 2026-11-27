@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { AU_WHATSAPP } from "@/components/site/chrome";
 import { quoteCurrencies } from "@/lib/booking-preferences";
 import { TrialHeading, TrialHeadingView, TrialPromises, TrialPromisesView } from "@/components/site/trial-intro";
 import { FaqList } from "@/components/site/sections";
@@ -59,7 +58,7 @@ export default async function FreeTrialPage() {
         </div>
         <div className="min-w-0 lg:col-start-2 lg:row-span-2 lg:row-start-1">
           <Suspense fallback={<div className="surface h-[36rem] animate-pulse" aria-label="Loading trial form" />}>
-            <QuickTrialForm academic={academic} currencies={quoteCurrencies(plans)} courses={courses.map(({ id, title }) => ({ id, title }))} plans={planList} consentText={forms.consent_text} successText={forms.trial_success} whatsappHref={wa} australiaWhatsAppHref={AU_WHATSAPP.href} />
+            <QuickTrialForm academic={academic} currencies={quoteCurrencies(plans)} courses={courses.map(({ id, title }) => ({ id, title }))} plans={planList} consentText={forms.consent_text} successText={forms.trial_success} whatsappHref={wa} />
           </Suspense>
         </div>
         <div className="space-y-4 lg:col-start-1 lg:row-start-2">

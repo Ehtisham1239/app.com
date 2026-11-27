@@ -52,7 +52,7 @@ function FieldError({ id, children }) {
 }
 
 // One short step: only what the coordinator needs to call back and book a slot.
-export function QuickTrialForm({ courses = [], academic = [], plans = [], currencies = [], consentText, successText, whatsappHref, australiaWhatsAppHref }) {
+export function QuickTrialForm({ courses = [], academic = [], plans = [], currencies = [], consentText, successText, whatsappHref }) {
   const params = useSearchParams();
   const router = useRouter();
   // Booking preferences chosen on a country page (currency, lesson date/time) arrive in the
@@ -115,8 +115,6 @@ export function QuickTrialForm({ courses = [], academic = [], plans = [], curren
   const zoneOptions = useMemo(() => zonesFor(form.country), [form.country]);
   const detected = useMemo(() => detectZone(form.country, form.browser_tz, form.city), [form.country, form.browser_tz, form.city]);
   const timezone = zoneOptions.includes(form.zone_choice) ? form.zone_choice : detected;
-
-  const supportWhatsAppHref = form.country === "Australia" ? australiaWhatsAppHref || whatsappHref : whatsappHref;
 
   const isChild = Boolean(form.age_band && form.age_band !== "adult");
 
@@ -186,7 +184,11 @@ export function QuickTrialForm({ courses = [], academic = [], plans = [], curren
     requestLeadNotification(data, form.email.trim().toLowerCase());
     announceLeadSaved({ formType: "trial", country: form.country, reference: data?.reference, honeypot: form.website });
     const reference = typeof data?.reference === "string" && /^TR-[A-Z0-9-]{4,32}$/.test(data.reference) && data.reference !== "TR-RECEIVED" ? data.reference : "";
-    router.push("/free-trial/thank-you" + (reference ? "?ref=" + encodeURIComponent(reference) : ""));
+    const confirmation = new URLSearchParams();
+    if (reference) confirmation.set("ref", reference);
+    if (form.country === "Australia") confirmation.set("market", "AU");
+    const query = confirmation.toString();
+    router.push(query ? `/free-trial/thank-you?${query}` : "/free-trial/thank-you");
   }
 
   if (state.reference) {
@@ -198,7 +200,7 @@ export function QuickTrialForm({ courses = [], academic = [], plans = [], curren
         <p className="mx-auto mt-2 max-w-md text-ink-soft">{(eligible && successText) || "A coordinator will contact you by WhatsApp or email, usually within 24 hours, to discuss your request."}</p>
         {showRef && <p className="mt-4 inline-flex rounded-full bg-gold-50 px-4 py-1.5 font-mono text-sm font-semibold text-gold-700 ring-1 ring-gold-100">Reference: {state.reference}</p>}
         <div className="mt-6 flex flex-wrap justify-center gap-3">
-          {supportWhatsAppHref && <a href={supportWhatsAppHref} target="_blank" rel="noopener noreferrer" className="btn btn-primary"><MessageCircle className="size-5" aria-hidden="true" /> Message us on WhatsApp</a>}
+          {whatsappHref && <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="btn btn-primary"><MessageCircle className="size-5" aria-hidden="true" /> Message us on WhatsApp</a>}
           <Link href="/courses" className="btn btn-outline">Browse courses</Link>
         </div>
       </div>
