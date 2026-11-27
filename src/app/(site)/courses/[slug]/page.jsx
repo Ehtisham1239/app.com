@@ -6,7 +6,6 @@ import { SITE_URL } from "@/lib/config";
 import { safeJsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
 import { contentMetadata, publicImageUrl } from "@/lib/seo-metadata";
 import { courseSchema } from "@/lib/course-schema";
-import { SEARCH_INTENTS } from "@/lib/search-intent";
 import { courseHeading } from "@/lib/course-heading";
 import { courseReading } from "@/lib/course-reading";
 import Link from "next/link";
