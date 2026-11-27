@@ -18,7 +18,13 @@ const TOP_BAR_WHATSAPP_MESSAGE =
 export const UK_ADMISSIONS = { display: "+44 7864 710821", phone: "+447864710821" };
 export const US_ADMISSIONS = { display: "+1 (786) 964-5678", phone: "+17869645678" };
 
+export const AU_WHATSAPP = {
+  display: "+61 480 810 761",
+  href: whatsappLink("+61480810761", "Assalamu alaikum, I would like to ask about online Quran lessons in Australia."),
+};
+
 const TOP_BAR_NUMBERS = [
+  { key: "au", label: "Australia WhatsApp", ...AU_WHATSAPP, external: true },
   { key: "uk", label: "UK WhatsApp", display: UK_ADMISSIONS.display, href: whatsappLink(UK_ADMISSIONS.phone, TOP_BAR_WHATSAPP_MESSAGE), external: true },
   { key: "usa", label: "USA WhatsApp", display: "+1 786 964 5678", href: whatsappLink(US_ADMISSIONS.phone, TOP_BAR_WHATSAPP_MESSAGE), external: true },
 ];
