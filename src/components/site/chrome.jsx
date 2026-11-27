@@ -15,10 +15,11 @@ import { whatsappLink } from "@/lib/format";
 const TOP_BAR_WHATSAPP_MESSAGE =
   "Assalamu alaikum, I would like to start a 3-day free trial at Online Quran College today. Please let me know which time today is available in my time zone, and help me arrange a teacher and the class link. JazakAllah khair.";
 
+export const UK_ADMISSIONS = { display: "+44 7864 710821", phone: "+447864710821" };
 export const US_ADMISSIONS = { display: "+1 (786) 964-5678", phone: "+17869645678" };
 
 const TOP_BAR_NUMBERS = [
-  { key: "uk", label: "UK WhatsApp", display: "+44 7864 710821", href: whatsappLink("447864710821", TOP_BAR_WHATSAPP_MESSAGE), external: true },
+  { key: "uk", label: "UK WhatsApp", display: UK_ADMISSIONS.display, href: whatsappLink(UK_ADMISSIONS.phone, TOP_BAR_WHATSAPP_MESSAGE), external: true },
   { key: "usa", label: "USA WhatsApp", display: "+1 786 964 5678", href: whatsappLink(US_ADMISSIONS.phone, TOP_BAR_WHATSAPP_MESSAGE), external: true },
 ];
 

@@ -1,3 +1,13 @@
+export const UK_CITY_BOOKING_TIPS = {
+  london: "If a parent and child join from different places, choose a UK time when both can be available and share the same lesson link once Admissions confirms it.",
+  birmingham: "If the learner has after-school activities, suggest one regular weekday and a backup. Include the date and UK time for the first lesson.",
+  manchester: "If siblings share a laptop, ask for separate lesson times with a short gap. Tell Admissions what each child can read so the teacher can plan both trials.",
+  leeds: "If you study around university or work, share two times you can keep each week. Tell the teacher if you are starting with Arabic letters or returning to recitation.",
+  glasgow: "If the first lesson falls in a school holiday, also share a time that will work once school resumes. Ask Admissions to confirm both times on the UK clock.",
+  bradford: "If an adult learner works shifts, propose two dates and times and ask what happens when a lesson needs moving. Confirm the rescheduling terms before enrolling.",
+  leicester: "If you are unsure whether to choose Noorani Qaida or Tajweed, say what the learner can read now. Ask the teacher to listen to a short sample during the trial.",
+};
+
 // Country-specific guidance for online learners. Fees, offers and teacher availability are coordinator-confirmed.
 export const MARKET_GUIDES = {
   "united-kingdom": {
