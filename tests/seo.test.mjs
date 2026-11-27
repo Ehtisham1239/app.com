@@ -147,7 +147,7 @@ test("UAE market hub has a distinct online-only guide and all seven emirates", a
   assert.equal(uae.timezone, "Asia/Dubai");
   assert.equal(uae.cities.length, 7);
   assert.ok(MARKET_GUIDES["united-arab-emirates"].sections.length >= 4);
-  assert.ok(MARKET_GUIDES["united-arab-emirates"].sections.some((section) => section.text.includes("does not claim a UAE office")));
+  assert.ok(MARKET_GUIDES["united-arab-emirates"].sections.some((section) => section.text.includes("live online from home")));
 });
 
 test("each primary-market hub links visibly to its own published planning article", async () => {
