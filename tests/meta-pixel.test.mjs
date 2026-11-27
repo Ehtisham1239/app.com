@@ -32,7 +32,7 @@ test("accepting loads the Pixel once and sends one PageView", () => {
   const pixel = createMetaPixelController(win, id);
   assert.equal(pixel.grant(), true); assert.equal(pixel.grant(), false);
   assert.equal(scripts.length, 1); assert.equal(scripts[0].src, "https://connect.facebook.net/en_US/fbevents.js");
-  assert.deepEqual(calls(win), [["init", id], ["track", "PageView"]]);
+  assert.deepEqual(calls(win), [["consent", "grant"], ["init", id], ["track", "PageView"]]);
 });
 
 test("Lead carries only form type and market, with a dedup eventID, and ignores bad signals", () => {
@@ -64,4 +64,20 @@ test("an invalid pixel id never loads anything", () => {
   const { win, scripts } = fakeBrowser();
   assert.equal(createMetaPixelController(win, "bad").grant(), false);
   assert.equal(scripts.length, 0);
+});
+
+test("accepting after withdrawal restores consent without reinitializing the pixel", () => {
+  const { win, scripts } = fakeBrowser();
+  const pixel = createMetaPixelController(win, id);
+  pixel.grant();
+  pixel.revoke();
+  pixel.grant();
+  assert.equal(scripts.length, 1);
+  assert.deepEqual(calls(win).filter(call => call[0] === "consent"), [
+    ["consent", "grant"],
+    ["consent", "revoke"],
+    ["consent", "grant"],
+  ]);
+  assert.equal(calls(win).filter(call => call[0] === "init").length, 1);
+  assert.equal(pixel.isActive(), true);
 });
