@@ -20,7 +20,7 @@ export default function LocationsPage() {
         </ul>
         <div id="europe-lessons" className="mt-6 scroll-mt-24 border-t border-leaf-100 pt-5">
           <h3 className="text-lg">Online Quran lessons across Europe</h3>
-          <p className="mt-2 max-w-3xl text-ink-soft">Families in Ireland, France, Germany, the Netherlands and elsewhere in Europe can arrange live lessons in their own local time. Share your city, the date you want to start, and a preferred time after school or work. Ask Admissions to confirm the timetable and fee currency in writing.</p>
+          <p className="mt-2 max-w-3xl text-ink-soft">Arrange live Quran lessons using the clock in your own city. For a recurring slot after school or work, send your city, your usual weekday and an example date with the local time. Families in Ireland or Finland should use their own local clock when comparing a time with families in Belgium, Germany or the Netherlands. Confirm the recurring time and fee currency with Admissions before enrolling.</p>
           <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
             <li><Link prefetch={false} className="font-semibold text-leaf-700 underline underline-offset-4" href="/blog/online-quran-classes-europe-time-zones">Compare European lesson times</Link></li>
             <li><Link prefetch={false} className="font-semibold text-leaf-700 underline underline-offset-4" href="/free-trial">Request a trial in your local time</Link></li>

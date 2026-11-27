@@ -25,6 +25,7 @@ const articleTopics = {
   "family-quran-learning-multiple-children": "parents",
   "choose-online-quran-teacher-usa": "international",
   "quran-lessons-australia-time-zones": "international",
+  "quran-teacher-online-in-australia": "international",
   "online-quran-lessons-canada-time-zones": "international",
   "online-quran-class-fees-usa-comparison": "international",
   "online-quran-lessons-usa-time-zones": "international",

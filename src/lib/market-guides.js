@@ -1,12 +1,13 @@
 // Country-specific guidance for online learners. Fees, offers and teacher availability are coordinator-confirmed.
 export const MARKET_GUIDES = {
   "united-kingdom": {
+    updatedAt: "2026-11-27",
     title: "Planning online Quran lessons around UK family life",
     sections: [
-      { title: "Plan around UK local time", text: "The UK uses Greenwich Mean Time in winter and British Summer Time in summer. Choose the actual lesson date and your city when suggesting a recurring slot, because the Pakistan–UK time difference changes when either country changes clocks. The coordinator confirms the final timetable and teacher availability.", path: "/free-trial?country=United+Kingdom&currency=GBP", link: "Discuss a UK lesson time" },
+      { title: "Plan around UK local time", text: "Give Admissions your preferred weekday and a time in the UK, then use the lesson planner to check the date. The UK switches between GMT and British Summer Time. If a family wants the same after-school time each week, ask the coordinator to confirm that the timetable will follow the UK clock.", path: "/free-trial?country=United+Kingdom&currency=GBP", link: "Request a trial in UK time" },
       { title: "Choose a learning pathway", text: "Children can begin with Arabic letters and Noorani Qaida or continue with Quran reading and Tajweed. Adults can explain their current reading level and learning goals. Ask for the written GBP fee, lesson duration, weekly frequency, teacher preference and rescheduling terms before enrolling.", path: "/courses", link: "Compare Quran courses" },
-      { title: "Know who you are enrolling with", text: "OQC delivers live online lessons; this page does not represent a UK classroom or local branch. Review the legal entity and contact details shown on the website, read the privacy and cancellation terms, and ask Admissions to confirm the contracting entity and payment recipient before paying.", path: "/refund-policy", link: "Read cancellation and refund terms" },
-      { title: "Parent-led enquiries and child privacy", text: "For learners under 18, a parent or guardian should submit the enquiry and manage communications. OQC should collect only information needed to arrange and deliver lessons, explain how it is used, and avoid using children's personal data for behavioural advertising or unrelated marketing.", path: "/privacy-policy", link: "Read the privacy policy" }
+      { title: "Can siblings take lessons with the same academy?", text: "Yes. Share each child’s starting level and choose separate lesson times if they share a device. Ask Admissions to confirm a timetable around school pickup, homework and any other activities, and to list each learner’s fee in GBP.", path: "/blog/family-quran-learning-multiple-children", link: "Plan Quran lessons for siblings" },
+      { title: "What should I share when booking for a child?", text: "A parent or guardian should send the request and use their own contact details. Share what the child can currently read, the local times that work and any teacher or teaching-language preference.", path: "/privacy-policy", link: "Read the privacy policy" }
     ],
     sources: [
       { name: "GOV.UK: when the clocks change", url: "https://www.gov.uk/when-do-the-clocks-change" },
@@ -17,12 +18,13 @@ export const MARKET_GUIDES = {
     ]
   },
   "united-states": {
+    updatedAt: "2026-11-27",
     title: "Planning online Quran lessons across US time zones",
     sections: [
       { title: "Choose your city and actual lesson date", text: "The United States spans multiple time zones. Most locations observe daylight saving time, while Hawaii and most of Arizona do not; local exceptions also exist. Choose the learner's city and date rather than relying on a single US-wide time. The coordinator confirms the recurring timetable in your local time.", path: "/free-trial?country=United+States&currency=USD", link: "Discuss a US lesson time" },
       { title: "Select the right course and teacher", text: "Share the learner's current reading level and whether the goal is Noorani Qaida, Quran reading with Tajweed, Hifz with revision, Arabic or translation. You may request a male or female teacher and preferred lesson window; the team confirms availability before enrolment. Confirm the written USD fee and rescheduling terms.", path: "/courses", link: "Compare Quran courses" },
-      { title: "Parent or guardian manages a child's enrolment", text: "For learners under 13, assess whether the service's collection of information from children triggers COPPA obligations. Use a parent-facing enquiry, minimise information collected, provide a clear privacy notice, and obtain any legally required verifiable parental consent before collecting personal information directly from a child.", path: "/privacy-policy", link: "Read the privacy policy" },
-      { title: "Understand the online-only service", text: "Lessons are delivered live online to learners joining from home. This page does not claim a US office, local school, state education licence or US business registration. Review the actual legal entity, payment recipient, service terms and refund/cancellation policy before paying.", path: "/refund-policy", link: "Review cancellation and refund terms" }
+      { title: "What should a parent check in the first trial?", text: "Listen for one example of a correction your child understands and can repeat. Ask the teacher for one short practice task and for a clear starting point, such as recognising Arabic letters or reading a short passage with feedback.", path: "/blog/prepare-child-first-online-quran-trial", link: "Prepare for your child’s first trial" },
+      { title: "How do Houston families plan a trial in Central Time?", text: "Use Houston’s local Central Time and give Admissions the date as well as the time. If your preferred slot is Wednesday at 5 p.m., ask whether future lessons can stay at 5 p.m. on the Houston clock when daylight saving changes.", path: "/locations/united-states/houston", link: "See Houston course and time options" }
     ],
     sources: [
       { name: "US Department of Transportation: daylight saving time", url: "https://www.transportation.gov/regulations/daylight-saving-time" },
@@ -31,12 +33,13 @@ export const MARKET_GUIDES = {
     ]
   },
   canada: {
+    updatedAt: "2026-11-27",
     title: "Planning online Quran lessons across Canadian time zones",
     sections: [
       { title: "Use the learner's province, city and date", text: "Canada spans several time zones and daylight-saving rules vary by province and territory. Choose the learner's city and actual lesson date; do not assume one Canadian time or copy a Toronto timetable to Vancouver, Calgary, Halifax or Newfoundland. The coordinator confirms the recurring lesson in local time.", path: "/free-trial?country=Canada&currency=USD", link: "Discuss a Canadian lesson time" },
       { title: "Confirm course fit and fees", text: "Explain whether the learner is beginning with Arabic letters, improving Quran reading and Tajweed, memorising with revision, or studying Arabic and translation. Ask which teacher and teaching language can be accommodated, then obtain the written fee (quoted in USD), lesson frequency and rescheduling terms before enrolling.", path: "/courses", link: "Compare Quran courses" },
-      { title: "Use clear parent or guardian consent", text: "For child learners, make the parent or guardian the primary contact. Canada's privacy guidance expects meaningful consent, age-appropriate transparency and parental consent where a child cannot meaningfully consent; the Office of the Privacy Commissioner generally views children under 13 as requiring parental consent, subject to the applicable provincial law and circumstances.", path: "/privacy-policy", link: "Read the privacy policy" },
-      { title: "Keep marketing consent separate", text: "Canada's anti-spam rules apply to commercial email and text messages sent to Canadian recipients, including from abroad. Record the applicable express or implied consent, identify the sender and include a working unsubscribe mechanism. A trial enquiry is not blanket consent for unrelated ongoing marketing.", path: "/contact", link: "Contact Admissions" }
+      { title: "What happens in an online Tajweed lesson?", text: "The teacher listens to a short passage, demonstrates a sound or recitation rule, and hears the learner try it again. Ask for one clear correction and one short passage to practise before the next class.", path: "/blog/tajweed-practice-with-feedback", link: "See how Tajweed feedback works" },
+      { title: "How do I compare a Canadian class fee?", text: "Ask for the total monthly fee in USD, the number of lessons it covers and what happens if a lesson needs to move. Check with your payment provider for the CAD amount or any exchange fee before enrolling.", path: "/pricing?currency=USD", link: "Compare published USD packages" }
     ],
     sources: [
       { name: "National Research Council: Canada's official time and time zones", url: "https://www.cnrc.canada.ca/en/certifications-evaluations-standards/canadas-official-time/time-zones-daylight-saving-time" },
@@ -47,14 +50,14 @@ export const MARKET_GUIDES = {
     ]
   },
   australia: {
-    updatedAt: "2026-11-09",
+    updatedAt: "2026-11-27",
     title: "Planning online Quran lessons across Australian time zones",
     sections: [
       { title: "Choose your state, city and lesson date", text: "Australian states and territories do not all follow the same daylight-saving rules. Sydney, Melbourne and Adelaide can change seasonal offsets, while Brisbane, Perth and Darwin do not observe daylight saving. Choose the learner's city and actual date before suggesting a recurring lesson; the coordinator confirms the timetable.", path: "/free-trial?country=Australia&currency=AUD", link: "Discuss an Australian lesson time" },
       { title: "Arrange online Quran classes from Perth", text: "For a child in Perth, suggest an after-school time in Perth local time. Adults can suggest a slot around work. Western Australia stays on AWST (UTC+8) all year, so use Perth in the planner when comparing times with a teacher. Share whether the learner is starting with Noorani Qaida, working on Tajweed or planning Hifz. The coordinator confirms availability and fees in AUD.", path: "/free-trial?country=Australia&currency=AUD&city=Perth", link: "Request a free trial from Perth" },
       { title: "Fit learning around school and family routines", text: "Tell Admissions whether an after-school, evening or weekend slot is preferred and whether a parent will support the learner during the trial. Explain the learner's current reading level and goals, then confirm the AUD fee, weekly frequency, lesson duration and rescheduling terms in writing.", path: "/courses", link: "Compare Quran courses" },
-      { title: "Parent-led enrolment and privacy", text: "For children, use a parent or guardian as the enquiry contact and collect only details needed to arrange lessons. Confirm what personal information is stored, who can access it, how long it is retained and how parents can request access or correction. Check whether the Australian Privacy Act applies to the contracting entity and its activities.", path: "/privacy-policy", link: "Read the privacy policy" },
-      { title: "Respect Australian consumer and marketing rules", text: "Overseas businesses that directly offer services to Australian consumers may be subject to Australian Consumer Law. Keep service descriptions, fees, trial conditions and refund terms accurate. Commercial email and SMS require an appropriate consent basis, accurate sender identification and a working unsubscribe process.", path: "/refund-policy", link: "Review cancellation and refund terms" }
+      { title: "What should I ask an online Quran teacher?", text: "Ask the teacher to listen to a short reading sample, show one correction and explain what to practise next. Tell Admissions when the learner is free in their Australian city and whether they need a particular teaching language.", path: "/blog/quran-teacher-online-in-australia", link: "Compare online Quran teachers in Australia" },
+      { title: "What should the AUD fee quote include?", text: "Confirm the currency you will pay in, the monthly total, the length and frequency of lessons, and the rescheduling terms. Ask whether your chosen package includes a free trial before enrolling.", path: "/pricing?currency=AUD", link: "Compare packages in AUD" }
     ],
     sources: [
       { name: "Fair Work Ombudsman: daylight saving in Australia", url: "https://www.fairwork.gov.au/tools-and-resources/library/K600489_Daylight-saving-in-Australia" },
@@ -66,12 +69,13 @@ export const MARKET_GUIDES = {
     ]
   },
   "united-arab-emirates": {
+    updatedAt: "2026-11-27",
     title: "Planning online Quran lessons across the UAE",
     sections: [
       { title: "Choose your emirate and Gulf Standard Time", text: "Dubai, Abu Dhabi, Sharjah, Ajman, Ras Al Khaimah, Fujairah and Umm Al Quwain use Asia/Dubai time (UTC+4). Share a realistic window around school, work and family commitments; the coordinator confirms teacher availability and the final recurring timetable.", path: "/free-trial?country=United+Arab+Emirates&currency=AED", link: "Discuss a UAE lesson time" },
       { title: "Choose a course and confirm AED fees", text: "Tell the team whether the learner is starting with Noorani Qaida, improving Quran reading and Tajweed, memorising with revision, or studying Arabic and translation. Ask for the written AED package, lesson duration, weekly frequency, payment and rescheduling terms before enrolling. A free-trial request does not guarantee a particular teacher or slot.", path: "/courses", link: "Compare Quran courses" },
-      { title: "Understand the online-only service", text: "OQC provides live online lessons to learners joining from home. This country guide does not claim a UAE office, classroom, local branch or UAE education-centre licence. Families seeking a locally licensed in-person institute should verify the provider with the relevant emirate authority.", path: "/contact", link: "Ask the admissions team" },
-      { title: "Check credentials and listings carefully", text: "Before paying any provider, confirm its legal identity, the exact service offered, written fees and refund terms. OQC does not claim a UAE trade licence or local teaching-centre approval. A local directory or Google Business Profile must not be created for an online-only brand without meeting the platform’s real-world customer-contact eligibility rules.", path: "/refund-policy", link: "Read cancellation and refund terms" }
+      { title: "Can adults start Tajweed classes in the UAE?", text: "Yes. Tell Admissions which Arabic letters or short passages you can read. A teacher can listen to a short sample and suggest the next step. If you are new to the script, ask about starting with Noorani Qaida.", path: "/blog/online-tajweed-classes-adults-uae", link: "Explore online Tajweed for UAE adults" },
+      { title: "How can a child fit Hifz around the school week?", text: "Tell Admissions when school and activities finish in Gulf Standard Time. Ask how new memorisation and revision will fit into the same week, and start with a practice routine your child can keep on school days.", path: "/blog/online-hifz-classes-uae-routine", link: "Plan a UAE Hifz routine" }
     ],
     sources: [
       { name: "UAE Government: licensing private educational institutes", url: "https://u.ae/en/information-and-services/education/licensing-private-educational-institutes" },
