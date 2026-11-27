@@ -3,7 +3,7 @@ export const SEARCH_INTENTS = {
   "/": {
     "phrase": "learn Quran online",
     "heading": "Learn Quran online",
-    "intro": "Learn Quran online through live one-to-one lessons for children and adults. Choose your course and discuss a time that suits your family."
+    "intro": "Learn Quran online in live one-to-one lessons. Start with Arabic letters, work on recitation, or make a Hifz plan with a teacher."
   },
   "/learn/quran-for-kids": {
     "phrase": "online Quran classes for kids",
@@ -28,32 +28,32 @@ export const SEARCH_INTENTS = {
   "/courses/noorani-qaida": {
     "phrase": "learn Noorani Qaida online",
     "heading": "Learn Noorani Qaida online",
-    "intro": "Build a foundation in Arabic letters, vowel sounds and joined words before moving to fluent Quran reading."
+    "intro": "Start by saying Arabic letters and short vowels aloud. Your teacher helps you hear the difference between sounds before you move on to joined words."
   },
   "/courses/quran-nazara": {
     "phrase": "online Quran reading with Tajweed",
     "heading": "Online Quran reading with Tajweed",
-    "intro": "Practise pronunciation and recitation with teacher feedback. Your starting reading level determines the pace and the rules introduced in each lesson."
+    "intro": "Read aloud while your teacher listens. Work on the sounds and Tajweed rules that come up in your reading, then repeat the passage with feedback."
   },
   "/courses/hifz-quran": {
     "phrase": "online Quran memorization",
     "heading": "Online Quran memorization",
-    "intro": "Discuss a Hifz routine that balances new memorisation with revision. The teacher helps set realistic goals around the learner’s reading ability and practice time."
+    "intro": "Decide with your teacher how much to memorise each week and what to revise. Start with a routine you can keep between lessons."
   },
   "/courses/arabic-language": {
     "phrase": "learn Quranic Arabic online",
     "heading": "Learn Quranic Arabic online",
-    "intro": "Explore vocabulary and grammar that support understanding. Discuss your current Arabic knowledge and the learning goals covered by this course."
+    "intro": "Study vocabulary and sentence patterns that help you follow Quranic Arabic. Tell your teacher which words or passages you already recognise."
   },
   "/courses/quran-translation": {
     "phrase": "online Quran translation and Tafseer",
     "heading": "Online Quran translation and Tafseer",
-    "intro": "Study meanings and explanations with a teacher. Share your reading level and language preference so the coordinator can discuss a suitable starting point."
+    "intro": "Read a translation with a teacher, pause over unfamiliar ideas, and see how Tafseer helps you understand a passage in context."
   },
   "/teachers": {
     "phrase": "female Quran teacher online",
     "heading": "Meet our Quran teachers",
-    "intro": "If you are looking for a female Quran teacher online, explore current public teacher profiles and share any preference with Admissions. The team confirms suitability, teaching language and availability before lessons are arranged."
+    "intro": "Read the profiles to see what each teacher teaches and which languages they use. If you’d prefer a female Quran teacher online, let Admissions know so they can check availability for your course and time."
   },
   "/locations/united-arab-emirates": {
     "phrase": "online Quran classes in the UAE",
@@ -70,7 +70,7 @@ export const SEARCH_INTENTS = {
   "/locations/canada": {
     "phrase": "online Quran classes in Canada",
     "heading": "Online Quran classes in Canada",
-    "intro": "Live one-to-one online Quran lessons for children and adults across Canadian provinces and time zones. Choose the learner's city and lesson date, explore Noorani Qaida, Tajweed and Hifz, and request a written fee quote in USD. Lessons are delivered online; no Canadian office or local branch is represented."
+    "intro": "Live one-to-one online Quran lessons for children and adults across Canadian provinces and time zones. Choose the learner's city and lesson date, explore Noorani Qaida, Tajweed and Hifz, and request a written fee quote in USD. Use your city’s local clock when you suggest a time after school or work."
   },
   "/locations/australia": {
     "phrase": "online Quran classes in Australia",

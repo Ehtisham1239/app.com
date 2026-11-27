@@ -31,7 +31,7 @@ export default async function FaqPage() {
   return (
     <>
       {faqs.length > 0 && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />}
-      <PageHero immersive path="/faq" modified={STATIC_PAGES_REVIEWED} eyebrow="FAQ" title="Questions about online Quran classes" intro="Find answers about trial lessons, teacher preferences, class times and fees. Choose a topic to jump straight to its questions.">
+      <PageHero immersive path="/faq" modified={STATIC_PAGES_REVIEWED} eyebrow="FAQ" title="Questions about online Quran classes" intro="Find out what happens after you request a trial, how to ask for a teacher, and what to check before paying. Choose a topic to jump straight to its questions.">
         <div className="mt-6 flex flex-wrap gap-3">
           <a href="#faq-topics" className="btn btn-primary">Browse questions</a>
           <Link href="/contact" prefetch={false} className="btn btn-outline">Ask admissions</Link>

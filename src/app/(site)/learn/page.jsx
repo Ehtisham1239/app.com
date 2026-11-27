@@ -45,7 +45,7 @@ export default async function Page() {
   return <>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema([{ name: "Learning guides", path: "/learn" }], SITE_URL)) }} />
     {resources.length > 0 && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(resourceList) }} />}
-    <PageHero immersive path="/learn" modified={STATIC_PAGES_REVIEWED} eyebrow="Learning centre" title="Quran learning guides for families and adults" intro="Start with your learner’s current reading level and goals, then explore a course and discuss a trial." />
+    <PageHero immersive path="/learn" modified={STATIC_PAGES_REVIEWED} eyebrow="Learning centre" title="Quran learning guides for families and adults" intro="Find a guide for your first Arabic letters, your child’s first lesson, or getting back into regular Quran reading as an adult." />
     <div className="page-wrap py-12">
       <nav aria-label="On this learning guide" className="flex flex-wrap gap-3 text-sm font-semibold text-leaf-700">
         <a className="rounded-full border border-line px-4 py-2 hover:bg-leaf-50" href="#course-comparison">Compare courses</a>

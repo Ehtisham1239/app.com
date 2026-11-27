@@ -38,7 +38,7 @@ export default async function PricingPage() {
       <PageHero path="/pricing" modified={STATIC_PAGES_REVIEWED}
         eyebrow="Fees"
         title="Online Quran class fees and sibling pricing"
-        intro="Choose how many days a week suit your family. Compare lesson frequency, duration and fees below. A 3-day free trial is available on eligible plans; the Weekend plan is excluded."
+        intro="Start with the number of lessons you can comfortably fit into a week. Compare lesson length and monthly cost in your currency below. Eligible plans include a 3-day free trial. The Weekend plan is excluded."
       >
         <div className="mt-6 flex flex-wrap gap-3">
           <a className="btn btn-gold" href="#monthly-packages">See monthly fees <ArrowRight className="size-4" aria-hidden="true" /></a>

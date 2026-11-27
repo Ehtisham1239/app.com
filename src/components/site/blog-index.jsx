@@ -56,7 +56,7 @@ export async function BlogIndex({ filters }) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(collection) }} />
-      <PageHero path={blogUrl(page)} eyebrow="Blog" title={`Quran learning articles for learners and parents${page > 1 ? ` · Page ${page}` : ""}`} arabic="عِلْم" intro="Practical guides to Quran reading, Tajweed, memorisation and building a routine at home." />
+      <PageHero path={blogUrl(page)} eyebrow="Blog" title={`Quran learning articles for learners and parents${page > 1 ? ` · Page ${page}` : ""}`} arabic="عِلْم" intro="Preparing for a first lesson or trying to make practice more consistent? Find advice on Quran reading, Tajweed and Hifz that you can use at home." />
       {page === 1 && <nav aria-label="Quran learning topics" className="page-wrap pt-10">
         <h2 className="text-2xl text-mushaf-900">Find a guide for your next lesson</h2>
         <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-leaf-700">
