@@ -1,6 +1,7 @@
 import { NavigationLink as Link } from "@/components/site/navigation-link";
 import { ArrowUpRight, Mail, MessageCircle, Phone } from "@/components/site/icons";
 import { whatsappLink } from "@/lib/format";
+import { MarketingCookieSettingsLink } from "@/components/site/marketing-cookie-settings-link";
 
 const SOCIAL_LABELS = { facebook: "Facebook", instagram: "Instagram", x: "X (Twitter)", youtube: "YouTube", tiktok: "TikTok", trustpilot: "Trustpilot" };
 
@@ -22,7 +23,7 @@ function FooterColumn({ title, items }) {
   );
 }
 
-export function SiteFooter({ settings, menus }) {
+export function SiteFooter({ settings, menus, marketingCookiesEnabled = false }) {
   const identity = settings["site.identity"] ?? {};
   const contact = settings["site.contact"] ?? {};
   const social = settings["site.social"] ?? {};
@@ -78,6 +79,10 @@ export function SiteFooter({ settings, menus }) {
           <FooterColumn title="Courses" items={menus.footer_courses} />
           <FooterColumn title="College" items={[...(menus.footer_company || []).filter((i) => i.href !== "/locations" && i.href !== reviewPage), { label: "Country guides", href: "/locations" }, ...(reviews.enabled ? [{ label: "Share your experience", href: reviewPage }] : [])]} />
           <FooterColumn title="Policies" items={menus.footer_legal} />
+          {marketingCookiesEnabled && <div className="footer-column">
+            <h2 className="font-sans text-sm font-bold tracking-wide text-leaf-700">Privacy choices</h2>
+            <ul className="mt-3 space-y-0.5"><li><MarketingCookieSettingsLink /></li></ul>
+          </div>}
         </div>
       </div>
       <div className="relative border-t border-line">

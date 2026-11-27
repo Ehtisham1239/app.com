@@ -41,6 +41,7 @@ export default async function SiteLayout({ children }) {
   const chat = settings["site.chat"] ?? {};
   const chatEnabled = Boolean(chat.enabled && /^[A-Za-z0-9_-]{10,200}$/.test(chat.widget_key || ""));
   const analytics = cookielessAnalyticsConfig(analyticsConfig(settings["site.analytics"]));
+  const marketingPixelId = metaPixelId(process.env.META_PIXEL_ID);
   const identity = settings["site.identity"] || {};
   const contact = settings["site.contact"] || {};
   const brandName = settings["site.identity"]?.name ?? "Online Quran College";
@@ -71,7 +72,7 @@ export default async function SiteLayout({ children }) {
       <SiteHeader menu={header} courses={courseLinks} brandName={brandName} />
       <main id="main" data-site-motion><SiteMotion />{children}<ExploreLinks /></main>
       <AyahBand />
-      <SiteFooter settings={settings} menus={footerMenus} />
+      <SiteFooter settings={settings} menus={footerMenus} marketingCookiesEnabled={Boolean(marketingPixelId)} />
       <MobileActionBar chatEnabled={chatEnabled} />
       <ReviewsButton config={reviewsButtonConfig(settings["site.reviews_button"], settings["site.social"])} consentText={settings["site.forms"]?.consent_text} />
       <HatchiumChat enabled={chatEnabled} widgetKey={chat.widget_key} />
@@ -80,7 +81,7 @@ export default async function SiteLayout({ children }) {
       {process.env.VERCEL === "1" && <SpeedInsights />}
       {analytics.enabled && <WebsiteAnalytics config={analytics} />}
       {/* Meta Pixel: off until META_PIXEL_ID is set; loads only after the visitor accepts (owner, 19 Nov 2026). */}
-      {metaPixelId(process.env.META_PIXEL_ID) && <MetaPixel pixelId={metaPixelId(process.env.META_PIXEL_ID)} />}
+      {marketingPixelId && <MetaPixel pixelId={marketingPixelId} />}
     </>
   );
 }
