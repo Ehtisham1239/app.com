@@ -12,6 +12,15 @@ import { safeJsonLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
 import { formatDate, truncate } from "@/lib/format";
 
+const BLOG_TOPICS = [
+  { title: "Start reading the Quran", articles: [["How to learn Quran online as a beginner", "/blog/how-to-learn-quran-online-beginners-guide"], ["Noorani Qaida or Quran reading?", "/blog/noorani-qaida-or-quran-reading"]] },
+  { title: "Help children learn", articles: [["Choose online Quran classes for kids", "/blog/choose-online-quran-classes-kids"], ["Arrange Quran classes for siblings", "/blog/family-quran-learning-multiple-children"]] },
+  { title: "Practise Tajweed", articles: [["Tajweed rules for beginners", "/blog/tajweed-rules-for-beginners"], ["Makharij and Arabic letter sounds", "/blog/makharij-explained-for-beginners"]] },
+  { title: "Memorise and revise", articles: [["How long does Hifz take?", "/blog/how-long-does-hifz-take-online"], ["Plan Sabaq, Sabqi and Manzil revision", "/blog/sabaq-sabqi-manzil-explained"]] },
+  { title: "Understand the Quran", articles: [["Start learning Quranic Arabic", "/blog/arabic-for-quran-readers"], ["What do online Tafseer classes cover?", "/blog/online-tafseer-classes-what-you-learn"]] },
+  { title: "Compare fees and times", articles: [["Compare online Quran class fees", "/pricing"], ["Check lesson times by country", "/locations"]] },
+];
+
 // Shared by /blog (static, first page) and /blog/browse (rewritten ?page= URLs).
 export function blogIndexMetadata(filters) {
   if (!filters) notFound();
@@ -57,15 +66,23 @@ export async function BlogIndex({ filters }) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(collection) }} />
       <PageHero path={blogUrl(page)} eyebrow="Blog" title={`Quran learning articles for learners and parents${page > 1 ? ` · Page ${page}` : ""}`} arabic="عِلْم" intro="Preparing for a first lesson or trying to make practice more consistent? Find advice on Quran reading, Tajweed and Hifz that you can use at home." />
-      {page === 1 && <nav aria-label="Quran learning topics" className="page-wrap pt-10">
-        <h2 className="text-2xl text-mushaf-900">Find a guide for your next lesson</h2>
-        <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-leaf-700">
-          <li><Link prefetch={false} className="underline underline-offset-4" href="/learn/quran-for-kids">Help a child learn Quran</Link></li>
-          <li><Link prefetch={false} className="underline underline-offset-4" href="/blog/arabic-for-quran-readers">Start learning Quranic Arabic</Link></li>
-          <li><Link prefetch={false} className="underline underline-offset-4" href="/blog/tajweed-rules-for-beginners">Practise beginner Tajweed rules</Link></li>
-          <li><Link prefetch={false} className="underline underline-offset-4" href="/blog/online-quran-classes-europe-time-zones">Plan lessons across European time zones</Link></li>
-        </ul>
-      </nav>}
+      {page === 1 && (
+        <nav aria-labelledby="blog-topics-heading" className="page-wrap pt-10">
+          <h2 id="blog-topics-heading" className="text-2xl text-mushaf-900">Find Quran learning guides by topic</h2>
+          <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {BLOG_TOPICS.map(({ title, articles }) => (
+              <li key={title} className="rounded-2xl border border-leaf-100 bg-white p-4">
+                <h3 className="font-semibold text-mushaf-900">{title}</h3>
+                <ul className="mt-2 space-y-1">
+                  {articles.map(([label, href]) => (
+                    <li key={href}><Link prefetch={false} className="inline-flex min-h-11 items-center text-sm font-semibold text-leaf-700 underline underline-offset-4" href={href}>{label}</Link></li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
       <section className="page-wrap py-10 sm:py-14" aria-labelledby="blog-articles">
         <h2 id="blog-articles" className="sr-only">Articles</h2>
         {posts.length === 0 ? (
