@@ -1,3 +1,6 @@
+import { AustraliaWhatsApp } from "./australia-contact";
+import { OfficialProfileLinks } from "./social-links";
+import { AUSTRALIA_REGIONS, australiaRegionPath } from "@/lib/australia-regions";
 import { MARKET_ARTICLES, MARKET_GUIDES, UK_CITY_BOOKING_TIPS } from "@/lib/market-guides";
 import { UK_HUB, ukHubFaqs } from "@/lib/uk-hub";
 import { COUNTRY_HUBS } from "@/lib/country-hubs";
@@ -28,12 +31,14 @@ const US_CITY_STATES = {
 };
 
 export async function LocationPage({ country, city }) {
+  const isAustralia = country.slug === "australia";
+  const region = isAustralia && city ? AUSTRALIA_REGIONS.find((item) => item.citySlug === city.slug) : null;
   const guide = !city ? MARKET_GUIDES[country.slug] : null;
   const article = !city ? MARKET_ARTICLES[country.slug] : null;
   const image = locationImage(country, city);
   // Country landing sections on the five indexed hubs; city pages keep the standard layout.
   const hub = !city ? COUNTRY_HUBS[country.slug] || null : null;
-  const [courses, plans, cms, fx, teachers, settings, testimonials] = await Promise.all([getQuranCourses(), getPlans(), getPage(locationCmsSlug(country, city)), getUsdRates(), hub ? getTeachers() : [], hub ? getSettings() : {}, hub ? getTestimonials() : []]);
+  const [courses, plans, cms, fx, teachers, settings, testimonials] = await Promise.all([getQuranCourses(), getPlans(), getPage(locationCmsSlug(country, city)), getUsdRates(), hub ? getTeachers() : [], hub || isAustralia ? getSettings() : {}, hub ? getTestimonials() : []]);
   const query = new URLSearchParams({ country: country.name, currency: country.currency, ...(city ? { city: city.name } : {}) });
   const breadcrumbs = locationBreadcrumbs(country, city);
   const places = schedulingLocations(country, city);
@@ -71,7 +76,7 @@ export async function LocationPage({ country, city }) {
     <PageHero path={locationPath(country, city)} eyebrow={`Learn from ${city?.name || countryInName(country)} · ${country.currency}`} title={title} intro={(!city && SEARCH_INTENTS[locationPath(country)]?.intro) || locationSearchIntro(country, city)} visual={<figure className="relative">
       <ContentImage src={image.url} alt={image.alt} priority sizes="(max-width: 639px) 90vw, (max-width: 1023px) 85vw, 600px" className="aspect-[3/2] w-full object-cover" />
       <figcaption className="flex flex-wrap items-center justify-between gap-3 bg-leaf-50 px-5 py-4 text-mushaf-900"><div className="min-w-0"><p className="text-sm font-semibold sm:text-base">Online learning for {city?.name || countryInName(country)}</p><p className="mt-1 break-words text-xs text-ink-soft">{city ? zones[0] : country.timezone} · {country.currency}</p></div><span className="rounded-full border border-leaf-200 bg-white px-3 py-1 text-xs font-semibold">Live lessons</span></figcaption>
-    </figure>}><Link className="btn btn-gold mt-6" href={`/free-trial?${query}`}>Request a free trial</Link><p className="mt-3 max-w-xl text-sm leading-relaxed text-ink-soft">{country.slug === "united-states" ? "3-day free trial with Package 1, Package 2, Package 3, Package 4 and Leisure. Weekend does not include a free trial; no card is needed." : "3-day free trial on eligible plans. No card is needed; the Weekend plan is excluded."}</p>{country.slug === "united-states" && <div className="mt-4 flex flex-wrap items-center gap-3"><a className="btn btn-outline-light" href="tel:+17869645678">Call our US team · +1 (786) 964-5678</a><Link className="text-sm font-semibold text-leaf-700 underline underline-offset-4" href="/contact">Unable to call? Contact us</Link></div>}{isUK && <a className="btn btn-outline-light mt-4" href={`tel:${UK_ADMISSIONS.phone}`}>Call our UK team · {UK_ADMISSIONS.display}</a>}</PageHero>
+    </figure>}><Link className="btn btn-gold mt-6" href={`/free-trial?${query}`}>Request a free trial</Link><p className="mt-3 max-w-xl text-sm leading-relaxed text-ink-soft">{country.slug === "united-states" ? "3-day free trial with Package 1, Package 2, Package 3, Package 4 and Leisure. Weekend does not include a free trial; no card is needed." : "3-day free trial on eligible plans. No card is needed; the Weekend plan is excluded."}</p>{country.slug === "united-states" && <div className="mt-4 flex flex-wrap items-center gap-3"><a className="btn btn-outline-light" href="tel:+17869645678">Call our US team · +1 (786) 964-5678</a><Link className="text-sm font-semibold text-leaf-700 underline underline-offset-4" href="/contact">Unable to call? Contact us</Link></div>}{isUK && <a className="btn btn-outline-light mt-4" href={`tel:${UK_ADMISSIONS.phone}`}>Call our UK team · {UK_ADMISSIONS.display}</a>}{isAustralia && <div className="mt-4"><AustraliaWhatsApp /></div>}</PageHero>
     <section className="page-wrap space-y-10 py-10 sm:py-14">
       <nav aria-label="Breadcrumb" className="flex flex-wrap gap-2 text-sm text-leaf-700">{breadcrumbs.map((item, index) => <span key={item.path} className="inline-flex gap-2">{index > 0 && <span aria-hidden="true">/</span>}{index === breadcrumbs.length - 1 ? <span aria-current="page">{item.name}</span> : <Link href={item.path} prefetch={item.path === "/" ? false : undefined}>{item.name}</Link>}</span>)}</nav>
       <dl className="grid gap-4 sm:grid-cols-3">{[
@@ -88,6 +93,23 @@ export async function LocationPage({ country, city }) {
         </nav>
       )}
       <LocationSchedule countryName={country.name} currency={country.currency} places={places} />
+      {isAustralia && (
+        <section aria-labelledby="australia-local-guide" className="surface space-y-4 p-6 sm:p-8">
+          <h2 id="australia-local-guide" className="text-2xl">{region ? `Planning lessons in ${region.name}` : "Choose a state or territory"}</h2>
+          {region ? (
+            <>
+              <p className="max-w-3xl leading-relaxed text-ink-soft">{region.tip}</p>
+              <Link href={australiaRegionPath(region.slug)} prefetch={false} className="font-semibold text-leaf-700 underline underline-offset-4">Read the {region.name} lesson guide</Link>
+            </>
+          ) : (
+            <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {AUSTRALIA_REGIONS.map((item) => <li key={item.slug}><Link href={australiaRegionPath(item.slug)} prefetch={false} className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">{item.name}</Link></li>)}
+            </ul>
+          )}
+          <Link href="/pricing?currency=AUD" prefetch={false} className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">Compare estimated fees in AUD</Link>
+          <OfficialProfileLinks social={settings["site.social"]} />
+        </section>
+      )}
       {bookingTip && (
         <section aria-labelledby="uk-city-booking-title" className="surface space-y-3 p-6 sm:p-8">
           <h2 id="uk-city-booking-title" className="text-2xl">Before your first lesson in {city.name}</h2>
