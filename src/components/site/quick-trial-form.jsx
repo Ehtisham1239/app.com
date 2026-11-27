@@ -75,15 +75,17 @@ export function QuickTrialForm({ courses = [], academic = [], plans = [], curren
   const [form, setForm] = useState(() => {
     const course = params.get("course");
     const plan = params.get("plan");
+    const country = COUNTRIES.some(([name]) => name === params.get("country")) ? params.get("country") : "";
+    const preferredZone = params.get("lesson_timezone");
     const planName = plans.find((p) => p.id === plan)?.name;
     return {
       learner_name: "",
       guardian_name: "",
       age_band: "",
-      country: COUNTRIES.some(([name]) => name === params.get("country")) ? params.get("country") : "",
+      country,
       city: params.get("city") || "",
       browser_tz: "",
-      zone_choice: "",
+      zone_choice: zonesFor(country).includes(preferredZone) ? preferredZone : "",
       phone: "",
       phone_is_whatsapp: false,
       email: "",
@@ -182,7 +184,11 @@ export function QuickTrialForm({ courses = [], academic = [], plans = [], curren
     requestLeadNotification(data, form.email.trim().toLowerCase());
     announceLeadSaved({ formType: "trial", country: form.country, reference: data?.reference, honeypot: form.website });
     const reference = typeof data?.reference === "string" && /^TR-[A-Z0-9-]{4,32}$/.test(data.reference) && data.reference !== "TR-RECEIVED" ? data.reference : "";
-    router.push("/free-trial/thank-you" + (reference ? "?ref=" + encodeURIComponent(reference) : ""));
+    const confirmation = new URLSearchParams();
+    if (reference) confirmation.set("ref", reference);
+    if (form.country === "Australia") confirmation.set("market", "AU");
+    const query = confirmation.toString();
+    router.push(query ? `/free-trial/thank-you?${query}` : "/free-trial/thank-you");
   }
 
   if (state.reference) {

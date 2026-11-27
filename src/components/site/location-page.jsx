@@ -89,21 +89,28 @@ export async function LocationPage({ country, city }) {
           <a href="#schedule-title" className="underline underline-offset-4">Check lesson times</a>
           <a href={hubFee ? "#hub-fee" : "#local-fees"} className="underline underline-offset-4">{country.currency === "AUD" ? "Monthly fee estimates in AUD" : `Monthly fees in ${country.currency}`}</a>
           <a href="#local-courses" className="underline underline-offset-4">Compare Quran courses</a>
+          {isAustralia && <a href="#australia-local-guide" className="underline underline-offset-4">{city ? "State and fee guide" : "States, territories and cities"}</a>}
           {country.slug === "united-states" ? <Link href="/usa-quran-classes/states" prefetch={false} className="underline underline-offset-4">Find online Quran classes by US state</Link> : article && <Link href={article.path} prefetch={false} className="underline underline-offset-4">{article.label}</Link>}
         </nav>
       )}
       <LocationSchedule countryName={country.name} currency={country.currency} places={places} />
       {isAustralia && (
         <section aria-labelledby="australia-local-guide" className="surface space-y-4 p-6 sm:p-8">
-          <h2 id="australia-local-guide" className="text-2xl">{region ? `Planning lessons in ${region.name}` : "Choose a state or territory"}</h2>
+          <h2 id="australia-local-guide" className="scroll-mt-24 text-2xl">{region ? `Planning lessons in ${region.name}` : "Choose a state or territory"}</h2>
           {region ? (
             <>
               <p className="max-w-3xl leading-relaxed text-ink-soft">{region.tip}</p>
               <Link href={australiaRegionPath(region.slug)} prefetch={false} className="font-semibold text-leaf-700 underline underline-offset-4">Read the {region.name} lesson guide</Link>
+              <Link href="/locations/australia#australia-local-guide" prefetch={false} className="block font-semibold text-leaf-700 underline underline-offset-4">Browse all Australian locations</Link>
             </>
           ) : (
             <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {AUSTRALIA_REGIONS.map((item) => <li key={item.slug}><Link href={australiaRegionPath(item.slug)} prefetch={false} className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">{item.name}</Link></li>)}
+              {AUSTRALIA_REGIONS.map((item) => (
+                <li key={item.slug} className="rounded-xl border border-leaf-100 bg-leaf-50/50 px-4 py-2">
+                  <Link href={australiaRegionPath(item.slug)} prefetch={false} className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">{item.name}</Link>
+                  {item.citySlug && <Link href={`/locations/australia/${item.citySlug}`} prefetch={false} className="flex min-h-11 items-center text-sm text-leaf-700 underline underline-offset-4">{item.city} lesson guide</Link>}
+                </li>
+              ))}
             </ul>
           )}
           <Link href="/pricing?currency=AUD" prefetch={false} className="inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">Compare estimated fees in AUD</Link>

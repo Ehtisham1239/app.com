@@ -18,6 +18,13 @@ test("city scheduling respects different zones and seasonal clock changes", () =
   assert.equal(schedulePreview('2026-02-30','18:00','Europe/London'),null);
   assert.equal(schedulePreview('','18:00','Europe/London'),null);
   assert.equal(schedulingLocations(getLocation('australia')).find(c=>c.slug==='perth').timezone,'Australia/Perth');
+  const australia = schedulingLocations(getLocation('australia'));
+  const planningZones = Object.fromEntries(australia.map(({ name, timezone }) => [name, timezone]));
+  assert.equal(planningZones.Hobart, 'Australia/Hobart');
+  assert.equal(planningZones.Canberra, 'Australia/Sydney');
+  assert.equal(planningZones.Darwin, 'Australia/Darwin');
+  assert.equal(schedulePreview('2026-11-20','18:00',planningZones.Hobart).utc, '2026-11-20T07:00:00.000Z');
+  assert.equal(schedulePreview('2026-11-20','18:00',planningZones.Darwin).utc, '2026-11-20T08:30:00.000Z');
 });
 test("all location currencies are editable without creating or converting prices",()=>{
   for(const c of LOCATIONS)assert.ok(CURRENCIES.includes(c.currency),c.currency);

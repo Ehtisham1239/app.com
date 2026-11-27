@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AustraliaWhatsApp } from "@/components/site/australia-contact";
 import { CmsPageSchema } from "@/components/site/custom-code";
 
 export const metadata = {
@@ -24,7 +25,8 @@ export default async function TrialThankYouPage({ searchParams }) {
         {reference && <p className="mt-5 inline-flex rounded-full bg-gold-50 px-4 py-2 font-mono text-sm font-semibold text-gold-700 ring-1 ring-gold-100">Reference: {reference}</p>}
         <div className="mt-7 flex flex-wrap justify-center gap-3">
           <Link href="/courses" className="btn btn-primary">Explore courses</Link>
-          <Link href="/" className="btn btn-outline">Return to homepage</Link>
+          {params?.market === "AU" && <AustraliaWhatsApp />}
+          <Link href={params?.market === "AU" ? "/locations/australia" : "/"} className="btn btn-outline">{params?.market === "AU" ? "Back to Australia lesson guides" : "Return to homepage"}</Link>
         </div>
       </section>
     </main>

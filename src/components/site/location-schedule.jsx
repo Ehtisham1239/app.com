@@ -9,7 +9,9 @@ export function LocationSchedule({ countryName, currency, places }) {
   const [time, setTime] = useState("18:00");
   const place = places.find((p) => p.slug === citySlug) || places[0];
   const result = place && date ? schedulePreview(date, time, place.timezone) : null;
+  const invalidSelection = Boolean(date && !result);
   const query = new URLSearchParams({ country: countryName, currency, ...(place ? { city: place.name } : {}), ...(result ? { lesson_date: date, lesson_time: time, lesson_timezone: place.timezone } : {}) });
+  if (place) query.set("lesson_timezone", place.timezone);
   return <section className="surface space-y-5 p-6 sm:p-8" aria-labelledby="schedule-title">
     <h2 id="schedule-title" className="scroll-mt-24 text-2xl">Plan a lesson in your local time</h2>
     <p className="text-ink-soft">Choose your city, a date and a time that works for you. We’ll include those details with your trial request so Admissions can check teacher availability.</p>
@@ -18,6 +20,6 @@ export function LocationSchedule({ countryName, currency, places }) {
       <div><label className="field-label" htmlFor="schedule-time">Preferred local time</label><input id="schedule-time" className="input" type="time" value={time} onChange={(e) => setTime(e.target.value)} /></div></div>
     <div aria-live="polite" className="space-y-2 text-sm text-ink-soft"><p>Local time zone: <strong>{place?.timezone}</strong>. Local clock rules are applied for the date you choose.</p>
       {date && (result ? <><p>{place?.name}: <strong>{result.local}</strong></p><p>College coordination time: <strong>{result.comparison}</strong></p>{result.ambiguous && <p>This time occurs twice when clocks change. Confirm the UTC offset with the coordinator before booking.</p>}</> : <p role="alert">Choose a valid date and time. A clock change may skip this local time; try a different time.</p>)}</div>
-    <Link prefetch={false} className="btn btn-primary" href={`/free-trial?${query}`}>Register for free in {place?.name || countryName}</Link>
+    {invalidSelection ? <button type="button" className="btn btn-primary" disabled>Choose a valid lesson time</button> : <Link prefetch={false} className="btn btn-primary" href={`/free-trial?${query}`}>Continue to trial request</Link>}
   </section>;
 }
