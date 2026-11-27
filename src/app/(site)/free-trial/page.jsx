@@ -19,10 +19,10 @@ export const revalidate = 3600;
 const COVER = heroArt("/free-trial");
 
 export const metadata = contentMetadata({
-  seo_title: "Free Online Quran Trial Classes | Online Quran College",
+  seo_title: "Free 3-Day Online Quran Trial | Live One-to-One",
   cover_url: COVER.src,
   cover_alt: COVER.alt,
-}, { path: "/free-trial", description: "Request a 3-day free trial of one-to-one online Quran lessons for children or adults. No card needed on eligible plans. The Weekend plan is excluded." });
+}, { path: "/free-trial", description: "Request a 3-day online Quran trial for a child or adult. Choose a preferred time and meet a teacher one-to-one. No card needed on eligible plans." });
 
 // What families ask before booking; every answer restates what the page and the
 // steps already promise (no new claims). Shown below the form and as FAQPage data.

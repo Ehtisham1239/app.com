@@ -14,7 +14,7 @@ import { INDEXED_MARKETS, getLocation, locationPath } from "@/lib/locations";
 
 export const revalidate = 3600;
 
-export const metadata = contentMetadata({ title: "Online Quran Class Fees & Sibling Pricing", seo_noindex: false }, { path: "/pricing", description: "Compare one-to-one Quran class fees for the UK, USA, Canada, Australia and UAE. Estimate sibling tuition and check 3-day trial eligibility." });
+export const metadata = contentMetadata({ title: "Online Quran Class Fees, Plans & Sibling Pricing", seo_noindex: false }, { path: "/pricing", description: "Compare monthly online Quran class fees for the UK, USA, Canada, Australia and UAE. Check lesson lengths, sibling totals and 3-day trial eligibility." });
 
 // No searchParams here: the page stays statically cached; ?currency= is read in the browser.
 export default async function PricingPage() {

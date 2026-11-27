@@ -12,7 +12,7 @@ import { safeJsonLd, STATIC_PAGES_REVIEWED } from "@/lib/seo";
 
 export const revalidate = 3600;
 
-export const metadata = contentMetadata({ title: "Online Quran Courses for Kids & Adults", seo_noindex: false }, { path: "/courses", description: "Compare live one-to-one Quran courses for kids and adults. Start with Noorani Qaida, improve recitation with Tajweed or build a Hifz revision routine." });
+export const metadata = contentMetadata({ title: "Online Quran Courses: Noorani Qaida, Tajweed & Hifz", seo_noindex: false }, { path: "/courses", description: "Find the right live Quran course for your level. Start with Arabic letters, practise recitation with Tajweed or compare Hifz and revision options." });
 
 const internationalGuides = [
   ["/blog/online-quran-class-fees-uk-comparison", "the UK", "Compare online Quran lesson fees and what packages cover."],
