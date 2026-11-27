@@ -938,10 +938,10 @@ export function locationBreadcrumbs(country, city) {
 
 export function locationSearchIntro(country, city) {
   const place = city ? `${city.name}, ${country.name}` : country.name;
-  if (arabicFirst(country, city)) return `Live one-to-one online Arabic classes in ${countryInName(country)} for adults and kids: from the alphabet to Quranic Arabic grammar, plus Quran reading and Tajweed. Book a 3-day free trial.`;
+  if (arabicFirst(country, city)) return `Live one-to-one online Arabic classes in ${countryInName(country)} for kids and adults. Start with Arabic letters or Quranic Arabic, and ask about trial eligibility.`;
   return city
-    ? `Live one-to-one online Quran and Arabic classes in ${place} for kids and adults: Noorani Qaida, Tajweed, Hifz and Quranic Arabic, planned in ${locationTimeZone(country, city)}. Book a 3-day free trial.`
-    : `Live one-to-one online Quran and Arabic classes for families in ${countryInName(country)}: Noorani Qaida, Tajweed, Hifz and Quranic Arabic at local class times. Book a 3-day free trial.`;
+    ? `Live one-to-one online Quran and Arabic classes in ${place} for kids and adults: Noorani Qaida, Tajweed, Hifz and Quranic Arabic, with lessons planned in your local time. Ask which plans include a free trial.`
+    : `Live one-to-one online Quran and Arabic classes for families in ${countryInName(country)}: Noorani Qaida, Tajweed, Hifz and Quranic Arabic at local class times. Ask which plans include a free trial.`;
 }
 
 // Pathway decision (26–28 Oct 2026): only the country hubs for approved markets
@@ -949,7 +949,7 @@ export function locationSearchIntro(country, city) {
 // unless the CMS row explicitly says otherwise (after local proof is added).
 // Last substantive change to the shared location-page template (guides, FAQs, intros,
 // schema). Update when that code changes so sitemap lastmod reflects the visible page.
-export const LOCATION_TEMPLATE_UPDATED = "2026-11-18";
+export const LOCATION_TEMPLATE_UPDATED = "2026-11-28";
 export const locationLastModified = (page, guideUpdatedAt) => [page?.updated_at, LOCATION_TEMPLATE_UPDATED, guideUpdatedAt].filter(Boolean).map((d) => new Date(d)).filter((d) => !Number.isNaN(d.getTime())).sort((a, b) => b - a)[0].toISOString();
 export const INDEXED_MARKETS = ["united-kingdom", "united-states", "australia", "canada", "united-arab-emirates"];
 // hreflang for the five country hubs: same service, one English page per market, so
