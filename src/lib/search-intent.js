@@ -65,12 +65,12 @@ export const SEARCH_INTENTS = {
     "phrase": "online Quran classes in the UK",
     "heading": "Online Quran classes in the UK",
     "description": "Live one-to-one online Quran classes in the UK for children and adults. Plan around GMT or BST, compare courses and ask for a written GBP fee quote.",
-    "intro": "Learn Quran online in the UK with live one-to-one classes for children and adults. Suggest a time after school or work in GMT or British Summer Time. Choose a starting point in Noorani Qaida, Tajweed or Hifz, and ask Admissions for a written GBP quote."
+    "intro": "Learn Quran online in the UK with a teacher who listens to your recitation. Start with Noorani Qaida, work on Tajweed or plan Hifz. Use the actual date to check GMT or British Summer Time, then compare GBP fees before booking."
   },
   "/locations/canada": {
     "phrase": "online Quran classes in Canada",
     "heading": "Online Quran classes in Canada",
-    "intro": "Live one-to-one online Quran lessons for children and adults across Canadian provinces and time zones. Choose the learner's city and lesson date, explore Noorani Qaida, Tajweed and Hifz, and request a written fee quote in USD. Use your city’s local clock when you suggest a time after school or work."
+    "intro": "Find live one-to-one Quran lessons in Canada for children and adults. Use your own city and date rather than assuming Toronto time. Ask for the total in USD and check what your payment provider would charge in CAD."
   },
   "/locations/australia": {
     "phrase": "online Quran classes in Australia",
