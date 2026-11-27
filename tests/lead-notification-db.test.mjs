@@ -12,7 +12,7 @@ const as = async (name) => db.exec(`reset role; set role ${name};`);
 const one = async (text, params = []) => (await db.query(text, params)).rows[0];
 let course;
 
-const trial = async (email = "parent@example.test", landing = "/free-trial") => {
+const trial = async (email = "parent@example.test", landing = "/free-trial", overrides = {}) => {
   await as("anon");
   const payload = {
     learner_name: "Test Learner", guardian_name: "Test Parent", email,
@@ -20,15 +20,17 @@ const trial = async (email = "parent@example.test", landing = "/free-trial") => 
     age_band: "child_8_12", course_id: course.id, teacher_gender_pref: "any",
     notes: "Synthetic database test", consent: true, source: "website",
     utm: { landing_page: landing },
+    ...overrides,
   };
   return (await one("select public.submit_trial_application($1::jsonb) as r", [payload])).r;
 };
-const contact = async (email = "contact@example.test") => {
+const contact = async (email = "contact@example.test", overrides = {}) => {
   await as("anon");
   const payload = {
     name: "Test Parent", email, phone: "+15552345678", country: "United States",
     city: "Denver", subject: "Course enquiry", message: "Please explain online class times.",
     consent: true, source: "website", utm: { utm_source: "google" },
+    ...overrides,
   };
   return (await one("select public.submit_contact_message_with_notification($1::jsonb) as r", [payload])).r;
 };
@@ -150,4 +152,52 @@ test("only the just-submitted lead's proof can record its CRM status, and only s
   await as("anon");
   await assert.rejects(db.query("select * from public.lead_crm_sync"), /permission denied/);
   await assert.rejects(db.query("insert into public.lead_crm_sync (reference, status) values ('MSG-2026-99999', 'synced')"), /permission denied/);
+});
+
+test("repeated trial details create one lead while siblings and schedule changes still save", async () => {
+  await as("postgres");
+  await db.query("select set_config('request.headers', $1, false)", ['{"x-forwarded-for":"192.0.2.21"}']);
+  const email = "repeat-trial@example.test";
+  const original = await trial(email, "/free-trial", { preferred_times: ["evening"] });
+  assert.match(original.notification_token, /^[0-9a-f]{64}$/);
+
+  const repeated = await trial(email.toUpperCase(), "/usa-quran-classes", { preferred_times: ["evening"] });
+  assert.equal(repeated.ok, true);
+  assert.equal(repeated.reference, "TR-RECEIVED");
+  assert.equal(repeated.notification_token, undefined);
+
+  const sibling = await trial(email, "/free-trial", {
+    learner_name: "Test Sibling", preferred_times: ["evening"],
+  });
+  const changed = await trial(email, "/free-trial", { preferred_times: ["morning"] });
+  assert.match(sibling.notification_token, /^[0-9a-f]{64}$/);
+  assert.match(changed.notification_token, /^[0-9a-f]{64}$/);
+  await as("postgres");
+  const siblingRow = await one("select duplicate_of_id from public.trial_applications where reference = $1", [sibling.reference]);
+  assert.equal(siblingRow.duplicate_of_id, null);
+  await db.query("update public.trial_applications set created_at = now() - interval '25 hours' where reference = $1", [original.reference]);
+  const later = await trial(email, "/free-trial", { preferred_times: ["evening"] });
+  assert.match(later.notification_token, /^[0-9a-f]{64}$/);
+  await as("postgres");
+  const saved = await one("select count(*)::int as count from public.trial_applications where email = $1", [email]);
+  assert.equal(saved.count, 4);
+});
+
+test("contact retries create one lead and changed messages still save", async () => {
+  await as("postgres");
+  await db.query("select set_config('request.headers', $1, false)", ['{"x-forwarded-for":"192.0.2.22"}']);
+  const email = "repeat-contact@example.test";
+  const original = await contact(email);
+  assert.match(original.notification_token, /^[0-9a-f]{64}$/);
+
+  const repeated = await contact(email.toUpperCase(), { utm: { utm_source: "newsletter" } });
+  assert.equal(repeated.ok, true);
+  assert.equal(repeated.reference, "MSG-RECEIVED");
+  assert.equal(repeated.notification_token, undefined);
+
+  const changed = await contact(email, { message: "Can I also arrange a weekend lesson?" });
+  assert.match(changed.notification_token, /^[0-9a-f]{64}$/);
+  await as("postgres");
+  const saved = await one("select count(*)::int as count from public.contact_messages where email = $1", [email]);
+  assert.equal(saved.count, 2);
 });

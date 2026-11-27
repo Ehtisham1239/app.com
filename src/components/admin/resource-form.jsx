@@ -3,7 +3,7 @@
 import { validCanonical } from "@/lib/seo";
 import { SeoPreview } from "@/components/admin/seo-preview";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 import { ExternalLink, Loader2, Plus, Save, Trash2 } from "lucide-react";
 import { clsx } from "clsx";
@@ -130,6 +130,7 @@ export function ResourceForm({ rkey, id }) {
   const [form, setForm] = useState(isNew ? { ...cfg.defaults } : null);
   const [slugTouched, setSlugTouched] = useState(!isNew);
   const [saving, setSaving] = useState(false);
+  const saveInProgress = useRef(false);
   const [dirty, setDirty] = useState(false);
   const record = useLoad(() => (isNew ? { data: null } : db().from(cfg.table).select("*").eq("id", id).maybeSingle()), [rkey, id]);
 
@@ -181,6 +182,7 @@ export function ResourceForm({ rkey, id }) {
 
   const save = async (e) => {
     e?.preventDefault();
+    if (!canEdit || saveInProgress.current) return;
     for (const f of cfg.fields) {
       const v = form[f.name];
       if (f.required && (v === null || v === undefined || v === "" || (Array.isArray(v) && !v.length))) {
@@ -200,7 +202,9 @@ export function ResourceForm({ rkey, id }) {
     }
     if (cfg.statusField) payload.scheduled_at = form.status === "scheduled" ? form.scheduled_at : null;
     if (cfg.defaults.locale) payload.locale = form.locale || cfg.defaults.locale;
+    saveInProgress.current = true;
     setSaving(true);
+    let navigatingToSavedRecord = false;
     try {
       if (isNew) {
         const { data, error } = await db().from(cfg.table).insert(payload).select("id").single();
@@ -209,6 +213,7 @@ export function ResourceForm({ rkey, id }) {
         toast.success("Saved");
         refreshSite();
         router.replace(`/admin/${rkey}/${data.id}`);
+        navigatingToSavedRecord = true;
       } else {
         let q = db().from(cfg.table).update(payload).eq("id", id);
         if (form.version !== undefined) q = q.eq("version", form.version);
@@ -223,7 +228,10 @@ export function ResourceForm({ rkey, id }) {
     } catch (err) {
       notifyError(err);
     } finally {
-      setSaving(false);
+      if (!navigatingToSavedRecord) {
+        saveInProgress.current = false;
+        setSaving(false);
+      }
     }
   };
 
