@@ -49,7 +49,7 @@ export function TrialHeadingView({ eligible = true, planName, subjectName }) {
     <>
       <p className="text-xs font-bold uppercase tracking-[0.24em] text-gold-700">{eligible ? "Free trial" : subjectName ? "Subject request" : "Package enquiry"}</p>
       <h1 id="trial-title" className="mt-2 text-[clamp(1.9rem,4.6vw,3rem)] leading-[1.1] text-mushaf-900">{eligible ? <>Book a free <span className="text-leaf-700">3-day</span> trial</> : `Enquire about ${subjectName || planName}`}</h1>
-      <p className="mt-3 max-w-xl text-[1.02rem] leading-relaxed text-mushaf-900/85">{eligible ? "Request a free online Quran trial with 3 days of live one-to-one classes. A coordinator will arrange a time that suits your family." : subjectName ? "Send a request for this subject. Admissions confirms the tutor, the time, the fee and whether a trial class is available. Nothing is booked until admissions confirms it." : "This package is not eligible for a free trial. Ask the coordinator about its schedule and terms before enrolling."}</p>
+      <p className="mt-3 max-w-xl text-[1.02rem] leading-relaxed text-mushaf-900/85">{eligible ? "Tell us what you or your child can read and when you’re free. After you send the form, a coordinator will contact you to agree on a time for your live one-to-one lessons." : subjectName ? "Send a request for this subject. Admissions confirms the tutor, the time, the fee and whether a trial class is available. Nothing is booked until admissions confirms it." : "This package is not eligible for a free trial. Ask the coordinator about its schedule and terms before enrolling."}</p>
     </>
   );
 }

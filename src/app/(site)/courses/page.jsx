@@ -29,9 +29,9 @@ const learningGoals = [
 ];
 
 const startingPoints = [
-  { slug: "noorani-qaida", label: "Start with Arabic letters", detail: "For learners who are recognising letters or joining sounds.", Icon: BookA, tone: 1 },
-  { slug: "quran-nazara", label: "Read with confidence", detail: "For readers working on pronunciation, fluency and Tajweed.", Icon: BookOpen, tone: 2 },
-  { slug: "hifz-quran", label: "Work on memorisation", detail: "For learners building their Hifz and revision routine.", Icon: BookMarked, tone: 3 },
+  { slug: "noorani-qaida", label: "Start with Arabic letters", detail: "Practise recognising letters, short vowels and the way letters join.", Icon: BookA, tone: 1 },
+  { slug: "quran-nazara", label: "Read with confidence", detail: "Read a short passage aloud and get feedback on pronunciation and fluency.", Icon: BookOpen, tone: 2 },
+  { slug: "hifz-quran", label: "Work on memorisation", detail: "Make room for both new verses and revision of what you already know.", Icon: BookMarked, tone: 3 },
 ];
 
 export default async function CoursesPage() {
@@ -57,7 +57,7 @@ export default async function CoursesPage() {
         }}
         title="Online Quran courses for every age and level"
         arabic="تَعَلَّمِ القُرْآن"
-        intro="Compare live one-to-one Quran lessons by learning goal. During a trial, discuss the learner’s starting level and a suitable pace."
+        intro="Still learning the Arabic letters? Start with Noorani Qaida. Already reading? Explore Tajweed or Hifz. A trial helps you and the teacher find the right pace."
       >
         <div className="mt-8 flex flex-wrap gap-3">
           <a href="#all-courses" className="btn btn-gold">

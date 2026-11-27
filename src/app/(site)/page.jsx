@@ -63,7 +63,7 @@ export default async function HomePage() {
             align="left"
             eyebrow="Our courses"
             title={<span id="courses-heading">Our popular courses</span>}
-            intro="Personal lessons, paced around your learner’s starting level."
+            intro="Learning the letters, improving recitation, or starting Hifz? Choose the course that fits what you can do today."
           />
           <Link href="/courses" className="btn btn-outline">
             All courses <ArrowRight className="size-4" aria-hidden="true" />
@@ -84,7 +84,7 @@ export default async function HomePage() {
       <section id="how-it-works" className="relative scroll-mt-24 overflow-hidden bg-white py-16 sm:py-24">
         <div className="pattern-girih pointer-events-none absolute inset-0 opacity-[0.07]" aria-hidden="true" />
         <div className="page-wrap relative">
-          <SectionHeading eyebrow="Quick onboarding" title="How it works" intro="Three simple steps from your first message to regular classes." />
+          <SectionHeading eyebrow="Quick onboarding" title="How it works" intro="Share your goals and a time that suits you. A coordinator helps you arrange the first lesson." />
           <div className="mt-14">
             <Steps steps={settings["site.steps"]} tone="light" />
           </div>
@@ -101,7 +101,7 @@ export default async function HomePage() {
           <SectionHeading
             eyebrow="The OQC learning approach"
             title={<span id="oqc-learning-framework">A clear path from first lesson to steady progress</span>}
-            intro="A simple learning cycle helps students and families understand what happens before, during and after a lesson."
+            intro="See what the teacher will listen for in class, what you can practise at home, and how feedback guides the next lesson."
           />
           <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {[
@@ -159,7 +159,7 @@ export default async function HomePage() {
           <SectionHeading
             eyebrow="Why families choose us"
             title="Why choose Online Quran College?"
-            intro="Explore online learning for children and adults, with course choices and class times discussed around your family’s routine."
+            intro="Find a teacher and a weekly lesson time that work around school, work or family commitments."
           />
           <div className="mt-12">
             <Benefits items={settings["site.benefits"]?.slice(0, 3)} />

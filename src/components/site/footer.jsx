@@ -1,6 +1,7 @@
 import { NavigationLink as Link } from "@/components/site/navigation-link";
 import { ArrowUpRight, Mail, MessageCircle, Phone } from "@/components/site/icons";
 import { whatsappLink } from "@/lib/format";
+import { US_ADMISSIONS } from "@/components/site/chrome";
 import { MarketingCookieSettingsLink } from "@/components/site/marketing-cookie-settings-link";
 
 const SOCIAL_LABELS = { facebook: "Facebook", instagram: "Instagram", x: "X (Twitter)", youtube: "YouTube", tiktok: "TikTok", trustpilot: "Trustpilot" };
@@ -48,7 +49,7 @@ export function SiteFooter({ settings, menus, marketingCookiesEnabled = false })
           </figcaption>
         </figure>
         <div className="footer-invitation flex flex-wrap items-center justify-between gap-5 rounded-3xl border border-leaf-200 bg-white/80 p-6 sm:p-8">
-          <div><h2 className="max-w-xl text-2xl text-mushaf-900 sm:text-3xl">Find a Quran class that fits your schedule</h2><p className="mt-3 max-w-xl text-sm text-ink-soft">Tell us what you’d like to learn and when you’re available.</p></div>
+          <div><h2 className="max-w-xl text-2xl text-mushaf-900 sm:text-3xl">Find a Quran class that fits your schedule</h2><p className="mt-3 max-w-xl text-sm text-ink-soft">Share what you can read now and a time that works. We’ll help you choose a starting point.</p></div>
           <Link href="/free-trial" className="btn btn-gold">Register for free <ArrowUpRight className="size-4" aria-hidden="true" /></Link>
         </div>
       </div>
@@ -67,12 +68,15 @@ export function SiteFooter({ settings, menus, marketingCookiesEnabled = false })
                 <Phone className="size-4 shrink-0 text-leaf-700" aria-hidden="true" /> <span>{contact.phone}</span>
               </a>
             )}
+            <a href={`tel:${US_ADMISSIONS.phone}`} className="footer-contact-link">
+              <Phone className="size-4 shrink-0 text-leaf-700" aria-hidden="true" /> <span>US admissions · {US_ADMISSIONS.display}</span>
+            </a>
             {wa && (
               <a href={wa} target="_blank" rel="noopener noreferrer" className="footer-contact-link">
                 <MessageCircle className="size-4 shrink-0 text-leaf-700" aria-hidden="true" /> WhatsApp
               </a>
             )}
-            <p className="py-2 text-sm text-ink-soft">Online-only academy · no walk-in office</p>
+            <p className="py-2 text-sm text-ink-soft">Live online classes for children and adults</p>
           </div>
         </div>
         <div className="footer-navigation grid min-w-0 grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-3 sm:gap-8 lg:col-span-8">

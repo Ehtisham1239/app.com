@@ -6,6 +6,7 @@ import { SITE_URL } from "@/lib/config";
 import { safeJsonLd, faqSchema, breadcrumbSchema } from "@/lib/seo";
 import { contentMetadata, publicImageUrl } from "@/lib/seo-metadata";
 import { courseSchema } from "@/lib/course-schema";
+import { SEARCH_INTENTS } from "@/lib/search-intent";
 import { courseHeading } from "@/lib/course-heading";
 import { courseReading } from "@/lib/course-reading";
 import Link from "next/link";
@@ -56,7 +57,7 @@ export default async function CoursePage({ params }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema([{ name: "Courses", path: "/courses" }, { name: course.title, path: `/courses/${course.slug}` }], SITE_URL)) }} />
       {[...courseFaqs, ...generalFaqs].length > 0 && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema([...courseFaqs, ...generalFaqs])) }} />}
       {jsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }} />}
-      <PageHero path={`/courses/${course.slug}`} eyebrow="Live one-to-one course" title={courseHeading(course)} intro={truncate(course.summary || "", 180)} arabic={course.arabic_title} imageOverride={!course.cover_url && isAcademicCourse(course) ? ACADEMIC_HERO : undefined} visual={course.cover_url ? <ContentImage src={course.cover_url} alt={course.cover_alt} priority sizes="(max-width: 1024px) 100vw, 600px" className="aspect-[3/2] w-full object-cover" /> : undefined}>
+      <PageHero path={`/courses/${course.slug}`} eyebrow="Live one-to-one course" title={courseHeading(course)} intro={SEARCH_INTENTS[`/courses/${course.slug}`]?.intro || truncate(course.summary || "", 180)} arabic={course.arabic_title} imageOverride={!course.cover_url && isAcademicCourse(course) ? ACADEMIC_HERO : undefined} visual={course.cover_url ? <ContentImage src={course.cover_url} alt={course.cover_alt} priority sizes="(max-width: 1024px) 100vw, 600px" className="aspect-[3/2] w-full object-cover" /> : undefined}>
         <nav aria-label="Breadcrumb" className="mt-5 text-sm text-ink-soft"><Link href="/courses" className="underline">Courses</Link> / <span aria-current="page">{course.title}</span></nav>
         <div className="mt-6 flex flex-wrap gap-3"><Link href={`/free-trial?course=${course.id}`} className="btn btn-gold">{academic ? "Send a request" : "Register for free"} <ArrowRight className="size-5" aria-hidden="true" /></Link>{wa && <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-outline-light"><MessageCircle className="size-5" aria-hidden="true" /> Ask a question</a>}</div>
       </PageHero>

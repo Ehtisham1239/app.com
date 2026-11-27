@@ -1,7 +1,8 @@
 import { contentMetadata } from "@/lib/seo-metadata";
 import { ArrowRight, BookOpen, Clock3, HelpCircle, Mail, MessageCircle, Phone, Send } from "@/components/site/icons";
 import { NavigationLink as Link } from "@/components/site/navigation-link";
-import { PageHero } from "@/components/site/chrome";
+import { OfficialProfileLinks } from "@/components/site/social-links";
+import { PageHero, US_ADMISSIONS } from "@/components/site/chrome";
 import { ContactForm } from "@/components/site/contact-form";
 import { getSettings } from "@/lib/site-data";
 import { whatsappLink } from "@/lib/format";
@@ -25,7 +26,8 @@ export default async function ContactPage() {
   const wa = whatsappLink(contact.whatsapp, "Assalamu alaikum, I have a question about Online Quran College.");
   const cards = [
     wa && { icon: MessageCircle, label: "WhatsApp", value: "Chat with an advisor", href: wa, external: true, highlight: true, detail: "Ask about availability, teacher preferences or class times" },
-    contact.phone && { icon: Phone, label: "Call us", value: contact.phone, href: `tel:${contact.phone.replace(/[^+\d]/g, "")}`, detail: "Discuss enrolment or an existing class with our team" },
+    contact.phone && { icon: Phone, label: "Call our UK team", value: contact.phone, href: `tel:${contact.phone.replace(/[^+\d]/g, "")}`, detail: "Discuss enrolment or an existing class with our team" },
+    { icon: Phone, label: "Call our US team", value: US_ADMISSIONS.display, href: `tel:${US_ADMISSIONS.phone}`, detail: "Ask about courses, USD fees and a lesson time in your US time zone" },
     contact.email && { icon: Mail, label: "Email", value: contact.email, href: `mailto:${contact.email}`, detail: "Send a detailed enquiry about lessons or fees" },
   ].filter(Boolean);
 
@@ -37,7 +39,7 @@ export default async function ContactPage() {
         "@id": `${SITE_URL}/contact#webpage`, url: `${SITE_URL}/contact`, name: "Contact Online Quran College",
         isPartOf: { "@id": `${SITE_URL}/#website` }, mainEntity: { "@id": `${SITE_URL}/#organization` },
       }) }} />
-      <PageHero immersive features={false} art="/contact" eyebrow="Admissions and student support" title="Contact Online Quran College" intro="Ask our team about Quran courses, fees, teacher preferences or class times. If you already study with us, you can also get help with your lessons.">
+      <PageHero immersive features={false} art="/contact" eyebrow="Admissions and student support" title="Contact Online Quran College" intro="Tell us what you’d like to learn, when you’re free, or what you need help with in an existing class. We’ll help you work out the next step.">
         <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           {wa && <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-gold btn-lg"><MessageCircle className="size-5" />Chat on WhatsApp<ArrowRight className="size-4" /></a>}
           <a href="#send-message" className="btn btn-outline-light btn-lg"><Send className="size-4" />Send an enquiry</a>
@@ -51,7 +53,7 @@ export default async function ContactPage() {
           <div id="contact-options" className="mb-6 scroll-mt-24">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-leaf-700">Direct contact</p>
             <h2 className="mt-2 text-[1.8rem] text-mushaf-900">WhatsApp, phone and email</h2>
-            <p className="mt-3 leading-relaxed text-ink-soft">Use WhatsApp for a quick question, call to talk through your options, or use email or the enquiry form to share details.</p>
+            <p className="mt-3 leading-relaxed text-ink-soft">Send a quick question on WhatsApp, call the UK or US team, or use the form if you’d like to explain your plans in more detail.</p>
           </div>
           <div className="space-y-3">
             {cards.map(({ icon: Icon, label, value, href, external, highlight, detail }) => {
@@ -76,7 +78,10 @@ export default async function ContactPage() {
               );
             })}
           </div>
-          <p className="mt-4 text-sm leading-relaxed text-ink-soft">Classes are online. Our team will help you find a lesson time in your time zone.</p>
+          <div className="mt-6 space-y-3">
+            <h3 className="font-semibold text-mushaf-900">Find us online</h3>
+            <OfficialProfileLinks social={settings["site.social"]} />
+          </div>
           <div className="mt-6 rounded-[var(--radius-card)] border border-leaf-100 bg-leaf-50 p-5">
             <h3 className="font-semibold text-mushaf-900">Enquiring about your first class?</h3>
             <p className="mt-2 text-sm leading-relaxed text-ink-soft">A free trial is a simple way to discuss the learner’s level, course goals and teacher preference before deciding on a suitable learning plan.</p>
