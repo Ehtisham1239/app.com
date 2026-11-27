@@ -91,9 +91,9 @@ test("wrong token, email, source page, expiry, deletion or guessed reference ret
   assert.equal(bot.notification_token, undefined);
 });
 
-test("a repeat request names the earlier reference so staff do not handle it twice", async () => {
+test("an updated request from the same learner still names the earlier reference", async () => {
   const first = await submit({ email: "repeat@example.test", phone: "+15552340005" });
-  const second = await submit({ email: "repeat@example.test", phone: "+15552340005" });
+  const second = await submit({ email: "repeat@example.test", phone: "+15552340005", notes: "Updated lesson preferences for the same learner." });
   const row = await lookup(second, "repeat@example.test");
   assert.equal(row.repeat_of, first.reference);
   assert.ok(row.repeat_of_created_at);
