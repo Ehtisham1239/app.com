@@ -11,7 +11,8 @@ test("USA country hub answers US searches: kids, adults, new Muslims, English, T
   const intent = SEARCH_INTENTS["/locations/united-states"];
   assert.match(intent.intro, /^Find online Quran classes in the USA/);
   assert.match(intent.intro, /Eastern, Central, Mountain or Pacific/);
-  assert.match(intent.intro, /no US office or local branch/);
+  assert.match(intent.intro, /live one-to-one lessons from home/);
+  assert.doesNotMatch(intent.intro, /visit our|in-person classes|at our branch/i);
   assert.equal(US_HUB.feeQuestion, "How much do online Quran classes cost in the USA?");
   assert.equal(US_HUB.steps.length, 3);
   assert.match(US_HUB.steps[2].text, /Weekend plan is excluded/);
