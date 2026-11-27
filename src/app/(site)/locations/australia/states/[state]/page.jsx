@@ -32,7 +32,7 @@ export async function generateMetadata({ params }) {
 export default async function AustraliaRegionPage({ params }) {
   const [region, settings] = await Promise.all([getRegion(params), getSettings()]);
   const path = australiaRegionPath(region.slug);
-  const query = new URLSearchParams({ country: "Australia", currency: "AUD", city: region.city });
+  const query = new URLSearchParams({ country: "Australia", currency: "AUD", city: region.city, lesson_timezone: region.timezone });
   const places = [{ slug: region.citySlug || region.slug, name: region.city, timezone: region.timezone }];
 
   return (
@@ -45,18 +45,25 @@ export default async function AustraliaRegionPage({ params }) {
         <p className="mt-3 text-sm text-ink-soft">Eligible plans include a 3-day free trial. The Weekend plan is excluded.</p>
       </PageHero>
       <div className="page-wrap space-y-8 py-10 sm:py-14">
-        <nav aria-label="Breadcrumb" className="text-sm"><Link href="/locations/australia" className="text-leaf-700 underline underline-offset-4">Australia lesson guides</Link> / <span aria-current="page">{region.name}</span></nav>
+        <nav aria-label="Breadcrumb" className="text-sm"><Link href="/locations/australia#australia-local-guide" className="text-leaf-700 underline underline-offset-4">Australia lesson guides</Link> / <span aria-current="page">{region.name}</span></nav>
         <section className="surface space-y-3 p-6 sm:p-8">
           <h2 className="text-2xl">Choose a time that works each week</h2>
           <p className="text-ink-soft">{region.zone}</p>
           <p className="text-ink-soft">{region.tip}</p>
         </section>
+        <nav aria-label="Plan lessons in this region" className="flex flex-wrap gap-x-5 gap-y-3 text-sm font-semibold text-leaf-700">
+          <a href="#schedule-title" className="underline underline-offset-4">Check lesson times</a>
+          <a href="#australia-enrolment" className="underline underline-offset-4">Courses and estimated fees</a>
+          <Link href="/blog/quran-lessons-australia-time-zones" prefetch={false} className="underline underline-offset-4">Australian time-zone guide</Link>
+        </nav>
         <LocationSchedule countryName="Australia" currency="AUD" places={places} />
         <section className="surface space-y-4 p-6 sm:p-8">
-          <h2 className="text-2xl">Before enrolling</h2>
+          <h2 id="australia-enrolment" className="scroll-mt-24 text-2xl">Before enrolling</h2>
           <p className="text-ink-soft">Tell the teacher what the learner can read now. Ask whether Noorani Qaida, Tajweed or Hifz is a suitable starting point, and check the lesson length, monthly AUD total, and rescheduling terms.</p>
           <div className="flex flex-wrap gap-4">
-            <Link href="/courses" className="font-semibold text-leaf-700 underline underline-offset-4">Compare courses</Link>
+            <Link href="/courses/noorani-qaida" className="font-semibold text-leaf-700 underline underline-offset-4">Start with Noorani Qaida</Link>
+            <Link href="/courses/tajweed" className="font-semibold text-leaf-700 underline underline-offset-4">Practise Tajweed</Link>
+            <Link href="/courses/hifz-quran" className="font-semibold text-leaf-700 underline underline-offset-4">Explore Hifz</Link>
             <Link href="/pricing?currency=AUD" className="font-semibold text-leaf-700 underline underline-offset-4">Compare estimated AUD fees</Link>
             {region.citySlug && <Link href={`/locations/australia/${region.citySlug}`} className="font-semibold text-leaf-700 underline underline-offset-4">{region.city} classes and fees</Link>}
           </div>

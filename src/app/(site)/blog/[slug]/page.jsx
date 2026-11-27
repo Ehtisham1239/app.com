@@ -129,6 +129,7 @@ export default async function PostPage({ params }) {
   const [posts, settings, quick] = await Promise.all([getPosts(50), getSettings(), articleNeedsAnswer(post.slug) ? Promise.all([getPlans(), getUsdRates()]).then(([plans, fx]) => articleAnswer(post.slug, { plans, fx })) : null]);
   const more = relatedArticles(post, posts);
   const resources = articleResources(post);
+  const isAustraliaGuide = ["quran-lessons-australia-time-zones", "quran-teacher-online-in-australia"].includes(post.slug);
   const market = LOCATIONS.find(location => location.slug === articleMarkets[post.slug]);
   const trialHref = market
     ? `/free-trial?${new URLSearchParams({ country: market.name, currency: market.currency })}#trial-form`
@@ -159,7 +160,12 @@ export default async function PostPage({ params }) {
             <div className="article-learning-panel mt-5 rounded-2xl border border-leaf-200 bg-leaf-50 p-5">
               <h2 className="font-sans text-lg font-semibold">Continue your learning</h2>
               <p className="mb-4 mt-2 text-sm text-ink-soft">{resources.label}</p>
-              {resources.links.map(link => <Link key={link.href} href={link.href} className="article-resource">{link.label}<ArrowRight className="size-4 shrink-0" aria-hidden="true" /></Link>)}
+              {isAustraliaGuide ? (
+                <>
+                  <Link href="/locations/australia#australia-local-guide" className="article-resource">Find your Australian state, city and lesson time<ArrowRight className="size-4 shrink-0" aria-hidden="true" /></Link>
+                  <Link href="/pricing?currency=AUD" className="article-resource">Compare estimated fees in AUD<ArrowRight className="size-4 shrink-0" aria-hidden="true" /></Link>
+                </>
+              ) : resources.links.map(link => <Link key={link.href} href={link.href} className="article-resource">{link.label}<ArrowRight className="size-4 shrink-0" aria-hidden="true" /></Link>)}
               <Link href={trialHref} className="btn btn-primary mt-3 w-full">
                 Book a free trial <ArrowRight className="size-4" aria-hidden="true" />
               </Link>
