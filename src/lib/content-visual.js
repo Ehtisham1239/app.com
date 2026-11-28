@@ -86,6 +86,10 @@ const covers = {
 // Improve the legacy covers on these articles while allowing an editor to
 // replace any cover with a newly uploaded image.
 const articleCoverUpdates = {
+  "online-quran-teacher-qualifications-child-safety-checks": {
+    previous: ["islamic-library-v1-1200.webp"],
+    replacement: "prepare-child-first-online-quran-trial",
+  },
   "arabic-for-quran-readers": {
     previous: ["blog-translation-arabic-r2-1200.webp", "blog-translation-arabic-1200.webp"],
     replacement: "arabic-for-quran-readers",
