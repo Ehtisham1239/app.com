@@ -7,10 +7,18 @@ const topics = {
   hifz: { label: "Balancing new work and revision", guide: ["Ask about a sustainable study routine", "/contact"], course: ["Explore the Hifz course", "/courses/hifz-quran"] },
   adults: { label: "Learning at your own starting point", guide: ["Quran learning for adult beginners", "/learn/quran-for-adults"], course: ["Compare the available courses", "/courses"] },
   understanding: { label: "Reading, language and understanding", guide: ["Explore Quran translation", "/courses/quran-translation"], course: ["Explore Arabic language study", "/courses/arabic-language"] },
+  women: { label: "Choosing a teacher and class time", guide: ["How to request a female Quran teacher", "/learn/female-quran-teacher"], course: ["Meet the Quran teachers", "/teachers"] },
+  converts: { label: "Taking the first steps", guide: ["Quran classes for new Muslims", "/learn/quran-for-reverts"], course: ["Start with Noorani Qaida", "/courses/noorani-qaida"] },
   international: { label: "Planning lessons around your local time", guide: ["Find your country and time zone", "/locations"], course: ["Compare class fees and packages", "/pricing"] },
 };
 
 const articleTopics = {
+  "can-i-learn-quran-by-myself": "reading",
+  "noorani-qaida-for-adults-online": "adults",
+  "online-quran-classes-for-women-and-girls": "women",
+  "online-quran-teacher-qualifications-child-safety-checks": "parents",
+  "quran-study-for-new-muslims": "converts",
+  "quranic-arabic-roadmap-first-year": "understanding",
   "choose-online-quran-classes-kids": "parents",
   "noorani-qaida-home-practice-checklist": "parents",
   "returning-to-quran-study-adults": "adults",

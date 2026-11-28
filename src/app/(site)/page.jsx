@@ -63,7 +63,7 @@ export default async function HomePage() {
             align="left"
             eyebrow="Our courses"
             title={<span id="courses-heading">Our popular courses</span>}
-            intro="Learning the letters, improving recitation, or starting Hifz? Choose the course that fits what you can do today."
+            intro="Choose live online Quran classes for your level, from first Arabic letters with Noorani Qaida to recitation with Tajweed or memorisation with Hifz."
           />
           <Link href="/courses" className="btn btn-outline">
             All courses <ArrowRight className="size-4" aria-hidden="true" />
