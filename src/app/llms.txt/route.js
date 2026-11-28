@@ -1,4 +1,4 @@
-import { getAcademicCourses, getQuranCourses, getPosts, getPublishedSlugs, getSettings } from "@/lib/site-data";
+import { getAcademicCourses, getQuranCourses, getPublishedSlugs, getSettings } from "@/lib/site-data";
 import { shouldIncludeInSitemap, organizationIdentityProfiles } from "@/lib/seo";
 import { SITE_URL } from "@/lib/config";
 import { LEARNING_GUIDES } from "@/lib/learning-guides";
@@ -10,7 +10,7 @@ export const revalidate = 3600;
 
 const label = value => String(value || "").replace(/[\[\]\r\n]/g, " ").trim();
 export async function GET() {
-  const [courses, academic, posts, published, settings] = await Promise.all([getQuranCourses(), getAcademicCourses(), getPosts(50), getPublishedSlugs(), getSettings()]);
+  const [courses, academic, published, settings] = await Promise.all([getQuranCourses(), getAcademicCourses(), getPublishedSlugs(), getSettings()]);
   // These are website-configured outbound links, not independent proof of account ownership.
   const profiles = Object.entries(settings?.["site.social"] || {}).filter(([, url]) => typeof url === "string" && /^https:\/\/[^\s]+$/.test(url));
   const identityProfiles = organizationIdentityProfiles(settings?.["site.social"]);
@@ -36,6 +36,9 @@ export async function GET() {
     ...(postSlugs.has("online-quran-classes-europe-time-zones") ? ["- [Planning lessons across European time zones](/blog/online-quran-classes-europe-time-zones): compare local lesson times and seasonal clock changes."] : []),
     ...(postSlugs.has("arabic-for-quran-readers") ? ["- [How to start learning Quranic Arabic](/blog/arabic-for-quran-readers): a vocabulary exercise and guidance on choosing reading foundations or Arabic study."] : []),
     "- [Learning guides](/learn)",
+    "- [Find an article by learning topic](/blog#blog-topics-heading)",
+    "- [Plan an Australian lesson by state, city or territory](/locations/australia#australia-local-guide)",
+    "- [Plan online lessons by US state](/usa-quran-classes/states)",
     "- [Frequently asked questions](/faq): trial, scheduling, teachers, payments and getting started.",
     "- [Teachers](/teachers): current public teacher profiles and a preference-request process; Admissions confirms suitability, language and availability.",
     "- [About the college](/about)",
@@ -82,7 +85,7 @@ export async function GET() {
     "## Courses", "",
     ...courses.filter(row => courseSlugs.has(row.slug)).map(row => `- [${label(row.title)}](/courses/${encodeURIComponent(row.slug)})`), "",
     "## Learning articles", "",
-    ...posts.filter(row => postSlugs.has(row.slug)).map(row => `- [${label(row.title)}](/blog/${encodeURIComponent(row.slug)})`), "",
+    ...published.posts.filter(row => postSlugs.has(row.slug)).sort((a, b) => a.slug.localeCompare(b.slug)).map(row => `- [${label(row.title)}](/blog/${encodeURIComponent(row.slug)})`), "",
     "## Further information", "",
     "- [Article RSS feed](/blog/feed.xml)",
     "- [Complete information in one plain-text file](/llms-full.txt)",
