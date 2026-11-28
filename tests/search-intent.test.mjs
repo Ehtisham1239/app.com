@@ -10,3 +10,8 @@ test('every supported course retains a real image even when CMS cover fields are
  for(const course of seed.courses){const visual=courseVisual({...course,cover_url:' ',cover_alt:' '});assert.ok(existsSync(new URL('../public'+visual.src,import.meta.url)),course.slug);assert.ok(visual.alt.length>25);}
  const custom=courseVisual({slug:'custom',cover_url:'/custom.webp',cover_alt:'A custom approved course illustration'});assert.equal(custom.src,'/custom.webp');assert.equal(custom.alt,'A custom approved course illustration');
 });
+ 
+const freeTrialPage = readFileSync(new URL('../src/app/(site)/free-trial/page.jsx', import.meta.url), 'utf8');
+test('free-trial visible copy contains its curated high-intent topic', () => {
+  assert.ok(freeTrialPage.includes(SEARCH_INTENTS['/free-trial'].phrase));
+});
