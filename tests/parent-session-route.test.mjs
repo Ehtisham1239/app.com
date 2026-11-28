@@ -8,7 +8,7 @@ let route;
 const token = "a".repeat(64);
 let fixture;
 const request = (method, body, extra = {}) => new Request("https://www.onlinequrancollege.com/api/parent-session", {
-  method, headers: { origin: "https://www.onlinequrancollege.com", ...extra }, ...(body === undefined ? {} : { body: JSON.stringify(body) }),
+  method, headers: { origin: "https://www.onlinequrancollege.com", "content-type": "application/json", ...extra }, ...(body === undefined ? {} : { body: JSON.stringify(body) }),
 });
 before(async () => {
   const bundle = await build({ entryPoints: ["src/app/api/parent-session/route.js"], bundle: true, write: false, format: "esm", platform: "node",
@@ -37,6 +37,16 @@ test("foreign origins, malformed and expired credentials cannot set a parent coo
   assert.equal((await route.POST(request("POST", { token: "bad" }))).status, 400);
   assert.equal(fixture.calls.length, 0); assert.equal(fixture.saved.length, 0);
   setup({ data: false, error: null }); assert.equal((await route.POST(request("POST", { token }))).status, 401); assert.equal(fixture.saved.length, 0);
+});
+test("parent session rejects unsupported content types and oversized JSON before querying Supabase", async () => {
+  setup();
+  const credentials = { token };
+  assert.equal((await route.POST(request("POST", credentials, { "content-type": "text/plain" }))).status, 415);
+  // Request fixtures do not include Content-Length, so this covers the streaming limit.
+  assert.equal((await route.POST(request("POST", { ...credentials, padding: " ".repeat(1024) }))).status, 413);
+  assert.equal(fixture.calls.length, 0);
+  assert.equal(fixture.saved.length, 0);
+  assert.equal((await route.POST(request("POST", credentials, { "content-type": "application/json; charset=utf-8" }))).status, 200);
 });
 test("database unavailability stays distinct from an invalid session", async () => {
   setup({ data: null, error: { message: "unavailable" } });
