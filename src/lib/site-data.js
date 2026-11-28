@@ -217,7 +217,7 @@ export const getPublishedPageVideos = cache(async () =>
 export const getPublishedSlugs = cache(async () => {
   const [courses, posts, pages, teachers] = await Promise.all([
     safe(() => publicDb.from("courses").select("slug, category, updated_at, seo_noindex, canonical_url, cover_url").eq("status", "published").is("deleted_at", null), [], "slugs courses"),
-    safe(() => publicDb.from("blog_posts").select("slug, updated_at, seo_noindex, canonical_url, cover_url").eq("status", "published").is("deleted_at", null), [], "slugs posts"),
+    safe(() => publicDb.from("blog_posts").select("slug, title, updated_at, seo_noindex, canonical_url, cover_url").eq("status", "published").is("deleted_at", null), [], "slugs posts"),
     safe(() => publicDb.from("pages").select("slug, updated_at, seo_noindex, canonical_url, cover_url").eq("status", "published").is("deleted_at", null), [], "slugs pages"),
     safe(() => publicDb.from("teachers").select("slug, updated_at").eq("is_public", true).eq("is_active", true).is("deleted_at", null), [], "slugs teachers"),
   ]);

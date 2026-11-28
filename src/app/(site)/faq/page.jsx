@@ -13,6 +13,13 @@ export const revalidate = 3600;
 
 export const metadata = contentMetadata({ title: "Questions About Online Quran Classes", seo_noindex: false }, { path: "/faq", description: "Answers about free trials, female teachers, class timings, fees, rescheduling and certificates at Online Quran College, plus what you need for online classes." });
 
+const START_HERE = [
+  { question: "Where should a beginner start?", answer: "Start with Noorani Qaida if you are still learning Arabic letters and short vowels. If you can already read simple words, ask about Quran reading with Tajweed.", href: "/courses", label: "Compare courses by starting level" },
+  { question: "How does the free trial work?", answer: "Eligible plans include a 3-day free trial with no card required. The Weekend plan is excluded. After you send a request, Admissions confirms a teacher and lesson time.", href: "/free-trial", label: "Check trial details and request a lesson" },
+  { question: "How much are online Quran classes?", answer: "Fees depend on the package and weekly lesson frequency. Check the published monthly options and ask Admissions to confirm your final fee and payment currency.", href: "/pricing", label: "Compare monthly fees and plans" },
+  { question: "Can I book in my local time zone?", answer: "Yes. Choose a city and date in the lesson planner so it can account for seasonal clock changes. Admissions confirms the time before the lesson.", href: "/locations", label: "Find your country and lesson planner" },
+];
+
 export default async function FaqPage() {
   const [faqs, settings] = await Promise.all([getFaqs(), getSettings()]);
   const groups = faqs.reduce((acc, f) => {
@@ -37,6 +44,18 @@ export default async function FaqPage() {
           <Link href="/contact" prefetch={false} className="btn btn-outline">Ask admissions</Link>
         </div>
       </PageHero>
+      <section aria-labelledby="faq-start-here" className="page-wrap pt-10 sm:pt-14">
+        <h2 id="faq-start-here" className="text-2xl text-mushaf-900">Course, trial, fee and scheduling answers</h2>
+        <div className="mt-5 grid gap-4 sm:grid-cols-2">
+          {START_HERE.map(({ question, answer, href, label }) => (
+            <article key={question} className="surface p-5">
+              <h3 className="text-lg font-semibold text-mushaf-900">{question}</h3>
+              <p className="mt-2 leading-relaxed text-ink-soft">{answer}</p>
+              <Link href={href} prefetch={false} className="mt-2 inline-flex min-h-11 items-center font-semibold text-leaf-700 underline underline-offset-4">{label}</Link>
+            </article>
+          ))}
+        </div>
+      </section>
       <section id="faq-topics" aria-label="Frequently asked questions by topic" className="page-wrap grid scroll-mt-28 gap-10 py-16 sm:py-20 lg:grid-cols-[14rem_1fr]">
         {entries.length > 1 && (
           <nav className="lg:sticky lg:top-24 lg:self-start" aria-label="FAQ topics">
