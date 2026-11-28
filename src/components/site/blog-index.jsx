@@ -1,3 +1,4 @@
+import { PRACTICE_GUIDES } from "@/lib/article-resources";
 import { contentVisual } from "@/lib/content-visual";
 import { cardTone } from "@/lib/card-presentation";
 import { contentMetadata } from "@/lib/seo-metadata";
@@ -14,10 +15,10 @@ import { formatDate, truncate } from "@/lib/format";
 
 const BLOG_TOPICS = [
   { title: "Start reading the Quran", articles: [["How to learn Quran online as a beginner", "/blog/how-to-learn-quran-online-beginners-guide"], ["Noorani Qaida or Quran reading?", "/blog/noorani-qaida-or-quran-reading"]] },
-  { title: "Help children learn", articles: [["Choose online Quran classes for kids", "/blog/choose-online-quran-classes-kids"], ["Arrange Quran classes for siblings", "/blog/family-quran-learning-multiple-children"]] },
-  { title: "Practise Tajweed", articles: [["Tajweed rules for beginners", "/blog/tajweed-rules-for-beginners"], ["Makharij and Arabic letter sounds", "/blog/makharij-explained-for-beginners"]] },
+  { title: "Help children learn", articles: [["Choose online Quran classes for kids", "/blog/choose-online-quran-classes-kids"], [PRACTICE_GUIDES.siblings.label, PRACTICE_GUIDES.siblings.href]] },
+  { title: "Practise Tajweed", articles: [["Tajweed rules for beginners", "/blog/tajweed-rules-for-beginners"], [PRACTICE_GUIDES.pronunciation.label, PRACTICE_GUIDES.pronunciation.href]] },
   { title: "Memorise and revise", articles: [["How long does Hifz take?", "/blog/how-long-does-hifz-take-online"], ["Plan Sabaq, Sabqi and Manzil revision", "/blog/sabaq-sabqi-manzil-explained"]] },
-  { title: "Understand the Quran", articles: [["Start learning Quranic Arabic", "/blog/arabic-for-quran-readers"], ["What do online Tafseer classes cover?", "/blog/online-tafseer-classes-what-you-learn"]] },
+  { title: "Understand the Quran", articles: [[PRACTICE_GUIDES.vocabulary.label, PRACTICE_GUIDES.vocabulary.href], ["What do online Tafseer classes cover?", "/blog/online-tafseer-classes-what-you-learn"]] },
   { title: "Compare fees and times", articles: [["Compare online Quran class fees", "/pricing"], ["Check lesson times by country", "/locations"]] },
 ];
 

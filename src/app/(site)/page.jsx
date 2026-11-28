@@ -1,3 +1,4 @@
+import { PRACTICE_GUIDES } from "@/lib/article-resources";
 import { contentVisual } from "@/lib/content-visual";
 import { cardTone } from "@/lib/card-presentation";
 import { HomeContact } from "@/components/site/home-contact";
@@ -247,7 +248,12 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {posts.length > 0 && <section id="blog" className="bg-[#f5faf1] py-16 sm:py-24"><div className="page-wrap"><SectionHeading eyebrow="Our blog" title="Latest articles and resources" intro="Practical guides for Quran learning, recitation and family study routines." /><div className="mt-10 grid gap-6 md:grid-cols-3">{posts.map(post => <Link key={post.slug} href={`/blog/${post.slug}`} prefetch={false} data-card-tone={cardTone(post.slug)} className="surface card-tinted overflow-hidden">{<ContentImage src={contentVisual(post).src} alt={contentVisual(post).alt} sizes="(max-width: 768px) 100vw, 380px" className="aspect-[3/2] w-full object-cover" />}<div className="p-6"><p className="text-xs font-semibold uppercase tracking-wider text-leaf-700">{post.category}</p><h3 className="mt-2 text-xl text-leaf-700">{post.title}</h3><p className="mt-3 text-sm text-ink-soft">{truncate(post.excerpt || "", 100)}</p></div></Link>)}</div><div className="mt-8 text-center"><Link href="/blog" className="btn btn-outline">All articles</Link></div></div></section>}
+      {posts.length > 0 && <section id="blog" className="bg-[#f5faf1] py-16 sm:py-24"><div className="page-wrap"><SectionHeading eyebrow="Our blog" title="Latest articles and resources" intro="Practical guides for Quran learning, recitation and family study routines." /><div className="mt-10 grid gap-6 md:grid-cols-3">{posts.map(post => <Link key={post.slug} href={`/blog/${post.slug}`} prefetch={false} data-card-tone={cardTone(post.slug)} className="surface card-tinted overflow-hidden">{<ContentImage src={contentVisual(post).src} alt={contentVisual(post).alt} sizes="(max-width: 768px) 100vw, 380px" className="aspect-[3/2] w-full object-cover" />}<div className="p-6"><p className="text-xs font-semibold uppercase tracking-wider text-leaf-700">{post.category}</p><h3 className="mt-2 text-xl text-leaf-700">{post.title}</h3><p className="mt-3 text-sm text-ink-soft">{truncate(post.excerpt || "", 100)}</p></div></Link>)}</div><nav aria-label="Quran practice and family guides" className="mt-8">
+          <ul className="flex flex-wrap justify-center gap-x-6 gap-y-1">
+            {Object.values(PRACTICE_GUIDES).map(({ label, href }) => <li key={href}><Link href={href} prefetch={false} className="inline-flex min-h-11 items-center text-sm font-semibold text-leaf-700 underline underline-offset-4">{label}</Link></li>)}
+          </ul>
+        </nav>
+        <div className="mt-4 text-center"><Link href="/blog" className="btn btn-outline">All articles</Link></div></div></section>}
       <CtaBand
         title="Take the next step in your family’s Quran learning"
         text="Register for a 3-day free trial. Admissions will discuss your course and teacher preferences, confirm availability and agree a suitable time — no card needed on eligible packages."
