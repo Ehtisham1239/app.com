@@ -21,6 +21,7 @@ test('Weekend and trial-ineligible packages cannot advertise a trial; default en
   assert.equal(isTrialEligible({ name: 'Package 1', trial_days: 3 }), true);
   assert.equal(isTrialEligible({ name: 'Weekend', trial_days: 3 }), false);
   assert.equal(isTrialEligible({ name: 'Other package', trial_days: 0 }), false);
+  assert.equal(isTrialEligible({ name: 'Other package', trial_days: 7 }), false);
   assert.equal(isTrialEligible({ name: 'Other package' }), false);
 });
 test('verified Hifz legacy alias is a single direct permanent route without a redirect chain', async () => {
