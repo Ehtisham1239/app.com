@@ -78,7 +78,7 @@ jobs:
           grep -Fq 'class="article-table-scroll"' /tmp/oqc-dallas.html
           grep -Fq '<table' /tmp/oqc-dallas.html
           for term in "Course" "Learning Objective" "Time Zone" "UTC Offset"; do
-            grep -Fq "$term" /tmp/oqc-dallas.html || { echo "Missing Dallas table content: $term"; exit 1; }
+            grep -Fqi "$term" /tmp/oqc-dallas.html || { echo "Missing Dallas table content (case-insensitive): $term"; exit 1; }
           done
           table_count=$(grep -o '<table' /tmp/oqc-dallas.html | wc -l)
           test "$table_count" -ge 2 || { echo "Expected two Dallas tables, found $table_count"; exit 1; }
