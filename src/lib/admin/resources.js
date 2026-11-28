@@ -1,3 +1,4 @@
+import { FREE_TRIAL_DAYS } from "@/lib/trial-eligibility";
 import { pageVideo, isVideoPageSlug } from "@/lib/page-video";
 import { guideForSlug } from "@/lib/learning-guides";
 import { LOCATIONS, locationPath, locationCmsSlug } from "@/lib/locations";
@@ -119,7 +120,7 @@ export const RESOURCES = {
       { key: "status", label: "Status", type: "status" },
       { key: "updated_at", label: "Updated", type: "when" },
     ],
-    defaults: { status: "draft", billing_period: "monthly", classes_per_week: 3, duration_min: 30, trial_days: 7, features: [], is_public: true, sort_order: 0 },
+    defaults: { status: "draft", billing_period: "monthly", classes_per_week: 3, duration_min: 30, trial_days: FREE_TRIAL_DAYS, features: [], is_public: true, sort_order: 0 },
     fields: [
       { name: "name", label: "Package name", type: "text", required: true },
       { name: "tagline", label: "Tagline", type: "text" },
@@ -139,7 +140,7 @@ export const RESOURCES = {
       },
       { name: "classes_per_week", label: "Classes per week", type: "number", min: 1, max: 7, half: true, required: true },
       { name: "duration_min", label: "Minutes per class", type: "number", min: 15, max: 180, half: true },
-      { name: "trial_days", label: "Free trial days", type: "number", min: 0, max: 60, half: true },
+      { name: "trial_days", label: "Free trial", type: "select", number: true, half: true, hint: "Choose No free trial for the Weekend plan.", options: [{ value: 0, label: "No free trial" }, { value: FREE_TRIAL_DAYS, label: "3-day free trial" }] },
       { name: "sort_order", label: "Display order", type: "number", half: true },
       { name: "features", label: "What is included", type: "tags" },
       { name: "is_featured", label: "Highlight as most chosen", type: "bool", half: true },
