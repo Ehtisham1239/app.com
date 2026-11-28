@@ -1,3 +1,9 @@
+export const PRACTICE_GUIDES = {
+  vocabulary: { label: "Try a Quranic Arabic vocabulary exercise", href: "/blog/arabic-for-quran-readers#section-try-a-vocabulary-exercise-with-al-fatihah" },
+  siblings: { label: "See a sample timetable for siblings", href: "/blog/family-quran-learning-multiple-children#section-a-sample-timetable-when-siblings-share-one-device" },
+  pronunciation: { label: "Practise two similar Arabic sounds", href: "/blog/makharij-explained-for-beginners#section-what-to-do-when-and-sound-alike" },
+};
+
 // Editorial connections, not keyword-volume or ranking claims. Each link leads
 // to an existing course, guide or practical article with a different purpose.
 const topics = {
